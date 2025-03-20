@@ -51,6 +51,7 @@ public class Grid : MonoBehaviour
                 Tile tile = Instantiate(TilePrefab, position + origin, Quaternion.identity, transform);
 
                 // For testing, remove eventually
+                // Give each tile a random power from 0-11
                 tile.TEMP_Place(Random.Range(0, 11));
                 
                 Tiles[x, y] = tile;
@@ -58,7 +59,7 @@ public class Grid : MonoBehaviour
         }
         
         // For testing, remove eventually
-        // The center of the grid is the dragon
+        // The center of the grid is the Dragon (13)
         Tiles[Width/2, Height/2].TEMP_Place(13);
     }
 }
