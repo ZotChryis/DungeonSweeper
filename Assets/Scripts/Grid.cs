@@ -60,6 +60,7 @@ public class Grid : SingletonMonoBehaviour<Grid>
         // For testing, remove eventually
         // The center of the grid is the Dragon (13)
         Tiles[Width/2, Height/2].TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetDragon());
+        Tiles[Width/2, Height/2].TEMP_SetState(Tile.TileState.Revealed);
     }
 
     /// <summary>
