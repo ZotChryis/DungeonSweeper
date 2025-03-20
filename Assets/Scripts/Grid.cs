@@ -2,10 +2,10 @@ using UnityEngine;
 
 /// <summary>
 /// Quick and dirty implementation of an NxM Grid of Tiles for the gameplay.
-///     Eventually this should be malleable enough to do different shapes with holes and corridors.
-///     Probably using some sort of markup level file.
+/// Eventually this should be malleable enough to do different shapes with holes and corridors.
+/// Probably using some sort of markup level file.
 /// </summary>
-public class Grid : MonoBehaviour
+public class Grid : SingletonMonoBehaviour<Grid>
 {
     
     [SerializeField, Header("Grid Settings")]
@@ -24,18 +24,18 @@ public class Grid : MonoBehaviour
     private Tile TilePrefab;
 
     private Tile[,] Tiles;
-    
+
     private void Start()
     {
-        GenerateGrid();
+        ServiceLocator.Instance.Register(this);
     }
-
+    
     /// <summary>
     /// Creates the Grid using the Serialized Properties marked with Grid Settings.
     /// The position of the GameObject that owns the script is used as the center of the Grid.
     /// [0,0] of the Grid is the bottom-left corner.
     /// </summary>
-    private void GenerateGrid()
+    public void GenerateGrid()
     {
         Tiles = new Tile[Width, Height];
         
@@ -50,9 +50,8 @@ public class Grid : MonoBehaviour
                 Vector3 position = new Vector3(x * TileWidth - gridOffsetX, y * TileHeight - gridOffsetY, 0f);
                 Tile tile = Instantiate(TilePrefab, position + origin, Quaternion.identity, transform);
 
-                // For testing, remove eventually
-                // Give each tile a random power from 0-11
-                tile.TEMP_Place(Random.Range(0, 11));
+                // For testing, update eventually
+                tile.TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetNonDragon());
                 
                 Tiles[x, y] = tile;
             }
@@ -60,6 +59,20 @@ public class Grid : MonoBehaviour
         
         // For testing, remove eventually
         // The center of the grid is the Dragon (13)
-        Tiles[Width/2, Height/2].TEMP_Place(13);
+        Tiles[Width/2, Height/2].TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetDragon());
+    }
+
+    /// <summary>
+    /// Used for cheats.
+    /// </summary>
+    public void TEMP_RevealAllTiles()
+    {
+        for (int y = 0; y < Height; y++)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                Tiles[x, y].TEMP_SetState(Tile.TileState.Revealed);
+            }
+        }
     }
 }
