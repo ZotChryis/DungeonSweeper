@@ -1,8 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 
 public class Tile : MonoBehaviour
 {
@@ -128,7 +126,7 @@ public class Tile : MonoBehaviour
         // Enemies are auto conquered when revealed by user input
         if (State == TileState.Revealed && causedByInput)
         {
-            TEMP_SetState(TileState.Conquered);
+            TEMP_SetState(TileState.Conquered, causedByInput);
         }
         else if (State == TileState.Conquered)
         {
