@@ -11,7 +11,8 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     // They must self-register
     public CheatManager CheatManager;
     public Grid Grid;
-    
+    public Player Player;
+
     // Non-MonoBehavior backed systems
     // These are managed within this class
     public SchemaContainer Schemas;
@@ -29,7 +30,12 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     {
         Grid = grid;
     }
-    
+
+    public void Register(Player player)
+    {
+        Player = player;
+    }
+
     public void Register(CheatManager cheatManager)
     {
         CheatManager = cheatManager;

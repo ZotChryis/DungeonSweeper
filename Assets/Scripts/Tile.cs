@@ -27,6 +27,8 @@ public class Tile : MonoBehaviour
     
     private ITileObject HousedObject;
     private TileState State = TileState.Hidden;
+
+    // TODO: Deprecate this shit in favor of just looking it up from the contained item
     private int Cost = 0;
     
     // TODO: Probably should formalize this better
@@ -63,20 +65,20 @@ public class Tile : MonoBehaviour
         {
             // TODO: For now, we just reveal
             case TileState.Hidden:
-                TEMP_SetState(TileState.Revealed);
+                TEMP_SetState(TileState.Revealed, true);
                 return;
             
             case TileState.Revealed:
-                TEMP_SetState(TileState.Conquered);
+                TEMP_SetState(TileState.Conquered, true);
                 return;    
             
             // Except this one, skip Collected for now
             case TileState.Conquered:
-                TEMP_SetState(TileState.Empty);
+                TEMP_SetState(TileState.Collected, true);
                 return;
-            
+
             case TileState.Collected:
-                TEMP_SetState(TileState.Empty);
+                TEMP_SetState(TileState.Empty, true);
                 return;
         }
     }
@@ -108,28 +110,49 @@ public class Tile : MonoBehaviour
     /// <summary>
     /// Replace this function eventually...
     /// </summary>
-    public void TEMP_SetState(TileState state)
+    public void TEMP_SetState(TileState state, bool causedByInput = false)
     {
         State = state;
-        HandleStateChanged();
+        HandleStateChanged(causedByInput);
         
         ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
     }
 
     // TODO: We should look into using Observables
-    private void HandleStateChanged()
+    private void HandleStateChanged(bool causedByInput = false)
     {
         int revealRadius = HousedObject.GetRevealRadius(State);
         ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(XCoordinate, YCoordinate, revealRadius);
         
+        // TODO: Clean up these special cases in a systemic way
+        // Enemies are auto conquered when revealed by user input
+        if (State == TileState.Revealed && causedByInput)
+        {
+            TEMP_SetState(TileState.Conquered);
+        }
+        else if (State == TileState.Conquered)
+        {
+            if (causedByInput && HousedObject is EnemySchema enemy)
+            {
+                ServiceLocator.Instance.Player.TEMP_UpdateHealth(-GetCost());
+            }
+
+            Cost = 0;
+
+            if (HousedObject is ItemSchema item && item.AutoCollect)
+            {
+                TEMP_SetState(TileState.Collected);
+            }
+        }
+        else if (State == TileState.Collected)
+        {
+            ServiceLocator.Instance.Player.TEMP_UpdateXP(HousedObject.GetPower(State));
+            TEMP_SetState(TileState.Empty);
+        }
+
         // Update the information to display
         TEMP_UpdateInformation();
         TEMP_UpdateVisibility();
-        
-        if (State == TileState.Conquered)
-        {
-            Cost = 0;
-        }
     }
 
     private void TEMP_UpdateVisibility()
@@ -150,7 +173,7 @@ public class Tile : MonoBehaviour
                 SpriteRenderer.enabled = true;
                 return;
             case TileState.Conquered:
-                Power.enabled = false;
+                Power.enabled = true;
                 NeighborPower.enabled = false;
                 SpriteRenderer.enabled = true;
                 return;

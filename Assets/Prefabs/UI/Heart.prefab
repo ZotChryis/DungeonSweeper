@@ -86,8 +86,9 @@ GameObject:
   - component: {fileID: 9094372056194017880}
   - component: {fileID: 6628657318254713474}
   - component: {fileID: 2103400008164666951}
+  - component: {fileID: 3544983535111953844}
   m_Layer: 0
-  m_Name: HeartInstance
+  m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,11 +144,25 @@ MonoBehaviour:
   m_IgnoreLayout: 0
   m_MinWidth: -1
   m_MinHeight: -1
-  m_PreferredWidth: 100
-  m_PreferredHeight: 100
+  m_PreferredWidth: 50
+  m_PreferredHeight: 50
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &3544983535111953844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545938991555585654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1530c6ad6c73c8d498d22e60ee5f3b97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Full: {fileID: 6177410102838722112}
+  Empty: {fileID: 5986030022688508921}
 --- !u!1 &8754732402102491530
 GameObject:
   m_ObjectHideFlags: 0

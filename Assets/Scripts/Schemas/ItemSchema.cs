@@ -16,7 +16,12 @@ public class ItemSchema : Schema, ITileObject
     /// </summary>
     [SerializedDictionary("Tile State", "Sprite Visual")] 
     public SerializedDictionary<Tile.TileState, int> RevealRadius;
-    
+
+    /// <summary>
+    /// If true, when Conquered, this item is automatically collected.
+    /// </summary>
+    public bool AutoCollect;
+
     /** ITileObject **/
     public int GetPower(Tile.TileState state = Tile.TileState.Hidden)
     {
