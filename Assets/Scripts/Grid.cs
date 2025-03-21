@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -5,9 +6,9 @@ using UnityEngine;
 /// Eventually this should be malleable enough to do different shapes with holes and corridors.
 /// Probably using some sort of markup level file.
 /// </summary>
-public class Grid : SingletonMonoBehaviour<Grid>
+public class Grid : MonoBehaviour
 {
-    
+    // TODO: Create a settings/grid scriptable object instead
     [SerializeField, Header("Grid Settings")]
     private int Width;
     
@@ -25,9 +26,16 @@ public class Grid : SingletonMonoBehaviour<Grid>
 
     private Tile[,] Tiles;
 
+    // TODO: Probably should be a cleaner delegate and not owned by this class?
+    public Action<Tile> OnTileStateChanged;
+    public Action OnGridGenerated;
+    
     private void Start()
     {
         ServiceLocator.Instance.Register(this);
+        
+        // TODO: Super temporary way to start the game
+        GenerateGrid();
     }
     
     /// <summary>
@@ -51,6 +59,7 @@ public class Grid : SingletonMonoBehaviour<Grid>
                 Tile tile = Instantiate(TilePrefab, position + origin, Quaternion.identity, transform);
 
                 // For testing, update eventually
+                tile.TEMP_SetCoordinates(x, y);
                 tile.TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetNonDragon());
                 
                 Tiles[x, y] = tile;
@@ -60,9 +69,39 @@ public class Grid : SingletonMonoBehaviour<Grid>
         // For testing, remove eventually
         // The center of the grid is the Dragon (13)
         Tiles[Width/2, Height/2].TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetDragon());
-        Tiles[Width/2, Height/2].TEMP_SetState(Tile.TileState.Revealed);
+        // Make this spot the vision orb
+        Tiles[Width/4, Height/4].TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetVisionOrb());
+        
+        //  Reveal after everything is placed
+        Tiles[Width/2, Height/2].TEMP_Reveal();
+        Tiles[Width/4, Height/4].TEMP_Reveal();
     }
 
+    private bool InGridBounds(int x, int y)
+    {
+        return x >= 0 && y >= 0 && x < Width && y < Height;
+    }
+    
+    public void TEMP_RevealTilesInRadius(int x, int y, int radius)
+    {
+        // Always reveal the given tile
+        if (InGridBounds(x, y))
+        {
+            Tiles[x, y].TEMP_Reveal();
+        }
+
+        for (int i = -radius; i <= radius; i++)
+        {
+            for (int j = -radius; j <= radius; j++)
+            {
+                if (InGridBounds(x + i, y + j))
+                {
+                    Tiles[x + i, y + j].TEMP_Reveal();
+                }
+            }
+        }
+    }
+    
     /// <summary>
     /// Used for cheats.
     /// </summary>
@@ -72,8 +111,33 @@ public class Grid : SingletonMonoBehaviour<Grid>
         {
             for (int x = 0; x < Width; x++)
             {
-                Tiles[x, y].TEMP_SetState(Tile.TileState.Revealed);
+                Tiles[x, y].TEMP_Reveal();
             }
         }
+    }
+    
+    /// <summary>
+    /// Gets the total cost of all neighbors for a given coordinate.
+    /// </summary>
+    public int TEMP_GetTotalNeighborCost(int x, int y)
+    {
+        int cost = 0;
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (i == x && j == y)
+                {
+                    continue;
+                }
+                
+                if (InGridBounds(x + i, y + j))
+                {
+                    cost += Tiles[x + i, y + j].GetCost();
+                }
+            }
+        }
+
+        return cost;
     }
 }

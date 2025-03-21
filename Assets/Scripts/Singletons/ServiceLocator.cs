@@ -9,8 +9,8 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     // MonoBehavior backed systems
     // They must self-register
-    public Grid Grid;
     public CheatManager CheatManager;
+    public Grid Grid;
     
     // Non-MonoBehavior backed systems
     // These are managed within this class
@@ -23,9 +23,6 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
         
         Schemas = new SchemaContainer();
         Schemas.Initialize(MininmumStatus);
-
-        // Super temporary way to start the game post initialization
-        FindFirstObjectByType<Grid>().GenerateGrid();
     }
     
     public void Register(Grid grid)

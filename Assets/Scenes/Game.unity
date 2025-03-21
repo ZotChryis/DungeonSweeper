@@ -449,8 +449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MininmumStatus: 0
-  Grid: {fileID: 0}
   CheatManager: {fileID: 0}
+  Grid: {fileID: 0}
 --- !u!4 &2141878072
 Transform:
   m_ObjectHideFlags: 0

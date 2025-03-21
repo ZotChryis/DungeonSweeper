@@ -1,9 +1,8 @@
 using System;
-using AYellowpaper.SerializedCollections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class Tile : MonoBehaviour
 {
@@ -21,15 +20,65 @@ public class Tile : MonoBehaviour
     private SpriteRenderer SpriteRenderer; 
     
     [SerializeField] 
-    private TMP_Text Label;
-
+    private TMP_Text NeighborPower;
+    
+    [SerializeField] 
+    private TMP_Text Power;
+    
     private ITileObject HousedObject;
     private TileState State = TileState.Hidden;
     private int Cost = 0;
+    
+    // TODO: Probably should formalize this better
+    private int XCoordinate = 0;
+    private int YCoordinate = 0;
 
+    private void Awake()
+    {
+        // TODO: this probably needs a better home
+        ServiceLocator.Instance.Grid.OnTileStateChanged += OnAnyTileStateChanged;
+        ServiceLocator.Instance.Grid.OnGridGenerated += TEMP_UpdateInformation;
+    }
+    
     private void Start()
     {
-        HandleStateChanged();
+        TEMP_UpdateVisibility();
+    }
+
+    public void TEMP_SetCoordinates(int xCoordinate, int yCoordinate)
+    {
+        XCoordinate = xCoordinate;
+        YCoordinate = yCoordinate;
+    }
+    
+    private void OnAnyTileStateChanged(Tile tile)
+    {
+        TEMP_UpdateInformation();
+    }
+
+    private void OnMouseDown()
+    {
+        // TODO: For now we just follow along the states in order
+        switch (State)
+        {
+            // TODO: For now, we just reveal
+            case TileState.Hidden:
+                TEMP_SetState(TileState.Revealed);
+                return;
+            
+            case TileState.Revealed:
+                TEMP_SetState(TileState.Conquered);
+                return;    
+            
+            // Except this one, skip Collected for now
+            case TileState.Conquered:
+                TEMP_SetState(TileState.Empty);
+                return;
+            
+            case TileState.Collected:
+                TEMP_SetState(TileState.Empty);
+                return;
+        }
     }
 
     /// <summary>
@@ -39,16 +88,23 @@ public class Tile : MonoBehaviour
     {
         return Cost;
     }
-
+    
     /// <summary>
     /// Replace this function eventually...
     /// </summary>
     public void TEMP_Place(ITileObject housedObject)
     {
         HousedObject = housedObject;
-        TEMP_UpdateInformation();
     }
 
+    public void TEMP_Reveal()
+    {
+        if (State < TileState.Revealed)
+        {
+            TEMP_SetState(TileState.Revealed);
+        }
+    }
+    
     /// <summary>
     /// Replace this function eventually...
     /// </summary>
@@ -56,35 +112,58 @@ public class Tile : MonoBehaviour
     {
         State = state;
         HandleStateChanged();
+        
+        ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
     }
 
     // TODO: We should look into using Observables
     private void HandleStateChanged()
     {
+        int revealRadius = HousedObject.GetRevealRadius(State);
+        ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(XCoordinate, YCoordinate, revealRadius);
+        
         // Update the information to display
         TEMP_UpdateInformation();
+        TEMP_UpdateVisibility();
         
+        if (State == TileState.Conquered)
+        {
+            Cost = 0;
+        }
+    }
+
+    private void TEMP_UpdateVisibility()
+    {
+        // TODO: Cleanup plz. Maybe make an animator? idk
         // Update the state of the rendering
         switch (State)
         {
             case TileState.Hidden:
-                Label.enabled = false;
+                Power.enabled = false;
+                NeighborPower.enabled = false;
                 SpriteRenderer.enabled = false;
                 return;
             
             case TileState.Revealed:
+                Power.enabled = true;
+                NeighborPower.enabled = false;
+                SpriteRenderer.enabled = true;
+                return;
             case TileState.Conquered:
-                Label.enabled = false;
+                Power.enabled = false;
+                NeighborPower.enabled = false;
                 SpriteRenderer.enabled = true;
                 return;
             
             case TileState.Collected:
-                Label.enabled = false;
+                Power.enabled = false;
+                NeighborPower.enabled = true;
                 SpriteRenderer.enabled = false;
                 return;
             
             case TileState.Empty:
-                Label.enabled = true;
+                Power.enabled = false;
+                NeighborPower.enabled = true;
                 SpriteRenderer.enabled = false;
                 return;
         }
@@ -97,7 +176,11 @@ public class Tile : MonoBehaviour
     {
         Cost = HousedObject.GetPower(State);
         SpriteRenderer.sprite = HousedObject.GetSprite(State);
-        Label.SetText(Cost.ToString());
+
+        int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
+        NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
+        
+        Power.SetText(Cost == 0 ? string.Empty : Cost.ToString());
     }
 }
 
@@ -116,4 +199,9 @@ public interface ITileObject
     /// This can be null.
     /// </summary>
     Sprite GetSprite(Tile.TileState state);
+
+    /// <summary>
+    /// Given the owned Tile state, this object must report how many neighboring tiles to reveal.
+    /// </summary>
+    int GetRevealRadius(Tile.TileState state);
 }

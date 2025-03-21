@@ -10,13 +10,20 @@ using System.Collections.Generic;
 public class SchemaContainer
 {
     private const string c_enemyDirectory = "Data/Enemy";
+    private const string c_itemDirectory = "Data/Item";
     
     public IReadOnlyList<EnemySchema> Enemies;
+    public IReadOnlyList<ItemSchema> Items;
 
     public void Initialize(Schema.ProductionStatus minimumStatus)
     {
         Enemies = Array.FindAll(
             UnityEngine.Resources.LoadAll<EnemySchema>(c_enemyDirectory),
+            v => v.Status >= minimumStatus
+        );
+        
+        Items = Array.FindAll(
+            UnityEngine.Resources.LoadAll<ItemSchema>(c_itemDirectory),
             v => v.Status >= minimumStatus
         );
     }
@@ -44,7 +51,6 @@ public class SchemaContainer
     /// Forcibly finds the Dragon (power 13).
     /// Super temp function, replace eventually...
     /// </summary>
-    /// <returns></returns>
     public EnemySchema TEMP_GetDragon()
     {
         foreach (var enemySchema in Enemies)
@@ -56,5 +62,15 @@ public class SchemaContainer
         }
 
         return null;
+    }
+
+    /// <summary>
+    /// Forcibly finds the VisionOrb item.
+    /// Super temp function, replace eventually...
+    /// </summary>
+    public ITileObject TEMP_GetVisionOrb()
+    {
+        // Only 1 item right now, it's the first one
+        return Items[0];
     }
 }

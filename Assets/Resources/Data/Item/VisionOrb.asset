@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71f0b1a2328078242b0e431cfecb0397, type: 3}
+  m_Name: VisionOrb
+  m_EditorClassIdentifier: 
+  Status: 1
+  Visuals:
+    _serializedList:
+    - Key: 1
+      Value: {fileID: -1910244127391616031, guid: 0a69202494704544e90f75e07c45420b, type: 3}
+    - Key: 2
+      Value: {fileID: -1910244127391616031, guid: 0a69202494704544e90f75e07c45420b, type: 3}
+  RevealRadius:
+    _serializedList:
+    - Key: 3
+      Value: 1

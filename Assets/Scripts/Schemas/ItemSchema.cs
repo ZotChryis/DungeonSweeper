@@ -2,21 +2,25 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-/// <summary>
-/// Representation of an Enemy.
-/// Intended to be housed within a Tile.
-/// </summary>
-[CreateAssetMenu(menuName = "Data/Enemy")]
-public class EnemySchema : Schema, ITileObject
+[CreateAssetMenu(menuName = "Data/Item")]
+public class ItemSchema : Schema, ITileObject
 {
+    /// <summary>
+    ///  The visuals for each state of this item.
+    /// </summary>
     [SerializedDictionary("Tile State", "Sprite Visual")] 
     public SerializedDictionary<Tile.TileState, Sprite> Visuals;
-    public SerializedDictionary<Tile.TileState, int> Power;
+
+    /// <summary>
+    /// The amount of tiles from center to reveal when this is conquered.
+    /// </summary>
+    [SerializedDictionary("Tile State", "Sprite Visual")] 
+    public SerializedDictionary<Tile.TileState, int> RevealRadius;
     
     /** ITileObject **/
     public int GetPower(Tile.TileState state = Tile.TileState.Hidden)
     {
-        return Power.GetValueOrDefault(state);
+        return 0;
     }
 
     public Sprite GetSprite(Tile.TileState state)
@@ -26,7 +30,8 @@ public class EnemySchema : Schema, ITileObject
 
     public int GetRevealRadius(Tile.TileState state)
     {
-        return 0;
+        return RevealRadius.GetValueOrDefault(state);
     }
+
     /** End ITileObject **/
 }
