@@ -11,6 +11,10 @@ public class EnemySchema : Schema, ITileObject
 {
     [SerializedDictionary("Tile State", "Sprite Visual")] 
     public SerializedDictionary<Tile.TileState, Sprite> Visuals;
+    
+    // TODO: Probably doesnt need to be a map
+    // Need to script special logic on each enemy when tile state changes
+    // Probably need a EnemyInstance class detatched from the data RIP
     public SerializedDictionary<Tile.TileState, int> Power;
     
     /** ITileObject **/

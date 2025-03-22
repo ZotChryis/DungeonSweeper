@@ -25,9 +25,6 @@ public class Tile : MonoBehaviour
     
     private ITileObject HousedObject;
     private TileState State = TileState.Hidden;
-
-    // TODO: Deprecate this shit in favor of just looking it up from the contained item
-    private int Cost = 0;
     
     // TODO: Probably should formalize this better
     private int XCoordinate = 0;
@@ -37,12 +34,12 @@ public class Tile : MonoBehaviour
     {
         // TODO: this probably needs a better home
         ServiceLocator.Instance.Grid.OnTileStateChanged += OnAnyTileStateChanged;
-        ServiceLocator.Instance.Grid.OnGridGenerated += TEMP_UpdateInformation;
+        ServiceLocator.Instance.Grid.OnGridGenerated += TEMP_UpdateVisuals;
     }
     
     private void Start()
     {
-        TEMP_UpdateVisibility();
+        TEMP_UpdateVisuals();
     }
 
     public void TEMP_SetCoordinates(int xCoordinate, int yCoordinate)
@@ -53,7 +50,7 @@ public class Tile : MonoBehaviour
     
     private void OnAnyTileStateChanged(Tile tile)
     {
-        TEMP_UpdateInformation();
+        TEMP_UpdateVisuals();
     }
 
     private void OnMouseDown()
@@ -80,13 +77,10 @@ public class Tile : MonoBehaviour
                 return;
         }
     }
-
-    /// <summary>
-    /// Gets the health cost of interacting with this Tile.
-    /// </summary>
-    public int GetCost()
+    
+    public int TEMP_GetCost()
     {
-        return Cost;
+        return HousedObject.GetPower(State);
     }
     
     /// <summary>
@@ -132,10 +126,8 @@ public class Tile : MonoBehaviour
         {
             if (causedByInput && HousedObject is EnemySchema enemy)
             {
-                ServiceLocator.Instance.Player.TEMP_UpdateHealth(-GetCost());
+                ServiceLocator.Instance.Player.TEMP_UpdateHealth(-TEMP_GetCost());
             }
-
-            Cost = 0;
 
             if (HousedObject is ItemSchema item && item.AutoCollect)
             {
@@ -149,12 +141,17 @@ public class Tile : MonoBehaviour
         }
 
         // Update the information to display
-        TEMP_UpdateInformation();
-        TEMP_UpdateVisibility();
+        TEMP_UpdateVisuals();
     }
 
-    private void TEMP_UpdateVisibility()
+    private void TEMP_UpdateVisuals()
     {
+        SpriteRenderer.sprite = HousedObject.GetSprite(State);
+        Power.SetText(TEMP_GetCost() == 0 ? string.Empty : TEMP_GetCost().ToString());
+        
+        int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
+        NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
+        
         // TODO: Cleanup plz. Maybe make an animator? idk
         // Update the state of the rendering
         switch (State)
@@ -188,20 +185,6 @@ public class Tile : MonoBehaviour
                 SpriteRenderer.enabled = false;
                 return;
         }
-    }
-
-    /// <summary>
-    /// When neighbors change, or the tile itself changed, we need to update visuals.
-    /// </summary>
-    private void TEMP_UpdateInformation()
-    {
-        Cost = HousedObject.GetPower(State);
-        SpriteRenderer.sprite = HousedObject.GetSprite(State);
-
-        int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
-        NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
-        
-        Power.SetText(Cost == 0 ? string.Empty : Cost.ToString());
     }
 }
 

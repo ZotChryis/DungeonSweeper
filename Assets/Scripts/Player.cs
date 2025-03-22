@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+// TODO: Create a mvc/settings/player scriptable object instead
+public class Player : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] 
     private Image PlayerIcon;
-
-    // TODO: Create a mvc/settings/player scriptable object instead
+    
+    [SerializeField] 
+    private Image LevelUpIcon;
+    
     [SerializeField] 
     private int MaxHealth = 5;
 
@@ -43,8 +47,14 @@ public class Player : MonoBehaviour
 
     public void TEMP_UpdateHealth(int amount)
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, 0, MaxHealth);
+        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, -1, MaxHealth);
         TEMP_UpdateVisuals();
+
+        if (CurrentHealth == -1)
+        {
+            Debug.Log("GAME OVER");
+            Application.Quit();
+        }
     }
 
     public void TEMP_UpdateXP(int amount)
@@ -64,10 +74,28 @@ public class Player : MonoBehaviour
             Hearts[i].SetFull(CurrentHealth > i);
         }
 
-        // TODO: XP scale system. Dont go over 20 xp or you crash kekw
+        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level);
         for (int i = 0; i < XPGems.Length; i++)
         {
+            XPGems[i].gameObject.SetActive(i < xpRequiredToLevel);
             XPGems[i].SetFull(CurrentXP > i);
+        }
+
+        LevelUpIcon.enabled = CurrentXP >= xpRequiredToLevel;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level);
+        if (CurrentXP >= xpRequiredToLevel)
+        {
+            CurrentXP -= xpRequiredToLevel;
+            Level++;
+
+            MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
+            CurrentHealth = MaxHealth;
+            
+            TEMP_UpdateVisuals();
         }
     }
 }

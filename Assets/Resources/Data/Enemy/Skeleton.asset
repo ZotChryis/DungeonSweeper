@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
+  m_Name: Skeleton
+  m_EditorClassIdentifier: 
+  Status: 0
+  Visuals:
+    _serializedList:
+    - Key: 1
+      Value: {fileID: 4354231566380549168, guid: 4c957838ba18aae499c63d20314fae83, type: 3}
+    - Key: 2
+      Value: {fileID: -6228746816360909655, guid: 145f2c97e0945774c813d9465c5d249b, type: 3}
+  Power:
+    _serializedList:
+    - Key: 0
+      Value: 3
+    - Key: 1
+      Value: 3
+    - Key: 2
+      Value: 3
+    - Key: 3
+      Value: 3

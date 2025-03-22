@@ -11,10 +11,12 @@ public class SchemaContainer
 {
     private const string c_enemyDirectory = "Data/Enemy";
     private const string c_itemDirectory = "Data/Item";
+    private const string c_levelProgressionDirectory = "Data/LevelProgression";
     
     public IReadOnlyList<EnemySchema> Enemies;
     public IReadOnlyList<ItemSchema> Items;
-
+    public LevelProgressionSchema LevelProgression;
+    
     public void Initialize(Schema.ProductionStatus minimumStatus)
     {
         Enemies = Array.FindAll(
@@ -26,6 +28,11 @@ public class SchemaContainer
             UnityEngine.Resources.LoadAll<ItemSchema>(c_itemDirectory),
             v => v.Status >= minimumStatus
         );
+
+        LevelProgression = Array.FindAll(
+            UnityEngine.Resources.LoadAll<LevelProgressionSchema>(c_levelProgressionDirectory),
+            v => v.Status >= minimumStatus
+        )[0];
     }
 
     /// <summary>
