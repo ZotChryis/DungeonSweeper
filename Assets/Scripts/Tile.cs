@@ -1,21 +1,34 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tile : MonoBehaviour
 {
     [Serializable]
     public enum TileState
     {
+        // No number, unknown to player
         Hidden,
+        // No number, if monster/item is on this tile it is revealed
         Revealed,
+        // Monster is defeated and ready for collection
         Conquered,
+        // Monster/item has been collected
         Collected,
+        // No monster/item at this tile
         Empty
     }
+
+    [SerializeField]
+    private Button TileButton;
+
+    [SerializeField]
+    private Sprite ClickedTile;
     
     [SerializeField] 
-    private SpriteRenderer SpriteRenderer; 
+    private Image SpriteRenderer; 
+    //private SpriteRenderer SpriteRenderer; 
     
     [SerializeField] 
     private TMP_Text NeighborPower;
@@ -53,7 +66,10 @@ public class Tile : MonoBehaviour
         TEMP_UpdateVisuals();
     }
 
-    private void OnMouseDown()
+    /// <summary>
+    /// Tile was clicked
+    /// </summary>
+    public void OnTileClicked()
     {
         // TODO: For now we just follow along the states in order
         switch (State)
@@ -168,18 +184,21 @@ public class Tile : MonoBehaviour
                 SpriteRenderer.enabled = true;
                 return;
             case TileState.Conquered:
+                TileButton.image.sprite = ClickedTile;
                 Power.enabled = true;
                 NeighborPower.enabled = false;
                 SpriteRenderer.enabled = true;
                 return;
             
             case TileState.Collected:
+                TileButton.image.sprite = ClickedTile;
                 Power.enabled = false;
                 NeighborPower.enabled = true;
                 SpriteRenderer.enabled = false;
                 return;
             
             case TileState.Empty:
+                TileButton.image.sprite = ClickedTile;
                 Power.enabled = false;
                 NeighborPower.enabled = true;
                 SpriteRenderer.enabled = false;
