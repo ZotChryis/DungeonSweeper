@@ -60,7 +60,7 @@ public class Grid : MonoBehaviour
 
                 // For testing, update eventually
                 tile.TEMP_SetCoordinates(x, y);
-                tile.TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetNonDragon());
+                tile.TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomNormalEnemy());
                 
                 Tiles[x, y] = tile;
             }
@@ -68,9 +68,9 @@ public class Grid : MonoBehaviour
         
         // For testing, remove eventually
         // The center of the grid is the Dragon (13)
-        Tiles[Width/2, Height/2].TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetDragon());
+        Tiles[Width/2, Height/2].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomBoss());
         // Make this spot the vision orb
-        Tiles[Width/4, Height/4].TEMP_Place(ServiceLocator.Instance.Schemas.TEMP_GetVisionOrb());
+        Tiles[Width/4, Height/4].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
         
         //  Reveal after everything is placed
         Tiles[Width/2, Height/2].TEMP_Reveal();

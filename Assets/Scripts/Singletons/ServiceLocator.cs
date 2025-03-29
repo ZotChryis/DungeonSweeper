@@ -12,6 +12,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public CheatManager CheatManager;
     public Grid Grid;
     public Player Player;
+    public EnemySpawner EnemySpawner;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class

@@ -356,6 +356,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &980767303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 980767305}
+  - component: {fileID: 980767304}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &980767304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980767303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9132cf50b8d6a3346b82c999cf4ee6f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NormalEnemies:
+  - {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
+  - {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
+  - {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
+  GuardedEnemies: []
+  GroupEnemies: []
+  Bosses:
+  - {fileID: 11400000, guid: 5c2a966afb2a3ed40a8859463a85fc10, type: 2}
+  StartingBoons:
+  - {fileID: 11400000, guid: e59335c1e0e25604f9cef8f8dd24fd57, type: 2}
+--- !u!4 &980767305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980767303}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1073651710 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4342955903963797862, guid: 8a347e2da98541c41b2d5d1fc40131d8, type: 3}
@@ -495,6 +549,7 @@ MonoBehaviour:
   CheatManager: {fileID: 1090006585}
   Grid: {fileID: 1073651710}
   Player: {fileID: 447340571}
+  EnemySpawner: {fileID: 980767304}
 --- !u!4 &2141878072
 Transform:
   m_ObjectHideFlags: 0
@@ -524,11 +579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4342955903963797862, guid: 8a347e2da98541c41b2d5d1fc40131d8, type: 3}
       propertyPath: TileWidth
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4342955903963797862, guid: 8a347e2da98541c41b2d5d1fc40131d8, type: 3}
       propertyPath: TileHeight
-      value: 60
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4342955903963797862, guid: 8a347e2da98541c41b2d5d1fc40131d8, type: 3}
       propertyPath: TilePrefab
@@ -1612,3 +1667,4 @@ SceneRoots:
   - {fileID: 8013321567616865217}
   - {fileID: 2141878072}
   - {fileID: 1618852768}
+  - {fileID: 980767305}
