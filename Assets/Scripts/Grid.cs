@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Quick and dirty implementation of an NxM Grid of Tiles for the gameplay.
@@ -16,13 +17,10 @@ public class Grid : MonoBehaviour
     private int Height;
 
     [SerializeField, Header("Grid Settings")]
-    private float TileWidth;
-    
-    [SerializeField, Header("Grid Settings")]
-    private float TileHeight;
-    
-    [SerializeField, Header("Grid Settings")]
     private Tile TilePrefab;
+
+    [SerializeField, Header("Grid Settings")]
+    private GridLayoutGroup Layout;
 
     private Tile[,] Tiles;
 
@@ -45,18 +43,25 @@ public class Grid : MonoBehaviour
     /// </summary>
     public void GenerateGrid()
     {
+        // [0,0] is the bottom left
+        Layout.startCorner = GridLayoutGroup.Corner.LowerLeft;
+
+        // Temporary solution for proper positioning, just fix the column sizes and add the tiles in order
+        // We can make this more flexible if we:
+        //  1) define the size of the container rect
+        //  2) define the size of the grid cells by a % of the container rect size
+        //  3) make the tiles non-fixed size and have them fill 
+        // But for now this will do for a simple solution
+        Layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
+        Layout.constraintCount = Width;
+
         Tiles = new Tile[Width, Height];
-        
-        Vector3 origin = transform.position;
-        float gridOffsetX = (Width - 1) * TileWidth * 0.5f;
-        float gridOffsetY = (Height - 1) * TileHeight * 0.5f;
 
         for (int y = 0; y < Height; y++)
         {
             for (int x = 0; x < Width; x++)
             {
-                Vector3 position = new Vector3(x * TileWidth - gridOffsetX, y * TileHeight - gridOffsetY, 0f);
-                Tile tile = Instantiate(TilePrefab, position + origin, Quaternion.identity, transform);
+                Tile tile = Instantiate(TilePrefab, transform);
 
                 // For testing, update eventually
                 tile.TEMP_SetCoordinates(x, y);
