@@ -1,9 +1,11 @@
 using System;
 using TMPro;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IPointerDownHandler
 {
     /// <summary>
     /// The states of a tile.
@@ -43,6 +45,9 @@ public class Tile : MonoBehaviour
     
     [SerializeField] 
     private TMP_Text Power;
+    
+    [SerializeField] 
+    private TMP_Text Annotation;
 
     [SerializeField]
     private Color PowerColor;
@@ -243,6 +248,7 @@ public class Tile : MonoBehaviour
                 NeighborPower.enabled = false;
                 SpriteRenderer.enabled = false;
                 XSpriteRenderer.enabled = false;
+                Annotation.enabled = true;
                 break;
             
             case TileState.Revealed:
@@ -250,6 +256,7 @@ public class Tile : MonoBehaviour
                 NeighborPower.enabled = false;
                 SpriteRenderer.enabled = true;
                 XSpriteRenderer.enabled = false;
+                Annotation.enabled = false;
                 break;
 
             case TileState.Conquered:
@@ -257,6 +264,7 @@ public class Tile : MonoBehaviour
                 NeighborPower.enabled = false;
                 SpriteRenderer.enabled = true;
                 XSpriteRenderer.enabled = true;
+                Annotation.enabled = false;
                 break;
             
             case TileState.Collected:
@@ -264,6 +272,7 @@ public class Tile : MonoBehaviour
                 NeighborPower.enabled = true;
                 SpriteRenderer.enabled = false;
                 XSpriteRenderer.enabled = false;
+                Annotation.enabled = false;
                 break;
             
             case TileState.Empty:
@@ -271,6 +280,7 @@ public class Tile : MonoBehaviour
                 NeighborPower.enabled = true;
                 SpriteRenderer.enabled = false;
                 XSpriteRenderer.enabled = false;
+                Annotation.enabled = false;
 
                 TileButton.interactable = false;
                 break;
@@ -300,5 +310,33 @@ public class Tile : MonoBehaviour
     public TileObjectSchema GetHousedObject()
     {
         return HousedObject;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        // Allow the button component handle left clicks
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            return;
+        }
+
+        // Right click should open the menu to set player tag
+        if (eventData.button == PointerEventData.InputButton.Right && State == TileState.Hidden)
+        {
+            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
+            ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
+        }
+    }
+
+    // TODO: Make this better haha
+    public void TEMP_SetAnnotation(string annotation)
+    {
+        if (Annotation.text.Equals(annotation))
+        {
+            Annotation.SetText(string.Empty);
+            return;
+        }
+        
+        Annotation.SetText(annotation);
     }
 }

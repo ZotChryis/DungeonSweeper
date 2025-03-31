@@ -1,13 +1,12 @@
-using System;
 using AYellowpaper.SerializedCollections;
-using UnityEngine;
 
 public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
 {
     public enum ScreenType
     {
         GameOver,
-        Victory
+        Victory,
+        TileContextMenu
     }
 
     [SerializedDictionary("Screen Type", "Screen")]
