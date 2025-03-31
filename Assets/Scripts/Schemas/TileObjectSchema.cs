@@ -13,6 +13,8 @@ public class TileObjectSchema : Schema
 {
     public Sprite Sprite;
     public int Power;
+    public bool HidePowerToNeighbors;
+    public bool PreventConsumeIfKillingBlow;
     public int XPReward;
     public int RevealRadius;
 
@@ -39,6 +41,7 @@ public class TileObjectSchema : Schema
 
         // Whether or not to display  certain visual elements
         public ValueOverride<bool> EnablePower;
+        public ValueOverride<bool> EnableSprite;
         public ValueOverride<bool> EnableDeathSprite;
     }
 

@@ -395,6 +395,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
   - {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
   - {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
+  - {fileID: 11400000, guid: ad646da970d47914fae19377be93ef3d, type: 2}
   GuardedEnemies: []
   GroupEnemies: []
   Bosses:

@@ -90,7 +90,26 @@ public class Tile : MonoBehaviour
             return;
         }
 
+        if (State == TileState.Revealed)
+        {
+            Player player = ServiceLocator.Instance.Player;
+            if (HousedObject.PreventConsumeIfKillingBlow && player.TEMP_PredictDeath(TEMP_GetCost()))
+            {
+                return;
+            }
+        }
+        
         TEMP_SetState(State + 1);
+    }
+
+    public int TEMP_GetPublicCost()
+    {
+        if (HousedObject.HidePowerToNeighbors)
+        {
+            return 0;
+        }
+
+        return TEMP_GetCost();
     }
     
     public int TEMP_GetCost()
@@ -137,14 +156,23 @@ public class Tile : MonoBehaviour
         HandleStateChanged();
     }
 
-    // TODO: We should look into using Observables
+    // TODO: We should look into using Observables/real state machine
     private void HandleStateChanged()
     {
+        if (State == TileState.Empty && HousedObject.DropReward != null)
+        {
+            TEMP_Place(HousedObject.DropReward);
+            TEMP_SetState(TileState.Revealed);
+            return;
+        }
+        
         TEMP_UpdateVisuals();
 
+        Player player = ServiceLocator.Instance.Player;
+        
         if (TileState.Conquered == State && HousedObject.Power > 0)
         {
-            ServiceLocator.Instance.Player.TEMP_UpdateHealth(-HousedObject.Power);
+            player.TEMP_UpdateHealth(-HousedObject.Power);
         }
 
         if (TileState.Collected == State)
@@ -154,7 +182,7 @@ public class Tile : MonoBehaviour
                 ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(XCoordinate, YCoordinate, HousedObject.RevealRadius);
             }
 
-            ServiceLocator.Instance.Player.TEMP_UpdateXP(HousedObject.XPReward);
+            player.TEMP_UpdateXP(HousedObject.XPReward);
         }        
 
         var objectOverrides = HousedObject.GetOverrides(State);
@@ -180,6 +208,7 @@ public class Tile : MonoBehaviour
     private void TEMP_UpdateVisuals()
     {
         // Set the default visual configuration for tile items
+        TileButton.interactable = true;
         switch (State)
         {
             case TileState.Hidden:
@@ -206,24 +235,17 @@ public class Tile : MonoBehaviour
             case TileState.Collected:
                 Power.enabled = false;
                 NeighborPower.enabled = true;
-                SpriteRenderer.enabled = false;
+                SpriteRenderer.enabled = true;
                 XSpriteRenderer.enabled = false;
                 break;
             
             case TileState.Empty:
                 Power.enabled = false;
                 NeighborPower.enabled = true;
-                SpriteRenderer.enabled = false;
+                SpriteRenderer.enabled = true;
                 XSpriteRenderer.enabled = false;
 
-                SpriteRenderer.sprite = TileEmpty;
-
-                if (HousedObject.DropReward != null)
-                {
-                    TEMP_Place(HousedObject.DropReward);
-                    TEMP_SetState(TileState.Revealed);
-                    return;
-                }
+                TileButton.interactable = false;
 
                 if (HousedObject.WinReward)
                 {
@@ -236,12 +258,13 @@ public class Tile : MonoBehaviour
         // Allow the object itself to override this
         var objectOverrides = HousedObject.GetOverrides(State);
         Power.enabled = objectOverrides.EnablePower.UseOverride ? objectOverrides.EnablePower.Value : Power.enabled;
+        SpriteRenderer.enabled = objectOverrides.EnableSprite.UseOverride ? objectOverrides.EnableSprite.Value : SpriteRenderer.enabled;
         XSpriteRenderer.enabled = objectOverrides.EnableDeathSprite.UseOverride ? objectOverrides.EnableDeathSprite.Value : XSpriteRenderer.enabled;
 
         // TEMP: For now, if you haven't consumed it, then
         Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
 
-        SpriteRenderer.sprite = HousedObject.Sprite;
+        SpriteRenderer.sprite = State == TileState.Empty ? TileEmpty : HousedObject.Sprite;
         if (objectOverrides.Sprite.UseOverride)
         {
             SpriteRenderer.sprite = objectOverrides.Sprite.Value;

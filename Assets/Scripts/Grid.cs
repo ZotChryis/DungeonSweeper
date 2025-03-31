@@ -148,7 +148,7 @@ public class Grid : MonoBehaviour
                 
                 if (InGridBounds(x + i, y + j))
                 {
-                    cost += Tiles[x + i, y + j].TEMP_GetCost();
+                    cost += Tiles[x + i, y + j].TEMP_GetPublicCost();
                 }
             }
         }
