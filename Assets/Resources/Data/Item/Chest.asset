@@ -15,8 +15,12 @@ MonoBehaviour:
   Status: 1
   Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
   Power: 0
-  XPReward: 11
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
+  XPReward: 5
   RevealRadius: 0
+  DropReward: {fileID: 0}
+  WinReward: 0
   Data:
     _serializedList:
     - Key: 1
@@ -30,6 +34,9 @@ MonoBehaviour:
         EnablePower:
           UseOverride: 1
           Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
@@ -42,6 +49,9 @@ MonoBehaviour:
           UseOverride: 1
           Value: {fileID: 2067646171788204918, guid: 0f5d2d9d4ce81124e90a9e1565e5ce06, type: 3}
         EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
           UseOverride: 0
           Value: 0
         EnableDeathSprite:
