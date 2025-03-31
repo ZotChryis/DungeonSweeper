@@ -59,8 +59,7 @@ MonoBehaviour:
   XSpriteRenderer: {fileID: 7918510287870293048}
   NeighborPower: {fileID: 3809241849706578245}
   Power: {fileID: 8924441137914273466}
-  TileEmpty: {fileID: -9163426285224168042, guid: 491fc302bf655cf4e91db67b98d3f496, type: 3}
-  PowerColor: {r: 1, g: 0.483819, b: 0, a: 1}
+  PowerColor: {r: 1, g: 0, b: 0.9549618, a: 1}
   RewardColor: {r: 1, g: 0.9820838, b: 0.023584902, a: 1}
 --- !u!114 &6761163715461405607
 MonoBehaviour:
@@ -620,7 +619,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.9
+  m_fontSize: 27.4
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -658,7 +657,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 58.88272, z: 0, w: 0}
+  m_margin: {x: 0, y: 49.350677, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

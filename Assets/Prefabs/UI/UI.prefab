@@ -1236,6 +1236,7 @@ MonoBehaviour:
   Height: 10
   TilePrefab: {fileID: 9173516933707575160, guid: 035daecf16caa2041a6fe21860f18101, type: 3}
   Layout: {fileID: 4935499705180133630}
+  Settings: {fileID: 11400000, guid: e250cfd31249bbd4ca77137319189cd9, type: 2}
 --- !u!114 &4935499705180133630
 MonoBehaviour:
   m_ObjectHideFlags: 0

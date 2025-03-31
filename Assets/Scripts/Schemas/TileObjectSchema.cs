@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using static TileObjectSchema;
 
 /// <summary>
 /// Representation of an Enemy.
 /// Intended to be housed within a Tile.
 /// </summary>
-[CreateAssetMenu(menuName = "Data/Enemy")]
+[CreateAssetMenu(menuName = "Data/TileObject")]
 public class TileObjectSchema : Schema
 {
     public Sprite Sprite;

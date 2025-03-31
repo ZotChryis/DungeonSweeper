@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
     /// TODO: Support a better state machine logical control. For example, right now we cannot implement the block with this strict logic
     ///       We may need to create controller classes for tileobject, instead of driving everything through a scriptable object with tons of logical overrides. 
     ///       idk. im too lazy to think of better
+    /// TODO: Better support HousedObject == null case
     [Serializable]
     public enum TileState
     {
@@ -101,6 +102,11 @@ public class Tile : MonoBehaviour
 
     public int TEMP_GetPublicCost()
     {
+        if (!HousedObject)
+        {
+            return 0;
+        }
+        
         if (HousedObject.HidePowerToNeighbors)
         {
             return 0;
@@ -111,6 +117,11 @@ public class Tile : MonoBehaviour
     
     public int TEMP_GetCost()
     {
+        if (!HousedObject)
+        {
+            return 0;
+        }
+        
         return State < TileState.Conquered ? HousedObject.Power : 0;
     }
     
@@ -136,6 +147,13 @@ public class Tile : MonoBehaviour
 
         State = TileState.Revealed;
         TEMP_UpdateVisuals();
+        
+        // TODO: Total hack, fix later
+        if (!HousedObject && State == TileState.Revealed)
+        {
+            TEMP_SetState(TileState.Empty);
+            return;
+        }
     }
     
     /// <summary>
@@ -156,7 +174,7 @@ public class Tile : MonoBehaviour
     // TODO: We should look into using Observables/real state machine
     private void HandleStateChanged()
     {
-        if (State == TileState.Empty && HousedObject.DropReward != null)
+        if (State == TileState.Empty && HousedObject && HousedObject.DropReward)
         {
             TEMP_Place(HousedObject.DropReward);
             TEMP_SetState(TileState.Revealed);
@@ -165,6 +183,13 @@ public class Tile : MonoBehaviour
         
         TEMP_UpdateVisuals();
 
+        // TODO: Total hack, fix later
+        if (!HousedObject && State == TileState.Revealed)
+        {
+            TEMP_SetState(TileState.Empty);
+            return;
+        }
+        
         Player player = ServiceLocator.Instance.Player;
         
         if (TileState.Conquered == State && HousedObject.Power > 0)
@@ -180,9 +205,14 @@ public class Tile : MonoBehaviour
             }
 
             player.TEMP_UpdateXP(HousedObject.XPReward);
-        }        
+            
+            if (HousedObject.WinReward)
+            {
+                ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Victory);
+            }
+        }
 
-        var objectOverrides = HousedObject.GetOverrides(State);
+        var objectOverrides = HousedObject ? HousedObject.GetOverrides(State) : default;
         if (objectOverrides.AutoContinue.UseOverride)
         {
             if (objectOverrides.AutoContinue.Value)
@@ -204,7 +234,7 @@ public class Tile : MonoBehaviour
 
     private void TEMP_UpdateVisuals()
     {
-        // Set the default visual configuration for tile items
+        // Set the default configuration for tile items
         TileButton.interactable = true;
         switch (State)
         {
@@ -243,34 +273,32 @@ public class Tile : MonoBehaviour
                 XSpriteRenderer.enabled = false;
 
                 TileButton.interactable = false;
-
-                if (HousedObject.WinReward)
-                {
-                    ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Victory);
-                }
-
                 break;
         }
-
-        // Allow the object itself to override this
-        var objectOverrides = HousedObject.GetOverrides(State);
+        
+        // Allow the object itself to override these settings
+        var objectOverrides = HousedObject ? HousedObject.GetOverrides(State) : default;
         Power.enabled = objectOverrides.EnablePower.UseOverride ? objectOverrides.EnablePower.Value : Power.enabled;
         SpriteRenderer.enabled = objectOverrides.EnableSprite.UseOverride ? objectOverrides.EnableSprite.Value : SpriteRenderer.enabled;
         XSpriteRenderer.enabled = objectOverrides.EnableDeathSprite.UseOverride ? objectOverrides.EnableDeathSprite.Value : XSpriteRenderer.enabled;
-
-        // TEMP: For now, if you haven't consumed it, then
-        Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
-
-        SpriteRenderer.sprite = HousedObject.Sprite;
+            
+        SpriteRenderer.sprite = HousedObject ? HousedObject.Sprite : null;
         if (objectOverrides.Sprite.UseOverride)
         {
             SpriteRenderer.sprite = objectOverrides.Sprite.Value;
         }
 
+        // TEMP: Change color depending on the state
         // TODO: Seperate these 2 labels and control independently
-        Power.SetText(State < TileState.Conquered ? HousedObject.Power.ToString() : HousedObject.XPReward.ToString());
+        Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
+        Power.SetText(HousedObject ? State < TileState.Conquered ? HousedObject.Power.ToString() : HousedObject.XPReward.ToString() : string.Empty);
 
         int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
         NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
+    }
+
+    public TileObjectSchema GetHousedObject()
+    {
+        return HousedObject;
     }
 }

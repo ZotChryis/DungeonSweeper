@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9132cf50b8d6a3346b82c999cf4ee6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Empty: {fileID: 11400000, guid: 3c83ec3a946cacd439e5a9f1346cbcf6, type: 2}
   NormalEnemies:
   - {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
   - {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}

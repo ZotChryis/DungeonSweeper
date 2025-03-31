@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Quick and dirty implementation of an NxM Grid of Tiles for the gameplay.
@@ -22,6 +23,9 @@ public class Grid : MonoBehaviour
     [SerializeField, Header("Grid Settings")]
     private GridLayoutGroup Layout;
 
+    [SerializeField, Header("Grid Settings")]
+    private GridSpawnSettings Settings;
+    
     private Tile[,] Tiles;
 
     // TODO: Probably should be a cleaner delegate and not owned by this class?
@@ -74,8 +78,7 @@ public class Grid : MonoBehaviour
 
                 // For testing, update eventually
                 tile.TEMP_SetCoordinates(x, y);
-                tile.TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomNormalEnemy());
-                
+                tile.TEMP_Place(null);
                 Tiles[x, y] = tile;
             }
         }
@@ -87,13 +90,61 @@ public class Grid : MonoBehaviour
         Tiles[3 * Width/4, 3 * Height/4].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
         Tiles[Width/4, Height/4].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
         
+        // TODO: Make this better lmao maybe move to enemy spawner?
+        for (var i = 0; i < Settings.GridSpawns.Length; i++)
+        {
+            var entry = Settings.GridSpawns[i];
+            for (int j = 0; j < entry.Amount; j++)
+            {
+                bool placed = false;
+                while (!placed)
+                {
+                    // Get a random point, lol this can be smarter
+                    int xCoordinate = Random.Range(0, Width);
+                    int yCoordinate = Random.Range(0, Height);
+
+                    if (GetObject(xCoordinate, yCoordinate) != null)
+                    {
+                        continue;
+                    }
+                    
+                    // TODO: This is not smart enough for overlapped requirements
+                    bool allRequirementsMet = true;
+                    foreach (var requirement in entry.Requirements)
+                    {
+                        if (!requirement.IsValid(xCoordinate, yCoordinate))
+                        {
+                            allRequirementsMet = false;
+                            break;
+                        }
+                    }
+
+                    if (!allRequirementsMet)
+                    {
+                        continue;
+                    }
+                    
+                    Tiles[xCoordinate, yCoordinate].TEMP_Place(entry.Object);
+                    foreach (var requirement in entry.Requirements)
+                    {
+                        foreach (var objectPair in requirement.ObjectRequirements)
+                        {
+                            Tiles[xCoordinate + objectPair.XCoordinateOffset, yCoordinate + objectPair.YCoordinateOffset].TEMP_Place(objectPair.ObjectSchema);
+                        }
+                    }
+
+                    placed = true;
+                }
+            }
+        }
+        
         //  Reveal after everything is placed
         Tiles[Width/2, Height/2].TEMP_RevealWithoutLogic();
         Tiles[3 * Width / 4, 3 * Height / 4].TEMP_RevealWithoutLogic();
         Tiles[Width/4, Height/4].TEMP_RevealWithoutLogic();
     }
 
-    private bool InGridBounds(int x, int y)
+    public bool InGridBounds(int x, int y)
     {
         return x >= 0 && y >= 0 && x < Width && y < Height;
     }
@@ -154,5 +205,10 @@ public class Grid : MonoBehaviour
         }
 
         return cost;
+    }
+
+    public TileObjectSchema GetObject(int xCoordinate, int yCoordinate)
+    {
+        return Tiles[xCoordinate, yCoordinate].GetHousedObject();
     }
 }
