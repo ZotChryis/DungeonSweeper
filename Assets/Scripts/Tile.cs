@@ -44,9 +44,6 @@ public class Tile : MonoBehaviour
     private TMP_Text Power;
 
     [SerializeField]
-    private Sprite TileEmpty;
-
-    [SerializeField]
     private Color PowerColor;
 
     [SerializeField]
@@ -235,14 +232,14 @@ public class Tile : MonoBehaviour
             case TileState.Collected:
                 Power.enabled = false;
                 NeighborPower.enabled = true;
-                SpriteRenderer.enabled = true;
+                SpriteRenderer.enabled = false;
                 XSpriteRenderer.enabled = false;
                 break;
             
             case TileState.Empty:
                 Power.enabled = false;
                 NeighborPower.enabled = true;
-                SpriteRenderer.enabled = true;
+                SpriteRenderer.enabled = false;
                 XSpriteRenderer.enabled = false;
 
                 TileButton.interactable = false;
@@ -264,7 +261,7 @@ public class Tile : MonoBehaviour
         // TEMP: For now, if you haven't consumed it, then
         Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
 
-        SpriteRenderer.sprite = State == TileState.Empty ? TileEmpty : HousedObject.Sprite;
+        SpriteRenderer.sprite = HousedObject.Sprite;
         if (objectOverrides.Sprite.UseOverride)
         {
             SpriteRenderer.sprite = objectOverrides.Sprite.Value;

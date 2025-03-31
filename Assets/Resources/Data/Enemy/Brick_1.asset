@@ -52,8 +52,8 @@ MonoBehaviour:
           UseOverride: 0
           Value: 0
         EnableSprite:
-          UseOverride: 0
-          Value: 0
+          UseOverride: 1
+          Value: 1
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
