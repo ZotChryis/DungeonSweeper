@@ -16,19 +16,28 @@ MonoBehaviour:
   LevelProgressionEntries:
   - XPRequiredToLevel: 4
     MaxHealth: 5
+    Laps: 1
   - XPRequiredToLevel: 5
     MaxHealth: 6
+    Laps: 1
   - XPRequiredToLevel: 6
     MaxHealth: 7
+    Laps: 1
   - XPRequiredToLevel: 7
     MaxHealth: 8
+    Laps: 2
   - XPRequiredToLevel: 8
     MaxHealth: 9
+    Laps: 2
   - XPRequiredToLevel: 9
     MaxHealth: 10
+    Laps: 2
   - XPRequiredToLevel: 10
     MaxHealth: 11
+    Laps: 3
   - XPRequiredToLevel: 11
     MaxHealth: 12
+    Laps: 3
   - XPRequiredToLevel: 12
     MaxHealth: 13
+    Laps: 3

@@ -24,6 +24,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private Transform XPContainer;
 
     private int Level;
+    private int LevelLap;
     private int CurrentHealth;
     private int CurrentXP;
 
@@ -90,14 +91,31 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (CurrentXP >= xpRequiredToLevel)
         {
             CurrentXP -= xpRequiredToLevel;
-            LevelUp();
+            XPLap();
         }
+    }
+
+    public void XPLap()
+    {
+        LevelLap++;
+
+        int requiredLaps = ServiceLocator.Instance.Schemas.LevelProgression.GetLapsForLevel(Level);
+        if (LevelLap >= requiredLaps)
+        {
+            LevelLap = 0;
+            LevelUp();
+            return;
+        }
+
+        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
+        CurrentHealth = MaxHealth;
+        TEMP_UpdateVisuals();
     }
 
     public void LevelUp()
     {
         Level++;
-
+        
         MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
         CurrentHealth = MaxHealth;
 
