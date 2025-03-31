@@ -43,6 +43,15 @@ public class Grid : MonoBehaviour
     /// </summary>
     public void GenerateGrid()
     {
+        // Clear anything we already have
+        if (Tiles != null)
+        {
+            foreach (var item in Tiles)
+            {
+                Destroy(item.gameObject);
+            }
+        }
+        
         // [0,0] is the bottom left
         Layout.startCorner = GridLayoutGroup.Corner.LowerLeft;
 
@@ -78,8 +87,8 @@ public class Grid : MonoBehaviour
         Tiles[Width/4, Height/4].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
         
         //  Reveal after everything is placed
-        Tiles[Width/2, Height/2].TEMP_Reveal();
-        Tiles[Width/4, Height/4].TEMP_Reveal();
+        Tiles[Width/2, Height/2].TEMP_RevealWithoutLogic();
+        Tiles[Width/4, Height/4].TEMP_RevealWithoutLogic();
     }
 
     private bool InGridBounds(int x, int y)
@@ -89,10 +98,9 @@ public class Grid : MonoBehaviour
     
     public void TEMP_RevealTilesInRadius(int x, int y, int radius)
     {
-        // Always reveal the given tile
-        if (InGridBounds(x, y))
+        if (radius <= 0)
         {
-            Tiles[x, y].TEMP_Reveal();
+            return;
         }
 
         for (int i = -radius; i <= radius; i++)
@@ -101,7 +109,7 @@ public class Grid : MonoBehaviour
             {
                 if (InGridBounds(x + i, y + j))
                 {
-                    Tiles[x + i, y + j].TEMP_Reveal();
+                    Tiles[x + i, y + j].TEMP_RevealWithoutLogic();
                 }
             }
         }
@@ -116,7 +124,7 @@ public class Grid : MonoBehaviour
         {
             for (int x = 0; x < Width; x++)
             {
-                Tiles[x, y].TEMP_Reveal();
+                Tiles[x, y].TEMP_RevealWithoutLogic();
             }
         }
     }

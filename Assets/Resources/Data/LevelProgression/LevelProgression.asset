@@ -28,3 +28,7 @@ MonoBehaviour:
     MaxHealth: 10
   - XPRequiredToLevel: 10
     MaxHealth: 11
+  - XPRequiredToLevel: 11
+    MaxHealth: 12
+  - XPRequiredToLevel: 12
+    MaxHealth: 13

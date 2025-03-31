@@ -13,19 +13,11 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   Status: 1
-  Visuals:
-    _serializedList:
-    - Key: 1
-      Value: {fileID: 1372335161102834277, guid: b2ca6bc5e9a932d46ac4b2f37541b7e9, type: 3}
-    - Key: 2
-      Value: {fileID: -2462604617403381830, guid: 0ced7f1aafb96df459d497147e185c77, type: 3}
-  Power:
-    _serializedList:
-    - Key: 0
-      Value: 13
-    - Key: 1
-      Value: 13
-    - Key: 2
-      Value: 13
-    - Key: 3
-      Value: 13
+  Sprite: {fileID: 1372335161102834277, guid: b2ca6bc5e9a932d46ac4b2f37541b7e9, type: 3}
+  Power: 13
+  XPReward: 13
+  RevealRadius: 0
+  DropReward: {fileID: 11400000, guid: 7cc2730514a45544184416f8f831ca3a, type: 2}
+  WinReward: 0
+  Data:
+    _serializedList: []

@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: VisionOrb
+  m_Name: Mimic
   m_EditorClassIdentifier: 
-  Status: 1
-  Sprite: {fileID: -1910244127391616031, guid: 0a69202494704544e90f75e07c45420b, type: 3}
-  Power: 0
-  XPReward: 0
-  RevealRadius: 1
-  ConsumeState: 2
-  RewardState: 3
-  RevealState: 3
+  Status: 0
+  Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
+  Power: 11
+  XPReward: 11
+  RevealRadius: 0
   Data:
     _serializedList:
     - Key: 1
@@ -28,7 +25,7 @@ MonoBehaviour:
           UseOverride: 0
           Value: {fileID: 0}
         AutoContinue:
-          UseOverride: 0
+          UseOverride: 1
           Value: 0
         EnablePower:
           UseOverride: 1
@@ -42,11 +39,11 @@ MonoBehaviour:
     - Key: 2
       Value:
         Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        AutoContinue:
           UseOverride: 1
-          Value: 1
+          Value: {fileID: -413800416329549740, guid: b2dcb7d1f980fb3448db658a22556266, type: 3}
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
         EnablePower:
           UseOverride: 0
           Value: 0

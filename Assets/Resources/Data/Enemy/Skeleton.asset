@@ -13,19 +13,12 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   Status: 0
-  Visuals:
-    _serializedList:
-    - Key: 1
-      Value: {fileID: 4354231566380549168, guid: 4c957838ba18aae499c63d20314fae83, type: 3}
-    - Key: 2
-      Value: {fileID: -6228746816360909655, guid: 145f2c97e0945774c813d9465c5d249b, type: 3}
-  Power:
-    _serializedList:
-    - Key: 0
-      Value: 3
-    - Key: 1
-      Value: 3
-    - Key: 2
-      Value: 3
-    - Key: 3
-      Value: 3
+  Sprite: {fileID: 4354231566380549168, guid: 4c957838ba18aae499c63d20314fae83, type: 3}
+  Power: 3
+  XPReward: 3
+  RevealRadius: 0
+  ConsumeState: 2
+  RewardState: 3
+  RevealState: 3
+  Data:
+    _serializedList: []

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 145f2c97e0945774c813d9465c5d249b
+guid: b2dcb7d1f980fb3448db658a22556266
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6228746816360909655
-    second: Skeleton_Dead_0
+      213: -413800416329549740
+    second: Mimic_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,43 +122,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Skeleton_Dead_0
+      name: Mimic_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 4
-        width: 45
-        height: 58
+        x: 4
+        y: 8
+        width: 58
+        height: 47
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a476f695cb0f89a0800000000000000
-      internalID: -6228746816360909655
+      spriteID: 458b4c8b6b2e14af0800000000000000
+      internalID: -413800416329549740
       vertices: []
       indices: 
       edges: []
@@ -186,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Skeleton_Dead_0: -6228746816360909655
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

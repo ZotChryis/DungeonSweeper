@@ -13,19 +13,12 @@ MonoBehaviour:
   m_Name: Rat
   m_EditorClassIdentifier: 
   Status: 0
-  Visuals:
-    _serializedList:
-    - Key: 1
-      Value: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
-    - Key: 2
-      Value: {fileID: -101304446339783280, guid: 3aaf41a41bba1f24fb15ed2fd2efbcf5, type: 3}
-  Power:
-    _serializedList:
-    - Key: 0
-      Value: 1
-    - Key: 1
-      Value: 1
-    - Key: 3
-      Value: 1
-    - Key: 2
-      Value: 1
+  Sprite: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
+  Power: 1
+  XPReward: 1
+  RevealRadius: 0
+  ConsumeState: 2
+  RewardState: 3
+  RevealState: 3
+  Data:
+    _serializedList: []

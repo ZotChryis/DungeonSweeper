@@ -10,49 +10,42 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: VisionOrb
+  m_Name: Crown
   m_EditorClassIdentifier: 
   Status: 1
-  Sprite: {fileID: -1910244127391616031, guid: 0a69202494704544e90f75e07c45420b, type: 3}
+  Sprite: {fileID: -1378521658571115459, guid: d089800d25d04e44c80ccc2100e7620e, type: 3}
   Power: 0
   XPReward: 0
-  RevealRadius: 1
-  ConsumeState: 2
-  RewardState: 3
-  RevealState: 3
+  RevealRadius: 0
+  DropReward: {fileID: 0}
+  WinReward: 1
   Data:
     _serializedList:
     - Key: 1
       Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 0
         Sprite:
           UseOverride: 0
           Value: {fileID: 0}
-        AutoContinue:
-          UseOverride: 0
-          Value: 0
         EnablePower:
           UseOverride: 1
           Value: 0
-        EnableNeighborPower:
-          UseOverride: 0
-          Value: 0
-        EnableSpriteRenderer:
+        EnableDeathSprite:
           UseOverride: 0
           Value: 0
     - Key: 2
       Value:
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
         AutoContinue:
           UseOverride: 1
           Value: 1
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
         EnablePower:
-          UseOverride: 0
+          UseOverride: 1
           Value: 0
-        EnableNeighborPower:
-          UseOverride: 0
-          Value: 0
-        EnableSpriteRenderer:
-          UseOverride: 0
+        EnableDeathSprite:
+          UseOverride: 1
           Value: 0

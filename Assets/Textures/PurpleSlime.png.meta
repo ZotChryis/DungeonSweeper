@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 806f0520a55eaf647b9c7c492f47e1b9
+guid: 56d40b901d6d85b46a2f7f1a3e010786
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1007884909399650375
-    second: Bat_Dead_0
+      213: 7101392340170651265
+    second: PurpleSlime_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bat_Dead_0
+      name: PurpleSlime_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 14
-        width: 61
-        height: 39
+        x: 4
+        y: 11
+        width: 58
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7403e3f2cf9bcfd00800000000000000
-      internalID: 1007884909399650375
+      spriteID: 1863d8665b63d8260800000000000000
+      internalID: 7101392340170651265
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Bat_Dead_0: 1007884909399650375
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

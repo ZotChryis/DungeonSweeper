@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0ced7f1aafb96df459d497147e185c77
+guid: db7c954521c3d924dbe703bdd1ae714a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2462604617403381830
-    second: Dragon_Dead_0
+      213: -2990900167212558872
+    second: Gargoyle_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dragon_Dead_0
+      name: Gargoyle_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 9
-        width: 51
-        height: 48
+        x: 1
+        y: 1
+        width: 62
+        height: 62
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ab74f6dd52213ddd0800000000000000
-      internalID: -2462604617403381830
+      spriteID: 8e593a6f4203e76d0800000000000000
+      internalID: -2990900167212558872
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Dragon_Dead_0: -2462604617403381830
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

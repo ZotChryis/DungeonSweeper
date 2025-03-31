@@ -31,7 +31,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private PlayerUIItem[] Hearts;
     private PlayerUIItem[] XPGems;
 
-    private void Start()
+    private void Awake()
     {
         ServiceLocator.Instance.Register(this);
 
@@ -52,8 +52,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         if (CurrentHealth == -1)
         {
-            Debug.Log("GAME OVER");
-            Application.Quit();
+            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
+            return;
         }
     }
 
@@ -90,12 +90,17 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (CurrentXP >= xpRequiredToLevel)
         {
             CurrentXP -= xpRequiredToLevel;
-            Level++;
-
-            MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
-            CurrentHealth = MaxHealth;
-            
-            TEMP_UpdateVisuals();
+            LevelUp();
         }
+    }
+
+    public void LevelUp()
+    {
+        Level++;
+
+        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
+        CurrentHealth = MaxHealth;
+
+        TEMP_UpdateVisuals();
     }
 }

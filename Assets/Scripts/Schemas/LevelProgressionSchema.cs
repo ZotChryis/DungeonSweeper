@@ -52,7 +52,7 @@ public class LevelProgressionSchema : Schema
 
         if (adjustedIndex >= LevelProgressionEntries.Length)
         {
-            return LevelProgressionEntries[^1].XPRequiredToLevel;
+            return LevelProgressionEntries[^1].MaxHealth;
         }
         
         return LevelProgressionEntries[adjustedIndex].MaxHealth;

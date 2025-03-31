@@ -9,4 +9,9 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
     {
         ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
     }
+
+    public void LevelUp()
+    {
+        ServiceLocator.Instance.Player.LevelUp();
+    }
 }

@@ -6,46 +6,46 @@ public class EnemySpawner : SingletonMonoBehaviour<EnemySpawner>
     /// <summary>
     /// Normal enemies. No spawn restrictions.
     /// </summary>
-    public List<EnemySchema> NormalEnemies;
+    public List<TileObjectSchema> NormalEnemies;
 
     /// <summary>
     /// These enemies are guarded by an item or another enemy.
     /// Meaning when they spawn, additionally spawn another item or enemy.
     /// </summary>
-    public List<EnemySchema> GuardedEnemies;
+    public List<TileObjectSchema> GuardedEnemies;
 
     /// <summary>
     /// These enemies spawn in a pattern.
     /// For example gargoyles spawn next to each other and facing each other.
     /// </summary>
-    public List<EnemySchema> GroupEnemies;
+    public List<TileObjectSchema> GroupEnemies;
 
     /// <summary>
     /// These enemies spawn revealed.
     /// </summary>
-    public List<EnemySchema> Bosses;
+    public List<TileObjectSchema> Bosses;
 
     /// <summary>
     /// These items spawn revealed.
     /// </summary>
-    public List<ItemSchema> StartingBoons;
+    public List<TileObjectSchema> StartingBoons;
 
     private void Start()
     {
-        ServiceLocator.Instance.EnemySpawner = this;
+        ServiceLocator.Instance.Register(this);
     }
 
-    public EnemySchema GetRandomNormalEnemy()
+    public TileObjectSchema GetRandomNormalEnemy()
     {
         return NormalEnemies[Random.Range(0, NormalEnemies.Count)];
     }
 
-    public EnemySchema GetRandomBoss()
+    public TileObjectSchema GetRandomBoss()
     {
         return Bosses[Random.Range(0, Bosses.Count)];
     }
 
-    public ITileObject GetRandomStartingBoon()
+    public TileObjectSchema GetRandomStartingBoon()
     {
         return StartingBoons[Random.Range(0, StartingBoons.Count)];
     }

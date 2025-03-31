@@ -12,20 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Bat
   m_EditorClassIdentifier: 
-  Status: 0
-  Visuals:
-    _serializedList:
-    - Key: 1
-      Value: {fileID: 8647823593821616703, guid: 1df2dcd932ca45c48bd41f021bc040a4, type: 3}
-    - Key: 2
-      Value: {fileID: 1007884909399650375, guid: 806f0520a55eaf647b9c7c492f47e1b9, type: 3}
-  Power:
-    _serializedList:
-    - Key: 0
-      Value: 2
-    - Key: 1
-      Value: 2
-    - Key: 2
-      Value: 2
-    - Key: 3
-      Value: 2
+  Status: 1
+  Sprite: {fileID: 8647823593821616703, guid: 1df2dcd932ca45c48bd41f021bc040a4, type: 3}
+  Power: 2
+  XPReward: 2
+  RevealRadius: 0
+  ConsumeState: 2
+  RewardState: 3
+  RevealState: 3
+  Data:
+    _serializedList: []

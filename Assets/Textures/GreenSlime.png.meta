@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3aaf41a41bba1f24fb15ed2fd2efbcf5
+guid: abd63617ea19a1d44ad7d02fce658366
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -101304446339783280
-    second: Rat_Dead_0
+      213: -7499619221918500907
+    second: GreenSlime_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rat_Dead_0
+      name: GreenSlime_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 18
-        width: 45
-        height: 33
+        x: 1
+        y: 12
+        width: 58
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 095efbd8428189ef0800000000000000
-      internalID: -101304446339783280
+      spriteID: 5d73bd66d000ce790800000000000000
+      internalID: -7499619221918500907
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Rat_Dead_0: -101304446339783280
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
