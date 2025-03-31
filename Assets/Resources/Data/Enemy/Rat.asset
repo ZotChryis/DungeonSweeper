@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Rat
   m_EditorClassIdentifier: 
-  Status: 0
+  Status: 1
   Sprite: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
   Power: 1
   XPReward: 1
   RevealRadius: 0
-  ConsumeState: 2
-  RewardState: 3
-  RevealState: 3
+  DropReward: {fileID: 0}
+  WinReward: 0
   Data:
     _serializedList: []

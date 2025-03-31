@@ -17,8 +17,7 @@ MonoBehaviour:
   Power: 2
   XPReward: 2
   RevealRadius: 0
-  ConsumeState: 2
-  RewardState: 3
-  RevealState: 3
+  DropReward: {fileID: 0}
+  WinReward: 0
   Data:
     _serializedList: []

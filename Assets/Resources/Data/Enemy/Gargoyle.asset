@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Gargoyle
   m_EditorClassIdentifier: 
-  Status: 0
+  Status: 1
   Sprite: {fileID: -2990900167212558872, guid: db7c954521c3d924dbe703bdd1ae714a, type: 3}
   Power: 4
   XPReward: 4
   RevealRadius: 0
+  DropReward: {fileID: 0}
+  WinReward: 0
   Data:
     _serializedList: []

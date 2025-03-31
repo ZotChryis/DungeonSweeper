@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Skeleton
   m_EditorClassIdentifier: 
-  Status: 0
+  Status: 1
   Sprite: {fileID: 4354231566380549168, guid: 4c957838ba18aae499c63d20314fae83, type: 3}
   Power: 3
   XPReward: 3
   RevealRadius: 0
-  ConsumeState: 2
-  RewardState: 3
-  RevealState: 3
+  DropReward: {fileID: 0}
+  WinReward: 0
   Data:
     _serializedList: []

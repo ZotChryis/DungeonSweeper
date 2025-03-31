@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: PurpleSlime
   m_EditorClassIdentifier: 
-  Status: 0
+  Status: 1
   Sprite: {fileID: 7101392340170651265, guid: 56d40b901d6d85b46a2f7f1a3e010786, type: 3}
   Power: 8
   XPReward: 8
   RevealRadius: 0
+  DropReward: {fileID: 0}
+  WinReward: 0
   Data:
     _serializedList: []

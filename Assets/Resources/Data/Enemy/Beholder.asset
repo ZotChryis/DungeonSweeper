@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Mine
+  m_Name: Beholder
   m_EditorClassIdentifier: 
   Status: 1
-  Sprite: {fileID: 8135663367076951168, guid: f42e4888d5553854a9a1085240dfff99, type: 3}
-  Power: 100
-  XPReward: 0
+  Sprite: {fileID: 7372985931835974456, guid: e355f363054b12a459d2bc97129a64c0, type: 3}
+  Power: 5
+  XPReward: 5
   RevealRadius: 0
   DropReward: {fileID: 0}
   WinReward: 0
