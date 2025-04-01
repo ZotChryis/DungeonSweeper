@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -7,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class RandomBoard
 {
-    private List<int> UnoccupiedSpaces = new List<int>();
+    private List<int> UnoccupiedSpaces;
     
     private float width;
 
@@ -26,6 +25,7 @@ public class RandomBoard
         this.width = (float)width;
         this.height = (float)height;
         int totalSize = width * height;
+        UnoccupiedSpaces = new List<int>(totalSize);
         for (int i = 0; i < totalSize; i++)
         {
             UnoccupiedSpaces.Add(i);
