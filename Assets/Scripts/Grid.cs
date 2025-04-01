@@ -10,6 +10,14 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Grid : MonoBehaviour
 {
+    /// <summary>
+    /// The spawn settings for this enemy spawner.
+    /// By having these as a separate data object, we can easily hot-swap for levels without haveing to serialize
+    /// a new gameobject for every configuration.
+    /// </summary>
+    [SerializeField, Header("Grid Settings")]
+    public SpawnSettings SpawnSettings;
+    
     // TODO: Create a settings/grid scriptable object instead
     [SerializeField, Header("Grid Settings")]
     private int Width;
@@ -22,12 +30,9 @@ public class Grid : MonoBehaviour
 
     [SerializeField, Header("Grid Settings")]
     private GridLayoutGroup Layout;
-
-    [SerializeField, Header("Grid Settings")]
-    private GridSpawnSettings Settings;
     
     private Tile[,] Tiles;
-    private RandomBoard unoccupiedSpaces;
+    public RandomBoard UnoccupiedSpaces;
 
     // TODO: Probably should be a cleaner delegate and not owned by this class?
     public Action<Tile> OnTileStateChanged;
@@ -39,6 +44,16 @@ public class Grid : MonoBehaviour
         
         // TODO: Super temporary way to start the game
         GenerateGrid();
+    }
+
+    public int GetHeight()
+    {
+        return Height;
+    }
+    
+    public int GetWidth()
+    {
+        return Width;
     }
     
     /// <summary>
@@ -70,7 +85,7 @@ public class Grid : MonoBehaviour
         Layout.constraintCount = Width;
 
         Tiles = new Tile[Width, Height];
-        unoccupiedSpaces = new RandomBoard(Width, Height);
+        UnoccupiedSpaces = new RandomBoard(Width, Height);
 
         // Spawn actual tiles.
         for (int y = 0; y < Height; y++)
@@ -87,6 +102,7 @@ public class Grid : MonoBehaviour
             }
         }
 
+        // TODO: These spawns should be moved to the Spawner class and done via data
         // For testing, remove eventually
         // The center of the grid is the Dragon (13)
         PlaceDragon(Width / 2, Height / 2);
@@ -95,27 +111,58 @@ public class Grid : MonoBehaviour
         PlaceStartingBoon(3 * Width / 4, 3 * Height / 4);
         PlaceStartingBoon(Width / 4, Height / 4);
 
-        foreach(var keyValuePair in ServiceLocator.Instance.EnemySpawner.NormalEnemyToSpawnCount)
+        Spawn();
+        
+        OnGridGenerated?.Invoke();
+    }
+
+    private void Spawn()
+    {
+        // The spawn entries are handled in order, so fill those out with that in mind
+        foreach (var spawnEntry in SpawnSettings.GridSpawns)
         {
-            for (int i = 0; i < keyValuePair.Value; i++)
+            // We spawn all of the instances of each enemy before moving on. We can change this if needed
+            for (int i = 0; i < spawnEntry.Amount; i++)
             {
-                (int x, int y) = unoccupiedSpaces.GetAndRemoveRandomUnoccuppiedSpace();
-                Debug.Log("x: " + x + ", " + y);
-                Tiles[x, y].TEMP_Place(keyValuePair.Key);
+                // TODO: This is a dangerous infinite loop possibility. We should guard against it :shrug:
+                bool placed = false;
+                while (!placed)
+                {
+                    (int, int) coordinates = UnoccupiedSpaces.PeekUnoccupiedSpace();
+
+                    bool validCoordinate = true;
+                    foreach (var requirement in spawnEntry.Requirements)
+                    {
+                        if (!requirement.IsValid(coordinates.Item1, coordinates.Item2))
+                        {
+                            validCoordinate = false;
+                            break;
+                        }
+                    }
+
+                    if (!validCoordinate)
+                    {
+                        continue;
+                    }
+
+                    placed = true;
+                    UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
+                    Tiles[coordinates.Item1, coordinates.Item2].TEMP_Place(spawnEntry.Object);
+                }
             }
         }
     }
 
     private void PlaceStartingBoon(int x, int y)
     {
-        unoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
+        UnoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
         Tiles[x, y].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
         Tiles[x, y].TEMP_RevealWithoutLogic();
     }
 
     private void PlaceDragon(int x, int y)
     {
-        unoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
+        UnoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
         Tiles[x, y].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomBoss());
         Tiles[x, y].TEMP_RevealWithoutLogic();
     }

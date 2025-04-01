@@ -10,14 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b04a0700e14d718fd71067cd25b205, type: 3}
-  m_Name: GridSpawnSettings
+  m_Name: SpawnSettings
   m_EditorClassIdentifier: 
   Status: 1
   GridSpawns:
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 56aefa3748a8e1344ad5b94c61ac0d72, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: d176818b653eb4e41aa89066ddbecb16, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: db363986bcfbcf84f83eea2239d5176d, type: 2}
   - Amount: 4
     Object: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
-    Requirements:
-    - {fileID: 11400000, guid: 2521d30540c0981408be18cfe5a28aeb, type: 2}
+    Requirements: []
   - Amount: 13
     Object: {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
     Requirements: []
@@ -41,9 +48,6 @@ MonoBehaviour:
     Requirements: []
   - Amount: 1
     Object: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
-    Requirements: []
-  - Amount: 1
-    Object: {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
     Requirements: []
   - Amount: 1
     Object: {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}

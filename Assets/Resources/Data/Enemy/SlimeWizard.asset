@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
+  m_Name: SlimeWizard
+  m_EditorClassIdentifier: 
+  Status: 1
+  Sprite: {fileID: -8167537839222222091, guid: 7e6547fe8e8466c48ad0dc1e308d8874, type: 3}
+  Power: 1
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
+  XPReward: 1
+  RevealRadius: 0
+  DropReward: {fileID: 0}
+  WinReward: 0
+  Data:
+    _serializedList: []

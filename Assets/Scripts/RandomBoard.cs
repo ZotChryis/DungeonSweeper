@@ -32,6 +32,14 @@ public class RandomBoard
         }
     }
 
+    /// <summary>
+    /// Gets the coordinates of an empty grid location without marking it as used.
+    /// </summary>
+    public (int, int) PeekUnoccupiedSpace()
+    {
+        return FlatToCoordinate(UnoccupiedSpaces[Random.Range(0, UnoccupiedSpaces.Count)]);
+    }
+
     public (int, int) GetAndRemoveRandomUnoccuppiedSpace()
     {
         int DELETEME = Random.Range(0, UnoccupiedSpaces.Count);

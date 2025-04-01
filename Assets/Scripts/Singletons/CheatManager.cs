@@ -1,3 +1,5 @@
+using UnityEngine.SceneManagement;
+
 public class CheatManager : SingletonMonoBehaviour<CheatManager>
 {
     private void Start()
@@ -13,5 +15,15 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
     public void LevelUp()
     {
         ServiceLocator.Instance.Player.LevelUp();
+    }
+
+    public void Regenerate()
+    {
+        ServiceLocator.Instance.Grid.GenerateGrid();
+    }
+    
+    public void Restart()
+    {
+        SceneManager.LoadScene("Game");
     }
 }

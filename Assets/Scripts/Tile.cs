@@ -73,6 +73,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         TEMP_UpdateVisuals();
     }
 
+    private void OnDestroy()
+    {
+        ServiceLocator.Instance.Grid.OnTileStateChanged -= OnAnyTileStateChanged;
+        ServiceLocator.Instance.Grid.OnGridGenerated -= TEMP_UpdateVisuals;
+    }
+
     public void TEMP_SetCoordinates(int xCoordinate, int yCoordinate)
     {
         XCoordinate = xCoordinate;

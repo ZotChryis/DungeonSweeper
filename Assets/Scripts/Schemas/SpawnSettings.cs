@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/GridSpawnSettings")]
-public class GridSpawnSettings : Schema
+[CreateAssetMenu(menuName = "Data/SpawnSettings")]
+public class SpawnSettings : Schema
 {
     [Serializable]
     public struct GridSpawnEntry
     {
         public int Amount;
         public TileObjectSchema Object;
-        public GridSpawnRequirement[] Requirements;
+        public SpawnRequirement[] Requirements;
     }
     
     /// <summary>
