@@ -69,11 +69,6 @@ public class EnemySpawner : SerializedMonoBehaviour
         }
     }
 
-    public TileObjectSchema GetRandomNormalEnemy()
-    {
-        return NormalEnemies[UnityEngine.Random.Range(0, NormalEnemies.Count)];
-    }
-
     public TileObjectSchema GetRandomBoss()
     {
         return Bosses[UnityEngine.Random.Range(0, Bosses.Count)];

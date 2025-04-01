@@ -46,6 +46,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         TEMP_UpdateVisuals();
     }
 
+    public bool TEMP_PredictDeath(int amount)
+    {
+        return CurrentHealth - amount < 0;
+    }
+    
     public void TEMP_UpdateHealth(int amount)
     {
         CurrentHealth = Mathf.Clamp(CurrentHealth + amount, -1, MaxHealth);
@@ -73,6 +78,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             Hearts[i].gameObject.SetActive(MaxHealth - 1 >= i);
             Hearts[i].SetFull(CurrentHealth > i);
+            Hearts[i].SetLabelText((i + 1).ToString());
         }
 
         int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level);
@@ -80,6 +86,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             XPGems[i].gameObject.SetActive(i < xpRequiredToLevel);
             XPGems[i].SetFull(CurrentXP > i);
+            XPGems[i].SetLabelText((i + 1).ToString());
         }
 
         LevelUpIcon.enabled = CurrentXP >= xpRequiredToLevel;

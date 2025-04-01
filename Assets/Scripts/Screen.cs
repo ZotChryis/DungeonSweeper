@@ -11,12 +11,12 @@ public class Screen : MonoBehaviour
     [SerializeField]
     private Button CloseButton;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         CloseButton?.onClick.AddListener(OnCloseButtonClicked);
     }
 
-    private void OnCloseButtonClicked()
+    protected virtual void OnCloseButtonClicked()
     {
         SceneManager.LoadScene("Game");
     }

@@ -2,17 +2,18 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using static TileObjectSchema;
 
 /// <summary>
 /// Representation of an Enemy.
 /// Intended to be housed within a Tile.
 /// </summary>
-[CreateAssetMenu(menuName = "Data/Enemy")]
+[CreateAssetMenu(menuName = "Data/TileObject")]
 public class TileObjectSchema : Schema
 {
     public Sprite Sprite;
     public int Power;
+    public bool HidePowerToNeighbors;
+    public bool PreventConsumeIfKillingBlow;
     public int XPReward;
     public int RevealRadius;
 
@@ -39,6 +40,7 @@ public class TileObjectSchema : Schema
 
         // Whether or not to display  certain visual elements
         public ValueOverride<bool> EnablePower;
+        public ValueOverride<bool> EnableSprite;
         public ValueOverride<bool> EnableDeathSprite;
     }
 

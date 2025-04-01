@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// Quick and dirty implementation of an NxM Grid of Tiles for the gameplay.
@@ -22,6 +23,9 @@ public class Grid : MonoBehaviour
     [SerializeField, Header("Grid Settings")]
     private GridLayoutGroup Layout;
 
+    [SerializeField, Header("Grid Settings")]
+    private GridSpawnSettings Settings;
+    
     private Tile[,] Tiles;
     private RandomBoard unoccupiedSpaces;
 
@@ -78,6 +82,7 @@ public class Grid : MonoBehaviour
                 // For testing, update eventually
                 tile.TEMP_SetCoordinates(x, y);
 
+                tile.TEMP_Place(null);
                 Tiles[x, y] = tile;
             }
         }
@@ -115,7 +120,7 @@ public class Grid : MonoBehaviour
         Tiles[x, y].TEMP_RevealWithoutLogic();
     }
 
-    private bool InGridBounds(int x, int y)
+    public bool InGridBounds(int x, int y)
     {
         return x >= 0 && y >= 0 && x < Width && y < Height;
     }
@@ -170,11 +175,16 @@ public class Grid : MonoBehaviour
                 
                 if (InGridBounds(x + i, y + j))
                 {
-                    cost += Tiles[x + i, y + j].TEMP_GetCost();
+                    cost += Tiles[x + i, y + j].TEMP_GetPublicCost();
                 }
             }
         }
 
         return cost;
+    }
+
+    public TileObjectSchema GetObject(int xCoordinate, int yCoordinate)
+    {
+        return Tiles[xCoordinate, yCoordinate].GetHousedObject();
     }
 }
