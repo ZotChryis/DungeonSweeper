@@ -62,6 +62,7 @@ MonoBehaviour:
   TileEmpty: {fileID: -9163426285224168042, guid: 491fc302bf655cf4e91db67b98d3f496, type: 3}
   PowerColor: {r: 1, g: 0.483819, b: 0, a: 1}
   RewardColor: {r: 1, g: 0.9820838, b: 0.023584902, a: 1}
+  HousedObject: {fileID: 11400000, guid: 2f6cfa389dc641440bfec2bdff0c4440, type: 2}
 --- !u!114 &6761163715461405607
 MonoBehaviour:
   m_ObjectHideFlags: 0

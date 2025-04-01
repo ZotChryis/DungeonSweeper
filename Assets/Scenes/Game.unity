@@ -380,23 +380,223 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9132cf50b8d6a3346b82c999cf4ee6f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
+    - {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
+    - {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
+    - {fileID: 11400000, guid: e15ca38b7873a0041bfbf7b08ec78210, type: 2}
+    - {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
+    - {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
+    - {fileID: 11400000, guid: aa79d21aa3fe55a4cbe3622404797663, type: 2}
+    - {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
+    - {fileID: 11400000, guid: bdc6289f953291d4498d61248bd3b94a, type: 2}
+    - {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}
+    - {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
+    - {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
+    - {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: NormalEnemyToSpawnCount
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[TileObjectSchema, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.ObjectEqualityComparer`1[[TileObjectSchema,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 13
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 13
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 12
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 10
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 8
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 4
+    - Name: $v
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 5
+    - Name: $v
+      Entry: 3
+      Data: 4
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 6
+    - Name: $v
+      Entry: 3
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 7
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 8
+    - Name: $v
+      Entry: 3
+      Data: 2
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 9
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 10
+    - Name: $v
+      Entry: 3
+      Data: 9
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 11
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 10
+      Data: 12
+    - Name: $v
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   NormalEnemies:
-  - {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
-  - {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
-  - {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}
   - {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
+  - {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
   - {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
-  - {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
   - {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
-  - {fileID: 11400000, guid: aa79d21aa3fe55a4cbe3622404797663, type: 2}
+  - {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
   - {fileID: 11400000, guid: e15ca38b7873a0041bfbf7b08ec78210, type: 2}
+  - {fileID: 11400000, guid: aa79d21aa3fe55a4cbe3622404797663, type: 2}
   - {fileID: 11400000, guid: bdc6289f953291d4498d61248bd3b94a, type: 2}
   - {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
   - {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
   - {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
   - {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
+  - {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}
+  - {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
   GuardedEnemies: []
+  GuardedEnemySpawnCount: 
   GroupEnemies: []
+  GroupEnemySpawnCount: 
   Bosses:
   - {fileID: 11400000, guid: 5c2a966afb2a3ed40a8859463a85fc10, type: 2}
   StartingBoons:

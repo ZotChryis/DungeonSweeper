@@ -23,6 +23,7 @@ public class Grid : MonoBehaviour
     private GridLayoutGroup Layout;
 
     private Tile[,] Tiles;
+    private RandomBoard unoccupiedSpaces;
 
     // TODO: Probably should be a cleaner delegate and not owned by this class?
     public Action<Tile> OnTileStateChanged;
@@ -65,7 +66,9 @@ public class Grid : MonoBehaviour
         Layout.constraintCount = Width;
 
         Tiles = new Tile[Width, Height];
+        unoccupiedSpaces = new RandomBoard(Width, Height);
 
+        // Spawn actual tiles.
         for (int y = 0; y < Height; y++)
         {
             for (int x = 0; x < Width; x++)
@@ -74,23 +77,42 @@ public class Grid : MonoBehaviour
 
                 // For testing, update eventually
                 tile.TEMP_SetCoordinates(x, y);
-                tile.TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomNormalEnemy());
-                
+
                 Tiles[x, y] = tile;
             }
         }
-        
+
         // For testing, remove eventually
         // The center of the grid is the Dragon (13)
-        Tiles[Width/2, Height/2].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomBoss());
+        PlaceDragon(Width / 2, Height / 2);
+
         // Make this spot the vision orb
-        Tiles[3 * Width/4, 3 * Height/4].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
-        Tiles[Width/4, Height/4].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
-        
-        //  Reveal after everything is placed
-        Tiles[Width/2, Height/2].TEMP_RevealWithoutLogic();
-        Tiles[3 * Width / 4, 3 * Height / 4].TEMP_RevealWithoutLogic();
-        Tiles[Width/4, Height/4].TEMP_RevealWithoutLogic();
+        PlaceStartingBoon(3 * Width / 4, 3 * Height / 4);
+        PlaceStartingBoon(Width / 4, Height / 4);
+
+        foreach(var keyValuePair in ServiceLocator.Instance.EnemySpawner.NormalEnemyToSpawnCount)
+        {
+            for (int i = 0; i < keyValuePair.Value; i++)
+            {
+                (int x, int y) = unoccupiedSpaces.GetAndRemoveRandomUnoccuppiedSpace();
+                Debug.Log("x: " + x + ", " + y);
+                Tiles[x, y].TEMP_Place(keyValuePair.Key);
+            }
+        }
+    }
+
+    private void PlaceStartingBoon(int x, int y)
+    {
+        unoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
+        Tiles[x, y].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
+        Tiles[x, y].TEMP_RevealWithoutLogic();
+    }
+
+    private void PlaceDragon(int x, int y)
+    {
+        unoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
+        Tiles[x, y].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomBoss());
+        Tiles[x, y].TEMP_RevealWithoutLogic();
     }
 
     private bool InGridBounds(int x, int y)

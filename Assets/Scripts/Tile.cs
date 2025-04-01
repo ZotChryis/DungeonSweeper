@@ -52,6 +52,7 @@ public class Tile : MonoBehaviour
     [SerializeField]
     private Color RewardColor;
 
+    [SerializeField]
     private TileObjectSchema HousedObject;
     private TileState State = TileState.Hidden;
     
