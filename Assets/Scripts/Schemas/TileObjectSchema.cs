@@ -7,6 +7,10 @@ using UnityEngine;
 /// Representation of an Enemy.
 /// Intended to be housed within a Tile.
 /// </summary>
+// TODO: Tile vs TileObject should have their own states
+//      Tile should not be concerned with what the TileObject does beyond "I am dead now" or w/e
+//      This way we can divorce the tile's logic from the object's logic, and let the objects do whatever they want
+//      We should then have SingleHitObject : TileObject (most enemies), MultiHitObject : TileObject (blocks) ? idk
 [CreateAssetMenu(menuName = "Data/TileObject")]
 public class TileObjectSchema : Schema
 {
