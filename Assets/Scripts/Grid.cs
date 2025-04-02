@@ -38,7 +38,7 @@ public class Grid : MonoBehaviour
     public Action<Tile> OnTileStateChanged;
     public Action OnGridGenerated;
 
-    private int PlacementTryLimit = 200;
+    private int PlacementTryLimit = 1000;
     
     private void Start()
     {
@@ -134,6 +134,7 @@ public class Grid : MonoBehaviour
                     // TODO: Super hacky - but if we reach a limit, start over
                     if (limitCheck >= PlacementTryLimit)
                     {
+                        Debug.Log("Could not find a valid spawn location for " + spawnEntry.Object.ToString());
                         GenerateGrid();
                         return;
                     }
@@ -226,15 +227,17 @@ public class Grid : MonoBehaviour
         {
             for (int j = -1; j <= 1; j++)
             {
-                if (i == x && j == y)
+                if (i == 0 && j == 0)
+                {
+                    continue;
+                }
+
+                if (!InGridBounds(x + i, y + j))
                 {
                     continue;
                 }
                 
-                if (InGridBounds(x + i, y + j))
-                {
-                    cost += Tiles[x + i, y + j].TEMP_GetPublicCost();
-                }
+                cost += Tiles[x + i, y + j].TEMP_GetPublicCost();
             }
         }
 

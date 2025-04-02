@@ -158,6 +158,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
 
         State = TileState.Revealed;
+        ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
         TEMP_UpdateVisuals();
         
         // TODO: Total hack, fix later
