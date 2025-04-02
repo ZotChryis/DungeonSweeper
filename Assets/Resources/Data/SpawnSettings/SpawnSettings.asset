@@ -22,6 +22,7 @@ MonoBehaviour:
     Object: {fileID: 11400000, guid: d176818b653eb4e41aa89066ddbecb16, type: 2}
     Requirements:
     - {fileID: 11400000, guid: db363986bcfbcf84f83eea2239d5176d, type: 2}
+    - {fileID: 11400000, guid: 434ae85f99dff664c97e3cdf2e69b98d, type: 2}
   - Amount: 5
     Object: {fileID: 11400000, guid: aa79d21aa3fe55a4cbe3622404797663, type: 2}
     Requirements:

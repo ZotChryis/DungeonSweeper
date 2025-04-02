@@ -37,6 +37,8 @@ public class Grid : MonoBehaviour
     // TODO: Probably should be a cleaner delegate and not owned by this class?
     public Action<Tile> OnTileStateChanged;
     public Action OnGridGenerated;
+
+    private int PlacementTryLimit = 200;
     
     private void Start()
     {
@@ -126,8 +128,16 @@ public class Grid : MonoBehaviour
             {
                 // TODO: This is a dangerous infinite loop possibility. We should guard against it :shrug:
                 bool placed = false;
+                int limitCheck = 0;
                 while (!placed)
                 {
+                    // TODO: Super hacky - but if we reach a limit, start over
+                    if (limitCheck >= PlacementTryLimit)
+                    {
+                        GenerateGrid();
+                        return;
+                    }
+                    
                     (int, int) coordinates = UnoccupiedSpaces.PeekUnoccupiedSpace();
 
                     bool validCoordinate = true;
@@ -142,6 +152,7 @@ public class Grid : MonoBehaviour
 
                     if (!validCoordinate)
                     {
+                        limitCheck++;
                         continue;
                     }
 
