@@ -3818,6 +3818,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba2a43c50f152842ad41d284ef73318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Mine: {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
+  DiffusedMine: {fileID: 11400000, guid: c6c5f05aaccfa7940a874285d91ab321, type: 2}
   SpawnSettings: {fileID: 11400000, guid: e250cfd31249bbd4ca77137319189cd9, type: 2}
   Width: 13
   Height: 10

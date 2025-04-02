@@ -28,6 +28,7 @@ public class TileObjectSchema : Schema
     public TileObjectSchema[] RevealAllRewards;
     public bool WinReward;
     public bool FullHealReward;
+    public bool DiffuseMinesReward;
 
     [Serializable]
     public struct ValueOverride<T>

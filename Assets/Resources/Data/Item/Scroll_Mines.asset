@@ -23,6 +23,7 @@ MonoBehaviour:
   RevealAllRewards: []
   WinReward: 0
   FullHealReward: 0
+  DiffuseMinesReward: 1
   Data:
     _serializedList:
     - Key: 1

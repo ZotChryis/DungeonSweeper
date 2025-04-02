@@ -10,13 +10,20 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Grid : MonoBehaviour
 {
+    // TODO: Make better way to reference this shit. Probably with an object refactor kekw
+    [SerializeField] 
+    private TileObjectSchema Mine;
+    
+    [SerializeField] 
+    private TileObjectSchema DiffusedMine;
+    
     /// <summary>
     /// The spawn settings for this enemy spawner.
     /// By having these as a separate data object, we can easily hot-swap for levels without haveing to serialize
     /// a new gameobject for every configuration.
     /// </summary>
     [SerializeField, Header("Grid Settings")]
-    public SpawnSettings SpawnSettings;
+    private SpawnSettings SpawnSettings;
     
     // TODO: Create a settings/grid scriptable object instead
     [SerializeField, Header("Grid Settings")]
@@ -279,5 +286,36 @@ public class Grid : MonoBehaviour
         int deltaX = Math.Abs(xCoordinate2 - xCoordinate);
         int deltaY = Math.Abs(yCoordinate2 - yCoordinate);
         return deltaX + deltaY;
+    }
+
+    /// <summary>
+    /// Diffuses all mines by replacing them with Diffused Mines.
+    /// </summary>
+    public void TEMP_DiffuseMarkedOrRevealedMines()
+    {
+        for (int y = 0; y < Height; y++)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                var tile = Tiles[x, y];
+                if (tile.GetHousedObject() != Mine)
+                {
+                    continue;
+                }
+
+                // Marked or revealed mines become diffused
+                if (tile.IsRevealed() || tile.GetAnnotationText() == "*")
+                {
+                    tile.TEMP_Place(DiffusedMine);
+                    tile.TEMP_SetState(Tile.TileState.Revealed);
+                }
+                else
+                {
+                    // The rest are just removed
+                    tile.TEMP_Place(null);
+                    tile.TEMP_SetState(Tile.TileState.Hidden);
+                }
+            }
+        }
     }
 }

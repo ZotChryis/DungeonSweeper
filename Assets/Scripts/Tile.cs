@@ -215,15 +215,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(XCoordinate, YCoordinate, HousedObject.RevealRadius);
             }
-
-            if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
-            {
-                foreach (var revealReward in HousedObject.RevealAllRewards)
-                {
-                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward);
-                }
-            }
-
+            
             player.TEMP_UpdateXP(HousedObject.XPReward);
             
             if (HousedObject.WinReward)
@@ -234,6 +226,19 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             if (HousedObject.FullHealReward)
             {
                 ServiceLocator.Instance.Player.TEMP_UpdateHealth(99);
+            }
+
+            if (HousedObject.DiffuseMinesReward)
+            {
+                ServiceLocator.Instance.Grid.TEMP_DiffuseMarkedOrRevealedMines();
+            }
+            
+            if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
+            {
+                foreach (var revealReward in HousedObject.RevealAllRewards)
+                {
+                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward);
+                }
             }
         }
 
@@ -358,5 +363,15 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
         
         Annotation.SetText(annotation);
+    }
+
+    public string GetAnnotationText()
+    {
+        return Annotation.text;
+    }
+
+    public bool IsRevealed()
+    {
+        return State >= TileState.Revealed;
     }
 }
