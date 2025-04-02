@@ -35,15 +35,14 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         ServiceLocator.Instance.Register(this);
+    }
 
+    private void Start()
+    {
         Hearts = HeartContainer.GetComponentsInChildren<PlayerUIItem>();
         XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
-
-        Level = 1;
-        CurrentXP = 0;
-        CurrentHealth = MaxHealth;
-
-        TEMP_UpdateVisuals();
+        
+        LevelUp();
     }
 
     public bool TEMP_PredictDeath(int amount)
@@ -76,7 +75,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         for (int i = 0; i < Hearts.Length; i++)
         {
-            Hearts[i].gameObject.SetActive(MaxHealth - 1 >= i);
+            Hearts[i].gameObject.SetActive(i < MaxHealth);
             Hearts[i].SetFull(CurrentHealth > i);
             Hearts[i].SetLabelText((i + 1).ToString());
         }

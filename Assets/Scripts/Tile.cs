@@ -1,6 +1,5 @@
 using System;
 using TMPro;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

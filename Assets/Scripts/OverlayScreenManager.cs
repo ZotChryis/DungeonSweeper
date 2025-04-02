@@ -14,8 +14,10 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
 
     private Screen ActiveScreen;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+        
         ServiceLocator.Instance.Register(this);
     }
 
