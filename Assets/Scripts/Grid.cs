@@ -318,4 +318,34 @@ public class Grid : MonoBehaviour
             }
         }
     }
+
+    public void Obscure(int xCoordinate, int yCoordinate, int radius)
+    {
+        for (int i = -radius; i <= radius; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (!InGridBounds(i + xCoordinate, j + yCoordinate))
+                {
+                    continue;
+                }
+                Tiles[i + xCoordinate, j + yCoordinate].TEMP_Obscure();
+            }
+        }
+    }
+
+    public void Unobscure(int xCoordinate, int yCoordinate, int radius)
+    {
+        for (int i = -radius; i <= radius; i++)
+        {
+            for (int j = -radius; j <= radius; j++)
+            {
+                if (!InGridBounds(i + xCoordinate, j + yCoordinate))
+                {
+                    continue;
+                }
+                Tiles[i + xCoordinate, j + yCoordinate].TEMP_Unobscure();
+            }
+        }
+    }
 }

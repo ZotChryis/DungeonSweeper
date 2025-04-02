@@ -12,12 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Beholder
   m_EditorClassIdentifier: 
-  Status: 1
   Sprite: {fileID: 7372985931835974456, guid: e355f363054b12a459d2bc97129a64c0, type: 3}
   Power: 5
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
   XPReward: 5
-  RevealRadius: 0
   DropReward: {fileID: 0}
+  RevealRadius: 0
+  ObscureRadius: 2
+  RevealAllRewards: []
   WinReward: 0
+  FullHealReward: 0
+  DiffuseMinesReward: 0
   Data:
     _serializedList: []

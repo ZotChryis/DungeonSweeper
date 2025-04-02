@@ -25,6 +25,7 @@ public class TileObjectSchema : Schema
 
     // TODO: Refactor all this shit honestly
     public int RevealRadius;
+    public int ObscureRadius;
     public TileObjectSchema[] RevealAllRewards;
     public bool WinReward;
     public bool FullHealReward;

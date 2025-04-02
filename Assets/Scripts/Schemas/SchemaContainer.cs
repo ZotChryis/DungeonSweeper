@@ -18,24 +18,15 @@ public class SchemaContainer
     public List<TileObjectSchema> TileObjectSchemas;
     public LevelProgressionSchema LevelProgression;
     
-    public void Initialize(Schema.ProductionStatus minimumStatus)
+    public void Initialize()
     {
-        var enemies = Array.FindAll(
-            UnityEngine.Resources.LoadAll<TileObjectSchema>(c_enemyDirectory),
-            v => v.Status >= minimumStatus
-        ).ToList();
-        var items = Array.FindAll(
-            UnityEngine.Resources.LoadAll<TileObjectSchema>(c_itemDirectory),
-            v => v.Status >= minimumStatus
-        ).ToList();
+        var enemies = UnityEngine.Resources.LoadAll<TileObjectSchema>(c_enemyDirectory).ToList();
+        var items = UnityEngine.Resources.LoadAll<TileObjectSchema>(c_itemDirectory).ToList();
 
         TileObjectSchemas = new List<TileObjectSchema>();
         TileObjectSchemas.AddRange(enemies);
         TileObjectSchemas.AddRange(items);
         
-        LevelProgression = Array.FindAll(
-            UnityEngine.Resources.LoadAll<LevelProgressionSchema>(c_levelProgressionDirectory),
-            v => v.Status >= minimumStatus
-        )[0];
+        LevelProgression = UnityEngine.Resources.LoadAll<LevelProgressionSchema>(c_levelProgressionDirectory)[0];
     }
 }

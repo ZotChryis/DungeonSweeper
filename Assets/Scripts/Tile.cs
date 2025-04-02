@@ -60,6 +60,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     
     private int XCoordinate = 0;
     private int YCoordinate = 0;
+    private int ObscureCounter;
     
     private void Start()
     {
@@ -142,6 +143,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     public void TEMP_Place(TileObjectSchema housedObject)
     {
         HousedObject = housedObject;
+
+        if (HousedObject&& HousedObject.ObscureRadius > 0)
+        {
+            ServiceLocator.Instance.Grid.Obscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
+        }
     }
 
     /// <summary>
@@ -186,11 +192,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     // TODO: We should look into using Observables/real state machine
     private void HandleStateChanged()
     {
-        if (State == TileState.Empty && HousedObject && HousedObject.DropReward)
+        if (State == TileState.Empty)
         {
-            TEMP_Place(HousedObject.DropReward);
-            TEMP_SetState(TileState.Revealed);
-            return;
+            if (HousedObject && HousedObject.DropReward)
+            {
+                TEMP_Place(HousedObject.DropReward);
+                TEMP_SetState(TileState.Revealed);
+                return;
+            }
         }
         
         TEMP_UpdateVisuals();
@@ -207,6 +216,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         if (TileState.Conquered == State && HousedObject.Power > 0)
         {
             player.TEMP_UpdateHealth(-HousedObject.Power);
+            
+            if (HousedObject && HousedObject.ObscureRadius > 0)
+            {
+                ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
+            }
         }
 
         if (TileState.Collected == State)
@@ -330,6 +344,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
         NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
+
+        if (ObscureCounter > 0)
+        {
+            NeighborPower.SetText("?");
+        }
     }
 
     public TileObjectSchema GetHousedObject()
@@ -373,5 +392,17 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     public bool IsRevealed()
     {
         return State >= TileState.Revealed;
+    }
+
+    public void TEMP_Obscure()
+    {
+        ObscureCounter++;
+        TEMP_UpdateVisuals();
+    }
+
+    public void TEMP_Unobscure()
+    {
+        ObscureCounter--;
+        TEMP_UpdateVisuals();
     }
 }

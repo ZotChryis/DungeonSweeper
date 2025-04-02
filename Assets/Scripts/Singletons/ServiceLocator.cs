@@ -6,9 +6,6 @@ using UnityEngine;
 /// </summary>
 public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
 {
-    // Configure what level of production status to run the game on.
-    public Schema.ProductionStatus MininmumStatus = Schema.ProductionStatus.Debug;
-
     // MonoBehavior backed systems
     // They must self-register
     [HideInInspector]
@@ -40,7 +37,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
         DontDestroyOnLoad(gameObject);
         
         Schemas = new SchemaContainer();
-        Schemas.Initialize(MininmumStatus);
+        Schemas.Initialize();
     }
     
     public void Register(Grid grid)
