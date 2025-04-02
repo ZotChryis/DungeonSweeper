@@ -15,9 +15,13 @@ MonoBehaviour:
   Status: 1
   Sprite: {fileID: 8607660380933718676, guid: 439a5d3fcd956cb43953dda49c1d0ece, type: 3}
   Power: 5
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
   XPReward: 5
+  DropReward: {fileID: 11400000, guid: e838b473c1cea2a4a933f40869b6dcfd, type: 2}
   RevealRadius: 0
-  DropReward: {fileID: 0}
+  RevealAllRewards: []
   WinReward: 0
+  FullHealReward: 0
   Data:
     _serializedList: []

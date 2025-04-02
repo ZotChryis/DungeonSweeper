@@ -19,12 +19,13 @@ public class TileObjectSchema : Schema
     public bool HidePowerToNeighbors;
     public bool PreventConsumeIfKillingBlow;
     public int XPReward;
-    public int RevealRadius;
-
+    
     // When fully collected, instead of becoming Empty, this object will be the new housed object on the tile.
     public TileObjectSchema DropReward;
 
-    // TODO: Total hack. When an item with this is collected, the game is victorious
+    // TODO: Refactor all this shit honestly
+    public int RevealRadius;
+    public TileObjectSchema[] RevealAllRewards;
     public bool WinReward;
     public bool FullHealReward;
 

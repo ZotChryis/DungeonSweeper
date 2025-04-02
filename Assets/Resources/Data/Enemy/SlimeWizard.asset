@@ -18,8 +18,10 @@ MonoBehaviour:
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 1
+  DropReward: {fileID: 11400000, guid: 1286b0a784713b84681ed019cf13014f, type: 2}
   RevealRadius: 0
-  DropReward: {fileID: 0}
+  RevealAllRewards: []
   WinReward: 0
+  FullHealReward: 0
   Data:
     _serializedList: []

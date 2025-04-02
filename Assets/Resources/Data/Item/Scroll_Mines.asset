@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Egg
+  m_Name: Scroll_Mines
   m_EditorClassIdentifier: 
-  Status: 1
-  Sprite: {fileID: 21300000, guid: f6f35f113666b4242886bfb88c211df1, type: 3}
+  Status: 0
+  Sprite: {fileID: 1847117391093386565, guid: b777d4e05328f3f418d3c187c5827600, type: 3}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 3
+  XPReward: 0
   DropReward: {fileID: 0}
   RevealRadius: 0
   RevealAllRewards: []
@@ -28,8 +28,42 @@ MonoBehaviour:
     - Key: 1
       Value:
         AutoContinue:
+          UseOverride: 1
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
           UseOverride: 0
           Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+    - Key: 2
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 1
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+    - Key: 3
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 1
         Sprite:
           UseOverride: 0
           Value: {fileID: 0}

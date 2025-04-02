@@ -218,6 +218,23 @@ public class Grid : MonoBehaviour
     }
     
     /// <summary>
+    /// Reveals all tiles that have the matching object schema.
+    /// </summary>
+    public void TEMP_RevealAllOfType(TileObjectSchema objectSchema)
+    {
+        for (int y = 0; y < Height; y++)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() == objectSchema)
+                {
+                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
     /// Gets the total cost of all neighbors for a given coordinate.
     /// </summary>
     public int TEMP_GetTotalNeighborCost(int x, int y)

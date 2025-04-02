@@ -217,6 +217,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(XCoordinate, YCoordinate, HousedObject.RevealRadius);
             }
 
+            if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
+            {
+                foreach (var revealReward in HousedObject.RevealAllRewards)
+                {
+                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward);
+                }
+            }
+
             player.TEMP_UpdateXP(HousedObject.XPReward);
             
             if (HousedObject.WinReward)
