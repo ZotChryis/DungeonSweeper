@@ -27,25 +27,25 @@ public class CornerSpawnRequirement : SpawnRequirement
         {
             if (edge == Corner.BottomLeft && xCoord == 0 && yCoord == 0)
             {
-                return true;
+                return !Negate;
             }
 
             if (edge == Corner.BottomRight && xCoord == grid.GetWidth() - 1 && yCoord == 0)
             {
-                return true;
+                return !Negate;
             }
 
             if (edge == Corner.TopLeft && xCoord == 0 && yCoord == grid.GetHeight() - 1)
             {
-                return true;
+                return !Negate;
             }
 
             if (edge == Corner.TopRight && xCoord == grid.GetWidth() - 1 && yCoord == grid.GetHeight() - 1)
             {
-                return true;
+                return !Negate;
             }
         }
 
-        return false;
+        return Negate;
     }
 }

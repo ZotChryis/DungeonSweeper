@@ -26,6 +26,7 @@ public class TileObjectSchema : Schema
 
     // TODO: Total hack. When an item with this is collected, the game is victorious
     public bool WinReward;
+    public bool FullHealReward;
 
     [Serializable]
     public struct ValueOverride<T>

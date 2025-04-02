@@ -15,6 +15,10 @@ MonoBehaviour:
   Status: 1
   GridSpawns:
   - Amount: 1
+    Object: {fileID: 11400000, guid: 489f7e09f2408e54f83722713387f27b, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 8336564e0270d20428595b25a406abf6, type: 2}
+  - Amount: 1
     Object: {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
     Requirements:
     - {fileID: 11400000, guid: 56aefa3748a8e1344ad5b94c61ac0d72, type: 2}
@@ -22,6 +26,21 @@ MonoBehaviour:
     Object: {fileID: 11400000, guid: d176818b653eb4e41aa89066ddbecb16, type: 2}
     Requirements:
     - {fileID: 11400000, guid: db363986bcfbcf84f83eea2239d5176d, type: 2}
+  - Amount: 5
+    Object: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
+    Requirements: []
+  - Amount: 5
+    Object: {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: c990ae289fc3200408bb327e16c64e79, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: dcf653f45d8a770408ffee82fee28b82, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: e989ef6af1c0b304185654da4c71819f, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 989e7eb8f4bbf9c44bad72525c95a516, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 698bad20f35e4674abd522d9c1464b51, type: 2}
   - Amount: 4
     Object: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
     Requirements: []
@@ -37,9 +56,6 @@ MonoBehaviour:
   - Amount: 8
     Object: {fileID: 11400000, guid: e15ca38b7873a0041bfbf7b08ec78210, type: 2}
     Requirements: []
-  - Amount: 5
-    Object: {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
-    Requirements: []
   - Amount: 4
     Object: {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
     Requirements: []
@@ -54,7 +70,4 @@ MonoBehaviour:
     Requirements: []
   - Amount: 9
     Object: {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
-    Requirements: []
-  - Amount: 5
-    Object: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
     Requirements: []

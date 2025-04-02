@@ -222,6 +222,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Victory);
             }
+
+            if (HousedObject.FullHealReward)
+            {
+                ServiceLocator.Instance.Player.TEMP_UpdateHealth(99);
+            }
         }
 
         var objectOverrides = HousedObject ? HousedObject.GetOverrides(State) : default;

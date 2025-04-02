@@ -27,25 +27,25 @@ public class EdgeSpawnRequirement : SpawnRequirement
         {
             if (edge == Edge.Left && xCoord == 0)
             {
-                return true;
+                return !Negate;
             }
 
             if (edge == Edge.Top && yCoord == grid.GetHeight() - 1)
             {
-                return true;
+                return !Negate;
             }
 
             if (edge == Edge.Right && xCoord == grid.GetWidth() - 1)
             {
-                return true;
+                return !Negate;
             }
 
             if (edge == Edge.Bottom && yCoord == 0)
             {
-                return true;
+                return !Negate;
             }
         }
 
-        return false;
+        return Negate;
     }
 }

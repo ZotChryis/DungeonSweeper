@@ -102,7 +102,7 @@ public class Grid : MonoBehaviour
             }
         }
 
-        // TODO: These spawns should be moved to the Spawner class and done via data
+        // TODO: These spawns should be moved to data ?
         // For testing, remove eventually
         // The center of the grid is the Dragon (13)
         PlaceDragon(Width / 2, Height / 2);
@@ -111,12 +111,12 @@ public class Grid : MonoBehaviour
         PlaceStartingBoon(3 * Width / 4, 3 * Height / 4);
         PlaceStartingBoon(Width / 4, Height / 4);
 
-        Spawn();
+        PlaceSpawns();
         
         OnGridGenerated?.Invoke();
     }
 
-    private void Spawn()
+    private void PlaceSpawns()
     {
         // The spawn entries are handled in order, so fill those out with that in mind
         foreach (var spawnEntry in SpawnSettings.GridSpawns)
@@ -230,8 +230,23 @@ public class Grid : MonoBehaviour
         return cost;
     }
 
+    /// <summary>
+    /// Returns the object in the given coordinates. Can be null.
+    /// </summary>
     public TileObjectSchema GetObject(int xCoordinate, int yCoordinate)
     {
         return Tiles[xCoordinate, yCoordinate].GetHousedObject();
+    }
+
+    /// <summary>
+    /// Returns the distance between the two coordinates.
+    /// </summary>
+    /// <returns></returns>
+    public int GetDistance(int xCoordinate, int yCoordinate, int xCoordinate2, int yCoordinate2)
+    {
+        // Calculate the Manhattan distance
+        int deltaX = Math.Abs(xCoordinate2 - xCoordinate);
+        int deltaY = Math.Abs(yCoordinate2 - yCoordinate);
+        return deltaX + deltaY;
     }
 }
