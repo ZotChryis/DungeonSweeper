@@ -14,7 +14,27 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/TileObject")]
 public class TileObjectSchema : Schema
 {
+    [Serializable]
+    public struct SpriteFacing
+    {
+        // Object to look for. We find the nearest one. If none provided, logic will not run
+        public TileObjectSchema NearestObject;
+        
+        // Relative to self. As in, if THIS object is above Nearest object, use this. Only used if not null.
+        public Sprite Above;
+        public Sprite Below;
+        
+        // Above/Below and Behind/Front are exclusive. You cant use both
+        public Sprite Behind;
+        public Sprite Front;
+        
+        // If no nearest object type is found.
+        public Sprite Missing;
+    }
+    
     public Sprite Sprite;
+    public SpriteFacing SpriteFacingData;
+    
     public int Power;
     public bool HidePowerToNeighbors;
     public bool PreventConsumeIfKillingBlow;
@@ -26,6 +46,10 @@ public class TileObjectSchema : Schema
     // TODO: Refactor all this shit honestly
     public int RevealRadius;
     public int ObscureRadius;
+    
+    // Hack: basically Gnome behavior
+    public bool CanFlee;
+    
     public TileObjectSchema[] RevealAllRewards;
     public bool WinReward;
     public bool FullHealReward;
@@ -58,5 +82,45 @@ public class TileObjectSchema : Schema
     public TileStateData GetOverrides(Tile.TileState state)
     {
         return Data.GetValueOrDefault(state);
+    }
+
+    // TODO HACK fix later
+    public Sprite TEMP_GetSprite(int xCoordinate, int yCoordinate)
+    {
+        if (!SpriteFacingData.NearestObject)
+        {
+            return Sprite;
+        }
+
+        (int, int) coordinates = ServiceLocator.Instance.Grid.FindNearest(SpriteFacingData.NearestObject, xCoordinate, yCoordinate);
+        if (coordinates.Item1 == -1 || coordinates.Item2 == -1)
+        {
+            return SpriteFacingData.Missing;
+        }
+
+        if (SpriteFacingData.Above && SpriteFacingData.Below)
+        {
+            if (coordinates.Item2 > yCoordinate)
+            {
+                return SpriteFacingData.Below;
+            }
+            else
+            {
+                return SpriteFacingData.Above;
+            }
+        }
+        else if (SpriteFacingData.Behind && SpriteFacingData.Front)
+        {
+            if (coordinates.Item1 > xCoordinate)
+            {
+                return SpriteFacingData.Behind;
+            }
+            else
+            {
+                return SpriteFacingData.Front;
+            }
+        }
+        
+        return SpriteFacingData.Missing;
     }
 }

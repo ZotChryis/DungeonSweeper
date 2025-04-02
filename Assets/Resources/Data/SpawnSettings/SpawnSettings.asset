@@ -49,14 +49,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e6cdc948be344f2459f83e20b7fd8830, type: 2}
   - Amount: 5
     Object: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
-    Requirements: []
+    Requirements:
+    - {fileID: 11400000, guid: eab3077aee8d71e4e8790012d49094f2, type: 2}
   - Amount: 5
     Object: {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
     Requirements:
     - {fileID: 11400000, guid: c990ae289fc3200408bb327e16c64e79, type: 2}
-  - Amount: 13
-    Object: {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
-    Requirements: []
+    - {fileID: 11400000, guid: 5c9b25e56d48bdf4587ccf0fdff3b570, type: 2}
   - Amount: 12
     Object: {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
     Requirements: []
@@ -72,6 +71,10 @@ MonoBehaviour:
   - Amount: 1
     Object: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
     Requirements: []
+  - Amount: 13
+    Object: {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: a4f463af546516547b6a66111d19fa86, type: 2}
   - Amount: 1
     Object: {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}
     Requirements: []
@@ -80,4 +83,7 @@ MonoBehaviour:
     Requirements: []
   - Amount: 1
     Object: {fileID: 11400000, guid: bdc6289f953291d4498d61248bd3b94a, type: 2}
+    Requirements: []
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 8877d1c5d6cf1ad4d97721b08fad71c0, type: 2}
     Requirements: []

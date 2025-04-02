@@ -58,8 +58,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     private TileObjectSchema HousedObject;
     private TileState State = TileState.Hidden;
     
-    private int XCoordinate = 0;
-    private int YCoordinate = 0;
+    public int XCoordinate = 0;
+    public int YCoordinate = 0;
+    
     private int ObscureCounter;
     
     private void Start()
@@ -143,7 +144,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     public void TEMP_Place(TileObjectSchema housedObject)
     {
         HousedObject = housedObject;
-
+        
         if (HousedObject&& HousedObject.ObscureRadius > 0)
         {
             ServiceLocator.Instance.Grid.Obscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
@@ -194,6 +195,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     {
         if (State == TileState.Empty)
         {
+            // TODO: HACK - need to remove any fully empty tile when it is revealed to make Flee work
+            ServiceLocator.Instance.Grid.UnoccupiedSpaces.RemoveUnoccupiedSpace(XCoordinate, YCoordinate); 
+            
             if (HousedObject && HousedObject.DropReward)
             {
                 TEMP_Place(HousedObject.DropReward);
@@ -225,6 +229,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         if (TileState.Collected == State)
         {
+            if (HousedObject.CanFlee && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject))
+            {
+                TEMP_SetState(TileState.Empty);
+                return;
+            }
+            
             if (HousedObject.RevealRadius > 0)
             {
                 ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(XCoordinate, YCoordinate, HousedObject.RevealRadius);
@@ -331,7 +341,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         SpriteRenderer.enabled = objectOverrides.EnableSprite.UseOverride ? objectOverrides.EnableSprite.Value : SpriteRenderer.enabled;
         XSpriteRenderer.enabled = objectOverrides.EnableDeathSprite.UseOverride ? objectOverrides.EnableDeathSprite.Value : XSpriteRenderer.enabled;
             
-        SpriteRenderer.sprite = HousedObject ? HousedObject.Sprite : null;
+        SpriteRenderer.sprite = HousedObject ? HousedObject.TEMP_GetSprite(XCoordinate, YCoordinate) : null;
         if (objectOverrides.Sprite.UseOverride)
         {
             SpriteRenderer.sprite = objectOverrides.Sprite.Value;
@@ -389,9 +399,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         return Annotation.text;
     }
 
-    public bool IsRevealed()
+    public bool TEMP_IsRevealed()
     {
         return State >= TileState.Revealed;
+    }
+
+    public bool TEMP_IsEmpty()
+    {
+        return !HousedObject || State == TileState.Empty;
     }
 
     public void TEMP_Obscure()

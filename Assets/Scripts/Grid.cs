@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -50,7 +51,7 @@ public class Grid : MonoBehaviour
     private void Start()
     {
         ServiceLocator.Instance.Register(this);
-        
+
         // TODO: Super temporary way to start the game
         GenerateGrid();
     }
@@ -304,7 +305,7 @@ public class Grid : MonoBehaviour
                 }
 
                 // Marked or revealed mines become diffused
-                if (tile.IsRevealed() || tile.GetAnnotationText() == "*")
+                if (tile.TEMP_IsRevealed() || tile.GetAnnotationText() == "*")
                 {
                     tile.TEMP_Place(DiffusedMine);
                     tile.TEMP_SetState(Tile.TileState.Revealed);
@@ -347,5 +348,57 @@ public class Grid : MonoBehaviour
                 Tiles[i + xCoordinate, j + yCoordinate].TEMP_Unobscure();
             }
         }
+    }
+
+    public bool TEMP_HandleFlee(TileObjectSchema housedObject)
+    {
+        if (!UnoccupiedSpaces.HasEmptySpace())
+        {
+            return false;
+        }
+        
+        (int, int) newCoord = UnoccupiedSpaces.PeekUnoccupiedSpace();
+        
+        Tiles[newCoord.Item1, newCoord.Item2].TEMP_Place(housedObject);
+        Tiles[newCoord.Item1, newCoord.Item2].TEMP_SetState(Tile.TileState.Hidden);
+        
+        UnoccupiedSpaces.RemoveUnoccupiedSpace(newCoord.Item1, newCoord.Item2);
+
+        return true;
+    }
+    
+    // I feel like this is some leetcode shit
+    public (int, int) FindNearest(TileObjectSchema toFind, int xOrigin, int yOrigin)
+    {
+        (int, int)[] directions = { (0, 1), (0, -1), (1, 0), (-1, 0) };
+        Queue<(int x, int y, int dist)> queue = new();
+        HashSet<(int, int)> visited = new();
+
+        queue.Enqueue((xOrigin, yOrigin, 0));
+        visited.Add((xOrigin, yOrigin));
+
+        while (queue.Count > 0)
+        {
+            var (x, y, dist) = queue.Dequeue();
+
+            if (InGridBounds(x, y) && !Tiles[x, y].TEMP_IsEmpty() && Tiles[x, y].GetHousedObject() == toFind)
+            {
+                return (x, y);
+            }
+            
+            foreach ((int,int) dir in directions)
+            {
+                int newX = x + dir.Item1;
+                int newY = y + dir.Item2;
+
+                if (newX >= 0 && newX < Width && newY >= 0 && newY < Height && !visited.Contains((newX, newY)))
+                {
+                    queue.Enqueue((newX, newY, dist + 1));
+                    visited.Add((newX, newY));
+                }
+            }
+        }
+        
+        return (-1, -1);
     }
 }

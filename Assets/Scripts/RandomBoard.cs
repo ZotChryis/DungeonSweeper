@@ -40,6 +40,11 @@ public class RandomBoard
         return FlatToCoordinate(UnoccupiedSpaces[Random.Range(0, UnoccupiedSpaces.Count)]);
     }
 
+    public bool HasEmptySpace()
+    {
+        return UnoccupiedSpaces.Count > 0;
+    }
+
     public (int, int) GetAndRemoveRandomUnoccuppiedSpace()
     {
         int DELETEME = Random.Range(0, UnoccupiedSpaces.Count);

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d207f159a6c407c9e53a52a80f916c1, type: 3}
-  m_Name: Minotaur_SpawnRequirement
+  m_Name: Minotaur2_SpawnRequirement
   m_EditorClassIdentifier: 
-  Negate: 0
-  TileObject: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
-  Distance: 1
+  Negate: 1
+  TileObject: {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
+  Distance: 2
   SameRow:
     UseRequirement: 0
     Value: 0
   SameColumn:
-    UseRequirement: 1
+    UseRequirement: 0
     Value: 0
   SameRowOrColumn:
     UseRequirement: 0

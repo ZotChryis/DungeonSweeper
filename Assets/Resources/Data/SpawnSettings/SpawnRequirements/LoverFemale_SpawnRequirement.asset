@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d207f159a6c407c9e53a52a80f916c1, type: 3}
   m_Name: LoverFemale_SpawnRequirement
   m_EditorClassIdentifier: 
-  Status: 0
   Negate: 0
   TileObject: {fileID: 11400000, guid: dcf653f45d8a770408ffee82fee28b82, type: 2}
-  Distance: 9
+  Distance: 15
   SameRow:
     UseRequirement: 1
     Value: 1
   SameColumn:
+    UseRequirement: 0
+    Value: 0
+  SameRowOrColumn:
     UseRequirement: 0
     Value: 0
   HigherRow:
@@ -28,3 +30,4 @@ MonoBehaviour:
   HigherColumn:
     UseRequirement: 0
     Value: 0
+  Track: 0
