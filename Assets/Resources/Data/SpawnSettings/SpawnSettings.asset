@@ -42,12 +42,12 @@ MonoBehaviour:
   - Amount: 4
     Object: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
     Requirements:
-    - {fileID: 11400000, guid: e989ef6af1c0b304185654da4c71819f, type: 2}
     - {fileID: 11400000, guid: 0e16a156bcf850844809334d259e43ec, type: 2}
   - Amount: 4
     Object: {fileID: 11400000, guid: bdb6fb82ec3ced2438bfc899310bd68b, type: 2}
     Requirements:
     - {fileID: 11400000, guid: 0265e7d3e8a50684e9cd5e982387a160, type: 2}
+    - {fileID: 11400000, guid: e6cdc948be344f2459f83e20b7fd8830, type: 2}
   - Amount: 5
     Object: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
     Requirements: []

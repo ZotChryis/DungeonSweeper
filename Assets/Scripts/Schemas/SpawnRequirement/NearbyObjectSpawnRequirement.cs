@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Data/SpawnRequirement/NearbyObject")]
 public class NearbyObjectSpawnRequirement : SpawnRequirement
@@ -29,6 +28,13 @@ public class NearbyObjectSpawnRequirement : SpawnRequirement
     private RequirementOption SameColumn;
 
     /// <summary>
+    /// Allows to dictate wether you share the same row OR column.
+    /// Using the two above together is AND.
+    /// </summary>
+    [SerializeField] 
+    private RequirementOption SameRowOrColumn;
+    
+    /// <summary>
     /// Allow to dictate row position relative to found object.
     /// </summary>
     [SerializeField] 
@@ -39,6 +45,12 @@ public class NearbyObjectSpawnRequirement : SpawnRequirement
     /// </summary>
     [SerializeField] 
     private RequirementOption HigherColumn;
+
+    /// <summary>
+    /// Whether or not to add this spawn to the found object's Tracked list.
+    /// </summary>
+    [SerializeField] 
+    private bool Track;
     
     public override bool IsValid(int xCoord, int yCoord)
     {
@@ -67,6 +79,19 @@ public class NearbyObjectSpawnRequirement : SpawnRequirement
                 if (SameColumn.UseRequirement && (SameColumn.Value ? i != 0 : i == 0))
                 {
                     continue;
+                }
+
+                if (SameRowOrColumn.UseRequirement)
+                {
+                    if (SameRowOrColumn.Value && (i != 0 && j != 0))
+                    {
+                        continue;
+                    }
+
+                    if (!SameRowOrColumn.Value && (i == 0 || j == 0))
+                    {
+                        continue;
+                    }
                 }
                 
                 if (grid.GetObject(xCoord + i, yCoord + j) == TileObject)

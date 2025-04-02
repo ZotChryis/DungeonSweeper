@@ -15,10 +15,10 @@ MonoBehaviour:
   Status: 0
   Negate: 1
   TileObject: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
-  Distance: 1
+  Distance: 2
   SameRow:
-    UseRequirement: 1
-    Value: 1
+    UseRequirement: 0
+    Value: 0
   SameColumn:
     UseRequirement: 0
     Value: 0
