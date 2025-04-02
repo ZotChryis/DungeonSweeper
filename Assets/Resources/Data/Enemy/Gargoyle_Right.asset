@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Gargoyle
+  m_Name: Gargoyle_Right
   m_EditorClassIdentifier: 
   Status: 1
   Sprite: {fileID: -2990900167212558872, guid: db7c954521c3d924dbe703bdd1ae714a, type: 3}
