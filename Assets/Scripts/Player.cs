@@ -9,7 +9,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private Image PlayerIcon;
     
     [SerializeField] 
-    private Image LevelUpIcon;
+    private GameObject LevelUpRoot;
 
     [SerializeField]
     private Transform HeartContainer;
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             XPGems[i].SetLabelText((i + 1).ToString());
         }
 
-        LevelUpIcon.enabled = CurrentXP >= xpRequiredToLevel;
+        LevelUpRoot.SetActive(CurrentXP >= xpRequiredToLevel);
     }
 
     public void OnPointerClick(PointerEventData eventData)
