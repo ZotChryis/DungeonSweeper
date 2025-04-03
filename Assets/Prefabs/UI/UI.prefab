@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Container: {fileID: 7525014992439475159}
-  CloseButton: {fileID: 431252578670566711}
+  CloseButton: {fileID: 0}
 --- !u!1 &730705453126062560
 GameObject:
   m_ObjectHideFlags: 0
@@ -1286,7 +1286,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
-  Text: {fileID: 0}
 --- !u!1 &1430529261439377312
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1617,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 915731182206249137}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 811611002498061579}
+        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1611980689637536567
 GameObject:
   m_ObjectHideFlags: 0
@@ -3339,7 +3350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Container: {fileID: 344258770918177064}
-  CloseButton: {fileID: 142976227124511189}
+  CloseButton: {fileID: 0}
 --- !u!1 &3530003625437752886
 GameObject:
   m_ObjectHideFlags: 0
@@ -7289,7 +7300,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
-  Text: {fileID: 0}
 --- !u!1 &7046931437820197580
 GameObject:
   m_ObjectHideFlags: 0
@@ -7440,7 +7450,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 10
-  Text: {fileID: 6805559586094888529}
 --- !u!1 &7175712135405585559
 GameObject:
   m_ObjectHideFlags: 0
@@ -8326,7 +8335,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2328776278837747486}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 811611002498061579}
+        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7768180253076825864
 GameObject:
   m_ObjectHideFlags: 0

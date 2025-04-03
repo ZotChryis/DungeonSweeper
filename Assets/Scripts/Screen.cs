@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Screen : MonoBehaviour
@@ -18,7 +16,7 @@ public class Screen : MonoBehaviour
 
     protected virtual void OnCloseButtonClicked()
     {
-        SceneManager.LoadScene("Game");
+        ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
     }
 
     // TODO: Add animations and shit
