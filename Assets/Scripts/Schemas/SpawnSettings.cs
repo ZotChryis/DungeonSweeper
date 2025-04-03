@@ -12,6 +12,9 @@ public class SpawnSettings : Schema
         public SpawnRequirement[] Requirements;
     }
     
+    public int Height;
+    public int Width;
+    
     /// <summary>
     /// Ordered entries to spawn. They have their own spawn requirements.
     /// </summary>

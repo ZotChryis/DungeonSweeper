@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b04a0700e14d718fd71067cd25b205, type: 3}
-  m_Name: SpawnSettings
+  m_Name: SpawnSettings_DragonSweeper
   m_EditorClassIdentifier: 
   GridSpawns:
   - Amount: 1
@@ -87,3 +87,5 @@ MonoBehaviour:
   - Amount: 1
     Object: {fileID: 11400000, guid: 8877d1c5d6cf1ad4d97721b08fad71c0, type: 2}
     Requirements: []
+  Height: 10
+  Width: 13

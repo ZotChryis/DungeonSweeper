@@ -22,6 +22,12 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
         ServiceLocator.Instance.Grid.GenerateGrid();
     }
     
+    public void Regenerate(SpawnSettings spawnSettings)
+    {
+        ServiceLocator.Instance.Grid.SpawnSettings = spawnSettings;
+        ServiceLocator.Instance.Grid.GenerateGrid();
+    }
+    
     public void Restart()
     {
         SceneManager.LoadScene("Game");

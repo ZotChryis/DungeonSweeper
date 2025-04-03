@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b04a0700e14d718fd71067cd25b205, type: 3}
+  m_Name: SpawnSettings_1
+  m_EditorClassIdentifier: 
+  Height: 4
+  Width: 3
+  GridSpawns:
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 489f7e09f2408e54f83722713387f27b, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 8336564e0270d20428595b25a406abf6, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: eab3077aee8d71e4e8790012d49094f2, type: 2}
+  - Amount: 2
+    Object: {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
+    Requirements: []
+  - Amount: 2
+    Object: {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
+    Requirements: []
+  - Amount: 2
+    Object: {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
+    Requirements: []
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
+    Requirements: []

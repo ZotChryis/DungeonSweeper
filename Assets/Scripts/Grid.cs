@@ -24,15 +24,8 @@ public class Grid : MonoBehaviour
     /// a new gameobject for every configuration.
     /// </summary>
     [SerializeField, Header("Grid Settings")]
-    private SpawnSettings SpawnSettings;
+    public SpawnSettings SpawnSettings;
     
-    // TODO: Create a settings/grid scriptable object instead
-    [SerializeField, Header("Grid Settings")]
-    private int Width;
-    
-    [SerializeField, Header("Grid Settings")]
-    private int Height;
-
     [SerializeField, Header("Grid Settings")]
     private Tile TilePrefab;
 
@@ -58,12 +51,12 @@ public class Grid : MonoBehaviour
 
     public int GetHeight()
     {
-        return Height;
+        return SpawnSettings.Height;
     }
     
     public int GetWidth()
     {
-        return Width;
+        return SpawnSettings.Width;
     }
     
     /// <summary>
@@ -92,15 +85,15 @@ public class Grid : MonoBehaviour
         //  3) make the tiles non-fixed size and have them fill 
         // But for now this will do for a simple solution
         Layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
-        Layout.constraintCount = Width;
-
-        Tiles = new Tile[Width, Height];
-        UnoccupiedSpaces = new RandomBoard(Width, Height);
+        Layout.constraintCount = SpawnSettings.Width;
+        
+        Tiles = new Tile[SpawnSettings.Width, SpawnSettings.Height];
+        UnoccupiedSpaces = new RandomBoard(SpawnSettings.Width, SpawnSettings.Height);
 
         // Spawn actual tiles.
-        for (int y = 0; y < Height; y++)
+        for (int y = 0; y < SpawnSettings.Height; y++)
         {
-            for (int x = 0; x < Width; x++)
+            for (int x = 0; x < SpawnSettings.Width; x++)
             {
                 Tile tile = Instantiate(TilePrefab, transform);
 
@@ -115,11 +108,11 @@ public class Grid : MonoBehaviour
         // TODO: These spawns should be moved to data ?
         // For testing, remove eventually
         // The center of the grid is the Dragon (13)
-        PlaceDragon(Width / 2, Height / 2);
+        PlaceDragon(SpawnSettings.Width / 2, SpawnSettings.Height / 2);
 
         // Make this spot the vision orb
-        PlaceStartingBoon(3 * Width / 4, 3 * Height / 4);
-        PlaceStartingBoon(Width / 4, Height / 4);
+        PlaceStartingBoon(3 * SpawnSettings.Width / 4, 3 * SpawnSettings.Height / 4);
+        PlaceStartingBoon(SpawnSettings.Width / 4, SpawnSettings.Height / 4);
 
         PlaceSpawns();
         
@@ -189,7 +182,7 @@ public class Grid : MonoBehaviour
 
     public bool InGridBounds(int x, int y)
     {
-        return x >= 0 && y >= 0 && x < Width && y < Height;
+        return x >= 0 && y >= 0 && x < SpawnSettings.Width && y < SpawnSettings.Height;
     }
     
     public void TEMP_RevealTilesInRadius(int x, int y, int radius)
@@ -216,9 +209,9 @@ public class Grid : MonoBehaviour
     /// </summary>
     public void TEMP_RevealAllTiles()
     {
-        for (int y = 0; y < Height; y++)
+        for (int y = 0; y < SpawnSettings.Height; y++)
         {
-            for (int x = 0; x < Width; x++)
+            for (int x = 0; x < SpawnSettings.Width; x++)
             {
                 Tiles[x, y].TEMP_RevealWithoutLogic();
             }
@@ -230,9 +223,9 @@ public class Grid : MonoBehaviour
     /// </summary>
     public void TEMP_RevealAllOfType(TileObjectSchema objectSchema)
     {
-        for (int y = 0; y < Height; y++)
+        for (int y = 0; y < SpawnSettings.Height; y++)
         {
-            for (int x = 0; x < Width; x++)
+            for (int x = 0; x < SpawnSettings.Width; x++)
             {
                 if (Tiles[x, y].GetHousedObject() == objectSchema)
                 {
@@ -294,9 +287,9 @@ public class Grid : MonoBehaviour
     /// </summary>
     public void TEMP_DiffuseMarkedOrRevealedMines()
     {
-        for (int y = 0; y < Height; y++)
+        for (int y = 0; y < SpawnSettings.Height; y++)
         {
-            for (int x = 0; x < Width; x++)
+            for (int x = 0; x < SpawnSettings.Width; x++)
             {
                 var tile = Tiles[x, y];
                 if (tile.GetHousedObject() != Mine)
@@ -391,7 +384,7 @@ public class Grid : MonoBehaviour
                 int newX = x + dir.Item1;
                 int newY = y + dir.Item2;
 
-                if (newX >= 0 && newX < Width && newY >= 0 && newY < Height && !visited.Contains((newX, newY)))
+                if (newX >= 0 && newX < SpawnSettings.Width && newY >= 0 && newY < SpawnSettings.Height && !visited.Contains((newX, newY)))
                 {
                     queue.Enqueue((newX, newY, dist + 1));
                     visited.Add((newX, newY));
