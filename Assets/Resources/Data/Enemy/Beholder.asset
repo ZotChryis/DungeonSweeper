@@ -13,13 +13,27 @@ MonoBehaviour:
   m_Name: Beholder
   m_EditorClassIdentifier: 
   Sprite: {fileID: 7372985931835974456, guid: e355f363054b12a459d2bc97129a64c0, type: 3}
+  SpriteFacingData:
+    NearestObject: {fileID: 0}
+    Above: {fileID: 0}
+    Below: {fileID: 0}
+    Behind: {fileID: 0}
+    Front: {fileID: 0}
+    Missing: {fileID: 0}
   Power: 5
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 5
   DropReward: {fileID: 0}
+  RevealOffsets: []
   RevealRadius: 0
-  ObscureRadius: 2
+  ObscureOffsets:
+  - {x: -2, y: 0}
+  - {x: 2, y: 0}
+  - {x: 0, y: -2}
+  - {x: 0, y: 2}
+  ObscureRadius: 1
+  CanFlee: 0
   RevealAllRewards: []
   WinReward: 0
   FullHealReward: 0

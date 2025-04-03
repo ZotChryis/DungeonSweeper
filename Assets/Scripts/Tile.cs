@@ -149,6 +149,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         {
             ServiceLocator.Instance.Grid.Obscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
         }
+
+        if (HousedObject && HousedObject.ObscureOffsets != null && HousedObject.ObscureOffsets.Length > 0)
+        {
+            ServiceLocator.Instance.Grid.Obscure(XCoordinate, YCoordinate, HousedObject.ObscureOffsets);
+        }
     }
 
     /// <summary>
@@ -225,6 +230,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
             }
+            if (HousedObject && HousedObject.ObscureOffsets != null && HousedObject.ObscureOffsets.Length > 0)
+            {
+                ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureOffsets);
+            }
         }
 
         if (TileState.Collected == State)
@@ -238,6 +247,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             if (HousedObject.RevealRadius > 0)
             {
                 ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(XCoordinate, YCoordinate, HousedObject.RevealRadius);
+            }
+
+            if (HousedObject.RevealOffsets != null && HousedObject.RevealOffsets.Length > 0)
+            {
+                ServiceLocator.Instance.Grid.TEMP_RevealTiles(XCoordinate, YCoordinate, HousedObject.RevealOffsets);
             }
             
             player.TEMP_UpdateXP(HousedObject.XPReward);

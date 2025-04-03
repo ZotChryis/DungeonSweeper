@@ -12,32 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1192567535967fa4080c7859864db651, type: 3}
   m_Name: LevelProgression
   m_EditorClassIdentifier: 
-  Status: 1
   LevelProgressionEntries:
   - XPRequiredToLevel: 4
     MaxHealth: 5
-    Laps: 1
   - XPRequiredToLevel: 5
-    MaxHealth: 6
-    Laps: 1
-  - XPRequiredToLevel: 6
-    MaxHealth: 7
-    Laps: 1
+    MaxHealth: 5
   - XPRequiredToLevel: 7
-    MaxHealth: 8
-    Laps: 2
-  - XPRequiredToLevel: 8
-    MaxHealth: 9
-    Laps: 2
+    MaxHealth: 6
   - XPRequiredToLevel: 9
-    MaxHealth: 10
-    Laps: 2
+    MaxHealth: 6
+  - XPRequiredToLevel: 9
+    MaxHealth: 7
   - XPRequiredToLevel: 10
-    MaxHealth: 11
-    Laps: 3
-  - XPRequiredToLevel: 11
-    MaxHealth: 12
-    Laps: 3
+    MaxHealth: 7
   - XPRequiredToLevel: 12
+    MaxHealth: 8
+  - XPRequiredToLevel: 12
+    MaxHealth: 8
+  - XPRequiredToLevel: 12
+    MaxHealth: 9
+  - XPRequiredToLevel: 15
+    MaxHealth: 9
+  - XPRequiredToLevel: 18
+    MaxHealth: 10
+  - XPRequiredToLevel: 21
+    MaxHealth: 10
+  - XPRequiredToLevel: 21
+    MaxHealth: 11
+  - XPRequiredToLevel: 25
+    MaxHealth: 11
+  - XPRequiredToLevel: 25
+    MaxHealth: 12
+  - XPRequiredToLevel: 25
+    MaxHealth: 12
+  - XPRequiredToLevel: 25
     MaxHealth: 13
-    Laps: 3

@@ -41,10 +41,13 @@ public class Grid : MonoBehaviour
 
     private int PlacementTryLimit = 1000;
     
-    private void Start()
+    private void Awake()
     {
         ServiceLocator.Instance.Register(this);
+    }
 
+    private void Start()
+    {
         // TODO: Super temporary way to start the game
         GenerateGrid();
     }
@@ -111,7 +114,6 @@ public class Grid : MonoBehaviour
         PlaceDragon(SpawnSettings.Width / 2, SpawnSettings.Height / 2);
 
         // Make this spot the vision orb
-        PlaceStartingBoon(3 * SpawnSettings.Width / 4, 3 * SpawnSettings.Height / 4);
         PlaceStartingBoon(SpawnSettings.Width / 4, SpawnSettings.Height / 4);
 
         PlaceSpawns();
@@ -185,6 +187,9 @@ public class Grid : MonoBehaviour
         return x >= 0 && y >= 0 && x < SpawnSettings.Width && y < SpawnSettings.Height;
     }
     
+    /// <summary>
+    /// Reveals tiles in a radius from the origin x,y.
+    /// </summary>
     public void TEMP_RevealTilesInRadius(int x, int y, int radius)
     {
         if (radius <= 0)
@@ -201,6 +206,24 @@ public class Grid : MonoBehaviour
                     Tiles[x + i, y + j].TEMP_RevealWithoutLogic();
                 }
             }
+        }
+    }
+    
+    /// <summary>
+    /// Reveals tiles from specific offsets from the origin x,y.
+    /// </summary>
+    public void TEMP_RevealTiles(int x, int y, Vector2Int[] offets)
+    {
+        foreach (var offet in offets)
+        {
+            int newX = offet.x + x;
+            int newY = offet.y + y;
+            if (!InGridBounds(newX, newY))
+            {
+                continue;
+            }
+            
+            Tiles[newX, newY].TEMP_RevealWithoutLogic();
         }
     }
     
@@ -342,6 +365,38 @@ public class Grid : MonoBehaviour
             }
         }
     }
+    
+    public void Obscure(int xCoordinate, int yCoordinate, Vector2Int[] offsets)
+    {
+        foreach (var offset in offsets)
+        {
+            int newX = xCoordinate + offset.x;
+            int newY = yCoordinate + offset.y;
+            
+            if (!InGridBounds(newX, newY))
+            {
+                continue;
+            }
+            
+            Tiles[newX, newY].TEMP_Obscure();
+        }
+    }
+    
+    public void Unobscure(int xCoordinate, int yCoordinate, Vector2Int[] offsets)
+    {
+        foreach (var offset in offsets)
+        {
+            int newX = xCoordinate + offset.x;
+            int newY = yCoordinate + offset.y;
+            
+            if (!InGridBounds(newX, newY))
+            {
+                continue;
+            }
+            
+            Tiles[newX, newY].TEMP_Unobscure();
+        }
+    }
 
     public bool TEMP_HandleFlee(TileObjectSchema housedObject)
     {
@@ -361,6 +416,7 @@ public class Grid : MonoBehaviour
     }
     
     // I feel like this is some leetcode shit
+    // todo: use Vector2Int
     public (int, int) FindNearest(TileObjectSchema toFind, int xOrigin, int yOrigin)
     {
         (int, int)[] directions = { (0, 1), (0, -1), (1, 0), (-1, 0) };

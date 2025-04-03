@@ -24,7 +24,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public OverlayScreenManager OverlayScreenManager;
     
     [HideInInspector]
-    public TileContextMenu TileContextMenu;
+    public TileContextMenuScreen TileContextMenu;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class
@@ -65,7 +65,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
         OverlayScreenManager = screenManager;
     }
     
-    public void Register(TileContextMenu tileContextMenu)
+    public void Register(TileContextMenuScreen tileContextMenu)
     {
         TileContextMenu = tileContextMenu;
     }

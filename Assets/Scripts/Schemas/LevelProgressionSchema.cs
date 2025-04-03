@@ -12,9 +12,6 @@ public class LevelProgressionSchema : Schema
     {
         public int XPRequiredToLevel;
         public int MaxHealth;
-
-        // How many times you need to level up with this requirement in order to fully advance
-        public int Laps;
     }
     
     [SerializeField] 
@@ -58,21 +55,5 @@ public class LevelProgressionSchema : Schema
         }
         
         return LevelProgressionEntries[adjustedIndex].MaxHealth;
-    }
-
-    public int GetLapsForLevel(int level)
-    {
-        int adjustedIndex = level - 1;
-        if (adjustedIndex < 0)
-        {
-            return 0;
-        }
-
-        if (adjustedIndex >= LevelProgressionEntries.Length)
-        {
-            return LevelProgressionEntries[^1].Laps;
-        }
-
-        return LevelProgressionEntries[adjustedIndex].Laps;
     }
 }

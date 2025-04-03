@@ -44,7 +44,9 @@ public class TileObjectSchema : Schema
     public TileObjectSchema DropReward;
 
     // TODO: Refactor all this shit honestly
+    public Vector2Int[] RevealOffsets;
     public int RevealRadius;
+    public Vector2Int[] ObscureOffsets;
     public int ObscureRadius;
     
     // Hack: basically Gnome behavior

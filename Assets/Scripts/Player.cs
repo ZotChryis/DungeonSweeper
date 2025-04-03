@@ -10,12 +10,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
     
     [SerializeField] 
     private Image LevelUpIcon;
-    
-    [SerializeField] 
-    private int MaxHealth = 5;
-
-    [SerializeField]
-    private int MaxXP = 4;
 
     [SerializeField]
     private Transform HeartContainer;
@@ -24,8 +18,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private Transform XPContainer;
 
     private int Level;
-    private int LevelLap;
     private int CurrentHealth;
+    private int MaxHealth;
     private int CurrentXP;
 
     // TODO: Spawn these in dynamically, im just lazy atm
@@ -97,25 +91,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (CurrentXP >= xpRequiredToLevel)
         {
             CurrentXP -= xpRequiredToLevel;
-            XPLap();
-        }
-    }
-
-    public void XPLap()
-    {
-        LevelLap++;
-
-        int requiredLaps = ServiceLocator.Instance.Schemas.LevelProgression.GetLapsForLevel(Level);
-        if (LevelLap >= requiredLaps)
-        {
-            LevelLap = 0;
             LevelUp();
-            return;
         }
-
-        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
-        CurrentHealth = MaxHealth;
-        TEMP_UpdateVisuals();
     }
 
     public void LevelUp()

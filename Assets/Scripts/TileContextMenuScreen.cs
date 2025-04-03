@@ -2,7 +2,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TileContextMenu : Screen
+public class TileContextMenuScreen : Screen
 {
     [SerializeField] private RectTransform Content;
 
