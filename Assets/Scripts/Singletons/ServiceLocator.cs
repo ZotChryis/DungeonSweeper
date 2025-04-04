@@ -34,10 +34,13 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(gameObject);
-        
-        Schemas = new SchemaContainer();
-        Schemas.Initialize();
+        if (Instance == this)
+        {
+            DontDestroyOnLoad(gameObject);
+
+            Schemas = new SchemaContainer();
+            Schemas.Initialize();
+        }
     }
     
     public void Register(Grid grid)
