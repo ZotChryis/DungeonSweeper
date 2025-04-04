@@ -4,12 +4,6 @@ using System.Collections.Generic;
 public class EnemySpawner : SerializedMonoBehaviour
 {
     /// <summary>
-    /// Normal enemies. No spawn restrictions. Each enemy in this list must be unique in it's power.
-    /// TODO: This is probably not needed delete me.
-    /// </summary>
-    public List<TileObjectSchema> NormalEnemies;
-
-    /// <summary>
     /// Normal enemies. No spawn restrictions.
     /// Value is number of enemies to spawn.
     /// </summary>
@@ -25,7 +19,6 @@ public class EnemySpawner : SerializedMonoBehaviour
     /// These enemies are guarded by an item or another enemy.
     /// Meaning when they spawn, additionally spawn another item or enemy.
     /// They spawn in order.
-    /// DO NOT REORDER THIS LIST
     /// </summary>
     public List<TileObjectSchema> GuardedEnemies;
 
@@ -39,13 +32,11 @@ public class EnemySpawner : SerializedMonoBehaviour
     /// These enemies spawn in a pattern.
     /// For example gargoyles spawn next to each other and facing each other.
     /// They spawn in order.
-    /// DO NOT REORDER THIS LIST
     /// </summary>
     public List<TileObjectSchema> GroupEnemies;
 
     /// <summary>
     /// Corresponding group enemy spawn count.
-    /// DO NOT REORDER THIS LIST
     /// </summary>
     public List<int> GroupEnemySpawnCount;
 

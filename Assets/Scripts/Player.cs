@@ -104,4 +104,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         TEMP_UpdateVisuals();
     }
+
+    public void GodMode()
+    {
+        MaxHealth = 999999;
+        CurrentHealth = MaxHealth;
+    }
 }

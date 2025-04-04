@@ -320,17 +320,15 @@ public class Grid : MonoBehaviour
                     continue;
                 }
 
-                // Marked or revealed mines become diffused
-                if (tile.TEMP_IsRevealed() || tile.GetAnnotationText() == "*")
+                // Revealed mines become diffused
+                if (tile.TEMP_IsRevealed())
                 {
                     tile.TEMP_Place(DiffusedMine);
                     tile.TEMP_SetState(Tile.TileState.Revealed);
                 }
                 else
                 {
-                    // The rest are just removed
-                    tile.TEMP_Place(null);
-                    tile.TEMP_SetState(Tile.TileState.Hidden);
+                    tile.TEMP_Place(DiffusedMine);
                 }
             }
         }

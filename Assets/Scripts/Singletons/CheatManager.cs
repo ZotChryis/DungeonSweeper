@@ -17,6 +17,11 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
         ServiceLocator.Instance.Player.LevelUp();
     }
 
+    public void GodMode()
+    {
+        ServiceLocator.Instance.Player.GodMode();
+    }
+
     public void Regenerate()
     {
         ServiceLocator.Instance.Grid.GenerateGrid();
