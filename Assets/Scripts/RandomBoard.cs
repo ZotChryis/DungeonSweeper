@@ -45,19 +45,6 @@ public class RandomBoard
         return UnoccupiedSpaces.Count > 0;
     }
 
-    public (int, int) GetAndRemoveRandomUnoccuppiedSpace()
-    {
-        int DELETEME = Random.Range(0, UnoccupiedSpaces.Count);
-        Debug.Log("RandomBoard random flat coordinate: " + DELETEME + " , and unoccupiedSpacesCount: " + UnoccupiedSpaces.Count);
-        int flatCoordinate = UnoccupiedSpaces[DELETEME];
-        (int x, int y) = FlatToCoordinate(flatCoordinate);
-        if(!RemoveUnoccupiedSpace(x, y))
-        {
-            Debug.LogWarning("Failed to remove random x:" + x +  ",y:" + y);
-        }
-        return (x, y);
-    }
-
     /// <summary>
     /// Sets a tile space to occupied by removing it from the board.
     /// </summary>

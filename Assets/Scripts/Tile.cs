@@ -243,15 +243,27 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 TEMP_SetState(TileState.Empty);
                 return;
             }
+
+            int revealOriginX = XCoordinate;
+            int revealOriginY = YCoordinate;
+            if (HousedObject.GenerateRandomLocationForReveal)
+            {
+                var randomBoard = ServiceLocator.Instance.Grid.UnoccupiedSpaces;
+                if (randomBoard.HasEmptySpace())
+                {
+                    (revealOriginX, revealOriginY) = randomBoard.PeekUnoccupiedSpace();
+                    randomBoard.RemoveUnoccupiedSpace(revealOriginX, revealOriginY);
+                }
+            }
             
             if (HousedObject.RevealRadius > 0)
             {
-                ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(XCoordinate, YCoordinate, HousedObject.RevealRadius);
+                ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(revealOriginX, revealOriginY, HousedObject.RevealRadius);
             }
 
             if (HousedObject.RevealOffsets != null && HousedObject.RevealOffsets.Length > 0)
             {
-                ServiceLocator.Instance.Grid.TEMP_RevealTiles(XCoordinate, YCoordinate, HousedObject.RevealOffsets);
+                ServiceLocator.Instance.Grid.TEMP_RevealTiles(revealOriginX, revealOriginY, HousedObject.RevealOffsets);
             }
             
             player.TEMP_UpdateXP(HousedObject.XPReward);

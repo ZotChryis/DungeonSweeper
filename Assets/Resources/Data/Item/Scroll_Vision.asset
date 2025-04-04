@@ -25,11 +25,8 @@ MonoBehaviour:
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
   DropReward: {fileID: 0}
-  RevealOffsets:
-  - {x: 2, y: 0}
-  - {x: -2, y: 0}
-  - {x: 0, y: 2}
-  - {x: 0, y: -2}
+  GenerateRandomLocationForReveal: 1
+  RevealOffsets: []
   RevealRadius: 1
   ObscureOffsets: []
   ObscureRadius: 0

@@ -95,3 +95,6 @@ MonoBehaviour:
   - Amount: 1
     Object: {fileID: 11400000, guid: 256dcd38b6d98884b92e74f6e217d09a, type: 2}
     Requirements: []
+  - Amount: 6
+    Object: {fileID: 11400000, guid: ad646da970d47914fae19377be93ef3d, type: 2}
+    Requirements: []

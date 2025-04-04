@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Representation of an Enemy.
@@ -44,6 +45,7 @@ public class TileObjectSchema : Schema
     public TileObjectSchema DropReward;
 
     // TODO: Refactor all this shit honestly
+    public bool GenerateRandomLocationForReveal;
     public Vector2Int[] RevealOffsets;
     public int RevealRadius;
     public Vector2Int[] ObscureOffsets;
