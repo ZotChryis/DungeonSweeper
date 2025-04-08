@@ -108,10 +108,23 @@ public class Grid : MonoBehaviour
             }
         }
 
-        // TODO: These spawns should be moved to data ?
-        // For testing, remove eventually
         // The center of the grid is the Dragon (13)
-        PlaceDragon(SpawnSettings.Width / 2, SpawnSettings.Height / 2);
+        // Place first boss in the middle.
+        PlaceBoss(SpawnSettings.Width / 2, SpawnSettings.Height / 2, SpawnSettings.BossSpawns[0].Object);
+        // Place later boss 2 away from edges
+        for (int i = 1; i < SpawnSettings.BossSpawns.Length; i++)
+        {
+            do
+            {
+                (int x, int y) = UnoccupiedSpaces.PeekUnoccupiedSpace();
+                if(x >= 2 && x < SpawnSettings.Width - 2 && y >= 2 && y < SpawnSettings.Height - 2)
+                {
+                    PlaceBoss(x, y, SpawnSettings.BossSpawns[i].Object);
+                    break;
+                }
+            }
+            while (true);
+        }
 
         // Make this spot the vision orb
         PlaceStartingBoon(SpawnSettings.Width / 4, SpawnSettings.Height / 4);
@@ -175,10 +188,10 @@ public class Grid : MonoBehaviour
         Tiles[x, y].TEMP_RevealWithoutLogic();
     }
 
-    private void PlaceDragon(int x, int y)
+    private void PlaceBoss(int x, int y, TileObjectSchema boss)
     {
         UnoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
-        Tiles[x, y].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomBoss());
+        Tiles[x, y].TEMP_Place(boss);
         Tiles[x, y].TEMP_RevealWithoutLogic();
     }
 

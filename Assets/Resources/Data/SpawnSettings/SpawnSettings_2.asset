@@ -18,7 +18,7 @@ MonoBehaviour:
   - Amount: 1
     Object: {fileID: 11400000, guid: 489f7e09f2408e54f83722713387f27b, type: 2}
     Requirements:
-    - {fileID: 11400000, guid: 8336564e0270d20428595b25a406abf6, type: 2}
+    - {fileID: 11400000, guid: 9484ceac962b3404d994405f46816566, type: 2}
   - Amount: 1
     Object: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
     Requirements:
@@ -43,4 +43,8 @@ MonoBehaviour:
     Requirements: []
   - Amount: 1
     Object: {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
+    Requirements: []
+  BossSpawns:
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 5c2a966afb2a3ed40a8859463a85fc10, type: 2}
     Requirements: []

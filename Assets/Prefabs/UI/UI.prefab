@@ -2227,7 +2227,7 @@ GameObject:
   - component: {fileID: 4149839136240449284}
   - component: {fileID: 1800344649652034204}
   m_Layer: 0
-  m_Name: CheatItem_Level_1
+  m_Name: CheatItem_Level_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2323,7 +2323,7 @@ MonoBehaviour:
         m_MethodName: Regenerate
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: b56d1c7806e2e5840b4fdf24b3c865af, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: feb7ffb10fc83e64db12d372d4668722, type: 2}
           m_ObjectArgumentAssemblyTypeName: SpawnSettings, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2777,9 +2777,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level 2
-
-'
+  m_text: Level 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4981,7 +4979,7 @@ GameObject:
   - component: {fileID: 7242705418630618986}
   - component: {fileID: 3937630689786774821}
   m_Layer: 0
-  m_Name: CheatItem_Level_2
+  m_Name: CheatItem_Level_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5077,7 +5075,7 @@ MonoBehaviour:
         m_MethodName: Regenerate
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: 243dbb6bfaf9ff34fa33f346e6c2f164, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: b5533cad8299c9c4c9f4cc334b841dbe, type: 2}
           m_ObjectArgumentAssemblyTypeName: SpawnSettings, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -6692,9 +6690,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Level 1
-
-'
+  m_text: Level 2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

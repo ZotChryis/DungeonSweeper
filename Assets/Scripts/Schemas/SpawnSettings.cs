@@ -19,4 +19,9 @@ public class SpawnSettings : Schema
     /// Ordered entries to spawn. They have their own spawn requirements.
     /// </summary>
     public GridSpawnEntry[] GridSpawns;
+
+    /// <summary>
+    /// Bosses to spawn.
+    /// </summary>
+    public GridSpawnEntry[] BossSpawns;
 }
