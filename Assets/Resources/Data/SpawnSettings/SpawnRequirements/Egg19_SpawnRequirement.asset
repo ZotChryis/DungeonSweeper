@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f3487d22b8d2543b91434149eee4ef, type: 3}
+  m_Name: Egg19_SpawnRequirement
+  m_EditorClassIdentifier: 
+  Negate: 0
+  PowerOfObject: 19
+  Distance: 1
+  SameRow:
+    UseRequirement: 0
+    Value: 0
+  SameColumn:
+    UseRequirement: 0
+    Value: 0
+  SameRowOrColumn:
+    UseRequirement: 0
+    Value: 0
+  HigherRow:
+    UseRequirement: 0
+    Value: 0
+  HigherColumn:
+    UseRequirement: 0
+    Value: 0
+  Track: 0

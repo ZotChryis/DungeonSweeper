@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b04a0700e14d718fd71067cd25b205, type: 3}
+  m_Name: SpawnSettings_DragonSweeper3
+  m_EditorClassIdentifier: 
+  Height: 13
+  Width: 15
+  GridSpawns:
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 489f7e09f2408e54f83722713387f27b, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: c579f61daf12ae54ca994d6224705d04, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: d176818b653eb4e41aa89066ddbecb16, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: db363986bcfbcf84f83eea2239d5176d, type: 2}
+    - {fileID: 11400000, guid: 434ae85f99dff664c97e3cdf2e69b98d, type: 2}
+  - Amount: 5
+    Object: {fileID: 11400000, guid: aa79d21aa3fe55a4cbe3622404797663, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 19de27e92d6420b45b54e8932d798317, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 56aefa3748a8e1344ad5b94c61ac0d72, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: dcf653f45d8a770408ffee82fee28b82, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: e989ef6af1c0b304185654da4c71819f, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 989e7eb8f4bbf9c44bad72525c95a516, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 698bad20f35e4674abd522d9c1464b51, type: 2}
+  - Amount: 4
+    Object: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 0e16a156bcf850844809334d259e43ec, type: 2}
+  - Amount: 4
+    Object: {fileID: 11400000, guid: bdb6fb82ec3ced2438bfc899310bd68b, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: 0265e7d3e8a50684e9cd5e982387a160, type: 2}
+    - {fileID: 11400000, guid: e6cdc948be344f2459f83e20b7fd8830, type: 2}
+  - Amount: 5
+    Object: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: eab3077aee8d71e4e8790012d49094f2, type: 2}
+  - Amount: 5
+    Object: {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: c990ae289fc3200408bb327e16c64e79, type: 2}
+    - {fileID: 11400000, guid: 5c9b25e56d48bdf4587ccf0fdff3b570, type: 2}
+  - Amount: 12
+    Object: {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
+    Requirements: []
+  - Amount: 10
+    Object: {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
+    Requirements: []
+  - Amount: 8
+    Object: {fileID: 11400000, guid: e15ca38b7873a0041bfbf7b08ec78210, type: 2}
+    Requirements: []
+  - Amount: 4
+    Object: {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
+    Requirements: []
+  - Amount: 1
+    Object: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
+    Requirements: []
+  - Amount: 13
+    Object: {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
+    Requirements:
+    - {fileID: 11400000, guid: a4f463af546516547b6a66111d19fa86, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}
+    Requirements: []
+  - Amount: 9
+    Object: {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
+    Requirements: []
+  - Amount: 1
+    Object: {fileID: 11400000, guid: bdc6289f953291d4498d61248bd3b94a, type: 2}
+    Requirements: []
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 8877d1c5d6cf1ad4d97721b08fad71c0, type: 2}
+    Requirements: []
+  - Amount: 5
+    Object: {fileID: 11400000, guid: 149ab7b7ee381b74984d4c7d0b997ebd, type: 2}
+    Requirements: []
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 256dcd38b6d98884b92e74f6e217d09a, type: 2}
+    Requirements: []
+  - Amount: 6
+    Object: {fileID: 11400000, guid: ad646da970d47914fae19377be93ef3d, type: 2}
+    Requirements: []
+  BossSpawns:
+  - Amount: 1
+    Object: {fileID: 11400000, guid: a5330fd4a14fae54c8a2bcbe954268ff, type: 2}
+    Requirements: []
+  - Amount: 1
+    Object: {fileID: 11400000, guid: cc784d4ead2da6a48b17a42848bced46, type: 2}
+    Requirements: []
