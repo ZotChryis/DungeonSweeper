@@ -554,6 +554,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4202831926959671193, guid: 1c7a0d34c15553f469cba8ebce8459a0, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6613074129124299456, guid: 1c7a0d34c15553f469cba8ebce8459a0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
