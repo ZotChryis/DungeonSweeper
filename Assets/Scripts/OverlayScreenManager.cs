@@ -10,7 +10,8 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         Victory,
         TileContextMenu,
         Instructions,
-        Library
+        Library,
+        Shop
     }
 
     [SerializedDictionary("Screen Type", "Screen")]
@@ -23,6 +24,11 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         base.Awake();
         
         ServiceLocator.Instance.Register(this);
+    }
+
+    public void ShowShopScreen()
+    {
+        SwitchScreen(ScreenType.Shop);
     }
 
     // ew
@@ -39,13 +45,18 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
             return;
         }
 
-        if (!Screens.ContainsKey(screenType))
+        if(!Screens.TryGetValue(screenType, out ActiveScreen))
         {
             return;
         }
 
-        ActiveScreen = Screens[screenType];
         ActiveScreen.Show();
+    }
+
+    public void SwitchScreen(ScreenType screenType)
+    {
+        HideActiveScreen();
+        RequestShowScreen(screenType);
     }
 
     public void HideActiveScreen()
