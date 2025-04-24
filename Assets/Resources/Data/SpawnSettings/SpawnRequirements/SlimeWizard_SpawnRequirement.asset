@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4350d21a6fc46c0a8b0e20b53614a04, type: 3}
-  m_Name: AnyCorner_SpawnRequirement
+  m_Script: {fileID: 11500000, guid: a518a9146a5a435194ca19260b727af7, type: 3}
+  m_Name: SlimeWizard_SpawnRequirement
   m_EditorClassIdentifier: 
-  Status: 1
-  Requirements: 00000000010000000200000003000000
+  Negate: 0
+  RequiredEdges: 15
+  AllowCorners: 0
+  PotentialSpawnLocations: 0100000005000000020000000600000003000000070000000400000008000000

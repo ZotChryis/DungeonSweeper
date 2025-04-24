@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Rat
   m_EditorClassIdentifier: 
+  Id: rat
   Sprite: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
@@ -25,7 +26,10 @@ MonoBehaviour:
   PreventConsumeIfKillingBlow: 0
   XPReward: 1
   DropReward: {fileID: 0}
+  GenerateRandomLocationForReveal: 0
+  RevealOffsets: []
   RevealRadius: 0
+  ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
   RevealAllRewards: []

@@ -56,7 +56,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
     [SerializeField]
     private TileObjectSchema HousedObject;
-    private TileState State = TileState.Hidden;
+    public TileState State { get; private set; } = TileState.Hidden;
     
     public int XCoordinate = 0;
     public int YCoordinate = 0;
@@ -251,7 +251,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 var randomBoard = ServiceLocator.Instance.Grid.UnoccupiedSpaces;
                 if (randomBoard.HasEmptySpace())
                 {
-                    (revealOriginX, revealOriginY) = randomBoard.PeekUnoccupiedSpace();
+                    (revealOriginX, revealOriginY) = randomBoard.PeekUnoccupiedRandomSpace();
                     randomBoard.RemoveUnoccupiedSpace(revealOriginX, revealOriginY);
                 }
             }

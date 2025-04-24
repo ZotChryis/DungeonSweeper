@@ -1,10 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 // TODO: Create a mvc/settings/player scriptable object instead
 public class Player : MonoBehaviour, IPointerClickHandler
 {
+    public List<string> RevealedMonsters = new List<string>();
+
     [SerializeField] 
     private Image PlayerIcon;
     
@@ -37,6 +41,26 @@ public class Player : MonoBehaviour, IPointerClickHandler
         XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
         
         LevelUp();
+
+        ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGeneratedPlayerAbilities;
+    }
+
+    private void OnDestroy()
+    {
+        ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGeneratedPlayerAbilities;
+    }
+
+    private void OnGridGeneratedPlayerAbilities()
+    {
+        foreach (var monsterId in RevealedMonsters)
+        {
+            ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId);
+        }
+    }
+
+    public void AddMonsterToAutoRevealedList(string monsterId)
+    {
+        RevealedMonsters.Add(monsterId);
     }
 
     public bool TEMP_PredictDeath(int amount)

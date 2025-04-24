@@ -12,17 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Egg
   m_EditorClassIdentifier: 
-  Status: 1
+  Id: egg
   Sprite: {fileID: 21300000, guid: f6f35f113666b4242886bfb88c211df1, type: 3}
+  SpriteFacingData:
+    NearestObject: {fileID: 0}
+    Above: {fileID: 0}
+    Below: {fileID: 0}
+    Behind: {fileID: 0}
+    Front: {fileID: 0}
+    Missing: {fileID: 0}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 3
   DropReward: {fileID: 0}
+  GenerateRandomLocationForReveal: 0
+  RevealOffsets: []
   RevealRadius: 0
+  ObscureOffsets: []
+  ObscureRadius: 0
+  CanFlee: 0
   RevealAllRewards: []
   WinReward: 0
   FullHealReward: 0
+  DiffuseMinesReward: 0
   Data:
     _serializedList:
     - Key: 1

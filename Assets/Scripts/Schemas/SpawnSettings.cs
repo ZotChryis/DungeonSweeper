@@ -9,7 +9,12 @@ public class SpawnSettings : Schema
     {
         public int Amount;
         public TileObjectSchema Object;
-        public SpawnRequirement[] Requirements;
+        /// <summary>
+        /// Spawn this immediately following the Object spawn
+        /// </summary>
+        public TileObjectSchema ConsecutiveSpawn;
+        public int ConsecutiveCopies;
+        public SpawnRequirement Requirement;
     }
     
     public int Height;

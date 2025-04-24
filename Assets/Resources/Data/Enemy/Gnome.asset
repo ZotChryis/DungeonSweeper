@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Gnome
   m_EditorClassIdentifier: 
+  Id: gnome
   Sprite: {fileID: 3402368762417361602, guid: 5d0864dd14337b046a06be91112b5214, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 0}
@@ -25,7 +26,10 @@ MonoBehaviour:
   PreventConsumeIfKillingBlow: 0
   XPReward: 9
   DropReward: {fileID: 0}
+  GenerateRandomLocationForReveal: 0
+  RevealOffsets: []
   RevealRadius: 0
+  ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 1
   RevealAllRewards: []

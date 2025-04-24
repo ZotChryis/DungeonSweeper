@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: VisionOrb
   m_EditorClassIdentifier: 
+  Id: visionorb
   Sprite: {fileID: -1910244127391616031, guid: 0a69202494704544e90f75e07c45420b, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 0}
@@ -25,12 +26,14 @@ MonoBehaviour:
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
   DropReward: {fileID: 0}
+  GenerateRandomLocationForReveal: 0
   RevealOffsets:
   - {x: -2, y: 0}
   - {x: 2, y: 0}
   - {x: 0, y: -2}
   - {x: 0, y: 2}
   RevealRadius: 1
+  ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
   RevealAllRewards: []

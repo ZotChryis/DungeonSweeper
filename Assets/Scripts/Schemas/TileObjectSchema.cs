@@ -32,7 +32,8 @@ public class TileObjectSchema : Schema
         // If no nearest object type is found.
         public Sprite Missing;
     }
-    
+
+    public string Id;
     public Sprite Sprite;
     public SpriteFacing SpriteFacingData;
     

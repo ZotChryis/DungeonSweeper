@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4350d21a6fc46c0a8b0e20b53614a04, type: 3}
-  m_Name: NotCorner_SpawnRequirement
+  m_Script: {fileID: 11500000, guid: 4de1af7e9577e3045be2769f66cda5fa, type: 3}
+  m_Name: Lover_SpawnRequirement
   m_EditorClassIdentifier: 
-  Status: 1
-  Negate: 1
-  Requirements: 00000000010000000200000003000000
+  Negate: 0
+  AdjacencyAllowed: 2
+  RightMargin: 2

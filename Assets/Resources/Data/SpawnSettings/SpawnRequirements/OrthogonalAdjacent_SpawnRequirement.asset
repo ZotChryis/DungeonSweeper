@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a518a9146a5a435194ca19260b727af7, type: 3}
-  m_Name: AnyEdge_SpawnRequirement
+  m_Script: {fileID: 11500000, guid: 9c1d11be81e65e94099b76e136b72c96, type: 3}
+  m_Name: OrthogonalAdjacent_SpawnRequirement
   m_EditorClassIdentifier: 
-  Status: 1
-  Requirements: 00000000010000000200000003000000
+  Negate: 0
+  numberOfValidAdjacentSpaces: 1
+  EmptyAdjacentSpaces: 01000000020000000300000004000000

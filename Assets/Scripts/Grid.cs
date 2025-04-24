@@ -39,8 +39,6 @@ public class Grid : MonoBehaviour
     public Action<Tile> OnTileStateChanged;
     public Action OnGridGenerated;
 
-    private int PlacementTryLimit = 1000;
-    
     private void Awake()
     {
         ServiceLocator.Instance.Register(this);
@@ -116,7 +114,7 @@ public class Grid : MonoBehaviour
         {
             do
             {
-                (int x, int y) = UnoccupiedSpaces.PeekUnoccupiedSpace();
+                (int x, int y) = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
                 if(x >= 2 && x < SpawnSettings.Width - 2 && y >= 2 && y < SpawnSettings.Height - 2)
                 {
                     PlaceBoss(x, y, SpawnSettings.BossSpawns[i].Object);
@@ -142,38 +140,28 @@ public class Grid : MonoBehaviour
             // We spawn all of the instances of each enemy before moving on. We can change this if needed
             for (int i = 0; i < spawnEntry.Amount; i++)
             {
-                // TODO: This is a dangerous infinite loop possibility. We should guard against it :shrug:
-                bool placed = false;
-                int limitCheck = 0;
-                while (!placed)
+                (int, int) coordinates;
+                if (spawnEntry.Requirement != null)
                 {
-                    // TODO: Super hacky - but if we reach a limit, start over
-                    if (limitCheck >= PlacementTryLimit)
+                    coordinates = spawnEntry.Requirement.GetRandomCoordinate(UnoccupiedSpaces);
+                    UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
+                    Tiles[coordinates.Item1, coordinates.Item2].TEMP_Place(spawnEntry.Object);
+                    if (spawnEntry.ConsecutiveSpawn != null)
                     {
-                        Debug.Log("Could not find a valid spawn location for " + spawnEntry.Object.ToString());
-                        GenerateGrid();
-                        return;
-                    }
-                    
-                    (int, int) coordinates = UnoccupiedSpaces.PeekUnoccupiedSpace();
-
-                    bool validCoordinate = true;
-                    foreach (var requirement in spawnEntry.Requirements)
-                    {
-                        if (!requirement.IsValid(coordinates.Item1, coordinates.Item2))
+                        var additionalSpawnLocations = spawnEntry.Requirement.GetRandomConsecutiveNeighborLocations(UnoccupiedSpaces, coordinates.Item1, coordinates.Item2);
+                        additionalSpawnLocations.Shuffle();
+                        Debug.Log($"Try spawn {spawnEntry.ConsecutiveCopies} consecutives given {additionalSpawnLocations.Count} possibilities. name:{spawnEntry.Requirement.name}");
+                        for (int add = 0; add < spawnEntry.ConsecutiveCopies && add < additionalSpawnLocations.Count; add++)
                         {
-                            validCoordinate = false;
-                            break;
+                            UnoccupiedSpaces.RemoveUnoccupiedSpace(additionalSpawnLocations[add].x, additionalSpawnLocations[add].y);
+                            Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].TEMP_Place(spawnEntry.ConsecutiveSpawn);
                         }
                     }
-
-                    if (!validCoordinate)
-                    {
-                        limitCheck++;
-                        continue;
-                    }
-
-                    placed = true;
+                }
+                else
+                {
+                    // Default to random unoccupied space.
+                    coordinates = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
                     UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
                     Tiles[coordinates.Item1, coordinates.Item2].TEMP_Place(spawnEntry.Object);
                 }
@@ -270,7 +258,40 @@ public class Grid : MonoBehaviour
             }
         }
     }
-    
+
+    /// <summary>
+    /// Reveals a random tile that has the matching monster id.
+    /// </summary>
+    /// <param name="tileId">monster id</param>
+    public void RevealRandomOfType(string tileId)
+    {
+        int yStarting = Random.Range(0, SpawnSettings.Height);
+        int xStarting = Random.Range(0, SpawnSettings.Width);
+        for (int y = yStarting; y < SpawnSettings.Height; y++)
+        {
+            for (int x = xStarting; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) && Tiles[x, y].State == Tile.TileState.Hidden)
+                {
+                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    return;
+                }
+            }
+        }
+
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) && Tiles[x, y].State == Tile.TileState.Hidden)
+                {
+                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    return;
+                }
+            }
+        }
+    }
+
     /// <summary>
     /// Gets the total cost of all neighbors for a given coordinate.
     /// </summary>
@@ -416,7 +437,7 @@ public class Grid : MonoBehaviour
             return false;
         }
         
-        (int, int) newCoord = UnoccupiedSpaces.PeekUnoccupiedSpace();
+        (int, int) newCoord = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
         
         Tiles[newCoord.Item1, newCoord.Item2].TEMP_Place(housedObject);
         Tiles[newCoord.Item1, newCoord.Item2].TEMP_SetState(Tile.TileState.Hidden);
