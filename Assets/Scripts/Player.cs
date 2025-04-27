@@ -9,6 +9,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
 {
     public List<string> RevealedMonsters = new List<string>();
 
+    [Tooltip("Player ability, bonus spawn count. Key is spawned creation id.")]
+    public Dictionary<string, int> BonusSpawn = new Dictionary<string, int>();
+
     [SerializeField] 
     private Image PlayerIcon;
     
@@ -58,10 +61,20 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    #region PlayerPowers
     public void AddMonsterToAutoRevealedList(string monsterId)
     {
         RevealedMonsters.Add(monsterId);
     }
+
+    public void AddAndIncrementMonsterToBonusSpawn(string monsterId)
+    {
+        int bonusSpawn = 0;
+        BonusSpawn.TryGetValue(monsterId, out bonusSpawn);
+        bonusSpawn++;
+        BonusSpawn[monsterId] = bonusSpawn;
+    }
+    #endregion
 
     public bool TEMP_PredictDeath(int amount)
     {

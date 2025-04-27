@@ -243,6 +243,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 TEMP_SetState(TileState.Empty);
                 return;
             }
+            if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild))
+            {
+                TEMP_SetState(TileState.Empty);
+                return;
+            }
 
             int revealOriginX = XCoordinate;
             int revealOriginY = YCoordinate;
@@ -277,6 +282,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 ServiceLocator.Instance.Player.TEMP_UpdateHealth(99);
             }
+            ServiceLocator.Instance.Player.TEMP_UpdateHealth(HousedObject.HealReward);
 
             if (HousedObject.DiffuseMinesReward)
             {

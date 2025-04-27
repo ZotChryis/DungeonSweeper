@@ -54,10 +54,13 @@ public class TileObjectSchema : Schema
     
     // Hack: basically Gnome behavior
     public bool CanFlee;
+    public bool SpawnsFleeingChild;
+    public TileObjectSchema FleeingChild;
     
     public TileObjectSchema[] RevealAllRewards;
     public bool WinReward;
     public bool FullHealReward;
+    public int HealReward = 0;
     public bool DiffuseMinesReward;
 
     [Serializable]

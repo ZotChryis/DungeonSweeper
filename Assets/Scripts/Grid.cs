@@ -116,8 +116,13 @@ public class Grid : MonoBehaviour
         // The spawn entries are handled in order, so fill those out with that in mind
         foreach (var spawnEntry in SpawnSettings.GridSpawns)
         {
-            // We spawn all of the instances of each enemy before moving on. We can change this if needed
-            for (int i = 0; i < spawnEntry.Amount; i++)
+            // We spawn all of the instances of each enemy before moving on.
+            int primarySpawnCount = spawnEntry.Amount;
+            if (ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.Object.Id, out int bonusPrimaryCopies))
+            {
+                primarySpawnCount += bonusPrimaryCopies;
+            }
+            for (int i = 0; i < primarySpawnCount; i++)
             {
                 (int, int) coordinates;
                 if (spawnEntry.Requirement != null)
@@ -125,7 +130,8 @@ public class Grid : MonoBehaviour
                     coordinates = spawnEntry.Requirement.GetRandomCoordinate(UnoccupiedSpaces);
                     UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
                     Tiles[coordinates.Item1, coordinates.Item2].TEMP_Place(spawnEntry.Object);
-                    if (spawnEntry.Requirement.RevealAfterSpawn)
+                    // Don't auto-reveal player spawned items.
+                    if (spawnEntry.Requirement.RevealAfterSpawn && i < spawnEntry.Amount)
                     {
                         Tiles[coordinates.Item1, coordinates.Item2].TEMP_RevealWithoutLogic();
                     }
@@ -133,8 +139,13 @@ public class Grid : MonoBehaviour
                     {
                         var additionalSpawnLocations = spawnEntry.Requirement.GetRandomConsecutiveNeighborLocations(UnoccupiedSpaces, coordinates.Item1, coordinates.Item2);
                         additionalSpawnLocations.Shuffle();
-                        Debug.Log($"Try spawn {spawnEntry.ConsecutiveCopies} consecutives given {additionalSpawnLocations.Count} possibilities. name:{spawnEntry.Requirement.name}");
-                        for (int add = 0; add < spawnEntry.ConsecutiveCopies && add < additionalSpawnLocations.Count; add++)
+                        int consecutiveCopies = spawnEntry.ConsecutiveCopies;
+                        if (ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.ConsecutiveSpawn.Id, out int bonusCopies))
+                        {
+                            consecutiveCopies += bonusCopies;
+                        }
+                        Debug.Log($"Try spawn {spawnEntry.ConsecutiveCopies}+{bonusCopies} consecutives given {additionalSpawnLocations.Count} possibilities. name:{spawnEntry.Requirement.name}");
+                        for (int add = 0; add < consecutiveCopies && add < additionalSpawnLocations.Count; add++)
                         {
                             UnoccupiedSpaces.RemoveUnoccupiedSpace(additionalSpawnLocations[add].x, additionalSpawnLocations[add].y);
                             Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].TEMP_Place(spawnEntry.ConsecutiveSpawn);
@@ -240,7 +251,9 @@ public class Grid : MonoBehaviour
         {
             for (int x = xStarting; x < SpawnSettings.Width; x++)
             {
-                if (Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) && Tiles[x, y].State == Tile.TileState.Hidden)
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) &&
+                    Tiles[x, y].State == Tile.TileState.Hidden)
                 {
                     Tiles[x, y].TEMP_RevealWithoutLogic();
                     return;
@@ -252,7 +265,9 @@ public class Grid : MonoBehaviour
         {
             for (int x = 0; x < SpawnSettings.Width; x++)
             {
-                if (Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) && Tiles[x, y].State == Tile.TileState.Hidden)
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) &&
+                    Tiles[x, y].State == Tile.TileState.Hidden)
                 {
                     Tiles[x, y].TEMP_RevealWithoutLogic();
                     return;
