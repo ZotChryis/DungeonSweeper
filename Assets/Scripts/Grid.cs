@@ -46,7 +46,7 @@ public class Grid : MonoBehaviour
 
     private void Start()
     {
-        // TODO: Super temporary way to start the game
+        // Start the game level 1
         GenerateGrid();
     }
 
@@ -106,27 +106,6 @@ public class Grid : MonoBehaviour
             }
         }
 
-        // The center of the grid is the Dragon (13)
-        // Place first boss in the middle.
-        PlaceBoss(SpawnSettings.Width / 2, SpawnSettings.Height / 2, SpawnSettings.BossSpawns[0].Object);
-        // Place later boss 2 away from edges
-        for (int i = 1; i < SpawnSettings.BossSpawns.Length; i++)
-        {
-            do
-            {
-                (int x, int y) = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
-                if(x >= 2 && x < SpawnSettings.Width - 2 && y >= 2 && y < SpawnSettings.Height - 2)
-                {
-                    PlaceBoss(x, y, SpawnSettings.BossSpawns[i].Object);
-                    break;
-                }
-            }
-            while (true);
-        }
-
-        // Make this spot the vision orb
-        PlaceStartingBoon(SpawnSettings.Width / 4, SpawnSettings.Height / 4);
-
         PlaceSpawns();
         
         OnGridGenerated?.Invoke();
@@ -146,6 +125,10 @@ public class Grid : MonoBehaviour
                     coordinates = spawnEntry.Requirement.GetRandomCoordinate(UnoccupiedSpaces);
                     UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
                     Tiles[coordinates.Item1, coordinates.Item2].TEMP_Place(spawnEntry.Object);
+                    if (spawnEntry.Requirement.RevealAfterSpawn)
+                    {
+                        Tiles[coordinates.Item1, coordinates.Item2].TEMP_RevealWithoutLogic();
+                    }
                     if (spawnEntry.ConsecutiveSpawn != null)
                     {
                         var additionalSpawnLocations = spawnEntry.Requirement.GetRandomConsecutiveNeighborLocations(UnoccupiedSpaces, coordinates.Item1, coordinates.Item2);
@@ -167,20 +150,6 @@ public class Grid : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void PlaceStartingBoon(int x, int y)
-    {
-        UnoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
-        Tiles[x, y].TEMP_Place(ServiceLocator.Instance.EnemySpawner.GetRandomStartingBoon());
-        Tiles[x, y].TEMP_RevealWithoutLogic();
-    }
-
-    private void PlaceBoss(int x, int y, TileObjectSchema boss)
-    {
-        UnoccupiedSpaces.RemoveUnoccupiedSpace(x, y);
-        Tiles[x, y].TEMP_Place(boss);
-        Tiles[x, y].TEMP_RevealWithoutLogic();
     }
 
     public bool InGridBounds(int x, int y)

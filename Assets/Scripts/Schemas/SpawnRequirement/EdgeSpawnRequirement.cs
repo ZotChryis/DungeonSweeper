@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/SpawnRequirement/Edge")]
-public class EdgeSpawnRequirement : SpawnRequirement
+public class EdgeSpawnRequirement : NoCheckChildSpawnRequirement
 {
     [Serializable]
     [Flags]
@@ -25,9 +24,6 @@ public class EdgeSpawnRequirement : SpawnRequirement
 
     [SerializeField]
     private bool AllowCorners;
-
-    [SerializeField]
-    private CompassDirections[] PotentialSpawnLocations;
 
     public bool IsValid(int xCoord, int yCoord, RandomBoard board)
     {
@@ -109,26 +105,5 @@ public class EdgeSpawnRequirement : SpawnRequirement
             CoordinateList.Remove((board.width - 1, board.height - 1));
         }
         return CoordinateList.GetRandomItem();
-    }
-
-    /// <summary>
-    /// Spawn adjacent.
-    /// </summary>
-    /// <param name="board"></param>
-    /// <param name="inputX"></param>
-    /// <param name="inputY"></param>
-    /// <returns></returns>
-    public override List<(int x, int y)> GetRandomConsecutiveNeighborLocations(RandomBoard board, int inputX, int inputY)
-    {
-        CoordinateList.Clear();
-        foreach(var direction in PotentialSpawnLocations)
-        {
-            (int spawnX, int spawnY) = direction.GetCompassTilePos(inputX, inputY);
-            if (board.PeekUnoccupiedSpace(spawnX, spawnY))
-            {
-                CoordinateList.Add((spawnX, spawnY));
-            }
-        }
-        return CoordinateList;
     }
 }

@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +12,8 @@ public abstract class SpawnRequirement : Schema
     }
     
     [SerializeField] protected bool Negate;
+
+    public bool RevealAfterSpawn = false;
 
     protected List<(int, int)> CoordinateList = new List<(int, int)>();
 

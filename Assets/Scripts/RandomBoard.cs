@@ -62,7 +62,7 @@ public class RandomBoard
     }
 
     /// <summary>
-    /// Returns the input coordinates if outside the margin.
+    /// Returns the input coordinate if unoccupied.
     /// Else iterates until finds a coordinate outside the margin and unoccupied.
     /// Assumes the input coordinate is unoccupied.
     /// </summary>
@@ -83,9 +83,14 @@ public class RandomBoard
                 (checkX, checkY) = GetNextUnoccupiedSpace(checkX, checkY);
                 continue;
             }
-            else
+            else if (PeekUnoccupiedSpace(checkX, checkY))
             {
                 return (checkX, checkY);
+            }
+            else
+            {
+                (checkX, checkY) = GetNextUnoccupiedSpace(checkX, checkY);
+                continue;
             }
         }
         Debug.Log("Somehow we did not find an unoccupied space with provided margins.");

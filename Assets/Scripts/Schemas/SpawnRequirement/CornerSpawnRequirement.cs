@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,35 +20,6 @@ public class CornerSpawnRequirement : SpawnRequirement
     /// </summary>
     [SerializeField] 
     private Corner[] Requirements;
-
-    /*public bool IsValid(int xCoord, int yCoord, RandomBoard board)
-    {
-        Grid grid = ServiceLocator.Instance.Grid;
-        foreach (Corner edge in Requirements)
-        {
-            if (edge == Corner.BottomLeft && xCoord == 0 && yCoord == 0)
-            {
-                return !Negate;
-            }
-
-            if (edge == Corner.BottomRight && xCoord == grid.GetWidth() - 1 && yCoord == 0)
-            {
-                return !Negate;
-            }
-
-            if (edge == Corner.TopLeft && xCoord == 0 && yCoord == grid.GetHeight() - 1)
-            {
-                return !Negate;
-            }
-
-            if (edge == Corner.TopRight && xCoord == grid.GetWidth() - 1 && yCoord == grid.GetHeight() - 1)
-            {
-                return !Negate;
-            }
-        }
-
-        return Negate;
-    }*/
 
     public override (int x, int y) GetRandomCoordinate(RandomBoard board)
     {
