@@ -27,6 +27,18 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int Level;
     private int CurrentHealth;
     private int MaxHealth;
+    public int BonusStartingHp = 0;
+    public int HpRegeneration = 0;
+
+    /// <summary>
+    /// Bonus maxHP added to the level up table.
+    /// Mostly, for god mode.
+    /// </summary>
+    private int BonusMaxHp = 0;
+    [Tooltip("If true, we prevent half damage from the very first 7 power demon.")]
+    public bool HasDemonBanePowers = false;
+    private bool HasUsedDemonBanePowers = false;
+    private bool HasRegeneratedThisRound = false;
     private int CurrentXP;
 
     // TODO: Spawn these in dynamically, im just lazy atm
@@ -42,8 +54,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         Hearts = HeartContainer.GetComponentsInChildren<PlayerUIItem>();
         XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
-        
-        LevelUp();
+
+        ResetPlayer();
 
         ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGeneratedPlayerAbilities;
     }
@@ -74,19 +86,55 @@ public class Player : MonoBehaviour, IPointerClickHandler
         bonusSpawn++;
         BonusSpawn[monsterId] = bonusSpawn;
     }
+
+    public void AddPlayerBonusStartingHp()
+    {
+        BonusStartingHp++;
+    }
+
+    public void AddPlayerRegeneration()
+    {
+        HpRegeneration++;
+    }
+
+    public void AddDemonBanePower()
+    {
+        HasDemonBanePowers = true;
+    }
     #endregion
 
     public bool TEMP_PredictDeath(int amount)
     {
         return CurrentHealth - amount < 0;
     }
+
+    public void HealPlayerNoOverheal(int amount)
+    {
+        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, -1, (MaxHealth + BonusMaxHp));
+        TEMP_UpdateVisuals();
+    }
     
+    /// <summary>
+    /// Update health. Allow overhealing. Mostly for damaging player.
+    /// </summary>
+    /// <param name="amount"></param>
     public void TEMP_UpdateHealth(int amount)
     {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, -1, MaxHealth);
+        if (amount == -7 && HasDemonBanePowers && !HasUsedDemonBanePowers)
+        {
+            amount = -3;
+        }
+
+        CurrentHealth = Mathf.Max(CurrentHealth + amount, -1);
+        if (CurrentHealth == 0 && !HasRegeneratedThisRound)
+        {
+            HasRegeneratedThisRound = true;
+            CurrentHealth += HpRegeneration;
+        }
+
         TEMP_UpdateVisuals();
 
-        if (CurrentHealth == -1)
+        if (CurrentHealth <= -1)
         {
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
             return;
@@ -106,8 +154,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         for (int i = 0; i < Hearts.Length; i++)
         {
-            Hearts[i].gameObject.SetActive(i < MaxHealth);
+            Hearts[i].gameObject.SetActive(i < Mathf.Max(MaxHealth, CurrentHealth));
             Hearts[i].SetFull(CurrentHealth > i);
+            Hearts[i].SetGhostFull(CurrentHealth > i && i >= MaxHealth);
             Hearts[i].SetLabelText((i + 1).ToString());
         }
 
@@ -135,16 +184,24 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public void LevelUp()
     {
         Level++;
-        
+
         MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
-        CurrentHealth = MaxHealth;
+        CurrentHealth = MaxHealth + BonusMaxHp;
 
         TEMP_UpdateVisuals();
     }
 
     public void GodMode()
     {
-        MaxHealth = 999999;
-        CurrentHealth = MaxHealth;
+        BonusMaxHp = 999999;
+        CurrentHealth = MaxHealth + BonusMaxHp;
+    }
+
+    public void ResetPlayer()
+    {
+        Level = 0;
+        HasUsedDemonBanePowers = false;
+        LevelUp();
+        TEMP_UpdateHealth(BonusStartingHp);
     }
 }

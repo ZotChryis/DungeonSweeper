@@ -896,7 +896,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -10, y: -50}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6600427383311255315
@@ -980,7 +980,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3587118327521737936}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5294985220333524496}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: AddPlayerRegeneration
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &641805462445866737
 GameObject:
   m_ObjectHideFlags: 0
@@ -2153,7 +2165,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -50}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8477541842814211284
@@ -2797,7 +2809,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Demon Bane
+  m_text: Heal 4 Against Demons
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4005,7 +4017,7 @@ GameObject:
   - component: {fileID: 6512054699500371237}
   - component: {fileID: 7914166155711776623}
   m_Layer: 0
-  m_Name: BonusEnemies
+  m_Name: MiscPowers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4708,7 +4720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -50}
+  m_AnchoredPosition: {x: 170, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5245056933820042285
@@ -4792,7 +4804,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8021286019462024430}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5294985220333524496}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: AddDemonBanePower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2451603066582971531
 GameObject:
   m_ObjectHideFlags: 0
@@ -5091,12 +5115,12 @@ GameObject:
   - component: {fileID: 8364799054692609880}
   - component: {fileID: 1386408146709776825}
   m_Layer: 0
-  m_Name: Button (1)
+  m_Name: FragileWalls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5769609227740153236
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6143,6 +6167,9 @@ MonoBehaviour:
   LevelUpRoot: {fileID: 7046931437820197580}
   HeartContainer: {fileID: 3965323780321944615}
   XPContainer: {fileID: 6126403130285668181}
+  BonusStartingHp: 0
+  HpRegeneration: 0
+  HasDemonBanePowers: 0
 --- !u!1 &3295655111974528129
 GameObject:
   m_ObjectHideFlags: 0
@@ -7714,7 +7741,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -50}
+  m_AnchoredPosition: {x: 170, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3534568940469950144
@@ -10462,7 +10489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6429701692083111498
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12862,7 +12889,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -130, y: -50}
+  m_AnchoredPosition: {x: -70, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4562593439129327253
@@ -12946,7 +12973,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3877447702829461198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5294985220333524496}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: AddPlayerBonusStartingHp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7415904797265122433
 GameObject:
   m_ObjectHideFlags: 0
@@ -15370,7 +15409,7 @@ GameObject:
   - component: {fileID: 8050744273292218643}
   - component: {fileID: 2889313958946352498}
   m_Layer: 0
-  m_Name: Button (2)
+  m_Name: ItemsShowPower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15393,7 +15432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -10, y: -50}
+  m_AnchoredPosition: {x: -70, y: -50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3923387161335798630

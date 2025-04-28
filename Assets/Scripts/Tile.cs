@@ -145,7 +145,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     {
         HousedObject = housedObject;
         
-        if (HousedObject&& HousedObject.ObscureRadius > 0)
+        if (HousedObject && HousedObject.ObscureRadius > 0)
         {
             ServiceLocator.Instance.Grid.Obscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
         }
@@ -280,9 +280,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
             if (HousedObject.FullHealReward)
             {
-                ServiceLocator.Instance.Player.TEMP_UpdateHealth(99);
+                ServiceLocator.Instance.Player.HealPlayerNoOverheal(999);
             }
-            ServiceLocator.Instance.Player.TEMP_UpdateHealth(HousedObject.HealReward);
+            ServiceLocator.Instance.Player.HealPlayerNoOverheal(HousedObject.HealReward);
 
             if (HousedObject.DiffuseMinesReward)
             {

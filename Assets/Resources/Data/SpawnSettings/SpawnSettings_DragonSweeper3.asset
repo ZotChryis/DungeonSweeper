@@ -125,3 +125,13 @@ MonoBehaviour:
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     Requirement: {fileID: 0}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: cfefcce9ab23e51498eeaf48474eefc2, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    Requirement: {fileID: 0}
+  - Amount: 2
+    Object: {fileID: 11400000, guid: f369348794ae4be49b64d8b892ee5177, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    Requirement: {fileID: 0}
