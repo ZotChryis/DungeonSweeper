@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Scroll_Vision
+  m_Name: Scroll_VisionLevel2
   m_EditorClassIdentifier: 
   Id: scrollvision
   Sprite: {fileID: -6483029472496290589, guid: 5deeb4ed361f32b40bd57abab7145645, type: 3}
@@ -27,7 +27,9 @@ MonoBehaviour:
   XPReward: 0
   DropReward: {fileID: 0}
   GenerateRandomLocationForReveal: 1
-  RevealOffsets: []
+  RevealOffsets:
+  - {x: 0, y: -2}
+  - {x: 0, y: 2}
   RevealRadius: 1
   ObscureOffsets: []
   ObscureRadius: 0
@@ -39,7 +41,6 @@ MonoBehaviour:
   FullHealReward: 0
   HealReward: 0
   DiffuseMinesReward: 0
-  UpgradedVersion: {fileID: 11400000, guid: a94f9633e8b1e654ca03e0c1b83d73f2, type: 2}
   Data:
     _serializedList:
     - Key: 1

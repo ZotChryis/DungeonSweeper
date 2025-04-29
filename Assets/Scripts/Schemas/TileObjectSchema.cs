@@ -63,6 +63,8 @@ public class TileObjectSchema : Schema
     public int HealReward = 0;
     public bool DiffuseMinesReward;
 
+    public TileObjectSchema UpgradedVersion;
+
     [Serializable]
     public struct ValueOverride<T>
     {

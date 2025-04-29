@@ -139,10 +139,21 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     }
     
     /// <summary>
-    /// Replace this function eventually...
+    /// Places the housedObj and optionally upgrades it based on player power.
+    /// Obscures adjacent tiles if necessary.
     /// </summary>
-    public void TEMP_Place(TileObjectSchema housedObject)
+    public void PlaceTileObj(TileObjectSchema housedObject)
     {
+        if (housedObject != null &&
+            housedObject.UpgradedVersion != null &&
+            !string.IsNullOrWhiteSpace(housedObject.Id) &&
+            ServiceLocator.Instance.Player.TileObjectsThatShouldUpgrade.TryGetValue(housedObject.Id, out int level))
+        {
+            for (int i = 0; i < level && housedObject && housedObject.UpgradedVersion; i++)
+            {
+                housedObject = housedObject.UpgradedVersion;
+            }
+        }
         HousedObject = housedObject;
         
         if (HousedObject && HousedObject.ObscureRadius > 0)
@@ -205,7 +216,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             
             if (HousedObject && HousedObject.DropReward)
             {
-                TEMP_Place(HousedObject.DropReward);
+                PlaceTileObj(HousedObject.DropReward);
                 TEMP_SetState(TileState.Revealed);
                 return;
             }
@@ -331,10 +342,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = true;
                 break;
-            
+
             case TileState.Revealed:
                 Power.enabled = true;
-                NeighborPower.enabled = false;
+                NeighborPower.enabled = GetHousedObject() != null && ServiceLocator.Instance.Player.TilesWhichShowNeighborPower.Contains(GetHousedObject().Id.ToLower());
                 SpriteRenderer.enabled = true;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;

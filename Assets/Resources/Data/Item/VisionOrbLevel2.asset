@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Scroll_Vision
+  m_Name: VisionOrbLevel2
   m_EditorClassIdentifier: 
-  Id: scrollvision
-  Sprite: {fileID: -6483029472496290589, guid: 5deeb4ed361f32b40bd57abab7145645, type: 3}
+  Id: visionorb
+  Sprite: {fileID: -1910244127391616031, guid: 0a69202494704544e90f75e07c45420b, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 0}
     Above: {fileID: 0}
@@ -26,8 +26,12 @@ MonoBehaviour:
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
   DropReward: {fileID: 0}
-  GenerateRandomLocationForReveal: 1
-  RevealOffsets: []
+  GenerateRandomLocationForReveal: 0
+  RevealOffsets:
+  - {x: -2, y: 0}
+  - {x: 2, y: 0}
+  - {x: 0, y: -2}
+  - {x: 0, y: 2}
   RevealRadius: 1
   ObscureOffsets: []
   ObscureRadius: 0
@@ -39,13 +43,12 @@ MonoBehaviour:
   FullHealReward: 0
   HealReward: 0
   DiffuseMinesReward: 0
-  UpgradedVersion: {fileID: 11400000, guid: a94f9633e8b1e654ca03e0c1b83d73f2, type: 2}
   Data:
     _serializedList:
     - Key: 1
       Value:
         AutoContinue:
-          UseOverride: 1
+          UseOverride: 0
           Value: 0
         Sprite:
           UseOverride: 0
@@ -68,24 +71,7 @@ MonoBehaviour:
           UseOverride: 0
           Value: {fileID: 0}
         EnablePower:
-          UseOverride: 1
-          Value: 0
-        EnableSprite:
           UseOverride: 0
-          Value: 0
-        EnableDeathSprite:
-          UseOverride: 0
-          Value: 0
-    - Key: 3
-      Value:
-        AutoContinue:
-          UseOverride: 1
-          Value: 1
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
-          UseOverride: 1
           Value: 0
         EnableSprite:
           UseOverride: 0

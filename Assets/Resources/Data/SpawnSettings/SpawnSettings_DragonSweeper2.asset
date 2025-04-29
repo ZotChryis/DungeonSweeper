@@ -16,7 +16,7 @@ MonoBehaviour:
   Width: 16
   GridSpawns:
   - Amount: 1
-    Object: {fileID: 11400000, guid: 5c2a966afb2a3ed40a8859463a85fc10, type: 2}
+    Object: {fileID: 11400000, guid: cb3d6a674f437224abad58b05d4a2ce8, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: 489f7e09f2408e54f83722713387f27b, type: 2}
     ConsecutiveCopies: 1
     Requirement: {fileID: 11400000, guid: 40857eb47ddf2b74083bd0689eaa8e15, type: 2}
@@ -45,7 +45,7 @@ MonoBehaviour:
     ConsecutiveSpawn: {fileID: 11400000, guid: bdb6fb82ec3ced2438bfc899310bd68b, type: 2}
     ConsecutiveCopies: 1
     Requirement: {fileID: 11400000, guid: d10f3488f7584294f8de3a3f13e8e956, type: 2}
-  - Amount: 3
+  - Amount: 4
     Object: {fileID: 11400000, guid: ad646da970d47914fae19377be93ef3d, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: ad646da970d47914fae19377be93ef3d, type: 2}
     ConsecutiveCopies: 1
@@ -70,12 +70,12 @@ MonoBehaviour:
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     Requirement: {fileID: 0}
-  - Amount: 8
+  - Amount: 9
     Object: {fileID: 11400000, guid: e15ca38b7873a0041bfbf7b08ec78210, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     Requirement: {fileID: 0}
-  - Amount: 4
+  - Amount: 6
     Object: {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     Requirement: {fileID: 0}
-  - Amount: 9
+  - Amount: 10
     Object: {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0

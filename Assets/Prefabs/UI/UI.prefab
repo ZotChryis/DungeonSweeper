@@ -2249,7 +2249,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6792688338224512006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5294985220333524496}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: AddOrIncrementTileLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: visionorb
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1208317658285631946
 GameObject:
   m_ObjectHideFlags: 0
@@ -5136,10 +5148,10 @@ RectTransform:
   - {fileID: 3683790951616132673}
   m_Father: {fileID: 6512054699500371237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -130, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5369738119714334166
 CanvasRenderer:
@@ -7825,7 +7837,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 374135490081495663}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5294985220333524496}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: AddOrIncrementTileLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: scrollvision
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4381510837247797151
 GameObject:
   m_ObjectHideFlags: 0
@@ -10505,10 +10529,10 @@ RectTransform:
   - {fileID: 3778326589669228503}
   m_Father: {fileID: 7332683742559290318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 230, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5473239749998635988
 CanvasRenderer:
@@ -14465,8 +14489,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3231032828732528882}
-  - {fileID: 598145799996881239}
   - {fileID: 472041876254652688}
+  - {fileID: 598145799996881239}
   - {fileID: 2934171796987229971}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15516,7 +15540,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8050744273292218643}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5294985220333524496}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: AddRevealNeighborPower
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: scrollheal
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5294985220333524496}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: AddRevealNeighborPower
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: pizza
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8893126442434254955
 GameObject:
   m_ObjectHideFlags: 0

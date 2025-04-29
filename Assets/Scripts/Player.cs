@@ -41,6 +41,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private bool HasRegeneratedThisRound = false;
     private int CurrentXP;
 
+    public HashSet<string> TilesWhichShowNeighborPower = new HashSet<string>();
+    public Dictionary<string, int> TileObjectsThatShouldUpgrade = new Dictionary<string, int>();
+
     // TODO: Spawn these in dynamically, im just lazy atm
     private PlayerUIItem[] Hearts;
     private PlayerUIItem[] XPGems;
@@ -100,6 +103,18 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public void AddDemonBanePower()
     {
         HasDemonBanePowers = true;
+    }
+
+    public void AddRevealNeighborPower(string ObjectId)
+    {
+        TilesWhichShowNeighborPower.Add(ObjectId.ToLower());
+    }
+
+    public void AddOrIncrementTileLevel(string ObjectId)
+    {
+        int level = 0;
+        TileObjectsThatShouldUpgrade.TryGetValue(ObjectId, out level);
+        TileObjectsThatShouldUpgrade[ObjectId] = level + 1;
     }
     #endregion
 

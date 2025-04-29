@@ -101,7 +101,7 @@ public class Grid : MonoBehaviour
                 // For testing, update eventually
                 tile.TEMP_SetCoordinates(x, y);
 
-                tile.TEMP_Place(null);
+                tile.PlaceTileObj(null);
                 Tiles[x, y] = tile;
             }
         }
@@ -129,7 +129,7 @@ public class Grid : MonoBehaviour
                 {
                     coordinates = spawnEntry.Requirement.GetRandomCoordinate(UnoccupiedSpaces);
                     UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
-                    Tiles[coordinates.Item1, coordinates.Item2].TEMP_Place(spawnEntry.Object);
+                    Tiles[coordinates.Item1, coordinates.Item2].PlaceTileObj(spawnEntry.Object);
                     // Don't auto-reveal player spawned items.
                     if (spawnEntry.Requirement.RevealAfterSpawn && i < spawnEntry.Amount)
                     {
@@ -148,7 +148,7 @@ public class Grid : MonoBehaviour
                         for (int add = 0; add < consecutiveCopies && add < additionalSpawnLocations.Count; add++)
                         {
                             UnoccupiedSpaces.RemoveUnoccupiedSpace(additionalSpawnLocations[add].x, additionalSpawnLocations[add].y);
-                            Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].TEMP_Place(spawnEntry.ConsecutiveSpawn);
+                            Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].PlaceTileObj(spawnEntry.ConsecutiveSpawn);
                         }
                     }
                 }
@@ -157,7 +157,7 @@ public class Grid : MonoBehaviour
                     // Default to random unoccupied space.
                     coordinates = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
                     UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
-                    Tiles[coordinates.Item1, coordinates.Item2].TEMP_Place(spawnEntry.Object);
+                    Tiles[coordinates.Item1, coordinates.Item2].PlaceTileObj(spawnEntry.Object);
                 }
             }
         }
@@ -341,12 +341,12 @@ public class Grid : MonoBehaviour
                 // Revealed mines become diffused
                 if (tile.TEMP_IsRevealed())
                 {
-                    tile.TEMP_Place(DiffusedMine);
+                    tile.PlaceTileObj(DiffusedMine);
                     tile.TEMP_SetState(Tile.TileState.Revealed);
                 }
                 else
                 {
-                    tile.TEMP_Place(DiffusedMine);
+                    tile.PlaceTileObj(DiffusedMine);
                 }
             }
         }
@@ -423,7 +423,7 @@ public class Grid : MonoBehaviour
         
         (int, int) newCoord = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
         
-        Tiles[newCoord.Item1, newCoord.Item2].TEMP_Place(housedObject);
+        Tiles[newCoord.Item1, newCoord.Item2].PlaceTileObj(housedObject);
         Tiles[newCoord.Item1, newCoord.Item2].TEMP_SetState(Tile.TileState.Hidden);
         
         UnoccupiedSpaces.RemoveUnoccupiedSpace(newCoord.Item1, newCoord.Item2);
