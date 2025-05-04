@@ -214,16 +214,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    /// <summary>
-    /// Reset the player's level between levels.
-    /// </summary>
-    public void ResetLevel()
-    {
-        Level = 0;
-        CurrentXP = 0;
-        LevelUp();
-    }
-
     public void LevelUp()
     {
         Level++;
@@ -251,6 +241,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public void ResetPlayer()
     {
         Level = 0;
+        CurrentXP = 0;
         HasUsedDemonBanePowers = false;
         LevelUp();
         TEMP_UpdateHealth(BonusStartingHp);
