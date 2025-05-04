@@ -224,7 +224,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         
         TEMP_UpdateVisuals();
 
-        // TODO: Total hack, fix later
+        // Early return if housed object does not exist.
         if (!HousedObject && State == TileState.Revealed)
         {
             TEMP_SetState(TileState.Empty);
@@ -283,7 +283,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             }
             
             player.TEMP_UpdateXP(HousedObject.XPReward);
-            
+            ServiceLocator.Instance.Player.ShopXp += HousedObject.ShopXp;
+
             if (HousedObject.WinReward)
             {
                 ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Victory);

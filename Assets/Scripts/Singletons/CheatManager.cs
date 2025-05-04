@@ -17,6 +17,9 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
         ServiceLocator.Instance.Player.LevelUp();
     }
 
+    /// <summary>
+    /// Toggles godmode.
+    /// </summary>
     public void GodMode()
     {
         ServiceLocator.Instance.Player.GodMode();

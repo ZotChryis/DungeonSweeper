@@ -43,6 +43,24 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public HashSet<string> TilesWhichShowNeighborPower = new HashSet<string>();
     public Dictionary<string, int> TileObjectsThatShouldUpgrade = new Dictionary<string, int>();
+    public int ShopXp
+    {
+        get { return m_shopXp; }
+        set
+        {
+            if (m_shopXp != value)
+            {
+                m_shopXp = value;
+                if (OnShopXpChanged != null)
+                {
+                    OnShopXpChanged();
+                }
+            }
+        }
+    }
+    private int m_shopXp;
+    public OnPlayerPropertyChanged OnShopXpChanged;
+    public delegate void OnPlayerPropertyChanged();
 
     // TODO: Spawn these in dynamically, im just lazy atm
     private PlayerUIItem[] Hearts;
@@ -196,6 +214,16 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    /// <summary>
+    /// Reset the player's level between levels.
+    /// </summary>
+    public void ResetLevel()
+    {
+        Level = 0;
+        CurrentXP = 0;
+        LevelUp();
+    }
+
     public void LevelUp()
     {
         Level++;
@@ -208,8 +236,16 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void GodMode()
     {
-        BonusMaxHp = 999999;
+        if (BonusMaxHp == 0)
+        {
+            BonusMaxHp = 999999;
+        }
+        else
+        {
+            BonusMaxHp = 0;
+        }
         CurrentHealth = MaxHealth + BonusMaxHp;
+        TEMP_UpdateVisuals();
     }
 
     public void ResetPlayer()
