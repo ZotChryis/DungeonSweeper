@@ -18,8 +18,8 @@ public class MarginLocationRequirement : SpawnRequirement
 
     public override (int x, int y) GetRandomCoordinate(RandomBoard board)
     {
-        int xReturnValue = UnityEngine.Random.Range(0 + leftXMargin, board.width - rightXMargin);
-        int yReturnValue = UnityEngine.Random.Range(0 + bottomYMargin, board.height - topYMargin);
+        int xReturnValue = Random.Range(0 + leftXMargin, board.width - rightXMargin);
+        int yReturnValue = Random.Range(0 + bottomYMargin, board.height - topYMargin);
 
         if (xReturnValue < 0 || xReturnValue >= board.width)
         {

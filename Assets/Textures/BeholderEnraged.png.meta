@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BeholderEnraged_0: 7895412607919688145
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

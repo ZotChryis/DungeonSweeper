@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      faerie_0: 2492405507857420014
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

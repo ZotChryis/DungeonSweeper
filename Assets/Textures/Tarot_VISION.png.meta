@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a756c5a664f66f84086af0c8c01b0506
+guid: 6bf67724d4cf49340945afff56b0f0c5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4309098291213245400
-    second: gorgon_0
+      213: 116448157027243579
+    second: Tarot_VISION_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: gorgon_0
+      name: Tarot_VISION_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 220
-        height: 296
+        width: 789
+        height: 1264
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8db1206b01efccb30800000000000000
-      internalID: 4309098291213245400
+      spriteID: b369b5a5bf4bd9100800000000000000
+      internalID: 116448157027243579
       vertices: []
       indices: 
       edges: []
@@ -186,8 +186,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      gorgon_0: 4309098291213245400
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

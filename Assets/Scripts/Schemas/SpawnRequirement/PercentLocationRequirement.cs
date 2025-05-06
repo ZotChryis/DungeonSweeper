@@ -7,8 +7,17 @@ public class PercentLocationRequirement : NoCheckChildSpawnRequirement
 
     public float YPercent = 0.5f;
 
+    public int margin = 0;
+
     public override (int x, int y) GetRandomCoordinate(RandomBoard board)
     {
-        return ((int)(board.width * XPercent), (int)(board.height * YPercent));
+        int xMargin = Random.Range(-margin, margin + 1);
+        int yMargin = Random.Range(-margin, margin + 1);
+        (int retX, int retY) = ((int)(board.width * XPercent) + xMargin, (int)(board.height * YPercent) + yMargin);
+        if(!board.PeekUnoccupiedSpace(retX, retY))
+        {
+            return board.GetNextUnoccupiedSpace(retX, retY);
+        }
+        return (retX, retY);
     }
 }
