@@ -7,6 +7,8 @@ Because Unity uses Unix LF line endings for serializing prefabs and meta assets 
 
 Using Unity 6000.042f1 Personal. https://unity3d.com/get-unity/download
 
+Set your File->Build Profiles to Web.
+
 ## Miro board
 https://miro.com/app/board/ - None
 
