@@ -19,5 +19,6 @@ https://trello.com/b/9Mex2uPQ/dungeonsweeper
 https://docs.google.com/document/d/1nw1bCsJrEUS7hmgCxBACN3v91fDVpjVXkc35OrzaYFg/edit?usp=sharing
 
 ## Contact
-navac@outlook.com
-georgetw1108@gmail.com
+navac@outlook.com - Christian Nava
+
+georgetw1108@gmail.com - George Wang
