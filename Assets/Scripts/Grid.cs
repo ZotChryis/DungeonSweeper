@@ -217,7 +217,7 @@ public class Grid : MonoBehaviour
         {
             for (int x = 0; x < SpawnSettings.Width; x++)
             {
-                Tiles[x, y].TEMP_RevealWithoutLogic();
+                Tiles[x, y].FastRevealWithoutLogic();
             }
         }
     }

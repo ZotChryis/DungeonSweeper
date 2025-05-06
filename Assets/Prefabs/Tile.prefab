@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TileButton: {fileID: 6761163715461405607}
-  SpriteRenderer: {fileID: 8657731156732564240}
+  HousedObjectSprite: {fileID: 8657731156732564240}
   XSpriteRenderer: {fileID: 7918510287870293048}
   NeighborPower: {fileID: 3809241849706578245}
   Power: {fileID: 8924441137914273466}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 702872708901627571}
   - component: {fileID: 8657731156732564240}
   m_Layer: 0
-  m_Name: Image
+  m_Name: HousedObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

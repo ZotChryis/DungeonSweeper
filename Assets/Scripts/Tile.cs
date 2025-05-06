@@ -34,7 +34,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     private Button TileButton;
     
     [SerializeField] 
-    private Image SpriteRenderer;
+    private Image HousedObjectSprite;
 
     [SerializeField]
     private Image XSpriteRenderer;
@@ -174,7 +174,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     /// </summary>
     public void TEMP_RevealWithoutLogic()
     {
-        if (State > TileState.Revealed)
+        if (State >= TileState.Revealed)
         {
             return;
         }
@@ -190,7 +190,47 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             return;
         }
     }
-    
+
+    /// <summary>
+    /// For use specifically when the player dies and we need to reveal
+    /// the entire board at once. Which can be very CPU intensive. Copy of above TEMP_RevealWithoutLogic.
+    /// </summary>
+    public void FastRevealWithoutLogic()
+    {
+        if (State >= TileState.Revealed)
+        {
+            return;
+        }
+
+        Power.enabled = true;
+        Annotation.enabled = false;
+
+        UpdateObjectSelfVisuals();
+
+        if (GetHousedObject() == null)
+        {
+            if (ObscureCounter > 0)
+            {
+                NeighborPower.SetText("?");
+                NeighborPower.enabled = true;
+            }
+            else
+            {
+                int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
+                if (neighborPower != 0)
+                {
+                    NeighborPower.SetText(neighborPower.ToString());
+                    NeighborPower.enabled = true;
+                }
+            }
+            TileButton.interactable = false;
+        }
+        else
+        {
+            HousedObjectSprite.enabled = true;
+        }
+    }
+
     /// <summary>
     /// Replace this function eventually...
     /// </summary>
@@ -339,7 +379,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             case TileState.Hidden:
                 Power.enabled = false;
                 NeighborPower.enabled = false;
-                SpriteRenderer.enabled = false;
+                HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = true;
                 break;
@@ -347,7 +387,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             case TileState.Revealed:
                 Power.enabled = true;
                 NeighborPower.enabled = GetHousedObject() != null && ServiceLocator.Instance.Player.TilesWhichShowNeighborPower.Contains(GetHousedObject().Id.ToLower());
-                SpriteRenderer.enabled = true;
+                HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
                 break;
@@ -355,54 +395,61 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             case TileState.Conquered:
                 Power.enabled = true;
                 NeighborPower.enabled = false;
-                SpriteRenderer.enabled = true;
+                HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = true;
                 Annotation.enabled = false;
                 break;
-            
+
             case TileState.Collected:
                 Power.enabled = false;
                 NeighborPower.enabled = true;
-                SpriteRenderer.enabled = false;
+                HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
                 break;
-            
+
             case TileState.Empty:
                 Power.enabled = false;
                 NeighborPower.enabled = true;
-                SpriteRenderer.enabled = false;
+                HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
 
                 TileButton.interactable = false;
                 break;
         }
-        
+
         // Allow the object itself to override these settings
+        UpdateObjectSelfVisuals();
+
+        if (ObscureCounter > 0)
+        {
+            NeighborPower.SetText("?");
+        }
+        else
+        {
+            int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
+            NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
+        }
+    }
+
+    private void UpdateObjectSelfVisuals()
+    {
         var objectOverrides = HousedObject ? HousedObject.GetOverrides(State) : default;
         Power.enabled = objectOverrides.EnablePower.UseOverride ? objectOverrides.EnablePower.Value : Power.enabled;
-        SpriteRenderer.enabled = objectOverrides.EnableSprite.UseOverride ? objectOverrides.EnableSprite.Value : SpriteRenderer.enabled;
+        HousedObjectSprite.enabled = objectOverrides.EnableSprite.UseOverride ? objectOverrides.EnableSprite.Value : HousedObjectSprite.enabled;
         XSpriteRenderer.enabled = objectOverrides.EnableDeathSprite.UseOverride ? objectOverrides.EnableDeathSprite.Value : XSpriteRenderer.enabled;
-            
-        SpriteRenderer.sprite = HousedObject ? HousedObject.TEMP_GetSprite(XCoordinate, YCoordinate) : null;
+
+        HousedObjectSprite.sprite = HousedObject ? HousedObject.TEMP_GetSprite(XCoordinate, YCoordinate) : null;
         if (objectOverrides.Sprite.UseOverride)
         {
-            SpriteRenderer.sprite = objectOverrides.Sprite.Value;
+            HousedObjectSprite.sprite = objectOverrides.Sprite.Value;
         }
 
         // TEMP: Change color depending on the state
         // TODO: Seperate these 2 labels and control independently
         Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
         Power.SetText(HousedObject ? State < TileState.Conquered ? HousedObject.Power.ToString() : HousedObject.XPReward.ToString() : string.Empty);
-
-        int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
-        NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
-
-        if (ObscureCounter > 0)
-        {
-            NeighborPower.SetText("?");
-        }
     }
 
     public TileObjectSchema GetHousedObject()

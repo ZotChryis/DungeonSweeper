@@ -170,6 +170,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (CurrentHealth <= -1)
         {
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
+            ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
             return;
         }
     }
