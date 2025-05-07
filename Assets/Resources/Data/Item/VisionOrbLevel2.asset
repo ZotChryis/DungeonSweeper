@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: VisionOrbLevel2
   m_EditorClassIdentifier: 
+  UserFacingName: Vision Orb +1
+  UserFacingDescription: ???
   Id: visionorb
   Sprite: {fileID: -1910244127391616031, guid: 0a69202494704544e90f75e07c45420b, type: 3}
   SpriteFacingData:
@@ -43,6 +45,8 @@ MonoBehaviour:
   FullHealReward: 0
   HealReward: 0
   DiffuseMinesReward: 0
+  ShopXp: 0
+  UpgradedVersion: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1

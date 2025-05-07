@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Scroll_HealChest
   m_EditorClassIdentifier: 
+  UserFacingName: Heal Chest Scroll
+  UserFacingDescription: ???
   Id: scrollheal
   Sprite: {fileID: -6413543000352893186, guid: 4844645bbba31344ba71550232dd5849, type: 3}
   SpriteFacingData:
@@ -32,10 +34,15 @@ MonoBehaviour:
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  SpawnsFleeingChild: 0
+  FleeingChild: {fileID: 0}
   RevealAllRewards: []
   WinReward: 0
   FullHealReward: 1
+  HealReward: 0
   DiffuseMinesReward: 0
+  ShopXp: 0
+  UpgradedVersion: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1

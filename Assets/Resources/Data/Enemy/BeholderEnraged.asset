@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: BeholderEnraged
   m_EditorClassIdentifier: 
+  UserFacingName: 
+  UserFacingDescription: ???
   Id: beholder
   Sprite: {fileID: 7895412607919688145, guid: 41ea347a3f7776f4e927ffa77655ee0f, type: 3}
   SpriteFacingData:
@@ -43,5 +45,7 @@ MonoBehaviour:
   FullHealReward: 0
   HealReward: 0
   DiffuseMinesReward: 0
+  ShopXp: 0
+  UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

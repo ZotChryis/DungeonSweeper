@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Brick_1
   m_EditorClassIdentifier: 
+  UserFacingName: 
+  UserFacingDescription: ???
   Id: brick
   Sprite: {fileID: 6878312378708349726, guid: ee5b00eb70a3af345a1af59823d99fe2, type: 3}
   SpriteFacingData:
@@ -39,6 +41,8 @@ MonoBehaviour:
   FullHealReward: 0
   HealReward: 0
   DiffuseMinesReward: 0
+  ShopXp: 0
+  UpgradedVersion: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1

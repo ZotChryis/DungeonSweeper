@@ -33,6 +33,9 @@ public class TileObjectSchema : Schema
         public Sprite Missing;
     }
 
+    public string UserFacingName;
+    public string UserFacingDescription;
+    
     public string Id;
     public Sprite Sprite;
     public SpriteFacing SpriteFacingData;

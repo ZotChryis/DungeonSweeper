@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: PurpleSlime
   m_EditorClassIdentifier: 
+  UserFacingName: Purple Slime
+  UserFacingDescription: Gelatinous and dark, it sole purpose is to obscure it's
+    master.
   Id: purpleslime
   Sprite: {fileID: 7101392340170651265, guid: 56d40b901d6d85b46a2f7f1a3e010786, type: 3}
   SpriteFacingData:
@@ -32,9 +35,14 @@ MonoBehaviour:
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  SpawnsFleeingChild: 0
+  FleeingChild: {fileID: 0}
   RevealAllRewards: []
   WinReward: 0
   FullHealReward: 0
+  HealReward: 0
   DiffuseMinesReward: 0
+  ShopXp: 0
+  UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

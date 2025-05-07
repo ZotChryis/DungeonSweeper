@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Dragon_15Boss
   m_EditorClassIdentifier: 
+  UserFacingName: Dragon
+  UserFacingDescription: The menace of this realm. Defeat it to advance.
   Id: 
   Sprite: {fileID: 1372335161102834277, guid: b2ca6bc5e9a932d46ac4b2f37541b7e9, type: 3}
   SpriteFacingData:

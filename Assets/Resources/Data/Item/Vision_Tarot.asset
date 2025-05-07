@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Vision_Tarot
   m_EditorClassIdentifier: 
+  UserFacingName: 'Tarot Card: Vision'
+  UserFacingDescription: ???
   Id: visiontarot
   Sprite: {fileID: 116448157027243579, guid: 6bf67724d4cf49340945afff56b0f0c5, type: 3}
   SpriteFacingData:

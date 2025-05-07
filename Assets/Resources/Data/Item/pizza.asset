@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: pizza
   m_EditorClassIdentifier: 
+  UserFacingName: Pizza
+  UserFacingDescription: ???
   Id: pizza
   Sprite: {fileID: -6444940296795206775, guid: a2147e76bd154b646be584943bd6338f, type: 3}
   SpriteFacingData:
@@ -39,6 +41,8 @@ MonoBehaviour:
   FullHealReward: 0
   HealReward: 3
   DiffuseMinesReward: 0
+  ShopXp: 0
+  UpgradedVersion: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1

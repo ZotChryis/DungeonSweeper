@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Crown2
   m_EditorClassIdentifier: 
+  UserFacingName: Crown
+  UserFacingDescription: ???
   Id: crown
   Sprite: {fileID: -1378521658571115459, guid: d089800d25d04e44c80ccc2100e7620e, type: 3}
   SpriteFacingData:

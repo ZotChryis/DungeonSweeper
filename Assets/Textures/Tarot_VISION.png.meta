@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tarot_VISION_0: 116448157027243579
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
