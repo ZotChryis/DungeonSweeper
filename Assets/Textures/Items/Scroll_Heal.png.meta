@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c2c5e879344c260409eef9ccf7ca306b
+guid: 4844645bbba31344ba71550232dd5849
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7439249940812558630
-    second: Scroll_Slime_0
+      213: -6413543000352893186
+    second: Scroll_Heal_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,11 +122,37 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Scroll_Slime_0
+      name: Scroll_Heal_0
       rect:
         serializedVersion: 2
         x: 7
@@ -141,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6217a7508668d3760800000000000000
-      internalID: 7439249940812558630
+      spriteID: ef6d5402f948ef6a0800000000000000
+      internalID: -6413543000352893186
       vertices: []
       indices: 
       edges: []
@@ -161,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Scroll_Slime_0: 7439249940812558630
+      Scroll_Heal_0: -6413543000352893186
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

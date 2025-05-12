@@ -1,22 +1,28 @@
 fileFormatVersion: 2
-guid: f6f35f113666b4242886bfb88c211df1
+guid: e13eb477bbcd902409a6cff62863ffa9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4646649027328027380
-    second: Egg_0
+      213: -573469707818341763
+    second: Brick_Empty_0
   - first:
-      213: -3665803642334570777
-    second: Egg_1
+      213: -6311862234625191020
+    second: Brick_Empty_1
   - first:
-      213: -7578226498497253333
-    second: Egg_2
+      213: 8474227070079906101
+    second: Brick_Empty_2
   - first:
-      213: 2599295178660905587
-    second: Egg_3
+      213: -2800713931399880776
+    second: Brick_Empty_3
   - first:
-      213: -2566293651397995864
-    second: Egg_4
+      213: -4542776880381145915
+    second: Brick_Empty_4
+  - first:
+      213: -6944296655359498629
+    second: Brick_Empty_5
+  - first:
+      213: -2858488365708997446
+    second: Brick_Empty_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,6 +115,32 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -122,7 +154,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -138,13 +170,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Egg_0
+      name: Brick_Empty_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 50
-        width: 13
-        height: 14
+        x: 8
+        y: 49
+        width: 11
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +185,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4fa2dcddba63c7040800000000000000
-      internalID: 4646649027328027380
+      spriteID: d7a6a00d650aa08f0800000000000000
+      internalID: -573469707818341763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg_1
+      name: Brick_Empty_1
       rect:
         serializedVersion: 2
-        x: 11
-        y: 0
-        width: 53
-        height: 64
+        x: 45
+        y: 48
+        width: 11
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +207,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7e690527203702dc0800000000000000
-      internalID: -3665803642334570777
+      spriteID: 49356f14db2c768a0800000000000000
+      internalID: -6311862234625191020
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg_2
+      name: Brick_Empty_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 33
-        width: 13
-        height: 16
+        x: 3
+        y: 26
+        width: 11
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,20 +229,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b207e99962bb4d690800000000000000
-      internalID: -7578226498497253333
+      spriteID: 531bc123f908a9570800000000000000
+      internalID: 8474227070079906101
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg_3
+      name: Brick_Empty_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 15
-        width: 13
-        height: 17
+        x: 27
+        y: 35
+        width: 11
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,20 +251,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 372087e713d821420800000000000000
-      internalID: 2599295178660905587
+      spriteID: 8bf1c69a48dd129d0800000000000000
+      internalID: -2800713931399880776
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Egg_4
+      name: Brick_Empty_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 13
-        height: 14
+        x: 47
+        y: 19
+        width: 11
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,8 +273,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8a215175581b26cd0800000000000000
-      internalID: -2566293651397995864
+      spriteID: 5cc4607fe70d4f0c0800000000000000
+      internalID: -4542776880381145915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brick_Empty_5
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 8
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b762d520cf6e0af90800000000000000
+      internalID: -6944296655359498629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Brick_Empty_6
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 2
+        width: 11
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abc045fe9fb9458d0800000000000000
+      internalID: -2858488365708997446
       vertices: []
       indices: 
       edges: []
@@ -261,11 +337,13 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Egg_0: 4646649027328027380
-      Egg_1: -3665803642334570777
-      Egg_2: -7578226498497253333
-      Egg_3: 2599295178660905587
-      Egg_4: -2566293651397995864
+      Brick_Empty_0: -573469707818341763
+      Brick_Empty_1: -6311862234625191020
+      Brick_Empty_2: 8474227070079906101
+      Brick_Empty_3: -2800713931399880776
+      Brick_Empty_4: -4542776880381145915
+      Brick_Empty_5: -6944296655359498629
+      Brick_Empty_6: -2858488365708997446
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

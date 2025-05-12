@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb
+guid: 4defb6208688d0a4dbcb27dc69bf9be1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3585505344359674142
-    second: Scroll_Empty_0
+      213: -504671282291087767
+    second: Eve_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,17 +122,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Scroll_Empty_0
+      name: Eve_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 4
-        width: 51
-        height: 55
+        x: 0
+        y: 3
+        width: 59
+        height: 59
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ee4d29d2e9bd3ec0800000000000000
-      internalID: -3585505344359674142
+      spriteID: 966e2b2842c0ff8f0800000000000000
+      internalID: -504671282291087767
       vertices: []
       indices: 
       edges: []
@@ -161,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Scroll_Empty_0: -3585505344359674142
+      Eve_0: -504671282291087767
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
