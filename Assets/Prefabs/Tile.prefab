@@ -63,7 +63,7 @@ MonoBehaviour:
   Annotation: {fileID: 5758338617011537987}
   PowerColor: {r: 1, g: 0, b: 0.9549618, a: 1}
   RewardColor: {r: 1, g: 0.9820838, b: 0.023584902, a: 1}
-  HousedObject: {fileID: 11400000, guid: 2f6cfa389dc641440bfec2bdff0c4440, type: 2}
+  HousedObject: {fileID: 0}
   XCoordinate: 0
   YCoordinate: 0
 --- !u!114 &6761163715461405607
@@ -96,9 +96,9 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: -9163426285224168042, guid: 491fc302bf655cf4e91db67b98d3f496, type: 3}
+    m_PressedSprite: {fileID: 8028125240860510686, guid: d9fa19329e5852b4e859889dfb02ffc1, type: 3}
     m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: -9163426285224168042, guid: 491fc302bf655cf4e91db67b98d3f496, type: 3}
+    m_DisabledSprite: {fileID: 8028125240860510686, guid: d9fa19329e5852b4e859889dfb02ffc1, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -870,7 +870,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 8814658339720463300, guid: 4ed5ed79073f2a7459fef942a17f5276, type: 3}
+  m_Sprite: {fileID: -347702476747834141, guid: 289d5a9863f81ed4b8bd6467b726db32, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
