@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2ff492c4471a6da4891957f03564af10
+guid: 7e4688bca74640740b61df9c74a4b8f2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7744424781442014258
-    second: Minotaur_0
+      213: 3822571922970026680
+    second: Minotaur_Right_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,53 +122,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Minotaur_0
+      name: Minotaur_Right_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 64
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ec3aa6861b6468490800000000000000
-      internalID: -7744424781442014258
+      spriteID: 8c310bb0e753808488faa07082f974b8
+      internalID: -1760285962
       vertices: []
       indices: 
       edges: []
@@ -177,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: f6eb9e9105ea0544b9c72525d20e5f1d
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Minotaur_0: -7744424781442014258
+      Minotaur_Right_0: -1760285962
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

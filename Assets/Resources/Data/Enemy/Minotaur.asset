@@ -15,14 +15,14 @@ MonoBehaviour:
   UserFacingName: Minotaur
   UserFacingDescription: ???
   Id: minotaur
-  Sprite: {fileID: -7744424781442014258, guid: 2ff492c4471a6da4891957f03564af10, type: 3}
+  Sprite: {fileID: -1760285962, guid: 7e4688bca74640740b61df9c74a4b8f2, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
     Above: {fileID: 0}
     Below: {fileID: 0}
     Behind: {fileID: 1612175002337491917, guid: 8281dfc95d1acf94fadfc1d0dd855e42, type: 3}
-    Front: {fileID: -7744424781442014258, guid: 2ff492c4471a6da4891957f03564af10, type: 3}
-    Missing: {fileID: -7744424781442014258, guid: 2ff492c4471a6da4891957f03564af10, type: 3}
+    Front: {fileID: -1760285962, guid: 7e4688bca74640740b61df9c74a4b8f2, type: 3}
+    Missing: {fileID: -1760285962, guid: 7e4688bca74640740b61df9c74a4b8f2, type: 3}
   Power: 6
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
