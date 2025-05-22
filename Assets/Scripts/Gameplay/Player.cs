@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Gameplay;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// TODO: Create a mvc/settings/player scriptable object instead
+// TODO: Separate the UI from the business logic
+// We should have Player, and PlayerView/PlayerUI
+// This is currently both
 public class Player : MonoBehaviour, IPointerClickHandler
 {
+    public enum Class
+    {
+        Adventurer, // Standard 
+        Warrior,
+        Ranger,
+        Wizard,
+        Bard,
+        FortuneTeller,
+        Miner,
+        Priest,
+        Apothecary
+    }
+    
     public List<string> RevealedMonsters = new List<string>();
 
     [Tooltip("Player ability, bonus spawn count. Key is spawned creation id.")]
@@ -29,12 +44,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int MaxHealth;
     public int BonusStartingHp = 0;
     public int HpRegeneration = 0;
+    public Class PlayerClass = Class.Adventurer;
+    public Inventory Inventory;
 
     /// <summary>
     /// Bonus maxHP added to the level up table.
     /// Mostly, for god mode.
     /// </summary>
     private int BonusMaxHp = 0;
+    
     [Tooltip("If true, we prevent half damage from the very first 7 power demon.")]
     public bool HasDemonBanePowers = false;
     private bool HasUsedDemonBanePowers = false;
@@ -77,6 +95,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
 
         ResetPlayer();
+        Inventory = new Inventory();
 
         ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGeneratedPlayerAbilities;
     }

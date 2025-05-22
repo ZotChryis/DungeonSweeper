@@ -31,7 +31,6 @@ public class LevelManager : MonoBehaviour
     {
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
         ServiceLocator.Instance.Grid.GenerateGrid();
-
         ServiceLocator.Instance.Player.ResetPlayer();
 
         if (level == 1)
