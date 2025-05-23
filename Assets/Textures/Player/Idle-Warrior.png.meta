@@ -129,10 +129,10 @@ TextureImporter:
       name: Idle-Warrior_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 90
+        y: 554
+        width: 266
+        height: 366
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,11 +147,121 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Idle-Warrior_1
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 554
+        width: 272
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77cf3ed569afdd24d80b8f89e8fc533f
+      internalID: 1174053482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle-Warrior_2
+      rect:
+        serializedVersion: 2
+        x: 689
+        y: 554
+        width: 253
+        height: 364
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99664f34fcaddf14fac2e0771036fc9a
+      internalID: -1521800120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle-Warrior_3
+      rect:
+        serializedVersion: 2
+        x: 94
+        y: 106
+        width: 264
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 463308472c038ac4d81d17bc59525963
+      internalID: -1927282398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle-Warrior_4
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 106
+        width: 264
+        height: 365
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 766631eb7b51ec64d910c555fd1af3c3
+      internalID: 790933842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle-Warrior_5
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 107
+        width: 264
+        height: 364
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56e93f5218de32d478704d3ac7c3cba8
+      internalID: 1534521095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0c838897ed8364542a5c100337df3f4a
     internalID: 0
     vertices: []
     indices: 
@@ -162,6 +272,11 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Idle-Warrior_0: 2970999875829560105
+      Idle-Warrior_1: 1174053482
+      Idle-Warrior_2: -1521800120
+      Idle-Warrior_3: -1927282398
+      Idle-Warrior_4: 790933842
+      Idle-Warrior_5: 1534521095
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

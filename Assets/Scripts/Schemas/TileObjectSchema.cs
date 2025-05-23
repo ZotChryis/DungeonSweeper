@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 /// Representation of an Enemy.
 /// Intended to be housed within a Tile.
 /// </summary>
+// TODO: Separate into data and logic, aka TileObjectSchema class? See what Im doing with Class/Item
 // TODO: Tile vs TileObject should have their own states
 //      Tile should not be concerned with what the TileObject does beyond "I am dead now" or w/e
 //      This way we can divorce the tile's logic from the object's logic, and let the objects do whatever they want
@@ -36,6 +37,7 @@ public class TileObjectSchema : Schema
     public string UserFacingName;
     public string UserFacingDescription;
     
+    // TODO: Make this an enum and add to all data objects created
     public string Id;
     public Sprite Sprite;
     public SpriteFacing SpriteFacingData;

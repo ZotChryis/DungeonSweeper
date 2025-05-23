@@ -53,7 +53,10 @@ namespace Gameplay
     {
         public enum Id
         {
-            // Class starting items 
+            // Used for Empty
+            None,
+            
+            // Class starting items w
             Sword,
             Bow,
             MagicCarpet,

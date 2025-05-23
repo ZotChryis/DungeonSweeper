@@ -4,24 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// TODO: Separate the UI from the business logic
+// TODO: Separate the UI from the business logic. One should be in UI space, and one should be in Gameplay space
 // We should have Player, and PlayerView/PlayerUI
 // This is currently both
 public class Player : MonoBehaviour, IPointerClickHandler
 {
-    public enum Class
-    {
-        Adventurer, // Standard 
-        Warrior,
-        Ranger,
-        Wizard,
-        Bard,
-        FortuneTeller,
-        Miner,
-        Priest,
-        Apothecary
-    }
-    
     public List<string> RevealedMonsters = new List<string>();
 
     [Tooltip("Player ability, bonus spawn count. Key is spawned creation id.")]
@@ -44,7 +31,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int MaxHealth;
     public int BonusStartingHp = 0;
     public int HpRegeneration = 0;
-    public Class PlayerClass = Class.Adventurer;
+    public Class.Id Class = Gameplay.Class.Id.Adventurer;
     public Inventory Inventory;
 
     /// <summary>
