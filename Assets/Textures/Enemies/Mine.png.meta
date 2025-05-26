@@ -155,12 +155,12 @@ TextureImporter:
       name: Mine_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 2
-        width: 64
-        height: 60
+        x: 48
+        y: 58
+        width: 920
+        height: 960
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

@@ -24,10 +24,22 @@ public class CornerSpawnRequirement : SpawnRequirement
     public override (int x, int y) GetRandomCoordinate(RandomBoard board)
     {
         CoordinateList.Clear();
-        CoordinateList.Add((0, 0));
-        CoordinateList.Add((0, board.height - 1));
-        CoordinateList.Add((board.width - 1, 0));
-        CoordinateList.Add((board.width - 1, board.height - 1));
+        if (board.PeekUnoccupiedSpace(0, 0))
+        {
+            CoordinateList.Add((0, 0));
+        }
+        if (board.PeekUnoccupiedSpace(0, board.height - 1))
+        {
+            CoordinateList.Add((0, board.height - 1));
+        }
+        if (board.PeekUnoccupiedSpace(board.width - 1, 0))
+        {
+            CoordinateList.Add((board.width - 1, 0));
+        }
+        if (board.PeekUnoccupiedSpace(board.width - 1, board.height - 1))
+        {
+            CoordinateList.Add((board.width - 1, board.height - 1));
+        }
         return CoordinateList.GetRandomItem();
     }
 
