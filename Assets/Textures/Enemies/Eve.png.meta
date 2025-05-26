@@ -155,12 +155,12 @@ TextureImporter:
       name: Eve_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 3
-        width: 59
-        height: 59
+        x: 3
+        y: 37
+        width: 1017
+        height: 981
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []

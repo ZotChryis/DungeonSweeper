@@ -155,12 +155,12 @@ TextureImporter:
       name: Adam_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 48
-        height: 64
+        x: 4
+        y: 37
+        width: 1017
+        height: 981
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -188,6 +188,7 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       Adam_0: 8029351004527951999
+      Adam_1: -1391637997
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
