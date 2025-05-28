@@ -59,6 +59,7 @@ MonoBehaviour:
   XPContainer: {fileID: 6197542731452784794}
   BonusStartingHp: 0
   HpRegeneration: 0
+  Class: 0
   HasDemonBanePowers: 0
 --- !u!95 &1919616660411045799
 Animator:
@@ -68,7 +69,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3444258482856945427}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d4fe2cd7c22254d41a9f5613dee4d07b, type: 2}
   m_CullingMode: 0
