@@ -11,7 +11,9 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         TileContextMenu,
         Instructions,
         Library,
-        Shop
+        Shop,
+        ClassSelection,
+        Inventory,
     }
 
     [SerializedDictionary("Screen Type", "Screen")]

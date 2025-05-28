@@ -21,18 +21,21 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int currentLevel = 0;
 
+    // TODO: Let's remove asset usages of functions like this. If its on a button, we should bind the callback in code
     public void NextLevel()
     {
         currentLevel++;
         SetLevel(currentLevel);
     }
 
+    // TODO: Go through GameManager just for clarity
     private void SetLevel(int level)
     {
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
         ServiceLocator.Instance.Grid.GenerateGrid();
         ServiceLocator.Instance.Player.ResetPlayer();
 
+        // TODO: Find a better way to do this, in data? This is gross
         if (level == 1)
         {
             foreach(var obj in ServiceLocator.Instance.TileContextMenu.level2Objects)

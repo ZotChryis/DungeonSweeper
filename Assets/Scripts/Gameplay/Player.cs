@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Gameplay;
+using Schemas;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -74,16 +75,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private void Awake()
     {
         ServiceLocator.Instance.Register(this);
+        
+        Hearts = HeartContainer.GetComponentsInChildren<PlayerUIItem>();
+        XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
+        
+        Inventory = new Inventory();
     }
 
     private void Start()
     {
-        Hearts = HeartContainer.GetComponentsInChildren<PlayerUIItem>();
-        XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
-
-        ResetPlayer();
-        Inventory = new Inventory();
-
         ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGeneratedPlayerAbilities;
     }
 
@@ -142,6 +142,20 @@ public class Player : MonoBehaviour, IPointerClickHandler
     }
     #endregion
 
+    public void TEMP_SetClass(Class.Id classId)
+    {
+        ClassSchema schema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == classId);
+        if (schema == null)
+        {
+            return;
+        }
+     
+        Class = classId;
+        PlayerIcon.sprite = schema.Sprite;
+        
+        ResetPlayer();
+    }
+    
     public bool TEMP_PredictDeath(int amount)
     {
         return CurrentHealth - amount < 0;

@@ -49,16 +49,6 @@ public class Grid : MonoBehaviour
         // Start the game level 1
         GenerateGrid();
     }
-
-    public int GetHeight()
-    {
-        return SpawnSettings.Height;
-    }
-    
-    public int GetWidth()
-    {
-        return SpawnSettings.Width;
-    }
     
     /// <summary>
     /// Creates the Grid using the Serialized Properties marked with Grid Settings.

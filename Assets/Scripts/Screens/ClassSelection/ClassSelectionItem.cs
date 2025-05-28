@@ -12,7 +12,8 @@ public class ClassSelectionItem : MonoBehaviour
     [SerializeField] private Image Icon;
     [SerializeField] private TMP_Text Name;
     [SerializeField] private TMP_Text Description;
-
+    [SerializeField] private Button Button;
+    
     private void Awake()
     {
         ClassSchema Schema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == Class);
@@ -24,5 +25,13 @@ public class ClassSelectionItem : MonoBehaviour
         Icon.sprite = Schema.Sprite;
         Name.SetText(Schema.Name);
         Description.SetText(Schema.Description);
+
+        Button.onClick.AddListener(OnButtonClicked);
+    }
+
+    private void OnButtonClicked()
+    {
+        ServiceLocator.Instance.Player.TEMP_SetClass(Class);
+        ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
     }
 }
