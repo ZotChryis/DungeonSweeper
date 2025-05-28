@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a2147e76bd154b646be584943bd6338f
+guid: da0ba34d0cbc70743a658092d8212231
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -155,12 +155,12 @@ TextureImporter:
       name: pizza_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1920
-        height: 1920
+        x: 108
+        y: 49
+        width: 857
+        height: 969
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 850f5a1af89f57a4b9c93d5ec2713dec
     internalID: 0
     vertices: []
     indices: 

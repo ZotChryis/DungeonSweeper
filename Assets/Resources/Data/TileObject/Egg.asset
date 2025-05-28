@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Dragon Egg
   UserFacingDescription: ???
   Id: egg
-  Sprite: {fileID: 21300000, guid: f6f35f113666b4242886bfb88c211df1, type: 3}
+  Sprite: {fileID: 4646649027328027380, guid: 40b5ef490899d93449ac43047c777b2d, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 0}
     Above: {fileID: 0}

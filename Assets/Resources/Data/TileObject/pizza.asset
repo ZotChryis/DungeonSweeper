@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Pizza
   UserFacingDescription: ???
   Id: pizza
-  Sprite: {fileID: -6444940296795206775, guid: a2147e76bd154b646be584943bd6338f, type: 3}
+  Sprite: {fileID: -6444940296795206775, guid: da0ba34d0cbc70743a658092d8212231, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 0}
     Above: {fileID: 0}
