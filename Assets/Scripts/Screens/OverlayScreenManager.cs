@@ -17,9 +17,9 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
     }
 
     [SerializedDictionary("Screen Type", "Screen")]
-    public SerializedDictionary<ScreenType, Screen> Screens;
+    public SerializedDictionary<ScreenType, BaseScreen> Screens;
 
-    private Screen ActiveScreen;
+    private BaseScreen ActiveScreen;
 
     protected override void Awake()
     {

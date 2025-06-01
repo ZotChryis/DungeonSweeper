@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LibraryScreen : Screen
+public class LibraryScreen : BaseScreen
 {
     [SerializeField] 
     private LibraryItem LibraryItemPrefab;

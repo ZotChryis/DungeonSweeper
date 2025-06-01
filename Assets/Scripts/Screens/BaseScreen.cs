@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Screen : MonoBehaviour
+public class BaseScreen : MonoBehaviour
 {
     [SerializeField]
     private GameObject Container;

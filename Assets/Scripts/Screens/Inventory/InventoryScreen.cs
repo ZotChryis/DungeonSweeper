@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryScreen : Screen
+public class InventoryScreen : BaseScreen
 {
     [SerializeField] 
     private InventoryItem ItemPrefab;

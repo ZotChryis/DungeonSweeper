@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -340,6 +341,27 @@ public class Grid : MonoBehaviour
                 }
             }
         }
+
+        StartCoroutine(Shake(1.25f, 40));
+    }
+
+    public IEnumerator Shake(float duration, float magnitude)
+    {
+        Vector3 originalPosition = transform.localPosition;
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float percentElapsedInvertSquared = 1f - elapsed / duration;
+            percentElapsedInvertSquared = percentElapsedInvertSquared * percentElapsedInvertSquared;
+            float x = Random.Range(-1, 1f) * magnitude * percentElapsedInvertSquared + originalPosition.x;
+            float y = Random.Range(-1, 1f) * magnitude * percentElapsedInvertSquared + originalPosition.y;
+            transform.localPosition = new Vector3(x, y, originalPosition.z);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        transform.localPosition = originalPosition;
     }
 
     public void Obscure(int xCoordinate, int yCoordinate, int radius)

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ClassSelectionScreen : Screen
+public class ClassSelectionScreen : BaseScreen
 {
     public void Start()
     {
