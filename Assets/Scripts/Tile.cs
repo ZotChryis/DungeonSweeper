@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -302,14 +303,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
             int revealOriginX = XCoordinate;
             int revealOriginY = YCoordinate;
-            if (HousedObject.GenerateRandomLocationForReveal)
+            if (HousedObject.RevealRandLocationNextToMine)
             {
-                var randomBoard = ServiceLocator.Instance.Grid.UnoccupiedSpaces;
-                if (randomBoard.HasEmptySpace())
-                {
-                    (revealOriginX, revealOriginY) = randomBoard.PeekUnoccupiedRandomSpace();
-                    randomBoard.RemoveUnoccupiedSpace(revealOriginX, revealOriginY);
-                }
+                (int revealX, int revealY) = ServiceLocator.Instance.Grid.GetPositionOfRandomType("mine");
+                List<(int, int)> adjacentToReveal = ServiceLocator.Instance.Grid.GetAdjacentValidPositions(revealX, revealY);
+                adjacentToReveal.Remove((revealX, revealY));
+                var randomAdjacentToReveal = adjacentToReveal[UnityEngine.Random.Range(0, adjacentToReveal.Count)];
+                revealOriginX = randomAdjacentToReveal.Item1;
+                revealOriginY = randomAdjacentToReveal.Item2;
             }
             
             if (HousedObject.RevealRadius > 0)

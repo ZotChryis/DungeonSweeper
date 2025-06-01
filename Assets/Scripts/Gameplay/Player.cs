@@ -85,6 +85,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGeneratedPlayerAbilities;
+        ResetPlayer();
     }
 
     private void OnDestroy()

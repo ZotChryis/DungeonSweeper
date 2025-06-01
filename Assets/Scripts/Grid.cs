@@ -268,6 +268,57 @@ public class Grid : MonoBehaviour
     }
 
     /// <summary>
+    /// Get position of a random unrevealed monster type
+    /// </summary>
+    /// <param name="tileId">monster id</param>
+    /// <returns>x and y int coordinates</returns>
+    public (int, int) GetPositionOfRandomType(string tileId)
+    {
+        int yStarting = Random.Range(0, SpawnSettings.Height);
+        int xStarting = Random.Range(0, SpawnSettings.Width);
+        for (int y = yStarting; y < SpawnSettings.Height; y++)
+        {
+            for (int x = xStarting; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) &&
+                    Tiles[x, y].State == Tile.TileState.Hidden)
+                {
+                    return (x, y);
+                }
+            }
+        }
+
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) &&
+                    Tiles[x, y].State == Tile.TileState.Hidden)
+                {
+                    return (x, y);
+                }
+            }
+        }
+        return (-1, -1);
+    }
+
+    public List<(int, int)> GetAdjacentValidPositions(int x, int y, int distance = 1)
+    {
+        int totalNumberOfAdjacentThings = (distance + 1) * (distance + 1) - 1;
+        List<(int, int)> returnValue = new List<(int, int)>(totalNumberOfAdjacentThings);
+        for (int i = x - distance; i < x + distance && i >= 0 && i < SpawnSettings.Width; i++)
+        {
+            for(int j = y - distance; j < y + distance && j >= 0 && j < SpawnSettings.Height; j++)
+            {
+                returnValue.Add((i, j));
+            }
+        }
+        return returnValue;
+    }
+
+    /// <summary>
     /// Gets the total cost of all neighbors for a given coordinate.
     /// </summary>
     public int TEMP_GetTotalNeighborCost(int x, int y)

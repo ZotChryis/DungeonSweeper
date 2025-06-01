@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: MineDiffused
   m_EditorClassIdentifier: 
-  UserFacingName: 
+  UserFacingName: Mine Defused
   UserFacingDescription: ???
-  Id: 
+  Id: mine
   Sprite: {fileID: 8135663367076951168, guid: f42e4888d5553854a9a1085240dfff99, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 0}

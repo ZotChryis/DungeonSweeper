@@ -51,7 +51,7 @@ public class TileObjectSchema : Schema
     public TileObjectSchema DropReward;
 
     // TODO: Refactor all this shit honestly
-    public bool GenerateRandomLocationForReveal;
+    public bool RevealRandLocationNextToMine;
     public Vector2Int[] RevealOffsets;
     public int RevealRadius;
     public Vector2Int[] ObscureOffsets;
