@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 41ea347a3f7776f4e927ffa77655ee0f
+guid: c82f2884cd7da93498f17867f1e9da07
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7895412607919688145
-    second: BeholderEnraged_0
+      213: 1215986316085135761
+    second: Gold_Exp_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,7 +152,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeholderEnraged_0
+      name: Gold_Exp_0
       rect:
         serializedVersion: 2
         x: 0
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d9813a6fe3229d60800000000000000
-      internalID: 7895412607919688145
+      spriteID: 1998df5ac1d00e010800000000000000
+      internalID: 1215986316085135761
       vertices: []
       indices: 
       edges: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 5d3893af0bce8904db66d22fc54b0fcc
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BeholderEnraged_0: 7895412607919688145
+      Gold_Exp_0: 1215986316085135761
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

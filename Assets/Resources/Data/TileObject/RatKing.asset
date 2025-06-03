@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: RatKing
   m_EditorClassIdentifier: 
-  UserFacingName: Rat King
+  UserFacingName: Pied Piper
   UserFacingDescription: ???
-  Id: ratking
-  Sprite: {fileID: 8607660380933718676, guid: 439a5d3fcd956cb43953dda49c1d0ece, type: 3}
+  Id: piper
+  Sprite: {fileID: -8149248579746061818, guid: a0469392af577df4399da276d392393c, type: 3}
   SpriteFacingData:
     NearestObject: {fileID: 0}
     Above: {fileID: 0}
@@ -28,7 +28,7 @@ MonoBehaviour:
   PreventConsumeIfKillingBlow: 0
   XPReward: 5
   DropReward: {fileID: 11400000, guid: e838b473c1cea2a4a933f40869b6dcfd, type: 2}
-  GenerateRandomLocationForReveal: 0
+  RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []

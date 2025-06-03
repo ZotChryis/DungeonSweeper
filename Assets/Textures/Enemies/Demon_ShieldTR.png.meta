@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c2e405ad5005dde4cac2074f052b0b9b
+guid: 313d99eef91c4e247a8fc64d467d48a7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8590834498089502633
-    second: Minotaur_Exclamation_0
+      213: 1816117145128724683
+    second: Demon_ShieldTR_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,12 +152,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Minotaur_Exclamation_0
+      name: Demon_ShieldTR_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1022
+        width: 1024
         height: 1024
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 75834394a8937c880800000000000000
-      internalID: -8590834498089502633
+      spriteID: bc8e4e9dbe4243910800000000000000
+      internalID: 1816117145128724683
       vertices: []
       indices: 
       edges: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e7a64ba3516653c4c9f2fbef97d6008a
+    spriteID: 279adee835b4e9f498ba4b6bb90c4b77
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Minotaur_Exclamation_0: -8590834498089502633
+      Demon_ShieldTR_0: 1816117145128724683
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

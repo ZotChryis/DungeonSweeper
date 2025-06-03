@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: 41ea347a3f7776f4e927ffa77655ee0f
+guid: 0e33442ffe70b0646b92de161128a6c3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7895412607919688145
-    second: BeholderEnraged_0
+      213: -2387779973016504078
+    second: Adam_Sad_0
+  - first:
+      213: -1179327699728625381
+    second: Adam_Sad_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,7 +155,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeholderEnraged_0
+      name: Adam_Sad_0
       rect:
         serializedVersion: 2
         x: 0
@@ -167,8 +170,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d9813a6fe3229d60800000000000000
-      internalID: 7895412607919688145
+      spriteID: 2f83f8af3c6ecded0800000000000000
+      internalID: -2387779973016504078
       vertices: []
       indices: 
       edges: []
@@ -177,7 +180,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: ed1f7e559ca18fe478353de6d8128537
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +190,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BeholderEnraged_0: 7895412607919688145
+      Adam_Sad_0: -2387779973016504078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: 41ea347a3f7776f4e927ffa77655ee0f
+guid: 9ef5db2d0ecc83847a35163e11c897c6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7895412607919688145
-    second: BeholderEnraged_0
+      213: -139936055655948354
+    second: Bat_Sleep_0
+  - first:
+      213: 5711443023663224736
+    second: Bat_Sleep_1
+  - first:
+      213: 8928715124869207862
+    second: Bat_Sleep_2
+  - first:
+      213: 2601902988197807269
+    second: Bat_Sleep_3
+  - first:
+      213: -5345685735365275203
+    second: Bat_Sleep_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,23 +164,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeholderEnraged_0
+      name: Bat_Sleep_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        y: 13
+        width: 270
+        height: 567
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d9813a6fe3229d60800000000000000
-      internalID: 7895412607919688145
+      spriteID: ebf9b5716e8de0ef0800000000000000
+      internalID: -139936055655948354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat_Sleep_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 157
+        width: 9
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a754546b2f134f40800000000000000
+      internalID: 5711443023663224736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat_Sleep_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 15
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6379c76891b29eb70800000000000000
+      internalID: 8928715124869207862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat_Sleep_3
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 9
+        width: 17
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a4ce877bf0db1420800000000000000
+      internalID: 2601902988197807269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat_Sleep_4
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 12
+        width: 36
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db11ea6752f40d5b0800000000000000
+      internalID: -5345685735365275203
       vertices: []
       indices: 
       edges: []
@@ -177,7 +277,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -186,8 +286,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      BeholderEnraged_0: 7895412607919688145
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

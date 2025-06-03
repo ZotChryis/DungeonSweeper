@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 41ea347a3f7776f4e927ffa77655ee0f
+guid: 2831d291c7819ea43a104dd9e1c6a7ad
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7895412607919688145
-    second: BeholderEnraged_0
+      213: 859999959591508714
+    second: Demon_Shield_TL_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,7 +152,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeholderEnraged_0
+      name: Demon_Shield_TL_0
       rect:
         serializedVersion: 2
         x: 0
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1d9813a6fe3229d60800000000000000
-      internalID: 7895412607919688145
+      spriteID: aea5d4228655feb00800000000000000
+      internalID: 859999959591508714
       vertices: []
       indices: 
       edges: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: 062646741be52dc41b1e7d568a3f87a5
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BeholderEnraged_0: 7895412607919688145
+      Demon_Shield_TL_0: 859999959591508714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
