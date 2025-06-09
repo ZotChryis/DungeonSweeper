@@ -28,7 +28,7 @@ MonoBehaviour:
   PreventConsumeIfKillingBlow: 0
   XPReward: 13
   DropReward: {fileID: 11400000, guid: 7cc2730514a45544184416f8f831ca3a, type: 2}
-  GenerateRandomLocationForReveal: 0
+  RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
@@ -42,6 +42,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
+  ScreenshakeOnConquer: 1
   UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

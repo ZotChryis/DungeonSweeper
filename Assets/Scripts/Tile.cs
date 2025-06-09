@@ -295,6 +295,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureOffsets);
             }
+            if(HousedObject && HousedObject.ScreenshakeOnConquer)
+            {
+                StartCoroutine(ServiceLocator.Instance.Grid.Shake());
+            }
         }
 
         if (TileState.Collected == State)
@@ -349,6 +353,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             if (HousedObject.DiffuseMinesReward)
             {
                 ServiceLocator.Instance.Grid.TEMP_DiffuseMarkedOrRevealedMines();
+                StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             }
             
             if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
