@@ -140,6 +140,13 @@ public class Grid : MonoBehaviour
                         {
                             UnoccupiedSpaces.RemoveUnoccupiedSpace(additionalSpawnLocations[add].x, additionalSpawnLocations[add].y);
                             Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].PlaceTileObj(spawnEntry.ConsecutiveSpawn);
+                            if (spawnEntry.GuardRelationship)
+                            {
+                                // Minotaur.GuardingTile = chest
+                                Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].GuardingTile = Tiles[coordinates.Item1, coordinates.Item2];
+                                // Chest.GuardingTile = Minotaur
+                                //Tiles[coordinates.Item1, coordinates.Item2].GuardingTile = Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y];
+                            }
                         }
                     }
                 }

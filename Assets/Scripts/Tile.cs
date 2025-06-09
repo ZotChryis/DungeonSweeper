@@ -33,20 +33,24 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
     [SerializeField]
     private Button TileButton;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private Image HousedObjectSprite;
+
+    [Tooltip("When you open the Minotaur guarded chest, this will appear as he turns around. Should also be mirrored if enemy is mirrored.")]
+    [SerializeField]
+    private Image ExclamationMarker;
 
     [SerializeField]
     private Image XSpriteRenderer;
 
-    [SerializeField] 
+    [SerializeField]
     private TMP_Text NeighborPower;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private TMP_Text Power;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private TMP_Text Annotation;
 
     [SerializeField]
@@ -58,12 +62,17 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     private TileObjectSchema HousedObject;
     public TileState State { get; private set; } = TileState.Hidden;
-    
+
     public int XCoordinate = 0;
     public int YCoordinate = 0;
-    
+
     private int ObscureCounter;
-    
+
+    [HideInInspector]
+    public Tile GuardingTile;
+    private bool IsEnraged = false;
+    private bool ShouldStandUp = false;
+
     private void Start()
     {
         // TODO: this probably needs a better home
@@ -71,6 +80,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         ServiceLocator.Instance.Grid.OnGridGenerated += TEMP_UpdateVisuals;
 
         TileButton.onClick.AddListener(OnTileClicked);
+        ResetLook();
 
         TEMP_UpdateVisuals();
     }
@@ -86,7 +96,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         XCoordinate = xCoordinate;
         YCoordinate = yCoordinate;
     }
-    
+
     private void OnAnyTileStateChanged(Tile tile)
     {
         TEMP_UpdateVisuals();
@@ -110,7 +120,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 return;
             }
         }
-        
+
         TEMP_SetState(State + 1);
     }
 
@@ -120,7 +130,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         {
             return 0;
         }
-        
+
         if (HousedObject.HidePowerToNeighbors)
         {
             return 0;
@@ -128,17 +138,17 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         return TEMP_GetCost();
     }
-    
+
     public int TEMP_GetCost()
     {
         if (!HousedObject)
         {
             return 0;
         }
-        
+
         return State < TileState.Conquered ? HousedObject.Power : 0;
     }
-    
+
     /// <summary>
     /// Places the housedObj and optionally upgrades it based on player power.
     /// Obscures adjacent tiles if necessary.
@@ -156,7 +166,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             }
         }
         HousedObject = housedObject;
-        
+
         if (HousedObject && HousedObject.ObscureRadius > 0)
         {
             ServiceLocator.Instance.Grid.Obscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
@@ -183,7 +193,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         State = TileState.Revealed;
         ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
         TEMP_UpdateVisuals();
-        
+
         // TODO: Total hack, fix later
         if (!HousedObject && State == TileState.Revealed)
         {
@@ -253,8 +263,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         if (State == TileState.Empty)
         {
             // TODO: HACK - need to remove any fully empty tile when it is revealed to make Flee work
-            ServiceLocator.Instance.Grid.UnoccupiedSpaces.RemoveUnoccupiedSpace(XCoordinate, YCoordinate); 
-            
+            ServiceLocator.Instance.Grid.UnoccupiedSpaces.RemoveUnoccupiedSpace(XCoordinate, YCoordinate);
+
             if (HousedObject && HousedObject.DropReward)
             {
                 PlaceTileObj(HousedObject.DropReward);
@@ -262,7 +272,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 return;
             }
         }
-        
+
         TEMP_UpdateVisuals();
 
         // Early return if housed object does not exist.
@@ -271,12 +281,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             TEMP_SetState(TileState.Empty);
             return;
         }
-        
+
         Player player = ServiceLocator.Instance.Player;
-        
+
         if (TileState.Conquered == State && HousedObject.Power > 0)
         {
-            if(player.TEMP_PredictDeath(HousedObject.Power))
+            if (player.TEMP_PredictDeath(HousedObject.Power))
             {
                 // player has died unconquer yourself
                 State = TileState.Revealed;
@@ -286,7 +296,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 return;
             }
-            
+
             if (HousedObject && HousedObject.ObscureRadius > 0)
             {
                 ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
@@ -295,9 +305,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureOffsets);
             }
-            if(HousedObject && HousedObject.ScreenshakeOnConquer)
+            if (HousedObject && HousedObject.ScreenshakeOnConquer)
             {
                 StartCoroutine(ServiceLocator.Instance.Grid.Shake());
+            }
+            if (GuardingTile != null)
+            {
+                GuardingTile.LookTowards(XCoordinate, YCoordinate, true);
             }
         }
 
@@ -325,7 +339,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 revealOriginX = randomAdjacentToReveal.Item1;
                 revealOriginY = randomAdjacentToReveal.Item2;
             }
-            
+
             if (HousedObject.RevealRadius > 0)
             {
                 ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(revealOriginX, revealOriginY, HousedObject.RevealRadius);
@@ -335,7 +349,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 ServiceLocator.Instance.Grid.TEMP_RevealTiles(revealOriginX, revealOriginY, HousedObject.RevealOffsets);
             }
-            
+
             player.TEMP_UpdateXP(HousedObject.XPReward);
             ServiceLocator.Instance.Player.ShopXp += HousedObject.ShopXp;
 
@@ -355,7 +369,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 ServiceLocator.Instance.Grid.TEMP_DiffuseMarkedOrRevealedMines();
                 StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             }
-            
+
             if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
             {
                 foreach (var revealReward in HousedObject.RevealAllRewards)
@@ -380,6 +394,53 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    private void LookTowards(int xCoordinate, int yCoordinate, bool enrage)
+    {
+        if (!HousedObject.CanEnrage)
+        {
+            return;
+        }
+        if (enrage)
+        {
+            IsEnraged = true;
+        }
+        // if our position is to the left of our enrage target flip us around.
+        if (xCoordinate > this.XCoordinate)
+        {
+            if (ExclamationMarker != null)
+            {
+                ExclamationMarker.transform.localScale = new Vector3(-1, 1, 1);
+            }
+            if (HousedObjectSprite != null)
+            {
+                HousedObjectSprite.transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
+        else if (xCoordinate < this.XCoordinate)
+        {
+            ResetLook();
+        }
+        else
+        {
+            // Rats stand up
+            ResetLook();
+            ShouldStandUp = true;
+        }
+        TEMP_UpdateVisuals();
+    }
+
+    private void ResetLook()
+    {
+        if (ExclamationMarker != null)
+        {
+            ExclamationMarker.transform.localScale = new Vector3(1, 1, 1);
+        }
+        if (HousedObject != null)
+        {
+            HousedObjectSprite.transform.localScale = new Vector3(1, 1, 1);
+        }
+    }
+
     private bool IsAutomaticState(TileState state)
     {
         return state == TileState.Revealed || state == TileState.Collected;
@@ -397,6 +458,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = true;
+                ExclamationMarker.enabled = false;
                 break;
 
             case TileState.Revealed:
@@ -405,6 +467,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
+                ExclamationMarker.enabled = IsEnraged;
                 break;
 
             case TileState.Conquered:
@@ -413,6 +476,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = true;
                 Annotation.enabled = false;
+                ExclamationMarker.enabled = IsEnraged;
                 break;
 
             case TileState.Collected:
@@ -421,6 +485,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
+                ExclamationMarker.enabled = false;
                 break;
 
             case TileState.Empty:
@@ -429,7 +494,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
-
+                ExclamationMarker.enabled = false;
                 TileButton.interactable = false;
                 break;
         }
@@ -455,7 +520,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         HousedObjectSprite.enabled = objectOverrides.EnableSprite.UseOverride ? objectOverrides.EnableSprite.Value : HousedObjectSprite.enabled;
         XSpriteRenderer.enabled = objectOverrides.EnableDeathSprite.UseOverride ? objectOverrides.EnableDeathSprite.Value : XSpriteRenderer.enabled;
 
-        HousedObjectSprite.sprite = HousedObject ? HousedObject.TEMP_GetSprite(XCoordinate, YCoordinate) : null;
+        // TODO Here the get sprite and guard logic should set....
+        HousedObjectSprite.sprite = HousedObject ? HousedObject.TEMP_GetSprite(ShouldStandUp, CompassDirections.None) : null;
         if (objectOverrides.Sprite.UseOverride)
         {
             HousedObjectSprite.sprite = objectOverrides.Sprite.Value;
@@ -496,7 +562,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             Annotation.SetText(string.Empty);
             return;
         }
-        
+
         Annotation.SetText(annotation);
     }
 

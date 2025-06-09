@@ -14,6 +14,7 @@ public class SpawnSettings : Schema
         /// </summary>
         public TileObjectSchema ConsecutiveSpawn;
         public int ConsecutiveCopies;
+        public bool GuardRelationship;
         public SpawnRequirement Requirement;
     }
     

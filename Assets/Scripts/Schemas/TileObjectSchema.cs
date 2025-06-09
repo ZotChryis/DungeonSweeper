@@ -21,32 +21,32 @@ public class TileObjectSchema : Schema
     {
         // Object to look for. We find the nearest one. If none provided, logic will not run
         public TileObjectSchema NearestObject;
-        
-        // Relative to self. As in, if THIS object is above Nearest object, use this. Only used if not null.
+
+        // The direction to look. Only used if not null.
         public Sprite Above;
         public Sprite Below;
-        
+
         // Above/Below and Behind/Front are exclusive. You cant use both
-        public Sprite Behind;
-        public Sprite Front;
-        
+        public Sprite Right;
+        public Sprite Left;
+
         // If no nearest object type is found.
         public Sprite Missing;
     }
 
     public string UserFacingName;
     public string UserFacingDescription;
-    
+
     // TODO: Make this an enum and add to all data objects created
     public string Id;
     public Sprite Sprite;
     public SpriteFacing SpriteFacingData;
-    
+
     public int Power;
     public bool HidePowerToNeighbors;
     public bool PreventConsumeIfKillingBlow;
     public int XPReward;
-    
+
     // When fully collected, instead of becoming Empty, this object will be the new housed object on the tile.
     public TileObjectSchema DropReward;
 
@@ -56,12 +56,13 @@ public class TileObjectSchema : Schema
     public int RevealRadius;
     public Vector2Int[] ObscureOffsets;
     public int ObscureRadius;
-    
+
     // Hack: basically Gnome behavior
     public bool CanFlee;
+    public bool CanEnrage;
     public bool SpawnsFleeingChild;
     public TileObjectSchema FleeingChild;
-    
+
     public TileObjectSchema[] RevealAllRewards;
     public bool WinReward;
     public bool FullHealReward;
@@ -80,7 +81,8 @@ public class TileObjectSchema : Schema
     }
 
     [Serializable]
-    public struct TileStateData {
+    public struct TileStateData
+    {
         // Wether or not to override the standard behavior of tile state flow
         public ValueOverride<bool> AutoContinue;
 
@@ -93,7 +95,7 @@ public class TileObjectSchema : Schema
         public ValueOverride<bool> EnableDeathSprite;
     }
 
-    [SerializedDictionary("Tile State", "State Overrides")] 
+    [SerializedDictionary("Tile State", "State Overrides")]
     public SerializedDictionary<Tile.TileState, TileStateData> Data;
 
     public TileStateData GetOverrides(Tile.TileState state)
@@ -102,42 +104,30 @@ public class TileObjectSchema : Schema
     }
 
     // TODO HACK fix later
-    public Sprite TEMP_GetSprite(int xCoordinate, int yCoordinate)
+    public Sprite TEMP_GetSprite(bool shouldStandUp, CompassDirections directionToLook)
     {
         if (!SpriteFacingData.NearestObject)
         {
             return Sprite;
         }
 
-        (int, int) coordinates = ServiceLocator.Instance.Grid.FindNearest(SpriteFacingData.NearestObject, xCoordinate, yCoordinate);
-        if (coordinates.Item1 == -1 || coordinates.Item2 == -1)
+        if (shouldStandUp)
         {
             return SpriteFacingData.Missing;
         }
 
-        if (SpriteFacingData.Above && SpriteFacingData.Below)
+        switch (directionToLook)
         {
-            if (coordinates.Item2 > yCoordinate)
-            {
-                return SpriteFacingData.Below;
-            }
-            else
-            {
-                return SpriteFacingData.Above;
-            }
+            case CompassDirections.North:
+                return SpriteFacingData.Above ?? Sprite;
+            case CompassDirections.South:
+                return SpriteFacingData.Below ?? Sprite;
+            case CompassDirections.East:
+                return SpriteFacingData.Right ?? Sprite;
+            case CompassDirections.West:
+                return SpriteFacingData.Left ?? Sprite;
+            default:
+                return Sprite;
         }
-        else if (SpriteFacingData.Behind && SpriteFacingData.Front)
-        {
-            if (coordinates.Item1 > xCoordinate)
-            {
-                return SpriteFacingData.Behind;
-            }
-            else
-            {
-                return SpriteFacingData.Front;
-            }
-        }
-        
-        return SpriteFacingData.Missing;
     }
 }
