@@ -276,7 +276,16 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         
         if (TileState.Conquered == State && HousedObject.Power > 0)
         {
-            player.TEMP_UpdateHealth(-HousedObject.Power);
+            if(player.TEMP_PredictDeath(HousedObject.Power))
+            {
+                // player has died unconquer yourself
+                State = TileState.Revealed;
+                ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
+            }
+            if (player.UpdateHealth(-HousedObject.Power))
+            {
+                return;
+            }
             
             if (HousedObject && HousedObject.ObscureRadius > 0)
             {

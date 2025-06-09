@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Gameplay;
+using Mono.Cecil;
 using Schemas;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -40,7 +41,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// Mostly, for god mode.
     /// </summary>
     private int BonusMaxHp = 0;
-    
+
+    // deprecated
     [Tooltip("If true, we prevent half damage from the very first 7 power demon.")]
     public bool HasDemonBanePowers = false;
     private bool HasUsedDemonBanePowers = false;
@@ -167,12 +169,17 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentHealth = Mathf.Clamp(CurrentHealth + amount, -1, (MaxHealth + BonusMaxHp));
         TEMP_UpdateVisuals();
     }
-    
+
+
+
+
+
     /// <summary>
     /// Update health. Allow overhealing. Mostly for damaging player.
     /// </summary>
     /// <param name="amount"></param>
-    public void TEMP_UpdateHealth(int amount)
+    /// <returns>true if the player is dead</returns>
+    public bool UpdateHealth(int amount)
     {
         if (amount == -7 && HasDemonBanePowers && !HasUsedDemonBanePowers)
         {
@@ -191,9 +198,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (CurrentHealth <= -1)
         {
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
+            StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
-            return;
+            return true;
         }
+        return false;
     }
 
     public void TEMP_UpdateXP(int amount)
@@ -266,6 +275,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentXP = 0;
         HasUsedDemonBanePowers = false;
         LevelUp();
-        TEMP_UpdateHealth(BonusStartingHp);
+        UpdateHealth(BonusStartingHp);
     }
 }

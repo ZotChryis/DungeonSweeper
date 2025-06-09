@@ -393,10 +393,10 @@ public class Grid : MonoBehaviour
             }
         }
 
-        StartCoroutine(Shake(1.25f, 40));
+        StartCoroutine(Shake());
     }
 
-    public IEnumerator Shake(float duration, float magnitude)
+    public IEnumerator Shake(float duration = 1.25f, float magnitude = 30)
     {
         Vector3 originalPosition = transform.localPosition;
         float elapsed = 0.0f;
