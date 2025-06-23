@@ -144,8 +144,10 @@ public class Grid : MonoBehaviour
                             {
                                 // Minotaur.GuardingTile = chest
                                 Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].GuardingTile = Tiles[coordinates.Item1, coordinates.Item2];
+                                Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].LookAwayFrom(coordinates.Item1, coordinates.Item2, false);
+
                                 // Chest.GuardingTile = Minotaur
-                                //Tiles[coordinates.Item1, coordinates.Item2].GuardingTile = Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y];
+                                Tiles[coordinates.Item1, coordinates.Item2].BodyGuardedByTile = Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y];
                             }
                         }
                     }

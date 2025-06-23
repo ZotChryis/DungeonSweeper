@@ -19,114 +19,138 @@ MonoBehaviour:
     Object: {fileID: 11400000, guid: 5c2a966afb2a3ed40a8859463a85fc10, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: 489f7e09f2408e54f83722713387f27b, type: 2}
     ConsecutiveCopies: 1
+    GuardRelationship: 0
     Requirement: {fileID: 11400000, guid: 40857eb47ddf2b74083bd0689eaa8e15, type: 2}
   - Amount: 1
     Object: {fileID: 11400000, guid: d176818b653eb4e41aa89066ddbecb16, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: aa79d21aa3fe55a4cbe3622404797663, type: 2}
     ConsecutiveCopies: 5
+    GuardRelationship: 0
     Requirement: {fileID: 11400000, guid: db363986bcfbcf84f83eea2239d5176d, type: 2}
   - Amount: 1
     Object: {fileID: 11400000, guid: 5debaef2f0b859644a096d9956b01a09, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 11400000, guid: 756e6ddd56f670348afcf4607f16d2e7, type: 2}
   - Amount: 1
     Object: {fileID: 11400000, guid: e59335c1e0e25604f9cef8f8dd24fd57, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 11400000, guid: ec58a1a3e7aeeec4390ad9484e5de10c, type: 2}
   - Amount: 1
     Object: {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 11400000, guid: 56aefa3748a8e1344ad5b94c61ac0d72, type: 2}
   - Amount: 1
     Object: {fileID: 11400000, guid: dcf653f45d8a770408ffee82fee28b82, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: 989e7eb8f4bbf9c44bad72525c95a516, type: 2}
     ConsecutiveCopies: 1
+    GuardRelationship: 0
     Requirement: {fileID: 11400000, guid: 8b3f343d121a5b64caf6830a87cfb515, type: 2}
   - Amount: 4
     Object: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: bdb6fb82ec3ced2438bfc899310bd68b, type: 2}
     ConsecutiveCopies: 1
+    GuardRelationship: 0
     Requirement: {fileID: 11400000, guid: d10f3488f7584294f8de3a3f13e8e956, type: 2}
   - Amount: 3
     Object: {fileID: 11400000, guid: ad646da970d47914fae19377be93ef3d, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: ad646da970d47914fae19377be93ef3d, type: 2}
     ConsecutiveCopies: 1
+    GuardRelationship: 0
     Requirement: {fileID: 11400000, guid: d10f3488f7584294f8de3a3f13e8e956, type: 2}
   - Amount: 3
     Object: {fileID: 11400000, guid: fd2e59a08814d6a49bf7479b23d9b719, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
     ConsecutiveCopies: 1
+    GuardRelationship: 1
     Requirement: {fileID: 11400000, guid: cf63b8502721e2d49b1fea894026229f, type: 2}
   - Amount: 2
     Object: {fileID: 11400000, guid: 858a11b3151b147409a69a40fa254016, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: eb17892f528fe9f478e22dd032040cf1, type: 2}
     ConsecutiveCopies: 1
+    GuardRelationship: 1
     Requirement: {fileID: 11400000, guid: cf63b8502721e2d49b1fea894026229f, type: 2}
   - Amount: 13
     Object: {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 12
     Object: {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 11
     Object: {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 8
     Object: {fileID: 11400000, guid: e15ca38b7873a0041bfbf7b08ec78210, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 4
     Object: {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 1
     Object: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 2
     Object: {fileID: 11400000, guid: bdc6289f953291d4498d61248bd3b94a, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 1
     Object: {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 9
     Object: {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 1
     Object: {fileID: 11400000, guid: 8877d1c5d6cf1ad4d97721b08fad71c0, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 5
     Object: {fileID: 11400000, guid: 149ab7b7ee381b74984d4c7d0b997ebd, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 1
     Object: {fileID: 11400000, guid: 256dcd38b6d98884b92e74f6e217d09a, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
   - Amount: 2
     Object: {fileID: 11400000, guid: 3930811686fb7234c9ab6bb8e323598d, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
+    GuardRelationship: 0
     Requirement: {fileID: 0}
+  NormalSpawns: []

@@ -69,6 +69,7 @@ MonoBehaviour:
   XCoordinate: 0
   YCoordinate: 0
   GuardingTile: {fileID: 0}
+  DirectionToLook: 4
 --- !u!114 &6761163715461405607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,7 +478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8862912565755078943
 RectTransform:
   m_ObjectHideFlags: 0

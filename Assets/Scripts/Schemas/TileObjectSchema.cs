@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.U2D;
 
 /// <summary>
 /// Representation of an Enemy.
@@ -19,14 +20,11 @@ public class TileObjectSchema : Schema
     [Serializable]
     public struct SpriteFacing
     {
-        // Object to look for. We find the nearest one. If none provided, logic will not run
-        public TileObjectSchema NearestObject;
-
         // The direction to look. Only used if not null.
         public Sprite Above;
         public Sprite Below;
 
-        // Above/Below and Behind/Front are exclusive. You cant use both
+        // Above/Below and Right/Left are exclusive. You cant use both
         public Sprite Right;
         public Sprite Left;
 
@@ -106,11 +104,6 @@ public class TileObjectSchema : Schema
     // TODO HACK fix later
     public Sprite TEMP_GetSprite(bool shouldStandUp, CompassDirections directionToLook)
     {
-        if (!SpriteFacingData.NearestObject)
-        {
-            return Sprite;
-        }
-
         if (shouldStandUp)
         {
             return SpriteFacingData.Missing;
@@ -119,13 +112,29 @@ public class TileObjectSchema : Schema
         switch (directionToLook)
         {
             case CompassDirections.North:
-                return SpriteFacingData.Above ?? Sprite;
+                if (SpriteFacingData.Above != null)
+                {
+                    return SpriteFacingData.Above;
+                }
+                return Sprite;
             case CompassDirections.South:
-                return SpriteFacingData.Below ?? Sprite;
+                if (SpriteFacingData.Below != null)
+                {
+                    return SpriteFacingData.Below;
+                }
+                return Sprite;
             case CompassDirections.East:
-                return SpriteFacingData.Right ?? Sprite;
+                if (SpriteFacingData.Right != null)
+                {
+                    return SpriteFacingData.Right;
+                }
+                return Sprite;
             case CompassDirections.West:
-                return SpriteFacingData.Left ?? Sprite;
+                if (SpriteFacingData.Left != null)
+                {
+                    return SpriteFacingData.Left;
+                }
+                return Sprite;
             default:
                 return Sprite;
         }

@@ -70,6 +70,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
     [HideInInspector]
     public Tile GuardingTile;
+    public Tile BodyGuardedByTile;
+    public CompassDirections DirectionToLook = CompassDirections.West;
     private bool IsEnraged = false;
     private bool ShouldStandUp = false;
 
@@ -284,6 +286,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         Player player = ServiceLocator.Instance.Player;
 
+        // Associated guard gets enraged when yourself is conquered
+        if (TileState.Conquered == State && BodyGuardedByTile != null && BodyGuardedByTile.State < TileState.Conquered)
+        {
+            BodyGuardedByTile.LookTowards(XCoordinate, YCoordinate, true);
+            BodyGuardedByTile.TEMP_UpdateVisuals();
+        }
+
         if (TileState.Conquered == State && HousedObject.Power > 0)
         {
             if (player.TEMP_PredictDeath(HousedObject.Power))
@@ -308,10 +317,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             if (HousedObject && HousedObject.ScreenshakeOnConquer)
             {
                 StartCoroutine(ServiceLocator.Instance.Grid.Shake());
-            }
-            if (GuardingTile != null)
-            {
-                GuardingTile.LookTowards(XCoordinate, YCoordinate, true);
             }
         }
 
@@ -394,9 +399,36 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    private void LookTowards(int xCoordinate, int yCoordinate, bool enrage)
+    public void LookAwayFrom(int xCoordinate, int yCoordinate, bool enrage)
     {
-        if (!HousedObject.CanEnrage)
+        if (HousedObject.CanEnrage)
+        {
+            return;
+        }
+        if (enrage)
+        {
+            IsEnraged = true;
+        }
+        // if our position is to the right of our target flip us around.
+        if (xCoordinate < this.XCoordinate)
+        {
+            DirectionToLook = CompassDirections.East;
+        }
+        else if (xCoordinate > this.XCoordinate)
+        {
+            DirectionToLook = CompassDirections.West;
+        }
+        else
+        {
+            // Rats stand up
+            DirectionToLook = CompassDirections.West;
+            ShouldStandUp = true;
+        }
+    }
+
+    public void LookTowards(int xCoordinate, int yCoordinate, bool enrage)
+    {
+        if (HousedObject.CanEnrage)
         {
             return;
         }
@@ -407,26 +439,18 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         // if our position is to the left of our enrage target flip us around.
         if (xCoordinate > this.XCoordinate)
         {
-            if (ExclamationMarker != null)
-            {
-                ExclamationMarker.transform.localScale = new Vector3(-1, 1, 1);
-            }
-            if (HousedObjectSprite != null)
-            {
-                HousedObjectSprite.transform.localScale = new Vector3(-1, 1, 1);
-            }
+            DirectionToLook = CompassDirections.East;
         }
         else if (xCoordinate < this.XCoordinate)
         {
-            ResetLook();
+            DirectionToLook = CompassDirections.West;
         }
         else
         {
             // Rats stand up
-            ResetLook();
             ShouldStandUp = true;
+            DirectionToLook = CompassDirections.West;
         }
-        TEMP_UpdateVisuals();
     }
 
     private void ResetLook()
@@ -435,10 +459,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         {
             ExclamationMarker.transform.localScale = new Vector3(1, 1, 1);
         }
-        if (HousedObject != null)
-        {
-            HousedObjectSprite.transform.localScale = new Vector3(1, 1, 1);
-        }
+        HousedObjectSprite.transform.localScale = new Vector3(1, 1, 1);
     }
 
     private bool IsAutomaticState(TileState state)
@@ -520,8 +541,24 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         HousedObjectSprite.enabled = objectOverrides.EnableSprite.UseOverride ? objectOverrides.EnableSprite.Value : HousedObjectSprite.enabled;
         XSpriteRenderer.enabled = objectOverrides.EnableDeathSprite.UseOverride ? objectOverrides.EnableDeathSprite.Value : XSpriteRenderer.enabled;
 
-        // TODO Here the get sprite and guard logic should set....
-        HousedObjectSprite.sprite = HousedObject ? HousedObject.TEMP_GetSprite(ShouldStandUp, CompassDirections.None) : null;
+        HousedObjectSprite.sprite = HousedObject ? HousedObject.TEMP_GetSprite(ShouldStandUp, DirectionToLook) : null;
+
+        if (DirectionToLook == CompassDirections.East)
+        {
+            if (ExclamationMarker != null)
+            {
+                ExclamationMarker.transform.localScale = new Vector3(-1, 1, 1);
+            }
+            HousedObjectSprite.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else // default scale looks right
+        {
+            if (ExclamationMarker != null)
+            {
+                ExclamationMarker.transform.localScale = Vector3.one;
+            }
+            HousedObjectSprite.transform.localScale = Vector3.one;
+        }
         if (objectOverrides.Sprite.UseOverride)
         {
             HousedObjectSprite.sprite = objectOverrides.Sprite.Value;
