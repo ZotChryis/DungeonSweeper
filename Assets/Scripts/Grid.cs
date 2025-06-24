@@ -105,7 +105,13 @@ public class Grid : MonoBehaviour
     private void PlaceSpawns()
     {
         // The spawn entries are handled in order, so fill those out with that in mind
-        foreach (var spawnEntry in SpawnSettings.GridSpawns)
+        SpawnEntriesInArray(SpawnSettings.GridSpawns);
+        SpawnEntriesInArray(SpawnSettings.NormalSpawns);
+    }
+
+    private void SpawnEntriesInArray(SpawnSettings.GridSpawnEntry[] entries)
+    {
+        foreach (var spawnEntry in entries)
         {
             // We spawn all of the instances of each enemy before moving on.
             int primarySpawnCount = spawnEntry.Amount;
@@ -113,6 +119,13 @@ public class Grid : MonoBehaviour
             {
                 primarySpawnCount += bonusPrimaryCopies;
             }
+
+            int desiredLookX = 0, desiredLookY = 0;
+            if (spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride != null)
+            {
+                (desiredLookX, desiredLookY) = ServiceLocator.Instance.Grid.FindNearest(spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride, 0, 0);
+            }
+
             for (int i = 0; i < primarySpawnCount; i++)
             {
                 (int, int) coordinates;
@@ -136,6 +149,7 @@ public class Grid : MonoBehaviour
                             consecutiveCopies += bonusCopies;
                         }
                         Debug.Log($"Try spawn {spawnEntry.ConsecutiveCopies}+{bonusCopies} consecutives given {additionalSpawnLocations.Count} possibilities. name:{spawnEntry.Requirement.name}");
+
                         for (int add = 0; add < consecutiveCopies && add < additionalSpawnLocations.Count; add++)
                         {
                             UnoccupiedSpaces.RemoveUnoccupiedSpace(additionalSpawnLocations[add].x, additionalSpawnLocations[add].y);
@@ -158,6 +172,11 @@ public class Grid : MonoBehaviour
                     coordinates = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
                     UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
                     Tiles[coordinates.Item1, coordinates.Item2].PlaceTileObj(spawnEntry.Object);
+                }
+
+                if (spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride != null)
+                {
+                    Tiles[coordinates.Item1, coordinates.Item2].LookTowards(desiredLookX, desiredLookY, false, true);
                 }
             }
         }

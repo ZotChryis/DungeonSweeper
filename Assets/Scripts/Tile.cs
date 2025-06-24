@@ -289,7 +289,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         // Associated guard gets enraged when yourself is conquered
         if (TileState.Conquered == State && BodyGuardedByTile != null && BodyGuardedByTile.State < TileState.Conquered)
         {
-            BodyGuardedByTile.LookTowards(XCoordinate, YCoordinate, true);
+            BodyGuardedByTile.LookTowards(XCoordinate, YCoordinate, true, false);
             BodyGuardedByTile.TEMP_UpdateVisuals();
         }
 
@@ -401,10 +401,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
     public void LookAwayFrom(int xCoordinate, int yCoordinate, bool enrage)
     {
-        if (HousedObject.CanEnrage)
-        {
-            return;
-        }
         if (enrage)
         {
             IsEnraged = true;
@@ -426,12 +422,15 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    public void LookTowards(int xCoordinate, int yCoordinate, bool enrage)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="xCoordinate"></param>
+    /// <param name="yCoordinate"></param>
+    /// <param name="enrage"></param>
+    /// <param name="canStandUp">Whether to stand up if on same row</param>
+    public void LookTowards(int xCoordinate, int yCoordinate, bool enrage, bool canStandUp)
     {
-        if (HousedObject.CanEnrage)
-        {
-            return;
-        }
         if (enrage)
         {
             IsEnraged = true;
@@ -448,7 +447,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         else
         {
             // Rats stand up
-            ShouldStandUp = true;
+            ShouldStandUp = canStandUp;
             DirectionToLook = CompassDirections.West;
         }
     }

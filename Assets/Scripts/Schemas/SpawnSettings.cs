@@ -27,7 +27,7 @@ public class SpawnSettings : Schema
     public GridSpawnEntry[] GridSpawns;
 
     /// <summary>
-    /// Normal entries to spawn. The order of these spawned don't matter all too much.
+    /// Normal entries to spawn. The order of these spawned should not matter.
     /// </summary>
     public GridSpawnEntry[] NormalSpawns;
 }

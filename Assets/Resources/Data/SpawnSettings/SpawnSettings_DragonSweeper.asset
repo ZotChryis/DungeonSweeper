@@ -75,30 +75,6 @@ MonoBehaviour:
     ConsecutiveCopies: 1
     GuardRelationship: 1
     Requirement: {fileID: 11400000, guid: cf63b8502721e2d49b1fea894026229f, type: 2}
-  - Amount: 13
-    Object: {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    GuardRelationship: 0
-    Requirement: {fileID: 0}
-  - Amount: 12
-    Object: {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    GuardRelationship: 0
-    Requirement: {fileID: 0}
-  - Amount: 11
-    Object: {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    GuardRelationship: 0
-    Requirement: {fileID: 0}
-  - Amount: 8
-    Object: {fileID: 11400000, guid: e15ca38b7873a0041bfbf7b08ec78210, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    GuardRelationship: 0
-    Requirement: {fileID: 0}
   - Amount: 4
     Object: {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
     ConsecutiveSpawn: {fileID: 0}
@@ -111,20 +87,33 @@ MonoBehaviour:
     ConsecutiveCopies: 0
     GuardRelationship: 0
     Requirement: {fileID: 0}
-  - Amount: 2
-    Object: {fileID: 11400000, guid: bdc6289f953291d4498d61248bd3b94a, type: 2}
+  NormalSpawns:
+  - Amount: 3
+    Object: {fileID: 11400000, guid: 3930811686fb7234c9ab6bb8e323598d, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     GuardRelationship: 0
     Requirement: {fileID: 0}
-  - Amount: 1
-    Object: {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}
+  - Amount: 8
+    Object: {fileID: 11400000, guid: e15ca38b7873a0041bfbf7b08ec78210, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     GuardRelationship: 0
     Requirement: {fileID: 0}
-  - Amount: 9
-    Object: {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
+  - Amount: 11
+    Object: {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    GuardRelationship: 0
+    Requirement: {fileID: 0}
+  - Amount: 12
+    Object: {fileID: 11400000, guid: 6d9dbeda9114f43429d54fdc45380968, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    GuardRelationship: 0
+    Requirement: {fileID: 0}
+  - Amount: 13
+    Object: {fileID: 11400000, guid: 6ab5b38398c967c4d98d549bf3b35c04, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     GuardRelationship: 0
@@ -147,10 +136,21 @@ MonoBehaviour:
     ConsecutiveCopies: 0
     GuardRelationship: 0
     Requirement: {fileID: 0}
-  - Amount: 2
-    Object: {fileID: 11400000, guid: 3930811686fb7234c9ab6bb8e323598d, type: 2}
+  - Amount: 9
+    Object: {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     GuardRelationship: 0
     Requirement: {fileID: 0}
-  NormalSpawns: []
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 5464a2e7260a84b4a934ffed3bae285d, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    GuardRelationship: 0
+    Requirement: {fileID: 0}
+  - Amount: 2
+    Object: {fileID: 11400000, guid: bdc6289f953291d4498d61248bd3b94a, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    GuardRelationship: 0
+    Requirement: {fileID: 0}

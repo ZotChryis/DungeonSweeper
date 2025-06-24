@@ -20,6 +20,9 @@ public class TileObjectSchema : Schema
     [Serializable]
     public struct SpriteFacing
     {
+        // Object to look for. We find the nearest one. There should be only one.
+        public TileObjectSchema ObjectToLookAtOverride;
+
         // The direction to look. Only used if not null.
         public Sprite Above;
         public Sprite Below;
