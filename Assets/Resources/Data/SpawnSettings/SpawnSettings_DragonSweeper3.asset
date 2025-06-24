@@ -184,9 +184,3 @@ MonoBehaviour:
     ConsecutiveCopies: 0
     GuardRelationship: 0
     Requirement: {fileID: 0}
-  - Amount: 0
-    Object: {fileID: 0}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    GuardRelationship: 0
-    Requirement: {fileID: 0}
