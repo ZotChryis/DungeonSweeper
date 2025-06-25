@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: d0c9373cebe01004784e652c3d505efc
+guid: 2f9e61eb16d6f544ca607bcb17225238
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8333211575544147882
-    second: Bat_Awake_0
-  - first:
-      213: 8526840936569618444
-    second: Bat_Awake_1
-  - first:
-      213: 9080265837621965656
-    second: Bat_Awake_2
-  - first:
-      213: -604744835541796978
-    second: Bat_Awake_3
+      213: 1637954016605795844
+    second: Locked_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -93,7 +84,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: iOS
+    buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -119,33 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -161,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bat_Awake_0
+      name: Locked_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 13
-        width: 270
-        height: 567
+        x: 66
+        y: 43
+        width: 229
+        height: 273
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,74 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6509489293c7a5c80800000000000000
-      internalID: -8333211575544147882
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat_Awake_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 15
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c00cd7897ac655670800000000000000
-      internalID: 8526840936569618444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat_Awake_2
-      rect:
-        serializedVersion: 2
-        x: 188
-        y: 9
-        width: 17
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 85372958ba5930e70800000000000000
-      internalID: 9080265837621965656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Bat_Awake_3
-      rect:
-        serializedVersion: 2
-        x: 268
-        y: 13
-        width: 5
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e8777c1b6c38b97f0800000000000000
-      internalID: -604744835541796978
+      spriteID: 4067636ff7e2bb610800000000000000
+      internalID: 1637954016605795844
       vertices: []
       indices: 
       edges: []
@@ -261,11 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Bat_Awake_0: -8333211575544147882
-      Bat_Awake_1: 8526840936569618444
-      Bat_Awake_2: 9080265837621965656
-      Bat_Awake_3: -604744835541796978
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

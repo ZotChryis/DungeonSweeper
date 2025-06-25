@@ -2,6 +2,7 @@
 using Gameplay;
 using Schemas;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class ClassSelectionItem : MonoBehaviour
 {
     [SerializeField] private Class.Id Class;
     [SerializeField] private Image Icon;
+    [SerializeField] private Image LockedIcon;
     [SerializeField] private TMP_Text Name;
     [SerializeField] private TMP_Text Description;
     [SerializeField] private Button Button;
@@ -27,11 +29,23 @@ public class ClassSelectionItem : MonoBehaviour
         Description.SetText(Schema.Description);
 
         Button.onClick.AddListener(OnButtonClicked);
+        
+        // TODO: Achievement based unlocks
+        SetLocked(Class != Gameplay.Class.Id.Adventurer);
+    }
+
+    private void SetLocked(bool locked)
+    {
+        Button.interactable = !locked;
+        LockedIcon.GameObject().SetActive(locked);
     }
 
     private void OnButtonClicked()
     {
         ServiceLocator.Instance.Player.TEMP_SetClass(Class);
-        ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
+        
+        // When a class is selected, we will close the class selection screen AND the main menu screen
+        // TODO: Do proper scene mangagement
+        ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
     }
 }

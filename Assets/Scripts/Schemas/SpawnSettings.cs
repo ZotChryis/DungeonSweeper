@@ -9,11 +9,14 @@ public class SpawnSettings : Schema
     {
         public int Amount;
         public TileObjectSchema Object;
+        
         /// <summary>
         /// Spawn this immediately following the Object spawn
         /// </summary>
         public TileObjectSchema ConsecutiveSpawn;
         public int ConsecutiveCopies;
+        public bool ConsecutiveStackedInLibrary;
+        
         public bool GuardRelationship;
         public SpawnRequirement Requirement;
     }

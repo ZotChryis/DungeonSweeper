@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Minotaur
   m_EditorClassIdentifier: 
   UserFacingName: Minotaur
-  UserFacingDescription: ???
+  UserFacingDescription: The best guard in the land, the Dragon knows exactly where
+    to place them.
   Id: minotaur
   Sprite: {fileID: 1612175002337491917, guid: 8281dfc95d1acf94fadfc1d0dd855e42, type: 3}
   SpriteFacingData:
-    NearestObject: {fileID: 0}
+    ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
     Below: {fileID: 0}
     Right: {fileID: 0}

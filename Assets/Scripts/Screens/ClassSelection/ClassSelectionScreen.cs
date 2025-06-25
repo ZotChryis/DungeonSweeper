@@ -1,11 +1,6 @@
-﻿using System;
-using UnityEngine;
-
-public class ClassSelectionScreen : BaseScreen
+﻿namespace Screens.ClassSelection
 {
-    public void Start()
+    public class ClassSelectionScreen : BaseScreen
     {
-        // TODO: Better game flow, for now just start with this on
-        //ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.ClassSelection);
     }
 }

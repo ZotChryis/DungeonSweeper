@@ -13,27 +13,28 @@ MonoBehaviour:
   m_Name: Vision_Tarot
   m_EditorClassIdentifier: 
   UserFacingName: 'Tarot Card: Vision'
-  UserFacingDescription: ???
+  UserFacingDescription: Reveals the current tile.
   Id: visiontarot
   Sprite: {fileID: 116448157027243579, guid: 6bf67724d4cf49340945afff56b0f0c5, type: 3}
   SpriteFacingData:
-    NearestObject: {fileID: 0}
+    ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
     Below: {fileID: 0}
-    Behind: {fileID: 0}
-    Front: {fileID: 0}
+    Right: {fileID: 0}
+    Left: {fileID: 0}
     Missing: {fileID: 0}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
   DropReward: {fileID: 0}
-  GenerateRandomLocationForReveal: 0
+  RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -42,6 +43,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
+  ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

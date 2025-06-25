@@ -15,5 +15,5 @@ MonoBehaviour:
   Id: 0
   Sprite: {fileID: 7738998316474853551, guid: 2b379b67f14de8f45ae646b5954b34a3, type: 3}
   Name: Adventurer
-  Description: Balanced but boring.
+  Description: A balanced experience.
   StartingItem: 0

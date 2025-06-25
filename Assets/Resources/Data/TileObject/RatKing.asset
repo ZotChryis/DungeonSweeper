@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: RatKing
   m_EditorClassIdentifier: 
   UserFacingName: Pied Piper
-  UserFacingDescription: ???
+  UserFacingDescription: With his soothing tones, the rats follow his every note.
   Id: piper
   Sprite: {fileID: -8149248579746061818, guid: a0469392af577df4399da276d392393c, type: 3}
   SpriteFacingData:
-    NearestObject: {fileID: 0}
+    ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
     Below: {fileID: 0}
-    Behind: {fileID: 0}
-    Front: {fileID: 0}
+    Right: {fileID: 0}
+    Left: {fileID: 0}
     Missing: {fileID: 0}
   Power: 5
   HidePowerToNeighbors: 0
@@ -34,6 +34,7 @@ MonoBehaviour:
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -42,6 +43,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
+  ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

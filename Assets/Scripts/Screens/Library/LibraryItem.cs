@@ -18,13 +18,13 @@ public class LibraryItem : MonoBehaviour
     
     [SerializeField] 
     private TMP_Text Amount;
-    
-    public void SetGridSpawn(SpawnSettings.GridSpawnEntry gridSpawn)
+
+    public void SetData(TileObjectSchema tileObject, int amount)
     {
-        Icon.sprite = gridSpawn.Object.Sprite;
-        Power.SetText(gridSpawn.Object.Power.ToString());
-        Amount.SetText("x" + gridSpawn.Amount.ToString());
-        Name.SetText(gridSpawn.Object.UserFacingName);
-        Description.SetText(gridSpawn.Object.UserFacingDescription);
+        Icon.sprite = tileObject.Sprite;
+        Power.SetText(tileObject.Power.ToString());
+        Amount.SetText("x" + amount.ToString());
+        Name.SetText(tileObject.UserFacingName);
+        Description.SetText(tileObject.UserFacingDescription);
     }
 }
