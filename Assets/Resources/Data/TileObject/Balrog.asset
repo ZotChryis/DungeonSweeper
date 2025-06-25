@@ -13,27 +13,29 @@ MonoBehaviour:
   m_Name: Balrog
   m_EditorClassIdentifier: 
   UserFacingName: Balrog
-  UserFacingDescription: ???
+  UserFacingDescription: The undefeatable demon-lord. Even the Dragon leaves him
+    alone. You should too.
   Id: balrog
   Sprite: {fileID: 6116292215999839277, guid: fd27b57868d339f49a0aa89c3203fc31, type: 3}
   SpriteFacingData:
-    NearestObject: {fileID: 0}
+    ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
     Below: {fileID: 0}
-    Behind: {fileID: 0}
-    Front: {fileID: 0}
+    Right: {fileID: 0}
+    Left: {fileID: 0}
     Missing: {fileID: 0}
   Power: 666
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 666
   DropReward: {fileID: 0}
-  GenerateRandomLocationForReveal: 0
+  RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -42,6 +44,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
+  ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

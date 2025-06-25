@@ -30,7 +30,7 @@ namespace Screens
         // TODO: Show achievements screen
         public void OnAchievementsPressed()
         {
-            
+            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Achievements);
         }
 
         // TODO: Show settings screen

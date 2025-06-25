@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Faerie
   UserFacingDescription: ???
   Id: faerie
-  Sprite: {fileID: 2492405507857420014, guid: 4f23b1351a981384993ea09eb0caffad, type: 3}
+  Sprite: {fileID: -3246102915477046997, guid: ebf3a4c5ce1136542832f71273684db3, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
