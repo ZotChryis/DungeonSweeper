@@ -31,7 +31,7 @@ public class ClassSelectionItem : MonoBehaviour
         Button.onClick.AddListener(OnButtonClicked);
         
         // TODO: Achievement based unlocks
-        SetLocked(Class != Gameplay.Class.Id.Adventurer);
+        SetLocked(Class != Gameplay.Class.Id.Adventurer && Class != Gameplay.Class.Id.Warrior);
     }
 
     private void SetLocked(bool locked)

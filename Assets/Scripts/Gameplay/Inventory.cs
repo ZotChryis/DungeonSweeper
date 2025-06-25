@@ -1,15 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Schemas;
 
 namespace Gameplay
 {
     public class Inventory
     {
+        public Action<Gameplay.Item> OnItemAdded;
+        public Action<Gameplay.Item> OnItemChargeChanged;
+        public Action<Gameplay.Item> OnItemRemoved;
+        
         /// <summary>
         /// For stacks of items, Item has a Quantity that should be updated instead of trying to add collisions to the dictionary.
         /// </summary>
         Dictionary<Item.Id, Item> Items = new Dictionary<Item.Id, Item>();
 
+        public List<Item> GetAllItems() => Items.Values.ToList();
+        
         /// <summary>
         /// Returns if we have the item in the inventory. Even if it's empty.
         /// </summary>
@@ -27,7 +35,8 @@ namespace Gameplay
             {
                 if (item.IsConsumable)
                 {
-                    // TODO: more logic here
+                    item.AddCharge(1);
+                    OnItemChargeChanged?.Invoke(item);
                     return true;
                 }
 
@@ -41,14 +50,32 @@ namespace Gameplay
                     continue;
                 }
 
-                Items.Add(itemId, new Item(itemSchema));
+                var newItem = new Item(itemSchema);
+                Items.Add(itemId, newItem);
+                OnItemAdded?.Invoke(newItem);
                 return true;
             }
 
             return false;
         }
-    }
 
+        public bool UseItem(Item item)
+        {
+            if (!item.CanBeUsed())
+            {
+                return false;
+            }
+
+            if (item.IsConsumable)
+            {
+                item.RemoveCharge(1);
+                OnItemChargeChanged?.Invoke(item);
+            }
+            
+            return true;
+        }
+    }
+    
     public class Item
     {
         public enum Id
@@ -68,6 +95,7 @@ namespace Gameplay
             // More items...
         }
 
+        public ItemSchema Schema;
         public Id ItemId;
         public bool IsConsumable;
         public int MaxQuantity;
@@ -76,9 +104,25 @@ namespace Gameplay
 
         public Item (ItemSchema schema)
         {
-            ItemId = schema.Id;
+            Schema = schema;
             
             // TODO: More logic here
+        }
+
+        public void AddCharge(int amount)
+        {
+            CurrentQuantity += amount;
+            MaxQuantity += amount;
+        }
+
+        public void RemoveCharge(int amount)
+        {
+            CurrentQuantity -= amount;
+        }
+
+        public bool CanBeUsed()
+        {
+            return IsConsumable && CurrentQuantity >= 0;
         }
     }
 }

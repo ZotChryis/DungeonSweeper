@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  Id: 0
+  Id: 1
   Name: Sword
-  Description: Tried and true; a simple Warrior's weapon.
+  Description: Take -1 less damage from Ranged. Take +1 more damage from Flying.
   Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}

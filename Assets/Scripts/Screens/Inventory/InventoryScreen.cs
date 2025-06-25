@@ -1,7 +1,7 @@
-﻿using System;
-using TMPro;
+﻿using System.Collections.Generic;
+using Gameplay;
+using Screens.Inventory;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryScreen : BaseScreen
 {
@@ -10,13 +10,42 @@ public class InventoryScreen : BaseScreen
 
     [SerializeField] 
     private Transform ItemListRoot;
-}
 
-[Serializable]
-public class InventoryItem
-{
-    [SerializeField] private Image Icon;
-    [SerializeField] private TMP_Text Name;
-    [SerializeField] private TMP_Text Description;
-    [SerializeField] private TMP_Text Quantity; // If consumable
+    [SerializeField] 
+    private InventoryDetails Details;
+    
+    private List<InventoryItem> Items;
+
+    private void Start()
+    {
+        Items = new List<InventoryItem>();
+            
+        // Bind to the inventory events
+        var inventory = ServiceLocator.Instance.Player.Inventory;
+        inventory.OnItemAdded += OnItemAdded;
+        inventory.OnItemChargeChanged += OnItemChargeChanged;
+        
+        // Handle any that are already there
+        foreach (var item in inventory.GetAllItems())
+        {
+            OnItemAdded(item);
+        }
+    }
+
+    private void OnItemAdded(Item item)
+    {
+        InventoryItem newItem = Instantiate<InventoryItem>(ItemPrefab, ItemListRoot);
+        newItem.Initialize(this, item);
+        Items.Add(newItem);
+    }
+
+    private void OnItemChargeChanged(Item item)
+    {
+        FocusItem(item);
+    }
+
+    public void FocusItem(Item item)
+    {
+        Details.SetItem(item);
+    }
 }

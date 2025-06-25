@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Gameplay;
-using Mono.Cecil;
 using Schemas;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -131,12 +130,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         HasDemonBanePowers = true;
     }
-
+    
     public void AddRevealNeighborPower(string ObjectId)
     {
         TilesWhichShowNeighborPower.Add(ObjectId.ToLower());
     }
-
+    
     public void AddOrIncrementTileLevel(string ObjectId)
     {
         int level = 0;
@@ -155,6 +154,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
      
         Class = classId;
         PlayerIcon.sprite = schema.Sprite;
+
+        Inventory.AddItem(schema.StartingItem);
         
         ResetPlayer();
     }
@@ -169,10 +170,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentHealth = Mathf.Clamp(CurrentHealth + amount, -1, (MaxHealth + BonusMaxHp));
         TEMP_UpdateVisuals();
     }
-
-
-
-
 
     /// <summary>
     /// Update health. Allow overhealing. Mostly for damaging player.

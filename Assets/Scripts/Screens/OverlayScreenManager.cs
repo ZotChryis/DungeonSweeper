@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using Unity.VisualScripting;
 
 public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
 {
