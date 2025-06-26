@@ -11,7 +11,7 @@ namespace Screens.Inventory
         [SerializeField] private TMP_Text Description;
         [SerializeField] protected Button Button;
 
-        protected Item Item;
+        protected ItemInstance ItemInstance;
         
         private void Start()
         {
@@ -26,18 +26,18 @@ namespace Screens.Inventory
 
         protected virtual void HandleButtonClicked()
         {
-            ServiceLocator.Instance.Player.Inventory.UseItem(Item);
-            Button.interactable = Item.CanBeUsed();
+            ServiceLocator.Instance.Player.Inventory.UseItem(ItemInstance);
+            Button.interactable = ItemInstance.CanBeUsed();
         }
 
-        public virtual void SetItem(Item item)
+        public virtual void SetItem(ItemInstance itemInstance)
         {
-            Item = item;
+            ItemInstance = itemInstance;
             
-            Name.SetText(item.Schema.Name);
-            Description.SetText(item.Schema.Description);
+            Name.SetText(itemInstance.Schema.Name);
+            Description.SetText(itemInstance.Schema.Description);
 
-            Button.interactable = item.CanBeUsed();
+            Button.interactable = itemInstance.CanBeUsed();
         }
 
         public void ClearFocusedItem()

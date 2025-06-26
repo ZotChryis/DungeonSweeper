@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Beholder
   UserFacingDescription: Hides the power of nearby tiles.
+  Tags: 0100000004000000
   Id: beholder
   Sprite: {fileID: 7372985931835974456, guid: e355f363054b12a459d2bc97129a64c0, type: 3}
   SpriteFacingData:

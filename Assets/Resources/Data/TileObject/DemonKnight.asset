@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Demon Knight
   UserFacingDescription: A dutiful servant to the Dragon; a tough advesary.
+  Tags: 0100000002000000
   Id: demon
   Sprite: {fileID: 3558371306628847786, guid: b42cdfd9df469bc41bf77a358a1a8cf4, type: 3}
   SpriteFacingData:

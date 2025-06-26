@@ -531,6 +531,7 @@ MonoBehaviour:
   EnemySpawner: {fileID: 980767304}
   OverlayScreenManager: {fileID: 0}
   TileContextMenu: {fileID: 0}
+  LevelManager: {fileID: 0}
 --- !u!4 &2141878072
 Transform:
   m_ObjectHideFlags: 0

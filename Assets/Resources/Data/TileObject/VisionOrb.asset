@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Vision Orb
   UserFacingDescription: Reveals neighboring tiles.
+  Tags: 00000000
   Id: visionorb
   Sprite: {fileID: -1910244127391616031, guid: 0a69202494704544e90f75e07c45420b, type: 3}
   SpriteFacingData:

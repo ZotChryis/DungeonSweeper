@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: 
   UserFacingDescription: Hit it a few times to make it shatter. Cannot kill you.
+  Tags: 00000000
   Id: brick
   Sprite: {fileID: 6878312378708349726, guid: ee5b00eb70a3af345a1af59823d99fe2, type: 3}
   SpriteFacingData:

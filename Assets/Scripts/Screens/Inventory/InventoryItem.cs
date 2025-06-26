@@ -10,7 +10,7 @@ namespace Screens.Inventory
         [SerializeField] private Button Button;
 
         private InventoryScreen Screen;
-        private Item Item;
+        private ItemInstance ItemInstance;
 
         private void Start()
         {
@@ -19,15 +19,15 @@ namespace Screens.Inventory
 
         private void OnButtonClicked()
         {
-            Screen.FocusItem(Item);
+            Screen.FocusItem(ItemInstance);
         }
 
-        public void Initialize(InventoryScreen screen, Item item)
+        public void Initialize(InventoryScreen screen, ItemInstance itemInstance)
         {
             Screen = screen;
-            Item = item;
+            ItemInstance = itemInstance;
 
-            Icon.sprite = item.Schema.Sprite;
+            Icon.sprite = itemInstance.Schema.Sprite;
         }
     }
 }

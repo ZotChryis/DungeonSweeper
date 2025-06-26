@@ -1,4 +1,6 @@
-﻿using Sirenix.OdinInspector;
+﻿using System;
+using Screens.Shop;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -21,16 +23,20 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int currentLevel = 0;
 
+    private void Awake()
+    {
+        ServiceLocator.Instance.Register(this);
+    }
+
     // TODO: Let's remove asset usages of functions like this. If its on a button, we should bind the callback in code
     public void NextLevel()
     {
         currentLevel++;
         SetLevel(currentLevel);
-        ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
     }
 
     // TODO: Go through GameManager just for clarity
-    private void SetLevel(int level)
+    public void SetLevel(int level)
     {
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
         ServiceLocator.Instance.Grid.GenerateGrid();

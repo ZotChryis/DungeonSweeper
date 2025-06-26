@@ -8,7 +8,13 @@
             Warrior,
             Ranger,
             Wizard,
-            // etc
+            Ritualist,
+            Bard,
+            FortuneTeller,
+            Miner,
+            Priest,
+            Apothecary
+            
         }
     }
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   UserFacingName: Lich
   UserFacingDescription: An undead servant of the Dragon, responsible for making
     the mines.
+  Tags: 0100000003000000
   Id: skeleton
   Sprite: {fileID: -2858330702786226967, guid: 5815ab2fcc572684aa5cece91ef51573, type: 3}
   SpriteFacingData:

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: 'Tarot Card: Vision'
   UserFacingDescription: Reveals the current tile.
+  Tags: 00000000
   Id: visiontarot
   Sprite: {fileID: 116448157027243579, guid: 6bf67724d4cf49340945afff56b0f0c5, type: 3}
   SpriteFacingData:

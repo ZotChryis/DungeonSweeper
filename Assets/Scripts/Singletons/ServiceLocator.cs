@@ -25,6 +25,10 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public TileContextMenuScreen TileContextMenu;
+    
+    // TODO: We need a better home for all the level/shop transition logic
+    [HideInInspector]
+    public LevelManager LevelManager;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class
@@ -71,5 +75,10 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public void Register(TileContextMenuScreen tileContextMenu)
     {
         TileContextMenu = tileContextMenu;
+    }
+    
+    public void Register(LevelManager levelManager)
+    {
+        LevelManager = levelManager;
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Gameplay;
 using Schemas;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // TODO: Separate the UI from the business logic. One should be in UI space, and one should be in Gameplay space
@@ -31,7 +33,17 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int CurrentHealth;
     private int MaxHealth;
     public int BonusStartingHp = 0;
-    public int HpRegeneration = 0;
+    public int BonusStartXp = 0;
+    public int SecondWindRegeneration = 0;
+    
+    //TODO: Merge these concepts (id and Tag)
+    // By id, "global" is an overall id
+    public Dictionary<string, int> ModDamageTaken = new Dictionary<string, int>();
+    public Dictionary<string, int> ModXp = new Dictionary<string, int>();
+    
+    public Dictionary<TileObjectSchema.Tag, int> ModDamageTakenByTag = new Dictionary<TileObjectSchema.Tag, int>();
+    public Dictionary<TileObjectSchema.Tag, int> ModXpByTag = new Dictionary<TileObjectSchema.Tag, int>();
+    
     public Class.Id Class = Gameplay.Class.Id.Adventurer;
     public Inventory Inventory;
 
@@ -80,7 +92,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         Hearts = HeartContainer.GetComponentsInChildren<PlayerUIItem>();
         XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
         
-        Inventory = new Inventory();
+        Inventory = new Inventory(true);
+        
+        // TODO: Make this system better
+        ModDamageTaken.Add("global", 0);
+        ModXp.Add("global", 0);
     }
 
     private void Start()
@@ -101,49 +117,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId);
         }
     }
-
-    #region PlayerPowers
-    public void AddMonsterToAutoRevealedList(string monsterId)
-    {
-        RevealedMonsters.Add(monsterId);
-    }
-
-    public void AddAndIncrementMonsterToBonusSpawn(string monsterId)
-    {
-        int bonusSpawn = 0;
-        BonusSpawn.TryGetValue(monsterId, out bonusSpawn);
-        bonusSpawn++;
-        BonusSpawn[monsterId] = bonusSpawn;
-    }
-
-    public void AddPlayerBonusStartingHp()
-    {
-        BonusStartingHp++;
-    }
-
-    public void AddPlayerRegeneration()
-    {
-        HpRegeneration++;
-    }
-
-    public void AddDemonBanePower()
-    {
-        HasDemonBanePowers = true;
-    }
     
-    public void AddRevealNeighborPower(string ObjectId)
-    {
-        TilesWhichShowNeighborPower.Add(ObjectId.ToLower());
-    }
-    
-    public void AddOrIncrementTileLevel(string ObjectId)
-    {
-        int level = 0;
-        TileObjectsThatShouldUpgrade.TryGetValue(ObjectId, out level);
-        TileObjectsThatShouldUpgrade[ObjectId] = level + 1;
-    }
-    #endregion
-
     public void TEMP_SetClass(Class.Id classId)
     {
         ClassSchema schema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == classId);
@@ -160,9 +134,36 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ResetPlayer();
     }
     
-    public bool TEMP_PredictDeath(int amount)
+    public bool TEMP_PredictDeath(TileObjectSchema source, int amount)
     {
+        amount = GetModifiedDamage(source, amount);
         return CurrentHealth - amount < 0;
+    }
+
+    private int GetModifiedDamage(TileObjectSchema source, int amount)
+    {
+        if (source != null)
+        {
+            if (source.Tags.Contains(TileObjectSchema.Tag.Enemy))
+            {
+                amount += ModDamageTaken["global"];
+            }
+
+            if (ModDamageTaken.TryGetValue(source.Id, out int value))
+            {
+                amount += value;
+            }
+            
+            foreach (var sourceTag in source.Tags)
+            {
+                if (ModDamageTakenByTag.TryGetValue(sourceTag, out int tagValue))
+                {
+                    amount += tagValue;
+                }
+            }
+        }
+
+        return amount;
     }
 
     public void HealPlayerNoOverheal(int amount)
@@ -176,18 +177,33 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// </summary>
     /// <param name="amount"></param>
     /// <returns>true if the player is dead</returns>
-    public bool UpdateHealth(int amount)
+    public bool UpdateHealth(TileObjectSchema source, int amount)
     {
+        // pre-process any weird enemy logic, pre items
         if (amount == -7 && HasDemonBanePowers && !HasUsedDemonBanePowers)
         {
             amount = -3;
+        }
+        
+        // Now deal with item bonuses
+        // TODO: we need a better way to deal with heals and damage
+        if (amount < 0)
+        {
+            // Flip the damage to positive for calculations
+            amount *= -1;
+            
+            // Get the modified damage result
+            amount = GetModifiedDamage(source, amount);
+            
+            // Flip it back to negative for damage
+            amount *= -1;
         }
 
         CurrentHealth = Mathf.Max(CurrentHealth + amount, -1);
         if (CurrentHealth == 0 && !HasRegeneratedThisRound)
         {
             HasRegeneratedThisRound = true;
-            CurrentHealth += HpRegeneration;
+            CurrentHealth += SecondWindRegeneration;
         }
 
         TEMP_UpdateVisuals();
@@ -202,10 +218,41 @@ public class Player : MonoBehaviour, IPointerClickHandler
         return false;
     }
 
-    public void TEMP_UpdateXP(int amount)
+    public void TEMP_UpdateXP(TileObjectSchema source, int amount)
     {
+        amount = GetModifiedXp(source, amount);
         CurrentXP += amount;
         TEMP_UpdateVisuals();
+    }
+
+    private int GetModifiedXp(TileObjectSchema source, int amount)
+    {
+        if (source != null)
+        {
+            // global bonuses currently only for enemies
+            if (source != null)
+            {
+                if (source.Tags.Contains(TileObjectSchema.Tag.Enemy))
+                {
+                    amount += ModXp["global"];
+                }
+
+                if (ModXp.TryGetValue(source.Id, out int value))
+                {
+                    amount += value;
+                }
+            
+                foreach (var sourceTag in source.Tags)
+                {
+                    if (ModXpByTag.TryGetValue(sourceTag, out int tagValue))
+                    {
+                        amount += tagValue;
+                    }
+                }
+            }
+        }
+
+        return amount;
     }
 
     /// <summary>
@@ -272,6 +319,95 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentXP = 0;
         HasUsedDemonBanePowers = false;
         LevelUp();
-        UpdateHealth(BonusStartingHp);
+        
+        // Apply any bonuses from items
+        UpdateHealth(null, BonusStartingHp);
+        TEMP_UpdateXP(null, BonusStartXp);
     }
+    
+    #region PlayerPowers
+    public void AddMonsterToAutoRevealedList(string monsterId)
+    {
+        RevealedMonsters.Add(monsterId);
+    }
+
+    public void AddAndIncrementMonsterToBonusSpawn(string monsterId)
+    {
+        int bonusSpawn = 0;
+        BonusSpawn.TryGetValue(monsterId, out bonusSpawn);
+        bonusSpawn++;
+        BonusSpawn[monsterId] = bonusSpawn;
+    }
+
+    // TODO: DEPRECATE
+    public void AddPlayerBonusStartingHp()
+    {
+        BonusStartingHp++;
+    }
+
+    public void AddBonusStartHp(int amount)
+    {
+        BonusStartingHp += amount;
+    }
+    
+    public void AddBonusStartXp(int amount)
+    {
+        BonusStartXp += amount;
+    }
+
+    public void AddPlayerRegeneration()
+    {
+        SecondWindRegeneration++;
+    }
+
+    public void AddDemonBanePower()
+    {
+        HasDemonBanePowers = true;
+    }
+    
+    public void AddRevealNeighborPower(string ObjectId)
+    {
+        TilesWhichShowNeighborPower.Add(ObjectId.ToLower());
+    }
+    
+    public void AddOrIncrementTileLevel(string ObjectId)
+    {
+        int level = 0;
+        TileObjectsThatShouldUpgrade.TryGetValue(ObjectId, out level);
+        TileObjectsThatShouldUpgrade[ObjectId] = level + 1;
+    }
+    
+    public void AddModDamageTaken(string id, int effectAmount)
+    {
+        if (!ModDamageTaken.TryAdd(id, effectAmount))
+        {
+            ModDamageTaken[id] += effectAmount;
+        }
+    }
+
+    public void AddModXp(string id, int effectAmount)
+    {
+        if (!ModXp.TryAdd(id, effectAmount))
+        {
+            ModXp[id] += effectAmount;
+        }
+    }
+    
+    public void AddModDamageTakenByTag(TileObjectSchema.Tag objectTag, int effectAmount)
+    {
+        if (!ModDamageTakenByTag.TryAdd(objectTag, effectAmount))
+        {
+            ModDamageTakenByTag[objectTag] += effectAmount;
+        }
+    }
+
+    public void AddModXpByTag(TileObjectSchema.Tag objectTag, int effectAmount)
+    {
+        if (!ModXpByTag.TryAdd(objectTag, effectAmount))
+        {
+            ModXpByTag[objectTag] += effectAmount;
+        }
+    }
+    #endregion
+
 }

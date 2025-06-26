@@ -37,22 +37,6 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         ServiceLocator.Instance.Register(this);
     }
 
-    // TODO: Deprecate ??
-    public void ShowShopScreen()
-    {
-        // TODO: Find a better home for this logic
-        ShopScreen shop = Screens[ScreenType.Shop] as ShopScreen;
-        shop.Roll(1);
-        
-        SwitchScreen(ScreenType.Shop);
-    }
-    
-    public void SwitchScreen(ScreenType screenType)
-    {
-        HideActiveScreen();
-        RequestShowScreen(screenType);
-    }
-
     // ew
     public void RequestShowScreen(int screenTypeAsInt)
     {

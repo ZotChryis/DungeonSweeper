@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Rat Scroll
   UserFacingDescription: Used to reveal all rats on the map.
+  Tags: 00000000
   Id: scrollrats
   Sprite: {fileID: 6609824834707834720, guid: 1295060bc87b6594d91a7124ab3e34b7, type: 3}
   SpriteFacingData:

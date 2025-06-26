@@ -15,6 +15,7 @@ MonoBehaviour:
   UserFacingName: Bat
   UserFacingDescription: A flying pest. A bit tougher than a rat, and they can think
     for themselves!
+  Tags: 010000000400000000000000
   Id: bat
   Sprite: {fileID: 8647823593821616703, guid: 1df2dcd932ca45c48bd41f021bc040a4, type: 3}
   SpriteFacingData:

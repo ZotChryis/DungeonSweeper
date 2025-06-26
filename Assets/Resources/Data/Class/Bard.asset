@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Abacus
+  m_Script: {fileID: 11500000, guid: 1c34c485cc304af0b78acb9137209bc3, type: 3}
+  m_Name: Bard
   m_EditorClassIdentifier: 
-  Id: 11
-  Name: Abacus
-  Description: Levels take -1 XP.
-  Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
-  Rarity: 2
-  Price: 5
+  Id: 5
+  Sprite: {fileID: -8149248579746061818, guid: a0469392af577df4399da276d392393c, type: 3}
+  Name: Bard
+  Description: Starts with the Flute.
+  StartingItem: 4

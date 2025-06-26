@@ -16,9 +16,12 @@ public class InventoryScreen : BaseScreen
     
     protected Inventory Inventory;
     protected List<InventoryItem> Items;
+    protected ItemInstance FocusedItem;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
+        
         Items = new List<InventoryItem>();
         
         SetupInventory();
@@ -26,8 +29,21 @@ public class InventoryScreen : BaseScreen
         // Bind to the inventory change events 
         Inventory.OnItemAdded += OnItemAdded;
         Inventory.OnItemChargeChanged += OnItemChargeChanged;
+        Inventory.OnItemRemoved += OnItemRemoved;
         
         // Handle any that are already there
+        RefreshItems();
+    }
+
+    // TODO: Too lazy right now to remove items one at a time. need to track them better 
+    private void RefreshItems()
+    {
+        foreach (var inventoryItem in Items)
+        {
+            Destroy(inventoryItem.gameObject);
+        }
+        Items.Clear();
+        
         foreach (var item in Inventory.GetAllItems())
         {
             OnItemAdded(item);
@@ -39,25 +55,37 @@ public class InventoryScreen : BaseScreen
         Inventory = ServiceLocator.Instance.Player.Inventory;
     }
 
-    private void OnItemAdded(Item item)
+    private void OnItemAdded(ItemInstance itemInstance)
     {
         InventoryItem newItem = Instantiate<InventoryItem>(ItemPrefab, ItemListRoot);
-        newItem.Initialize(this, item);
+        newItem.Initialize(this, itemInstance);
         Items.Add(newItem);
     }
 
-    protected void OnItemChargeChanged(Item item)
+    protected void OnItemChargeChanged(ItemInstance itemInstance)
     {
-        FocusItem(item);
+        FocusItem(itemInstance);
+    }
+    
+    private void OnItemRemoved(ItemInstance itemInstance)
+    {
+        if (FocusedItem == itemInstance)
+        {
+            ClearFocusedItem();
+        }
+
+        RefreshItems();
     }
 
-    public void FocusItem(Item item)
+    public void FocusItem(ItemInstance itemInstance)
     {
-        Details.SetItem(item);
+        Details.SetItem(itemInstance);
+        FocusedItem = itemInstance;
     }
 
     public void ClearFocusedItem()
     {
+        FocusedItem = null;
         Details.ClearFocusedItem();
     }
 }

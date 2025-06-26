@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Vision Scroll +1
   UserFacingDescription: Creates a vision orb on any undiscovered location.
+  Tags: 00000000
   Id: scrollvision
   Sprite: {fileID: -6483029472496290589, guid: 5deeb4ed361f32b40bd57abab7145645, type: 3}
   SpriteFacingData:

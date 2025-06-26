@@ -1,3 +1,4 @@
+using Screens.Shop;
 using UnityEngine.SceneManagement;
 
 public class CheatManager : SingletonMonoBehaviour<CheatManager>
@@ -39,5 +40,17 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
     public void Restart()
     {
         SceneManager.LoadScene("Game");
+    }
+
+    public void RollShop()
+    {
+        ShopScreen shop = ServiceLocator.Instance.OverlayScreenManager.Screens[OverlayScreenManager.ScreenType.Shop] as ShopScreen;
+        shop.Roll(ServiceLocator.Instance.LevelManager.CurrentLevel);
+    }
+
+    public void RollShopWithAll()
+    {
+        ShopScreen shop = ServiceLocator.Instance.OverlayScreenManager.Screens[OverlayScreenManager.ScreenType.Shop] as ShopScreen;
+        shop.CheatRollAll();
     }
 }

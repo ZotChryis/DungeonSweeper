@@ -31,7 +31,7 @@ public class ClassSelectionItem : MonoBehaviour
         Button.onClick.AddListener(OnButtonClicked);
         
         // TODO: Achievement based unlocks
-        SetLocked(Class != Gameplay.Class.Id.Adventurer && Class != Gameplay.Class.Id.Warrior);
+        SetLocked(Class is Gameplay.Class.Id.Wizard or Gameplay.Class.Id.Ranger);
     }
 
     private void SetLocked(bool locked)
@@ -43,6 +43,7 @@ public class ClassSelectionItem : MonoBehaviour
     private void OnButtonClicked()
     {
         ServiceLocator.Instance.Player.TEMP_SetClass(Class);
+        ServiceLocator.Instance.LevelManager.SetLevel(0);
         
         // When a class is selected, we will close the class selection screen AND the main menu screen
         // TODO: Do proper scene mangagement

@@ -15,6 +15,7 @@ MonoBehaviour:
   UserFacingName: Gnome
   UserFacingDescription: Shifts away to an undiscovered location. Find him for hefty
     reward!
+  Tags: 00000000
   Id: gnome
   Sprite: {fileID: 3402368762417361602, guid: 5d0864dd14337b046a06be91112b5214, type: 3}
   SpriteFacingData:

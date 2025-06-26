@@ -2,37 +2,53 @@
 using System.Collections.Generic;
 using System.Linq;
 using Schemas;
+using UnityEngine;
 
 namespace Gameplay
 {
     public class Inventory
     {
-        public Action<Gameplay.Item> OnItemAdded;
-        public Action<Gameplay.Item> OnItemChargeChanged;
-        public Action<Gameplay.Item> OnItemRemoved;
+        public Action<Gameplay.ItemInstance> OnItemAdded;
+        public Action<Gameplay.ItemInstance> OnItemChargeChanged;
+        public Action<Gameplay.ItemInstance> OnItemRemoved;
         
         /// <summary>
         /// For stacks of items, Item has a Quantity that should be updated instead of trying to add collisions to the dictionary.
         /// </summary>
-        Dictionary<Item.Id, Item> Items = new Dictionary<Item.Id, Item>();
+        private List<ItemInstance> Items = new List<ItemInstance>();
+        
+        public IReadOnlyList<ItemInstance> GetAllItems() => Items.ToList();
 
-        public List<Item> GetAllItems() => Items.Values.ToList();
+        private bool IsPlayerInventoy = false;
+
+        public Inventory(bool isPlayerInventoy)
+        {
+            IsPlayerInventoy = isPlayerInventoy;
+        }
         
         /// <summary>
         /// Returns if we have the item in the inventory. Even if it's empty.
         /// </summary>
-        public bool HasItem(Item.Id itemId)
+        public bool HasItem(ItemInstance.Id itemId)
         {
-            return Items.ContainsKey(itemId);
+            return Items.Any(item => item.Schema.Id ==itemId);
+        }
+
+        public ItemInstance GetFirstItem(ItemInstance.Id itemId)
+        {
+            return Items.First(item => item.Schema.Id == itemId);
         }
 
         /// <summary>
         /// Returns whether or not the itemId can be added to the inventory. Handles stacking logic.
         /// </summary>
-        public bool AddItem(Item.Id itemId)
+        public bool AddItem(ItemInstance.Id itemId)
         {
-            if (Items.TryGetValue(itemId, out Item item))
+            if (HasItem(itemId))
             {
+                // TODO: Better logic here?
+                // Consumable items should stack on their consumable count
+                var item = GetFirstItem(itemId);
                 if (item.Schema.IsConsumbale)
                 {
                     item.AddCharge(1);
@@ -40,7 +56,11 @@ namespace Gameplay
                     return true;
                 }
 
-                return false;
+                // Do not add more than one unique equipped
+                if (item.Schema.IsUniqueEquipped)
+                {
+                    return false;
+                }
             }
             
             foreach (var itemSchema in ServiceLocator.Instance.Schemas.ItemSchemas)
@@ -50,39 +70,50 @@ namespace Gameplay
                     continue;
                 }
 
-                var newItem = new Item(itemSchema);
-                Items.Add(itemId, newItem);
+                var newItem = new ItemInstance(itemSchema);
+                Items.Add(newItem);
                 OnItemAdded?.Invoke(newItem);
+
+                // TODO: REFACTOR candidate
+                if (IsPlayerInventoy)
+                {
+                    newItem.ApplyPassiveEffects(ServiceLocator.Instance.Player);
+                }
+                
                 return true;
             }
 
             return false;
         }
         
-        public void RemoveItem(Item.Id itemId)
+        public void RemoveItem(ItemInstance item)
         {
-            Items.Remove(itemId);
+            Items.Remove(item);
+            OnItemRemoved?.Invoke(item);
         }
 
-        public bool UseItem(Item item)
+        public bool UseItem(ItemInstance itemInstance)
         {
-            if (!item.CanBeUsed())
+            if (!itemInstance.CanBeUsed())
             {
                 return false;
             }
 
-            if (item.Schema.IsConsumbale)
+            if (itemInstance.Schema.IsConsumbale)
             {
-                item.RemoveCharge(1);
-                OnItemChargeChanged?.Invoke(item);
+                itemInstance.RemoveCharge(1);
+                OnItemChargeChanged?.Invoke(itemInstance);
+                itemInstance.ApplyActiveEffects(ServiceLocator.Instance.Player);
+                return true;
             }
             
-            return true;
+            return false;
         }
     }
     
-    public class Item
+    public class ItemInstance
     {
+        // TODO: Move to ItemSchema??
         // !!WARNING!! DO NOT REORDER
         public enum Id
         {
@@ -103,21 +134,24 @@ namespace Gameplay
             MeatGrinder,
             Campfire,
             Abacus,
+            
+            RatDetector,
+            BatDetector,
+            BrickDetector,
+            
+            SacrificialKris,
         }
 
         public ItemSchema Schema;
-        public Id ItemId;
         public int MaxQuantity;
         
         private int CurrentQuantity;
 
-        public Item (ItemSchema schema)
+        public ItemInstance (ItemSchema schema)
         {
             Schema = schema;
             CurrentQuantity = schema.InitialCharges;
             MaxQuantity = schema.InitialCharges;
-
-            // TODO: More logic here
         }
 
         public void AddCharge(int amount)
@@ -134,6 +168,70 @@ namespace Gameplay
         public bool CanBeUsed()
         {
             return Schema.IsConsumbale && CurrentQuantity >= 0;
+        }
+
+        private void ApplyEffects(Player player, Effect[] effects)
+        {
+            // Just in case
+            if (effects == null)
+            {
+                return;
+            }
+            
+            foreach (Effect effect in effects)
+            {
+                switch (effect.Type)
+                {
+                    case EffectType.BonusHP:
+                        player.AddBonusStartHp(effect.Amount);
+                        break;
+                    
+                    case EffectType.BonusXP:
+                        player.AddBonusStartXp(effect.Amount);
+                        break;
+                    
+                    case EffectType.AutoReveal:
+                        for (int i = 0; i < effect.Amount; i++)
+                        {
+                            player.AddMonsterToAutoRevealedList(effect.Id);
+                        }
+                        break;
+                    
+                    case EffectType.ModDamageTaken:
+                        if (!string.IsNullOrEmpty(effect.Id))
+                        {
+                            player.AddModDamageTaken(effect.Id, effect.Amount);
+                        }
+                        
+                        foreach (var effectTag in effect.Tags)
+                        {
+                            player.AddModDamageTakenByTag(effectTag, effect.Amount);
+                        }
+                        
+                        break;
+                    
+                    case EffectType.ModXp:
+                        if (!string.IsNullOrEmpty(effect.Id))
+                        {
+                            player.AddModXp(effect.Id, effect.Amount);
+                        }
+                        
+                        foreach (var effectTag in effect.Tags)
+                        {
+                            player.AddModXpByTag(effectTag, effect.Amount);
+                        }
+                        break;
+                }
+            }
+        }
+        public void ApplyPassiveEffects(Player player)
+        {
+            ApplyEffects(player, Schema.PassiveEffects);
+        }
+        
+        public void ApplyActiveEffects(Player player)
+        {
+            ApplyEffects(player, Schema.ActiveEffects);
         }
     }
 }

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Mine Defused
   UserFacingDescription: Defused, the mine can be gathered for scrap.
+  Tags: 00000000
   Id: mine
   Sprite: {fileID: 8135663367076951168, guid: f42e4888d5553854a9a1085240dfff99, type: 3}
   SpriteFacingData:

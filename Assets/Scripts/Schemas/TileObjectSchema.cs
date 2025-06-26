@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.U2D;
 
 /// <summary>
 /// Representation of an Enemy.
@@ -17,6 +15,25 @@ using UnityEngine.U2D;
 [CreateAssetMenu(menuName = "Data/TileObject")]
 public class TileObjectSchema : Schema
 {
+    [Serializable]
+    public enum Tag
+    {
+        // Used mostly for items/cards/bricks,
+        Neutral,
+        
+        // Used for things that deal damage to you
+        Enemy,
+        
+        // Role
+        Melee,
+        Ranged,
+        Flying,
+        
+        // Families
+        Beast,
+        
+    }
+    
     [Serializable]
     public struct SpriteFacing
     {
@@ -38,6 +55,8 @@ public class TileObjectSchema : Schema
     public string UserFacingName;
     public string UserFacingDescription;
 
+    public List<Tag> Tags = new List<Tag>();
+    
     // TODO: Make this an enum and add to all data objects created
     public string Id;
     public Sprite Sprite;

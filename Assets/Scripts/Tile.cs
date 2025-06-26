@@ -117,7 +117,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         if (State == TileState.Revealed)
         {
             Player player = ServiceLocator.Instance.Player;
-            if (HousedObject.PreventConsumeIfKillingBlow && player.TEMP_PredictDeath(TEMP_GetCost()))
+            if (HousedObject.PreventConsumeIfKillingBlow && player.TEMP_PredictDeath(HousedObject, TEMP_GetCost()))
             {
                 return;
             }
@@ -295,13 +295,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         if (TileState.Conquered == State && HousedObject.Power > 0)
         {
-            if (player.TEMP_PredictDeath(HousedObject.Power))
+            if (player.TEMP_PredictDeath(HousedObject, HousedObject.Power))
             {
                 // player has died unconquer yourself
                 State = TileState.Revealed;
                 ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
             }
-            if (player.UpdateHealth(-HousedObject.Power))
+            if (player.UpdateHealth(HousedObject, -HousedObject.Power))
             {
                 return;
             }
@@ -355,7 +355,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 ServiceLocator.Instance.Grid.TEMP_RevealTiles(revealOriginX, revealOriginY, HousedObject.RevealOffsets);
             }
 
-            player.TEMP_UpdateXP(HousedObject.XPReward);
+            player.TEMP_UpdateXP(HousedObject, HousedObject.XPReward);
             ServiceLocator.Instance.Player.ShopXp += HousedObject.ShopXp;
 
             if (HousedObject.WinReward)

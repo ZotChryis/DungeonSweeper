@@ -15,26 +15,28 @@ MonoBehaviour:
   UserFacingName: Slime Wizard
   UserFacingDescription: The originator of all slimes. Defeat him to become all gelatinous
     seeing.
+  Tags: 0100000003000000
   Id: slimewizard
   Sprite: {fileID: -8167537839222222091, guid: 7e6547fe8e8466c48ad0dc1e308d8874, type: 3}
   SpriteFacingData:
-    NearestObject: {fileID: 0}
+    ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
     Below: {fileID: 0}
-    Behind: {fileID: 0}
-    Front: {fileID: 0}
+    Right: {fileID: 0}
+    Left: {fileID: 0}
     Missing: {fileID: 0}
   Power: 1
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 1
   DropReward: {fileID: 11400000, guid: 1286b0a784713b84681ed019cf13014f, type: 2}
-  GenerateRandomLocationForReveal: 0
+  RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -43,6 +45,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
+  ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

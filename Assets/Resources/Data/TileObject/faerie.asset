@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Faerie
   UserFacingDescription: ???
+  Tags: 0100000004000000
   Id: faerie
   Sprite: {fileID: -3246102915477046997, guid: ebf3a4c5ce1136542832f71273684db3, type: 3}
   SpriteFacingData:

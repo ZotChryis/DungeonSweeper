@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Chest
   UserFacingDescription: Treasure awaits you for opening this chest!
+  Tags: 00000000
   Id: chest
   Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
   SpriteFacingData:
