@@ -9,9 +9,9 @@ namespace Screens.Inventory
     {
         [SerializeField] private TMP_Text Name;
         [SerializeField] private TMP_Text Description;
-        [SerializeField] private Button Button;
+        [SerializeField] protected Button Button;
 
-        private Item Item;
+        protected Item Item;
         
         private void Start()
         {
@@ -21,11 +21,16 @@ namespace Screens.Inventory
 
         private void OnButtonClicked()
         {
+            HandleButtonClicked();
+        }
+
+        protected virtual void HandleButtonClicked()
+        {
             ServiceLocator.Instance.Player.Inventory.UseItem(Item);
             Button.interactable = Item.CanBeUsed();
         }
 
-        public void SetItem(Item item)
+        public virtual void SetItem(Item item)
         {
             Item = item;
             
@@ -33,6 +38,14 @@ namespace Screens.Inventory
             Description.SetText(item.Schema.Description);
 
             Button.interactable = item.CanBeUsed();
+        }
+
+        public void ClearFocusedItem()
+        {
+            Name.SetText("CHOOSE AN ITEM");
+            Description.SetText("");
+            Button.GetComponentInChildren<TMP_Text>().SetText("---");
+            Button.interactable = false;
         }
     }
 }

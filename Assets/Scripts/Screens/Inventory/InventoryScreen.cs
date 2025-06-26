@@ -6,30 +6,37 @@ using UnityEngine;
 public class InventoryScreen : BaseScreen
 {
     [SerializeField] 
-    private InventoryItem ItemPrefab;
+    protected InventoryItem ItemPrefab;
 
     [SerializeField] 
-    private Transform ItemListRoot;
+    protected Transform ItemListRoot;
 
     [SerializeField] 
-    private InventoryDetails Details;
+    protected InventoryDetails Details;
     
-    private List<InventoryItem> Items;
+    protected Inventory Inventory;
+    protected List<InventoryItem> Items;
 
     private void Start()
     {
         Items = new List<InventoryItem>();
-            
-        // Bind to the inventory events
-        var inventory = ServiceLocator.Instance.Player.Inventory;
-        inventory.OnItemAdded += OnItemAdded;
-        inventory.OnItemChargeChanged += OnItemChargeChanged;
+        
+        SetupInventory();
+        
+        // Bind to the inventory change events 
+        Inventory.OnItemAdded += OnItemAdded;
+        Inventory.OnItemChargeChanged += OnItemChargeChanged;
         
         // Handle any that are already there
-        foreach (var item in inventory.GetAllItems())
+        foreach (var item in Inventory.GetAllItems())
         {
             OnItemAdded(item);
         }
+    }
+
+    protected virtual void SetupInventory()
+    {
+        Inventory = ServiceLocator.Instance.Player.Inventory;
     }
 
     private void OnItemAdded(Item item)
@@ -39,7 +46,7 @@ public class InventoryScreen : BaseScreen
         Items.Add(newItem);
     }
 
-    private void OnItemChargeChanged(Item item)
+    protected void OnItemChargeChanged(Item item)
     {
         FocusItem(item);
     }
@@ -47,5 +54,10 @@ public class InventoryScreen : BaseScreen
     public void FocusItem(Item item)
     {
         Details.SetItem(item);
+    }
+
+    public void ClearFocusedItem()
+    {
+        Details.ClearFocusedItem();
     }
 }

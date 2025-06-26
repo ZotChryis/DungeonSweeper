@@ -26,7 +26,7 @@ namespace Screens.Inventory
         {
             Screen = screen;
             Item = item;
-            
+
             Icon.sprite = item.Schema.Sprite;
         }
     }

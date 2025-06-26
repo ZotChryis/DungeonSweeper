@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel++;
         SetLevel(currentLevel);
+        ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
     }
 
     // TODO: Go through GameManager just for clarity

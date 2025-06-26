@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
+using Screens.Shop;
 
 public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
 {
@@ -36,9 +37,13 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         ServiceLocator.Instance.Register(this);
     }
 
-    // TODO: Deprecate now that we have a screen stack
+    // TODO: Deprecate ??
     public void ShowShopScreen()
     {
+        // TODO: Find a better home for this logic
+        ShopScreen shop = Screens[ScreenType.Shop] as ShopScreen;
+        shop.Roll(1);
+        
         SwitchScreen(ScreenType.Shop);
     }
     

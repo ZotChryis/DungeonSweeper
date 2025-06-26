@@ -33,7 +33,7 @@ namespace Gameplay
         {
             if (Items.TryGetValue(itemId, out Item item))
             {
-                if (item.IsConsumable)
+                if (item.Schema.IsConsumbale)
                 {
                     item.AddCharge(1);
                     OnItemChargeChanged?.Invoke(item);
@@ -58,6 +58,11 @@ namespace Gameplay
 
             return false;
         }
+        
+        public void RemoveItem(Item.Id itemId)
+        {
+            Items.Remove(itemId);
+        }
 
         public bool UseItem(Item item)
         {
@@ -66,7 +71,7 @@ namespace Gameplay
                 return false;
             }
 
-            if (item.IsConsumable)
+            if (item.Schema.IsConsumbale)
             {
                 item.RemoveCharge(1);
                 OnItemChargeChanged?.Invoke(item);
@@ -78,12 +83,13 @@ namespace Gameplay
     
     public class Item
     {
+        // !!WARNING!! DO NOT REORDER
         public enum Id
         {
             // Used for Empty
             None,
             
-            // Class starting items w
+            // Class starting items
             Sword,
             Bow,
             MagicCarpet,
@@ -93,11 +99,14 @@ namespace Gameplay
             Alembic,
             
             // More items...
+            RatRepellent,
+            MeatGrinder,
+            Campfire,
+            Abacus,
         }
 
         public ItemSchema Schema;
         public Id ItemId;
-        public bool IsConsumable;
         public int MaxQuantity;
         
         private int CurrentQuantity;
@@ -105,7 +114,9 @@ namespace Gameplay
         public Item (ItemSchema schema)
         {
             Schema = schema;
-            
+            CurrentQuantity = schema.InitialCharges;
+            MaxQuantity = schema.InitialCharges;
+
             // TODO: More logic here
         }
 
@@ -122,7 +133,7 @@ namespace Gameplay
 
         public bool CanBeUsed()
         {
-            return IsConsumable && CurrentQuantity >= 0;
+            return Schema.IsConsumbale && CurrentQuantity >= 0;
         }
     }
 }
