@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: RatDetector
+  m_Name: Detector_Brick
   m_EditorClassIdentifier: 
-  Id: 12
-  Name: Rat Detector
-  Description: Auto-reveal one rat at the start of the dungeon.
+  Id: 14
+  Name: Brick Detector
+  Description: Auto-reveal one brick at the start of the dungeon.
   Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 0
@@ -25,6 +25,6 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 2
     Amount: 1
-    Id: rat
+    Id: brick
     Tags: 
   ActiveEffects: []

@@ -135,11 +135,19 @@ namespace Gameplay
             Campfire,
             Abacus,
             
-            RatDetector,
-            BatDetector,
-            BrickDetector,
+            DetectorRat,
+            DetectorBat,
+            DetectorBrick,
             
             SacrificialKris,
+            
+            BaitRat,
+            BaitBat,
+            BaitFaerie,
+            Egg,
+            PizzaSlice,
+            
+            Candle,
         }
 
         public ItemSchema Schema;
@@ -220,6 +228,22 @@ namespace Gameplay
                         {
                             player.AddModXpByTag(effectTag, effect.Amount);
                         }
+                        break;
+                    
+                    case EffectType.BonusSpawn:
+                        if (!string.IsNullOrEmpty(effect.Id))
+                        {
+                            player.AddSpawnCount(effect.Id, effect.Amount);
+                        }
+                        // TODO: Support by Tag?
+                        break;
+                    
+                    case EffectType.UpgradeTileObject:
+                        if (!string.IsNullOrEmpty(effect.Id))
+                        {
+                            player.AddOrIncrementTileLevel(effect.Id);
+                        }
+                        // TODO: Support by Tag?
                         break;
                 }
             }

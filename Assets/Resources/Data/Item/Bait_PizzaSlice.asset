@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: SacrificialKris
+  m_Name: Bait_PizzaSlice
   m_EditorClassIdentifier: 
-  Id: 15
-  Name: Sacrificial Kris
-  Description: Take 1 more damage from enemies. Get +1 XP from enemies.
-  Sprite: {fileID: 21300000, guid: 01bf5e3c7141199418568b8398fb5a0f, type: 3}
-  IsUniqueEquipped: 1
+  Id: 20
+  Name: Pizza Slice
+  Description: Adds a Pizza to the dungeon.
+  Sprite: {fileID: -6444940296795206775, guid: da0ba34d0cbc70743a658092d8212231, type: 3}
+  IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
-  ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  ShopInventory: 3
+  Rarity: 1
+  Price: 4
   PassiveEffects:
-  - Type: 3
+  - Type: 5
     Amount: 1
-    Id: global
-    Tags: 
-  - Type: 4
-    Amount: 1
-    Id: global
+    Id: pizza
     Tags: 
   ActiveEffects: []

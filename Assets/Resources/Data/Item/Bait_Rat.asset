@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: SacrificialKris
+  m_Name: Bait_Rat
   m_EditorClassIdentifier: 
-  Id: 15
-  Name: Sacrificial Kris
-  Description: Take 1 more damage from enemies. Get +1 XP from enemies.
-  Sprite: {fileID: 21300000, guid: 01bf5e3c7141199418568b8398fb5a0f, type: 3}
-  IsUniqueEquipped: 1
+  Id: 16
+  Name: Rat Bait
+  Description: Adds a Rat to the dungeon.
+  Sprite: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
+  IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
-  ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  ShopInventory: 2
+  Rarity: 1
+  Price: 2
   PassiveEffects:
-  - Type: 3
+  - Type: 5
     Amount: 1
-    Id: global
-    Tags: 
-  - Type: 4
-    Amount: 1
-    Id: global
+    Id: rat
     Tags: 
   ActiveEffects: []

@@ -140,7 +140,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         return CurrentHealth - amount < 0;
     }
 
-    private int GetModifiedDamage(TileObjectSchema source, int amount)
+    public int GetModifiedDamage(TileObjectSchema source, int amount)
     {
         if (source != null)
         {
@@ -225,7 +225,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         TEMP_UpdateVisuals();
     }
 
-    private int GetModifiedXp(TileObjectSchema source, int amount)
+    public int GetModifiedXp(TileObjectSchema source, int amount)
     {
         if (source != null)
         {
@@ -331,12 +331,20 @@ public class Player : MonoBehaviour, IPointerClickHandler
         RevealedMonsters.Add(monsterId);
     }
 
+    // TODO: DEPRECATE
     public void AddAndIncrementMonsterToBonusSpawn(string monsterId)
     {
         int bonusSpawn = 0;
         BonusSpawn.TryGetValue(monsterId, out bonusSpawn);
         bonusSpawn++;
         BonusSpawn[monsterId] = bonusSpawn;
+    }
+
+    public void AddSpawnCount(string id, int amount)
+    {
+        BonusSpawn.TryGetValue(id, out int bonusSpawn);
+        bonusSpawn += amount;
+        BonusSpawn[id] = bonusSpawn;
     }
 
     // TODO: DEPRECATE

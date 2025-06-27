@@ -138,7 +138,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             return 0;
         }
 
-        return TEMP_GetCost();
+        // TODO: Move the prediction logic to Tile ONLY?
+        return State < TileState.Conquered
+            ? ServiceLocator.Instance.Player.GetModifiedDamage(HousedObject, HousedObject.Power)
+            : 0;
     }
 
     public int TEMP_GetCost()
@@ -566,7 +569,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         // TEMP: Change color depending on the state
         // TODO: Seperate these 2 labels and control independently
         Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
-        Power.SetText(HousedObject ? State < TileState.Conquered ? HousedObject.Power.ToString() : HousedObject.XPReward.ToString() : string.Empty);
+        
+        Power.SetText(HousedObject? State < TileState.Conquered 
+                ? ServiceLocator.Instance.Player.GetModifiedDamage(HousedObject, HousedObject.Power).ToString() 
+                : ServiceLocator.Instance.Player.GetModifiedXp(HousedObject, HousedObject.XPReward).ToString()
+            : string.Empty
+        );
     }
 
     public TileObjectSchema GetHousedObject()

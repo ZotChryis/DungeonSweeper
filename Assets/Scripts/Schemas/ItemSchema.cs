@@ -27,7 +27,9 @@ namespace Schemas
         BonusXP,
         AutoReveal,
         ModDamageTaken,
-        ModXp
+        ModXp,
+        BonusSpawn,
+        UpgradeTileObject,
     }
 
     [Serializable]
