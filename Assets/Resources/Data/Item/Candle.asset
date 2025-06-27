@@ -16,18 +16,12 @@ MonoBehaviour:
   Name: Candle
   Description: Vision Orbs reach is extended.
   Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
-  IsUniqueEquipped: 0
+  IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 2
   Price: 8
-  PassiveEffects:
-  - Type: 6
-    Amount: 1
-    Id: 0
-    Tags: 
-  ActiveEffects: []
   Effects:
     _serializedList:
     - Key: 0

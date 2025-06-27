@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scroll_VisionLevel2
   m_EditorClassIdentifier: 
   UserFacingName: Vision Scroll +1
-  UserFacingDescription: Creates a vision orb on any undiscovered location.
+  UserFacingDescription: Reveal even more neighboring tiles.
   Tags: 00000000
   TileId: 40
   Sprite: {fileID: -6483029472496290589, guid: 5deeb4ed361f32b40bd57abab7145645, type: 3}

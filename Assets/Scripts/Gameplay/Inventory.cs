@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Schemas;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Gameplay
 {
@@ -37,6 +38,11 @@ namespace Gameplay
         {
             foreach (var itemInstance in Items)
             {
+                if (!itemInstance.IsValidConquer(tileObject))
+                {
+                    continue;
+                }
+                
                 itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Conquer);
             }
         }
@@ -77,17 +83,8 @@ namespace Gameplay
         {
             if (HasItem(itemId))
             {
-                // TODO: Better logic here?
-                // Consumable items should stack on their consumable count
-                var item = GetFirstItem(itemId);
-                if (item.Schema.IsConsumbale)
-                {
-                    item.AddCharge(1);
-                    OnItemChargeChanged?.Invoke(item);
-                    return true;
-                }
-
                 // Do not add more than one unique equipped
+                var item = GetFirstItem(itemId);
                 if (item.Schema.IsUniqueEquipped)
                 {
                     return false;
@@ -130,15 +127,10 @@ namespace Gameplay
                 return false;
             }
 
-            if (itemInstance.Schema.IsConsumbale)
-            {
-                itemInstance.RemoveCharge(1);
-                OnItemChargeChanged?.Invoke(itemInstance);
-                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
-                return true;
-            }
-            
-            return false;
+            itemInstance.RemoveCharge(1);
+            OnItemChargeChanged?.Invoke(itemInstance);
+            itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
+            return true;
         }
     }
     
@@ -146,8 +138,7 @@ namespace Gameplay
     {
         public ItemSchema Schema;
         public int MaxQuantity;
-        
-        private int CurrentQuantity;
+        public int CurrentQuantity;
 
         public ItemInstance (ItemSchema schema)
         {
@@ -169,9 +160,40 @@ namespace Gameplay
 
         public bool CanBeUsed()
         {
-            return Schema.IsConsumbale && CurrentQuantity >= 0;
+            return Schema.IsConsumbale && CurrentQuantity > 0;
         }
 
+        // TODO: O(N^2) to check validity -> application, but im too lazy to fix the model
+        // TODO: this conflates the Effect Data with the Trigger Conditions -- we need to separate them out
+        public bool IsValidConquer(TileSchema tileSchema)
+        {
+            // Just in case
+            if (!Schema.Effects.TryGetValue(EffectTrigger.Conquer, out Effect[] effects))
+            {
+                return false;
+            }
+
+            foreach (var effect in effects)
+            {
+                if (effect.Id != TileSchema.Id.None && effect.Id != tileSchema.TileId)
+                {
+                    continue;
+                }
+
+                if (effect.Id == TileSchema.Id.Global)
+                {
+                    return true;
+                }
+                
+                if (tileSchema.Tags.Union(effect.Tags).ToList().Count > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        
         public void ApplyEffects(Player player, EffectTrigger trigger)
         {
             // Just in case
@@ -238,6 +260,26 @@ namespace Gameplay
                             player.AddOrIncrementTileLevel(effect.Id);
                         }
                         // TODO: Support by Tag?
+                        break;
+                    
+                    case EffectType.Damage:
+                        // TODO: should the item be the source?
+                        player.UpdateHealth(null, -effect.Amount);
+                        break;
+                    
+                    case EffectType.Heal:
+                        player.HealPlayerNoOverheal(effect.Amount);
+                        break;
+                    
+                    case EffectType.ChangeMoney:
+                        player.ShopXp += effect.Amount;
+                        break;
+                    
+                    case EffectType.RevealRandomLocation:
+                        for (int i = 0; i < effect.Amount; i++)
+                        {
+                            ServiceLocator.Instance.Grid.RevealRandomUnoccupiedTile();
+                        }
                         break;
                 }
             }

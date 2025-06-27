@@ -29,6 +29,10 @@ namespace Schemas
         ModXp,
         BonusSpawn,
         UpgradeTileObject,
+        Damage,
+        Heal,
+        ChangeMoney,
+        RevealRandomLocation
     }
 
     [Serializable]
@@ -61,6 +65,20 @@ namespace Schemas
         /// The effect will only apply if at least one of these tags are on the object in question
         /// </summary>
         public List<TileSchema.Tag> Tags;
+        
+        // TODO:
+        /*
+        /// <summary>
+        /// The effect will only apply if the object in question has this id
+        /// </summary>
+        // TODO: This maps to monster id, etc, but we should really be using enums and shit??
+        public TileSchema.Id ConquerRequirementId;
+
+        /// <summary>
+        /// The effect will only apply if at least one of these tags are on the object in question
+        /// </summary>
+        public List<TileSchema.Tag> ConquerRequirementTags;
+        */
     }
     
     [CreateAssetMenu(menuName = "Data/Item")]
@@ -108,6 +126,8 @@ namespace Schemas
             PotionPoison,
             PotionStamina,
             PotionStoneshield,
+            
+            Lantern,
         }
         
         public ItemSchema.Id ItemId;

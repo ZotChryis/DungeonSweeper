@@ -87,6 +87,7 @@ namespace Schemas
             ScrollVisionLevel2,
             VisionOrbLevel2,
             
+            BrickFinal,
             
         }
         

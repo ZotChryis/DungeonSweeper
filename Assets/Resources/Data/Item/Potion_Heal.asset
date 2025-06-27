@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Pickaxe
+  m_Name: Potion_Heal
   m_EditorClassIdentifier: 
-  ItemId: 22
-  Name: Pickaxe
-  Description: Bricks give $2 when fully destroyed.
-  Sprite: {fileID: 5807921338739458136, guid: 0ecbb234d614c8e4d8cef4fe5fed6c68, type: 3}
-  IsUniqueEquipped: 1
-  IsConsumbale: 0
-  InitialCharges: 0
+  ItemId: 23
+  Name: 'Potion: Healing'
+  Description: Use from inventory. Heal +5 HP. Does not overheal.
+  Sprite: {fileID: -8909563206275037938, guid: 56f27f1987e55184a8a22f1b14f9cc19, type: 3}
+  IsUniqueEquipped: 0
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  Rarity: 1
+  Price: 6
   Effects:
     _serializedList:
-    - Key: 3
+    - Key: 4
       Value:
-      - Type: 9
-        Amount: 2
-        Id: 42
+      - Type: 8
+        Amount: 5
+        Id: 0
         Tags: 

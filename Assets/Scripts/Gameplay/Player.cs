@@ -218,8 +218,13 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
             return true;
         }
+
+        // TODO: Find a better home for this call... should not be occurring in health delta calcs
+        if (source != null)
+        {
+            OnConquer?.Invoke(source);
+        }
         
-        OnConquer?.Invoke(source);
         return false;
     }
 

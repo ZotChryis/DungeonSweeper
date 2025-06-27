@@ -259,6 +259,18 @@ public class Grid : MonoBehaviour
         }
     }
 
+    public void RevealRandomUnoccupiedTile()
+    {
+        if (!UnoccupiedSpaces.HasEmptySpace())
+        {
+            return;
+        }
+
+        var space = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
+        Tiles[space.Item1, space.Item2].TEMP_RevealWithoutLogic();
+        UnoccupiedSpaces.RemoveUnoccupiedSpace(space.Item1, space.Item2);
+    }
+    
     /// <summary>
     /// Reveals a random tile that has the matching monster id.
     /// </summary>

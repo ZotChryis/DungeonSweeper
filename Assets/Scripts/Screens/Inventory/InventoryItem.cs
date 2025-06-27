@@ -1,4 +1,5 @@
 ﻿using Gameplay;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace Screens.Inventory
     {
         [SerializeField] private Image Icon;
         [SerializeField] private Button Button;
-
+        
         private InventoryScreen Screen;
         private ItemInstance ItemInstance;
 

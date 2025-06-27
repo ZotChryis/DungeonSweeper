@@ -9,12 +9,16 @@ namespace Screens.Shop
     // TODO: Refactor ShopScreen vs InventoryScreen - probably a better way to organize this
     public class ShopScreen : InventoryScreen
     {
+        [SerializeField] private Button Reroll;
         [SerializeField] private Button Continue;
 
         protected override void Awake()
         {
             base.Awake();
             Continue.onClick.AddListener(OnContinueClicked);
+            Reroll.onClick.AddListener(OnRerollClicked);
+
+            ServiceLocator.Instance.Player.OnShopXpChanged += OnShopXpChanged;
         }
 
         protected void OnEnable()
@@ -22,6 +26,11 @@ namespace Screens.Shop
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel);
         }
 
+        private void OnShopXpChanged()
+        {
+            Reroll.interactable = ServiceLocator.Instance.Player.ShopXp >= 2;
+        }
+        
         private void OnContinueClicked()
         {
             // TODO: This logic needs to go somewhere else...
@@ -29,6 +38,17 @@ namespace Screens.Shop
             ServiceLocator.Instance.LevelManager.NextLevel();
             ServiceLocator.Instance.Player.ResetPlayer();
             ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
+        }
+        
+        private void OnRerollClicked()
+        {
+            if (ServiceLocator.Instance.Player.ShopXp < 2)
+            {
+                return;
+            }
+
+            ServiceLocator.Instance.Player.ShopXp -= 2;
+            Roll(ServiceLocator.Instance.LevelManager.CurrentLevel);
         }
 
         protected override void SetupInventory()

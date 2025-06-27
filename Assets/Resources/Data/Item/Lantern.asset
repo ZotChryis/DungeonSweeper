@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Pickaxe
+  m_Name: Lantern
   m_EditorClassIdentifier: 
-  ItemId: 22
-  Name: Pickaxe
-  Description: Bricks give $2 when fully destroyed.
-  Sprite: {fileID: 5807921338739458136, guid: 0ecbb234d614c8e4d8cef4fe5fed6c68, type: 3}
+  ItemId: 28
+  Name: Lantern
+  Description: After leveling up, reveal a random unoccupied location if one exists.
+  Sprite: {fileID: -17528858, guid: 2b379b67f14de8f45ae646b5954b34a3, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  Rarity: 2
+  Price: 12
   Effects:
     _serializedList:
-    - Key: 3
+    - Key: 1
       Value:
-      - Type: 9
-        Amount: 2
-        Id: 42
+      - Type: 10
+        Amount: 1
+        Id: 0
         Tags: 

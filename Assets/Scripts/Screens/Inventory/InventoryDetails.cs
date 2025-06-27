@@ -10,6 +10,7 @@ namespace Screens.Inventory
         [SerializeField] private TMP_Text Name;
         [SerializeField] private TMP_Text Description;
         [SerializeField] protected Button Button;
+        [SerializeField] private TMP_Text Charges;
 
         protected ItemInstance ItemInstance;
         
@@ -38,6 +39,10 @@ namespace Screens.Inventory
             Description.SetText(itemInstance.Schema.Description);
 
             Button.interactable = itemInstance.CanBeUsed();
+            
+            Charges.enabled = itemInstance.Schema.IsConsumbale;
+            Charges.color = itemInstance.CanBeUsed() ? Color.white : Color.red;
+            Charges.SetText($"{itemInstance.CurrentQuantity}/{itemInstance.MaxQuantity}");
         }
 
         public void ClearFocusedItem()
