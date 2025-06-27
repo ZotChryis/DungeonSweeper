@@ -1,5 +1,4 @@
-﻿using Screens.Shop;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Screens.Victory
@@ -28,7 +27,7 @@ namespace Screens.Victory
             ServiceLocator.Instance.CheatManager.Restart();
         }
 
-        private void OnEnable()
+        protected override void OnShow()
         {
             bool nextLevelAvailable = ServiceLocator.Instance.LevelManager.CurrentLevel < 2;
             MainMenu.gameObject.SetActive(!nextLevelAvailable);

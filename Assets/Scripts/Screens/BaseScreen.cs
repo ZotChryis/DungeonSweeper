@@ -23,10 +23,20 @@ public class BaseScreen : MonoBehaviour
     public void Show()
     {
         Container.SetActive(true);
+        OnShow();
+    }
+
+    protected virtual void OnShow()
+    {
     }
 
     public void Hide()
     {
         Container.SetActive(false);
+        OnHide();
+    }
+    
+    protected virtual void OnHide()
+    {
     }
 }
