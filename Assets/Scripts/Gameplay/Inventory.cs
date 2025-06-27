@@ -113,14 +113,13 @@ namespace Gameplay
     
     public class ItemInstance
     {
-        // TODO: Move to ItemSchema??
+        // TODO: Move to ItemSchema?? Make this a string and live with the error-prone nature?? 
         // !!WARNING!! DO NOT REORDER
         public enum Id
         {
             // Used for Empty
             None,
             
-            // Class starting items
             Sword,
             Bow,
             MagicCarpet,
@@ -128,26 +127,27 @@ namespace Gameplay
             TarotDeck,
             HolyLight,
             Alembic,
-            
-            // More items...
             RatRepellent,
             MeatGrinder,
             Campfire,
             Abacus,
-            
             DetectorRat,
             DetectorBat,
             DetectorBrick,
-            
             SacrificialKris,
-            
             BaitRat,
             BaitBat,
             BaitFaerie,
             Egg,
             PizzaSlice,
-            
             Candle,
+            Pickaxe,
+            
+            PotionHealing,
+            PotionStrength,
+            PotionPoison,
+            PotionStamina,
+            PotionStoneshield,
         }
 
         public ItemSchema Schema;

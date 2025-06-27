@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Sword
+  m_Name: Pickaxe
   m_EditorClassIdentifier: 
-  Id: 1
-  Name: Sword
-  Description: Take -1 less damage from Ranged. Get -1 XP from Ranged.
+  Id: 22
+  Name: Pickaxe
+  Description: Take 0 damage from Blocks.
   Sprite: {fileID: 21300000, guid: fdddd26b33711774083260b34c8adf4c, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
@@ -25,10 +25,6 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 3
     Amount: -1
-    Id: 
-    Tags: 03000000
-  - Type: 4
-    Amount: -1
-    Id: 
-    Tags: 03000000
+    Id: brick
+    Tags: 
   ActiveEffects: []

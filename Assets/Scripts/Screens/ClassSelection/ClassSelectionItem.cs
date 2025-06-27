@@ -31,7 +31,7 @@ public class ClassSelectionItem : MonoBehaviour
         Button.onClick.AddListener(OnButtonClicked);
         
         // TODO: Achievement based unlocks
-        SetLocked(Class is Gameplay.Class.Id.Wizard or Gameplay.Class.Id.Ranger);
+        //SetLocked(Class is Gameplay.Class.Id.Wizard or Gameplay.Class.Id.Ranger);
     }
 
     private void SetLocked(bool locked)

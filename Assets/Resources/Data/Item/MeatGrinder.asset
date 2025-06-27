@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Sword
+  m_Name: MeatGrinder
   m_EditorClassIdentifier: 
-  Id: 1
-  Name: Sword
-  Description: Take -1 less damage from Ranged. Get -1 XP from Ranged.
-  Sprite: {fileID: 21300000, guid: fdddd26b33711774083260b34c8adf4c, type: 3}
+  Id: 9
+  Name: Meat Grinder
+  Description: Beasts give +1 XP.
+  Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 3
-  Price: 8
+  Price: 10
   PassiveEffects:
-  - Type: 3
-    Amount: -1
-    Id: 
-    Tags: 03000000
   - Type: 4
-    Amount: -1
+    Amount: 1
     Id: 
-    Tags: 03000000
+    Tags: 05000000
   ActiveEffects: []
