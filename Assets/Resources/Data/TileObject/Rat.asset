@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Rat
   UserFacingDescription: A simple rat with no sense of self. It follows a command.
   Tags: 0100000002000000
-  Id: rat
+  TileId: 15
   Sprite: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}

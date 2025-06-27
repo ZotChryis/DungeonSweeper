@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  Id: 2
+  ItemId: 2
   Name: Bow
   Description: Take -1 less damage from Flying. Get -1 XP from Flying.
   Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
@@ -25,10 +25,22 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 3
     Amount: -1
-    Id: 
+    Id: 0
     Tags: 04000000
   - Type: 4
     Amount: -1
-    Id: 
+    Id: 0
     Tags: 04000000
   ActiveEffects: []
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 3
+        Amount: -1
+        Id: 0
+        Tags: 04000000
+      - Type: 4
+        Amount: -1
+        Id: 0
+        Tags: 04000000

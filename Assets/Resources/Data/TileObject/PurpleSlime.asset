@@ -16,7 +16,7 @@ MonoBehaviour:
   UserFacingDescription: Gelatinous and dark, it sole purpose is to obscure it's
     master.
   Tags: 0100000002000000
-  Id: purpleslime
+  TileId: 25
   Sprite: {fileID: 7101392340170651265, guid: 56d40b901d6d85b46a2f7f1a3e010786, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

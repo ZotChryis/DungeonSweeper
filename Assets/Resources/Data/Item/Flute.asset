@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
   m_Name: Flute
   m_EditorClassIdentifier: 
-  Id: 4
+  ItemId: 4
   Name: Flute
   Description: Auto-reveal all the rats in the dungeon, but they give -1 XP.
   Sprite: {fileID: -8149248579746061818, guid: a0469392af577df4399da276d392393c, type: 3}
@@ -25,8 +25,22 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 2
     Amount: 20
-    Id: rat
+    Id: 0
+    Tags: 
   - Type: 4
     Amount: -1
-    Id: rat
+    Id: 0
+    Tags: 
   ActiveEffects: []
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 2
+        Amount: 20
+        Id: 15
+        Tags: 
+      - Type: 4
+        Amount: -1
+        Id: 15
+        Tags: 

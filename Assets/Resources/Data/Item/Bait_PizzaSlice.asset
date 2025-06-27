@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
   m_Name: Bait_PizzaSlice
   m_EditorClassIdentifier: 
-  Id: 20
+  ItemId: 20
   Name: Pizza Slice
   Description: Adds a Pizza to the dungeon.
   Sprite: {fileID: -6444940296795206775, guid: da0ba34d0cbc70743a658092d8212231, type: 3}
@@ -25,6 +25,14 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 5
     Amount: 1
-    Id: pizza
+    Id: 0
     Tags: 
   ActiveEffects: []
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 5
+        Amount: 1
+        Id: 3
+        Tags: 

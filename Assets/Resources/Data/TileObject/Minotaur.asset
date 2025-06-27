@@ -16,7 +16,7 @@ MonoBehaviour:
   UserFacingDescription: The best guard in the land, the Dragon knows exactly where
     to place them.
   Tags: 010000000200000000000000
-  Id: minotaur
+  TileId: 22
   Sprite: {fileID: 1612175002337491917, guid: 8281dfc95d1acf94fadfc1d0dd855e42, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

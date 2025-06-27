@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using Gameplay;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 namespace Schemas
 {
-
     /// <summary>
     /// The shop will care about having rarity.
     /// Some items might increase rarity given in the shop.
@@ -33,31 +32,91 @@ namespace Schemas
     }
 
     [Serializable]
+    public enum EffectTrigger
+    {
+        Purchase,       // When the item is purchased
+        PlayerLevel,    // When the player levels up mid-dungeon round
+        DungeonLevel,   // When the dungeon levels up (Victory screen)
+        Conquer,        // When anything is conquered 
+        Used,           // Consumables only: When the Use button is clicked in inventory
+    }
+
+    [Serializable]
     public struct Effect
     {
         public EffectType Type;
+        
+        /// <summary>
+        /// If the effect type needs an amount, this will be used.
+        /// </summary>
         public int Amount;
         
         /// <summary>
         /// The effect will only apply if the object in question has this id
         /// </summary>
-        // TODO: This maps to monster id, etc, but we should really be using enums and shit
-        public string Id;
+        // TODO: This maps to monster id, etc, but we should really be using enums and shit??
+        public TileSchema.Id Id;
 
         /// <summary>
-        /// The effect will only apply if these tags are on the object in question
+        /// The effect will only apply if at least one of these tags are on the object in question
         /// </summary>
-        public List<TileObjectSchema.Tag> Tags;
+        public List<TileSchema.Tag> Tags;
     }
     
     [CreateAssetMenu(menuName = "Data/Item")]
     public class ItemSchema : Schema
     {
-        public ItemInstance.Id Id;
+        private void OnValidate()
+        {
+            if (ItemId == Id.None)
+            {
+                Debug.LogError($"{nameof(ItemSchema)}.{Name} requires a valid item ID");
+            }
+        }
+        
+        // !!WARNING!! DO NOT REORDER
+        public enum Id
+        {
+            // Used for Empty
+            None,
+            
+            Sword,
+            Bow,
+            MagicCarpet,
+            Flute,
+            TarotDeck,
+            HolyLight,
+            Alembic,
+            RatRepellent,
+            MeatGrinder,
+            Campfire,
+            Abacus,
+            DetectorRat,
+            DetectorBat,
+            DetectorBrick,
+            SacrificialKris,
+            BaitRat,
+            BaitBat,
+            BaitFaerie,
+            Egg,
+            PizzaSlice,
+            Candle,
+            Pickaxe,
+            
+            PotionHealing,
+            PotionStrength,
+            PotionPoison,
+            PotionStamina,
+            PotionStoneshield,
+        }
+        
+        public ItemSchema.Id ItemId;
         public string Name;
         public string Description;
         public Sprite Sprite;
         public bool IsUniqueEquipped;
+        
+        // Consumable only
         public bool IsConsumbale;
         public int InitialCharges;
 
@@ -75,16 +134,9 @@ namespace Schemas
         /// How much "ShopXP" it will cost to buy one instance.
         /// </summary>
         public int Price;
-
-        /// <summary>
-        /// The gameplay effects that will run when buying this item.
-        /// </summary>
-        public Effect[] PassiveEffects;
         
-        /// <summary>
-        /// The gameplay effects that will run when actively used from inventory. Only CONSUMABLES should use this.
-        /// </summary>
-        public Effect[] ActiveEffects;
+        [SerializedDictionary("EffectTrigger", "Effects")]
+        public SerializedDictionary<EffectTrigger, Effect[]> Effects =  new SerializedDictionary<EffectTrigger, Effect[]>();
         
         public float GetShopAppearanceRate()
         {

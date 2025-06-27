@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
   m_Name: SacrificialKris
   m_EditorClassIdentifier: 
-  Id: 15
+  ItemId: 15
   Name: Sacrificial Kris
   Description: Take 1 more damage from enemies. Get +1 XP from enemies.
   Sprite: {fileID: 21300000, guid: 01bf5e3c7141199418568b8398fb5a0f, type: 3}
@@ -25,10 +25,22 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 3
     Amount: 1
-    Id: global
+    Id: 0
     Tags: 
   - Type: 4
     Amount: 1
-    Id: global
+    Id: 0
     Tags: 
   ActiveEffects: []
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 3
+        Amount: 1
+        Id: 1
+        Tags: 
+      - Type: 4
+        Amount: 1
+        Id: 1
+        Tags: 

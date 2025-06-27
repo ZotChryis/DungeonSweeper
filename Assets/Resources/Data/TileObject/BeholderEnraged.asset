@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: 
   UserFacingDescription: ???
   Tags: 0100000004000000
-  Id: beholder
+  TileId: 21
   Sprite: {fileID: 7895412607919688145, guid: 41ea347a3f7776f4e927ffa77655ee0f, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

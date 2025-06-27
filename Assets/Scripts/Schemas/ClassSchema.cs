@@ -10,6 +10,6 @@ namespace Schemas
         public Sprite Sprite;
         public string Name;
         public string Description;
-        public ItemInstance.Id StartingItem;
+        public ItemSchema.Id StartingItem;
     }
 }

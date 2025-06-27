@@ -1,4 +1,5 @@
 ﻿using System;
+using Schemas;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Data/SpawnSettings")]
@@ -8,12 +9,12 @@ public class SpawnSettings : Schema
     public struct GridSpawnEntry
     {
         public int Amount;
-        public TileObjectSchema Object;
+        public TileSchema Object;
         
         /// <summary>
         /// Spawn this immediately following the Object spawn
         /// </summary>
-        public TileObjectSchema ConsecutiveSpawn;
+        public TileSchema ConsecutiveSpawn;
         public int ConsecutiveCopies;
         public bool ConsecutiveStackedInLibrary;
         

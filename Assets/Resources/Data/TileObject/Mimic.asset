@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Mimic
   UserFacingDescription: Can fool even the most storied of adventurers...
   Tags: 0100000002000000
-  Id: mimic
+  TileId: 31
   Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

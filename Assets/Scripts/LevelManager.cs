@@ -13,11 +13,18 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public int CurrentLevel
     {
+        set
+        {
+            currentLevel = value;
+            OnLevelChanged?.Invoke(currentLevel);
+        }
         get
         {
             return currentLevel;
         }
     }
+
+    public Action<int> OnLevelChanged;
 
     [ReadOnly]
     [SerializeField]
@@ -31,16 +38,15 @@ public class LevelManager : MonoBehaviour
     // TODO: Let's remove asset usages of functions like this. If its on a button, we should bind the callback in code
     public void NextLevel()
     {
-        currentLevel++;
-        SetLevel(currentLevel);
+        SetLevel(CurrentLevel + 1);
     }
 
     // TODO: Go through GameManager just for clarity
     public void SetLevel(int level)
     {
+        CurrentLevel = level;
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
         ServiceLocator.Instance.Grid.GenerateGrid();
-        ServiceLocator.Instance.Player.ResetPlayer();
 
         // TODO: Find a better way to do this, in data? This is gross
         if (level == 1)

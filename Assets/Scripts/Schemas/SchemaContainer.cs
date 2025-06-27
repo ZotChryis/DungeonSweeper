@@ -11,12 +11,12 @@ using Schemas;
 /// </summary>
 public class SchemaContainer
 {
-    private const string c_tileObject = "Data/TileObject";
-    private const string c_item = "Data/Item";
-    private const string c_class = "Data/Class";
-    private const string c_levelProgressionDirectory = "Data/LevelProgression";
+    public static string c_tileObject = "Data/TileObject";
+    public static string c_item = "Data/Item";
+    public static string c_class = "Data/Class";
+    public static string c_levelProgressionDirectory = "Data/LevelProgression";
 
-    public List<TileObjectSchema> TileObjectSchemas;
+    public List<TileSchema> TileObjectSchemas;
     public List<ItemSchema> ItemSchemas;
     public List<ClassSchema> ClassSchemas;
     
@@ -24,7 +24,7 @@ public class SchemaContainer
     
     public void Initialize()
     {
-        TileObjectSchemas = UnityEngine.Resources.LoadAll<TileObjectSchema>(c_tileObject).ToList();
+        TileObjectSchemas = UnityEngine.Resources.LoadAll<TileSchema>(c_tileObject).ToList();
         ItemSchemas = UnityEngine.Resources.LoadAll<ItemSchema>(c_item).ToList();
         ClassSchemas = UnityEngine.Resources.LoadAll<ClassSchema>(c_class).ToList();
         LevelProgression = UnityEngine.Resources.LoadAll<LevelProgressionSchema>(c_levelProgressionDirectory)[0];

@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Lover (M)
   UserFacingDescription: Looking for his  partner, he will always have love to share.
   Tags: 0100000002000000
-  Id: lover
+  TileId: 27
   Sprite: {fileID: 8029351004527951999, guid: 8ee9e54488b314f4b8df35324cc0df60, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

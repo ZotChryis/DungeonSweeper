@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Green Slime
   UserFacingDescription: Gelatinous and light, has no mind but follows a command.
   Tags: 0100000002000000
-  Id: greenslime
+  TileId: 24
   Sprite: {fileID: -7499619221918500907, guid: abd63617ea19a1d44ad7d02fce658366, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

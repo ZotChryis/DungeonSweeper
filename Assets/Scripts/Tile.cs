@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Schemas;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -60,7 +61,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     private Color RewardColor;
 
     [SerializeField]
-    private TileObjectSchema HousedObject;
+    private TileSchema HousedObject;
     public TileState State { get; private set; } = TileState.Hidden;
 
     public int XCoordinate = 0;
@@ -158,12 +159,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     /// Places the housedObj and optionally upgrades it based on player power.
     /// Obscures adjacent tiles if necessary.
     /// </summary>
-    public void PlaceTileObj(TileObjectSchema housedObject)
+    public void PlaceTileObj(TileSchema housedObject)
     {
         if (housedObject != null &&
             housedObject.UpgradedVersion != null &&
-            !string.IsNullOrWhiteSpace(housedObject.Id) &&
-            ServiceLocator.Instance.Player.TileObjectsThatShouldUpgrade.TryGetValue(housedObject.Id, out int level))
+            ServiceLocator.Instance.Player.TileObjectsThatShouldUpgrade.TryGetValue(housedObject.TileId, out int level))
         {
             for (int i = 0; i < level && housedObject && housedObject.UpgradedVersion; i++)
             {
@@ -340,7 +340,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             int revealOriginY = YCoordinate;
             if (HousedObject.RevealRandLocationNextToMine)
             {
-                (int revealX, int revealY) = ServiceLocator.Instance.Grid.GetPositionOfRandomType("mine");
+                (int revealX, int revealY) = ServiceLocator.Instance.Grid.GetPositionOfRandomType(TileSchema.Id.Mine);
                 List<(int, int)> adjacentToReveal = ServiceLocator.Instance.Grid.GetAdjacentValidPositions(revealX, revealY);
                 adjacentToReveal.Remove((revealX, revealY));
                 var randomAdjacentToReveal = adjacentToReveal[UnityEngine.Random.Range(0, adjacentToReveal.Count)];
@@ -486,7 +486,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
             case TileState.Revealed:
                 Power.enabled = true;
-                NeighborPower.enabled = GetHousedObject() != null && ServiceLocator.Instance.Player.TilesWhichShowNeighborPower.Contains(GetHousedObject().Id.ToLower());
+                NeighborPower.enabled = GetHousedObject() != null && ServiceLocator.Instance.Player.TilesWhichShowNeighborPower.Contains(GetHousedObject().TileId);
                 HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
@@ -577,7 +577,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         );
     }
 
-    public TileObjectSchema GetHousedObject()
+    public TileSchema GetHousedObject()
     {
         return HousedObject;
     }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
   m_Name: Campfire
   m_EditorClassIdentifier: 
-  Id: 10
+  ItemId: 10
   Name: Campfire
   Description: Start each board with +5 XP.
   Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
@@ -25,5 +25,14 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 1
     Amount: 5
-    Id: 
+    Id: 0
+    Tags: 
   ActiveEffects: []
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 1
+        Amount: 5
+        Id: 0
+        Tags: 

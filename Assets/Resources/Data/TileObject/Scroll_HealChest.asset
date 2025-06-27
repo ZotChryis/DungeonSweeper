@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Heal Chest Scroll
   UserFacingDescription: Use to heal to full.
   Tags: 00000000
-  Id: scrollheal
+  TileId: 39
   Sprite: {fileID: -6413543000352893186, guid: 4844645bbba31344ba71550232dd5849, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

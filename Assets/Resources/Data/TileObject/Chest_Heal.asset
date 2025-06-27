@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Heal Chest
   UserFacingDescription: A heal scroll awaits you for opening this chest!
   Tags: 00000000
-  Id: chest
+  TileId: 8
   Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

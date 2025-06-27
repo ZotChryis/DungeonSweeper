@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Brick_1
   m_EditorClassIdentifier: 
-  UserFacingName: 
+  UserFacingName: Brick
   UserFacingDescription: Hit it a few times to make it shatter. Cannot kill you.
   Tags: 00000000
-  Id: brick
+  TileId: 6
   Sprite: {fileID: 6878312378708349726, guid: ee5b00eb70a3af345a1af59823d99fe2, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
   m_Name: Bait_Egg
   m_EditorClassIdentifier: 
-  Id: 19
+  ItemId: 19
   Name: Egg
   Description: Adds an Egg to the dungeon.
   Sprite: {fileID: 4646649027328027380, guid: 40b5ef490899d93449ac43047c777b2d, type: 3}
@@ -25,6 +25,14 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 5
     Amount: 1
-    Id: egg
+    Id: 0
     Tags: 
   ActiveEffects: []
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 5
+        Amount: 1
+        Id: 2
+        Tags: 

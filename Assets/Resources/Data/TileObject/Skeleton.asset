@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Skeleton
   UserFacingDescription: No brain, no heart, no courage...just bones.
   Tags: 0100000002000000
-  Id: skeleton
+  TileId: 17
   Sprite: {fileID: 4354231566380549168, guid: 4c957838ba18aae499c63d20314fae83, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

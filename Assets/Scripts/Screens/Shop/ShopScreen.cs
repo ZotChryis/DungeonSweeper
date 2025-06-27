@@ -25,8 +25,9 @@ namespace Screens.Shop
         private void OnContinueClicked()
         {
             // TODO: This logic needs to go somewhere else...
-            // Close the shop and update the level
+            // Reset the player, close the shop and update the level
             ServiceLocator.Instance.LevelManager.NextLevel();
+            ServiceLocator.Instance.Player.ResetPlayer();
             ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
         }
 
@@ -52,7 +53,7 @@ namespace Screens.Shop
             
             // Remove any items that they already own (and aren't consumables)
             allItems.RemoveAll(schema =>
-                !schema.IsConsumbale && ServiceLocator.Instance.Player.Inventory.HasItem(schema.Id)
+                !schema.IsConsumbale && ServiceLocator.Instance.Player.Inventory.HasItem(schema.ItemId)
             );
             
             // Roll by rarity to see if they are included
@@ -62,7 +63,7 @@ namespace Screens.Shop
                 {
                     for (int i = 0; i < itemSchema.ShopInventory; i++)
                     {
-                        Inventory.AddItem(itemSchema.Id);
+                        Inventory.AddItem(itemSchema.ItemId);
                     }
                 }
             }
@@ -91,7 +92,7 @@ namespace Screens.Shop
             {
                 for (int i = 0; i < itemSchema.ShopInventory; i++)
                 {
-                    Inventory.AddItem(itemSchema.Id);
+                    Inventory.AddItem(itemSchema.ItemId);
                 }
             }
         }

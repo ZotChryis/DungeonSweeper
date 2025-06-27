@@ -24,25 +24,56 @@ namespace Gameplay
         public Inventory(bool isPlayerInventoy)
         {
             IsPlayerInventoy = isPlayerInventoy;
+
+            if (IsPlayerInventoy)
+            {
+                ServiceLocator.Instance.Player.OnLevelChanged += OnPlayerLevelChanged;
+                ServiceLocator.Instance.Player.OnConquer += OnConquer;
+                ServiceLocator.Instance.LevelManager.OnLevelChanged += OnDungeonLevelChanged;
+            }
+        }
+
+        private void OnConquer(TileSchema tileObject)
+        {
+            foreach (var itemInstance in Items)
+            {
+                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Conquer);
+            }
+        }
+
+        private void OnPlayerLevelChanged(int newLevel)
+        {
+            foreach (var itemInstance in Items)
+            {
+                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.PlayerLevel);
+            }
+        }
+
+        private void OnDungeonLevelChanged(int newLevel)
+        {
+            foreach (var itemInstance in Items)
+            {
+                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.DungeonLevel);
+            }
         }
         
         /// <summary>
         /// Returns if we have the item in the inventory. Even if it's empty.
         /// </summary>
-        public bool HasItem(ItemInstance.Id itemId)
+        public bool HasItem(ItemSchema.Id itemId)
         {
-            return Items.Any(item => item.Schema.Id ==itemId);
+            return Items.Any(item => item.Schema.ItemId ==itemId);
         }
 
-        public ItemInstance GetFirstItem(ItemInstance.Id itemId)
+        public ItemInstance GetFirstItem(ItemSchema.Id itemId)
         {
-            return Items.First(item => item.Schema.Id == itemId);
+            return Items.First(item => item.Schema.ItemId == itemId);
         }
 
         /// <summary>
         /// Returns whether or not the itemId can be added to the inventory. Handles stacking logic.
         /// </summary>
-        public bool AddItem(ItemInstance.Id itemId)
+        public bool AddItem(ItemSchema.Id itemId)
         {
             if (HasItem(itemId))
             {
@@ -65,7 +96,7 @@ namespace Gameplay
             
             foreach (var itemSchema in ServiceLocator.Instance.Schemas.ItemSchemas)
             {
-                if (itemSchema.Id != itemId)
+                if (itemSchema.ItemId != itemId)
                 {
                     continue;
                 }
@@ -77,7 +108,7 @@ namespace Gameplay
                 // TODO: REFACTOR candidate
                 if (IsPlayerInventoy)
                 {
-                    newItem.ApplyPassiveEffects(ServiceLocator.Instance.Player);
+                    newItem.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Purchase);
                 }
                 
                 return true;
@@ -103,7 +134,7 @@ namespace Gameplay
             {
                 itemInstance.RemoveCharge(1);
                 OnItemChargeChanged?.Invoke(itemInstance);
-                itemInstance.ApplyActiveEffects(ServiceLocator.Instance.Player);
+                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
                 return true;
             }
             
@@ -113,43 +144,6 @@ namespace Gameplay
     
     public class ItemInstance
     {
-        // TODO: Move to ItemSchema?? Make this a string and live with the error-prone nature?? 
-        // !!WARNING!! DO NOT REORDER
-        public enum Id
-        {
-            // Used for Empty
-            None,
-            
-            Sword,
-            Bow,
-            MagicCarpet,
-            Flute,
-            TarotDeck,
-            HolyLight,
-            Alembic,
-            RatRepellent,
-            MeatGrinder,
-            Campfire,
-            Abacus,
-            DetectorRat,
-            DetectorBat,
-            DetectorBrick,
-            SacrificialKris,
-            BaitRat,
-            BaitBat,
-            BaitFaerie,
-            Egg,
-            PizzaSlice,
-            Candle,
-            Pickaxe,
-            
-            PotionHealing,
-            PotionStrength,
-            PotionPoison,
-            PotionStamina,
-            PotionStoneshield,
-        }
-
         public ItemSchema Schema;
         public int MaxQuantity;
         
@@ -178,10 +172,10 @@ namespace Gameplay
             return Schema.IsConsumbale && CurrentQuantity >= 0;
         }
 
-        private void ApplyEffects(Player player, Effect[] effects)
+        public void ApplyEffects(Player player, EffectTrigger trigger)
         {
             // Just in case
-            if (effects == null)
+            if (!Schema.Effects.TryGetValue(trigger, out Effect[] effects))
             {
                 return;
             }
@@ -206,7 +200,7 @@ namespace Gameplay
                         break;
                     
                     case EffectType.ModDamageTaken:
-                        if (!string.IsNullOrEmpty(effect.Id))
+                        if (effect.Id != TileSchema.Id.None)
                         {
                             player.AddModDamageTaken(effect.Id, effect.Amount);
                         }
@@ -219,7 +213,7 @@ namespace Gameplay
                         break;
                     
                     case EffectType.ModXp:
-                        if (!string.IsNullOrEmpty(effect.Id))
+                        if (effect.Id != TileSchema.Id.None)
                         {
                             player.AddModXp(effect.Id, effect.Amount);
                         }
@@ -231,7 +225,7 @@ namespace Gameplay
                         break;
                     
                     case EffectType.BonusSpawn:
-                        if (!string.IsNullOrEmpty(effect.Id))
+                        if (effect.Id != TileSchema.Id.None)
                         {
                             player.AddSpawnCount(effect.Id, effect.Amount);
                         }
@@ -239,7 +233,7 @@ namespace Gameplay
                         break;
                     
                     case EffectType.UpgradeTileObject:
-                        if (!string.IsNullOrEmpty(effect.Id))
+                        if (effect.Id != TileSchema.Id.None)
                         {
                             player.AddOrIncrementTileLevel(effect.Id);
                         }
@@ -247,15 +241,6 @@ namespace Gameplay
                         break;
                 }
             }
-        }
-        public void ApplyPassiveEffects(Player player)
-        {
-            ApplyEffects(player, Schema.PassiveEffects);
-        }
-        
-        public void ApplyActiveEffects(Player player)
-        {
-            ApplyEffects(player, Schema.ActiveEffects);
         }
     }
 }

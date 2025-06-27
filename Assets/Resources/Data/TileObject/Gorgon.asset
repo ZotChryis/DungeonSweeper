@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Gorgon
   UserFacingDescription: ???
   Tags: 0100000003000000
-  Id: gorgon
+  TileId: 35
   Sprite: {fileID: 4309098291213245400, guid: a756c5a664f66f84086af0c8c01b0506, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

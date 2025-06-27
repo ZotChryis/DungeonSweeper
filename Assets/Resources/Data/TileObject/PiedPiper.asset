@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Pied Piper
   UserFacingDescription: With his soothing tones, the rats follow his every note.
   Tags: 0100000003000000
-  Id: piper
+  TileId: 20
   Sprite: {fileID: -8149248579746061818, guid: a0469392af577df4399da276d392393c, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

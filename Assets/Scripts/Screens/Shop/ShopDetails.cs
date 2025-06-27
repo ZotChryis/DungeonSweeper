@@ -21,7 +21,7 @@ namespace Screens.Shop
             player.ShopXp -= ItemInstance.Schema.Price;
             
             // Add it to the player's inventory
-            player.Inventory.AddItem(ItemInstance.Schema.Id);
+            player.Inventory.AddItem(ItemInstance.Schema.ItemId);
             
             // Once you but the item, you can't buy it again. We'll remove it from the shop
             ShopScreen shopScreen = ServiceLocator.Instance.OverlayScreenManager.Screens[OverlayScreenManager.ScreenType.Shop] as ShopScreen;

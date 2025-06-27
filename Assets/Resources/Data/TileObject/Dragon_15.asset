@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Dragon
   UserFacingDescription: The menace of this realm. Defeat it to advance.
   Tags: 0100000004000000
-  Id: 
+  TileId: 32
   Sprite: {fileID: 1372335161102834277, guid: b2ca6bc5e9a932d46ac4b2f37541b7e9, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

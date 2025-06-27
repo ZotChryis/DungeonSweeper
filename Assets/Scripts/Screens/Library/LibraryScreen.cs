@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Schemas;
 using UnityEngine;
 
 public class LibraryScreen : BaseScreen
@@ -15,7 +16,7 @@ public class LibraryScreen : BaseScreen
 
     private struct LibraryItemDTO
     {
-        public TileObjectSchema Object;
+        public TileSchema Object;
         public int Amount;
     }
     

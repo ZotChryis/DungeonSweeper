@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Schemas;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -14,10 +15,10 @@ public class Grid : MonoBehaviour
 {
     // TODO: Make better way to reference this shit. Probably with an object refactor kekw
     [SerializeField] 
-    private TileObjectSchema Mine;
+    private TileSchema Mine;
     
     [SerializeField] 
-    private TileObjectSchema DiffusedMine;
+    private TileSchema DiffusedMine;
     
     /// <summary>
     /// The spawn settings for this enemy spawner.
@@ -115,7 +116,7 @@ public class Grid : MonoBehaviour
         {
             // We spawn all of the instances of each enemy before moving on.
             int primarySpawnCount = spawnEntry.Amount;
-            if (ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.Object.Id, out int bonusPrimaryCopies))
+            if (ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.Object.TileId, out int bonusPrimaryCopies))
             {
                 primarySpawnCount += bonusPrimaryCopies;
             }
@@ -134,8 +135,8 @@ public class Grid : MonoBehaviour
                     coordinates = spawnEntry.Requirement.GetRandomCoordinate(UnoccupiedSpaces);
                     UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
                     Tiles[coordinates.Item1, coordinates.Item2].PlaceTileObj(spawnEntry.Object);
-                    // Don't auto-reveal player spawned items.
-                    if (spawnEntry.Requirement.RevealAfterSpawn && i < spawnEntry.Amount)
+                    
+                    if (spawnEntry.Requirement.RevealAfterSpawn)//  && i < spawnEntry.Amount) // Don't auto-reveal player spawned items.
                     {
                         Tiles[coordinates.Item1, coordinates.Item2].TEMP_RevealWithoutLogic();
                     }
@@ -144,7 +145,7 @@ public class Grid : MonoBehaviour
                         var additionalSpawnLocations = spawnEntry.Requirement.GetRandomConsecutiveNeighborLocations(UnoccupiedSpaces, coordinates.Item1, coordinates.Item2);
                         additionalSpawnLocations.Shuffle();
                         int consecutiveCopies = spawnEntry.ConsecutiveCopies;
-                        if (ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.ConsecutiveSpawn.Id, out int bonusCopies))
+                        if (ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.ConsecutiveSpawn.TileId, out int bonusCopies))
                         {
                             consecutiveCopies += bonusCopies;
                         }
@@ -244,7 +245,7 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Reveals all tiles that have the matching object schema.
     /// </summary>
-    public void TEMP_RevealAllOfType(TileObjectSchema objectSchema)
+    public void TEMP_RevealAllOfType(TileSchema objectSchema)
     {
         for (int y = 0; y < SpawnSettings.Height; y++)
         {
@@ -262,7 +263,7 @@ public class Grid : MonoBehaviour
     /// Reveals a random tile that has the matching monster id.
     /// </summary>
     /// <param name="tileId">monster id</param>
-    public void RevealRandomOfType(string tileId)
+    public void RevealRandomOfType(TileSchema.Id tileId)
     {
         int yStarting = Random.Range(0, SpawnSettings.Height);
         int xStarting = Random.Range(0, SpawnSettings.Width);
@@ -271,7 +272,7 @@ public class Grid : MonoBehaviour
             for (int x = xStarting; x < SpawnSettings.Width; x++)
             {
                 if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) &&
+                    Tiles[x, y].GetHousedObject().TileId == tileId &&
                     Tiles[x, y].State == Tile.TileState.Hidden)
                 {
                     Tiles[x, y].TEMP_RevealWithoutLogic();
@@ -285,7 +286,7 @@ public class Grid : MonoBehaviour
             for (int x = 0; x < SpawnSettings.Width; x++)
             {
                 if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) &&
+                    Tiles[x, y].GetHousedObject().TileId == tileId &&
                     Tiles[x, y].State == Tile.TileState.Hidden)
                 {
                     Tiles[x, y].TEMP_RevealWithoutLogic();
@@ -300,7 +301,7 @@ public class Grid : MonoBehaviour
     /// </summary>
     /// <param name="tileId">monster id</param>
     /// <returns>x and y int coordinates</returns>
-    public (int, int) GetPositionOfRandomType(string tileId)
+    public (int, int) GetPositionOfRandomType(TileSchema.Id tileId)
     {
         int yStarting = Random.Range(0, SpawnSettings.Height);
         int xStarting = Random.Range(0, SpawnSettings.Width);
@@ -309,7 +310,7 @@ public class Grid : MonoBehaviour
             for (int x = xStarting; x < SpawnSettings.Width; x++)
             {
                 if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) &&
+                    Tiles[x, y].GetHousedObject().TileId == tileId &&
                     Tiles[x, y].State == Tile.TileState.Hidden)
                 {
                     return (x, y);
@@ -322,7 +323,7 @@ public class Grid : MonoBehaviour
             for (int x = 0; x < SpawnSettings.Width; x++)
             {
                 if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().Id.Equals(tileId, StringComparison.OrdinalIgnoreCase) &&
+                    Tiles[x, y].GetHousedObject().TileId == tileId &&
                     Tiles[x, y].State == Tile.TileState.Hidden)
                 {
                     return (x, y);
@@ -376,7 +377,7 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Returns the object in the given coordinates. Can be null.
     /// </summary>
-    public TileObjectSchema GetObject(int xCoordinate, int yCoordinate)
+    public TileSchema GetObject(int xCoordinate, int yCoordinate)
     {
         return Tiles[xCoordinate, yCoordinate].GetHousedObject();
     }
@@ -505,7 +506,7 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public bool TEMP_HandleFlee(TileObjectSchema housedObject)
+    public bool TEMP_HandleFlee(TileSchema housedObject)
     {
         if (!UnoccupiedSpaces.HasEmptySpace())
         {
@@ -524,7 +525,7 @@ public class Grid : MonoBehaviour
     
     // I feel like this is some leetcode shit
     // todo: use Vector2Int
-    public (int, int) FindNearest(TileObjectSchema toFind, int xOrigin, int yOrigin)
+    public (int, int) FindNearest(TileSchema toFind, int xOrigin, int yOrigin)
     {
         (int, int)[] directions = { (0, 1), (0, -1), (1, 0), (-1, 0) };
         Queue<(int x, int y, int dist)> queue = new();

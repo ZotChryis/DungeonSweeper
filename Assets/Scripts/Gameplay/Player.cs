@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 using Gameplay;
 using Schemas;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // TODO: Separate the UI from the business logic. One should be in UI space, and one should be in Gameplay space
@@ -12,10 +11,10 @@ using UnityEngine.UI;
 // This is currently both
 public class Player : MonoBehaviour, IPointerClickHandler
 {
-    public List<string> RevealedMonsters = new List<string>();
+    public List<TileSchema.Id> RevealedMonsters = new();
 
     [Tooltip("Player ability, bonus spawn count. Key is spawned creation id.")]
-    public Dictionary<string, int> BonusSpawn = new Dictionary<string, int>();
+    public Dictionary<TileSchema.Id, int> BonusSpawn = new();
 
     [SerializeField] 
     private Image PlayerIcon;
@@ -38,11 +37,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
     
     //TODO: Merge these concepts (id and Tag)
     // By id, "global" is an overall id
-    public Dictionary<string, int> ModDamageTaken = new Dictionary<string, int>();
-    public Dictionary<string, int> ModXp = new Dictionary<string, int>();
+    public Dictionary<TileSchema.Id, int> ModDamageTaken = new();
+    public Dictionary<TileSchema.Id, int> ModXp = new();
     
-    public Dictionary<TileObjectSchema.Tag, int> ModDamageTakenByTag = new Dictionary<TileObjectSchema.Tag, int>();
-    public Dictionary<TileObjectSchema.Tag, int> ModXpByTag = new Dictionary<TileObjectSchema.Tag, int>();
+    public Dictionary<TileSchema.Tag, int> ModDamageTakenByTag = new();
+    public Dictionary<TileSchema.Tag, int> ModXpByTag = new();
     
     public Class.Id Class = Gameplay.Class.Id.Adventurer;
     public Inventory Inventory;
@@ -60,8 +59,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private bool HasRegeneratedThisRound = false;
     private int CurrentXP;
 
-    public HashSet<string> TilesWhichShowNeighborPower = new HashSet<string>();
-    public Dictionary<string, int> TileObjectsThatShouldUpgrade = new Dictionary<string, int>();
+    public HashSet<TileSchema.Id> TilesWhichShowNeighborPower = new();
+    public Dictionary<TileSchema.Id, int> TileObjectsThatShouldUpgrade = new();
     public int ShopXp
     {
         get { return m_shopXp; }
@@ -77,6 +76,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+
+    public Action<int> OnLevelChanged;
+    public Action<TileSchema> OnConquer;
+
     private int m_shopXp;
     public OnPlayerPropertyChanged OnShopXpChanged;
     public delegate void OnPlayerPropertyChanged();
@@ -95,8 +98,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         Inventory = new Inventory(true);
         
         // TODO: Make this system better
-        ModDamageTaken.Add("global", 0);
-        ModXp.Add("global", 0);
+        ModDamageTaken.Add(TileSchema.Id.Global, 0);
+        ModXp.Add(TileSchema.Id.Global, 0);
     }
 
     private void Start()
@@ -134,22 +137,22 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ResetPlayer();
     }
     
-    public bool TEMP_PredictDeath(TileObjectSchema source, int amount)
+    public bool TEMP_PredictDeath(TileSchema source, int amount)
     {
         amount = GetModifiedDamage(source, amount);
         return CurrentHealth - amount < 0;
     }
 
-    public int GetModifiedDamage(TileObjectSchema source, int amount)
+    public int GetModifiedDamage(TileSchema source, int amount)
     {
         if (source != null)
         {
-            if (source.Tags.Contains(TileObjectSchema.Tag.Enemy))
+            if (source.Tags.Contains(TileSchema.Tag.Enemy))
             {
-                amount += ModDamageTaken["global"];
+                amount += ModDamageTaken[TileSchema.Id.Global];
             }
 
-            if (ModDamageTaken.TryGetValue(source.Id, out int value))
+            if (ModDamageTaken.TryGetValue(source.TileId, out int value))
             {
                 amount += value;
             }
@@ -177,7 +180,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// </summary>
     /// <param name="amount"></param>
     /// <returns>true if the player is dead</returns>
-    public bool UpdateHealth(TileObjectSchema source, int amount)
+    public bool UpdateHealth(TileSchema source, int amount)
     {
         // pre-process any weird enemy logic, pre items
         if (amount == -7 && HasDemonBanePowers && !HasUsedDemonBanePowers)
@@ -215,39 +218,39 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
             return true;
         }
+        
+        OnConquer?.Invoke(source);
         return false;
     }
 
-    public void TEMP_UpdateXP(TileObjectSchema source, int amount)
+    public void TEMP_UpdateXP(TileSchema source, int amount)
     {
         amount = GetModifiedXp(source, amount);
         CurrentXP += amount;
         TEMP_UpdateVisuals();
     }
 
-    public int GetModifiedXp(TileObjectSchema source, int amount)
+    public int GetModifiedXp(TileSchema source, int amount)
     {
         if (source != null)
         {
+            // TODO: FIX IN DATA FIRST
             // global bonuses currently only for enemies
-            if (source != null)
+            if (source.Tags.Contains(TileSchema.Tag.Enemy))
             {
-                if (source.Tags.Contains(TileObjectSchema.Tag.Enemy))
-                {
-                    amount += ModXp["global"];
-                }
+                amount += ModXp[TileSchema.Id.Global];
+            }
 
-                if (ModXp.TryGetValue(source.Id, out int value))
+            if (ModXp.TryGetValue(source.TileId, out int value))
+            {
+                amount += value;
+            }
+        
+            foreach (var sourceTag in source.Tags)
+            {
+                if (ModXpByTag.TryGetValue(sourceTag, out int tagValue))
                 {
-                    amount += value;
-                }
-            
-                foreach (var sourceTag in source.Tags)
-                {
-                    if (ModXpByTag.TryGetValue(sourceTag, out int tagValue))
-                    {
-                        amount += tagValue;
-                    }
+                    amount += tagValue;
                 }
             }
         }
@@ -285,7 +288,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (CurrentXP >= xpRequiredToLevel)
         {
             CurrentXP -= xpRequiredToLevel;
+            
+            
             LevelUp();
+            
+            // TODO: refactor LevelUp vs ResetLevel so this can live in LevelUp()
+            OnLevelChanged?.Invoke(Level);
         }
     }
 
@@ -326,31 +334,16 @@ public class Player : MonoBehaviour, IPointerClickHandler
     }
     
     #region PlayerPowers
-    public void AddMonsterToAutoRevealedList(string monsterId)
+    public void AddMonsterToAutoRevealedList(TileSchema.Id monsterId)
     {
         RevealedMonsters.Add(monsterId);
     }
-
-    // TODO: DEPRECATE
-    public void AddAndIncrementMonsterToBonusSpawn(string monsterId)
-    {
-        int bonusSpawn = 0;
-        BonusSpawn.TryGetValue(monsterId, out bonusSpawn);
-        bonusSpawn++;
-        BonusSpawn[monsterId] = bonusSpawn;
-    }
-
-    public void AddSpawnCount(string id, int amount)
+    
+    public void AddSpawnCount(TileSchema.Id id, int amount)
     {
         BonusSpawn.TryGetValue(id, out int bonusSpawn);
         bonusSpawn += amount;
         BonusSpawn[id] = bonusSpawn;
-    }
-
-    // TODO: DEPRECATE
-    public void AddPlayerBonusStartingHp()
-    {
-        BonusStartingHp++;
     }
 
     public void AddBonusStartHp(int amount)
@@ -373,19 +366,19 @@ public class Player : MonoBehaviour, IPointerClickHandler
         HasDemonBanePowers = true;
     }
     
-    public void AddRevealNeighborPower(string ObjectId)
+    public void AddRevealNeighborPower(TileSchema.Id ObjectId)
     {
-        TilesWhichShowNeighborPower.Add(ObjectId.ToLower());
+        TilesWhichShowNeighborPower.Add(ObjectId);
     }
     
-    public void AddOrIncrementTileLevel(string ObjectId)
+    public void AddOrIncrementTileLevel(TileSchema.Id ObjectId)
     {
         int level = 0;
         TileObjectsThatShouldUpgrade.TryGetValue(ObjectId, out level);
         TileObjectsThatShouldUpgrade[ObjectId] = level + 1;
     }
     
-    public void AddModDamageTaken(string id, int effectAmount)
+    public void AddModDamageTaken(TileSchema.Id id, int effectAmount)
     {
         if (!ModDamageTaken.TryAdd(id, effectAmount))
         {
@@ -393,7 +386,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void AddModXp(string id, int effectAmount)
+    public void AddModXp(TileSchema.Id id, int effectAmount)
     {
         if (!ModXp.TryAdd(id, effectAmount))
         {
@@ -401,7 +394,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
     
-    public void AddModDamageTakenByTag(TileObjectSchema.Tag objectTag, int effectAmount)
+    public void AddModDamageTakenByTag(TileSchema.Tag objectTag, int effectAmount)
     {
         if (!ModDamageTakenByTag.TryAdd(objectTag, effectAmount))
         {
@@ -409,7 +402,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void AddModXpByTag(TileObjectSchema.Tag objectTag, int effectAmount)
+    public void AddModXpByTag(TileSchema.Tag objectTag, int effectAmount)
     {
         if (!ModXpByTag.TryAdd(objectTag, effectAmount))
         {

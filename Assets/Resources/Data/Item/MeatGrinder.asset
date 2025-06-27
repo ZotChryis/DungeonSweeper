@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
   m_Name: MeatGrinder
   m_EditorClassIdentifier: 
-  Id: 9
+  ItemId: 9
   Name: Meat Grinder
   Description: Beasts give +1 XP.
   Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
@@ -25,6 +25,14 @@ MonoBehaviour:
   PassiveEffects:
   - Type: 4
     Amount: 1
-    Id: 
+    Id: 0
     Tags: 05000000
   ActiveEffects: []
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 4
+        Amount: 1
+        Id: 0
+        Tags: 05000000

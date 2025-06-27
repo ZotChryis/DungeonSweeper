@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Pizza
   UserFacingDescription: Eat it to heal a small amount.
   Tags: 00000000
-  Id: pizza
+  TileId: 3
   Sprite: {fileID: -6444940296795206775, guid: da0ba34d0cbc70743a658092d8212231, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

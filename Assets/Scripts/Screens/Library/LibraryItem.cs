@@ -1,3 +1,4 @@
+using Schemas;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,7 +20,7 @@ public class LibraryItem : MonoBehaviour
     [SerializeField] 
     private TMP_Text Amount;
 
-    public void SetData(TileObjectSchema tileObject, int amount)
+    public void SetData(TileSchema tileObject, int amount)
     {
         Icon.sprite = tileObject.Sprite;
         Power.SetText(tileObject.Power.ToString());

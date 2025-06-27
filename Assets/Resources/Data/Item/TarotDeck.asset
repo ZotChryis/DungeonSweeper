@@ -10,37 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Sword
+  m_Name: TarotDeck
   m_EditorClassIdentifier: 
-  ItemId: 1
-  Name: Sword
-  Description: Take -1 less damage from Ranged. Get -1 XP from Ranged.
-  Sprite: {fileID: 21300000, guid: fdddd26b33711774083260b34c8adf4c, type: 3}
+  ItemId: 5
+  Name: Tarot Deck
+  Description: Add a Tarot Card at the start of the Dungeon. Increase the amount
+    of Tarot Cards after each Dungeon.
+  Sprite: {fileID: 116448157027243579, guid: 6bf67724d4cf49340945afff56b0f0c5, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 3
   Price: 8
-  PassiveEffects:
-  - Type: 3
-    Amount: -1
-    Id: 0
-    Tags: 03000000
-  - Type: 4
-    Amount: -1
-    Id: 0
-    Tags: 03000000
-  ActiveEffects: []
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 2
       Value:
-      - Type: 3
-        Amount: -1
-        Id: 0
-        Tags: 03000000
-      - Type: 4
-        Amount: -1
-        Id: 0
-        Tags: 03000000
+      - Type: 5
+        Amount: 1
+        Id: 4
+        Tags: 
