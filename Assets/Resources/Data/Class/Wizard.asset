@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   Id: 3
-  Sprite: {fileID: 1618915839015071714, guid: 2d157578fb53f704498d446db1566b6a, type: 3}
+  Sprite: {fileID: 1457491203435894738, guid: 0d95b31c52cf45645ad9427a06b03317, type: 3}
   Name: Wizard
   Description: Starts with the Magic Carpet.
   StartingItem: 3

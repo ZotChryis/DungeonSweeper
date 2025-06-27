@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ranger
   m_EditorClassIdentifier: 
   Id: 2
-  Sprite: {fileID: -2311659948842064771, guid: db328bb15cbd7d64f9cd40aaf8a4b3d6, type: 3}
+  Sprite: {fileID: -5081659279774951377, guid: e54a1c564ece59244b3a029d323b0137, type: 3}
   Name: Ranger
   Description: Starts with the Bow.
   StartingItem: 2

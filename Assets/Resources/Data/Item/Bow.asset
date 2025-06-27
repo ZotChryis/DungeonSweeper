@@ -15,23 +15,13 @@ MonoBehaviour:
   ItemId: 2
   Name: Bow
   Description: Take -1 less damage from Flying. Get -1 XP from Flying.
-  Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
+  Sprite: {fileID: -7856493677412862020, guid: e8eec721b10b5824e8cf4fb1aa6e578a, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 3
   Price: 8
-  PassiveEffects:
-  - Type: 3
-    Amount: -1
-    Id: 0
-    Tags: 04000000
-  - Type: 4
-    Amount: -1
-    Id: 0
-    Tags: 04000000
-  ActiveEffects: []
   Effects:
     _serializedList:
     - Key: 0

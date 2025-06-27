@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Tarot Deck
   Description: Add a Tarot Card at the start of the Dungeon. Increase the amount
     of Tarot Cards after each Dungeon.
-  Sprite: {fileID: 116448157027243579, guid: 6bf67724d4cf49340945afff56b0f0c5, type: 3}
+  Sprite: {fileID: 848434953770885490, guid: ff2ece802321eec4a89fff23a5b79e11, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0

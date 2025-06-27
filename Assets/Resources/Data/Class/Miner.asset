@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Miner
   m_EditorClassIdentifier: 
   Id: 7
-  Sprite: {fileID: 1621404166, guid: 2b379b67f14de8f45ae646b5954b34a3, type: 3}
+  Sprite: {fileID: 3876497900317922485, guid: 76620df949c75ae499886fc5df2c6039, type: 3}
   Name: Miner
   Description: Starts with the Pickaxe.
   StartingItem: 22

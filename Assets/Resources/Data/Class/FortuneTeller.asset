@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FortuneTeller
   m_EditorClassIdentifier: 
   Id: 6
-  Sprite: {fileID: 1618915839015071714, guid: 2d157578fb53f704498d446db1566b6a, type: 3}
+  Sprite: {fileID: 5874466097213687875, guid: d4a43c1770b6fd84ebb156a88c5c7694, type: 3}
   Name: Fortune Teller
   Description: Starts with the Tarot Deck.
   StartingItem: 5
