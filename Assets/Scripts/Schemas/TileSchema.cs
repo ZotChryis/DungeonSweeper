@@ -121,8 +121,11 @@ namespace Schemas
             public Sprite Above;
             public Sprite Below;
 
-            // Above/Below and Right/Left are exclusive. You cant use both
+            /// <summary>
+            /// Facing right is special. We default flip this sprite horizontally in case you don't set it.
+            /// </summary>
             public Sprite Right;
+            // Above/Below and Right/Left are exclusive. You cant use both
             public Sprite Left;
 
             // If no nearest object type is found.

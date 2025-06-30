@@ -164,6 +164,11 @@ public class Grid : MonoBehaviour
                                 // Chest.GuardingTile = Minotaur
                                 Tiles[coordinates.Item1, coordinates.Item2].BodyGuardedByTile = Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y];
                             }
+                            else if (spawnEntry.LookTowardsEachOther)
+                            {
+                                Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].LookTowardsOrthogonally(coordinates.Item1, coordinates.Item2, false, false);
+                                Tiles[coordinates.Item1, coordinates.Item2].LookTowardsOrthogonally(additionalSpawnLocations[add].x, additionalSpawnLocations[add].y, false, false);
+                            }
                         }
                     }
                 }
@@ -177,7 +182,7 @@ public class Grid : MonoBehaviour
 
                 if (spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride != null)
                 {
-                    Tiles[coordinates.Item1, coordinates.Item2].LookTowards(desiredLookX, desiredLookY, false, true);
+                    Tiles[coordinates.Item1, coordinates.Item2].LookTowardsHorizontally(desiredLookX, desiredLookY, false, true);
                 }
             }
         }

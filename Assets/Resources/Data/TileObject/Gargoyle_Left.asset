@@ -21,7 +21,7 @@ MonoBehaviour:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: -8765006612805199574, guid: 9c2c826e98928bb4383139bacc6524b3, type: 3}
     Below: {fileID: -2990900167212558872, guid: db7c954521c3d924dbe703bdd1ae714a, type: 3}
-    Right: {fileID: 9158715494214966644, guid: aff038cd472c51d44af53d66635ff3d6, type: 3}
+    Right: {fileID: -372146271992020778, guid: c713f4389498bad478c9a8fa884aca26, type: 3}
     Left: {fileID: -372146271992020778, guid: c713f4389498bad478c9a8fa884aca26, type: 3}
     Missing: {fileID: 0}
   Power: 4

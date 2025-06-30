@@ -18,7 +18,15 @@ public class SpawnSettings : Schema
         public int ConsecutiveCopies;
         public bool ConsecutiveStackedInLibrary;
         
+        /// <summary>
+        /// For minotaur+chest.
+        /// Minotaur is the additional spawn which look towards the spawner.
+        /// </summary>
         public bool GuardRelationship;
+        /// <summary>
+        /// For gargoyles. Look towards each other orthogonally.
+        /// </summary>
+        public bool LookTowardsEachOther;
         public SpawnRequirement Requirement;
     }
     

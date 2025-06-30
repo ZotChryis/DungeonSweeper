@@ -292,7 +292,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         // Associated guard gets enraged when yourself is conquered
         if (TileState.Conquered == State && BodyGuardedByTile != null && BodyGuardedByTile.State < TileState.Conquered)
         {
-            BodyGuardedByTile.LookTowards(XCoordinate, YCoordinate, true, false);
+            BodyGuardedByTile.LookTowardsHorizontally(XCoordinate, YCoordinate, true, false);
             BodyGuardedByTile.TEMP_UpdateVisuals();
         }
 
@@ -431,19 +431,18 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     }
 
     /// <summary>
-    /// 
+    /// Look towards one another. Purely horizontally. For minotaurs who don't look diagonally.
     /// </summary>
     /// <param name="xCoordinate"></param>
     /// <param name="yCoordinate"></param>
     /// <param name="enrage"></param>
     /// <param name="canStandUp">Whether to stand up if on same row</param>
-    public void LookTowards(int xCoordinate, int yCoordinate, bool enrage, bool canStandUp)
+    public void LookTowardsHorizontally(int xCoordinate, int yCoordinate, bool enrage, bool canStandUp)
     {
         if (enrage)
         {
             IsEnraged = true;
         }
-        // if our position is to the left of our enrage target flip us around.
         if (xCoordinate > this.XCoordinate)
         {
             DirectionToLook = CompassDirections.East;
@@ -451,6 +450,43 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         else if (xCoordinate < this.XCoordinate)
         {
             DirectionToLook = CompassDirections.West;
+        }
+        else
+        {
+            // Rats stand up
+            ShouldStandUp = canStandUp;
+            DirectionToLook = CompassDirections.West;
+        }
+    }
+
+    /// <summary>
+    /// For gargoyles which look north, east, south, west.
+    /// </summary>
+    /// <param name="xCoordinate"></param>
+    /// <param name="yCoordinate"></param>
+    /// <param name="enrage"></param>
+    /// <param name="canStandUp"></param>
+    public void LookTowardsOrthogonally(int xCoordinate, int yCoordinate, bool enrage, bool canStandUp)
+    {
+        if (enrage)
+        {
+            IsEnraged = true;
+        }
+        if (xCoordinate > this.XCoordinate)
+        {
+            DirectionToLook = CompassDirections.East;
+        }
+        else if (xCoordinate < this.XCoordinate)
+        {
+            DirectionToLook = CompassDirections.West;
+        }
+        else if (yCoordinate < this.YCoordinate)
+        {
+            DirectionToLook = CompassDirections.South;
+        }
+        else if (yCoordinate > this.YCoordinate)
+        {
+            DirectionToLook = CompassDirections.North;
         }
         else
         {
