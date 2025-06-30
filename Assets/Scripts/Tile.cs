@@ -382,7 +382,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 foreach (var revealReward in HousedObject.RevealAllRewards)
                 {
-                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward);
+                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward, true);
                 }
             }
         }
@@ -423,6 +423,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             DirectionToLook = CompassDirections.West;
             ShouldStandUp = true;
         }
+    }
+
+    public void StandUp()
+    {
+        ShouldStandUp = true;
     }
 
     /// <summary>

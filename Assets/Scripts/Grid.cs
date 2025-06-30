@@ -245,7 +245,7 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Reveals all tiles that have the matching object schema.
     /// </summary>
-    public void TEMP_RevealAllOfType(TileSchema objectSchema)
+    public void TEMP_RevealAllOfType(TileSchema objectSchema, bool standUp)
     {
         for (int y = 0; y < SpawnSettings.Height; y++)
         {
@@ -253,6 +253,7 @@ public class Grid : MonoBehaviour
             {
                 if (Tiles[x, y].GetHousedObject() == objectSchema)
                 {
+                    Tiles[x, y].StandUp();
                     Tiles[x, y].TEMP_RevealWithoutLogic();
                 }
             }
