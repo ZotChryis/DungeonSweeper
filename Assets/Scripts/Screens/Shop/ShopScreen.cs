@@ -71,9 +71,9 @@ namespace Screens.Shop
             // Get all the items in the game
             var allItems = ServiceLocator.Instance.Schemas.ItemSchemas;
             
-            // Remove any items that they already own (and aren't consumables)
+            // Remove any items that they already own and are unique equipped
             allItems.RemoveAll(schema =>
-                !schema.IsConsumbale && ServiceLocator.Instance.Player.Inventory.HasItem(schema.ItemId)
+                schema.IsUniqueEquipped && ServiceLocator.Instance.Player.Inventory.HasItem(schema.ItemId)
             );
             
             // Roll by rarity to see if they are included
@@ -81,6 +81,7 @@ namespace Screens.Shop
             {
                 if (UnityEngine.Random.Range(0.0f, 1.0f) <= itemSchema.GetShopAppearanceRate())
                 {
+                    // TODO: Do inventory better instead of adding multiple entries??
                     for (int i = 0; i < itemSchema.ShopInventory; i++)
                     {
                         Inventory.AddItem(itemSchema.ItemId);

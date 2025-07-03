@@ -68,7 +68,7 @@ namespace Gameplay
         /// </summary>
         public bool HasItem(ItemSchema.Id itemId)
         {
-            return Items.Any(item => item.Schema.ItemId ==itemId);
+            return Items.Any(item => item.Schema.ItemId == itemId);
         }
 
         public ItemInstance GetFirstItem(ItemSchema.Id itemId)

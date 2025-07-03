@@ -32,12 +32,15 @@ MonoBehaviour:
   XPReward: 0
   ItemsToReplenish: 060000001700000018000000190000001a0000001b000000
   DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  RevealFlee: 0
   CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
@@ -50,4 +53,21 @@ MonoBehaviour:
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   Data:
-    _serializedList: []
+    _serializedList:
+    - Key: 1
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
