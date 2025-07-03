@@ -556,7 +556,7 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public bool TEMP_HandleFlee(TileSchema housedObject)
+    public bool TEMP_HandleFlee(TileSchema housedObject, bool reveal)
     {
         if (!UnoccupiedSpaces.HasEmptySpace())
         {
@@ -567,6 +567,11 @@ public class Grid : MonoBehaviour
         
         Tiles[newCoord.Item1, newCoord.Item2].PlaceTileObj(housedObject);
         Tiles[newCoord.Item1, newCoord.Item2].TEMP_SetState(Tile.TileState.Hidden);
+
+        if (reveal)
+        {
+            Tiles[newCoord.Item1, newCoord.Item2].TEMP_RevealWithoutLogic();
+        }
         
         UnoccupiedSpaces.RemoveUnoccupiedSpace(newCoord.Item1, newCoord.Item2);
 

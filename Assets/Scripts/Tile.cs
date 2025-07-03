@@ -373,14 +373,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         if (TileState.Collected == State)
         {
             // Flee -> Itself moves to another location if possible (Gnome)
-            if (HousedObject.CanFlee && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject))
+            if (HousedObject.CanFlee && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject, HousedObject.RevealFlee))
             {
                 TEMP_SetState(TileState.Empty);
                 return;
             }
             
             // Fleeing Child -> Spawns a new object type at another location if possible (Faerie)
-            if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild))
+            if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild, HousedObject.RevealFlee ))
             {
                 TEMP_SetState(TileState.Empty);
                 return;

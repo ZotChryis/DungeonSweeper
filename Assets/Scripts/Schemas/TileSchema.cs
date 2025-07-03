@@ -177,6 +177,7 @@ namespace Schemas
 
         // Hack: basically Gnome behavior
         public bool CanFlee;
+        public bool RevealFlee;
         public bool CanEnrage;
         public bool SpawnsFleeingChild;
         public TileSchema FleeingChild;
