@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Scroll_Vision
+  m_Name: Brick_1
   m_EditorClassIdentifier: 
-  UserFacingName: Vision Scroll
-  UserFacingDescription: Reveal neighboring tiles.
+  UserFacingName: Brick
+  UserFacingDescription: Hit it a few times to make it shatter. Cannot kill you.
   Tags: 00000000
-  TileId: 10
-  Sprite: {fileID: -6483029472496290589, guid: 5deeb4ed361f32b40bd57abab7145645, type: 3}
+  TileId: 42
+  LibraryOverrideTileId: 6
+  Sprite: {fileID: 6878312378708349726, guid: ee5b00eb70a3af345a1af59823d99fe2, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -24,14 +25,15 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
-  Power: 0
-  HidePowerToNeighbors: 0
-  PreventConsumeIfKillingBlow: 0
-  XPReward: 0
+  Power: 1
+  HidePowerToNeighbors: 1
+  PreventConsumeIfKillingBlow: 1
+  XPReward: 1
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
-  RevealRadius: 1
+  RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
@@ -45,7 +47,7 @@ MonoBehaviour:
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
-  UpgradedVersion: {fileID: 11400000, guid: a94f9633e8b1e654ca03e0c1b83d73f2, type: 2}
+  UpgradedVersion: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1
@@ -63,39 +65,22 @@ MonoBehaviour:
           UseOverride: 0
           Value: 0
         EnableDeathSprite:
-          UseOverride: 0
+          UseOverride: 1
           Value: 0
-    - Key: 2
+    - Key: 4
       Value:
         AutoContinue:
-          UseOverride: 1
-          Value: 1
-        Sprite:
           UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
+          Value: 0
+        Sprite:
           UseOverride: 1
+          Value: {fileID: 21300000, guid: e13eb477bbcd902409a6cff62863ffa9, type: 3}
+        EnablePower:
+          UseOverride: 0
           Value: 0
         EnableSprite:
-          UseOverride: 0
-          Value: 0
-        EnableDeathSprite:
-          UseOverride: 0
-          Value: 0
-    - Key: 3
-      Value:
-        AutoContinue:
           UseOverride: 1
           Value: 1
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
-          UseOverride: 1
-          Value: 0
-        EnableSprite:
-          UseOverride: 0
-          Value: 0
         EnableDeathSprite:
           UseOverride: 0
           Value: 0

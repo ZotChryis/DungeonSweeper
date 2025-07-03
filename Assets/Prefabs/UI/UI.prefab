@@ -9099,8 +9099,8 @@ MonoBehaviour:
     SAFE TO LOSE ALL HEARTS
 
 
-    TOUCH FROG
-    TO LEVEL UP
+    PRESS CLASS
+    TO LEVEL
 
 
     RIGHT CLICK TO MARK TILE
@@ -9108,6 +9108,9 @@ MonoBehaviour:
 
     NUMBERS ARE SUM OF NEIGHBORS''
     POWER
+
+
+    USE ITEMS AND READ HINTS
 
 
     OBSERVE MONSTER PATTERNS CLOSELY'
@@ -9137,10 +9140,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
+  m_fontSize: 23.05
   m_fontSizeBase: 24
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0

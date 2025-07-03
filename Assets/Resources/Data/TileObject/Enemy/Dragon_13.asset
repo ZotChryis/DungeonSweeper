@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Faerie_Tired
+  m_Name: Dragon_13
   m_EditorClassIdentifier: 
-  UserFacingName: Faerie
-  UserFacingDescription: ???
-  Tags: 0100000004000000
-  TileId: 34
-  Sprite: {fileID: -3246102915477046997, guid: ebf3a4c5ce1136542832f71273684db3, type: 3}
+  UserFacingName: Dragon
+  UserFacingDescription: The menace of this realm. Defeat it to advance.
+  Tags: 01000000
+  TileId: 32
+  Sprite: {fileID: 1372335161102834277, guid: b2ca6bc5e9a932d46ac4b2f37541b7e9, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -24,11 +24,11 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
-  Power: 0
+  Power: 13
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 4
-  DropReward: {fileID: 0}
+  XPReward: 13
+  DropReward: {fileID: 11400000, guid: 7cc2730514a45544184416f8f831ca3a, type: 2}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
@@ -44,24 +44,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
-  ScreenshakeOnConquer: 0
+  ScreenshakeOnConquer: 1
   UpgradedVersion: {fileID: 0}
   Data:
-    _serializedList:
-    - Key: 1
-      Value:
-        AutoContinue:
-          UseOverride: 0
-          Value: 0
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
-          UseOverride: 1
-          Value: 0
-        EnableSprite:
-          UseOverride: 0
-          Value: 0
-        EnableDeathSprite:
-          UseOverride: 0
-          Value: 0
+    _serializedList: []

@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Scroll_HealChest
+  m_Name: Brick_3
   m_EditorClassIdentifier: 
-  UserFacingName: Heal Chest Scroll
-  UserFacingDescription: Use to heal to full.
+  UserFacingName: Brick
+  UserFacingDescription: Hit it a few times to make it shatter. Cannot kill you.
   Tags: 00000000
-  TileId: 39
-  Sprite: {fileID: -6413543000352893186, guid: 4844645bbba31344ba71550232dd5849, type: 3}
+  TileId: 6
+  LibraryOverrideTileId: 6
+  Sprite: {fileID: 8647577461360685516, guid: f293913caf6db924eaf33243951743e4, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -24,11 +25,12 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
-  Power: 0
-  HidePowerToNeighbors: 0
-  PreventConsumeIfKillingBlow: 0
+  Power: 1
+  HidePowerToNeighbors: 1
+  PreventConsumeIfKillingBlow: 1
   XPReward: 0
-  DropReward: {fileID: 0}
+  ItemsToReplenish: 
+  DropReward: {fileID: 11400000, guid: 03b1b4c52206b40458a78b128e19d479, type: 2}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
@@ -40,7 +42,7 @@ MonoBehaviour:
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
   WinReward: 0
-  FullHealReward: 1
+  FullHealReward: 0
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
@@ -80,22 +82,5 @@ MonoBehaviour:
           UseOverride: 0
           Value: 0
         EnableDeathSprite:
-          UseOverride: 0
-          Value: 0
-    - Key: 3
-      Value:
-        AutoContinue:
           UseOverride: 1
-          Value: 1
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
-          UseOverride: 1
-          Value: 0
-        EnableSprite:
-          UseOverride: 0
-          Value: 0
-        EnableDeathSprite:
-          UseOverride: 0
           Value: 0

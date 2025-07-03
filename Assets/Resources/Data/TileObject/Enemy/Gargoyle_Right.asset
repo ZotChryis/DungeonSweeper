@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Balrog
+  m_Name: Gargoyle_Right
   m_EditorClassIdentifier: 
-  UserFacingName: Balrog
-  UserFacingDescription: The undefeatable demon-lord. Even the Dragon leaves him
-    alone. You should too.
+  UserFacingName: Gargoyle
+  UserFacingDescription: Never alone; born a twin.
   Tags: 0100000004000000
-  TileId: 36
-  Sprite: {fileID: 6116292215999839277, guid: fd27b57868d339f49a0aa89c3203fc31, type: 3}
+  TileId: 18
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: -2990900167212558872, guid: db7c954521c3d924dbe703bdd1ae714a, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
-    Above: {fileID: 0}
-    Below: {fileID: 0}
-    Right: {fileID: 0}
-    Left: {fileID: 0}
+    Above: {fileID: -8765006612805199574, guid: 9c2c826e98928bb4383139bacc6524b3, type: 3}
+    Below: {fileID: -2990900167212558872, guid: db7c954521c3d924dbe703bdd1ae714a, type: 3}
+    Right: {fileID: -372146271992020778, guid: c713f4389498bad478c9a8fa884aca26, type: 3}
+    Left: {fileID: -372146271992020778, guid: c713f4389498bad478c9a8fa884aca26, type: 3}
     Missing: {fileID: 0}
-  Power: 666
+  Power: 4
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 666
+  XPReward: 4
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []

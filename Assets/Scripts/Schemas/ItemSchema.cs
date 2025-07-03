@@ -58,7 +58,6 @@ namespace Schemas
         /// <summary>
         /// The effect will only apply if the object in question has this id
         /// </summary>
-        // TODO: This maps to monster id, etc, but we should really be using enums and shit??
         public TileSchema.Id Id;
 
         /// <summary>

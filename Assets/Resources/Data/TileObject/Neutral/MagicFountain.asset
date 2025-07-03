@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: DemonKnight
+  m_Name: MagicFountain
   m_EditorClassIdentifier: 
-  UserFacingName: Demon Knight
-  UserFacingDescription: A dutiful servant to the Dragon; a tough advesary.
-  Tags: 0100000002000000
-  TileId: 23
-  Sprite: {fileID: 3558371306628847786, guid: b42cdfd9df469bc41bf77a358a1a8cf4, type: 3}
+  UserFacingName: Magic Fountain
+  UserFacingDescription: A mystical pond of wonders. Refills all potions and magical
+    spells.
+  Tags: 00000000
+  TileId: 43
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: 9148452767758624340, guid: 63f4631e231d728408dad437802c555b, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -24,10 +26,11 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
-  Power: 7
+  Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 7
+  XPReward: 0
+  ItemsToReplenish: 060000001700000018000000190000001a0000001b000000
   DropReward: {fileID: 0}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []

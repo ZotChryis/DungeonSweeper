@@ -16,6 +16,7 @@ MonoBehaviour:
   UserFacingDescription: Hit it a few times to make it shatter. Cannot kill you.
   Tags: 00000000
   TileId: 6
+  LibraryOverrideTileId: 6
   Sprite: {fileID: 1859843939744854257, guid: da1fd93e9e2852f4190a7cf9fa3047a0, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -28,6 +29,7 @@ MonoBehaviour:
   HidePowerToNeighbors: 1
   PreventConsumeIfKillingBlow: 1
   XPReward: 0
+  ItemsToReplenish: 
   DropReward: {fileID: 11400000, guid: eef7ee7a0e9497040ae96dcf05e6d49d, type: 2}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []

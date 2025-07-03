@@ -132,6 +132,36 @@ namespace Gameplay
             itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
             return true;
         }
+
+        public void ReplenishItems(ItemSchema.Id[] itemIds)
+        {
+            if (itemIds == null)
+            {
+                return;
+            }
+            
+            foreach (var item in Items)
+            {
+                if (!item.Schema.IsConsumbale)
+                {
+                    continue;
+                }
+
+                if (!itemIds.Contains(item.Schema.ItemId))
+                {
+                    continue;
+                }
+
+                int oldCharge = item.CurrentQuantity;
+                item.ReplenishAllCharges();
+                int newCharge = item.CurrentQuantity;
+
+                if (oldCharge != newCharge)
+                {
+                    OnItemChargeChanged?.Invoke(item);   
+                }
+            }
+        }
     }
     
     public class ItemInstance
@@ -264,11 +294,12 @@ namespace Gameplay
                     
                     case EffectType.Damage:
                         // TODO: should the item be the source?
-                        player.UpdateHealth(null, -effect.Amount);
+                        player.Damage(null, effect.Amount);
                         break;
                     
                     case EffectType.Heal:
-                        player.HealPlayerNoOverheal(effect.Amount);
+                        // TODO: should the item be the source?
+                        player.Heal(null, effect.Amount); //, false);
                         break;
                     
                     case EffectType.ChangeMoney:
@@ -283,6 +314,11 @@ namespace Gameplay
                         break;
                 }
             }
+        }
+
+        public void ReplenishAllCharges()
+        {
+            CurrentQuantity = MaxQuantity;
         }
     }
 }

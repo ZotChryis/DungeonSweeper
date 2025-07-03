@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Schemas;
 using TMPro;
 using UnityEngine;
@@ -117,8 +118,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         if (State == TileState.Revealed)
         {
+            // Prevent death when clicking on a brick, basically. We can make other things too...
             Player player = ServiceLocator.Instance.Player;
-            if (HousedObject.PreventConsumeIfKillingBlow && player.TEMP_PredictDeath(HousedObject, TEMP_GetCost()))
+            if (HousedObject.PreventConsumeIfKillingBlow && player.TEMP_PredictDeath(GetAdjustedPower()))
             {
                 return;
             }
@@ -126,8 +128,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         TEMP_SetState(State + 1);
     }
-
-    public int TEMP_GetPublicCost()
+    
+    /// <summary>
+    /// This is the power that neighboring tiles will see when they ask about this tile.
+    /// This is mostly useful for hiding the power in specific situations (currently right now Bricks do not
+    /// contribute to neighbor info).
+    /// </summary>
+    public int GetPublicPower()
     {
         if (!HousedObject)
         {
@@ -139,20 +146,53 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             return 0;
         }
 
+        if (State >= TileState.Conquered)
+        {
+            return 0;
+        }
+
         // TODO: Move the prediction logic to Tile ONLY?
-        return State < TileState.Conquered
-            ? ServiceLocator.Instance.Player.GetModifiedDamage(HousedObject, HousedObject.Power)
-            : 0;
+        return GetAdjustedPower();
+    }
+    
+    /// <summary>
+    /// Returns the 'real world' overall power of this tile. This means that the player's items and powers are
+    /// reflected on this tile.
+    /// Use this function when doing health calculations. 
+    /// </summary>
+    public int GetAdjustedPower()
+    {
+        int basePower = GetBasePower();
+        return ServiceLocator.Instance.Player.GetAdjustedDamage(HousedObject, basePower);
     }
 
-    public int TEMP_GetCost()
+    /// <summary>
+    /// Returns the power of the item this tile houses.
+    /// Use this function when determining the power the underlying object is WITHOUT player item intervention.
+    /// This means the object itself (and tile state) can dictate how powerful it is.
+    /// TileSchema + TileState => Base Power
+    /// Base Power + Player Powers (Items) => Adjusted Power
+    /// </summary>
+    /// <returns></returns>
+    public int GetBasePower()
     {
         if (!HousedObject)
         {
             return 0;
         }
+        
+        // Special case: Gorgon is 0 when there are no nearby tile objects with power (it is always surrounded by
+        // blocks, which means they have been cleared)
+        if (HousedObject.TileId == TileSchema.Id.Gorgon)
+        {
+            int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetUnconqueredNeighborCount(XCoordinate, YCoordinate);
+            if (neighborPower == 0)
+            {
+                return 0;
+            }
+        }
 
-        return State < TileState.Conquered ? HousedObject.Power : 0;
+        return HousedObject.Power;
     }
 
     /// <summary>
@@ -232,7 +272,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             }
             else
             {
-                int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
+                int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborPower(XCoordinate, YCoordinate);
                 if (neighborPower != 0)
                 {
                     NeighborPower.SetText(neighborPower.ToString());
@@ -296,15 +336,22 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             BodyGuardedByTile.TEMP_UpdateVisuals();
         }
 
-        if (TileState.Conquered == State && HousedObject.Power > 0)
+        int basePower = GetBasePower();
+        int adjustedPower = GetAdjustedPower();
+        if (TileState.Conquered == State && adjustedPower > 0)
         {
-            if (player.TEMP_PredictDeath(HousedObject, HousedObject.Power))
+            if (player.TEMP_PredictDeath(adjustedPower))
             {
-                // player has died unconquer yourself
+                // TODO: I don't like that we enter conquer state before deducting cost, but w/e we can fix later
+                //  player has died, so unconquer yourself 
                 State = TileState.Revealed;
                 ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
             }
-            if (player.UpdateHealth(HousedObject, -HousedObject.Power))
+            
+            // If we die because of this, we can stop here
+            // TODO: Player.Damage has to do its adjustments itself because of Demon's Bane... when that is refactored into
+            //  data and added to the system, we can use AdjustedPower here
+            if (player.Damage(HousedObject, basePower))
             {
                 return;
             }
@@ -325,11 +372,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         if (TileState.Collected == State)
         {
+            // Flee -> Itself moves to another location if possible (Gnome)
             if (HousedObject.CanFlee && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject))
             {
                 TEMP_SetState(TileState.Empty);
                 return;
             }
+            
+            // Fleeing Child -> Spawns a new object type at another location if possible (Faerie)
             if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild))
             {
                 TEMP_SetState(TileState.Empty);
@@ -343,9 +393,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 (int revealX, int revealY) = ServiceLocator.Instance.Grid.GetPositionOfRandomType(TileSchema.Id.Mine);
                 List<(int, int)> adjacentToReveal = ServiceLocator.Instance.Grid.GetAdjacentValidPositions(revealX, revealY);
                 adjacentToReveal.Remove((revealX, revealY));
-                var randomAdjacentToReveal = adjacentToReveal[UnityEngine.Random.Range(0, adjacentToReveal.Count)];
-                revealOriginX = randomAdjacentToReveal.Item1;
-                revealOriginY = randomAdjacentToReveal.Item2;
+
+                if (adjacentToReveal.Count > 0)
+                {
+                    var randomAdjacentToReveal = adjacentToReveal[UnityEngine.Random.Range(0, adjacentToReveal.Count)];
+                    revealOriginX = randomAdjacentToReveal.Item1;
+                    revealOriginY = randomAdjacentToReveal.Item2;
+                }
             }
 
             if (HousedObject.RevealRadius > 0)
@@ -368,9 +422,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
             if (HousedObject.FullHealReward)
             {
-                ServiceLocator.Instance.Player.HealPlayerNoOverheal(999);
+                ServiceLocator.Instance.Player.Heal(HousedObject, 999); //, false);
             }
-            ServiceLocator.Instance.Player.HealPlayerNoOverheal(HousedObject.HealReward);
+            ServiceLocator.Instance.Player.Heal(HousedObject, HousedObject.HealReward);//, false);
 
             if (HousedObject.DiffuseMinesReward)
             {
@@ -382,7 +436,33 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             {
                 foreach (var revealReward in HousedObject.RevealAllRewards)
                 {
-                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward, true);
+                    // TODO Remove HACK: George added a bug here with sprites, going to do standup only for the
+                    // rat scroll for now since im too lazy to fix 
+                    bool standUp = HousedObject.TileId == TileSchema.Id.ScrollRat;
+                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward, standUp);
+                }
+            }
+
+            if (HousedObject.ItemsToReplenish != null && HousedObject.ItemsToReplenish.Length > 0)
+            {
+                ServiceLocator.Instance.Player.Inventory.ReplenishItems(HousedObject.ItemsToReplenish);
+            }
+
+            // Specific item reward
+            if (HousedObject.ItemReward != ItemSchema.Id.None)
+            {
+                ServiceLocator.Instance.Player.Inventory.AddItem(HousedObject.ItemReward);
+            }
+            
+            // Random reward from Rarity
+            if (HousedObject.ItemRewardRarities != null)
+            {
+                var matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
+                    HousedObject.ItemRewardRarities.Contains(item.Rarity));
+                if (matchingItems.Count > 0)
+                {
+                    var rewardItem = matchingItems.GetRandomItem();
+                    ServiceLocator.Instance.Player.Inventory.AddItem(rewardItem.ItemId);
                 }
             }
         }
@@ -572,7 +652,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
         else
         {
-            int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborCost(XCoordinate, YCoordinate);
+            int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborPower(XCoordinate, YCoordinate);
             NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
         }
     }
@@ -611,8 +691,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         // TODO: Seperate these 2 labels and control independently
         Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
         
+        // TODO: We need to use Player.GetAdjustedDamage directly because of Demon's Bane. When that is refactored
+        //  we can just use GetAdjustedPower instead
         Power.SetText(HousedObject? State < TileState.Conquered 
-                ? ServiceLocator.Instance.Player.GetModifiedDamage(HousedObject, HousedObject.Power).ToString() 
+                ? ServiceLocator.Instance.Player.GetAdjustedDamage(HousedObject, GetBasePower()).ToString() 
                 : ServiceLocator.Instance.Player.GetModifiedXp(HousedObject, HousedObject.XPReward).ToString()
             : string.Empty
         );

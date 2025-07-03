@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Dragon_15Boss
+  m_Name: DemonKnight
   m_EditorClassIdentifier: 
-  UserFacingName: Dragon
-  UserFacingDescription: The menace of this realm. Defeat it to advance.
-  Tags: 0100000004000000
-  TileId: 32
-  Sprite: {fileID: 1372335161102834277, guid: b2ca6bc5e9a932d46ac4b2f37541b7e9, type: 3}
+  UserFacingName: Demon Knight
+  UserFacingDescription: A dutiful servant to the Dragon; a tough advesary.
+  Tags: 010000000200000006000000
+  TileId: 23
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: 3558371306628847786, guid: b42cdfd9df469bc41bf77a358a1a8cf4, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -24,11 +25,12 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
-  Power: 15
+  Power: 7
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 15
-  DropReward: {fileID: 11400000, guid: 27efdadd95c62694494da646bcfa3711, type: 2}
+  XPReward: 7
+  ItemsToReplenish: 
+  DropReward: {fileID: 0}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
@@ -44,7 +46,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
-  ScreenshakeOnConquer: 1
+  ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

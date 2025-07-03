@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Mine
+  m_Name: Balrog
   m_EditorClassIdentifier: 
-  UserFacingName: Mine
-  UserFacingDescription: Explodes on impact! Instant death will surely follow.
-  Tags: 01000000
-  TileId: 33
-  Sprite: {fileID: 8135663367076951168, guid: f42e4888d5553854a9a1085240dfff99, type: 3}
+  UserFacingName: Balrog
+  UserFacingDescription: The undefeatable demon-lord. Even the Dragon leaves him
+    alone. You should too.
+  Tags: 0100000004000000
+  TileId: 36
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: 6116292215999839277, guid: fd27b57868d339f49a0aa89c3203fc31, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -24,10 +26,11 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
-  Power: 100
+  Power: 666
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Schemas;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -258,7 +259,11 @@ public class Grid : MonoBehaviour
             {
                 if (Tiles[x, y].GetHousedObject() == objectSchema)
                 {
-                    Tiles[x, y].StandUp();
+                    if (standUp)
+                    {
+                        Tiles[x, y].StandUp();
+                    }
+                    
                     Tiles[x, y].TEMP_RevealWithoutLogic();
                 }
             }
@@ -368,7 +373,7 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Gets the total cost of all neighbors for a given coordinate.
     /// </summary>
-    public int TEMP_GetTotalNeighborCost(int x, int y)
+    public int TEMP_GetTotalNeighborPower(int x, int y)
     {
         int cost = 0;
         for (int i = -1; i <= 1; i++)
@@ -385,13 +390,40 @@ public class Grid : MonoBehaviour
                     continue;
                 }
                 
-                cost += Tiles[x + i, y + j].TEMP_GetPublicCost();
+                cost += Tiles[x + i, y + j].GetPublicPower();
             }
         }
 
         return cost;
     }
 
+    /// <summary>
+    /// Gets the total amount of neighbors that are not conquered+.
+    /// </summary>
+    public int TEMP_GetUnconqueredNeighborCount(int x, int y)
+    {
+        int amount = 0;
+        for (int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                if (i == 0 && j == 0)
+                {
+                    continue;
+                }
+
+                if (!InGridBounds(x + i, y + j))
+                {
+                    continue;
+                }
+
+                amount += Tiles[x + i, y + j].State < Tile.TileState.Conquered ? 1 : 0;
+            }
+        }
+
+        return amount;
+    }
+    
     /// <summary>
     /// Returns the object in the given coordinates. Can be null.
     /// </summary>
@@ -575,5 +607,22 @@ public class Grid : MonoBehaviour
         }
         
         return (-1, -1);
+    }
+
+    public List<TileSchema> GetAllTileObjects()
+    {
+        List<TileSchema> tileObjects = new List<TileSchema>();
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (!Tiles[x, y].TEMP_IsEmpty())
+                {
+                    tileObjects.Add(Tiles[x, y].GetHousedObject());
+                }
+            }
+        }
+
+        return tileObjects;
     }
 }

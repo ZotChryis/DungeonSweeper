@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Brick_3
+  m_Name: Faerie_Tired
   m_EditorClassIdentifier: 
-  UserFacingName: Brick
-  UserFacingDescription: Hit it a few times to make it shatter. Cannot kill you.
-  Tags: 00000000
-  TileId: 6
-  Sprite: {fileID: 8647577461360685516, guid: f293913caf6db924eaf33243951743e4, type: 3}
+  UserFacingName: Faerie
+  UserFacingDescription: ???
+  Tags: 0100000004000000
+  TileId: 34
+  Sprite: {fileID: 2600462164737341981, guid: 388776677da1bbf429ab7c4000c3ff2f, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -24,11 +24,12 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
-  Power: 1
-  HidePowerToNeighbors: 1
-  PreventConsumeIfKillingBlow: 1
-  XPReward: 0
-  DropReward: {fileID: 11400000, guid: 03b1b4c52206b40458a78b128e19d479, type: 2}
+  Power: 0
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
+  XPReward: 4
+  ItemsToReplenish: 
+  DropReward: {fileID: 11400000, guid: d2079bd16b70fbe45831dbc204369b8c, type: 2}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
@@ -51,7 +52,7 @@ MonoBehaviour:
     - Key: 1
       Value:
         AutoContinue:
-          UseOverride: 1
+          UseOverride: 0
           Value: 0
         Sprite:
           UseOverride: 0
@@ -64,21 +65,4 @@ MonoBehaviour:
           Value: 0
         EnableDeathSprite:
           UseOverride: 0
-          Value: 0
-    - Key: 2
-      Value:
-        AutoContinue:
-          UseOverride: 1
-          Value: 1
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
-          UseOverride: 1
-          Value: 0
-        EnableSprite:
-          UseOverride: 0
-          Value: 0
-        EnableDeathSprite:
-          UseOverride: 1
           Value: 0

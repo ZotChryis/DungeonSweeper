@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Chest_Heal
+  m_Name: Chest_Item_Epic
   m_EditorClassIdentifier: 
-  UserFacingName: Heal Chest
-  UserFacingDescription: A heal scroll awaits you for opening this chest!
+  UserFacingName: Chest
+  UserFacingDescription: An item awaits you for opening this chest!
   Tags: 00000000
-  TileId: 8
+  TileId: 47
+  LibraryOverrideTileId: 44
   Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -28,7 +29,10 @@ MonoBehaviour:
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
-  DropReward: {fileID: 11400000, guid: 9aaf5243c6d2bc5458913f19805a5a2f, type: 2}
+  ItemsToReplenish: 
+  DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 03000000
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0

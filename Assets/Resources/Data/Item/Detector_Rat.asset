@@ -20,14 +20,8 @@ MonoBehaviour:
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 3
-  Rarity: 0
+  Rarity: 1
   Price: 2
-  PassiveEffects:
-  - Type: 2
-    Amount: 1
-    Id: 0
-    Tags: 
-  ActiveEffects: []
   Effects:
     _serializedList:
     - Key: 0

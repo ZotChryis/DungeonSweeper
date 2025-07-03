@@ -4,6 +4,7 @@ using Gameplay;
 using Schemas;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // TODO: Separate the UI from the business logic. One should be in UI space, and one should be in Gameplay space
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int Level;
     private int CurrentHealth;
     private int MaxHealth;
-    public int BonusStartingHp = 0;
+    [FormerlySerializedAs("BonusHp")] [FormerlySerializedAs("BonusStartingHp")] public int BonusMaxHp = 0;
     public int BonusStartXp = 0;
     public int SecondWindRegeneration = 0;
     
@@ -50,7 +51,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// Bonus maxHP added to the level up table.
     /// Mostly, for god mode.
     /// </summary>
-    private int BonusMaxHp = 0;
+    private int GodModeBonusMaxHp = 0;
 
     // deprecated
     [Tooltip("If true, we prevent half damage from the very first 7 power demon.")]
@@ -137,13 +138,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ResetPlayer();
     }
     
-    public bool TEMP_PredictDeath(TileSchema source, int amount)
+    public bool TEMP_PredictDeath(int amount)
     {
-        amount = GetModifiedDamage(source, amount);
         return CurrentHealth - amount < 0;
     }
 
-    public int GetModifiedDamage(TileSchema source, int amount)
+    public int GetAdjustedDamage(TileSchema source, int amount)
     {
         if (source != null)
         {
@@ -169,48 +169,41 @@ public class Player : MonoBehaviour, IPointerClickHandler
         return amount;
     }
 
-    public void HealPlayerNoOverheal(int amount)
-    {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, -1, (MaxHealth + BonusMaxHp));
-        TEMP_UpdateVisuals();
-    }
-
     /// <summary>
-    /// Update health. Allow overhealing. Mostly for damaging player.
+    /// A bespoke function that deals damage to the player. You must provide a source to do any item checks.
+    /// Returns true if the player dies.
+    /// The amount should always be positive.
     /// </summary>
-    /// <param name="amount"></param>
-    /// <returns>true if the player is dead</returns>
-    public bool UpdateHealth(TileSchema source, int amount)
+    public bool Damage(TileSchema source, int amount)
     {
-        // pre-process any weird enemy logic, pre items
-        if (amount == -7 && HasDemonBanePowers && !HasUsedDemonBanePowers)
+        // No damage, we do not die. Do not heal with negative damage.
+        if (amount <= 0)
         {
-            amount = -3;
+            return false;
+        }
+        
+        // Special case: Demon Bane power (currnetly unused)
+        // TODO: Datafy this and make several items for it
+        if (source.Tags.Contains(TileSchema.Tag.Demon) && HasDemonBanePowers && !HasUsedDemonBanePowers)
+        {
+            amount -= 4;
         }
         
         // Now deal with item bonuses
-        // TODO: we need a better way to deal with heals and damage
-        if (amount < 0)
-        {
-            // Flip the damage to positive for calculations
-            amount *= -1;
-            
-            // Get the modified damage result
-            amount = GetModifiedDamage(source, amount);
-            
-            // Flip it back to negative for damage
-            amount *= -1;
-        }
-
-        CurrentHealth = Mathf.Max(CurrentHealth + amount, -1);
-        if (CurrentHealth == 0 && !HasRegeneratedThisRound)
+        amount = GetAdjustedDamage(source, amount);
+        
+        CurrentHealth = Math.Max(-1, CurrentHealth - amount);
+        
+        // Special Case: Regeneration power
+        if (CurrentHealth < 0 && !HasRegeneratedThisRound && SecondWindRegeneration > 0)
         {
             HasRegeneratedThisRound = true;
-            CurrentHealth += SecondWindRegeneration;
+            CurrentHealth = SecondWindRegeneration;
         }
-
+        
         TEMP_UpdateVisuals();
-
+        
+        // Handle death
         if (CurrentHealth <= -1)
         {
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
@@ -218,7 +211,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
             return true;
         }
-
+        
         // TODO: Find a better home for this call... should not be occurring in health delta calcs
         if (source != null)
         {
@@ -226,6 +219,25 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
         
         return false;
+    }
+
+    /// <summary>
+    /// Heals the player for the specified amount.
+    /// Amount should never be 0 or less.
+    /// AllowOverheal will generate "shield" hearts that will not replenish on level.
+    /// </summary>
+    public void Heal(TileSchema source, int amount) //, bool allowOverheal)
+    {
+        // No damage, we do not die. Do not heal with negative damage.
+        if (amount <= 0)
+        {
+            return;
+        }
+
+        // TODO: Add overheal mechanic?
+        CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth + BonusMaxHp);
+        
+        TEMP_UpdateVisuals();
     }
 
     public void TEMP_UpdateXP(TileSchema source, int amount)
@@ -314,15 +326,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void GodMode()
     {
-        if (BonusMaxHp == 0)
-        {
-            BonusMaxHp = 999999;
-        }
-        else
-        {
-            BonusMaxHp = 0;
-        }
-        CurrentHealth = MaxHealth + BonusMaxHp;
+        GodModeBonusMaxHp = GodModeBonusMaxHp == 0 ? 999999 : 0;
+        CurrentHealth = MaxHealth + BonusMaxHp + GodModeBonusMaxHp;
         TEMP_UpdateVisuals();
     }
 
@@ -331,10 +336,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         Level = 0;
         CurrentXP = 0;
         HasUsedDemonBanePowers = false;
+        HasRegeneratedThisRound = false;
         LevelUp();
         
         // Apply any bonuses from items
-        UpdateHealth(null, BonusStartingHp);
         TEMP_UpdateXP(null, BonusStartXp);
     }
     
@@ -353,7 +358,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void AddBonusStartHp(int amount)
     {
-        BonusStartingHp += amount;
+        BonusMaxHp += amount;
     }
     
     public void AddBonusStartXp(int amount)

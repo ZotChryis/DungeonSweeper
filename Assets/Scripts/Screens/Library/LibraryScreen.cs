@@ -23,15 +23,76 @@ public class LibraryScreen : BaseScreen
     protected override void Awake()
     {
         base.Awake();
-        ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGenerated;
+        ServiceLocator.Instance.Grid.OnGridGenerated += Refresh;
+        ServiceLocator.Instance.Grid.OnTileStateChanged += OnTileStateChanged;
     }
 
     private void OnDestroy()
     {
-        ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
+        ServiceLocator.Instance.Grid.OnGridGenerated -= Refresh;
+        ServiceLocator.Instance.Grid.OnTileStateChanged -= OnTileStateChanged;
     }
 
-    private void OnGridGenerated()
+    private void OnTileStateChanged(Tile tile)
+    {
+        Refresh();
+    }
+    
+    private void Refresh()
+    {
+        // TODO: Hack -- we should keep a running list instead of destroying and recreating so much
+        if (Items != null && Items.Count > 0)
+        {
+            foreach (var libraryItem in Items)
+            {
+                Destroy(libraryItem.gameObject);
+            }
+        }
+
+        Dictionary<TileSchema.Id, int> filteredItems = new Dictionary<TileSchema.Id, int>();
+        var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects();
+        foreach (var tileObject in tileObjects)
+        {
+            TileSchema.Id tileIdToUse = tileObject.LibraryOverrideTileId != TileSchema.Id.None ? tileObject.LibraryOverrideTileId : tileObject.TileId;
+            if (!filteredItems.TryGetValue(tileIdToUse, out int amount))
+            {
+                filteredItems.Add(tileIdToUse, 0);
+            }
+            filteredItems[tileIdToUse] += 1;
+        }
+        
+        List<LibraryItemDTO> libraryItemDTOs = new List<LibraryItemDTO>(filteredItems.Keys.Count);
+        foreach (var filteredItemsKey in filteredItems.Keys)
+        {
+            libraryItemDTOs.Add(new LibraryItemDTO()
+            {
+                Amount = filteredItems[filteredItemsKey],
+                Object = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(x => x.TileId == filteredItemsKey)
+            });
+        }
+        
+        // Sort the items
+        libraryItemDTOs.Sort((x, y) =>
+        {
+            int compare = x.Object.Power.CompareTo(y.Object.Power);
+            if (compare == 0)
+            {
+                compare = String.Compare(x.Object.UserFacingName, y.Object.UserFacingName, StringComparison.Ordinal);
+            }
+            return compare;
+        });
+        
+        // Make items
+        Items = new  List<LibraryItem>(libraryItemDTOs.Count);
+        foreach (var itemDTO in libraryItemDTOs)
+        {
+            LibraryItem libraryItem = Instantiate(LibraryItemPrefab, LibraryListRoot);
+            libraryItem.SetData(itemDTO.Object, itemDTO.Amount);
+            Items.Add(libraryItem);
+        }
+    }
+
+    private void OnGridGenerated_OLD()
     {
         if (Items != null && Items.Count > 0)
         {
