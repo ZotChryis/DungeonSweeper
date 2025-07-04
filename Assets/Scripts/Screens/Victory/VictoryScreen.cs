@@ -30,9 +30,9 @@ namespace Screens.Victory
 
         protected override void OnShow()
         {
-            bool nextLevelAvailable = ServiceLocator.Instance.LevelManager.CurrentLevel < 2;
-            MainMenu.gameObject.SetActive(!nextLevelAvailable);
-            Shop.gameObject.SetActive(nextLevelAvailable);
+            bool isFinalLevel = ServiceLocator.Instance.LevelManager.CurrentLevel == ServiceLocator.Instance.LevelManager.Levels.Length - 1;
+            MainMenu.gameObject.SetActive(isFinalLevel);
+            Shop.gameObject.SetActive(!isFinalLevel);
             
             ServiceLocator.Instance.AudioManager.PlaySfx("Victory");
             

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Spell_HolyLight
+  m_Name: Potion_Stoneshield
   m_EditorClassIdentifier: 
-  ItemId: 6
-  Name: Holy Light
-  Description: Use from inventory. The next Demon enemy does -4 damage.
-  Sprite: {fileID: -4819437691104115080, guid: f76326302c9b82940b6123aef1ce751a, type: 3}
+  ItemId: 27
+  Name: 'Potion: Stoneshield'
+  Description: Use from inventory. The next Melee enemy does -4 damage.
+  Sprite: {fileID: -7304476087515427257, guid: 47bdcfad6370633498f7d63a229b6a0c, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
-  Rarity: 2
-  Price: 4
+  Rarity: 1
+  Price: 5
   Effects:
     _serializedList:
     - Key: 4
@@ -29,7 +29,7 @@ MonoBehaviour:
       - Type: 3
         Amount: -4
         Id: 0
-        Tags: 06000000
+        Tags: 02000000
         Decay: 1
         DecayTrigger: 2
-        DecayTags: 06000000
+        DecayTags: 02000000
