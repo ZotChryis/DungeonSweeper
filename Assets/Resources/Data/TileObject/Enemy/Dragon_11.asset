@@ -30,7 +30,7 @@ MonoBehaviour:
   PreventConsumeIfKillingBlow: 0
   XPReward: 11
   ItemsToReplenish: 
-  DropReward: {fileID: 11400000, guid: 7cc2730514a45544184416f8f831ca3a, type: 2}
+  DropReward: {fileID: 11400000, guid: df9323ec55502f846bdc7bc37f269af2, type: 2}
   ItemReward: 0
   ItemRewardRarities: 
   RevealRandLocationNextToMine: 0

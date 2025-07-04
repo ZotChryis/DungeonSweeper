@@ -1,4 +1,5 @@
-﻿using Schemas;
+﻿using System;
+using Schemas;
 
 namespace Screens.ClassSelection
 {
@@ -9,7 +10,12 @@ namespace Screens.ClassSelection
             ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted += RefreshItems;
             RefreshItems(null);
         }
-        
+
+        private void OnDestroy()
+        {
+            ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted -= RefreshItems;
+        }
+
         private void RefreshItems(AchievementSchema _)
         {
             var unlockedClasses = ServiceLocator.Instance.AchievementSystem.GetUnlockedClasses();

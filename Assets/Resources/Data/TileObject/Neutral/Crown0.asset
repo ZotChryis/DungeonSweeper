@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Crown0
   m_EditorClassIdentifier: 
   UserFacingName: Crown
-  UserFacingDescription: ???
+  UserFacingDescription: 'The Dragon''s prized possession. '
   Tags: 00000000
   TileId: 37
   LibraryOverrideTileId: 0

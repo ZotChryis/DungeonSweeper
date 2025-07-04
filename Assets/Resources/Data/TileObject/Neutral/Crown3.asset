@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Crown3
   m_EditorClassIdentifier: 
   UserFacingName: Crown
-  UserFacingDescription: ???
+  UserFacingDescription: 'The Dragon''s prized possession. '
   Tags: 00000000
   TileId: 37
+  LibraryOverrideTileId: 0
   Sprite: {fileID: -1378521658571115459, guid: d089800d25d04e44c80ccc2100e7620e, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -28,13 +29,17 @@ MonoBehaviour:
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  RevealFlee: 0
   CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
