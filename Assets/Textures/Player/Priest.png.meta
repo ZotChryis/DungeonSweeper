@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2d157578fb53f704498d446db1566b6a
+guid: 45ac8ee44a50a2744b4d1d5e3bd2c9d7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1618915839015071714
-    second: Idle-Wizard2_0
+      213: -4749681873034518491
+    second: Priest_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Idle-Wizard2_0
+      name: Priest_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 538
-        width: 305
-        height: 435
+        x: 3
+        y: 0
+        width: 1019
+        height: 1019
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,118 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ef2fb1d06b877610800000000000000
-      internalID: 1618915839015071714
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle-Wizard2_1
-      rect:
-        serializedVersion: 2
-        x: 358
-        y: 538
-        width: 317
-        height: 437
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 013b4a1a87f47d84dbf99414be81ba9f
-      internalID: 931105242
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle-Wizard2_2
-      rect:
-        serializedVersion: 2
-        x: 712
-        y: 538
-        width: 287
-        height: 433
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6dc9908622dd8ca49a9a4ae6f6429013
-      internalID: -205861426
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle-Wizard2_3
-      rect:
-        serializedVersion: 2
-        x: 29
-        y: 53
-        width: 303
-        height: 442
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c65fb2b51d83fb49bdc92b47a693c05
-      internalID: -2011836190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle-Wizard2_4
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 53
-        width: 310
-        height: 443
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 33f3b303d6d6987478cd7a3790e81681
-      internalID: -277566792
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Idle-Wizard2_5
-      rect:
-        serializedVersion: 2
-        x: 706
-        y: 53
-        width: 291
-        height: 440
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d64277220a394b2419ecba35f9356eaa
-      internalID: 306324779
+      spriteID: 5206aa9508db51eb0800000000000000
+      internalID: -4749681873034518491
       vertices: []
       indices: 
       edges: []
@@ -261,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: be939dec40adde749a4f2ce95435336c
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -270,13 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Idle-Wizard2_0: 1618915839015071714
-      Idle-Wizard2_1: 931105242
-      Idle-Wizard2_2: -205861426
-      Idle-Wizard2_3: -2011836190
-      Idle-Wizard2_4: -277566792
-      Idle-Wizard2_5: 306324779
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

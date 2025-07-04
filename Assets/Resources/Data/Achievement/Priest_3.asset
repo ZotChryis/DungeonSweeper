@@ -9,11 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c34c485cc304af0b78acb9137209bc3, type: 3}
-  m_Name: Adventurer
+  m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
+  m_Name: Priest_3
   m_EditorClassIdentifier: 
-  Id: 0
-  Sprite: {fileID: -17528858, guid: 2b379b67f14de8f45ae646b5954b34a3, type: 3}
-  Name: Adventurer
-  Description: The classic experience.
-  StartingItem: 0
+  AchievementId: 48
+  Title: Master Priest
+  Description: Complete the fourth dungeon level with the Priest.
+  Reward: 
+  RewardClass: -1
+  Trigger: 0
+  Level: 3
+  Class: 8
+  TileData: 
+  ItemData: 

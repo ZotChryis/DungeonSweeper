@@ -68,6 +68,11 @@ namespace Schemas
             Annihilation1,
             Annihilation2,
             Annihilation3,
+            
+            Priest0,
+            Priest1,
+            Priest2,
+            Priest3,
         }
 
         [Serializable]

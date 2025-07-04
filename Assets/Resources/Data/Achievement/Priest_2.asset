@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
-  m_Name: FortuneTeller_0
+  m_Name: Priest_2
   m_EditorClassIdentifier: 
-  AchievementId: 21
-  Title: Novice Fortune Teller
-  Description: Complete the first dungeon level with the Fortune Teller.
-  Reward: Unlocks the Priest
-  RewardClass: 8
+  AchievementId: 47
+  Title: Advanced Priest
+  Description: Complete the third dungeon level with the Priest.
+  Reward: 
+  RewardClass: -1
   Trigger: 0
-  Level: 0
-  Class: 6
+  Level: 2
+  Class: 8
   TileData: 
   ItemData: 

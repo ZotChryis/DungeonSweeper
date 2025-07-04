@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c34c485cc304af0b78acb9137209bc3, type: 3}
-  m_Name: Adventurer
+  m_Name: Priest
   m_EditorClassIdentifier: 
-  Id: 0
-  Sprite: {fileID: -17528858, guid: 2b379b67f14de8f45ae646b5954b34a3, type: 3}
-  Name: Adventurer
-  Description: The classic experience.
-  StartingItem: 0
+  Id: 8
+  Sprite: {fileID: -4749681873034518491, guid: 45ac8ee44a50a2744b4d1d5e3bd2c9d7, type: 3}
+  Name: Priest
+  Description: Starts with Holy Light.
+  StartingItem: 6

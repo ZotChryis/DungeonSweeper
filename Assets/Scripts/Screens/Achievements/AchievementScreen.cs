@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Schemas;
 using UnityEngine;
@@ -16,6 +17,11 @@ namespace Screens.Achievements
             RefreshItems();
 
             ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted += OnAchievementCompleted;
+        }
+
+        private void OnDestroy()
+        {
+            ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted -= OnAchievementCompleted;
         }
 
         private void RefreshItems()
