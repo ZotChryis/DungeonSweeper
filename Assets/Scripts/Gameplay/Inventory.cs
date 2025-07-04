@@ -252,16 +252,12 @@ namespace Gameplay
                         break;
                     
                     case EffectType.ModDamageTaken:
-                        if (effect.Id != TileSchema.Id.None)
+                        if (effect.Id == TileSchema.Id.None && (effect.Tags == null || effect.Tags.Count == 0))
                         {
-                            player.AddModDamageTaken(effect.Id, effect.Amount);
+                            continue;
                         }
                         
-                        foreach (var effectTag in effect.Tags)
-                        {
-                            player.AddModDamageTakenByTag(effectTag, effect.Amount);
-                        }
-                        
+                        player.AddModDamageTaken(effect);
                         break;
                     
                     case EffectType.ModXp:

@@ -10,23 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Bait_Faerie
+  m_Name: Spell_HolyLight
   m_EditorClassIdentifier: 
-  ItemId: 18
-  Name: Faerie Bait
-  Description: Adds a Faerie to the dungeon.
-  Sprite: {fileID: -3246102915477046997, guid: ebf3a4c5ce1136542832f71273684db3, type: 3}
+  ItemId: 6
+  Name: Holy Light
+  Description: Use from inventory. The next Demon does -4 damage.
+  Sprite: {fileID: -3099154585137993449, guid: f76326302c9b82940b6123aef1ce751a, type: 3}
   IsUniqueEquipped: 0
-  IsConsumbale: 0
-  InitialCharges: 0
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
-  Rarity: 1
-  Price: 5
+  Rarity: 2
+  Price: 4
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 4
       Value:
-      - Type: 5
-        Amount: 1
-        Id: 34
-        Tags: 
+      - Type: 3
+        Amount: -4
+        Id: 0
+        Tags: 06000000
+        Decay: 1
+        DecayTrigger: 2
+        DecayTags: 06000000

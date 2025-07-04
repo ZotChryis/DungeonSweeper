@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Gameplay;
 using Schemas;
 using TMPro;
 using UnityEngine;
@@ -82,6 +83,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         // TODO: this probably needs a better home
         ServiceLocator.Instance.Grid.OnTileStateChanged += OnAnyTileStateChanged;
         ServiceLocator.Instance.Grid.OnGridGenerated += TEMP_UpdateVisuals;
+        ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged += OnItemChargeChanged;
 
         TileButton.onClick.AddListener(OnTileClicked);
         ResetLook();
@@ -93,6 +95,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     {
         ServiceLocator.Instance.Grid.OnTileStateChanged -= OnAnyTileStateChanged;
         ServiceLocator.Instance.Grid.OnGridGenerated -= TEMP_UpdateVisuals;
+        ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged -= OnItemChargeChanged;
+    }
+    
+    private void OnItemChargeChanged(ItemInstance obj)
+    {
+        TEMP_UpdateVisuals();
     }
 
     public void TEMP_SetCoordinates(int xCoordinate, int yCoordinate)
@@ -350,8 +358,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             }
             
             // If we die because of this, we can stop here
-            // TODO: Player.Damage has to do its adjustments itself because of Demon's Bane... when that is refactored into
-            //  data and added to the system, we can use AdjustedPower here
+            // TODO: Refactor where we do the damage adjustment/prediction. We use base power because Damage() still does
+            //  the damage adjustments internally as well
             if (player.Damage(HousedObject, basePower))
             {
                 ServiceLocator.Instance.AudioManager.PlaySfx("Death");

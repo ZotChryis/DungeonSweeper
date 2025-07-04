@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay;
 using Schemas;
 using UnityEngine;
@@ -44,6 +45,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public Dictionary<TileSchema.Tag, int> ModDamageTakenByTag = new();
     public Dictionary<TileSchema.Tag, int> ModXpByTag = new();
     
+    // TODO: Support DecayingEffects on ALL types. Currently only support ModDamage
+    private List<Effect> DecayingEffects = new();
+    
     public Class.Id Class = Gameplay.Class.Id.Adventurer;
     public Inventory Inventory;
 
@@ -52,11 +56,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// Mostly, for god mode.
     /// </summary>
     private int GodModeBonusMaxHp = 0;
-
-    // deprecated
-    [Tooltip("If true, we prevent half damage from the very first 7 power demon.")]
-    public bool HasDemonBanePowers = false;
-    private bool HasUsedDemonBanePowers = false;
+    
     private bool HasRegeneratedThisRound = false;
     private int CurrentXP;
 
@@ -174,7 +174,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
         }
 
-        return amount;
+        // Do not let it go below 0
+        return Math.Max(0, amount);
     }
 
     /// <summary>
@@ -188,13 +189,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (amount <= 0)
         {
             return false;
-        }
-        
-        // Special case: Demon Bane power (currnetly unused)
-        // TODO: Datafy this and make several items for it
-        if (source.Tags.Contains(TileSchema.Tag.Demon) && HasDemonBanePowers && !HasUsedDemonBanePowers)
-        {
-            amount -= 4;
         }
         
         // Now deal with item bonuses
@@ -225,7 +219,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             Kills.TryAdd(source.TileId, 0);
             Kills[source.TileId] += 1;
-            
+
+            AdvanceEffects(source, DecayTrigger.Conquer);
             OnConquer?.Invoke(source);
         }
         
@@ -348,7 +343,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         Level = 1;
         CurrentXP = 0;
-        HasUsedDemonBanePowers = false;
         HasRegeneratedThisRound = false;
         
         MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
@@ -387,11 +381,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         SecondWindRegeneration++;
     }
-
-    public void AddDemonBanePower()
-    {
-        HasDemonBanePowers = true;
-    }
     
     public void AddRevealNeighborPower(TileSchema.Id ObjectId)
     {
@@ -405,11 +394,81 @@ public class Player : MonoBehaviour, IPointerClickHandler
         TileObjectsThatShouldUpgrade[ObjectId] = level + 1;
     }
     
-    public void AddModDamageTaken(TileSchema.Id id, int effectAmount)
+    public void AddModDamageTaken(Effect effect)
     {
-        if (!ModDamageTaken.TryAdd(id, effectAmount))
+        var effectAmount = effect.Amount;
+        
+        var tileId = effect.Id;
+        if (tileId != TileSchema.Id.None && !ModDamageTaken.TryAdd(tileId, effectAmount))
         {
-            ModDamageTaken[id] += effectAmount;
+            ModDamageTaken[tileId] += effectAmount;
+        }
+
+        if (effect.Tags != null)
+        {
+            foreach (var effectTag in effect.Tags)
+            {
+                if (!ModDamageTakenByTag.TryAdd(effectTag, effectAmount))
+                {
+                    ModDamageTakenByTag[effectTag] += effectAmount;
+                }
+            }
+        }
+
+        if (effect.Decay != -1)
+        {
+            DecayingEffects.Add(effect);
+        }
+    }
+    
+    public void UndoModDamageTaken(Effect effect)
+    {
+        var effectAmount = effect.Amount;
+        
+        var tileId = effect.Id;
+        if (tileId != TileSchema.Id.None && !ModDamageTaken.TryAdd(tileId, effectAmount))
+        {
+            ModDamageTaken[tileId] -= effectAmount;
+        }
+
+        if (effect.Tags != null)
+        {
+            foreach (var effectTag in effect.Tags)
+            {
+                if (!ModDamageTakenByTag.TryAdd(effectTag, effectAmount))
+                {
+                    ModDamageTakenByTag[effectTag] -= effectAmount;
+                }
+            }
+        }
+    }
+
+    public void AdvanceEffects(TileSchema source, DecayTrigger decayTrigger)
+    {
+        for (var i = DecayingEffects.Count - 1; i >= 0; i--)
+        {
+            var  effect = DecayingEffects[i];
+
+            if (effect.DecayTrigger != decayTrigger)
+            {
+                continue;
+            }
+
+            if (effect.DecayTags != null && effect.DecayTags.Count > 0)
+            {
+                if (!source.Tags.Intersect(effect.DecayTags).Any())
+                {
+                    continue;
+                }
+            }
+            
+            effect.Decay--;
+
+            if (effect.Decay == 0)
+            {
+                UndoModDamageTaken(effect);
+                DecayingEffects.RemoveAt(i);
+            }
         }
     }
 
@@ -421,14 +480,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
     
-    public void AddModDamageTakenByTag(TileSchema.Tag objectTag, int effectAmount)
-    {
-        if (!ModDamageTakenByTag.TryAdd(objectTag, effectAmount))
-        {
-            ModDamageTakenByTag[objectTag] += effectAmount;
-        }
-    }
-
     public void AddModXpByTag(TileSchema.Tag objectTag, int effectAmount)
     {
         if (!ModXpByTag.TryAdd(objectTag, effectAmount))

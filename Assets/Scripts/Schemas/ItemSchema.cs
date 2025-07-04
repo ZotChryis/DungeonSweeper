@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Schemas
 {
@@ -46,6 +47,14 @@ namespace Schemas
     }
 
     [Serializable]
+    public enum DecayTrigger
+    {
+        PlayerLevel,
+        DungeonLevel,
+        Conquer,
+    }
+    
+    [Serializable]
     public struct Effect
     {
         public EffectType Type;
@@ -64,6 +73,22 @@ namespace Schemas
         /// The effect will only apply if at least one of these tags are on the object in question
         /// </summary>
         public List<TileSchema.Tag> Tags;
+
+        /// <summary>
+        /// How many 'turns' this effect lasts. Use -1 for 'forever'.
+        /// TODO: Currently only supported by ModDamage but we should support all effects
+        /// </summary>
+        public int Decay;
+        
+        /// <summary>
+        /// What causes the Decay to decrement.
+        /// </summary>
+        public DecayTrigger DecayTrigger;
+
+        /// <summary>
+        /// Some decay triggers need tile tags to filter. Use these
+        /// </summary>
+        public List<TileSchema.Tag> DecayTags;
         
         // TODO:
         /*
@@ -102,7 +127,7 @@ namespace Schemas
             MagicCarpet,
             Flute,
             TarotDeck,
-            HolyLight,
+            SpellHolyLight,
             Alembic,
             RatRepellent,
             MeatGrinder,

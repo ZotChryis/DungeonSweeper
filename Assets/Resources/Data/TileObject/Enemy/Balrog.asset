@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Balrog
   UserFacingDescription: The undefeatable demon-lord. Even the Dragon leaves him
     alone. You should too.
-  Tags: 0100000004000000
+  Tags: 010000000400000006000000
   TileId: 36
   LibraryOverrideTileId: 0
   Sprite: {fileID: 6116292215999839277, guid: fd27b57868d339f49a0aa89c3203fc31, type: 3}
@@ -32,12 +32,15 @@ MonoBehaviour:
   XPReward: 0
   ItemsToReplenish: 
   DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  RevealFlee: 0
   CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}

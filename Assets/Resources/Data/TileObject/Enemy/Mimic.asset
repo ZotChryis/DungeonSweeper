@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Mimic
   UserFacingDescription: Can fool even the most storied of adventurers...
-  Tags: 0100000002000000
+  Tags: 010000000200000006000000
   TileId: 31
+  LibraryOverrideTileId: 0
   Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -28,13 +29,17 @@ MonoBehaviour:
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 11
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  RevealFlee: 0
   CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
