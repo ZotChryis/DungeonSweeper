@@ -1,5 +1,4 @@
 ﻿using System;
-using Screens.Shop;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -40,28 +39,11 @@ public class LevelManager : MonoBehaviour
     {
         SetLevel(CurrentLevel + 1);
     }
-
-    // TODO: Go through GameManager just for clarity
+    
     public void SetLevel(int level)
     {
         CurrentLevel = level;
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
         ServiceLocator.Instance.Grid.GenerateGrid();
-
-        // TODO: Find a better way to do this, in data? This is gross
-        if (level == 1)
-        {
-            foreach(var obj in ServiceLocator.Instance.TileContextMenu.level2Objects)
-            {
-                obj.SetActive(true);
-            }
-        }
-        if (level == 2)
-        {
-            foreach (var obj in ServiceLocator.Instance.TileContextMenu.level3Objects)
-            {
-                obj.SetActive(true);
-            }
-        }
     }
 }

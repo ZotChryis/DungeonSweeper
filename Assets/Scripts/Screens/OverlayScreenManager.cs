@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
+using Screens;
 using Screens.Shop;
+using UnityEngine.Events;
 
 public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
 {
@@ -19,6 +21,7 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         Achievements,
         Settings,
         MainMenu,
+        Confirmation,
     }
 
     [SerializedDictionary("Screen Type", "Screen")]
@@ -78,5 +81,12 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         {
             Screen.Hide();
         }
+    }
+
+    public void RequestConfirmationScreen(Action callback, string title, string message)
+    {
+        RequestShowScreen(ScreenType.Confirmation);
+        ConfirmationScreen screen = Screens[ScreenType.Confirmation] as ConfirmationScreen;
+        screen.SetData(callback, title, message);
     }
 }

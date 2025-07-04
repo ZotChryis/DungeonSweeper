@@ -4,6 +4,8 @@
     {
         public enum Id
         {
+            None = -1,
+            
             Adventurer,
             Warrior,
             Ranger,
@@ -13,7 +15,7 @@
             FortuneTeller,
             Miner,
             Priest,
-            Apothecary
+            Apothecary,
             
         }
     }

@@ -62,6 +62,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public HashSet<TileSchema.Id> TilesWhichShowNeighborPower = new();
     public Dictionary<TileSchema.Id, int> TileObjectsThatShouldUpgrade = new();
+    
+    private Dictionary<TileSchema.Id, int> Kills = new Dictionary<TileSchema.Id, int>();
+    
     public int ShopXp
     {
         get { return m_shopXp; }
@@ -120,6 +123,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId);
         }
+    }
+
+    public int GetKillCount(TileSchema.Id tileId)
+    {
+        return Kills.GetValueOrDefault(tileId, 0);
     }
     
     public void TEMP_SetClass(Class.Id classId)
@@ -215,6 +223,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // TODO: Find a better home for this call... should not be occurring in health delta calcs
         if (source != null)
         {
+            Kills.TryAdd(source.TileId, 0);
+            Kills[source.TileId] += 1;
+            
             OnConquer?.Invoke(source);
         }
         
@@ -322,6 +333,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentHealth = MaxHealth + BonusMaxHp;
 
         TEMP_UpdateVisuals();
+        
+        ServiceLocator.Instance.AudioManager.PlaySfx("LevelUp");
     }
 
     public void GodMode()
@@ -333,14 +346,18 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void ResetPlayer()
     {
-        Level = 0;
+        Level = 1;
         CurrentXP = 0;
         HasUsedDemonBanePowers = false;
         HasRegeneratedThisRound = false;
-        LevelUp();
+        
+        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
+        CurrentHealth = MaxHealth + BonusMaxHp;
         
         // Apply any bonuses from items
         TEMP_UpdateXP(null, BonusStartXp);
+        
+        TEMP_UpdateVisuals();
     }
     
     #region PlayerPowers

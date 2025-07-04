@@ -116,6 +116,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             return;
         }
 
+        // TODO: Refactor the click handle logic
         if (State == TileState.Revealed)
         {
             // Prevent death when clicking on a brick, basically. We can make other things too...
@@ -353,8 +354,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
             //  data and added to the system, we can use AdjustedPower here
             if (player.Damage(HousedObject, basePower))
             {
+                ServiceLocator.Instance.AudioManager.PlaySfx("Death");
                 return;
             }
+            
+            ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
 
             if (HousedObject && HousedObject.ObscureRadius > 0)
             {
