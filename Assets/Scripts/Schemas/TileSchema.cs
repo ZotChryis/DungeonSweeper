@@ -170,6 +170,7 @@ namespace Schemas
         public bool DiffuseMinesReward;
         public int ShopXp = 0;
         public bool ScreenshakeOnConquer = false;
+        public Sprite OverlayDiagonalSprite;
 
         public TileSchema UpgradedVersion;
 

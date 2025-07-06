@@ -95,14 +95,6 @@ MonoBehaviour:
     GuardRelationship: 1
     LookTowardsEachOther: 0
     Requirement: {fileID: 11400000, guid: cf63b8502721e2d49b1fea894026229f, type: 2}
-  - Amount: 4
-    Object: {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    ConsecutiveStackedInLibrary: 0
-    GuardRelationship: 0
-    LookTowardsEachOther: 0
-    Requirement: {fileID: 0}
   - Amount: 1
     Object: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
     ConsecutiveSpawn: {fileID: 0}
@@ -111,6 +103,38 @@ MonoBehaviour:
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 0}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 11400000, guid: dee4d546227ae4e4080c969a2a3a4860, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: a7eac5d4b059a8b41b9edfb4dcfb234b, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 11400000, guid: 51f7626f97f3b1d45bbd5d50fef687fd, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 77ea22027fe6fed44a3d243f4a5e73a8, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 11400000, guid: da2e4f9799e9fe94b98c30db216b6af7, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: 669154d7b5b846b40bd3de10037673cb, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 11400000, guid: 4eebd9e510695da46a0e5fc9cbec0585, type: 2}
   NormalSpawns:
   - Amount: 3
     Object: {fileID: 11400000, guid: 3930811686fb7234c9ab6bb8e323598d, type: 2}
