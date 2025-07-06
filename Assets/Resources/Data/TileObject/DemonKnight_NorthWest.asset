@@ -14,14 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Demon Knight
   UserFacingDescription: A dutiful servant to the Dragon; a tough advesary.
-  Tags: 010000000200000006000000
+  Tags: 0100000002000000
   TileId: 23
-<<<<<<<< HEAD:Assets/Resources/Data/TileObject/DemonKnight_NorthWest.asset
-  Sprite: {fileID: 2729812594169579983, guid: edae78d7821578b45a2a6f87f785134b, type: 3}
-========
   LibraryOverrideTileId: 0
-  Sprite: {fileID: 3558371306628847786, guid: b42cdfd9df469bc41bf77a358a1a8cf4, type: 3}
->>>>>>>> f206bdfec1b73490b973187f1f0e6e332ed96e4d:Assets/Resources/Data/TileObject/Enemy/DemonKnight.asset
+  Sprite: {fileID: 2729812594169579983, guid: edae78d7821578b45a2a6f87f785134b, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -35,12 +31,15 @@ MonoBehaviour:
   XPReward: 7
   ItemsToReplenish: 
   DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  RevealFlee: 0
   CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
@@ -51,7 +50,7 @@ MonoBehaviour:
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
-  OverlayDiagonalSprite: {fileID: 859999959591508714, guid: 2831d291c7819ea43a104dd9e1c6a7ad, type: 3}
+  OverlayDiagonalSprite: {fileID: 1816117145128724683, guid: 313d99eef91c4e247a8fc64d467d48a7, type: 3}
   UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

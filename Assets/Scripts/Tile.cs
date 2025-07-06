@@ -65,9 +65,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     private TileSchema HousedObject;
 
-    [Tooltip("Reference to image that reveals which corner something is. IE Demons show which corner they themselves belong to.")]
-    public Image OverlayDiagonalCoordinates;
-
     public TileState State { get; private set; } = TileState.Hidden;
 
     public int XCoordinate = 0;
