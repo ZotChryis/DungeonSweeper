@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Gameplay;
 using Schemas;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -58,6 +59,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int GodModeBonusMaxHp = 0;
     
     private bool HasRegeneratedThisRound = false;
+
+    [SerializeField]
+    [ReadOnly]
     private int CurrentXP;
 
     public HashSet<TileSchema.Id> TilesWhichShowNeighborPower = new();

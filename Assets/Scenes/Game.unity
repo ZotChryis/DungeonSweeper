@@ -1114,7 +1114,6 @@ GameObject:
   m_Component:
   - component: {fileID: 412119834}
   - component: {fileID: 412119833}
-  - component: {fileID: 412119835}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -1169,14 +1168,6 @@ Transform:
   - {fileID: 1759499451}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &412119835
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 412119832}
-  m_Enabled: 1
 --- !u!114 &447340571 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5367396268150931935, guid: 5593832c7700a04468d9ac286726a29d, type: 3}
