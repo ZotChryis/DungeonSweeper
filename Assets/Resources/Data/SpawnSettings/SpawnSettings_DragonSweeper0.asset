@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b04a0700e14d718fd71067cd25b205, type: 3}
   m_Name: SpawnSettings_DragonSweeper0
   m_EditorClassIdentifier: 
-  LabelText: 'Max XP Available Before Dragon: 213'
+  LabelText: 'Max XP Available Before Dragon: 192'
   Height: 8
   Width: 10
   GridSpawns:
@@ -89,37 +89,13 @@ MonoBehaviour:
     LookTowardsEachOther: 0
     Requirement: {fileID: 11400000, guid: cf63b8502721e2d49b1fea894026229f, type: 2}
   - Amount: 1
-    Object: {fileID: 11400000, guid: 5a7a2be431c643c4685132c0441c1ecf, type: 2}
+    Object: {fileID: 11400000, guid: df96652713908a6418c33f68aaa39225, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     ConsecutiveStackedInLibrary: 0
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 0}
-  - Amount: 1
-    Object: {fileID: 11400000, guid: a7eac5d4b059a8b41b9edfb4dcfb234b, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    ConsecutiveStackedInLibrary: 0
-    GuardRelationship: 0
-    LookTowardsEachOther: 0
-    Requirement: {fileID: 11400000, guid: 51f7626f97f3b1d45bbd5d50fef687fd, type: 2}
-  - Amount: 1
-    Object: {fileID: 11400000, guid: bd43a9ed3d3ace74cadb3885bf3bf42b, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    ConsecutiveStackedInLibrary: 0
-    GuardRelationship: 0
-    LookTowardsEachOther: 0
-    Requirement: {fileID: 11400000, guid: da2e4f9799e9fe94b98c30db216b6af7, type: 2}
-  - Amount: 1
-    Object: {fileID: 11400000, guid: 669154d7b5b846b40bd3de10037673cb, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    ConsecutiveStackedInLibrary: 0
-    GuardRelationship: 0
-    LookTowardsEachOther: 0
-    Requirement: {fileID: 11400000, guid: 4eebd9e510695da46a0e5fc9cbec0585, type: 2}
   NormalSpawns:
   - Amount: 2
     Object: {fileID: 11400000, guid: 3930811686fb7234c9ab6bb8e323598d, type: 2}
