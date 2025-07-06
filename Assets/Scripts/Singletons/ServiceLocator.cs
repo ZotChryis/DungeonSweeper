@@ -1,3 +1,8 @@
+using System.Collections.Generic;
+using Gameplay;
+using Schemas;
+using Screens;
+using Singletons;
 using UnityEngine;
 
 /// <summary>
@@ -29,11 +34,17 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     // TODO: We need a better home for all the level/shop transition logic
     [HideInInspector]
     public LevelManager LevelManager;
+    
+    [HideInInspector]
+    public AudioManager AudioManager;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class
     [HideInInspector]
     public SchemaContainer Schemas;
+    
+    [HideInInspector]
+    public AchievementSystem AchievementSystem;
     
     protected override void Awake()
     {
@@ -44,6 +55,17 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
 
             Schemas = new SchemaContainer();
             Schemas.Initialize();
+
+            AchievementSystem = new AchievementSystem();
+            
+            FBPP.Start(new FBPPConfig()
+            {
+                SaveFileName = "DungeonSweeperSaveData.txt",
+                AutoSaveData = true,
+                ScrambleSaveData = true,
+                EncryptionSecret = "DungeonSweeperSecret",
+                SaveFilePath = Application.persistentDataPath,
+            });
         }
     }
     
@@ -80,5 +102,16 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public void Register(LevelManager levelManager)
     {
         LevelManager = levelManager;
+    }
+    
+    public void Register(AudioManager audioManager)
+    {
+        AudioManager = audioManager;
+    }
+
+    public void DeleteSaveFile()
+    {
+        FBPP.DeleteAll();
+        CheatManager.Restart();
     }
 }

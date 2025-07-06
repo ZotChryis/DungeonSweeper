@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   Id: 1
-  Sprite: {fileID: 2970999875829560105, guid: 39a419fa606bdf64fb9989a453fa138e, type: 3}
+  Sprite: {fileID: -8180171696930044909, guid: fbff4215c0184124fb8cc777a2d6d1f1, type: 3}
   Name: Warrior
   Description: Starts with the Sword.
   StartingItem: 1

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
+  m_Name: BeholderEnraged
+  m_EditorClassIdentifier: 
+  UserFacingName: 
+  UserFacingDescription: ???
+  Tags: 010000000400000006000000
+  TileId: 21
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: 7895412607919688145, guid: 41ea347a3f7776f4e927ffa77655ee0f, type: 3}
+  SpriteFacingData:
+    ObjectToLookAtOverride: {fileID: 0}
+    Above: {fileID: 0}
+    Below: {fileID: 0}
+    Right: {fileID: 0}
+    Left: {fileID: 0}
+    Missing: {fileID: 0}
+  Power: 14
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
+  XPReward: 14
+  ItemsToReplenish: 
+  DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
+  RevealRandLocationNextToMine: 0
+  RevealOffsets: []
+  RevealRadius: 0
+  ObscureOffsets:
+  - {x: -1, y: 0}
+  - {x: 1, y: 0}
+  - {x: 0, y: -1}
+  - {x: 0, y: 1}
+  ObscureRadius: 0
+  CanFlee: 0
+  RevealFlee: 0
+  CanEnrage: 0
+  SpawnsFleeingChild: 0
+  FleeingChild: {fileID: 0}
+  RevealAllRewards: []
+  WinReward: 0
+  FullHealReward: 0
+  HealReward: 0
+  DiffuseMinesReward: 0
+  ShopXp: 0
+  ScreenshakeOnConquer: 0
+  UpgradedVersion: {fileID: 0}
+  Data:
+    _serializedList: []

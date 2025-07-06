@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿    using UnityEngine;
 using UnityEngine.UI;
 
 namespace Screens
@@ -36,7 +36,7 @@ namespace Screens
         // TODO: Show settings screen
         public void OnSettingsPressed()
         {
-            
+            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Settings);
         }
     }
 }

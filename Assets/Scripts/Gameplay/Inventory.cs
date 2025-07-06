@@ -68,7 +68,7 @@ namespace Gameplay
         /// </summary>
         public bool HasItem(ItemSchema.Id itemId)
         {
-            return Items.Any(item => item.Schema.ItemId ==itemId);
+            return Items.Any(item => item.Schema.ItemId == itemId);
         }
 
         public ItemInstance GetFirstItem(ItemSchema.Id itemId)
@@ -131,6 +131,36 @@ namespace Gameplay
             OnItemChargeChanged?.Invoke(itemInstance);
             itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
             return true;
+        }
+
+        public void ReplenishItems(ItemSchema.Id[] itemIds)
+        {
+            if (itemIds == null)
+            {
+                return;
+            }
+            
+            foreach (var item in Items)
+            {
+                if (!item.Schema.IsConsumbale)
+                {
+                    continue;
+                }
+
+                if (!itemIds.Contains(item.Schema.ItemId))
+                {
+                    continue;
+                }
+
+                int oldCharge = item.CurrentQuantity;
+                item.ReplenishAllCharges();
+                int newCharge = item.CurrentQuantity;
+
+                if (oldCharge != newCharge)
+                {
+                    OnItemChargeChanged?.Invoke(item);   
+                }
+            }
         }
     }
     
@@ -222,16 +252,12 @@ namespace Gameplay
                         break;
                     
                     case EffectType.ModDamageTaken:
-                        if (effect.Id != TileSchema.Id.None)
+                        if (effect.Id == TileSchema.Id.None && (effect.Tags == null || effect.Tags.Count == 0))
                         {
-                            player.AddModDamageTaken(effect.Id, effect.Amount);
+                            continue;
                         }
                         
-                        foreach (var effectTag in effect.Tags)
-                        {
-                            player.AddModDamageTakenByTag(effectTag, effect.Amount);
-                        }
-                        
+                        player.AddModDamageTaken(effect);
                         break;
                     
                     case EffectType.ModXp:
@@ -264,11 +290,12 @@ namespace Gameplay
                     
                     case EffectType.Damage:
                         // TODO: should the item be the source?
-                        player.UpdateHealth(null, -effect.Amount);
+                        player.Damage(null, effect.Amount);
                         break;
                     
                     case EffectType.Heal:
-                        player.HealPlayerNoOverheal(effect.Amount);
+                        // TODO: should the item be the source?
+                        player.Heal(null, effect.Amount); //, false);
                         break;
                     
                     case EffectType.ChangeMoney:
@@ -283,6 +310,11 @@ namespace Gameplay
                         break;
                 }
             }
+        }
+
+        public void ReplenishAllCharges()
+        {
+            CurrentQuantity = MaxQuantity;
         }
     }
 }

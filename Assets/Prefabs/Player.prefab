@@ -51,15 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f65530705344559391b87556c90333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RevealedMonsters: []
+  RevealedMonsters: 
   PlayerIcon: {fileID: 6241569694512521791}
   LevelUpRoot: {fileID: 7119339685352484099}
   HeartContainer: {fileID: 3747253890298885096}
   XPContainer: {fileID: 6197542731452784794}
-  BonusStartingHp: 0
-  HpRegeneration: 0
+  BonusMaxHp: 0
+  BonusStartXp: 0
+  SecondWindRegeneration: 0
   Class: 0
-  HasDemonBanePowers: 0
 --- !u!1 &3982720918796254122
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7738998316474853551, guid: 2b379b67f14de8f45ae646b5954b34a3, type: 3}
+  m_Sprite: {fileID: -7336558010007070346, guid: 8caddd6887354aa4abc97d5ab6e67c21, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

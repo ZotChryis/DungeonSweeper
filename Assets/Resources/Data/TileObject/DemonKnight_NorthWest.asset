@@ -14,9 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Demon Knight
   UserFacingDescription: A dutiful servant to the Dragon; a tough advesary.
-  Tags: 0100000002000000
+  Tags: 010000000200000006000000
   TileId: 23
+<<<<<<<< HEAD:Assets/Resources/Data/TileObject/DemonKnight_NorthWest.asset
   Sprite: {fileID: 2729812594169579983, guid: edae78d7821578b45a2a6f87f785134b, type: 3}
+========
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: 3558371306628847786, guid: b42cdfd9df469bc41bf77a358a1a8cf4, type: 3}
+>>>>>>>> f206bdfec1b73490b973187f1f0e6e332ed96e4d:Assets/Resources/Data/TileObject/Enemy/DemonKnight.asset
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -28,6 +33,7 @@ MonoBehaviour:
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 7
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
   RevealRandLocationNextToMine: 0
   RevealOffsets: []

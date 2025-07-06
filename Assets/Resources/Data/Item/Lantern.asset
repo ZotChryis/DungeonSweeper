@@ -15,12 +15,12 @@ MonoBehaviour:
   ItemId: 28
   Name: Lantern
   Description: After leveling up, reveal a random unoccupied location if one exists.
-  Sprite: {fileID: -17528858, guid: 2b379b67f14de8f45ae646b5954b34a3, type: 3}
+  Sprite: {fileID: -7888986177424831467, guid: f76326302c9b82940b6123aef1ce751a, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 2
+  Rarity: 4
   Price: 12
   Effects:
     _serializedList:

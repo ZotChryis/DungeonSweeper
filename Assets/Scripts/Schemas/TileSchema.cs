@@ -89,6 +89,13 @@ namespace Schemas
             
             BrickFinal,
             
+            MagicFountain,
+            ChestItemCommon,
+            ChestItemUncommon,
+            ChestItemRare,
+            ChestItemEpic,
+            ChestItemLegendary,
+            
         }
         
         // !!WARNING!! DO NOT REORDER
@@ -108,6 +115,7 @@ namespace Schemas
         
             // Families
             Beast,
+            Demon,
         
         }
     
@@ -139,6 +147,11 @@ namespace Schemas
     
         // TODO: Make this an enum and add to all data objects created
         public Id TileId;
+        
+        // If this is not None, when this tile object is on the map, it will appear as this object in the library
+        // This is necessary for some oddities like Bricks and GargoyleL/R, etc.
+        public Id LibraryOverrideTileId;
+        
         public Sprite Sprite;
         public SpriteFacing SpriteFacingData;
 
@@ -147,8 +160,13 @@ namespace Schemas
         public bool PreventConsumeIfKillingBlow;
         public int XPReward;
 
+        public ItemSchema.Id[] ItemsToReplenish;
+
         // When fully collected, instead of becoming Empty, this object will be the new housed object on the tile.
         public TileSchema DropReward;
+        
+        public ItemSchema.Id ItemReward;
+        public Rarity[] ItemRewardRarities;
 
         // TODO: Refactor all this shit honestly
         public bool RevealRandLocationNextToMine;
@@ -159,6 +177,7 @@ namespace Schemas
 
         // Hack: basically Gnome behavior
         public bool CanFlee;
+        public bool RevealFlee;
         public bool CanEnrage;
         public bool SpawnsFleeingChild;
         public TileSchema FleeingChild;

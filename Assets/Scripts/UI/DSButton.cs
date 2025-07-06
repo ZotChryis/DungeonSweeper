@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -11,12 +13,32 @@ namespace UI
     {
         [SerializeField] private Button Button;
         [SerializeField] private bool AnimateTextOnHover;
+        
+        // If these are supplied, we will create a confirmation dialog. If that confirmation is positive,
+        // then we issue the action callback. 
+        // DO NOT use the Button's actual callback system
+        [SerializeField] private bool RequireConfirmation;
+        [SerializeField] private string ConfirmationTitle;
+        [SerializeField] private string ConfirmationMessage;
 
+        public Action OnConfirmed;
+        
         private TextAnimation[] TextAnimations;
 
         private void Start()
         {
             TextAnimations = GetComponentsInChildren<TextAnimation>();
+            Button.onClick.AddListener(OnButtonClicked);
+        }
+
+        private void OnButtonClicked()
+        {
+            if (!RequireConfirmation)
+            {
+                return;
+            }
+            
+            ServiceLocator.Instance.OverlayScreenManager.RequestConfirmationScreen(OnConfirmed, ConfirmationTitle, ConfirmationMessage);
         }
 
         public void OnPointerEnter(PointerEventData eventData)

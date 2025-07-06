@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Negate: 0
   RevealAfterSpawn: 0
-  numberOfValidAdjacentSpaces: 6
-  EmptyAdjacentSpaces: 01000000020000000400000005000000060000000700000008000000
+  numberOfValidAdjacentSpaces: 8
+  EmptyAdjacentSpaces: 0100000002000000040000000300000005000000060000000700000008000000

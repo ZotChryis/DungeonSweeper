@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 /// <summary>
@@ -12,6 +13,7 @@ public class LevelProgressionSchema : Schema
     {
         public int XPRequiredToLevel;
         public int MaxHealth;
+        public string LabelText;
     }
     
     [SerializeField] 
@@ -55,5 +57,20 @@ public class LevelProgressionSchema : Schema
         }
         
         return LevelProgressionEntries[adjustedIndex].MaxHealth;
+    }
+
+    private void OnValidate()
+    {
+        if (LevelProgressionEntries == null)
+        {
+            return;
+        }
+
+        int currentSum = 0;
+        for (var i = 0; i < LevelProgressionEntries.Length; i++)
+        {
+            currentSum += LevelProgressionEntries[i].XPRequiredToLevel;
+            LevelProgressionEntries[i].LabelText = "XP Needed to get to this level: " + currentSum;
+        }
     }
 }

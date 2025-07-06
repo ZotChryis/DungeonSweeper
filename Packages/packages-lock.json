@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.richtools.filebasedplayerprefs": {
+      "version": "https://github.com/richardelms/FileBasedPlayerPrefs.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4c467498c2940f9e567b601190b4f423420857a1"
+    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,

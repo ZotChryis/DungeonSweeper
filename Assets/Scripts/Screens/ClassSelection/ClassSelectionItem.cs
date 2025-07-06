@@ -29,12 +29,14 @@ public class ClassSelectionItem : MonoBehaviour
         Description.SetText(Schema.Description);
 
         Button.onClick.AddListener(OnButtonClicked);
-        
-        // TODO: Achievement based unlocks
-        //SetLocked(Class is Gameplay.Class.Id.Wizard or Gameplay.Class.Id.Ranger);
     }
 
-    private void SetLocked(bool locked)
+    public Class.Id GetClassId()
+    {
+        return Class;
+    }
+    
+    public void SetLocked(bool locked)
     {
         Button.interactable = !locked;
         LockedIcon.GameObject().SetActive(locked);

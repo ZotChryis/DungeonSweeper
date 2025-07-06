@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Schemas;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace Screens.Victory
@@ -29,9 +30,17 @@ namespace Screens.Victory
 
         protected override void OnShow()
         {
-            bool nextLevelAvailable = ServiceLocator.Instance.LevelManager.CurrentLevel < 2;
-            MainMenu.gameObject.SetActive(!nextLevelAvailable);
-            Shop.gameObject.SetActive(nextLevelAvailable);
+            bool isFinalLevel = ServiceLocator.Instance.LevelManager.CurrentLevel == ServiceLocator.Instance.LevelManager.Levels.Length - 1;
+            MainMenu.gameObject.SetActive(isFinalLevel);
+            Shop.gameObject.SetActive(!isFinalLevel);
+            
+            ServiceLocator.Instance.AudioManager.PlaySfx("Victory");
+            
+            // TODO: Reverse the listener approach. AchievementSystem should listen for an event to check itself instead
+            //  of being told to check
+            ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Victory);
+            ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Pacifist);
+            ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.FullBoardClear);
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Gameplay;
 using Schemas;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 // TODO: Separate the UI from the business logic. One should be in UI space, and one should be in Gameplay space
@@ -31,7 +33,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int Level;
     private int CurrentHealth;
     private int MaxHealth;
-    public int BonusStartingHp = 0;
+    [FormerlySerializedAs("BonusHp")] [FormerlySerializedAs("BonusStartingHp")] public int BonusMaxHp = 0;
     public int BonusStartXp = 0;
     public int SecondWindRegeneration = 0;
     
@@ -43,6 +45,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public Dictionary<TileSchema.Tag, int> ModDamageTakenByTag = new();
     public Dictionary<TileSchema.Tag, int> ModXpByTag = new();
     
+    // TODO: Support DecayingEffects on ALL types. Currently only support ModDamage
+    private List<Effect> DecayingEffects = new();
+    
     public Class.Id Class = Gameplay.Class.Id.Adventurer;
     public Inventory Inventory;
 
@@ -50,17 +55,16 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// Bonus maxHP added to the level up table.
     /// Mostly, for god mode.
     /// </summary>
-    private int BonusMaxHp = 0;
-
-    // deprecated
-    [Tooltip("If true, we prevent half damage from the very first 7 power demon.")]
-    public bool HasDemonBanePowers = false;
-    private bool HasUsedDemonBanePowers = false;
+    private int GodModeBonusMaxHp = 0;
+    
     private bool HasRegeneratedThisRound = false;
     private int CurrentXP;
 
     public HashSet<TileSchema.Id> TilesWhichShowNeighborPower = new();
     public Dictionary<TileSchema.Id, int> TileObjectsThatShouldUpgrade = new();
+    
+    private Dictionary<TileSchema.Id, int> Kills = new Dictionary<TileSchema.Id, int>();
+    
     public int ShopXp
     {
         get { return m_shopXp; }
@@ -120,6 +124,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId);
         }
     }
+
+    public int GetKillCount(TileSchema.Id tileId)
+    {
+        return Kills.GetValueOrDefault(tileId, 0);
+    }
     
     public void TEMP_SetClass(Class.Id classId)
     {
@@ -137,13 +146,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ResetPlayer();
     }
     
-    public bool TEMP_PredictDeath(TileSchema source, int amount)
+    public bool TEMP_PredictDeath(int amount)
     {
-        amount = GetModifiedDamage(source, amount);
         return CurrentHealth - amount < 0;
     }
 
-    public int GetModifiedDamage(TileSchema source, int amount)
+    public int GetAdjustedDamage(TileSchema source, int amount)
     {
         if (source != null)
         {
@@ -166,51 +174,38 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
         }
 
-        return amount;
-    }
-
-    public void HealPlayerNoOverheal(int amount)
-    {
-        CurrentHealth = Mathf.Clamp(CurrentHealth + amount, -1, (MaxHealth + BonusMaxHp));
-        TEMP_UpdateVisuals();
+        // Do not let it go below 0
+        return Math.Max(0, amount);
     }
 
     /// <summary>
-    /// Update health. Allow overhealing. Mostly for damaging player.
+    /// A bespoke function that deals damage to the player. You must provide a source to do any item checks.
+    /// Returns true if the player dies.
+    /// The amount should always be positive.
     /// </summary>
-    /// <param name="amount"></param>
-    /// <returns>true if the player is dead</returns>
-    public bool UpdateHealth(TileSchema source, int amount)
+    public bool Damage(TileSchema source, int amount)
     {
-        // pre-process any weird enemy logic, pre items
-        if (amount == -7 && HasDemonBanePowers && !HasUsedDemonBanePowers)
+        // No damage, we do not die. Do not heal with negative damage.
+        if (amount <= 0)
         {
-            amount = -3;
+            return false;
         }
         
         // Now deal with item bonuses
-        // TODO: we need a better way to deal with heals and damage
-        if (amount < 0)
-        {
-            // Flip the damage to positive for calculations
-            amount *= -1;
-            
-            // Get the modified damage result
-            amount = GetModifiedDamage(source, amount);
-            
-            // Flip it back to negative for damage
-            amount *= -1;
-        }
-
-        CurrentHealth = Mathf.Max(CurrentHealth + amount, -1);
-        if (CurrentHealth == 0 && !HasRegeneratedThisRound)
+        amount = GetAdjustedDamage(source, amount);
+        
+        CurrentHealth = Math.Max(-1, CurrentHealth - amount);
+        
+        // Special Case: Regeneration power
+        if (CurrentHealth < 0 && !HasRegeneratedThisRound && SecondWindRegeneration > 0)
         {
             HasRegeneratedThisRound = true;
-            CurrentHealth += SecondWindRegeneration;
+            CurrentHealth = SecondWindRegeneration;
         }
-
+        
         TEMP_UpdateVisuals();
-
+        
+        // Handle death
         if (CurrentHealth <= -1)
         {
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
@@ -218,14 +213,37 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
             return true;
         }
-
+        
         // TODO: Find a better home for this call... should not be occurring in health delta calcs
         if (source != null)
         {
+            Kills.TryAdd(source.TileId, 0);
+            Kills[source.TileId] += 1;
+
+            AdvanceEffects(source, DecayTrigger.Conquer);
             OnConquer?.Invoke(source);
         }
         
         return false;
+    }
+
+    /// <summary>
+    /// Heals the player for the specified amount.
+    /// Amount should never be 0 or less.
+    /// AllowOverheal will generate "shield" hearts that will not replenish on level.
+    /// </summary>
+    public void Heal(TileSchema source, int amount) //, bool allowOverheal)
+    {
+        // No damage, we do not die. Do not heal with negative damage.
+        if (amount <= 0)
+        {
+            return;
+        }
+
+        // TODO: Add overheal mechanic?
+        CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth + BonusMaxHp);
+        
+        TEMP_UpdateVisuals();
     }
 
     public void TEMP_UpdateXP(TileSchema source, int amount)
@@ -310,32 +328,30 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentHealth = MaxHealth + BonusMaxHp;
 
         TEMP_UpdateVisuals();
+        
+        ServiceLocator.Instance.AudioManager.PlaySfx("LevelUp");
     }
 
     public void GodMode()
     {
-        if (BonusMaxHp == 0)
-        {
-            BonusMaxHp = 999999;
-        }
-        else
-        {
-            BonusMaxHp = 0;
-        }
-        CurrentHealth = MaxHealth + BonusMaxHp;
+        GodModeBonusMaxHp = GodModeBonusMaxHp == 0 ? 999999 : 0;
+        CurrentHealth = MaxHealth + BonusMaxHp + GodModeBonusMaxHp;
         TEMP_UpdateVisuals();
     }
 
     public void ResetPlayer()
     {
-        Level = 0;
+        Level = 1;
         CurrentXP = 0;
-        HasUsedDemonBanePowers = false;
-        LevelUp();
+        HasRegeneratedThisRound = false;
+        
+        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
+        CurrentHealth = MaxHealth + BonusMaxHp;
         
         // Apply any bonuses from items
-        UpdateHealth(null, BonusStartingHp);
         TEMP_UpdateXP(null, BonusStartXp);
+        
+        TEMP_UpdateVisuals();
     }
     
     #region PlayerPowers
@@ -353,7 +369,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void AddBonusStartHp(int amount)
     {
-        BonusStartingHp += amount;
+        BonusMaxHp += amount;
     }
     
     public void AddBonusStartXp(int amount)
@@ -364,11 +380,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public void AddPlayerRegeneration()
     {
         SecondWindRegeneration++;
-    }
-
-    public void AddDemonBanePower()
-    {
-        HasDemonBanePowers = true;
     }
     
     public void AddRevealNeighborPower(TileSchema.Id ObjectId)
@@ -383,11 +394,81 @@ public class Player : MonoBehaviour, IPointerClickHandler
         TileObjectsThatShouldUpgrade[ObjectId] = level + 1;
     }
     
-    public void AddModDamageTaken(TileSchema.Id id, int effectAmount)
+    public void AddModDamageTaken(Effect effect)
     {
-        if (!ModDamageTaken.TryAdd(id, effectAmount))
+        var effectAmount = effect.Amount;
+        
+        var tileId = effect.Id;
+        if (tileId != TileSchema.Id.None && !ModDamageTaken.TryAdd(tileId, effectAmount))
         {
-            ModDamageTaken[id] += effectAmount;
+            ModDamageTaken[tileId] += effectAmount;
+        }
+
+        if (effect.Tags != null)
+        {
+            foreach (var effectTag in effect.Tags)
+            {
+                if (!ModDamageTakenByTag.TryAdd(effectTag, effectAmount))
+                {
+                    ModDamageTakenByTag[effectTag] += effectAmount;
+                }
+            }
+        }
+
+        if (effect.Decay != -1)
+        {
+            DecayingEffects.Add(effect);
+        }
+    }
+    
+    public void UndoModDamageTaken(Effect effect)
+    {
+        var effectAmount = effect.Amount;
+        
+        var tileId = effect.Id;
+        if (tileId != TileSchema.Id.None && !ModDamageTaken.TryAdd(tileId, effectAmount))
+        {
+            ModDamageTaken[tileId] -= effectAmount;
+        }
+
+        if (effect.Tags != null)
+        {
+            foreach (var effectTag in effect.Tags)
+            {
+                if (!ModDamageTakenByTag.TryAdd(effectTag, effectAmount))
+                {
+                    ModDamageTakenByTag[effectTag] -= effectAmount;
+                }
+            }
+        }
+    }
+
+    public void AdvanceEffects(TileSchema source, DecayTrigger decayTrigger)
+    {
+        for (var i = DecayingEffects.Count - 1; i >= 0; i--)
+        {
+            var  effect = DecayingEffects[i];
+
+            if (effect.DecayTrigger != decayTrigger)
+            {
+                continue;
+            }
+
+            if (effect.DecayTags != null && effect.DecayTags.Count > 0)
+            {
+                if (!source.Tags.Intersect(effect.DecayTags).Any())
+                {
+                    continue;
+                }
+            }
+            
+            effect.Decay--;
+
+            if (effect.Decay == 0)
+            {
+                UndoModDamageTaken(effect);
+                DecayingEffects.RemoveAt(i);
+            }
         }
     }
 
@@ -399,14 +480,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
     
-    public void AddModDamageTakenByTag(TileSchema.Tag objectTag, int effectAmount)
-    {
-        if (!ModDamageTakenByTag.TryAdd(objectTag, effectAmount))
-        {
-            ModDamageTakenByTag[objectTag] += effectAmount;
-        }
-    }
-
     public void AddModXpByTag(TileSchema.Tag objectTag, int effectAmount)
     {
         if (!ModXpByTag.TryAdd(objectTag, effectAmount))
