@@ -41,6 +41,7 @@ public class Grid : MonoBehaviour
     // TODO: Probably should be a cleaner delegate and not owned by this class?
     public Action<Tile> OnTileStateChanged;
     public Action OnGridGenerated;
+    public bool MinesDiffused = false;
 
     private void Awake()
     {
@@ -52,14 +53,10 @@ public class Grid : MonoBehaviour
         // Start the game level 1
         GenerateGrid();
     }
-    
-    /// <summary>
-    /// Creates the Grid using the Serialized Properties marked with Grid Settings.
-    /// The position of the GameObject that owns the script is used as the center of the Grid.
-    /// [0,0] of the Grid is the bottom-left corner.
-    /// </summary>
-    public void GenerateGrid()
+
+    private void ResetGrid()
     {
+        MinesDiffused = false;
         // Clear anything we already have
         if (Tiles != null)
         {
@@ -68,6 +65,16 @@ public class Grid : MonoBehaviour
                 Destroy(item.gameObject);
             }
         }
+    }
+    
+    /// <summary>
+    /// Creates the Grid using the Serialized Properties marked with Grid Settings.
+    /// The position of the GameObject that owns the script is used as the center of the Grid.
+    /// [0,0] of the Grid is the bottom-left corner.
+    /// </summary>
+    public void GenerateGrid()
+    {
+        ResetGrid();
         
         // [0,0] is the bottom left
         Layout.startCorner = GridLayoutGroup.Corner.LowerLeft;
@@ -471,6 +478,7 @@ public class Grid : MonoBehaviour
                 }
             }
         }
+        MinesDiffused = true;
 
         StartCoroutine(Shake());
     }

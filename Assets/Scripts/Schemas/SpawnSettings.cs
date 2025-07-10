@@ -7,20 +7,20 @@ using UnityEngine;
 public class SpawnSettings : Schema
 {
     public string LabelText;
-    
+
     [Serializable]
     public struct GridSpawnEntry
     {
         public int Amount;
         public TileSchema Object;
-        
+
         /// <summary>
         /// Spawn this immediately following the Object spawn
         /// </summary>
         public TileSchema ConsecutiveSpawn;
         public int ConsecutiveCopies;
         public bool ConsecutiveStackedInLibrary;
-        
+
         /// <summary>
         /// For minotaur+chest.
         /// Minotaur is the additional spawn which look towards the spawner.
@@ -32,10 +32,10 @@ public class SpawnSettings : Schema
         public bool LookTowardsEachOther;
         public SpawnRequirement Requirement;
     }
-    
+
     public int Height;
     public int Width;
-    
+
     /// <summary>
     /// Ordered entries to spawn. They have their own spawn requirements.
     /// </summary>
@@ -48,34 +48,26 @@ public class SpawnSettings : Schema
 
     private void OnValidate()
     {
-        Queue<TileSchema> toCheck = new Queue<TileSchema>();
+        Queue<(TileSchema, int)> toCheck = new Queue<(TileSchema, int)>();
         int runningXP = 0;
         foreach (var entry in GridSpawns)
         {
-            for (int i = 0; i < entry.Amount; i++)
+            toCheck.Enqueue((entry.Object, entry.Amount));
+            if (entry.ConsecutiveSpawn != null)
             {
-                toCheck.Enqueue(entry.Object);
-                if (entry.ConsecutiveSpawn != null)
-                {
-                    for (int j = 0; j < entry.ConsecutiveCopies; j++)
-                    {
-                        toCheck.Enqueue(entry.ConsecutiveSpawn);
-                    }
-                }
+                toCheck.Enqueue((entry.ConsecutiveSpawn, entry.ConsecutiveCopies * entry.Amount));
             }
         }
 
         foreach (var entry in NormalSpawns)
         {
-            for (int i = 0; i < entry.Amount; i++)
-            {
-                toCheck.Enqueue(entry.Object);
-            }
+            toCheck.Enqueue((entry.Object, entry.Amount));
         }
 
         while (toCheck.Count > 0)
         {
-            var entry = toCheck.Dequeue();
+            var entryAndAmount = toCheck.Dequeue();
+            var entry = entryAndAmount.Item1;
             if (entry == null)
             {
                 continue;
@@ -86,16 +78,21 @@ public class SpawnSettings : Schema
             {
                 continue;
             }
-            
-            runningXP += entry.XPReward;
-            
+
+            // Don't count enemies that can't be killed
+            if (entry.Power >= 20 && entry.Power % 100 != 0)
+            {
+                continue;
+            }
+
+            runningXP += entry.XPReward * entryAndAmount.Item2;
+
             if (entry.SpawnsFleeingChild && entry.FleeingChild != null)
             {
-                toCheck.Enqueue(entry.FleeingChild);
+                toCheck.Enqueue((entry.FleeingChild, entryAndAmount.Item2));
             }
         }
-        
-        
+
         LabelText = "Max XP Available Before Dragon: " + runningXP;
     }
 }

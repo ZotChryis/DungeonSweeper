@@ -56,6 +56,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     [SerializeField]
     private TMP_Text Annotation;
 
+    public Image FlagAnnotation;
+
     [SerializeField]
     private Color PowerColor;
 
@@ -64,6 +66,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
     [SerializeField]
     private TileSchema HousedObject;
+
     public TileState State { get; private set; } = TileState.Hidden;
 
     public int XCoordinate = 0;
@@ -121,6 +124,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     {
         if (State == TileState.Empty)
         {
+            return;
+        }
+
+        if(FlagAnnotation.enabled && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
+        {
+            // If safety on don't let the player blow themselves up.
             return;
         }
 
@@ -269,6 +278,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         Power.enabled = true;
         Annotation.enabled = false;
+        FlagAnnotation.enabled = false;
 
         UpdateObjectSelfVisuals();
 
@@ -623,6 +633,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
+                FlagAnnotation.enabled = false;
                 ExclamationMarker.enabled = IsEnraged;
                 break;
 
@@ -632,6 +643,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = true;
                 Annotation.enabled = false;
+                FlagAnnotation.enabled = false;
                 ExclamationMarker.enabled = IsEnraged;
                 break;
 
@@ -641,6 +653,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
+                FlagAnnotation.enabled = false;
                 ExclamationMarker.enabled = false;
                 break;
 
@@ -650,6 +663,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
+                FlagAnnotation.enabled = false;
                 ExclamationMarker.enabled = false;
                 TileButton.interactable = false;
                 break;
@@ -733,21 +747,29 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
     }
 
-    // TODO: Make this better haha
-    public void TEMP_SetAnnotation(string annotation)
+    /// <summary>
+    /// Sets the player annotation. The power the player thinks the tile is.
+    /// </summary>
+    /// <param name="annotation"></param>
+    public void SetAnnotation(int power)
     {
-        if (Annotation.text.Equals(annotation))
+        // Mines use a special flag.
+        if(power == 100)
         {
             Annotation.SetText(string.Empty);
+            FlagAnnotation.enabled = !FlagAnnotation.enabled;
             return;
         }
 
-        Annotation.SetText(annotation);
-    }
+        if (Annotation.text.Equals(power.ToString()))
+        {
+            Annotation.SetText(string.Empty);
+            FlagAnnotation.enabled = false;
+            return;
+        }
 
-    public string GetAnnotationText()
-    {
-        return Annotation.text;
+        Annotation.SetText(power.ToString());
+        FlagAnnotation.enabled = false;
     }
 
     public bool TEMP_IsRevealed()
