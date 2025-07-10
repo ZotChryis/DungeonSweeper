@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 14
   Name: Brick Detector
   Description: Auto-reveal one brick at the start of the dungeon.
-  Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
+  Sprite: {fileID: -5729213431515709207, guid: a55d03541cedebf43806fd37f2458064, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
@@ -30,3 +30,6 @@ MonoBehaviour:
         Amount: 1
         Id: 6
         Tags: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 16
   Name: Rat Bait
   Description: Adds a Rat to the dungeon.
-  Sprite: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
+  Sprite: {fileID: -3090799326122686720, guid: 2fb2b161e911f1746983a4ea4255e5c7, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
@@ -30,3 +30,6 @@ MonoBehaviour:
         Amount: 1
         Id: 15
         Tags: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

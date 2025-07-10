@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 13
   Name: Bat Detector
   Description: Auto-reveal one bat at the start of the dungeon.
-  Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
+  Sprite: {fileID: 4381789370884217917, guid: 40cfae7fc68621f45ac69f4a8d516b7c, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
@@ -30,3 +30,6 @@ MonoBehaviour:
         Amount: 1
         Id: 16
         Tags: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

@@ -108,21 +108,28 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     private void Start()
     {
-        ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGeneratedPlayerAbilities;
+        ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGenerated;
         ResetPlayer();
     }
 
     private void OnDestroy()
     {
-        ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGeneratedPlayerAbilities;
+        ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
     }
 
-    private void OnGridGeneratedPlayerAbilities()
+    private void OnGridGenerated()
     {
+        // Do the reveal abilities
         foreach (var monsterId in RevealedMonsters)
         {
             ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId);
         }
+        
+        // Clear any state for each dungeon run
+        Kills.Clear();
+        
+
+        // TODO: Should decaying effects be cleared here??
     }
 
     public int GetKillCount(TileSchema.Id tileId)
@@ -185,10 +192,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public bool Damage(TileSchema source, int amount)
     {
-        // No damage, we do not die. Do not heal with negative damage.
-        if (amount <= 0)
+        // Do not allow negative damage. 0 should be okay because of potential items
+        if (amount < 0)
         {
-            return false;
+            amount = 0;
         }
         
         // Now deal with item bonuses
@@ -426,18 +433,18 @@ public class Player : MonoBehaviour, IPointerClickHandler
         var effectAmount = effect.Amount;
         
         var tileId = effect.Id;
-        if (tileId != TileSchema.Id.None && !ModDamageTaken.TryAdd(tileId, effectAmount))
+        if (tileId != TileSchema.Id.None && ModDamageTaken.ContainsKey(tileId))
         {
-            ModDamageTaken[tileId] -= effectAmount;
+            ModDamageTaken[tileId] = Mathf.Max(0, ModDamageTaken[tileId] - effectAmount);
         }
 
         if (effect.Tags != null)
         {
             foreach (var effectTag in effect.Tags)
             {
-                if (!ModDamageTakenByTag.TryAdd(effectTag, effectAmount))
+                if (ModDamageTakenByTag.ContainsKey(effectTag))
                 {
-                    ModDamageTakenByTag[effectTag] -= effectAmount;
+                    ModDamageTakenByTag[effectTag] = Mathf.Max(0, ModDamageTakenByTag[effectTag]  - effectAmount);
                 }
             }
         }
@@ -464,11 +471,13 @@ public class Player : MonoBehaviour, IPointerClickHandler
             
             effect.Decay--;
 
-            if (effect.Decay == 0)
+            if (effect.Decay > 0)
             {
-                UndoModDamageTaken(effect);
-                DecayingEffects.RemoveAt(i);
+                continue;
             }
+            
+            UndoModDamageTaken(effect);
+            DecayingEffects.RemoveAt(i);
         }
     }
 

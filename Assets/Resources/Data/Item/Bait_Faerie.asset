@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 18
   Name: Faerie Bait
   Description: Adds a Faerie to the dungeon.
-  Sprite: {fileID: -3246102915477046997, guid: ebf3a4c5ce1136542832f71273684db3, type: 3}
+  Sprite: {fileID: -7529398232277058535, guid: 8f864759106a7d44baa73496d38ada29, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
@@ -30,3 +30,6 @@ MonoBehaviour:
         Amount: 1
         Id: 34
         Tags: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

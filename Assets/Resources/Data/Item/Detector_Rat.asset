@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 12
   Name: Rat Detector
   Description: Auto-reveal one rat at the start of the dungeon.
-  Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
+  Sprite: {fileID: 5419535181576957005, guid: 3b561628b502a6449a41752e7dbfea61, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
@@ -30,3 +30,6 @@ MonoBehaviour:
         Amount: 1
         Id: 15
         Tags: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.IO;
 using Gameplay;
 using Schemas;
 using Screens;
@@ -57,6 +57,15 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
             Schemas.Initialize();
 
             AchievementSystem = new AchievementSystem();
+            
+            string path = Application.persistentDataPath;
+            #if PLATFORM_WEBGL
+            path = "idbfs/DungeonSweeper";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            #endif
             
             FBPP.Start(new FBPPConfig()
             {
