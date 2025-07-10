@@ -1,3 +1,5 @@
+using Gameplay;
+using System;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ namespace Screens
         [SerializeField] private Slider MusicVolume;
         [SerializeField] private Slider SFXVolume;
         [SerializeField] private DSButton Reset;
+        [SerializeField] private Toggle SafeMinesToggle;
 
         protected override void Awake()
         {
@@ -18,6 +21,7 @@ namespace Screens
             MasterVolume.onValueChanged.AddListener(OnMasterVolumeChanged);
             MusicVolume.onValueChanged.AddListener(OnMusicVolumeChanged);
             SFXVolume.onValueChanged.AddListener(OnSFXVolumeChanged);
+            SafeMinesToggle.onValueChanged.AddListener(OnSafeMinesChanged);
 
             LoadInitialVolumes();
 
@@ -31,13 +35,15 @@ namespace Screens
 
         private void LoadInitialVolumes()
         {
-            float masterVolume = FBPP.GetFloat("MasterVolume", 1.0f);
-            float musicVolume = FBPP.GetFloat("MusicVolume", 1.0f);
-            float sfxVolume = FBPP.GetFloat("SfxVolume", 1.0f);
- 
-            MasterVolume.value = masterVolume;
-            MusicVolume.value = musicVolume;
-            SFXVolume.value = sfxVolume;
+            MasterVolume.value = FBPP.GetFloat("MasterVolume", 1.0f);
+            MusicVolume.value = FBPP.GetFloat("MusicVolume", 1.0f);
+            SFXVolume.value = FBPP.GetFloat("SfxVolume", 1.0f);
+            SafeMinesToggle.isOn = FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true);
+        }
+
+        private void OnSafeMinesChanged(bool value)
+        {
+            FBPP.SetBool(PlayerOptions.IsSafeMinesOn, value);
         }
 
         private void OnMasterVolumeChanged(float value)

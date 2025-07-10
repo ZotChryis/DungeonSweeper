@@ -3,6 +3,7 @@ using Gameplay;
 using Schemas;
 using Screens;
 using Singletons;
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -45,7 +46,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public AchievementSystem AchievementSystem;
-    
+
     protected override void Awake()
     {
         base.Awake();

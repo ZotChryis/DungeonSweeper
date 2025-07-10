@@ -83,8 +83,7 @@ namespace Screens
 
         public void OnOptionSelected(int option)
         {
-            string annotationText = option == 100 ? "*" : option.ToString();
-            ActiveTile.TEMP_SetAnnotation(annotationText);
+            ActiveTile.SetAnnotation(option);
             ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
             ActiveTile = null;
         }
