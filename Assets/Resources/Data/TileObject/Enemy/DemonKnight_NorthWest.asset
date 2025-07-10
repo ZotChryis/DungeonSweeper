@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Demon Knight
   UserFacingDescription: A dutiful servant to the Dragon; a tough advesary.
-  Tags: 0100000002000000
+  Tags: 010000000200000006000000
   TileId: 23
   LibraryOverrideTileId: 0
   Sprite: {fileID: 2729812594169579983, guid: edae78d7821578b45a2a6f87f785134b, type: 3}
@@ -50,7 +50,6 @@ MonoBehaviour:
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
-  OverlayDiagonalSprite: {fileID: 1816117145128724683, guid: 313d99eef91c4e247a8fc64d467d48a7, type: 3}
   UpgradedVersion: {fileID: 0}
   Data:
     _serializedList: []

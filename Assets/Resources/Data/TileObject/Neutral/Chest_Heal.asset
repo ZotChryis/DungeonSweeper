@@ -39,6 +39,7 @@ MonoBehaviour:
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  RevealFlee: 0
   CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
@@ -76,7 +77,7 @@ MonoBehaviour:
           Value: 0
         Sprite:
           UseOverride: 1
-          Value: {fileID: 2067646171788204918, guid: 0f5d2d9d4ce81124e90a9e1565e5ce06, type: 3}
+          Value: {fileID: 5080965414245196560, guid: 77d92d9dd60e24147a59e179ecfb7211, type: 3}
         EnablePower:
           UseOverride: 0
           Value: 0
