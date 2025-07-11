@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Schemas;
-using Unity.VisualScripting;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -120,22 +120,27 @@ public class Grid : MonoBehaviour
 
     private void SpawnEntriesInArray(SpawnSettings.GridSpawnEntry[] entries)
     {
+        // TODO: Should we suppor bonus spawns when it comes to ConsecutiveSpawn types? maybe?? 
+        foreach (var (key, bonus) in ServiceLocator.Instance.Player.BonusSpawn)
+        {
+            entries.ForEach(e =>
+            {
+                if (e.Object.TileId == key)
+                {
+                    e.Amount += bonus;
+                }
+            });
+        }
+
         foreach (var spawnEntry in entries)
         {
-            // We spawn all of the instances of each enemy before moving on.
-            int primarySpawnCount = spawnEntry.Amount;
-            if (ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.Object.TileId, out int bonusPrimaryCopies))
-            {
-                primarySpawnCount += bonusPrimaryCopies;
-            }
-
             int desiredLookX = 0, desiredLookY = 0;
             if (spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride != null)
             {
                 (desiredLookX, desiredLookY) = ServiceLocator.Instance.Grid.FindNearest(spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride, 0, 0);
             }
 
-            for (int i = 0; i < primarySpawnCount; i++)
+            for (int i = 0; i < spawnEntry.Amount; i++)
             {
                 (int, int) coordinates;
                 if (spawnEntry.Requirement != null)

@@ -49,8 +49,8 @@ namespace Schemas
     [Serializable]
     public enum DecayTrigger
     {
-        PlayerLevel,
-        DungeonLevel,
+        PlayerLevel,        // not implemented yet
+        DungeonLevel,       // not implemented yet
         Conquer,
     }
     
