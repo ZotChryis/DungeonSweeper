@@ -33,7 +33,7 @@ namespace Singletons
                 Debug.LogWarning("Tried to play music that didn't exist: " + key);
                 return;
             }
-        
+            
             MusicSource.clip = clip;
             MusicSource.Play();
         }
@@ -44,6 +44,12 @@ namespace Singletons
             {
                 Debug.LogWarning("Tried to play sfx that didn't exist: " + key);
                 return;
+            }
+            
+            // TODO: Make a batch/pool system where we can support multiple effects at once
+            if (SfxSource.isPlaying)
+            {
+                MusicSource.Stop();
             }
         
             SfxSource.clip = clip;

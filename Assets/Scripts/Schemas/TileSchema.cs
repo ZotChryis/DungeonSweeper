@@ -212,11 +212,17 @@ namespace Schemas
             public ValueOverride<bool> EnablePower;
             public ValueOverride<bool> EnableSprite;
             public ValueOverride<bool> EnableDeathSprite;
-        }
 
+            /// <summary>
+            /// If not empty, will be attempted to be played when the corresponding state is entered.
+            /// DEFAULT: Always play "Attack" when conquering
+            /// </summary>
+            public ValueOverride<string> Sfx;
+        }
+        
         [SerializedDictionary("Tile State", "State Overrides")]
         public SerializedDictionary<Tile.TileState, TileStateData> Data;
-
+        
         public TileStateData GetOverrides(Tile.TileState state)
         {
             return Data.GetValueOrDefault(state);

@@ -532,7 +532,7 @@ public class Grid : MonoBehaviour
                 {
                     continue;
                 }
-                Tiles[i + xCoordinate, j + yCoordinate].TEMP_Unobscure();
+                Tiles[i + xCoordinate, j + yCoordinate].TEMP_UnObscure();
             }
         }
     }
@@ -565,7 +565,7 @@ public class Grid : MonoBehaviour
                 continue;
             }
             
-            Tiles[newX, newY].TEMP_Unobscure();
+            Tiles[newX, newY].TEMP_UnObscure();
         }
     }
 

@@ -17,6 +17,7 @@ MonoBehaviour:
     reward!
   Tags: 00000000
   TileId: 29
+  LibraryOverrideTileId: 0
   Sprite: {fileID: 3402368762417361602, guid: 5d0864dd14337b046a06be91112b5214, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -29,13 +30,17 @@ MonoBehaviour:
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 9
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 1
+  RevealFlee: 0
   CanEnrage: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
@@ -66,6 +71,9 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
+        Sfx:
+          UseOverride: 1
+          Value: Gnome
     - Key: 2
       Value:
         AutoContinue:
@@ -83,3 +91,6 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 

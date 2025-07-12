@@ -1305,6 +1305,14 @@ MonoBehaviour:
       Value: {fileID: 8300000, guid: 4e736ddf87bdeed48aa17cff45356934, type: 3}
   SfxClips:
     _serializedList:
+    - Key: XP
+      Value: {fileID: 8300000, guid: a1acdf488c18cef4db4aa36a882b26d5, type: 3}
+    - Key: Heal
+      Value: {fileID: 8300000, guid: 7cecf4b3a371c824bb12fd5a2b2e80c7, type: 3}
+    - Key: Achievement
+      Value: {fileID: 8300000, guid: 08390c746363f06479c33f039512826a, type: 3}
+    - Key: Vision
+      Value: {fileID: 8300000, guid: 593ffe1447dec784585a06d89cbe491c, type: 3}
     - Key: Death
       Value: {fileID: 8300000, guid: 103fc7f2209bc134c84c224bf1baa4fc, type: 3}
     - Key: LevelUp

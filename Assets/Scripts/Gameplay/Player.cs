@@ -254,14 +254,24 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // TODO: Add overheal mechanic?
         CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth + BonusMaxHp);
         
+        ServiceLocator.Instance.AudioManager.PlaySfx("Heal");
+        
         TEMP_UpdateVisuals();
     }
 
     public void TEMP_UpdateXP(TileSchema source, int amount)
     {
+        // Just in case, we shouldn't process any 0 or less (for now)
+        if (amount <= 0)
+        {
+            return;
+        }
+        
         amount = GetModifiedXp(source, amount);
         CurrentXP += amount;
         TEMP_UpdateVisuals();
+        
+        ServiceLocator.Instance.AudioManager.PlaySfx("XP");
     }
 
     public int GetModifiedXp(TileSchema source, int amount)
@@ -322,7 +332,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (CurrentXP >= xpRequiredToLevel)
         {
             CurrentXP -= xpRequiredToLevel;
-            
             
             LevelUp();
             

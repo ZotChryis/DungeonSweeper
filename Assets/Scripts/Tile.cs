@@ -255,6 +255,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         State = TileState.Revealed;
         ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
+
+        TryPlaySfx(State);
         TEMP_UpdateVisuals();
 
         // TODO: Total hack, fix later
@@ -265,6 +267,18 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    private void TryPlaySfx(TileState state)
+    {
+        if (HousedObject)
+        {
+            var stateOverrides = HousedObject.GetOverrides(state);
+            if (stateOverrides.Sfx.UseOverride && !string.IsNullOrEmpty(stateOverrides.Sfx.Value))
+            {
+                ServiceLocator.Instance.AudioManager.PlaySfx(stateOverrides.Sfx.Value);
+            }
+        }
+    }
+    
     /// <summary>
     /// For use specifically when the player dies and we need to reveal
     /// the entire board at once. Which can be very CPU intensive. Copy of above TEMP_RevealWithoutLogic.
@@ -324,6 +338,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     // TODO: We should look into using Observables/real state machine
     private void HandleStateChanged()
     {
+        TryPlaySfx(State);
+            
         if (State == TileState.Empty)
         {
             // TODO: HACK - need to remove any fully empty tile when it is revealed to make Flee work
@@ -375,8 +391,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                 ServiceLocator.Instance.AudioManager.PlaySfx("Death");
                 return;
             }
-            
-            ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
+
+            if (!HousedObject.GetOverrides(State).Sfx.UseOverride)
+            {
+                ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
+            }
 
             if (HousedObject && HousedObject.ObscureRadius > 0)
             {
@@ -423,7 +442,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
                     revealOriginY = randomAdjacentToReveal.Item2;
                 }
             }
-
+            
             if (HousedObject.RevealRadius > 0)
             {
                 ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(revealOriginX, revealOriginY, HousedObject.RevealRadius);
@@ -444,9 +463,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
             if (HousedObject.FullHealReward)
             {
-                ServiceLocator.Instance.Player.Heal(HousedObject, 999); //, false);
+                ServiceLocator.Instance.Player.Heal(HousedObject, 999);
             }
-            ServiceLocator.Instance.Player.Heal(HousedObject, HousedObject.HealReward);//, false);
+            ServiceLocator.Instance.Player.Heal(HousedObject, HousedObject.HealReward);
 
             if (HousedObject.DiffuseMinesReward)
             {
@@ -788,7 +807,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         TEMP_UpdateVisuals();
     }
 
-    public void TEMP_Unobscure()
+    public void TEMP_UnObscure()
     {
         ObscureCounter--;
         TEMP_UpdateVisuals();
