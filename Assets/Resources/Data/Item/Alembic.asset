@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Potion_Stoneshield
+  m_Name: Alembic
   m_EditorClassIdentifier: 
-  ItemId: 27
-  Name: 'Potion: Stoneshield'
-  Description: Use from inventory. The next Melee enemy does -4 damage.
-  Sprite: {fileID: 8618505411793156745, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
-  IsUniqueEquipped: 0
-  IsConsumbale: 1
-  InitialCharges: 1
+  ItemId: 7
+  Name: Alembic
+  Description: Gain a potion at the start of the dungeon.
+  Sprite: {fileID: 619147882475651941, guid: 6f88240f1ff0e314aa9ea2d19f610180, type: 3}
+  IsUniqueEquipped: 1
+  IsConsumbale: 0
+  InitialCharges: 0
   ShopInventory: 1
-  Rarity: 1
-  Price: 5
+  Rarity: 3
+  Price: 8
   Effects:
     _serializedList:
-    - Key: 4
+    - Key: 2
       Value:
-      - Type: 3
-        Amount: -4
+      - Type: 0
+        Amount: 0
         Id: 0
-        Tags: 02000000
+        Tags: 
         Items: 
-        Decay: 1
-        DecayTrigger: 2
-        DecayTags: 02000000
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

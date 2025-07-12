@@ -308,6 +308,13 @@ namespace Gameplay
                             ServiceLocator.Instance.Grid.RevealRandomUnoccupiedTile();
                         }
                         break;
+                    case EffectType.AddRandomItem:
+                        for (int i = 0; i < effect.Amount; i++)
+                        {
+                            var item = effect.Items.GetRandomItem();
+                            ServiceLocator.Instance.Player.Inventory.AddItem(item);
+                        }
+                        break;
                 }
             }
         }

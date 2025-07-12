@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
-  m_Name: Priest_0
+  m_Name: Apothecary_1
   m_EditorClassIdentifier: 
-  AchievementId: 45
-  Title: Novice Priest
-  Description: Complete the first dungeon level with the Priest.
-  Reward: Unlocks the Apothecary
-  RewardClass: 9
+  AchievementId: 50
+  Title: Intermediate Apothecary
+  Description: Complete the second dungeon level with the Apothecary.
+  Reward: 
+  RewardClass: -1
   Trigger: 0
-  Level: 0
-  Class: 8
+  Level: 1
+  Class: 0
   TileData: 
   ItemData: 

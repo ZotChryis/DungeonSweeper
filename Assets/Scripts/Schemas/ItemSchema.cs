@@ -33,7 +33,8 @@ namespace Schemas
         Damage,
         Heal,
         ChangeMoney,
-        RevealRandomLocation
+        RevealRandomLocation,
+        AddRandomItem,
     }
 
     [Serializable]
@@ -74,6 +75,11 @@ namespace Schemas
         /// </summary>
         public List<TileSchema.Tag> Tags;
 
+        /// <summary>
+        /// Some effects can add items or filter off of them. Use these.
+        /// </summary>
+        public List<ItemSchema.Id> Items;
+        
         /// <summary>
         /// How many 'turns' this effect lasts. Use -1 for 'forever'.
         /// TODO: Currently only supported by ModDamage but we should support all effects

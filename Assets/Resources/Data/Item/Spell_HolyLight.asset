@@ -20,8 +20,8 @@ MonoBehaviour:
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
-  Rarity: 2
-  Price: 4
+  Rarity: 3
+  Price: 8
   Effects:
     _serializedList:
     - Key: 4
@@ -30,6 +30,7 @@ MonoBehaviour:
         Amount: -4
         Id: 0
         Tags: 06000000
+        Items: 
         Decay: 1
         DecayTrigger: 2
         DecayTags: 06000000

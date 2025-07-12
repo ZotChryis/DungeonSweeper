@@ -73,6 +73,11 @@ namespace Schemas
             Priest1,
             Priest2,
             Priest3,
+            
+            Apothecary0,
+            Apothecary1,
+            Apothecary2,
+            Apothecary3,
         }
 
         [Serializable]
