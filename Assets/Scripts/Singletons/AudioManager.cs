@@ -49,7 +49,7 @@ namespace Singletons
             // TODO: Make a batch/pool system where we can support multiple effects at once
             if (SfxSource.isPlaying)
             {
-                MusicSource.Stop();
+                SfxSource.Stop();
             }
         
             SfxSource.clip = clip;
