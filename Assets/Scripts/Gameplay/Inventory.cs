@@ -57,8 +57,9 @@ namespace Gameplay
 
         private void OnDungeonLevelChanged(int newLevel)
         {
-            foreach (var itemInstance in Items)
+            for (var i = 0; i < Items.Count; i++)
             {
+                var itemInstance = Items[i];
                 itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.DungeonLevel);
             }
         }
@@ -126,10 +127,10 @@ namespace Gameplay
             {
                 return false;
             }
-
+            
+            itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
             itemInstance.RemoveCharge(1);
             OnItemChargeChanged?.Invoke(itemInstance);
-            itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
             return true;
         }
 

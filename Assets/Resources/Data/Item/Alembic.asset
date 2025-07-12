@@ -26,11 +26,11 @@ MonoBehaviour:
     _serializedList:
     - Key: 2
       Value:
-      - Type: 0
-        Amount: 0
+      - Type: 11
+        Amount: 1
         Id: 0
         Tags: 
-        Items: 
+        Items: 170000001b000000
         Decay: 0
         DecayTrigger: 0
         DecayTags: 

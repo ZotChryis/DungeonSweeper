@@ -373,7 +373,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
         int basePower = GetBasePower();
         int adjustedPower = GetAdjustedPower();
-        if (TileState.Conquered == State && adjustedPower > 0)
+        if (TileState.Conquered == State)
         {
             if (player.TEMP_PredictDeath(adjustedPower))
             {
@@ -736,10 +736,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         // TODO: Seperate these 2 labels and control independently
         Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
         
-        // TODO: We need to use Player.GetAdjustedDamage directly because of Demon's Bane. When that is refactored
-        //  we can just use GetAdjustedPower instead
         Power.SetText(HousedObject? State < TileState.Conquered 
-                ? ServiceLocator.Instance.Player.GetAdjustedDamage(HousedObject, GetBasePower()).ToString() 
+                ? GetAdjustedPower().ToString() 
                 : ServiceLocator.Instance.Player.GetModifiedXp(HousedObject, HousedObject.XPReward).ToString()
             : string.Empty
         );

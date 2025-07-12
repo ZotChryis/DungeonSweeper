@@ -435,7 +435,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
         }
 
-        if (effect.Decay != -1)
+        if (effect.Decay > 0)
         {
             DecayingEffects.Add(effect);
         }

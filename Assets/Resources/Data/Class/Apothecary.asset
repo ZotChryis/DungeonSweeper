@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apothecary
   m_EditorClassIdentifier: 
   Id: 9
-  Sprite: {fileID: 1457491203435894738, guid: 0d95b31c52cf45645ad9427a06b03317, type: 3}
+  Sprite: {fileID: -2822969319259148933, guid: 3436e10cc9d729c4bad73c69f46a59f6, type: 3}
   Name: Apothecary
   Description: Starts with the Alembic.
   StartingItem: 7
