@@ -113,6 +113,14 @@ MonoBehaviour:
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 0}
+  - Amount: 0
+    Object: {fileID: 11400000, guid: 1981f22e10856224a8bb40c48ee94811, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 0}
   - Amount: 7
     Object: {fileID: 11400000, guid: ec0dffad2a461a745895645d03bb798d, type: 2}
     ConsecutiveSpawn: {fileID: 0}

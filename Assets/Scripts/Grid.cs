@@ -120,27 +120,35 @@ public class Grid : MonoBehaviour
 
     private void SpawnEntriesInArray(SpawnSettings.GridSpawnEntry[] entries)
     {
+        // TODO: Issue here !! If they don't exist in the Entries list then they don't get the bonus spawns.
+        //  I've added a helper button to add 0 entries on missing items but its not ideal. 
+        //  The reason I can't just inject it is because the spawn requirements are not IN the tile object but they are 
+        //  assosciated instead. We might wanna consider hard linking them? idk
         // TODO: Should we suppor bonus spawns when it comes to ConsecutiveSpawn types? maybe?? 
         foreach (var (key, bonus) in ServiceLocator.Instance.Player.BonusSpawn)
         {
-            entries.ForEach(e =>
+            for (var i = 0; i < entries.Length; i++)
             {
-                if (e.Object.TileId == key)
+                var entry = entries[i];
+                if (entry.Object.TileId == key)
                 {
-                    e.Amount += bonus;
+                    entry.Amount += bonus;
                 }
-            });
+            }
         }
 
         foreach (var spawnEntry in entries)
         {
+            ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.Object.TileId, out int bonusAmount);
+            var amount = spawnEntry.Amount + bonusAmount;
+            
             int desiredLookX = 0, desiredLookY = 0;
             if (spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride != null)
             {
                 (desiredLookX, desiredLookY) = ServiceLocator.Instance.Grid.FindNearest(spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride, 0, 0);
             }
 
-            for (int i = 0; i < spawnEntry.Amount; i++)
+            for (int i = 0; i < amount; i++)
             {
                 (int, int) coordinates;
                 if (spawnEntry.Requirement != null)
@@ -149,7 +157,7 @@ public class Grid : MonoBehaviour
                     UnoccupiedSpaces.RemoveUnoccupiedSpace(coordinates.Item1, coordinates.Item2);
                     Tiles[coordinates.Item1, coordinates.Item2].PlaceTileObj(spawnEntry.Object);
                     
-                    if (spawnEntry.Requirement.RevealAfterSpawn)//  && i < spawnEntry.Amount) // Don't auto-reveal player spawned items.
+                    if (spawnEntry.Requirement.RevealAfterSpawn)
                     {
                         Tiles[coordinates.Item1, coordinates.Item2].TEMP_RevealWithoutLogic();
                     }

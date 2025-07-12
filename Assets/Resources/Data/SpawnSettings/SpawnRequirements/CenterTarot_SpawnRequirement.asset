@@ -17,4 +17,4 @@ MonoBehaviour:
   PotentialSpawnLocations: 0100000002000000030000000400000005000000060000000700000008000000
   XPercent: 0.5
   YPercent: 0.5
-  margin: 1
+  margin: 2
