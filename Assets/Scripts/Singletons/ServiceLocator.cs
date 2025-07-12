@@ -74,7 +74,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
                 AutoSaveData = true,
                 ScrambleSaveData = true,
                 EncryptionSecret = "DungeonSweeperSecret",
-                SaveFilePath = Application.persistentDataPath,
+                SaveFilePath = path,
             });
         }
     }
