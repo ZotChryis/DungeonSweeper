@@ -13196,7 +13196,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &3239085143749365778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22253,9 +22253,9 @@ MonoBehaviour:
   - {fileID: 8783726835386383289}
   - {fileID: 4370691159392167242}
   - {fileID: 4675482949019704538}
-  - {fileID: 8196874590458614754}
   - {fileID: 1300054366182347869}
-  Level1Objects: []
+  Level1Objects:
+  - {fileID: 8196874590458614754}
   Level2Objects:
   - {fileID: 5428194558883175936}
   - {fileID: 2256395137633742094}
