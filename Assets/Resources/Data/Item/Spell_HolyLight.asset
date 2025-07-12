@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 6
   Name: Holy Light
-  Description: Use from inventory. The next Demon enemy does -4 damage.
+  Description: Use from inventory. The next Demon enemy does -3 damage.
   Sprite: {fileID: -4819437691104115080, guid: f76326302c9b82940b6123aef1ce751a, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 1
@@ -27,7 +27,7 @@ MonoBehaviour:
     - Key: 4
       Value:
       - Type: 3
-        Amount: -4
+        Amount: -3
         Id: 0
         Tags: 06000000
         Items: 
