@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: DemonKnight_NorthWest
   m_EditorClassIdentifier: 
   UserFacingName: Demon Knight
-  UserFacingDescription: A dutiful servant to the Dragon; a tough advesary.
+  UserFacingDescription: A dutiful servant to the Dragon; a loyal advesary in charge
+    of their part of the realm.
   Tags: 010000000200000006000000
   TileId: 23
   LibraryOverrideTileId: 0
