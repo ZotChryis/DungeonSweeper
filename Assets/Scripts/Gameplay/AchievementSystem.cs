@@ -41,9 +41,10 @@ namespace Gameplay
                 .FindAll(a => a.Trigger == trigger);
 
             // TODO FIX HACK: Fix this later -- the crown is still on the board when we transition dungeons, but we shouldnt care about it
-            //  in out calculations
+            //  in out calculations.
+            // TODO FIX HACK: We also can't kill Balrog so we must remove it from this so that annihilator works
             var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects()
-                .FindAll(t => t.TileId != TileSchema.Id.Crown);
+                .FindAll(t => t.TileId != TileSchema.Id.Crown && t.TileId != TileSchema.Id.Balrog);
             
             foreach (var schema in achievements)
             {
