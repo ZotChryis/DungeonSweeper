@@ -507,7 +507,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             // Specific item reward
             if (HousedObject.ItemReward != ItemSchema.Id.None)
             {
-                ServiceLocator.Instance.Player.Inventory.AddItem(HousedObject.ItemReward);
+                ItemInstance itemInstance = ServiceLocator.Instance.Player.Inventory.AddItem(HousedObject.ItemReward);
+                if (itemInstance != null)
+                {
+                    ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
+                }
             }
             
             // Random reward from Rarity
@@ -518,7 +522,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 if (matchingItems.Count > 0)
                 {
                     var rewardItem = matchingItems.GetRandomItem();
-                    ServiceLocator.Instance.Player.Inventory.AddItem(rewardItem.ItemId);
+                    ItemInstance itemInstance = ServiceLocator.Instance.Player.Inventory.AddItem(rewardItem.ItemId);
+                    if (itemInstance != null)
+                    {
+                        ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
+                    }
                 }
             }
         }

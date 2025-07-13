@@ -80,7 +80,7 @@ namespace Gameplay
         /// <summary>
         /// Returns whether or not the itemId can be added to the inventory. Handles stacking logic.
         /// </summary>
-        public bool AddItem(ItemSchema.Id itemId)
+        public ItemInstance AddItem(ItemSchema.Id itemId)
         {
             if (HasItem(itemId))
             {
@@ -88,7 +88,7 @@ namespace Gameplay
                 var item = GetFirstItem(itemId);
                 if (item.Schema.IsUniqueEquipped)
                 {
-                    return false;
+                    return null;
                 }
             }
             
@@ -109,10 +109,10 @@ namespace Gameplay
                     newItem.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Purchase);
                 }
                 
-                return true;
+                return newItem;
             }
 
-            return false;
+            return null;
         }
         
         public void RemoveItem(ItemInstance item)
@@ -134,6 +134,18 @@ namespace Gameplay
             return true;
         }
 
+        public void ReplenishItems()
+        {
+            List<ItemSchema> allConsumables = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(i => i.IsConsumbale);
+            ItemSchema.Id[] allIds = new  ItemSchema.Id[allConsumables.Count];
+            for (int i = 0; i < allConsumables.Count; i++)
+            {
+                allIds[i] = allConsumables[i].ItemId;
+            }
+
+            ReplenishItems(allIds);
+        }
+            
         public void ReplenishItems(ItemSchema.Id[] itemIds)
         {
             if (itemIds == null)

@@ -54,6 +54,7 @@ public class LevelManager : MonoBehaviour
     public void RetryCurrentLevel()
     {
         ServiceLocator.Instance.Player.MarkPlayerSoftcore();
+        ServiceLocator.Instance.Player.RevokeItemsForCurrentDungeon();
         ServiceLocator.Instance.Player.ResetPlayer();
         ServiceLocator.Instance.Grid.GenerateGrid();
     }

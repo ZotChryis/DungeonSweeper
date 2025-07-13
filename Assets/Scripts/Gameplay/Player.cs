@@ -97,6 +97,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     // TODO: Spawn these in dynamically, im just lazy atm
     private PlayerUIItem[] Hearts;
     private PlayerUIItem[] XPGems;
+    
+    private List<ItemInstance> ItemsAddedThisDungeon = new();
 
     private void Awake()
     {
@@ -127,6 +129,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ServiceLocator.Instance.LevelManager.OnLevelChanged -= OnDungeonLevelChanged;
     }
 
+    // TODO: Fix hack....retry has a lot of holes :(
+    public void TrackItemForDungeon(ItemInstance item)
+    {
+        ItemsAddedThisDungeon.Add(item);
+    }
+    
     private void OnGridGenerated()
     {
         // Do the reveal abilities
@@ -395,10 +403,20 @@ public class Player : MonoBehaviour, IPointerClickHandler
         IsHardcore = false;
     }
     
+    public void RevokeItemsForCurrentDungeon()
+    {
+        foreach (var itemInstance in ItemsAddedThisDungeon)
+        {
+            Inventory.RemoveItem(itemInstance);
+        }
+        ItemsAddedThisDungeon.Clear();
+    }
+    
     public void ResetPlayer()
     {
         // Remove any decaying effects that may be lingering
         RevertAllDecayingEffects();
+        ItemsAddedThisDungeon.Clear();
         
         Level = 1;
         CurrentXP = 0;
@@ -411,6 +429,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         TEMP_UpdateXP(null, BonusStartXp);
         
         TEMP_UpdateVisuals();
+        
+        // All consumables are re-filled
+        Inventory.ReplenishItems();
     }
     
     #region PlayerPowers
@@ -593,5 +614,4 @@ public class Player : MonoBehaviour, IPointerClickHandler
     }
     
     #endregion
-
 }
