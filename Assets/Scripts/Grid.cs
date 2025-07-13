@@ -182,9 +182,16 @@ public class Grid : MonoBehaviour
                             {
                                 // Minotaur.GuardingTile = chest
                                 Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].GuardingTile = Tiles[coordinates.Item1, coordinates.Item2];
-                                Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].LookAwayFrom(coordinates.Item1, coordinates.Item2, false);
+                                if(spawnEntry.LookTowardsEachOther)
+                                {
+                                    Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].LookTowardsHorizontally(coordinates.Item1, coordinates.Item2, false, false);
+                                }
+                                else
+                                {
+                                    Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].LookAwayFrom(coordinates.Item1, coordinates.Item2, false);
+                                }
 
-                                // Chest.GuardingTile = Minotaur
+                                // Chest.BodyGuardedByTile = Minotaur
                                 Tiles[coordinates.Item1, coordinates.Item2].BodyGuardedByTile = Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y];
                             }
                             else if (spawnEntry.LookTowardsEachOther)
@@ -205,7 +212,7 @@ public class Grid : MonoBehaviour
 
                 if (spawnEntry.Object.SpriteFacingData.ObjectToLookAtOverride != null)
                 {
-                    Tiles[coordinates.Item1, coordinates.Item2].LookTowardsHorizontally(desiredLookX, desiredLookY, false, true);
+                    Tiles[coordinates.Item1, coordinates.Item2].LookTowardsHorizontally(desiredLookX, desiredLookY, true, true);
                 }
             }
         }

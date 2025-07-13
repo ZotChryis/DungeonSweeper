@@ -139,6 +139,11 @@ namespace Schemas
 
             // If no nearest object type is found.
             public Sprite Missing;
+
+            /// <summary>
+            /// If your BodyGuard or tile you are Guarding are dead
+            /// </summary>
+            public Sprite BodyGuardedByOrGuardingDead;
         }
 
         public string UserFacingName;
@@ -180,6 +185,10 @@ namespace Schemas
         public bool CanFlee;
         public bool RevealFlee;
         public bool CanEnrage;
+        /// <summary>
+        /// When the thing you are body guarding or guarded by dies, swap sprite
+        /// </summary>
+        public bool CanBodyGuardSwap;
         public bool SpawnsFleeingChild;
         public TileSchema FleeingChild;
 
@@ -230,11 +239,16 @@ namespace Schemas
         }
 
         // TODO HACK fix later
-        public Sprite TEMP_GetSprite(bool shouldStandUp, CompassDirections directionToLook)
+        public Sprite TEMP_GetSprite(bool shouldStandUp, CompassDirections directionToLook, bool isBodyGuardByOrGuardingDead)
         {
             if (shouldStandUp)
             {
                 return SpriteFacingData.Missing;
+            }
+
+            if(SpriteFacingData.BodyGuardedByOrGuardingDead != null && isBodyGuardByOrGuardingDead)
+            {
+                return SpriteFacingData.BodyGuardedByOrGuardingDead;
             }
 
             switch (directionToLook)

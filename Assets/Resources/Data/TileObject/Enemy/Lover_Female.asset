@@ -16,6 +16,7 @@ MonoBehaviour:
   UserFacingDescription: Looking for her partner, she will always have love to share.
   Tags: 0100000002000000
   TileId: 28
+  LibraryOverrideTileId: 0
   Sprite: {fileID: -504671282291087767, guid: 4defb6208688d0a4dbcb27dc69bf9be1, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -24,18 +25,24 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 911748297640070125, guid: 1f47cb798274e6243bfc1744451c724d, type: 3}
   Power: 9
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 9
+  ItemsToReplenish: 
   DropReward: {fileID: 11400000, guid: 149ab7b7ee381b74984d4c7d0b997ebd, type: 2}
+  ItemReward: 0
+  ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
