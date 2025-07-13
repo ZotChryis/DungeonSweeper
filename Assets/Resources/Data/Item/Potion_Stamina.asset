@@ -10,27 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Alembic
+  m_Name: Potion_Stamina
   m_EditorClassIdentifier: 
-  ItemId: 7
-  Name: Alembic
-  Description: Gain a potion at the start of the dungeon.
-  Sprite: {fileID: 619147882475651941, guid: 6f88240f1ff0e314aa9ea2d19f610180, type: 3}
-  IsUniqueEquipped: 1
-  IsConsumbale: 0
-  InitialCharges: 0
+  ItemId: 26
+  Name: 'Potion: Stamina'
+  Description: Use from inventory. Gain extra +1 XP from enemies until next Level
+    Up.
+  Sprite: {fileID: -1061600653231999548, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
+  IsUniqueEquipped: 0
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  Rarity: 2
+  Price: 5
   Effects:
     _serializedList:
-    - Key: 2
+    - Key: 4
       Value:
-      - Type: 11
+      - Type: 4
         Amount: 1
         Id: 0
-        Tags: 
-        Items: 170000001b0000001a000000
-        Decay: 0
+        Tags: 01000000
+        Items: 
+        Decay: 1
         DecayTrigger: 0
         DecayTags: 

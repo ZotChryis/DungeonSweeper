@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Alembic
+  m_Name: SlimeVacuum
   m_EditorClassIdentifier: 
-  ItemId: 7
-  Name: Alembic
-  Description: Gain a potion at the start of the dungeon.
-  Sprite: {fileID: 619147882475651941, guid: 6f88240f1ff0e314aa9ea2d19f610180, type: 3}
+  ItemId: 31
+  Name: Slime Vacuum
+  Description: When a Slime is conquered, reveal another random Slime.
+  Sprite: {fileID: 7439249940812558630, guid: c2c5e879344c260409eef9ccf7ca306b, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
@@ -24,13 +24,13 @@ MonoBehaviour:
   Price: 8
   Effects:
     _serializedList:
-    - Key: 2
+    - Key: 3
       Value:
-      - Type: 11
+      - Type: 12
         Amount: 1
         Id: 0
-        Tags: 
-        Items: 170000001b0000001a000000
+        Tags: 07000000
+        Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 

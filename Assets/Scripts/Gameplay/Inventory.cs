@@ -211,12 +211,13 @@ namespace Gameplay
                     continue;
                 }
 
+                // TODO: This can be replaced with Enemy tag now
                 if (effect.Id == TileSchema.Id.Global)
                 {
                     return true;
                 }
                 
-                if (tileSchema.Tags.Union(effect.Tags).ToList().Count > 0)
+                if (tileSchema.Tags.Intersect(effect.Tags).ToList().Count > 0)
                 {
                     return true;
                 }
@@ -262,15 +263,12 @@ namespace Gameplay
                         break;
                     
                     case EffectType.ModXp:
-                        if (effect.Id != TileSchema.Id.None)
+                        if (effect.Id == TileSchema.Id.None && (effect.Tags == null || effect.Tags.Count == 0))
                         {
-                            player.AddModXp(effect.Id, effect.Amount);
+                            continue;
                         }
-                        
-                        foreach (var effectTag in effect.Tags)
-                        {
-                            player.AddModXpByTag(effectTag, effect.Amount);
-                        }
+
+                        player.AddModXp(effect);
                         break;
                     
                     case EffectType.BonusSpawn:
@@ -315,6 +313,26 @@ namespace Gameplay
                             var item = effect.Items.GetRandomItem();
                             ServiceLocator.Instance.Player.Inventory.AddItem(item);
                         }
+                        break;
+                    case EffectType.InstantReveal:
+                        for (int i = 0; i < effect.Amount; i++)
+                        {
+                            if (effect.Id != TileSchema.Id.None)
+                            {
+                                ServiceLocator.Instance.Grid.RevealRandomOfType(effect.Id);
+                            }
+                            else if (effect.Tags.Count > 0)
+                            {
+                                for (var i1 = 0; i1 < effect.Tags.Count; i1++)
+                                {
+                                    var tag =  effect.Tags[i1];
+                                    ServiceLocator.Instance.Grid.RevealRandomOfTag(tag);
+                                }
+                            }
+                        }
+                        break;
+                    case EffectType.MassTeleport:
+                        ServiceLocator.Instance.Grid.MassTeleport(effect.Tags);
                         break;
                 }
             }

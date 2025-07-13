@@ -116,6 +116,7 @@ namespace Schemas
             // Families
             Beast,
             Demon,
+            Slime,
         
         }
     

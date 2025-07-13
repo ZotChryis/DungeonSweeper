@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Alembic
+  m_Name: Spell_MassTeleport
   m_EditorClassIdentifier: 
-  ItemId: 7
-  Name: Alembic
-  Description: Gain a potion at the start of the dungeon.
-  Sprite: {fileID: 619147882475651941, guid: 6f88240f1ff0e314aa9ea2d19f610180, type: 3}
-  IsUniqueEquipped: 1
-  IsConsumbale: 0
-  InitialCharges: 0
+  ItemId: 30
+  Name: 'Spell: Mass Teleport'
+  Description: Use from inventory. All enemies randomly swap places.
+  Sprite: {fileID: -8075489204589694614, guid: 1e770d10d686d954f9080c185aff026b, type: 3}
+  IsUniqueEquipped: 0
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  Rarity: 4
+  Price: 4
   Effects:
     _serializedList:
-    - Key: 2
+    - Key: 4
       Value:
-      - Type: 11
-        Amount: 1
+      - Type: 13
+        Amount: 0
         Id: 0
-        Tags: 
-        Items: 170000001b0000001a000000
+        Tags: 01000000
+        Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 

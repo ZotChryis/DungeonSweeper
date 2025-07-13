@@ -25,7 +25,7 @@ namespace Schemas
     {
         BonusHP,
         BonusXP,
-        AutoReveal,
+        AutoReveal,     // at the start of dungeons
         ModDamageTaken,
         ModXp,
         BonusSpawn,
@@ -35,6 +35,8 @@ namespace Schemas
         ChangeMoney,
         RevealRandomLocation,
         AddRandomItem,
+        InstantReveal,  // Reveals a random when triggered
+        MassTeleport,
     }
 
     [Serializable]
@@ -158,6 +160,10 @@ namespace Schemas
             PotionStoneshield,
             
             Lantern,
+            DetectorChest,
+            SpellMassTeleportation,
+            SlimeVacuum
+            
         }
         
         public ItemSchema.Id ItemId;
