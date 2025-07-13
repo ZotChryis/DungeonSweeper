@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Schemas
 {
