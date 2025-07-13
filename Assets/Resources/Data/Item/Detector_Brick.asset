@@ -19,7 +19,7 @@ MonoBehaviour:
   IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
-  ShopInventory: 3
+  ShopInventory: 1
   Rarity: 1
   Price: 2
   Effects:
@@ -30,6 +30,7 @@ MonoBehaviour:
         Amount: 1
         Id: 6
         Tags: 
+        Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 

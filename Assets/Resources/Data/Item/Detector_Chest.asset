@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Bait_Bat
+  m_Name: Detector_Chest
   m_EditorClassIdentifier: 
-  ItemId: 17
-  Name: Bat Bait
-  Description: Adds a Bat to the dungeon.
-  Sprite: {fileID: -3906117124756079597, guid: 6420758abf626ad4dab69c799dc5f73d, type: 3}
+  ItemId: 29
+  Name: Chest Detector
+  Description: Auto-reveal one chest at the start of the dungeon.
+  Sprite: {fileID: -2626895022354382467, guid: d2a32a8bbec13fe4bb11495b9810eb3b, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 0
-  Price: 2
+  Rarity: 2
+  Price: 1
   Effects:
     _serializedList:
     - Key: 0
       Value:
-      - Type: 5
+      - Type: 2
         Amount: 1
-        Id: 16
+        Id: 7
         Tags: 
         Items: 
         Decay: 0

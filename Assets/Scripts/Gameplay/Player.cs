@@ -117,12 +117,14 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGenerated;
+        ServiceLocator.Instance.LevelManager.OnLevelChanged += OnDungeonLevelChanged;
         ResetPlayer();
     }
 
     private void OnDestroy()
     {
         ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
+        ServiceLocator.Instance.LevelManager.OnLevelChanged -= OnDungeonLevelChanged;
     }
 
     private void OnGridGenerated()
@@ -138,6 +140,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
 
         // TODO: Should decaying effects be cleared here??
+    }
+    
+    private void OnDungeonLevelChanged(int newLevel)
+    {
+        AdvanceEffects(null, DecayTrigger.DungeonLevel);
     }
 
     public int GetKillCount(TileSchema.Id tileId)
@@ -354,6 +361,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         TEMP_UpdateVisuals();
         
         ServiceLocator.Instance.AudioManager.PlaySfx("LevelUp");
+        
+        AdvanceEffects(null, DecayTrigger.PlayerLevel);
     }
 
     public void GodMode()
@@ -367,9 +376,14 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         foreach (var decayingEffect in DecayingEffects)
         {
-            if (decayingEffect.Type == EffectType.ModDamageTaken)
+            switch (decayingEffect.Type)
             {
-                UndoModDamageTaken(decayingEffect);
+                case EffectType.ModDamageTaken:
+                    UndoModDamageTaken(decayingEffect);
+                    break;
+                case EffectType.ModXp:
+                    UndoModXp(decayingEffect);
+                    break;
             }
         }
         
@@ -487,6 +501,55 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
         }
     }
+    
+    public void AddModXp(Effect effect)
+    {
+        var effectAmount = effect.Amount;
+        
+        var tileId = effect.Id;
+        if (tileId != TileSchema.Id.None && !ModXp.TryAdd(tileId, effectAmount))
+        {
+            ModXp[tileId] += effectAmount;
+        }
+
+        if (effect.Tags != null)
+        {
+            foreach (var effectTag in effect.Tags)
+            {
+                if (!ModXpByTag.TryAdd(effectTag, effectAmount))
+                {
+                    ModXpByTag[effectTag] += effectAmount;
+                }
+            }
+        }
+
+        if (effect.Decay > 0)
+        {
+            DecayingEffects.Add(effect);
+        }
+    }
+
+    public void UndoModXp(Effect effect)
+    {
+        var effectAmount = effect.Amount;
+        
+        var tileId = effect.Id;
+        if (tileId != TileSchema.Id.None && ModXp.ContainsKey(tileId))
+        {
+            ModXp[tileId] = Mathf.Max(0, ModXp[tileId] - effectAmount);
+        }
+
+        if (effect.Tags != null)
+        {
+            foreach (var effectTag in effect.Tags)
+            {
+                if (ModXpByTag.ContainsKey(effectTag))
+                {
+                    ModXpByTag[effectTag] = Mathf.Max(0, ModXpByTag[effectTag]  - effectAmount);
+                }
+            }
+        }
+    }
 
     public void AdvanceEffects(TileSchema source, DecayTrigger decayTrigger)
     {
@@ -513,27 +576,22 @@ public class Player : MonoBehaviour, IPointerClickHandler
             {
                 continue;
             }
+
+            switch (effect.Type)
+            {
+                case EffectType.ModXp:
+                    UndoModXp(effect);
+                    break;
+                
+                case EffectType.ModDamageTaken:
+                    UndoModDamageTaken(effect);
+                    break;
+            }
             
-            UndoModDamageTaken(effect);
             DecayingEffects.RemoveAt(i);
         }
     }
-
-    public void AddModXp(TileSchema.Id id, int effectAmount)
-    {
-        if (!ModXp.TryAdd(id, effectAmount))
-        {
-            ModXp[id] += effectAmount;
-        }
-    }
     
-    public void AddModXpByTag(TileSchema.Tag objectTag, int effectAmount)
-    {
-        if (!ModXpByTag.TryAdd(objectTag, effectAmount))
-        {
-            ModXpByTag[objectTag] += effectAmount;
-        }
-    }
     #endregion
 
 }

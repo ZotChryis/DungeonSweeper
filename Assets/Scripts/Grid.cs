@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using JetBrains.Annotations;
 using Schemas;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -300,6 +302,40 @@ public class Grid : MonoBehaviour
         var space = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
         Tiles[space.Item1, space.Item2].TEMP_RevealWithoutLogic();
         UnoccupiedSpaces.RemoveUnoccupiedSpace(space.Item1, space.Item2);
+    }
+
+    // TODO: Refactor Tag vs Id
+    public void RevealRandomOfTag(TileSchema.Tag tileTag)
+    {
+        int yStarting = Random.Range(0, SpawnSettings.Height);
+        int xStarting = Random.Range(0, SpawnSettings.Width);
+        for (int y = yStarting; y < SpawnSettings.Height; y++)
+        {
+            for (int x = xStarting; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().Tags.Contains(tileTag) &&
+                    Tiles[x, y].State == Tile.TileState.Hidden)
+                {
+                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    return;
+                }
+            }
+        }
+
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().Tags.Contains(tileTag) &&
+                    Tiles[x, y].State == Tile.TileState.Hidden)
+                {
+                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    return;
+                }
+            }
+        }
     }
     
     /// <summary>
@@ -650,5 +686,39 @@ public class Grid : MonoBehaviour
         }
 
         return tileObjects;
+    }
+
+    public void MassTeleport(List<TileSchema.Tag> tags)
+    {
+        List<(int, int)> spots = new();
+        List<TileSchema> tileObjects = new List<TileSchema>();
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].TEMP_IsEmpty())
+                {
+                    continue;
+                }
+
+                var housedObject = Tiles[x, y].GetHousedObject();
+                if (!housedObject.Tags.Intersect(tags).Any())
+                {
+                    continue;
+                }
+
+                Tiles[x, y].TEMP_UnObscure();
+                tileObjects.Add(housedObject);
+                spots.Add((x, y));
+            }
+        }
+        
+        spots.Shuffle();
+        tileObjects.Shuffle();
+
+        for (int i = 0; i < spots.Count; i++)
+        {
+            Tiles[spots[i].Item1, spots[i].Item2].PlaceTileObj(tileObjects[i]);
+        }
     }
 }

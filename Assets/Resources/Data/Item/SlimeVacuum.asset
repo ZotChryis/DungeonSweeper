@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Bait_Bat
+  m_Name: SlimeVacuum
   m_EditorClassIdentifier: 
-  ItemId: 17
-  Name: Bat Bait
-  Description: Adds a Bat to the dungeon.
-  Sprite: {fileID: -3906117124756079597, guid: 6420758abf626ad4dab69c799dc5f73d, type: 3}
-  IsUniqueEquipped: 0
+  ItemId: 31
+  Name: Slime Vacuum
+  Description: When a Slime is conquered, reveal another random Slime.
+  Sprite: {fileID: 7439249940812558630, guid: c2c5e879344c260409eef9ccf7ca306b, type: 3}
+  IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 0
-  Price: 2
+  Rarity: 3
+  Price: 8
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 3
       Value:
-      - Type: 5
+      - Type: 12
         Amount: 1
-        Id: 16
-        Tags: 
+        Id: 0
+        Tags: 07000000
         Items: 
         Decay: 0
         DecayTrigger: 0

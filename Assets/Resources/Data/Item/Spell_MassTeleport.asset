@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Bait_Bat
+  m_Name: Spell_MassTeleport
   m_EditorClassIdentifier: 
-  ItemId: 17
-  Name: Bat Bait
-  Description: Adds a Bat to the dungeon.
-  Sprite: {fileID: -3906117124756079597, guid: 6420758abf626ad4dab69c799dc5f73d, type: 3}
+  ItemId: 30
+  Name: 'Spell: Mass Teleport'
+  Description: Use from inventory. All enemies randomly swap places.
+  Sprite: {fileID: -8075489204589694614, guid: 1e770d10d686d954f9080c185aff026b, type: 3}
   IsUniqueEquipped: 0
-  IsConsumbale: 0
-  InitialCharges: 0
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
-  Rarity: 0
-  Price: 2
+  Rarity: 4
+  Price: 4
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 4
       Value:
-      - Type: 5
-        Amount: 1
-        Id: 16
-        Tags: 
+      - Type: 13
+        Amount: 0
+        Id: 0
+        Tags: 01000000
         Items: 
         Decay: 0
         DecayTrigger: 0

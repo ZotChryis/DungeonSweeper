@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spell_HolyLight
   m_EditorClassIdentifier: 
   ItemId: 6
-  Name: Holy Light
+  Name: 'Spell: Holy Light'
   Description: Use from inventory. The next Demon enemy does -3 damage.
   Sprite: {fileID: -4819437691104115080, guid: f76326302c9b82940b6123aef1ce751a, type: 3}
   IsUniqueEquipped: 1
