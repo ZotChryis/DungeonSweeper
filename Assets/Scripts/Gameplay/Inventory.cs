@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using Schemas;
-using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Gameplay
 {
     public class Inventory
     {
-        public Action<Gameplay.ItemInstance> OnItemAdded;
-        public Action<Gameplay.ItemInstance> OnItemChargeChanged;
-        public Action<Gameplay.ItemInstance> OnItemRemoved;
+        public Action<ItemInstance> OnItemAdded;
+        public Action<ItemInstance> OnItemChargeChanged;
+        public Action<ItemInstance> OnItemRemoved;
         
         /// <summary>
         /// For stacks of items, Item has a Quantity that should be updated instead of trying to add collisions to the dictionary.
@@ -21,7 +19,7 @@ namespace Gameplay
         public IReadOnlyList<ItemInstance> GetAllItems() => Items.ToList();
 
         private bool IsPlayerInventoy = false;
-
+        
         public Inventory(bool isPlayerInventoy)
         {
             IsPlayerInventoy = isPlayerInventoy;
@@ -118,6 +116,13 @@ namespace Gameplay
         public void RemoveItem(ItemInstance item)
         {
             Items.Remove(item);
+            
+            // TODO: REFACTOR candidate
+            if (IsPlayerInventoy)
+            {
+                item.UndoEffect(ServiceLocator.Instance.Player, EffectTrigger.Purchase);
+            }
+            
             OnItemRemoved?.Invoke(item);
         }
 
@@ -136,14 +141,22 @@ namespace Gameplay
 
         public void ReplenishItems()
         {
-            List<ItemSchema> allConsumables = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(i => i.IsConsumbale);
-            ItemSchema.Id[] allIds = new  ItemSchema.Id[allConsumables.Count];
-            for (int i = 0; i < allConsumables.Count; i++)
+            foreach (var item in Items)
             {
-                allIds[i] = allConsumables[i].ItemId;
-            }
+                if (!item.Schema.IsConsumbale)
+                {
+                    continue;
+                }
+                
+                int oldCharge = item.CurrentQuantity;
+                item.ReplenishAllCharges();
+                int newCharge = item.CurrentQuantity;
 
-            ReplenishItems(allIds);
+                if (oldCharge != newCharge)
+                {
+                    OnItemChargeChanged?.Invoke(item);   
+                }
+            }
         }
             
         public void ReplenishItems(ItemSchema.Id[] itemIds)
@@ -182,6 +195,8 @@ namespace Gameplay
         public ItemSchema Schema;
         public int MaxQuantity;
         public int CurrentQuantity;
+        
+        private List<ItemInstance> GrantedItems = new List<ItemInstance>();
 
         public ItemInstance (ItemSchema schema)
         {
@@ -323,7 +338,11 @@ namespace Gameplay
                         for (int i = 0; i < effect.Amount; i++)
                         {
                             var item = effect.Items.GetRandomItem();
-                            ServiceLocator.Instance.Player.Inventory.AddItem(item);
+                            var granted = ServiceLocator.Instance.Player.Inventory.AddItem(item);
+                            if (granted != null)
+                            {
+                                GrantedItems.Add(granted);
+                            }
                         }
                         break;
                     case EffectType.InstantReveal:
@@ -345,6 +364,74 @@ namespace Gameplay
                         break;
                     case EffectType.MassTeleport:
                         ServiceLocator.Instance.Grid.MassTeleport(effect.Tags);
+                        break;
+                }
+            }
+        }
+        
+        // TODO: Hack -- we are using this to "undo" anything an item from a chest would give when you retry
+        public void UndoEffect(Player player, EffectTrigger trigger)
+        {
+            // Just in case
+            if (!Schema.Effects.TryGetValue(trigger, out Effect[] effects))
+            {
+                return;
+            }
+            
+            foreach (Effect effect in effects)
+            {
+                switch (effect.Type)
+                {
+                    // These don't persist through player reset, so we're ok
+                    case EffectType.ModDamageTaken:
+                    case EffectType.ModXp:
+                    case EffectType.Damage:
+                    case EffectType.Heal:
+                    case EffectType.RevealRandomLocation:
+                    case EffectType.InstantReveal:
+                    case EffectType.MassTeleport:
+                        break;
+                    
+                    case EffectType.BonusHP:
+                        player.AddBonusStartHp(-effect.Amount);
+                        break;
+                    
+                    case EffectType.BonusXP:
+                        player.AddBonusStartXp(-effect.Amount);
+                        break;
+                    
+                    case EffectType.AutoReveal:
+                        for (int i = 0; i < effect.Amount; i++)
+                        {
+                            player.RemoveMonsterFromAutoRevealedList(effect.Id);
+                        }
+                        break;
+                    
+                    case EffectType.BonusSpawn:
+                        if (effect.Id != TileSchema.Id.None)
+                        {
+                            player.AddSpawnCount(effect.Id, -effect.Amount);
+                        }
+                        // TODO: Support by Tag?
+                        break;
+                    
+                    case EffectType.UpgradeTileObject:
+                        if (effect.Id != TileSchema.Id.None)
+                        {
+                            player.DecrementTileLevel(effect.Id);
+                        }
+                        // TODO: Support by Tag?
+                        break;
+                    
+                    case EffectType.ChangeMoney:
+                        player.ShopXp -= effect.Amount;
+                        break;
+                    
+                    case EffectType.AddRandomItem:
+                        foreach (var itemInstance in GrantedItems)
+                        {
+                            ServiceLocator.Instance.Player.Inventory.RemoveItem(itemInstance);
+                        }
                         break;
                 }
             }

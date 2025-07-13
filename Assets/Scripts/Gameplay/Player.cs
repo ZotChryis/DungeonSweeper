@@ -440,6 +440,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         RevealedMonsters.Add(monsterId);
     }
     
+    public void RemoveMonsterFromAutoRevealedList(TileSchema.Id monsterId)
+    {
+        RevealedMonsters.Remove(monsterId);
+    }
+    
     public void AddSpawnCount(TileSchema.Id id, int amount)
     {
         BonusSpawn.TryGetValue(id, out int bonusSpawn);
@@ -472,6 +477,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
         int level = 0;
         TileObjectsThatShouldUpgrade.TryGetValue(ObjectId, out level);
         TileObjectsThatShouldUpgrade[ObjectId] = level + 1;
+    }
+
+    public void DecrementTileLevel(TileSchema.Id ObjectId)
+    {
+        int level = 0;
+        if (TileObjectsThatShouldUpgrade.TryGetValue(ObjectId, out level))
+        {
+            TileObjectsThatShouldUpgrade[ObjectId] = level - 1;
+        }
     }
     
     public void AddModDamageTaken(Effect effect)

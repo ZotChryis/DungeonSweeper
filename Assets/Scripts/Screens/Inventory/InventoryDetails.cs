@@ -40,6 +40,8 @@ namespace Screens.Inventory
 
             Button.interactable = itemInstance.CanBeUsed();
             
+            Button.GetComponentInChildren<TMP_Text>().SetText(itemInstance.CanBeUsed() ? "Use" : "---");
+            
             Charges.enabled = itemInstance.Schema.IsConsumbale;
             Charges.color = itemInstance.CanBeUsed() ? Color.white : Color.red;
             Charges.SetText($"{itemInstance.CurrentQuantity}/{itemInstance.MaxQuantity}");
