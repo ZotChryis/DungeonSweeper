@@ -79,7 +79,7 @@ namespace Screens.Shop
             );
             
             // Roll by rarity to see if they are included
-            float addedChanceFromLevel = level * 0.05f;
+            float addedChanceFromLevel = level * 0.1f;
             foreach (var itemSchema in allItems)
             {
                 if (UnityEngine.Random.Range(0.0f, 1.0f) + addedChanceFromLevel <= itemSchema.GetShopAppearanceRate())

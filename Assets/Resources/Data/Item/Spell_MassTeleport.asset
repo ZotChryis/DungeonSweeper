@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 30
   Name: 'Spell: Mass Teleport'
   Description: Use from inventory. All enemies randomly swap places.
-  Sprite: {fileID: -8075489204589694614, guid: 1e770d10d686d954f9080c185aff026b, type: 3}
+  Sprite: {fileID: -2753466740462676479, guid: c19c1dd3120eeeb41956462aa396e4c3, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 1
   InitialCharges: 1
