@@ -46,4 +46,15 @@ public class LevelManager : MonoBehaviour
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
         ServiceLocator.Instance.Grid.GenerateGrid();
     }
+
+    /// <summary>
+    /// This preps the player for a "retry". Mostly this needs to clean up any residual state that occurred
+    /// during the current level
+    /// </summary>
+    public void RetryCurrentLevel()
+    {
+        ServiceLocator.Instance.Player.MarkPlayerSoftcore();
+        ServiceLocator.Instance.Player.ResetPlayer();
+        ServiceLocator.Instance.Grid.GenerateGrid();
+    }
 }

@@ -17,7 +17,7 @@ namespace UI
         // If these are supplied, we will create a confirmation dialog. If that confirmation is positive,
         // then we issue the action callback. 
         // DO NOT use the Button's actual callback system
-        [SerializeField] private bool RequireConfirmation;
+        [SerializeField] public bool RequireConfirmation;
         [SerializeField] private string ConfirmationTitle;
         [SerializeField] private string ConfirmationMessage;
 
@@ -35,6 +35,7 @@ namespace UI
         {
             if (!RequireConfirmation)
             {
+                OnConfirmed?.Invoke();
                 return;
             }
             

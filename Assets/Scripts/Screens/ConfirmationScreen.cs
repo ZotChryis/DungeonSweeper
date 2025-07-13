@@ -30,14 +30,15 @@ namespace Screens
         
         private void OnYesClicked()
         {
+            ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
             Callback?.Invoke();
         }
         
         private void OnNoClicked()
         {
+            ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
             Callback = null;
             Yes.onClick.RemoveAllListeners();
-            ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
         }
     }
 }

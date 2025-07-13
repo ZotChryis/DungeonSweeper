@@ -85,13 +85,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
 
+    private bool IsHardcore = true;
+    
     public Action<int> OnLevelChanged;
     public Action<TileSchema> OnConquer;
 
     private int m_shopXp;
     public OnPlayerPropertyChanged OnShopXpChanged;
     public delegate void OnPlayerPropertyChanged();
-
+    
     // TODO: Spawn these in dynamically, im just lazy atm
     private PlayerUIItem[] Hearts;
     private PlayerUIItem[] XPGems;
@@ -108,6 +110,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // TODO: Make this system better
         ModDamageTaken.Add(TileSchema.Id.Global, 0);
         ModXp.Add(TileSchema.Id.Global, 0);
+
+        IsHardcore = true;
     }
 
     private void Start()
@@ -359,8 +363,29 @@ public class Player : MonoBehaviour, IPointerClickHandler
         TEMP_UpdateVisuals();
     }
 
+    private void RevertAllDecayingEffects()
+    {
+        foreach (var decayingEffect in DecayingEffects)
+        {
+            if (decayingEffect.Type == EffectType.ModDamageTaken)
+            {
+                UndoModDamageTaken(decayingEffect);
+            }
+        }
+        
+        DecayingEffects.Clear();
+    }
+
+    public void MarkPlayerSoftcore()
+    {
+        IsHardcore = false;
+    }
+    
     public void ResetPlayer()
     {
+        // Remove any decaying effects that may be lingering
+        RevertAllDecayingEffects();
+        
         Level = 1;
         CurrentXP = 0;
         HasRegeneratedThisRound = false;
