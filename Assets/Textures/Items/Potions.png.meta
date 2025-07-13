@@ -170,12 +170,12 @@ TextureImporter:
       name: Potions_0
       rect:
         serializedVersion: 2
-        x: 55
-        y: 533
-        width: 296
-        height: 422
+        x: 24
+        y: 515
+        width: 341
+        height: 445
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -192,12 +192,12 @@ TextureImporter:
       name: Potions_1
       rect:
         serializedVersion: 2
-        x: 367
-        y: 535
-        width: 295
-        height: 484
+        x: 341
+        y: 515
+        width: 341
+        height: 445
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -214,12 +214,12 @@ TextureImporter:
       name: Potions_2
       rect:
         serializedVersion: 2
-        x: 677
-        y: 535
-        width: 329
-        height: 428
+        x: 660
+        y: 515
+        width: 341
+        height: 445
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -236,12 +236,12 @@ TextureImporter:
       name: Potions_3
       rect:
         serializedVersion: 2
-        x: 43
-        y: 79
-        width: 308
-        height: 426
+        x: 24
+        y: 68
+        width: 341
+        height: 445
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -258,12 +258,12 @@ TextureImporter:
       name: Potions_4
       rect:
         serializedVersion: 2
-        x: 363
-        y: 32
-        width: 299
-        height: 473
+        x: 341
+        y: 68
+        width: 341
+        height: 444
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -280,12 +280,12 @@ TextureImporter:
       name: Potions_5
       rect:
         serializedVersion: 2
-        x: 676
-        y: 57
-        width: 293
-        height: 448
+        x: 659
+        y: 68
+        width: 341
+        height: 444
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -302,7 +302,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 55ba18766f570fa44a8b865c7163e0a5
     internalID: 0
     vertices: []
     indices: 

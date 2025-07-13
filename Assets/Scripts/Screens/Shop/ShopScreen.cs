@@ -21,8 +21,10 @@ namespace Screens.Shop
             ServiceLocator.Instance.Player.OnShopXpChanged += OnShopXpChanged;
         }
 
-        protected void OnEnable()
+        protected override void OnShow()
         {
+            base.OnShow();
+            
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel);
         }
 
@@ -59,7 +61,7 @@ namespace Screens.Shop
         /// <summary>
         /// Adds items to the shop given the current level.
         /// </summary>
-        /// TODO: Make Level matter
+        /// TODO: Make Level matter more??
         public void Roll(int level)
         {
             // Clear current shop
@@ -77,9 +79,10 @@ namespace Screens.Shop
             );
             
             // Roll by rarity to see if they are included
+            float addedChanceFromLevel = level * 0.05f;
             foreach (var itemSchema in allItems)
             {
-                if (UnityEngine.Random.Range(0.0f, 1.0f) <= itemSchema.GetShopAppearanceRate())
+                if (UnityEngine.Random.Range(0.0f, 1.0f) + addedChanceFromLevel <= itemSchema.GetShopAppearanceRate())
                 {
                     // TODO: Do inventory better instead of adding multiple entries??
                     for (int i = 0; i < itemSchema.ShopInventory; i++)
