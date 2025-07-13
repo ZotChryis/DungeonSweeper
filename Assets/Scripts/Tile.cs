@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Gameplay;
@@ -8,7 +9,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Tile : MonoBehaviour, IPointerDownHandler
+public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     /// <summary>
     /// The states of a tile.
@@ -80,6 +81,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     public CompassDirections DirectionToLook = CompassDirections.West;
     private bool IsEnraged = false;
     private bool ShouldStandUp = false;
+    
+    private Coroutine MobileContextMenuHandle;
 
     private void Start()
     {
@@ -750,18 +753,40 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        // Allow the button component handle left clicks
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if (State != TileState.Hidden)
         {
+            return;
+        }
+        
+        // Setting allows left-hold to open context menu
+        if (eventData.button == PointerEventData.InputButton.Left && FBPP.GetBool(PlayerOptions.AllowLeftHoldContextMenu, true))
+        {
+            MobileContextMenuHandle = StartCoroutine(nameof(HandleMobileContextMenu));
             return;
         }
 
         // Right click should open the menu to set player tag
-        if (eventData.button == PointerEventData.InputButton.Right && State == TileState.Hidden)
+        if (eventData.button == PointerEventData.InputButton.Right)
         {
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
             ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
         }
+    }
+    
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        if (MobileContextMenuHandle != null)
+        {
+            StopCoroutine(MobileContextMenuHandle);
+            MobileContextMenuHandle = null;
+        }
+    }
+
+    private IEnumerator HandleMobileContextMenu()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
+        ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
     }
 
     /// <summary>

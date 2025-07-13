@@ -9,5 +9,6 @@ namespace Gameplay
     public static class PlayerOptions
     {
         public const string IsSafeMinesOn = "IsSafeMinesOn";
+        public const string AllowLeftHoldContextMenu = "AllowLeftHoldContextMenu";
     }
 }

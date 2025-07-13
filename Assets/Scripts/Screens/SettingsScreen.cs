@@ -13,6 +13,7 @@ namespace Screens
         [SerializeField] private Slider SFXVolume;
         [SerializeField] private DSButton Reset;
         [SerializeField] private Toggle SafeMinesToggle;
+        [SerializeField] private Toggle AllowLeftHoldContextMenu;
 
         protected override void Awake()
         {
@@ -22,6 +23,7 @@ namespace Screens
             MusicVolume.onValueChanged.AddListener(OnMusicVolumeChanged);
             SFXVolume.onValueChanged.AddListener(OnSFXVolumeChanged);
             SafeMinesToggle.onValueChanged.AddListener(OnSafeMinesChanged);
+            AllowLeftHoldContextMenu.onValueChanged.AddListener(OnAllowLeftHoldContextMenuChanged);
 
             LoadInitialVolumes();
 
@@ -39,6 +41,7 @@ namespace Screens
             MusicVolume.value = FBPP.GetFloat("MusicVolume", 1.0f);
             SFXVolume.value = FBPP.GetFloat("SfxVolume", 1.0f);
             SafeMinesToggle.isOn = FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true);
+            AllowLeftHoldContextMenu.isOn = FBPP.GetBool(PlayerOptions.AllowLeftHoldContextMenu, true);
         }
 
         private void OnSafeMinesChanged(bool value)
@@ -46,6 +49,11 @@ namespace Screens
             FBPP.SetBool(PlayerOptions.IsSafeMinesOn, value);
         }
 
+        private void OnAllowLeftHoldContextMenuChanged(bool value)
+        {
+            FBPP.SetBool(PlayerOptions.AllowLeftHoldContextMenu, value);
+        }
+        
         private void OnMasterVolumeChanged(float value)
         {
             ServiceLocator.Instance.AudioManager.SetMasterVolume(value);
