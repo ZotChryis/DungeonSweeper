@@ -47,6 +47,7 @@ public class LibraryScreen : BaseScreen
             {
                 Destroy(libraryItem.gameObject);
             }
+            Items.Clear();
         }
 
         Dictionary<TileSchema.Id, int> filteredItems = new Dictionary<TileSchema.Id, int>();
@@ -54,10 +55,7 @@ public class LibraryScreen : BaseScreen
         foreach (var tileObject in tileObjects)
         {
             TileSchema.Id tileIdToUse = tileObject.LibraryOverrideTileId != TileSchema.Id.None ? tileObject.LibraryOverrideTileId : tileObject.TileId;
-            if (!filteredItems.TryGetValue(tileIdToUse, out int amount))
-            {
-                filteredItems.Add(tileIdToUse, 0);
-            }
+            filteredItems.TryAdd(tileIdToUse, 0);
             filteredItems[tileIdToUse] += 1;
         }
         

@@ -96,6 +96,8 @@ namespace Schemas
             ChestItemEpic,
             ChestItemLegendary,
             
+            Ouroboros,
+            
         }
         
         // !!WARNING!! DO NOT REORDER

@@ -3,6 +3,7 @@ using Gameplay;
 using Schemas;
 using Screens;
 using Singletons;
+using UI;
 using UnityEngine;
 
 /// <summary>
@@ -37,6 +38,9 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public AudioManager AudioManager;
+    
+    [HideInInspector]
+    public ToastManager ToastManager;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class
@@ -116,6 +120,11 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public void Register(AudioManager audioManager)
     {
         AudioManager = audioManager;
+    }
+    
+    public void Register(ToastManager toastManager)
+    {
+        ToastManager = toastManager;
     }
 
     public void DeleteSaveFile()

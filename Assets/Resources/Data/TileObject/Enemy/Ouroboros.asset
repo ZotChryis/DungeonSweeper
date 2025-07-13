@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: BeholderEnraged
+  m_Name: Ouroboros
   m_EditorClassIdentifier: 
-  UserFacingName: 
-  UserFacingDescription: ???
+  UserFacingName: Ouroboros
+  UserFacingDescription: A creature of infinite chaos. Hides the power of nearby
+    tiles.
   Tags: 010000000400000006000000
-  TileId: 21
+  TileId: 49
   LibraryOverrideTileId: 0
   Sprite: {fileID: 7895412607919688145, guid: 41ea347a3f7776f4e927ffa77655ee0f, type: 3}
   SpriteFacingData:
@@ -25,6 +26,7 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 14
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -36,15 +38,12 @@ MonoBehaviour:
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
-  ObscureOffsets:
-  - {x: -1, y: 0}
-  - {x: 1, y: 0}
-  - {x: 0, y: -1}
-  - {x: 0, y: 1}
-  ObscureRadius: 0
+  ObscureOffsets: []
+  ObscureRadius: 2
   CanFlee: 0
   RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
