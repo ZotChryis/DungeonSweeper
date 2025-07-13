@@ -61,8 +61,8 @@ MonoBehaviour:
     ConsecutiveSpawn: {fileID: 11400000, guid: 989e7eb8f4bbf9c44bad72525c95a516, type: 2}
     ConsecutiveCopies: 1
     ConsecutiveStackedInLibrary: 0
-    GuardRelationship: 0
-    LookTowardsEachOther: 0
+    GuardRelationship: 1
+    LookTowardsEachOther: 1
     Requirement: {fileID: 11400000, guid: 8b3f343d121a5b64caf6830a87cfb515, type: 2}
   - Amount: 4
     Object: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}

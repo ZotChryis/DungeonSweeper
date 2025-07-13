@@ -74,9 +74,16 @@ public class Tile : MonoBehaviour, IPointerDownHandler
 
     private int ObscureCounter;
 
+    /// <summary>
+    /// A reference to the tile you yourself are guarding.
+    /// </summary>
     [HideInInspector]
     public Tile GuardingTile;
+    /// <summary>
+    /// A reference to the tile that is guarding you.
+    /// </summary>
     public Tile BodyGuardedByTile;
+    public bool IsBodyGuardByOrGuardingDead = false;
     public CompassDirections DirectionToLook = CompassDirections.West;
     private bool IsEnraged = false;
     private bool ShouldStandUp = false;
@@ -367,8 +374,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         // Associated guard gets enraged when yourself is conquered
         if (TileState.Conquered == State && BodyGuardedByTile != null && BodyGuardedByTile.State < TileState.Conquered)
         {
+            BodyGuardedByTile.IsBodyGuardByOrGuardingDead = true;
             BodyGuardedByTile.LookTowardsHorizontally(XCoordinate, YCoordinate, true, false);
             BodyGuardedByTile.TEMP_UpdateVisuals();
+        }
+        if (TileState.Conquered == State && GuardingTile != null && GuardingTile.State < TileState.Conquered)
+        {
+            GuardingTile.IsBodyGuardByOrGuardingDead = true;
         }
 
         int basePower = GetBasePower();
@@ -560,7 +572,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
     /// <param name="canStandUp">Whether to stand up if on same row</param>
     public void LookTowardsHorizontally(int xCoordinate, int yCoordinate, bool enrage, bool canStandUp)
     {
-        if (enrage)
+        if (enrage && HousedObject.CanEnrage)
         {
             IsEnraged = true;
         }
@@ -709,7 +721,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler
         HousedObjectSprite.enabled = objectOverrides.EnableSprite.UseOverride ? objectOverrides.EnableSprite.Value : HousedObjectSprite.enabled;
         XSpriteRenderer.enabled = objectOverrides.EnableDeathSprite.UseOverride ? objectOverrides.EnableDeathSprite.Value : XSpriteRenderer.enabled;
 
-        HousedObjectSprite.sprite = HousedObject ? HousedObject.TEMP_GetSprite(ShouldStandUp, DirectionToLook) : null;
+        HousedObjectSprite.sprite = HousedObject ? HousedObject.TEMP_GetSprite(ShouldStandUp, DirectionToLook, IsBodyGuardByOrGuardingDead) : null;
 
         if (DirectionToLook == CompassDirections.East)
         {

@@ -23,11 +23,11 @@ public class SpawnSettings : Schema
 
         /// <summary>
         /// For minotaur+chest.
-        /// Minotaur is the additional spawn which look towards the spawner.
+        /// Minotaur is the additional spawn which enrages when one is conquered.
         /// </summary>
         public bool GuardRelationship;
         /// <summary>
-        /// For gargoyles. Look towards each other orthogonally.
+        /// For gargoyles. Look towards each other orthogonally or away if false.
         /// </summary>
         public bool LookTowardsEachOther;
         public SpawnRequirement Requirement;
