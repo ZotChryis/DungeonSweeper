@@ -64,7 +64,7 @@ namespace Schemas
         
             SlimeGreen,
             SlimePurple,
-            SlimeWizard,
+            SlimeWizardPurple,
             
             LoverMale,
             LoverFemale,
@@ -97,6 +97,9 @@ namespace Schemas
             ChestItemLegendary,
             
             Ouroboros,
+            SlimeBlue,
+            SlimeWizardGreen,
+            SlimeWizardBlue,
             
         }
         

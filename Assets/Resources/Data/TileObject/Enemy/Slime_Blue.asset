@@ -10,15 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: PurpleSlime
+  m_Name: Slime_Blue
   m_EditorClassIdentifier: 
-  UserFacingName: Purple Slime
-  UserFacingDescription: Gelatinous and dark, it sole purpose is to obscure it's
-    master.
+  UserFacingName: Blue Slime
+  UserFacingDescription: Gelatinous and light, has no mind but follows a command.
   Tags: 010000000200000007000000
-  TileId: 25
+  TileId: 24
   LibraryOverrideTileId: 0
-  Sprite: {fileID: 7101392340170651265, guid: 56d40b901d6d85b46a2f7f1a3e010786, type: 3}
+  Sprite: {fileID: 7639681597762982896, guid: cbfe1a1dceaf0294193cbfb59a208170, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -26,10 +25,11 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
-  Power: 8
+    BodyGuardedByOrGuardingDead: {fileID: 0}
+  Power: 3
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 8
+  XPReward: 3
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   ItemReward: 0
@@ -42,6 +42,7 @@ MonoBehaviour:
   CanFlee: 0
   RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
