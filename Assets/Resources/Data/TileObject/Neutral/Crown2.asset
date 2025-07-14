@@ -25,6 +25,7 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -41,6 +42,7 @@ MonoBehaviour:
   CanFlee: 0
   RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -48,7 +50,7 @@ MonoBehaviour:
   FullHealReward: 0
   HealReward: 0
   DiffuseMinesReward: 0
-  ShopXp: 17
+  ShopXp: 20
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   Data:
@@ -70,6 +72,9 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
     - Key: 2
       Value:
         AutoContinue:
@@ -87,3 +92,6 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 1
           Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 

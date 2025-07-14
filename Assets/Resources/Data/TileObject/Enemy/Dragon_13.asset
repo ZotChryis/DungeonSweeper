@@ -25,12 +25,13 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 13
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 13
   ItemsToReplenish: 
-  DropReward: {fileID: 11400000, guid: df9323ec55502f846bdc7bc37f269af2, type: 2}
+  DropReward: {fileID: 11400000, guid: 7cc2730514a45544184416f8f831ca3a, type: 2}
   ItemReward: 0
   ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
@@ -41,6 +42,7 @@ MonoBehaviour:
   CanFlee: 0
   RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
