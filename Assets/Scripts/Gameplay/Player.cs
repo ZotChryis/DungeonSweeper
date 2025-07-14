@@ -50,6 +50,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private List<Effect> DecayingEffects = new();
     
     public Class.Id Class = Gameplay.Class.Id.Adventurer;
+    public ClassSchema ClassSchema;
     public Inventory Inventory;
 
     /// <summary>
@@ -169,6 +170,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
      
         Class = classId;
+        ClassSchema = schema;
         PlayerIcon.sprite = schema.Sprite;
 
         Inventory.AddItem(schema.StartingItem);

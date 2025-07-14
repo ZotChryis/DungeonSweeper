@@ -424,6 +424,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             }
+
+            // TODO: Find a better spot for this
+            if (HousedObject && 
+                HousedObject.Tags.Contains(TileSchema.Tag.Enemy) && 
+                ServiceLocator.Instance.Player.ClassSchema.HitEffect != null
+            ) {
+                Instantiate(ServiceLocator.Instance.Player.ClassSchema.HitEffect, transform);
+            }
         }
 
         if (TileState.Collected == State)

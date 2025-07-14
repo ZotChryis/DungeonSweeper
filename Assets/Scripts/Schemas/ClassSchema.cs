@@ -11,5 +11,6 @@ namespace Schemas
         public string Name;
         public string Description;
         public ItemSchema.Id StartingItem;
+        public GameObject HitEffect;
     }
 }
