@@ -17,7 +17,7 @@ MonoBehaviour:
   Tags: 00000000
   TileId: 4
   LibraryOverrideTileId: 0
-  Sprite: {fileID: 116448157027243579, guid: 6bf67724d4cf49340945afff56b0f0c5, type: 3}
+  Sprite: {fileID: 116448157027243579, guid: c769290e16f2a784b9e36df1b13e593f, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -25,6 +25,7 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -41,6 +42,7 @@ MonoBehaviour:
   CanFlee: 0
   RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
