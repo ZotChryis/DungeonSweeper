@@ -36,6 +36,9 @@ namespace Screens.Victory
             
             ServiceLocator.Instance.AudioManager.PlaySfx("Victory");
             
+            // TODO: Find better spot for this
+            ServiceLocator.Instance.LevelManager.TryGrantAnnihilatorBonus();
+            
             // TODO: Reverse the listener approach. AchievementSystem should listen for an event to check itself instead
             //  of being told to check
             ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Victory);

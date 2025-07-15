@@ -739,4 +739,24 @@ public class Grid : MonoBehaviour
             Tiles[spots[i].Item1, spots[i].Item2].PlaceTileObj(tileObjects[i]);
         }
     }
+
+    
+    /// <summary>
+    /// CHEAT METHOD
+    /// </summary>
+    public void TEMP_ConquerAllTiles()
+    {
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].TEMP_IsEmpty())
+                {
+                    continue;
+                }
+                
+                Tiles[x, y].TEMP_SetState(Tile.TileState.Conquered);
+            }
+        }
+    }
 }

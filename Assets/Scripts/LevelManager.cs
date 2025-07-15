@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using Schemas;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,7 +8,7 @@ public class LevelManager : MonoBehaviour
 {
     [Tooltip("Levels in order")]
     public SpawnSettings[] Levels;
-
+    
     /// <summary>
     /// Levels are 0, 1, 2, and 3.
     /// </summary>
@@ -57,5 +59,31 @@ public class LevelManager : MonoBehaviour
         ServiceLocator.Instance.Player.RevokeItemsForCurrentDungeon();
         ServiceLocator.Instance.Player.ResetPlayer();
         ServiceLocator.Instance.Grid.GenerateGrid();
+    }
+
+    public bool IsFinalLevel()
+    {
+        return CurrentLevel == Levels.Length - 1;
+    }
+    
+    public void TryGrantAnnihilatorBonus()
+    {
+        if (IsFinalLevel())
+        {
+            return;
+        }
+
+        var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects();
+        tileObjects.RemoveAll(i => i.TileId == TileSchema.Id.Balrog || i.TileId == TileSchema.Id.Crown);
+
+        if (tileObjects.Any())
+        {
+            return;
+        }
+        
+        foreach (var id in Levels[CurrentLevel].AnnihilatorRewards)
+        {
+            ServiceLocator.Instance.Player.Inventory.AddItem(id);
+        }
     }
 }

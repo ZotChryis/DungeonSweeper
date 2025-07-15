@@ -249,3 +249,4 @@ MonoBehaviour:
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 0}
+  AnnihilatorRewards: 21000000

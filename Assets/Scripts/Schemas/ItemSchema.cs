@@ -161,7 +161,11 @@ namespace Schemas
             Lantern,
             DetectorChest,
             SpellMassTeleportation,
-            SlimeVacuum
+            SlimeVacuum,
+            
+            CoinCopper,
+            CoinSilver,
+            CoinGold,
             
         }
         

@@ -34,8 +34,9 @@ namespace Gameplay
 
         private void OnConquer(TileSchema tileObject)
         {
-            foreach (var itemInstance in Items)
+            for (int i = 0; i < Items.Count; i++)
             {
+                var itemInstance  = Items[i];
                 if (!itemInstance.IsValidConquer(tileObject))
                 {
                     continue;
@@ -47,8 +48,9 @@ namespace Gameplay
 
         private void OnPlayerLevelChanged(int newLevel)
         {
-            foreach (var itemInstance in Items)
+            for (int i = 0; i < Items.Count; i++)
             {
+                var itemInstance  = Items[i];
                 itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.PlayerLevel);
             }
         }
@@ -188,6 +190,24 @@ namespace Gameplay
                 }
             }
         }
+
+        public void RevertForRetry()
+        {
+            for (int i = Items.Count - 1; i >= 0; i--)
+            {
+                var itemInstance = Items[i];
+                // TODO: EWWW this is gross. need to fix this somehow
+                //  The issue is that some items like Alembic want to keep their granted items
+                //  but others like Pickaxe should not. Prob should be a setting somewhere.
+                //  The entire game was not build right for "retry" lol. Probably better if we serialize the game state
+                //  and reload it instead of doing this shit but im too lazy. Maybe George wants to try and tackle that 
+                //  nightmare?? lol
+                if (itemInstance.Schema.ItemId == ItemSchema.Id.Pickaxe)
+                {
+                    itemInstance.RemoveGrantedItems();
+                }
+            }
+        }
     }
     
     public class ItemInstance
@@ -233,9 +253,9 @@ namespace Gameplay
 
             foreach (var effect in effects)
             {
-                if (effect.Id != TileSchema.Id.None && effect.Id != tileSchema.TileId)
+                if (effect.Id != TileSchema.Id.None && effect.Id == tileSchema.TileId)
                 {
-                    continue;
+                    return true;
                 }
 
                 // TODO: This can be replaced with Enemy tag now
@@ -428,15 +448,21 @@ namespace Gameplay
                         break;
                     
                     case EffectType.AddRandomItem:
-                        foreach (var itemInstance in GrantedItems)
-                        {
-                            ServiceLocator.Instance.Player.Inventory.RemoveItem(itemInstance);
-                        }
+                        RemoveGrantedItems();
                         break;
                 }
             }
         }
 
+        public void RemoveGrantedItems()
+        {
+            foreach (var itemInstance in GrantedItems)
+            {
+                ServiceLocator.Instance.Player.Inventory.RemoveItem(itemInstance);
+            }
+            GrantedItems.Clear();
+        }
+        
         public void ReplenishAllCharges()
         {
             CurrentQuantity = MaxQuantity;

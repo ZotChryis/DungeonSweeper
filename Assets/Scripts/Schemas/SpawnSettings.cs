@@ -46,6 +46,12 @@ public class SpawnSettings : Schema
     /// </summary>
     public GridSpawnEntry[] NormalSpawns;
 
+    /// <summary>
+    /// If this level's fully cleared (minus Balrog and Crown) then player gets these.
+    /// TODO: DATAFY the "do not care about me" part
+    /// </summary>
+    public List<ItemSchema.Id> AnnihilatorRewards = new ();
+    
     private void OnValidate()
     {
         Queue<(TileSchema, int)> toCheck = new Queue<(TileSchema, int)>();

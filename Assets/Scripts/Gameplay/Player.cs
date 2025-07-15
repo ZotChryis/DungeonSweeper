@@ -278,7 +278,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
 
         // TODO: Add overheal mechanic?
-        CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth + BonusMaxHp);
+        CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth + BonusMaxHp) + GodModeBonusMaxHp;
         
         ServiceLocator.Instance.AudioManager.PlaySfx("Heal");
         
@@ -371,7 +371,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         Level++;
 
         MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
-        CurrentHealth = MaxHealth + BonusMaxHp;
+        CurrentHealth = MaxHealth + BonusMaxHp + GodModeBonusMaxHp;
 
         TEMP_UpdateVisuals();
         
@@ -417,6 +417,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
             Inventory.RemoveItem(itemInstance);
         }
         ItemsAddedThisDungeon.Clear();
+        
+        // Remaining items themselves might want to do something special on retry
+        Inventory.RevertForRetry();
     }
     
     public void ResetPlayer()

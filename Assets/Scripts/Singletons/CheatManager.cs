@@ -53,4 +53,9 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
         ShopScreen shop = ServiceLocator.Instance.OverlayScreenManager.Screens[OverlayScreenManager.ScreenType.Shop] as ShopScreen;
         shop.CheatRollAll();
     }
+
+    public void ConquerAll()
+    {
+        ServiceLocator.Instance.Grid.TEMP_ConquerAllTiles();
+    }
 }

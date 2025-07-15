@@ -24,9 +24,6 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public Player Player;
 
     [HideInInspector]
-    public EnemySpawner EnemySpawner;
-
-    [HideInInspector]
     public OverlayScreenManager OverlayScreenManager;
     
     [HideInInspector]
@@ -90,11 +87,6 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public void Register(Player player)
     {
         Player = player;
-    }
-
-    public void Register(EnemySpawner enemySpawner)
-    {
-        EnemySpawner = enemySpawner;
     }
 
     public void Register(CheatManager cheatManager)
