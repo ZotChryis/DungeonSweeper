@@ -28,7 +28,7 @@ namespace UI
             Icon.sprite = sprite;
             Title.text = title;
             Message.text = message;
-            Icon.gameObject.SetActive(sprite != null);
+            Icon.transform.parent.gameObject.SetActive(sprite != null);
 
             
             OnAnimationEnded += onAnimationEnded;
