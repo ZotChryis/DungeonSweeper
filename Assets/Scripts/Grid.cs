@@ -624,6 +624,13 @@ public class Grid : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns true if the housed object can flee.
+    /// If there is space, place the housed object on that tile.
+    /// </summary>
+    /// <param name="housedObject"></param>
+    /// <param name="reveal"></param>
+    /// <returns></returns>
     public bool TEMP_HandleFlee(TileSchema housedObject, bool reveal)
     {
         if (!UnoccupiedSpaces.HasEmptySpace())

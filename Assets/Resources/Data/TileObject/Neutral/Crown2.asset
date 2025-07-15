@@ -40,6 +40,7 @@ MonoBehaviour:
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
   RevealFlee: 0
   CanEnrage: 0
   CanBodyGuardSwap: 0
@@ -53,6 +54,7 @@ MonoBehaviour:
   ShopXp: 20
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1
@@ -75,7 +77,10 @@ MonoBehaviour:
         Sfx:
           UseOverride: 0
           Value: 
-    - Key: 2
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 3
       Value:
         AutoContinue:
           UseOverride: 1
@@ -95,3 +100,6 @@ MonoBehaviour:
         Sfx:
           UseOverride: 0
           Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}

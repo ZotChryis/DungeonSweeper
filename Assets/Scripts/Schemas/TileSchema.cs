@@ -156,7 +156,7 @@ namespace Schemas
 
         public List<Tag> Tags = new List<Tag>();
     
-        // TODO: Make this an enum and add to all data objects created
+        // TODO: Make this an enum and add to all 
         public Id TileId;
         
         // If this is not None, when this tile object is on the map, it will appear as this object in the library
@@ -188,6 +188,8 @@ namespace Schemas
 
         // Hack: basically Gnome behavior
         public bool CanFlee;
+        [Tooltip("Fleeing VFX played when this successfully flees.")]
+        public GameObject FleeVfx;
         public bool RevealFlee;
         public bool CanEnrage;
         /// <summary>

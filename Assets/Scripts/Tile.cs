@@ -24,15 +24,17 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public enum TileState
     {
         // No number, unknown to player
-        Hidden = 0,
+        Hidden,
         // No number, if monster/item is on this tile it is revealed
-        Revealed = 1,
+        Revealed,
+        // Same as revealed. Except you get to this state from going from hidden=>click on this tile directly
+        RevealThroughCombat,
         // Monster is defeated and ready for collection
-        Conquered = 2,
+        Conquered,
         // Monster/item has been collected
-        Collected = 3,
+        Collected,
         // No monster/item at this tile
-        Empty = 4
+        Empty
     }
 
     [SerializeField]
@@ -144,7 +146,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
 
         // TODO: Refactor the click handle logic
-        if (State == TileState.Revealed)
+        if (State == TileState.Revealed || State == TileState.RevealThroughCombat)
         {
             // Prevent death when clicking on a brick, basically. We can make other things too...
             Player player = ServiceLocator.Instance.Player;
@@ -154,7 +156,16 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
         }
 
-        TEMP_SetState(State + 1);
+        // Hidden skips to RevealedThroughCombat
+        // Revealed skips to Conquered
+        if (State == TileState.Hidden || State == TileState.Revealed)
+        {
+            TEMP_SetState(State + 2);
+        }
+        else
+        {
+            TEMP_SetState(State + 1);
+        }
     }
     
     /// <summary>
@@ -378,7 +389,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (HousedObject && HousedObject.DropReward)
             {
                 PlaceTileObj(HousedObject.DropReward);
-                TEMP_SetState(TileState.Revealed);
+                TEMP_SetState(TileState.RevealThroughCombat);
                 return;
             }
         }
@@ -386,26 +397,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         TEMP_UpdateVisuals();
 
         // Early return if housed object does not exist.
-        if (!HousedObject && State == TileState.Revealed)
+        if (!HousedObject && (State == TileState.Revealed || State == TileState.RevealThroughCombat))
         {
             TEMP_SetState(TileState.Empty);
             return;
         }
 
         Player player = ServiceLocator.Instance.Player;
-
-        // Associated guard gets enraged when yourself is conquered
-        if (TileState.Conquered == State && BodyGuardedByTile != null && BodyGuardedByTile.State < TileState.Conquered)
-        {
-            BodyGuardedByTile.IsBodyGuardByOrGuardingDead = true;
-            BodyGuardedByTile.LookTowardsHorizontally(XCoordinate, YCoordinate, true, false);
-            BodyGuardedByTile.TEMP_UpdateVisuals();
-        }
-        if (TileState.Conquered == State && GuardingTile != null && GuardingTile.State < TileState.Conquered)
-        {
-            GuardingTile.IsBodyGuardByOrGuardingDead = true;
-        }
-
         int basePower = GetBasePower();
         int adjustedPower = GetAdjustedPower();
         if (TileState.Conquered == State)
@@ -452,17 +450,35 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             ) {
                 Instantiate(ServiceLocator.Instance.Player.ClassSchema.HitEffect, transform);
             }
-        }
 
-        if (TileState.Collected == State)
-        {
+            // Associated guard gets enraged when yourself is conquered
+            if (BodyGuardedByTile != null && BodyGuardedByTile.State < TileState.Conquered)
+            {
+                BodyGuardedByTile.IsBodyGuardByOrGuardingDead = true;
+                BodyGuardedByTile.LookTowardsHorizontally(XCoordinate, YCoordinate, true, false);
+                BodyGuardedByTile.TEMP_UpdateVisuals();
+            }
+
+            if (GuardingTile != null && GuardingTile.State < TileState.Conquered)
+            {
+                GuardingTile.IsBodyGuardByOrGuardingDead = true;
+            }
+
+            // Flee as soon as clicked
             // Flee -> Itself moves to another location if possible (Gnome)
             if (HousedObject.CanFlee && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject, HousedObject.RevealFlee))
             {
                 TEMP_SetState(TileState.Empty);
+                if (HousedObject.FleeVfx != null)
+                {
+                    Instantiate(HousedObject.FleeVfx, transform);
+                }
                 return;
             }
-            
+        }
+
+        if (TileState.Collected == State)
+        {
             // Fleeing Child -> Spawns a new object type at another location if possible (Faerie)
             if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild, HousedObject.RevealFlee ))
             {
@@ -580,7 +596,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
         else if (IsAutomaticState(State))
         {
-            TEMP_SetState(State + 1);
+            if (State == TileState.Revealed)
+            {
+                TEMP_SetState(TileState.Conquered);
+            }
+            else
+            {
+                TEMP_SetState(State + 1);
+            }
         }
     }
 
@@ -689,7 +712,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private bool IsAutomaticState(TileState state)
     {
-        return state == TileState.Revealed || state == TileState.Collected;
+        return state == TileState.Revealed || state == TileState.Collected || state == TileState.RevealThroughCombat;
     }
 
     private void TEMP_UpdateVisuals()
@@ -708,6 +731,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 break;
 
             case TileState.Revealed:
+            case TileState.RevealThroughCombat:
                 Power.enabled = true;
                 NeighborPower.enabled = GetHousedObject() != null && ServiceLocator.Instance.Player.TilesWhichShowNeighborPower.Contains(GetHousedObject().TileId);
                 HousedObjectSprite.enabled = true;

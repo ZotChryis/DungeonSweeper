@@ -41,6 +41,7 @@ MonoBehaviour:
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
   RevealFlee: 1
   CanEnrage: 0
   CanBodyGuardSwap: 0
@@ -80,7 +81,7 @@ MonoBehaviour:
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}
-    - Key: 2
+    - Key: 3
       Value:
         AutoContinue:
           UseOverride: 1
@@ -103,7 +104,7 @@ MonoBehaviour:
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}
-    - Key: 3
+    - Key: 4
       Value:
         AutoContinue:
           UseOverride: 1

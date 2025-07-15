@@ -25,6 +25,7 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 1
   HidePowerToNeighbors: 1
   PreventConsumeIfKillingBlow: 1
@@ -39,8 +40,10 @@ MonoBehaviour:
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
   RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -51,6 +54,7 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1
@@ -73,7 +77,33 @@ MonoBehaviour:
         Sfx:
           UseOverride: 0
           Value: 
-    - Key: 3
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 2
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 1
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 4
       Value:
         AutoContinue:
           UseOverride: 0
@@ -93,7 +123,10 @@ MonoBehaviour:
         Sfx:
           UseOverride: 1
           Value: XP
-    - Key: 4
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 5
       Value:
         AutoContinue:
           UseOverride: 0
@@ -113,3 +146,6 @@ MonoBehaviour:
         Sfx:
           UseOverride: 0
           Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
