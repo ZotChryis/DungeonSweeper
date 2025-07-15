@@ -14,6 +14,11 @@ using UnityEngine.UI;
 // This is currently both
 public class Player : MonoBehaviour, IPointerClickHandler
 {
+    // TODO: Data-fy this a bit better? ughhh this is what we get for vibe coding lol
+    [SerializeField] 
+    private GameObject DefaultVisionVfx;
+    
+    [HideInInspector]
     public List<TileSchema.Id> RevealedMonsters = new();
 
     [Tooltip("Player ability, bonus spawn count. Key is spawned creation id.")]
@@ -49,9 +54,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     // TODO: Support DecayingEffects on ALL types. Currently only support ModDamage
     private List<Effect> DecayingEffects = new();
     
-    public Class.Id Class = Gameplay.Class.Id.Adventurer;
-    public ClassSchema ClassSchema;
-    public Inventory Inventory;
+    [HideInInspector] public Class.Id Class = Gameplay.Class.Id.Adventurer;
+    [HideInInspector] public ClassSchema ClassSchema;
+    [HideInInspector] public Inventory Inventory;
 
     /// <summary>
     /// Bonus maxHP added to the level up table.
@@ -141,7 +146,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // Do the reveal abilities
         foreach (var monsterId in RevealedMonsters)
         {
-            ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId);
+            ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId, DefaultVisionVfx);
         }
         
         // Clear any state for each dungeon run

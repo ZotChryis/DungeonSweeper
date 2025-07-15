@@ -222,11 +222,16 @@ public class Grid : MonoBehaviour
     {
         return x >= 0 && y >= 0 && x < SpawnSettings.Width && y < SpawnSettings.Height;
     }
+
+    public Transform GetTileTransform(int x, int y)
+    {
+        return !InGridBounds(x, y) ? null : Tiles[x, y].transform;
+    }
     
     /// <summary>
     /// Reveals tiles in a radius from the origin x,y.
     /// </summary>
-    public void TEMP_RevealTilesInRadius(int x, int y, int radius)
+    public void TEMP_RevealTilesInRadius(int x, int y, int radius, GameObject vfx = null)
     {
         if (radius <= 0)
         {
@@ -239,7 +244,7 @@ public class Grid : MonoBehaviour
             {
                 if (InGridBounds(x + i, y + j))
                 {
-                    Tiles[x + i, y + j].TEMP_RevealWithoutLogic();
+                    Tiles[x + i, y + j].TEMP_RevealWithoutLogic(vfx);
                 }
             }
         }
@@ -248,7 +253,7 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Reveals tiles from specific offsets from the origin x,y.
     /// </summary>
-    public void TEMP_RevealTiles(int x, int y, Vector2Int[] offets)
+    public void TEMP_RevealTiles(int x, int y, Vector2Int[] offets, GameObject vfx = null)
     {
         foreach (var offet in offets)
         {
@@ -259,7 +264,7 @@ public class Grid : MonoBehaviour
                 continue;
             }
             
-            Tiles[newX, newY].TEMP_RevealWithoutLogic();
+            Tiles[newX, newY].TEMP_RevealWithoutLogic(vfx);
         }
     }
     
@@ -280,7 +285,7 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Reveals all tiles that have the matching object schema.
     /// </summary>
-    public void TEMP_RevealAllOfType(TileSchema objectSchema, bool standUp)
+    public void TEMP_RevealAllOfType(TileSchema objectSchema, bool standUp, GameObject vfx = null)
     {
         for (int y = 0; y < SpawnSettings.Height; y++)
         {
@@ -293,7 +298,7 @@ public class Grid : MonoBehaviour
                         Tiles[x, y].StandUp();
                     }
                     
-                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    Tiles[x, y].TEMP_RevealWithoutLogic(vfx);
                 }
             }
         }
@@ -348,8 +353,7 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Reveals a random tile that has the matching monster id.
     /// </summary>
-    /// <param name="tileId">monster id</param>
-    public void RevealRandomOfType(TileSchema.Id tileId)
+    public void RevealRandomOfType(TileSchema.Id tileId, GameObject vfx = null)
     {
         int yStarting = Random.Range(0, SpawnSettings.Height);
         int xStarting = Random.Range(0, SpawnSettings.Width);
@@ -361,7 +365,7 @@ public class Grid : MonoBehaviour
                     Tiles[x, y].GetHousedObject().TileId == tileId &&
                     Tiles[x, y].State == Tile.TileState.Hidden)
                 {
-                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    Tiles[x, y].TEMP_RevealWithoutLogic(vfx);
                     return;
                 }
             }
@@ -375,7 +379,7 @@ public class Grid : MonoBehaviour
                     Tiles[x, y].GetHousedObject().TileId == tileId &&
                     Tiles[x, y].State == Tile.TileState.Hidden)
                 {
-                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    Tiles[x, y].TEMP_RevealWithoutLogic(vfx);
                     return;
                 }
             }

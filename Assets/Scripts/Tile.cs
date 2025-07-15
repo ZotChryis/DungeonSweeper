@@ -67,7 +67,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField]
     private TileSchema HousedObject;
-
+    
     public TileState State { get; private set; } = TileState.Hidden;
 
     public int XCoordinate = 0;
@@ -256,7 +256,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     /// we won't run any logic on the state change (revealed) logic, since
     /// we don't want to do a lot of the automatic stuff
     /// </summary>
-    public void TEMP_RevealWithoutLogic()
+    public void TEMP_RevealWithoutLogic(GameObject vfx = null)
     {
         if (State >= TileState.Revealed)
         {
@@ -267,6 +267,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
 
         TryPlaySfx(State);
+        TryPlayVfx(State);
+
+        if (vfx != null)
+        {
+            Instantiate(vfx, transform);
+        }
+        
         TEMP_UpdateVisuals();
 
         // TODO: Total hack, fix later
@@ -285,6 +292,18 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (stateOverrides.Sfx.UseOverride && !string.IsNullOrEmpty(stateOverrides.Sfx.Value))
             {
                 ServiceLocator.Instance.AudioManager.PlaySfx(stateOverrides.Sfx.Value);
+            }
+        }
+    }
+    
+    private void TryPlayVfx(TileState state)
+    {
+        if (HousedObject)
+        {
+            var stateOverrides = HousedObject.GetOverrides(state);
+            if (stateOverrides.Vfx.UseOverride && stateOverrides.Vfx.Value != null)
+            {
+                Instantiate(stateOverrides.Vfx.Value, transform);
             }
         }
     }
@@ -349,6 +368,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void HandleStateChanged()
     {
         TryPlaySfx(State);
+        TryPlayVfx(State);
             
         if (State == TileState.Empty)
         {
@@ -468,12 +488,22 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             
             if (HousedObject.RevealRadius > 0)
             {
-                ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(revealOriginX, revealOriginY, HousedObject.RevealRadius);
+                ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(
+                    revealOriginX, 
+                    revealOriginY, 
+                    HousedObject.RevealRadius, 
+                    HousedObject.RevealVfx
+                );
             }
 
             if (HousedObject.RevealOffsets != null && HousedObject.RevealOffsets.Length > 0)
             {
-                ServiceLocator.Instance.Grid.TEMP_RevealTiles(revealOriginX, revealOriginY, HousedObject.RevealOffsets);
+                ServiceLocator.Instance.Grid.TEMP_RevealTiles(
+                    revealOriginX, 
+                    revealOriginY, 
+                    HousedObject.RevealOffsets,
+                    HousedObject.RevealVfx
+                );
             }
 
             player.TEMP_UpdateXP(HousedObject, HousedObject.XPReward);
@@ -503,7 +533,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     // TODO Remove HACK: George added a bug here with sprites, going to do standup only for the
                     // rat scroll for now since im too lazy to fix 
                     bool standUp = HousedObject.TileId == TileSchema.Id.ScrollRat;
-                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward, standUp);
+                    ServiceLocator.Instance.Grid.TEMP_RevealAllOfType(revealReward, standUp, HousedObject.RevealVfx);
                 }
             }
 

@@ -16,6 +16,7 @@ MonoBehaviour:
   UserFacingDescription: Used to diffuse all mines on the map.
   Tags: 00000000
   TileId: 13
+  LibraryOverrideTileId: 0
   Sprite: {fileID: 1847117391093386565, guid: b777d4e05328f3f418d3c187c5827600, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -24,21 +25,29 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
-  RevealRandLocationNextToMine: 1
+  ItemReward: 0
+  ItemRewardRarities: 
+  RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
-  RevealAllRewards: []
+  RevealAllRewards:
+  - {fileID: 11400000, guid: 78617d5bf26d21345964392f172eb923, type: 2}
+  - {fileID: 11400000, guid: c6c5f05aaccfa7940a874285d91ab321, type: 2}
   WinReward: 0
   FullHealReward: 0
   HealReward: 0
@@ -46,6 +55,7 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}
   Data:
     _serializedList:
     - Key: 1
@@ -65,6 +75,12 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
     - Key: 2
       Value:
         AutoContinue:
@@ -82,6 +98,12 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
     - Key: 3
       Value:
         AutoContinue:
@@ -99,3 +121,9 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}

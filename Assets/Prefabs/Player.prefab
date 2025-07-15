@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65f65530705344559391b87556c90333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultVisionVfx: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}
   RevealedMonsters: 
   PlayerIcon: {fileID: 6241569694512521791}
   LevelUpRoot: {fileID: 7119339685352484099}
@@ -60,6 +61,8 @@ MonoBehaviour:
   BonusStartXp: 0
   SecondWindRegeneration: 0
   Class: 0
+  ClassSchema: {fileID: 0}
+  CurrentXP: 0
 --- !u!1 &3982720918796254122
 GameObject:
   m_ObjectHideFlags: 0

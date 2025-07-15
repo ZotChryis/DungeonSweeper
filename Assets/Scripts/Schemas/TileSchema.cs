@@ -233,7 +233,19 @@ namespace Schemas
             /// DEFAULT: Always play "Attack" when conquering
             /// </summary>
             public ValueOverride<string> Sfx;
+
+            /// <summary>
+            /// This vfx is spawned when this state occurs on this tile.
+            /// Be careful because our "state" code is pretty bad. We tend to re-state stuff :\
+            /// </summary>
+            public ValueOverride<GameObject> Vfx;
         }
+        
+        /// <summary>
+        /// This is what will be spawned on every tile that is revealed by this object's reveal radius/offsets.
+        /// </summary>
+        [SerializeField] 
+        public GameObject RevealVfx;
         
         [SerializedDictionary("Tile State", "State Overrides")]
         public SerializedDictionary<Tile.TileState, TileStateData> Data;

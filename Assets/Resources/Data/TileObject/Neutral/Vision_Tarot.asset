@@ -53,6 +53,7 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}
   Data:
     _serializedList:
     - Key: 1
@@ -75,6 +76,9 @@ MonoBehaviour:
         Sfx:
           UseOverride: 0
           Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
     - Key: 2
       Value:
         AutoContinue:
@@ -95,3 +99,6 @@ MonoBehaviour:
         Sfx:
           UseOverride: 1
           Value: Vision
+        Vfx:
+          UseOverride: 1
+          Value: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}
