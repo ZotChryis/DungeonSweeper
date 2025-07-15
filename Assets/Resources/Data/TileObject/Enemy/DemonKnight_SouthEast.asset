@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Demon Knight
   UserFacingDescription: A dutiful servant to the Dragon; a loyal advesary in charge
-    of their part of the realm.
+    of their corner of the realm.
   Tags: 010000000200000006000000
   TileId: 23
   LibraryOverrideTileId: 0
@@ -26,6 +26,7 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 7
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -42,6 +43,7 @@ MonoBehaviour:
   CanFlee: 0
   RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
