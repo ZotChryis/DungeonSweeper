@@ -389,7 +389,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (HousedObject && HousedObject.DropReward)
             {
                 PlaceTileObj(HousedObject.DropReward);
-                TEMP_SetState(TileState.RevealThroughCombat);
+                TEMP_SetState(TileState.Revealed);
                 return;
             }
         }
