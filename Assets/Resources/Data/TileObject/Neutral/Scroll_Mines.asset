@@ -82,6 +82,29 @@ MonoBehaviour:
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}
+    - Key: 2
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
     - Key: 3
       Value:
         AutoContinue:

@@ -15,8 +15,9 @@ MonoBehaviour:
   UserFacingName: Faerie
   UserFacingDescription: A mystical creature that lives in high density magical areas.
     Gets winded quickly and must recover after chased.
-  Tags: 0100000004000000
+  Tags: 00000000
   TileId: 34
+  LibraryOverrideTileId: 0
   Sprite: {fileID: -3246102915477046997, guid: ebf3a4c5ce1136542832f71273684db3, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -25,18 +26,25 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 4
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
+  RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 1
   FleeingChild: {fileID: 11400000, guid: 12e8f344d6349624babf8053940d9804, type: 2}
   RevealAllRewards: []
@@ -47,6 +55,7 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1
@@ -66,3 +75,9 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
