@@ -40,6 +40,7 @@ public class CornerSpawnRequirement : SpawnRequirement
         {
             CoordinateList.Add((board.width - 1, board.height - 1));
         }
+        
         return CoordinateList.GetRandomItem();
     }
 

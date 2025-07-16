@@ -17,9 +17,25 @@ public abstract class SpawnRequirement : Schema
 
     protected List<(int, int)> CoordinateList = new List<(int, int)>();
 
-    // not really needed?
-    //public abstract bool IsValid(int xCoord, int yCoord, RandomBoard board);
-
+    
+    /// <summary>
+    /// Removes from CoordinateList all spots that are occupied by a tile.
+    /// Requires you to pass in the RandomBoard tracker.
+    /// </summary>
+    // TODO: Uniformly run this as a setting?
+    public void RemoveOccupiedSpaces(RandomBoard board)
+    {
+        for (var i = CoordinateList.Count - 1; i >= 0 ; i--)
+        {
+            var  coord = CoordinateList[i];
+            if (!board.PeekUnoccupiedSpace(coord.Item1, coord.Item2))
+            {
+                Debug.Log("EdgeSpawnRequirement Filtered out valid coord because it was full: " + coord.Item1 + " , " + coord.Item2);
+                CoordinateList.RemoveAt(i);
+            }
+        }
+    }
+    
     /// <summary>
     /// Returns a random valid spawn location.
     /// </summary>

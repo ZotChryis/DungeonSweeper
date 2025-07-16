@@ -104,6 +104,9 @@ public class EdgeSpawnRequirement : NoCheckChildSpawnRequirement
             CoordinateList.Remove((0, board.height - 1));
             CoordinateList.Remove((board.width - 1, board.height - 1));
         }
+        
+        RemoveOccupiedSpaces(board);
+        
         return CoordinateList.GetRandomItem();
     }
 }
