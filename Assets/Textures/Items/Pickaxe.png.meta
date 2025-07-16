@@ -155,12 +155,12 @@ TextureImporter:
       name: Pickaxe_0
       rect:
         serializedVersion: 2
-        x: 135
-        y: 58
-        width: 831
-        height: 961
+        x: 0
+        y: 18
+        width: 1007
+        height: 1006
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: abe34de0687d0874ab6b0800022806a8
     internalID: 0
     vertices: []
     indices: 

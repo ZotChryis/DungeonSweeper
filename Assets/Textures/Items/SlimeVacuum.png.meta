@@ -155,12 +155,12 @@ TextureImporter:
       name: SlimeVacuum_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 64
-        width: 979
-        height: 955
+        x: 0
+        y: 0
+        width: 1022
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -177,7 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0943d6bbedbe1464c8750d2ba345f66f
     internalID: 0
     vertices: []
     indices: 
