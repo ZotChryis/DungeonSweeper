@@ -34,6 +34,7 @@ MonoBehaviour:
   DropReward: {fileID: 0}
   ItemReward: 0
   ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
@@ -54,7 +55,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 1
   ShopXp: 0
-  ScreenshakeOnConquer: 0
+  ScreenshakeOnConquer: 1
   UpgradedVersion: {fileID: 0}
   RevealVfx: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}
   Data:

@@ -581,8 +581,6 @@ public class Grid : MonoBehaviour
             }
         }
         MinesDiffused = true;
-
-        StartCoroutine(Shake());
     }
 
     public IEnumerator Shake(float duration = 1.25f, float magnitude = 30)

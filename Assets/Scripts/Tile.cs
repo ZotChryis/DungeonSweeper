@@ -544,7 +544,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (HousedObject.DiffuseMinesReward)
             {
                 ServiceLocator.Instance.Grid.TEMP_DiffuseMarkedOrRevealedMines();
-                StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             }
 
             if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
