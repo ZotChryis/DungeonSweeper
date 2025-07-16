@@ -129,12 +129,12 @@ TextureImporter:
       name: FireflyEnraged_0
       rect:
         serializedVersion: 2
-        x: 70
-        y: 35
-        width: 952
-        height: 984
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cbe160f7c6899b34394b429cfcf4187a
     internalID: 0
     vertices: []
     indices: 
@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FireflyEnraged_0: 6344688186545429146
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

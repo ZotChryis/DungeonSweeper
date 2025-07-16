@@ -42,6 +42,7 @@ public class Grid : MonoBehaviour
 
     // TODO: Probably should be a cleaner delegate and not owned by this class?
     public Action<Tile> OnTileStateChanged;
+    public Action OnGridRequestedVisualUpdate;
     public Action OnGridGenerated;
     public bool MinesDiffused = false;
 
@@ -316,6 +317,47 @@ public class Grid : MonoBehaviour
         UnoccupiedSpaces.RemoveUnoccupiedSpace(space.Item1, space.Item2);
     }
 
+    public void UpdateRandomTileById(TileSchema.Id From, TileSchema.Id To)
+    {
+        var toSchema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(s => s.TileId == To);
+        if (toSchema == null)
+        {
+            return;
+        }
+        
+        int yStarting = Random.Range(0, SpawnSettings.Height);
+        int xStarting = Random.Range(0, SpawnSettings.Width);
+        for (int y = yStarting; y < SpawnSettings.Height; y++)
+        {
+            for (int x = xStarting; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().TileId == From &&
+                    Tiles[x, y].State < Tile.TileState.Conquered)
+                {
+                    Tiles[x, y].PlaceTileObj(toSchema);
+                    OnGridRequestedVisualUpdate?.Invoke();
+                    return;
+                }
+            }
+        }
+
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().TileId == From &&
+                    Tiles[x, y].State < Tile.TileState.Conquered)
+                {
+                    Tiles[x, y].PlaceTileObj(toSchema);
+                    OnGridRequestedVisualUpdate?.Invoke();
+                    return;
+                }
+            }
+        }
+    }
+    
     // TODO: Refactor Tag vs Id
     public void RevealRandomOfTag(TileSchema.Tag tileTag)
     {
@@ -738,6 +780,8 @@ public class Grid : MonoBehaviour
         {
             Tiles[spots[i].Item1, spots[i].Item2].PlaceTileObj(tileObjects[i]);
         }
+
+        OnGridRequestedVisualUpdate?.Invoke();
     }
 
     

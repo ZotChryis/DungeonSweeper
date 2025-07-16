@@ -588,6 +588,20 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     }
                 }
             }
+            
+            // Try to swap tiles
+            foreach (var entry in HousedObject.TileUpdateReward)
+            {
+                if (entry.Amount <= 0)
+                {
+                    continue;
+                }
+
+                for (int i = 0; i < entry.Amount; i++)
+                {
+                    ServiceLocator.Instance.Grid.UpdateRandomTileById(entry.From, entry.To);
+                }
+            }
         }
 
         var objectOverrides = HousedObject ? HousedObject.GetOverrides(State) : default;

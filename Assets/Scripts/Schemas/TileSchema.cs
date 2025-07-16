@@ -101,6 +101,10 @@ namespace Schemas
             SlimeWizardGreen,
             SlimeWizardBlue,
             
+            Firelord,
+            Firefly,
+            FireflyCalm,
+            
         }
         
         // !!WARNING!! DO NOT REORDER
@@ -122,6 +126,7 @@ namespace Schemas
             Beast,
             Demon,
             Slime,
+            Elemental,
         
         }
     
@@ -178,6 +183,19 @@ namespace Schemas
         
         public ItemSchema.Id ItemReward;
         public Rarity[] ItemRewardRarities;
+
+        /// <summary>
+        /// When this tile is collected, all tile keys become tile value.
+        /// </summary>
+        [Serializable]
+        public struct TileSwapRewardEntry
+        {
+            public TileSchema.Id From;
+            public TileSchema.Id To;
+            public int Amount;
+        }
+
+        public List<TileSwapRewardEntry> TileUpdateReward = new();
 
         // TODO: Refactor all this shit honestly
         public bool RevealRandLocationNextToMine;
