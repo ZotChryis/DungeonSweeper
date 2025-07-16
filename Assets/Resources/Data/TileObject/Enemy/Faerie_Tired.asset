@@ -84,7 +84,7 @@ MonoBehaviour:
       Value:
         AutoContinue:
           UseOverride: 1
-          Value: 0
+          Value: 1
         Sprite:
           UseOverride: 0
           Value: {fileID: 0}
