@@ -78,6 +78,16 @@ namespace Schemas
             Apothecary1,
             Apothecary2,
             Apothecary3,
+            
+            PacifistLovers0,
+            PacifistLovers1,
+            PacifistLovers2,
+            PacifistLovers3,
+            
+            // Item? Get 4 Commons in 1 run?
+            // Item? Get 3 Rares?
+            // Item? Get 2 Epics?
+            // Item? Get a Legendary?
         }
 
         [Serializable]
