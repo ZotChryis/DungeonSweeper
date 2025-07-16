@@ -855,7 +855,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // Right click should open the menu to set player tag
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
+            //ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
+            ServiceLocator.Instance.OverlayScreenManager.RequestToggleScreen(OverlayScreenManager.ScreenType.TileContextMenu);
             ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
         }
     }

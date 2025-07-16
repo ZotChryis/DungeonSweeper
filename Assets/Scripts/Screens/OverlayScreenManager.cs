@@ -67,6 +67,23 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         Screen.transform.SetAsLastSibling();
     }
 
+    public void RequestToggleScreen(ScreenType screenType)
+    {
+        if (!Screens.TryGetValue(screenType, out BaseScreen Screen))
+        {
+            return;
+        }
+
+        if(ScreenStack.TryPeek(out BaseScreen topScreen) && topScreen == Screen)
+        {
+            HideActiveScreen();
+        }
+        else
+        {
+            RequestShowScreen(screenType);
+        }
+    }
+
     public void HideActiveScreen()
     {
         if (ScreenStack.TryPop(out BaseScreen Screen))
