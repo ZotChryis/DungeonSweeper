@@ -60,7 +60,7 @@ MonoBehaviour:
     - Key: 1
       Value:
         AutoContinue:
-          UseOverride: 0
+          UseOverride: 1
           Value: 0
         Sprite:
           UseOverride: 0

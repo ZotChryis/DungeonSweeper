@@ -482,6 +482,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             // Fleeing Child -> Spawns a new object type at another location if possible (Faerie)
             if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild, HousedObject.RevealFlee ))
             {
+                if (HousedObject.FleeVfx != null)
+                {
+                    Instantiate(HousedObject.FleeVfx, transform);
+                }
+                
                 TEMP_SetState(TileState.Empty);
                 return;
             }
