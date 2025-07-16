@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Firefly
   UserFacingDescription: A tame little bug.
-  Tags: 010000000200000008000000
+  Tags: 010000000400000008000000
   TileId: 55
   LibraryOverrideTileId: 0
   Sprite: {fileID: 21300000, guid: e8cf0a7a4738428488c64e4f5c1dd6ff, type: 3}
