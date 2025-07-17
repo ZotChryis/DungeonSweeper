@@ -15,7 +15,7 @@ MonoBehaviour:
   AchievementId: 53
   Title: Novice Matchmaker
   Description: Complete the first dungeon level without conquering any Lovers.
-  Reward: Unlocks the Ranger
+  Reward: 
   RewardClass: -1
   Trigger: 1
   Level: 0
