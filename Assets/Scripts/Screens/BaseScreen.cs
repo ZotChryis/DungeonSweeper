@@ -9,6 +9,10 @@ public class BaseScreen : MonoBehaviour
     [SerializeField]
     private Button CloseButton;
 
+    [Tooltip("The button that is triggered if Escape key is pressed")]
+    [SerializeField]
+    private Button EscapeButton;
+
     protected virtual void Awake()
     {
         CloseButton?.onClick.AddListener(OnCloseButtonClicked);
@@ -35,8 +39,19 @@ public class BaseScreen : MonoBehaviour
         Container.SetActive(false);
         OnHide();
     }
-    
+
     protected virtual void OnHide()
     {
+    }
+
+    /// <summary>
+    /// Method called if a generic "Escape" is asked for.
+    /// </summary>
+    public virtual void EscapeOut()
+    {
+        if (EscapeButton != null)
+        {
+            EscapeButton.onClick.Invoke();
+        }
     }
 }

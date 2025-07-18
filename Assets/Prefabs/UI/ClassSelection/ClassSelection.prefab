@@ -417,6 +417,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 7921210493205743540}
   CloseButton: {fileID: 1016526935088885460}
+  EscapeButton: {fileID: 1016526935088885460}
 --- !u!1 &4681402009905721504
 GameObject:
   m_ObjectHideFlags: 0
@@ -645,7 +646,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5225122587692743322}
   m_HandleRect: {fileID: 3050560514690044563}
   m_Direction: 2
-  m_Value: 1.0000004
+  m_Value: 1
   m_Size: 0.85
   m_NumberOfSteps: 0
   m_OnValueChanged:

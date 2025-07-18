@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Screens;
 using Screens.Shop;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
@@ -38,6 +39,14 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         ScreenStack = new Stack<BaseScreen>(4);
         
         ServiceLocator.Instance.Register(this);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape) && ScreenStack.Count >= 1)
+        {
+            ScreenStack.Peek().EscapeOut();
+        }
     }
 
     // ew
