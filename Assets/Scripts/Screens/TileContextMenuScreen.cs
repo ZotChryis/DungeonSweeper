@@ -80,6 +80,22 @@ namespace Screens
         {
             ActiveTile = tile;
             Content.position = ((RectTransform)(tile.transform)).position;
+            ClampToWindow();
+        }
+        
+        // Clamp panel to area of parent
+        void ClampToWindow()
+        {
+            var parentRectTransform = Content.parent.GetComponent<RectTransform>();
+            Vector3 pos = Content.localPosition;
+
+            Vector3 minPosition = parentRectTransform.rect.min - Content.rect.min;
+            Vector3 maxPosition = parentRectTransform.rect.max - Content.rect.max;
+
+            pos.x = Mathf.Clamp(Content.localPosition.x, minPosition.x, maxPosition.x);
+            pos.y = Mathf.Clamp(Content.localPosition.y, minPosition.y, maxPosition.y);
+
+            Content.localPosition = pos;
         }
     }
 }
