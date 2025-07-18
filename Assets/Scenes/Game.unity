@@ -849,6 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 1461871578}
   CloseButton: {fileID: 0}
+  EscapeButton: {fileID: 1196684467}
   Title: {fileID: 1030402805}
   Message: {fileID: 1429175314}
   Yes: {fileID: 2069090746}
@@ -6944,6 +6945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 1391784027}
   CloseButton: {fileID: 944659780}
+  EscapeButton: {fileID: 944659780}
   MasterVolume: {fileID: 2090150759}
   MusicVolume: {fileID: 2053745904}
   SFXVolume: {fileID: 1344601996}
@@ -8391,6 +8393,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 530071009534961686}
   CloseButton: {fileID: 0}
+  EscapeButton: {fileID: 0}
   MainMenu: {fileID: 30887351}
   Shop: {fileID: 224835341}
 --- !u!1 &475377190898965670
@@ -9312,7 +9315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5318692620870017992, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5318692620870017992, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_AnchorMin.x
@@ -9320,7 +9323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5318692620870017992, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5318692620870017992, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_SizeDelta.x
@@ -9763,6 +9766,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 3314563171841410822}
   CloseButton: {fileID: 5623050355387788902}
+  EscapeButton: {fileID: 5623050355387788902}
   AchievementPrefab: {fileID: 6843861134416029835, guid: 6f23cc9093132644e912b3f63d4e2df0, type: 3}
   ContentRoot: {fileID: 2915037812715018604}
 --- !u!114 &953797721623858213
@@ -13175,6 +13179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 7778283927346899689}
   CloseButton: {fileID: 0}
+  EscapeButton: {fileID: 8818102640227504929}
   Retry: {fileID: 595367062}
 --- !u!114 &2642515356358782986
 MonoBehaviour:
@@ -14558,6 +14563,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 5906784981110270225}
   CloseButton: {fileID: 0}
+  EscapeButton: {fileID: 0}
   NewGameButton: {fileID: 1240008421}
   AchievementButton: {fileID: 143437612}
   SettingsButton: {fileID: 1066471665}
@@ -15637,7 +15643,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6150444279543291017}
   m_HandleRect: {fileID: 1926952946110306182}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -21106,6 +21112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 581655399358250822}
   CloseButton: {fileID: 7774571558954685990}
+  EscapeButton: {fileID: 7774571558954685990}
   ItemPrefab: {fileID: 4521406146511226897, guid: 94cda348b2c77464eb907bece8d8eab1, type: 3}
   ItemListRoot: {fileID: 979970900573643052}
   Details: {fileID: 1659526866842903704}
@@ -22245,6 +22252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 1706507251292749241}
   CloseButton: {fileID: 3035257827022850094}
+  EscapeButton: {fileID: 3035257827022850094}
 --- !u!114 &6751131964080585194
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22587,6 +22595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 7731061392783683653}
   CloseButton: {fileID: 0}
+  EscapeButton: {fileID: 0}
   ItemPrefab: {fileID: 8439486855940079838, guid: 107a765d8085289408ee112a490026f5, type: 3}
   ItemListRoot: {fileID: 5441287116396436509}
   Details: {fileID: 2247794619226298090}
@@ -23813,6 +23822,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 3236183872433618498}
   CloseButton: {fileID: 4406532541457808513}
+  EscapeButton: {fileID: 4406532541457808513}
   Content: {fileID: 8947559755575645553}
   Level0Objects:
   - {fileID: 7484190007007784240}
@@ -27728,6 +27738,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6028f44d285efb44954e5176feec887, type: 3}
+--- !u!114 &8818102640227504929 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
+  m_PrefabInstance: {fileID: 8818102640227504928}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &8838043452971875997
 CanvasRenderer:
   m_ObjectHideFlags: 0

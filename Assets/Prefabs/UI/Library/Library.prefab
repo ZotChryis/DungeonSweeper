@@ -325,7 +325,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3949402366999683141}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -352,6 +352,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 7431991907185230075}
   CloseButton: {fileID: 348213572946127259}
+  EscapeButton: {fileID: 348213572946127259}
   LibraryItemPrefab: {fileID: 6492784225575291518, guid: 99847db410df4fe4cbf3d574d89a4ff3, type: 3}
   LibraryListRoot: {fileID: 7109010721104223889}
 --- !u!1 &4579796579912649445
