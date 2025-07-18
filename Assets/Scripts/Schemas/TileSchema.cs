@@ -105,6 +105,8 @@ namespace Schemas
             Firefly,
             FireflyCalm,
             
+            CyclopsL,
+            CyclopsR,
         }
         
         // !!WARNING!! DO NOT REORDER
@@ -127,7 +129,7 @@ namespace Schemas
             Demon,
             Slime,
             Elemental,
-        
+            Humanoid,
         }
     
         [Serializable]
