@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Firefly
   UserFacingDescription: Usually a tame little bug, but heavily inspired by her Firelord.
-  Tags: 010000000400000008000000
+  Tags: 01000000040000000800000005000000
   TileId: 54
   LibraryOverrideTileId: 0
   Sprite: {fileID: 6344688186545429146, guid: a2f503b0f4386e144a8a5bb60899e475, type: 3}
