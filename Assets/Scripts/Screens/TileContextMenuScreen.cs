@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -92,6 +93,7 @@ namespace Screens
         {
             ActiveTile = tile;
             Content.position = ((RectTransform)(tile.transform)).position;
+            Content.position = new Vector3(Content.position.x, Mathf.Clamp(Content.position.y, 360, 910), Content.position.z);
         }
     }
 }
