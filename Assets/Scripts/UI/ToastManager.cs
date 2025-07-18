@@ -8,10 +8,17 @@ namespace UI
 {
     public class ToastManager : SingletonMonoBehaviour<ToastManager>
     {
+        private struct ToastData
+        {
+            public string Title;
+            public string Description;
+            public Sprite Icon;
+        }
+        
         [SerializeField] private ToastItem ToastPrefab;
         [SerializeField] private Transform ToastRoot;
-
-        private Queue<Schema> Requests = new();
+        
+        private Queue<ToastData> Requests = new();
         private ToastItem CurrentToast;
         
         private void Start()
@@ -30,27 +37,36 @@ namespace UI
 
         private void OnItemAdded(ItemInstance newItem)
         {
-            RequestToast(newItem.Schema);
+            RequestToast(newItem.Schema.Sprite, "Item Granted!", newItem.Schema.Name);
         }
         
         private void OnAchievementCompleted(AchievementSchema newAchievement)
         {
-            RequestToast(newAchievement);
-        }
+            RequestToast(null, "Achievement Unlocked!",newAchievement.Title);
 
-        /// <summary>
-        /// We only support Item and Achievement for now.
-        /// TODO: Prob should just be completely explicit and allow all icon/text combos. Meh
-        /// </summary>
-        /// <param name="schema"></param>
-        public void RequestToast(Schema schema)
-        {
-            if (schema is not AchievementSchema && schema is not ItemSchema)
+            if (newAchievement.RewardClass != Class.Id.None)
             {
-                return;
+                var classSchema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == newAchievement.RewardClass);
+                RequestToast(classSchema.Sprite, "Class Unlocked!", classSchema.Name);
             }
             
-            Requests.Enqueue(schema);
+            if (newAchievement.RewardItem != ItemSchema.Id.None)
+            {
+                var itemSchema = ServiceLocator.Instance.Schemas.ItemSchemas.Find(i => i.ItemId == newAchievement.RewardItem);
+                RequestToast(itemSchema.Sprite, "Item Unlocked!", itemSchema.Name + " can now appear in the shop!");
+            }
+        }
+
+        public void RequestToast(Sprite sprite, string title, string message)
+        {
+            ToastData td = new ToastData()
+            {
+                Title = title,
+                Description = message,
+                Icon = sprite
+            };
+            
+            Requests.Enqueue(td);
             TryContinue();
         }
 
@@ -63,16 +79,8 @@ namespace UI
             
             CurrentToast = Instantiate(ToastPrefab, ToastRoot);
             
-            Schema schema = Requests.Dequeue();
-            if (schema is AchievementSchema achievementSchema)
-            {
-                CurrentToast.SetData(null, "Achievement Unlocked!", achievementSchema.Title, OnToastCompleted);
-            }
-
-            if (schema is ItemSchema itemSchema)
-            {
-                CurrentToast.SetData(itemSchema.Sprite, "Item Granted!", itemSchema.Name, OnToastCompleted);
-            }
+            var dt = Requests.Dequeue();
+            CurrentToast.SetData(dt.Icon, dt.Title, dt.Description, OnToastCompleted);
         }
 
         private void OnToastCompleted()

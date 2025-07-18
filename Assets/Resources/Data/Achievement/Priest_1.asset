@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Complete the second dungeon level with the Priest.
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 0
   Level: 1
   Class: 8

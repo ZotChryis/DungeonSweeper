@@ -26,19 +26,26 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 25
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 25
   ItemsToReplenish: 
   DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
+  RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -49,5 +56,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

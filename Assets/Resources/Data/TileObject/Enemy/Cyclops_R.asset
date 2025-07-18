@@ -17,7 +17,7 @@ MonoBehaviour:
     view. Defeat him to gain his sight.
   Tags: 010000000200000009000000
   TileId: 57
-  LibraryOverrideTileId: 0
+  LibraryOverrideTileId: 56
   Sprite: {fileID: 12989254673519858, guid: 56862bce26551f6498be49023e9409cc, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}

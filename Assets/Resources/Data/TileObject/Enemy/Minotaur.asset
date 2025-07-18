@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Minotaur
   UserFacingDescription: The best guard in the land, the Dragon knows exactly where
     to place them.
-  Tags: 010000000200000005000000
+  Tags: 01000000020000000500000009000000
   TileId: 22
   LibraryOverrideTileId: 0
   Sprite: {fileID: 1612175002337491917, guid: 8281dfc95d1acf94fadfc1d0dd855e42, type: 3}
@@ -26,6 +26,7 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 6
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -34,14 +35,17 @@ MonoBehaviour:
   DropReward: {fileID: 0}
   ItemReward: 0
   ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
   RevealFlee: 0
   CanEnrage: 1
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -52,5 +56,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

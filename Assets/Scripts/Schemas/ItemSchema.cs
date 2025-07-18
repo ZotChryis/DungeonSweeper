@@ -167,6 +167,9 @@ namespace Schemas
             CoinSilver,
             CoinGold,
             
+            EngagementRing,
+            PrayerBeads,
+            CommunicationsDegree,
         }
         
         public ItemSchema.Id ItemId;

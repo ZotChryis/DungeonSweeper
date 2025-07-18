@@ -98,7 +98,6 @@ namespace Schemas
             FullBoardClear,
         }
         
-        
         public Id AchievementId;
 
         public string Title;
@@ -109,6 +108,11 @@ namespace Schemas
         /// The class that is unlocked through getting this Achievement.
         /// </summary>
         public Class.Id RewardClass;
+        
+        /// <summary>
+        /// The item that is unlocked through getting this Achievement.
+        /// </summary>
+        public ItemSchema.Id RewardItem;
         
         /// <summary>
         /// The trigger for the achievement to be checked.

@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Pied Piper
   UserFacingDescription: With his soothing tones, the rats follow his every note.
-  Tags: 0100000003000000
+  Tags: 010000000300000009000000
   TileId: 20
+  LibraryOverrideTileId: 0
   Sprite: {fileID: -8149248579746061818, guid: a0469392af577df4399da276d392393c, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -24,18 +25,26 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 5
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 5
+  ItemsToReplenish: 
   DropReward: {fileID: 11400000, guid: e838b473c1cea2a4a933f40869b6dcfd, type: 2}
+  ItemReward: 0
+  ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
+  RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -46,5 +55,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

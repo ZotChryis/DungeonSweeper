@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Demon Knight
   UserFacingDescription: A dutiful servant to the Dragon; a loyal advesary in charge
     of their corner of the realm.
-  Tags: 010000000200000006000000
+  Tags: 01000000020000000600000009000000
   TileId: 23
   LibraryOverrideTileId: 0
   Sprite: {fileID: -4700370763646060285, guid: 8c5818ffe1c5d134685042f4c929de5b, type: 3}
@@ -35,12 +35,14 @@ MonoBehaviour:
   DropReward: {fileID: 0}
   ItemReward: 0
   ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
   RevealFlee: 0
   CanEnrage: 0
   CanBodyGuardSwap: 0
@@ -54,5 +56,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

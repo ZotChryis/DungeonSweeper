@@ -15,8 +15,9 @@ MonoBehaviour:
   AchievementId: 17
   Title: Novice Bard
   Description: Complete the first dungeon level with the Bard.
-  Reward: 
+  Reward: Unlocks the Communications Degree (Shop)
   RewardClass: -1
+  RewardItem: 37
   Trigger: 0
   Level: 0
   Class: 5

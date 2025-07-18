@@ -78,6 +78,13 @@ namespace Screens.Shop
                 schema.IsUniqueEquipped && ServiceLocator.Instance.Player.Inventory.HasItem(schema.ItemId)
             );
             
+            // Remove any item that is locked
+            var lockedItemIds = ServiceLocator.Instance.AchievementSystem.GetLockedItems();
+            foreach (var lockedItemId in lockedItemIds)
+            {
+                allItems.RemoveAll(schema => schema.ItemId == lockedItemId);
+            }
+            
             // Roll by rarity to see if they are included
             float addedChanceFromLevel = level * 0.1f;
             foreach (var itemSchema in allItems)

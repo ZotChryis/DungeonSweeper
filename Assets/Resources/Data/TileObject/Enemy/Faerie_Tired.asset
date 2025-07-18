@@ -34,6 +34,7 @@ MonoBehaviour:
   DropReward: {fileID: 11400000, guid: d2079bd16b70fbe45831dbc204369b8c, type: 2}
   ItemReward: 0
   ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0

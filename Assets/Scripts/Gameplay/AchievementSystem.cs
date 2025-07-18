@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Schemas;
+using Sirenix.Utilities;
 
 namespace Gameplay
 {
@@ -33,6 +34,27 @@ namespace Gameplay
             }
 
             return classes.ToList();
+        }
+
+        public List<ItemSchema.Id> GetLockedItems()
+        {
+            List<ItemSchema.Id> items = new List<ItemSchema.Id>();
+            
+            // Find all the achievements with an item reward
+            var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
+                .FindAll(a => a.RewardItem != ItemSchema.Id.None);
+            
+            // The item is locked if the achievement is not complete
+            foreach (var achievementSchema in achievements)
+            {
+                string key = "Achievement" + achievementSchema.AchievementId;
+                if (!FBPP.GetBool(key))
+                {
+                    items.Add(achievementSchema.RewardItem);
+                }
+            }
+
+            return items;
         }
         
         public void CheckAchievements(AchievementSchema.TriggerType trigger)
