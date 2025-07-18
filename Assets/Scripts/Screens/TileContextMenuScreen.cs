@@ -43,36 +43,24 @@ namespace Screens
     
         private void OnLevelChanged(int level)
         {
-            if (level >= 0)
+            foreach (var level0Object in Level0Objects)
             {
-                foreach (var level0Object in Level0Objects)
-                {
-                    level0Object.SetActive(true);
-                }
+                level0Object.SetActive(level >= 0);
             }
         
-            if (level >= 1)
+            foreach (var level1Object in Level1Objects)
             {
-                foreach (var level1Object in Level1Objects)
-                {
-                    level1Object.SetActive(true);
-                }
+                level1Object.SetActive(level >= 1);
             }
-        
-            if (level >= 2)
+            
+            foreach (var level2Object in Level2Objects)
             {
-                foreach (var level2Object in Level2Objects)
-                {
-                    level2Object.SetActive(true);
-                }
+                level2Object.SetActive(level >= 2);
             }
-        
-            if (level >= 3)
+            
+            foreach (var level3Object in Level3Objects)
             {
-                foreach (var level3Object in Level3Objects)
-                {
-                    level3Object.SetActive(true);
-                }
+                level3Object.SetActive(level >= 3);
             }
         }
 

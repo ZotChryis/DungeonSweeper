@@ -27,10 +27,10 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
-  Power: 13
+  Power: 12
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 13
+  XPReward: 12
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   ItemReward: 0
