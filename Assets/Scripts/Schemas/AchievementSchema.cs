@@ -84,6 +84,16 @@ namespace Schemas
             PacifistLovers2,
             PacifistLovers3,
             
+            Merchant0,
+            Merchant1,
+            Merchant2,
+            Merchant3,
+            
+            Gambler0,
+            Gambler1,
+            Gambler2,
+            Gambler3,
+            
             // Item? Get 4 Commons in 1 run?
             // Item? Get 3 Rares?
             // Item? Get 2 Epics?

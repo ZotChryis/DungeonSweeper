@@ -30,6 +30,7 @@ MonoBehaviour:
         Amount: 1
         Id: 34
         Tags: 
+        Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 

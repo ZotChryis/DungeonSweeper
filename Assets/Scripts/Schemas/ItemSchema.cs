@@ -36,6 +36,10 @@ namespace Schemas
         AddRandomItem,
         InstantReveal,  // Reveals a random when triggered
         MassTeleport,
+        InstantXP,
+        InstantRevealRandomCol,
+        ModXpCurve,
+        AddRandomItemByDungeonLevel,
     }
 
     [Serializable]
@@ -170,6 +174,18 @@ namespace Schemas
             EngagementRing,
             PrayerBeads,
             CommunicationsDegree,
+            
+            SpellPillarOfLight,
+            
+            PotionBloodrose,
+            PotionAgility,
+            
+            RepellentRat,
+            RepellentDemonKnight,
+            
+            AmuletLuck,
+            Dice,
+            BusinessCard,
         }
         
         public ItemSchema.Id ItemId;

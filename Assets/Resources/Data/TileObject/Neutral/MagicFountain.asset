@@ -31,10 +31,11 @@ MonoBehaviour:
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
-  ItemsToReplenish: 060000001700000018000000190000001a0000001b000000
+  ItemsToReplenish: 1e00000006000000260000001700000018000000190000001a0000001b0000002700000028000000
   DropReward: {fileID: 0}
   ItemReward: 0
   ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0

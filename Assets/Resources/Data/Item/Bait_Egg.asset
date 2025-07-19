@@ -20,8 +20,8 @@ MonoBehaviour:
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 0
-  Price: 4
+  Rarity: 1
+  Price: 3
   Effects:
     _serializedList:
     - Key: 0
@@ -30,3 +30,7 @@ MonoBehaviour:
         Amount: 1
         Id: 2
         Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

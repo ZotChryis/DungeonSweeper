@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
+  m_Name: BusinessCard
+  m_EditorClassIdentifier: 
+  ItemId: 45
+  Name: BusinessCard
+  Description: Gain +2 Max HP. Levels require +1 XP. Gain a Silver Coin when conquering
+    a Humanoid.
+  Sprite: {fileID: 8085578190399825063, guid: 09c09d08d9b697541b7e1719196787f7, type: 3}
+  IsUniqueEquipped: 1
+  IsConsumbale: 0
+  InitialCharges: 0
+  ShopInventory: 1
+  Rarity: 3
+  Price: 8
+  Effects:
+    _serializedList:
+    - Key: 3
+      Value:
+      - Type: 11
+        Amount: 1
+        Id: 0
+        Tags: 09000000
+        Items: 21000000
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+    - Key: 0
+      Value:
+      - Type: 0
+        Amount: 2
+        Id: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+      - Type: 16
+        Amount: 1
+        Id: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

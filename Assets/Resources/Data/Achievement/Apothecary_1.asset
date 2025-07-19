@@ -15,8 +15,9 @@ MonoBehaviour:
   AchievementId: 50
   Title: Intermediate Apothecary
   Description: Complete the second dungeon level with the Apothecary.
-  Reward: 
+  Reward: Unlocks the Slime Vacuum (Shop)
   RewardClass: -1
+  RewardItem: 31
   Trigger: 0
   Level: 1
   Class: 9

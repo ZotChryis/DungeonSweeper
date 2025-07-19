@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 32
   Name: Copper Coin
-  Description: Gain $2 when picked up.
+  Description: Gain $3 when picked up.
   Sprite: {fileID: -8571437415864897970, guid: 165ff70720ead2e4fb148418f666159c, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     - Key: 0
       Value:
       - Type: 9
-        Amount: 2
+        Amount: 3
         Id: 0
         Tags: 
         Items: 

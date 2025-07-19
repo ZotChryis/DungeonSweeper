@@ -19,7 +19,7 @@ MonoBehaviour:
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
-  ShopInventory: 4
+  ShopInventory: 1
   Rarity: 2
   Price: 8
   Effects:

@@ -421,7 +421,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             //  the damage adjustments internally as well
             if (player.Damage(HousedObject, basePower))
             {
-                ServiceLocator.Instance.AudioManager.PlaySfx("Death");
+                // HACK: We dont currently support this weird edge case, so do it here
+                if (HousedObject.TileId == TileSchema.Id.Mimic)
+                {
+                    HousedObjectSprite.sprite = HousedObject.GetOverrides(TileState.Conquered).Sprite.Value;
+                }
                 return;
             }
 
@@ -934,6 +938,14 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void TEMP_UnObscure()
     {
         ObscureCounter--;
+        TEMP_UpdateVisuals();
+    }
+    
+    // WARN: Only use this if you know what you're doing
+    // Currently used for Mass Teleport
+    public void TEMP_ClearObscureCounter()
+    {
+        ObscureCounter = 0;
         TEMP_UpdateVisuals();
     }
 }

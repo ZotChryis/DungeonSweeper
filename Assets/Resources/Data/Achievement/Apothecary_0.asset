@@ -15,9 +15,9 @@ MonoBehaviour:
   AchievementId: 49
   Title: Novice Apothecary
   Description: Complete the first dungeon level with the Apothecary.
-  Reward: Unlocks the Slime Vacuum (Shop)
-  RewardClass: -1
-  RewardItem: 31
+  Reward: Unlocks the Merchant
+  RewardClass: 11
+  RewardItem: 0
   Trigger: 0
   Level: 0
   Class: 9

@@ -754,6 +754,7 @@ public class Grid : MonoBehaviour
         {
             for (int x = 0; x < SpawnSettings.Width; x++)
             {
+                Tiles[x, y].TEMP_ClearObscureCounter();
                 if (Tiles[x, y].TEMP_IsEmpty())
                 {
                     continue;
@@ -764,8 +765,7 @@ public class Grid : MonoBehaviour
                 {
                     continue;
                 }
-
-                Tiles[x, y].TEMP_UnObscure();
+                
                 tileObjects.Add(housedObject);
                 spots.Add((x, y));
             }
@@ -799,6 +799,15 @@ public class Grid : MonoBehaviour
                 
                 Tiles[x, y].TEMP_SetState(Tile.TileState.Conquered);
             }
+        }
+    }
+
+    public void RevealRandomRow()
+    {
+        int row = Random.Range(0, SpawnSettings.Width);
+        for (int i = 0; i < SpawnSettings.Height; i++)
+        {
+            Tiles[row, i].TEMP_RevealWithoutLogic();
         }
     }
 }

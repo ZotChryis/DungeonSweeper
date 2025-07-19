@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gameplay;
+using Schemas;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -71,7 +73,8 @@ namespace Screens.Shop
             }
             
             // Get all the items in the game
-            var allItems = ServiceLocator.Instance.Schemas.ItemSchemas;
+            List<ItemSchema> allItems = new List<ItemSchema>();
+            allItems.AddRange(ServiceLocator.Instance.Schemas.ItemSchemas);
             
             // Remove any items that they already own and are unique equipped
             allItems.RemoveAll(schema =>

@@ -21,7 +21,7 @@ MonoBehaviour:
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 2
-  Price: 1
+  Price: 2
   Effects:
     _serializedList:
     - Key: 0

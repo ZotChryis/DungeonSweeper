@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
+  m_Name: Potion_Agility
+  m_EditorClassIdentifier: 
+  ItemId: 40
+  Name: 'Potion: Agility'
+  Description: Use from inventory. Gain +3 XP.
+  Sprite: {fileID: 8618505411793156745, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
+  IsUniqueEquipped: 0
+  IsConsumbale: 1
+  InitialCharges: 1
+  ShopInventory: 1
+  Rarity: 1
+  Price: 4
+  Effects:
+    _serializedList:
+    - Key: 4
+      Value:
+      - Type: 14
+        Amount: 3
+        Id: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

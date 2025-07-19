@@ -10,42 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: SacrificialKris
+  m_Name: Potion_Bloodrose
   m_EditorClassIdentifier: 
-  ItemId: 15
-  Name: Sacrificial Whip
-  Description: Gain $10. Take 1 more damage from enemies. Get +1 XP from enemies.
-  Sprite: {fileID: -9221110098587984580, guid: 5659cc45055420b408ddc8421da2dea5, type: 3}
-  IsUniqueEquipped: 1
-  IsConsumbale: 0
-  InitialCharges: 0
+  ItemId: 39
+  Name: 'Potion: Bloodrose'
+  Description: Use from inventory. Take 1 Damage. Reveal a random tile.
+  Sprite: {fileID: 6997616985800771554, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
+  IsUniqueEquipped: 0
+  IsConsumbale: 1
+  InitialCharges: 3
   ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  Rarity: 1
+  Price: 4
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 4
       Value:
-      - Type: 3
+      - Type: 7
         Amount: 1
-        Id: 1
+        Id: 0
         Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
-      - Type: 4
+      - Type: 12
         Amount: 1
-        Id: 1
-        Tags: 
-        Items: 
-        Decay: 0
-        DecayTrigger: 0
-        DecayTags: 
-      - Type: 9
-        Amount: 10
-        Id: 1
-        Tags: 
+        Id: 0
+        Tags: 0100000000000000
         Items: 
         Decay: 0
         DecayTrigger: 0

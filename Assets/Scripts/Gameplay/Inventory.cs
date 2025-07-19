@@ -202,7 +202,7 @@ namespace Gameplay
                 //  The entire game was not build right for "retry" lol. Probably better if we serialize the game state
                 //  and reload it instead of doing this shit but im too lazy. Maybe George wants to try and tackle that 
                 //  nightmare?? lol
-                if (itemInstance.Schema.ItemId == ItemSchema.Id.Pickaxe)
+                if (itemInstance.Schema.ItemId == ItemSchema.Id.Pickaxe || itemInstance.Schema.ItemId == ItemSchema.Id.BusinessCard)
                 {
                     itemInstance.RemoveGrantedItems();
                 }
@@ -374,17 +374,49 @@ namespace Gameplay
                             }
                             else if (effect.Tags.Count > 0)
                             {
-                                for (var i1 = 0; i1 < effect.Tags.Count; i1++)
-                                {
-                                    var tag =  effect.Tags[i1];
-                                    ServiceLocator.Instance.Grid.RevealRandomOfTag(tag);
-                                }
+                                ServiceLocator.Instance.Grid.RevealRandomOfTag(effect.Tags.GetRandomItem());
                             }
                         }
                         break;
                     case EffectType.MassTeleport:
                         ServiceLocator.Instance.Grid.MassTeleport(effect.Tags);
                         break;
+                    
+                    case EffectType.InstantXP:
+                        ServiceLocator.Instance.Player.TEMP_UpdateXP(null, effect.Amount);
+                        break;
+                    
+                    case EffectType.InstantRevealRandomCol:
+                        ServiceLocator.Instance.Grid.RevealRandomRow();
+                        break;
+                    
+                    case EffectType.ModXpCurve:
+                        ServiceLocator.Instance.Player.ModXpCurve += effect.Amount;
+                        break;
+                    
+                    case EffectType.AddRandomItemByDungeonLevel:
+                        Rarity rarity = Rarity.Common;
+                        switch (ServiceLocator.Instance.LevelManager.CurrentLevel)
+                        {
+                            case 0:
+                                rarity = Rarity.Uncommon;
+                                break;
+                            case 1:
+                                rarity = Rarity.Rare;
+                                break;
+                            case 2:
+                                rarity = Rarity.Epic;
+                                break;
+                            case 3:
+                                rarity = Rarity.Legendary;
+                                break;
+                        }
+                        
+                        var itemsOfRarity = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(x => x.Rarity == rarity);
+                        ItemInstance itemGranted = ServiceLocator.Instance.Player.Inventory.AddItem(itemsOfRarity.GetRandomItem().ItemId);
+                        GrantedItems.Add(itemGranted);
+                        break;
+                        
                 }
             }
         }
@@ -410,6 +442,8 @@ namespace Gameplay
                     case EffectType.RevealRandomLocation:
                     case EffectType.InstantReveal:
                     case EffectType.MassTeleport:
+                    case EffectType.InstantXP:
+                    case EffectType.InstantRevealRandomCol:
                         break;
                     
                     case EffectType.BonusHP:
@@ -448,7 +482,12 @@ namespace Gameplay
                         break;
                     
                     case EffectType.AddRandomItem:
+                    case EffectType.AddRandomItemByDungeonLevel:
                         RemoveGrantedItems();
+                        break;
+                    
+                    case EffectType.ModXpCurve:
+                        ServiceLocator.Instance.Player.ModXpCurve -= effect.Amount;
                         break;
                 }
             }

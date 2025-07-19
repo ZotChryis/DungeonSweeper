@@ -15,8 +15,9 @@ MonoBehaviour:
   AchievementId: 13
   Title: Novice Wizard
   Description: Complete the first dungeon level with the Wizard.
-  Reward: Unlocks the Warrior
-  RewardClass: 1
+  Reward: Unlocks the Miner
+  RewardClass: 7
+  RewardItem: 0
   Trigger: 0
   Level: 0
   Class: 3

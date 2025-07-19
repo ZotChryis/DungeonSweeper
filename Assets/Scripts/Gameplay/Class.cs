@@ -16,7 +16,8 @@
             Miner,
             Priest,
             Apothecary,
-            
+            Gambler,
+            Merchant
         }
     }
 }

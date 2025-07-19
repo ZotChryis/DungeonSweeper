@@ -70,6 +70,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     [ReadOnly]
     private int CurrentXP;
 
+    public int ModXpCurve = 0;
+    
     public HashSet<TileSchema.Id> TilesWhichShowNeighborPower = new();
     public Dictionary<TileSchema.Id, int> TileObjectsThatShouldUpgrade = new();
     
@@ -248,6 +250,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
             StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
+            ServiceLocator.Instance.AudioManager.PlaySfx("Death");
             return true;
         }
         
@@ -278,7 +281,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
 
         // TODO: Add overheal mechanic?
-        CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth + BonusMaxHp) + GodModeBonusMaxHp;
+        CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth) + GodModeBonusMaxHp;
         
         ServiceLocator.Instance.AudioManager.PlaySfx("Heal");
         
@@ -341,7 +344,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             Hearts[i].SetLabelText((i + 1).ToString());
         }
 
-        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level);
+        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         for (int i = 0; i < XPGems.Length; i++)
         {
             XPGems[i].gameObject.SetActive(i < xpRequiredToLevel);
@@ -354,7 +357,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level);
+        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         if (CurrentXP >= xpRequiredToLevel)
         {
             CurrentXP -= xpRequiredToLevel;
@@ -370,8 +373,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         Level++;
 
-        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
-        CurrentHealth = MaxHealth + BonusMaxHp + GodModeBonusMaxHp;
+        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
+        CurrentHealth = MaxHealth + GodModeBonusMaxHp;
 
         TEMP_UpdateVisuals();
         
@@ -383,7 +386,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public void GodMode()
     {
         GodModeBonusMaxHp = GodModeBonusMaxHp == 0 ? 999999 : 0;
-        CurrentHealth = MaxHealth + BonusMaxHp + GodModeBonusMaxHp;
+        CurrentHealth = MaxHealth + GodModeBonusMaxHp;
         TEMP_UpdateVisuals();
     }
 
@@ -432,8 +435,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentXP = 0;
         HasRegeneratedThisRound = false;
         
-        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
-        CurrentHealth = MaxHealth + BonusMaxHp;
+        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
+        CurrentHealth = MaxHealth + GodModeBonusMaxHp;
         
         // Apply any bonuses from items
         TEMP_UpdateXP(null, BonusStartXp);
