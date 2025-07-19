@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 21
   Name: Candle
-  Description: Vision Orbs reach is extended.
+  Description: At the start of the dungeon, upgrade Vision Orbs.
   Sprite: {fileID: 2798290011037525337, guid: 3ae3b002482a33042a858562add45472, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
