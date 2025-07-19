@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 45
   Name: BusinessCard
-  Description: Gain +2 Max HP. Levels require +1 XP. Gain a Silver Coin when conquering
+  Description: Gain +1 Max HP. Levels require +1 XP. Gain a Silver Coin when conquering
     a Humanoid.
   Sprite: {fileID: 21300000, guid: dbb5baa2ffb7e9b4ebc2d16550bb331a, type: 3}
   IsUniqueEquipped: 1
@@ -38,7 +38,7 @@ MonoBehaviour:
     - Key: 0
       Value:
       - Type: 0
-        Amount: 2
+        Amount: 1
         Id: 0
         Tags: 
         Items: 
