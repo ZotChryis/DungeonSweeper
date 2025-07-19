@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 43
   Name: Topaz Amulet
   Description: Upgrade the rarity of items in Chests.
-  Sprite: {fileID: -3585505344359674142, guid: 1b1b7b7e2de7f8744a5b9b0984bb86fb, type: 3}
+  Sprite: {fileID: 21300000, guid: c9a8d86ca7263ad46b5627b24551f901, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0

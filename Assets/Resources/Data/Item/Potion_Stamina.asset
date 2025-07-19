@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: 'Potion: Stamina'
   Description: Use from inventory. Gain extra +1 XP from enemies until next Level
     Up.
-  Sprite: {fileID: -1061600653231999548, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
+  Sprite: {fileID: -3065595510956808684, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 1
   InitialCharges: 1

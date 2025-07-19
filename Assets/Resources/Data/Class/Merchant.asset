@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Merchant
   m_EditorClassIdentifier: 
   Id: 11
-  Sprite: {fileID: 1457491203435894738, guid: 0d95b31c52cf45645ad9427a06b03317, type: 3}
+  Sprite: {fileID: -3456532010920386237, guid: 2aa702e4319876d4b82812f2c69822f7, type: 3}
   Name: Merchant
   Description: Starts with the Business Card.
   StartingItem: 45

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gambler
   m_EditorClassIdentifier: 
   Id: 10
-  Sprite: {fileID: 6116292215999839277, guid: fd27b57868d339f49a0aa89c3203fc31, type: 3}
+  Sprite: {fileID: -7975792479327943879, guid: 2fc643a21ff1b934f8048ec53ebde050, type: 3}
   Name: Gambler
   Description: Starts with the Dice.
   StartingItem: 44

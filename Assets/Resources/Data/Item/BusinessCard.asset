@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: BusinessCard
   Description: Gain +2 Max HP. Levels require +1 XP. Gain a Silver Coin when conquering
     a Humanoid.
-  Sprite: {fileID: 8085578190399825063, guid: 09c09d08d9b697541b7e1719196787f7, type: 3}
+  Sprite: {fileID: 21300000, guid: dbb5baa2ffb7e9b4ebc2d16550bb331a, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
   InitialCharges: 0
