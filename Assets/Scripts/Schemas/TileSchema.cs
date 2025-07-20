@@ -73,7 +73,7 @@ namespace Schemas
             Lich,
             Mimic,
         
-            Dragon,
+            Dragon0,
             Mine,
             
             Faerie,
@@ -107,6 +107,10 @@ namespace Schemas
             
             CyclopsL,
             CyclopsR,
+            
+            Dragon1,
+            Dragon2,
+            Dragon3,
         }
         
         // !!WARNING!! DO NOT REORDER

@@ -80,7 +80,7 @@ public class SpawnSettings : Schema
             }
 
             // Don't count dragon, cause that's not fair lol
-            if (entry.TileId == TileSchema.Id.Dragon)
+            if (entry.TileId is TileSchema.Id.Dragon0 or TileSchema.Id.Dragon1 or TileSchema.Id.Dragon2 or TileSchema.Id.Dragon3)
             {
                 continue;
             }
