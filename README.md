@@ -22,3 +22,10 @@ https://docs.google.com/document/d/1nw1bCsJrEUS7hmgCxBACN3v91fDVpjVXkc35OrzaYFg/
 navac@outlook.com - Christian Nava
 
 georgetw1108@gmail.com - George Wang
+
+## Music/SFX sources
+https://pixabay.com/
+
+https://mixkit.co/
+
+https://freesound.org/
