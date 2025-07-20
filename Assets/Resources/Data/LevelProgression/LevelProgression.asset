@@ -15,67 +15,139 @@ MonoBehaviour:
   LevelProgressionEntries:
   - XPRequiredToLevel: 4
     MaxHealth: 5
+    LabelText: 'XP Needed to get to this level: 4'
   - XPRequiredToLevel: 5
     MaxHealth: 5
+    LabelText: 'XP Needed to get to this level: 9'
   - XPRequiredToLevel: 7
     MaxHealth: 6
+    LabelText: 'XP Needed to get to this level: 16'
   - XPRequiredToLevel: 9
     MaxHealth: 6
+    LabelText: 'XP Needed to get to this level: 25'
   - XPRequiredToLevel: 9
     MaxHealth: 7
+    LabelText: 'XP Needed to get to this level: 34'
   - XPRequiredToLevel: 10
     MaxHealth: 7
+    LabelText: 'XP Needed to get to this level: 44'
   - XPRequiredToLevel: 12
     MaxHealth: 8
+    LabelText: 'XP Needed to get to this level: 56'
   - XPRequiredToLevel: 12
     MaxHealth: 8
+    LabelText: 'XP Needed to get to this level: 68'
   - XPRequiredToLevel: 12
     MaxHealth: 9
+    LabelText: 'XP Needed to get to this level: 80'
   - XPRequiredToLevel: 15
     MaxHealth: 9
+    LabelText: 'XP Needed to get to this level: 95'
   - XPRequiredToLevel: 18
     MaxHealth: 10
+    LabelText: 'XP Needed to get to this level: 113'
   - XPRequiredToLevel: 21
     MaxHealth: 10
+    LabelText: 'XP Needed to get to this level: 134'
   - XPRequiredToLevel: 21
     MaxHealth: 11
+    LabelText: 'XP Needed to get to this level: 155'
   - XPRequiredToLevel: 25
     MaxHealth: 11
+    LabelText: 'XP Needed to get to this level: 180'
   - XPRequiredToLevel: 25
     MaxHealth: 12
+    LabelText: 'XP Needed to get to this level: 205'
   - XPRequiredToLevel: 25
     MaxHealth: 12
+    LabelText: 'XP Needed to get to this level: 230'
   - XPRequiredToLevel: 25
     MaxHealth: 13
+    LabelText: 'XP Needed to get to this level: 255'
   - XPRequiredToLevel: 26
     MaxHealth: 13
+    LabelText: 'XP Needed to get to this level: 281'
   - XPRequiredToLevel: 26
     MaxHealth: 14
+    LabelText: 'XP Needed to get to this level: 307'
   - XPRequiredToLevel: 26
     MaxHealth: 14
+    LabelText: 'XP Needed to get to this level: 333'
   - XPRequiredToLevel: 27
     MaxHealth: 15
+    LabelText: 'XP Needed to get to this level: 360'
   - XPRequiredToLevel: 27
     MaxHealth: 15
+    LabelText: 'XP Needed to get to this level: 387'
   - XPRequiredToLevel: 27
     MaxHealth: 16
+    LabelText: 'XP Needed to get to this level: 414'
   - XPRequiredToLevel: 28
     MaxHealth: 16
+    LabelText: 'XP Needed to get to this level: 442'
   - XPRequiredToLevel: 28
     MaxHealth: 17
+    LabelText: 'XP Needed to get to this level: 470'
   - XPRequiredToLevel: 28
     MaxHealth: 17
+    LabelText: 'XP Needed to get to this level: 498'
   - XPRequiredToLevel: 28
     MaxHealth: 18
+    LabelText: 'XP Needed to get to this level: 526'
   - XPRequiredToLevel: 29
     MaxHealth: 18
+    LabelText: 'XP Needed to get to this level: 555'
   - XPRequiredToLevel: 29
     MaxHealth: 19
+    LabelText: 'XP Needed to get to this level: 584'
   - XPRequiredToLevel: 29
     MaxHealth: 19
+    LabelText: 'XP Needed to get to this level: 613'
   - XPRequiredToLevel: 30
     MaxHealth: 20
+    LabelText: 'XP Needed to get to this level: 643'
   - XPRequiredToLevel: 30
     MaxHealth: 20
+    LabelText: 'XP Needed to get to this level: 673'
   - XPRequiredToLevel: 30
     MaxHealth: 21
+    LabelText: 'XP Needed to get to this level: 703'
+  - XPRequiredToLevel: 30
+    MaxHealth: 21
+    LabelText: 'XP Needed to get to this level: 733'
+  - XPRequiredToLevel: 31
+    MaxHealth: 22
+    LabelText: 'XP Needed to get to this level: 764'
+  - XPRequiredToLevel: 31
+    MaxHealth: 22
+    LabelText: 'XP Needed to get to this level: 795'
+  - XPRequiredToLevel: 31
+    MaxHealth: 23
+    LabelText: 'XP Needed to get to this level: 826'
+  - XPRequiredToLevel: 31
+    MaxHealth: 23
+    LabelText: 'XP Needed to get to this level: 857'
+  - XPRequiredToLevel: 32
+    MaxHealth: 24
+    LabelText: 'XP Needed to get to this level: 889'
+  - XPRequiredToLevel: 32
+    MaxHealth: 24
+    LabelText: 'XP Needed to get to this level: 921'
+  - XPRequiredToLevel: 32
+    MaxHealth: 25
+    LabelText: 'XP Needed to get to this level: 953'
+  - XPRequiredToLevel: 32
+    MaxHealth: 25
+    LabelText: 'XP Needed to get to this level: 985'
+  - XPRequiredToLevel: 33
+    MaxHealth: 26
+    LabelText: 'XP Needed to get to this level: 1018'
+  - XPRequiredToLevel: 33
+    MaxHealth: 26
+    LabelText: 'XP Needed to get to this level: 1051'
+  - XPRequiredToLevel: 33
+    MaxHealth: 27
+    LabelText: 'XP Needed to get to this level: 1084'
+  - XPRequiredToLevel: 33
+    MaxHealth: 27
+    LabelText: 'XP Needed to get to this level: 1117'
