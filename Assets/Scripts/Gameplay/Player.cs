@@ -535,7 +535,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         var tileId = effect.Id;
         if (tileId != TileSchema.Id.None && ModDamageTaken.ContainsKey(tileId))
         {
-            ModDamageTaken[tileId] = Mathf.Max(0, ModDamageTaken[tileId] - effectAmount);
+            ModDamageTaken[tileId] -= effectAmount;
         }
 
         if (effect.Tags != null)
@@ -544,7 +544,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             {
                 if (ModDamageTakenByTag.ContainsKey(effectTag))
                 {
-                    ModDamageTakenByTag[effectTag] = Mathf.Max(0, ModDamageTakenByTag[effectTag]  - effectAmount);
+                    ModDamageTakenByTag[effectTag] -= effectAmount;
                 }
             }
         }
