@@ -94,6 +94,15 @@ namespace Schemas
             Gambler2,
             Gambler3,
             
+            ItemAscetic0,
+            ItemAscetic1,
+            ItemAscetic2,
+            ItemAscetic3,
+
+            ItemHoarder0,
+            ItemHoarder1,
+            ItemHoarder2,
+            ItemHoarder3,
             // Item? Get 4 Commons in 1 run?
             // Item? Get 3 Rares?
             // Item? Get 2 Epics?
@@ -151,5 +160,14 @@ namespace Schemas
         /// </summary>
         public ItemSchema.Id[] ItemData;
 
+        /// <summary>
+        /// Some achievements require you to get items. -1 means any number of items.
+        /// </summary>
+        public int ItemAcquiredMinCount = -1;
+
+        /// <summary>
+        /// Some achievements require you to not get items. -1 means any number of items.
+        /// </summary>
+        public int ItemAcquiredMaxCount = -1;
     }
 }
