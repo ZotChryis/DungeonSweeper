@@ -44,6 +44,9 @@ public class InventoryScreen : BaseScreen
     // TODO: Too lazy right now to remove items one at a time. need to track them better 
     private void RefreshItems()
     {
+        ConsumableLabel.SetActive(false);
+        PassiveLabel.SetActive(false);
+        
         foreach (var inventoryItem in Items)
         {
             Destroy(inventoryItem.gameObject);
@@ -59,8 +62,6 @@ public class InventoryScreen : BaseScreen
     protected virtual void SetupInventory()
     {
         Inventory = ServiceLocator.Instance.Player.Inventory;
-        ConsumableLabel.SetActive(false);
-        PassiveLabel.SetActive(false);
     }
 
     private void OnItemAdded(ItemInstance itemInstance)
