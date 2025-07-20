@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 39
   Name: 'Potion: Bloodrose'
-  Description: Use from inventory. Take 1 Damage. Reveal a random tile.
+  Description: Use from inventory. Take 1 Damage. Reveal two random tiles.
   Sprite: {fileID: 6997616985800771554, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 1
@@ -35,7 +35,7 @@ MonoBehaviour:
         DecayTrigger: 0
         DecayTags: 
       - Type: 12
-        Amount: 1
+        Amount: 2
         Id: 0
         Tags: 0100000000000000
         Items: 

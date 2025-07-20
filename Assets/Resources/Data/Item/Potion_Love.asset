@@ -10,27 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Detector_Brick
+  m_Name: Potion_Love
   m_EditorClassIdentifier: 
-  ItemId: 14
-  Name: Brick Detector
-  Description: Auto-reveal three bricks at the start of the dungeon.
-  Sprite: {fileID: -5729213431515709207, guid: a55d03541cedebf43806fd37f2458064, type: 3}
+  ItemId: 46
+  Name: 'Potion: Love'
+  Description: Use from inventory. Reveal a Lover. The next Lover deals -2 damage.
+  Sprite: {fileID: -1972361127685065434, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
   IsUniqueEquipped: 0
-  IsConsumbale: 0
-  InitialCharges: 0
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
   Rarity: 1
-  Price: 2
+  Price: 4
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 4
       Value:
-      - Type: 2
-        Amount: 3
-        Id: 6
-        Tags: 
+      - Type: 12
+        Amount: 1
+        Id: 0
+        Tags: 0a000000
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+      - Type: 3
+        Amount: -2
+        Id: 0
+        Tags: 0a000000
+        Items: 
+        Decay: 0
+        DecayTrigger: 2
+        DecayTags: 0a000000

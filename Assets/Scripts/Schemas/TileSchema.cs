@@ -124,12 +124,13 @@ namespace Schemas
             Ranged,
             Flying,
         
-            // Families
+            // Families/Groupings
             Beast,
             Demon,
             Slime,
             Elemental,
             Humanoid,
+            Lover,
         }
     
         [Serializable]

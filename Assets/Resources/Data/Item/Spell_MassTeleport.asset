@@ -18,7 +18,7 @@ MonoBehaviour:
   Sprite: {fileID: -2753466740462676479, guid: c19c1dd3120eeeb41956462aa396e4c3, type: 3}
   IsUniqueEquipped: 0
   IsConsumbale: 1
-  InitialCharges: 1
+  InitialCharges: 5
   ShopInventory: 1
   Rarity: 4
   Price: 4

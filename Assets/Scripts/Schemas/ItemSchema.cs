@@ -186,6 +186,8 @@ namespace Schemas
             AmuletLuck,
             Dice,
             BusinessCard,
+            
+            PotionLove,
         }
         
         public ItemSchema.Id ItemId;
