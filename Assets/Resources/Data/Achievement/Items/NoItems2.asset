@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
+  m_Name: NoItems2
+  m_EditorClassIdentifier: 
+  AchievementId: 67
+  Title: Advanced Ascetic
+  Description: Complete the third dungeon level with 0 items
+  Reward: 
+  RewardClass: -1
+  RewardItem: 0
+  Trigger: 0
+  Level: 2
+  Class: -1
+  TileData: 
+  ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: 0

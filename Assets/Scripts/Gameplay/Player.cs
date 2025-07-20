@@ -54,9 +54,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
     // TODO: Support DecayingEffects on ALL types. Currently only support ModDamage
     private List<Effect> DecayingEffects = new();
     
-    [HideInInspector] public Class.Id Class = Gameplay.Class.Id.Adventurer;
-    [HideInInspector] public ClassSchema ClassSchema;
-    [HideInInspector] public Inventory Inventory;
+    public Class.Id Class = Gameplay.Class.Id.Adventurer;
+    public ClassSchema ClassSchema;
+    public Inventory Inventory;
 
     /// <summary>
     /// Bonus maxHP added to the level up table.

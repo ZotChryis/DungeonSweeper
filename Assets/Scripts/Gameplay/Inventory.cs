@@ -82,6 +82,10 @@ namespace Gameplay
         /// </summary>
         public ItemInstance AddItem(ItemSchema.Id itemId)
         {
+            if (!FBPP.GetBool(PlayerOptions.CanPickUpItems, true))
+            {
+                return null;
+            }
             if (HasItem(itemId))
             {
                 // Do not add more than one unique equipped

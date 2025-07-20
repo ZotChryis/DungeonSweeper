@@ -14,6 +14,7 @@ namespace Screens
         [SerializeField] private DSButton Reset;
         [SerializeField] private Toggle SafeMinesToggle;
         [SerializeField] private Toggle AllowLeftHoldContextMenu;
+        [SerializeField] private Toggle CanPickUpItems;
 
         protected override void Awake()
         {
@@ -24,10 +25,16 @@ namespace Screens
             SFXVolume.onValueChanged.AddListener(OnSFXVolumeChanged);
             SafeMinesToggle.onValueChanged.AddListener(OnSafeMinesChanged);
             AllowLeftHoldContextMenu.onValueChanged.AddListener(OnAllowLeftHoldContextMenuChanged);
+            CanPickUpItems.onValueChanged.AddListener(OnCanPickUpItemsChanged);
 
             LoadInitialVolumes();
 
             Reset.OnConfirmed += OnResetConfirmed;
+        }
+
+        private void OnCanPickUpItemsChanged(bool value)
+        {
+            FBPP.SetBool(PlayerOptions.CanPickUpItems, value);
         }
 
         private void OnResetConfirmed()
@@ -41,6 +48,7 @@ namespace Screens
             MusicVolume.value = FBPP.GetFloat("MusicVolume", 1.0f);
             SFXVolume.value = FBPP.GetFloat("SfxVolume", 1.0f);
             SafeMinesToggle.isOn = FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true);
+            CanPickUpItems.isOn = FBPP.GetBool(PlayerOptions.CanPickUpItems, true);
             AllowLeftHoldContextMenu.isOn = FBPP.GetBool(PlayerOptions.AllowLeftHoldContextMenu, true);
         }
 

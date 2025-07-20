@@ -83,6 +83,16 @@ namespace Gameplay
                             continue;
                         }
 
+                        if (schema.ItemAcquiredMaxCount > -1 && schema.ItemAcquiredMaxCount < ServiceLocator.Instance.Player.Inventory.GetAllItems().Count)
+                        {
+                            continue;
+                        }
+
+                        if (schema.ItemAcquiredMinCount > -1 && schema.ItemAcquiredMinCount > ServiceLocator.Instance.Player.Inventory.GetAllItems().Count)
+                        {
+                            continue;
+                        }
+
                         Complete(schema);
                         break;
                     
