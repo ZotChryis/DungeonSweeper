@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
   m_Name: Chest_Item_Uncommon
   m_EditorClassIdentifier: 
-  UserFacingName: "Item Chest \u2B50\u2B50"
+  UserFacingName: Item Chest (Uncommon)
   UserFacingDescription: An item awaits you for opening this chest!
   Tags: 00000000
   TileId: 45

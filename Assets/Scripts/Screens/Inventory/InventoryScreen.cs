@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Gameplay;
 using Screens.Inventory;
 using UnityEngine;
@@ -8,8 +9,13 @@ public class InventoryScreen : BaseScreen
     [SerializeField] 
     protected InventoryItem ItemPrefab;
 
+    [SerializeField] protected GameObject ConsumableLabel;
+    [SerializeField] protected GameObject PassiveLabel;
+    
     [SerializeField] 
-    protected Transform ItemListRoot;
+    protected Transform ConsumableListRoot;
+    [SerializeField]
+    protected Transform PassiveListRoot;
 
     [SerializeField] 
     protected InventoryDetails Details;
@@ -17,7 +23,7 @@ public class InventoryScreen : BaseScreen
     protected Inventory Inventory;
     protected List<InventoryItem> Items;
     protected ItemInstance FocusedItem;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -53,13 +59,20 @@ public class InventoryScreen : BaseScreen
     protected virtual void SetupInventory()
     {
         Inventory = ServiceLocator.Instance.Player.Inventory;
+        ConsumableLabel.SetActive(false);
+        PassiveLabel.SetActive(false);
     }
 
     private void OnItemAdded(ItemInstance itemInstance)
     {
-        InventoryItem newItem = Instantiate<InventoryItem>(ItemPrefab, ItemListRoot);
+        InventoryItem newItem = Instantiate<InventoryItem>(ItemPrefab, itemInstance.Schema.IsConsumbale ? ConsumableListRoot : PassiveListRoot);
         newItem.Initialize(this, itemInstance);
         Items.Add(newItem);
+
+        bool hasAtLeastOneConsumable = Inventory.GetAllItems().Any(i => i.Schema.IsConsumbale);
+        bool hasAtLeastOnePassive = Inventory.GetAllItems().Any(i => !i.Schema.IsConsumbale);
+        ConsumableLabel.SetActive(hasAtLeastOneConsumable);
+        PassiveLabel.SetActive(hasAtLeastOnePassive);
     }
 
     protected void OnItemChargeChanged(ItemInstance itemInstance)
