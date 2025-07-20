@@ -37,14 +37,6 @@ MonoBehaviour:
         DecayTags: 
     - Key: 0
       Value:
-      - Type: 0
-        Amount: 1
-        Id: 0
-        Tags: 
-        Items: 
-        Decay: 0
-        DecayTrigger: 0
-        DecayTags: 
       - Type: 16
         Amount: 1
         Id: 0
