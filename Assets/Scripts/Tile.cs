@@ -69,7 +69,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     [SerializeField]
     private TileSchema HousedObject;
-    
+
     public TileState State { get; private set; } = TileState.Hidden;
 
     public int XCoordinate = 0;
@@ -90,7 +90,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public CompassDirections DirectionToLook = CompassDirections.West;
     private bool IsEnraged = false;
     private bool ShouldStandUp = false;
-    
+
     private Coroutine MobileContextMenuHandle;
 
     private void Start()
@@ -112,7 +112,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         ServiceLocator.Instance.Grid.OnGridGenerated -= TEMP_UpdateVisuals;
         ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged -= OnItemChargeChanged;
     }
-    
+
     private void OnItemChargeChanged(ItemInstance obj)
     {
         TEMP_UpdateVisuals();
@@ -139,9 +139,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             return;
         }
 
-        if(FlagAnnotation.enabled && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
+        if (FlagAnnotation.enabled && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
         {
             // If safety on don't let the player blow themselves up.
+            StartCoroutine(ShakeFlagX());
             return;
         }
 
@@ -167,7 +168,37 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             TEMP_SetState(State + 1);
         }
     }
-    
+
+    private bool isAlreadyShaking = false;
+    /// <summary>
+    /// Shakes the FlagAnnotation. Copied from Grid.cs.
+    /// </summary>
+    /// <param name="duration"></param>
+    /// <param name="magnitude"></param>
+    /// <returns></returns>
+    public IEnumerator ShakeFlagX(float duration = 0.50f, float magnitude = 10)
+    {
+        if (!isAlreadyShaking)
+        {
+            isAlreadyShaking = true;
+            Vector3 originalPosition = FlagAnnotation.transform.localPosition;
+            float elapsed = 0.0f;
+
+            while (elapsed < duration)
+            {
+                float percentElapsedInvertSquared = 1f - elapsed / duration;
+                percentElapsedInvertSquared = percentElapsedInvertSquared * percentElapsedInvertSquared;
+                float x = UnityEngine.Random.Range(-1, 1f) * magnitude * percentElapsedInvertSquared + originalPosition.x;
+                FlagAnnotation.transform.localPosition = new Vector3(x, originalPosition.y, originalPosition.z);
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            FlagAnnotation.transform.localPosition = originalPosition;
+            isAlreadyShaking = false;
+        }
+    }
+
     /// <summary>
     /// This is the power that neighboring tiles will see when they ask about this tile.
     /// This is mostly useful for hiding the power in specific situations (currently right now Bricks do not
@@ -193,7 +224,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // TODO: Move the prediction logic to Tile ONLY?
         return GetAdjustedPower();
     }
-    
+
     /// <summary>
     /// Returns the 'real world' overall power of this tile. This means that the player's items and powers are
     /// reflected on this tile.
@@ -219,7 +250,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             return 0;
         }
-        
+
         // Special case: Gorgon is 0 when there are no nearby tile objects with power (it is always surrounded by
         // blocks, which means they have been cleared)
         if (HousedObject.TileId == TileSchema.Id.Gorgon)
@@ -284,7 +315,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             Instantiate(vfx, transform);
         }
-        
+
         TEMP_UpdateVisuals();
 
         // TODO: Total hack, fix later
@@ -306,7 +337,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
         }
     }
-    
+
     private void TryPlayVfx(TileState state)
     {
         if (HousedObject)
@@ -318,7 +349,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
         }
     }
-    
+
     /// <summary>
     /// For use specifically when the player dies and we need to reveal
     /// the entire board at once. Which can be very CPU intensive. Copy of above TEMP_RevealWithoutLogic.
@@ -380,7 +411,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         TryPlaySfx(State);
         TryPlayVfx(State);
-            
+
         if (State == TileState.Empty)
         {
             // TODO: HACK - need to remove any fully empty tile when it is revealed to make Flee work
@@ -415,7 +446,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 State = TileState.Revealed;
                 ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
             }
-            
+
             // If we die because of this, we can stop here
             // TODO: Refactor where we do the damage adjustment/prediction. We use base power because Damage() still does
             //  the damage adjustments internally as well
@@ -448,10 +479,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
 
             // TODO: Find a better spot for this
-            if (HousedObject && 
-                HousedObject.Tags.Contains(TileSchema.Tag.Enemy) && 
+            if (HousedObject &&
+                HousedObject.Tags.Contains(TileSchema.Tag.Enemy) &&
                 ServiceLocator.Instance.Player.ClassSchema.HitEffect != null
-            ) {
+            )
+            {
                 Instantiate(ServiceLocator.Instance.Player.ClassSchema.HitEffect, transform);
             }
 
@@ -484,13 +516,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (TileState.Collected == State)
         {
             // Fleeing Child -> Spawns a new object type at another location if possible (Faerie)
-            if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild, HousedObject.RevealFlee ))
+            if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild, HousedObject.RevealFlee))
             {
                 if (HousedObject.FleeVfx != null)
                 {
                     Instantiate(HousedObject.FleeVfx, transform);
                 }
-                
+
                 TEMP_SetState(TileState.Empty);
                 return;
             }
@@ -510,13 +542,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     revealOriginY = randomAdjacentToReveal.Item2;
                 }
             }
-            
+
             if (HousedObject.RevealRadius > 0)
             {
                 ServiceLocator.Instance.Grid.TEMP_RevealTilesInRadius(
-                    revealOriginX, 
-                    revealOriginY, 
-                    HousedObject.RevealRadius, 
+                    revealOriginX,
+                    revealOriginY,
+                    HousedObject.RevealRadius,
                     HousedObject.RevealVfx
                 );
             }
@@ -524,8 +556,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (HousedObject.RevealOffsets != null && HousedObject.RevealOffsets.Length > 0)
             {
                 ServiceLocator.Instance.Grid.TEMP_RevealTiles(
-                    revealOriginX, 
-                    revealOriginY, 
+                    revealOriginX,
+                    revealOriginY,
                     HousedObject.RevealOffsets,
                     HousedObject.RevealVfx
                 );
@@ -575,7 +607,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
                 }
             }
-            
+
             // Random reward from Rarity
             if (HousedObject.ItemRewardRarities != null)
             {
@@ -591,7 +623,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     }
                 }
             }
-            
+
             // Try to swap tiles
             foreach (var entry in HousedObject.TileUpdateReward)
             {
@@ -842,9 +874,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // TEMP: Change color depending on the state
         // TODO: Seperate these 2 labels and control independently
         Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
-        
-        Power.SetText(HousedObject? State < TileState.Conquered 
-                ? GetAdjustedPower().ToString() 
+
+        Power.SetText(HousedObject ? State < TileState.Conquered
+                ? GetAdjustedPower().ToString()
                 : ServiceLocator.Instance.Player.GetModifiedXp(HousedObject, HousedObject.XPReward).ToString()
             : string.Empty
         );
@@ -861,7 +893,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             return;
         }
-        
+
         // Setting allows left-hold to open context menu
         if (eventData.button == PointerEventData.InputButton.Left && FBPP.GetBool(PlayerOptions.AllowLeftHoldContextMenu, true))
         {
@@ -877,7 +909,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
         }
     }
-    
+
     public void OnPointerUp(PointerEventData eventData)
     {
         if (MobileContextMenuHandle != null)
@@ -901,7 +933,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void SetAnnotation(int power)
     {
         // Mines use a special flag.
-        if(power == 100)
+        if (power == 100)
         {
             Annotation.SetText(string.Empty);
             FlagAnnotation.enabled = !FlagAnnotation.enabled;
@@ -940,7 +972,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         ObscureCounter--;
         TEMP_UpdateVisuals();
     }
-    
+
     // WARN: Only use this if you know what you're doing
     // Currently used for Mass Teleport
     public void TEMP_ClearObscureCounter()
