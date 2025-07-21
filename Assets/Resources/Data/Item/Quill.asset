@@ -15,8 +15,7 @@ MonoBehaviour:
   ItemId: 50
   Name: Quill & Ink
   Description: 'Auto-reveal one Scroll: Heal. Gain +1XP for every Scroll.'
-  Sprite: {fileID: -6413543000352893186, guid: 4844645bbba31344ba71550232dd5849, type: 3}
-  IsUniqueEquipped: 1
+  Sprite: {fileID: 21300000, guid: 6ab5f5579da790f4281cd6b2d85cbb33, type: 3}
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0

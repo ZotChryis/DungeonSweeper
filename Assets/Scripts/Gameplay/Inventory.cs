@@ -61,6 +61,9 @@ namespace Gameplay
             {
                 var itemInstance = Items[i];
                 itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.DungeonLevel);
+                
+                // Reset granted items since they can no longer be revoked
+                itemInstance.KeepGrantedItems();
             }
         }
         
@@ -557,6 +560,11 @@ namespace Gameplay
         public void ReplenishAllCharges()
         {
             CurrentQuantity = MaxQuantity;
+        }
+
+        public void KeepGrantedItems()
+        {
+            GrantedItems.Clear();
         }
     }
 }
