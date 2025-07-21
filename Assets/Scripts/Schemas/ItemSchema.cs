@@ -191,6 +191,8 @@ namespace Schemas
             TreasureMap,
             Stilts,
             Telescope,
+            
+            Quill,
         }
         
         public ItemSchema.Id ItemId;

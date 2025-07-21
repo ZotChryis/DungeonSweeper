@@ -107,6 +107,11 @@ namespace Schemas
             // Item? Get 3 Rares?
             // Item? Get 2 Epics?
             // Item? Get a Legendary?
+            
+            Scribe0,
+            Scribe1,
+            Scribe2,
+            Scribe3,
         }
 
         [Serializable]

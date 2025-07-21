@@ -17,7 +17,8 @@
             Priest,
             Apothecary,
             Gambler,
-            Merchant
+            Merchant,
+            Scribe,
         }
     }
 }

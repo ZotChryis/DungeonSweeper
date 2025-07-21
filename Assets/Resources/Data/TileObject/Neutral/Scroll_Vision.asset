@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Vision Scroll
   UserFacingDescription: Spawn and reveal a vision orb in an undiscovered, empty
     location, if one exists.
-  Tags: 00000000
+  Tags: 000000000c000000
   TileId: 10
   LibraryOverrideTileId: 0
   Sprite: {fileID: -6483029472496290589, guid: 5deeb4ed361f32b40bd57abab7145645, type: 3}
@@ -35,6 +35,7 @@ MonoBehaviour:
   DropReward: {fileID: 0}
   ItemReward: 0
   ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0

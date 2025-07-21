@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Diffuse Scroll
   UserFacingDescription: Used to diffuse all mines on the map.
-  Tags: 00000000
+  Tags: 000000000c000000
   TileId: 13
   LibraryOverrideTileId: 0
   Sprite: {fileID: 1847117391093386565, guid: b777d4e05328f3f418d3c187c5827600, type: 3}

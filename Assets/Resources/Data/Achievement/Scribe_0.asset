@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
-  m_Name: Gambler_0
+  m_Name: Scribe_0
   m_EditorClassIdentifier: 
-  AchievementId: 61
-  Title: Novice Gambler
-  Description: Complete the first dungeon level with the Gambler.
-  Reward: Unlocks the Scribe
-  RewardClass: 12
+  AchievementId: 73
+  Title: Novice Scribe
+  Description: Complete the first dungeon level with the Scribe.
+  Reward: 
+  RewardClass: -1
   RewardItem: 0
   Trigger: 0
   Level: 0
-  Class: 10
+  Class: 12
   TileData: 
   ItemData: 
   ItemAcquiredMinCount: -1

@@ -136,6 +136,7 @@ namespace Schemas
             Humanoid,
             Lover,
             Chest,
+            Scroll,
         }
     
         [Serializable]

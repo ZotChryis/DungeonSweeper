@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Slime Scroll
   UserFacingDescription: Used to reveal all slimes on the map.
-  Tags: 00000000
+  Tags: 000000000c000000
   TileId: 12
   LibraryOverrideTileId: 0
   Sprite: {fileID: 7439249940812558630, guid: c2c5e879344c260409eef9ccf7ca306b, type: 3}
@@ -34,6 +34,7 @@ MonoBehaviour:
   DropReward: {fileID: 0}
   ItemReward: 0
   ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0

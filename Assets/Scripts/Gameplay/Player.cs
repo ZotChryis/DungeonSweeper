@@ -298,12 +298,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public void TEMP_UpdateXP(TileSchema source, int amount)
     {
         // Just in case, we shouldn't process any 0 or less (for now)
+        amount = GetModifiedXp(source, amount);
         if (amount <= 0)
         {
             return;
         }
         
-        amount = GetModifiedXp(source, amount);
         CurrentXP += amount;
         TEMP_UpdateVisuals();
         
