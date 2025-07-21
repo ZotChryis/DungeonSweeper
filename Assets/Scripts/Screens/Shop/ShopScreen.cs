@@ -78,7 +78,7 @@ namespace Screens.Shop
             
             // Remove any items that they already have max copies of
             allItems.RemoveAll(schema =>
-                ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
+                schema.Max != -1 && ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
             );
             
             // Remove any item that is locked

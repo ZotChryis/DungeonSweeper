@@ -199,7 +199,6 @@ namespace Schemas
         public string Name;
         public string Description;
         public Sprite Sprite;
-        public bool IsUniqueEquipped;
         
         /// <summary>
         /// The amount of this item you can have in the inventory.
