@@ -1,5 +1,4 @@
 ﻿using Gameplay;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +8,7 @@ namespace Screens.Inventory
     {
         [SerializeField] private Image Icon;
         [SerializeField] private Button Button;
+        [SerializeField] private GameObject Sale;
         
         private InventoryScreen Screen;
         private ItemInstance ItemInstance;
@@ -29,6 +29,24 @@ namespace Screens.Inventory
             ItemInstance = itemInstance;
 
             Icon.sprite = itemInstance.Schema.Sprite;
+            SetSaleStatus(itemInstance.IsOnSale);
+
+            itemInstance.IsOnSaleChanged += SetSaleStatus;
+        }
+
+        public ItemInstance GetItemInstance()
+        {
+            return ItemInstance;
+        }
+        
+        private void OnDestroy()
+        {
+            ItemInstance.IsOnSaleChanged -= SetSaleStatus;
+        }
+
+        public void SetSaleStatus(bool isOnSale)
+        {
+            Sale.SetActive(isOnSale);
         }
     }
 }

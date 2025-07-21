@@ -193,6 +193,7 @@ namespace Schemas
             Telescope,
             
             Quill,
+            CreditCard,
         }
         
         public ItemSchema.Id ItemId;

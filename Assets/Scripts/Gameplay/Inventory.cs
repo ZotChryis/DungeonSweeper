@@ -229,7 +229,23 @@ namespace Gameplay
         public ItemSchema Schema;
         public int MaxQuantity;
         public int CurrentQuantity;
-        
+
+        public Action<bool> IsOnSaleChanged;
+
+        public bool IsOnSale
+        {
+            set
+            {
+                _IsOnSale = value;
+                IsOnSaleChanged?.Invoke(_IsOnSale);
+            }
+            get
+            {
+                return _IsOnSale;
+            }
+        }
+
+        private bool _IsOnSale = false;
         private List<ItemInstance> GrantedItems = new List<ItemInstance>();
 
         public ItemInstance (ItemSchema schema)

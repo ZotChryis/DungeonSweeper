@@ -102,7 +102,19 @@ namespace Screens.Shop
                 }
             }
             
-            // TODO: choose 2 items to  be on sale each shop
+            // Offer sales if the user has the credit card
+            if (ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.CreditCard))
+            {
+                // Two items will be on sale
+                var items = new List<ItemInstance>();
+                items.AddRange(Inventory.GetAllItems());
+                items.Shuffle();
+                for (int i = 0; i < items.Count; i++)
+                {
+                    var saleItem = items[i];
+                    saleItem.IsOnSale = i < 3;
+                }
+            }
         }
 
         public void RemoveItem(ItemInstance item)

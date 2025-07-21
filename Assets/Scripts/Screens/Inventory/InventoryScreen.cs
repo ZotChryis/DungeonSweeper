@@ -92,7 +92,14 @@ public class InventoryScreen : BaseScreen
             ClearFocusedItem();
         }
 
-        RefreshItems();
+        for (var i = 0; i < Items.Count; i++)
+        {
+            if (Items[i].GetItemInstance() == itemInstance)
+            {
+                Destroy(Items[i].gameObject);
+                return;
+            }
+        }
     }
 
     public void FocusItem(ItemInstance itemInstance)

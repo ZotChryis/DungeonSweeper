@@ -1,6 +1,8 @@
-﻿using Gameplay;
+﻿using System.Drawing;
+using Gameplay;
 using Screens.Inventory;
 using TMPro;
+using Color = UnityEngine.Color;
 
 namespace Screens.Shop
 {
@@ -18,7 +20,7 @@ namespace Screens.Shop
             }
 
             // Deduct cost
-            player.ShopXp -= ItemInstance.Schema.Price;
+            player.ShopXp -= GetPrice();
             
             // Add it to the player's inventory
             player.Inventory.AddItem(ItemInstance.Schema.ItemId);
@@ -32,12 +34,20 @@ namespace Screens.Shop
             Button.interactable = false;
         }
 
+        private int GetPrice()
+        {
+            return ItemInstance.IsOnSale ? ItemInstance.Schema.Price / 2 : ItemInstance.Schema.Price;
+        }
+        
         public override void SetItem(ItemInstance itemInstance)
         {
             base.SetItem(itemInstance);
 
-            Button.GetComponentInChildren<TMP_Text>().SetText($"Buy ${itemInstance.Schema.Price}");
+            var buttonText = Button.GetComponentInChildren<TMP_Text>();
+            buttonText.SetText($"Buy ${GetPrice()}");
             Button.interactable = ServiceLocator.Instance.Player.ShopXp >= ItemInstance.Schema.Price;
+
+            buttonText.color = itemInstance.IsOnSale ? Color.green : Color.white;
         }
     }
 }
