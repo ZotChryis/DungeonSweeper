@@ -209,6 +209,7 @@ namespace Schemas
         // TODO: Refactor all this shit honestly
         public bool RevealRandLocationNextToMine;
         public Vector2Int[] RevealOffsets;
+        public int RevealOffsetCount = -1; // If -1, all will be used, otherwise randomly for count
         public int RevealRadius;
         public Vector2Int[] ObscureOffsets;
         public int ObscureRadius;

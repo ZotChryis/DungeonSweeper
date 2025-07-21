@@ -201,6 +201,12 @@ namespace Schemas
         public Sprite Sprite;
         public bool IsUniqueEquipped;
         
+        /// <summary>
+        /// The amount of this item you can have in the inventory.
+        /// -1 is infinite.
+        /// </summary>
+        public int Max = -1;
+        
         // Consumable only
         public bool IsConsumbale;
         public int InitialCharges;

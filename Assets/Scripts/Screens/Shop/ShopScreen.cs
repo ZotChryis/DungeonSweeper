@@ -76,9 +76,9 @@ namespace Screens.Shop
             List<ItemSchema> allItems = new List<ItemSchema>();
             allItems.AddRange(ServiceLocator.Instance.Schemas.ItemSchemas);
             
-            // Remove any items that they already own and are unique equipped
+            // Remove any items that they already have max copies of
             allItems.RemoveAll(schema =>
-                schema.IsUniqueEquipped && ServiceLocator.Instance.Player.Inventory.HasItem(schema.ItemId)
+                ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
             );
             
             // Remove any item that is locked

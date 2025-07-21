@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Bricks give a Copper Coin when fully destroyed.
   Sprite: {fileID: 5807921338739458136, guid: 0ecbb234d614c8e4d8cef4fe5fed6c68, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

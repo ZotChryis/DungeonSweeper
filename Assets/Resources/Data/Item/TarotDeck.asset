@@ -18,6 +18,7 @@ MonoBehaviour:
     of Tarot Cards after each Dungeon.
   Sprite: {fileID: 848434953770885490, guid: ff2ece802321eec4a89fff23a5b79e11, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
@@ -31,3 +32,7 @@ MonoBehaviour:
         Amount: 1
         Id: 4
         Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

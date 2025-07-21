@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Adds a Faerie to the dungeon.
   Sprite: {fileID: -7529398232277058535, guid: 8f864759106a7d44baa73496d38ada29, type: 3}
   IsUniqueEquipped: 0
+  Max: 2
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

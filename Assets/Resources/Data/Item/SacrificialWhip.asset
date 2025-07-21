@@ -18,6 +18,7 @@ MonoBehaviour:
     from enemies.
   Sprite: {fileID: -9221110098587984580, guid: 5659cc45055420b408ddc8421da2dea5, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

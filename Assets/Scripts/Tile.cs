@@ -555,12 +555,35 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             if (HousedObject.RevealOffsets != null && HousedObject.RevealOffsets.Length > 0)
             {
-                ServiceLocator.Instance.Grid.TEMP_RevealTiles(
-                    revealOriginX,
-                    revealOriginY,
-                    HousedObject.RevealOffsets,
-                    HousedObject.RevealVfx
-                );
+                if (HousedObject.RevealOffsetCount == -1)
+                {
+                    ServiceLocator.Instance.Grid.TEMP_RevealTiles(
+                        revealOriginX,
+                        revealOriginY,
+                        HousedObject.RevealOffsets,
+                        HousedObject.RevealVfx
+                    );
+                }
+                else
+                {
+                    List<Vector2Int> offsets = new List<Vector2Int>();
+                    List<Vector2Int> offsetsRemaining = new List<Vector2Int>();
+                    offsetsRemaining.AddRange(HousedObject.RevealOffsets);
+                    for (int i = 0; offsetsRemaining.Count > 0 && i < HousedObject.RevealOffsetCount; i++)
+                    {
+                        var offset = offsetsRemaining.GetRandomItem();
+                        offsetsRemaining.Remove(offset);
+                        offsets.Add(offset);
+                    }
+                    
+                    ServiceLocator.Instance.Grid.TEMP_RevealTiles(
+                        revealOriginX,
+                        revealOriginY,
+                        offsets.ToArray(),
+                        HousedObject.RevealVfx
+                    );
+                }
+                
             }
 
             player.TEMP_UpdateXP(HousedObject, HousedObject.XPReward);

@@ -72,6 +72,14 @@ namespace Gameplay
             return Items.Any(item => item.Schema.ItemId == itemId);
         }
 
+        /// <summary>
+        /// Returns the amount of copies of the item given.
+        /// </summary>
+        public int GetItemCount(ItemSchema.Id itemId)
+        {
+            return Items.FindAll(item => item.Schema.ItemId == itemId).Count();
+        }
+
         public ItemInstance GetFirstItem(ItemSchema.Id itemId)
         {
             return Items.First(item => item.Schema.ItemId == itemId);
@@ -86,14 +94,16 @@ namespace Gameplay
             {
                 return null;
             }
-            if (HasItem(itemId))
+
+            var item = ServiceLocator.Instance.Schemas.ItemSchemas.Find(item => item.ItemId == itemId);
+            if (item == null)
             {
-                // Do not add more than one unique equipped
-                var item = GetFirstItem(itemId);
-                if (item.Schema.IsUniqueEquipped)
-                {
-                    return null;
-                }
+                return null;
+            }
+            
+            if (GetItemCount(itemId) >= item.Max)
+            {
+                return null;
             }
             
             foreach (var itemSchema in ServiceLocator.Instance.Schemas.ItemSchemas)

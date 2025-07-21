@@ -18,6 +18,7 @@ MonoBehaviour:
     +10 XP for killing a Pied Piper.
   Sprite: {fileID: -6878207050336261975, guid: af5513609ddd6a8429fc9c8bd7c5e04e, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

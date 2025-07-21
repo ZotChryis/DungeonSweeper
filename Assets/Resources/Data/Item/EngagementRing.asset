@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Take -3 damage from the Lover (F). Take +3 damage from the Lover (M)
   Sprite: {fileID: 21300000, guid: a336de72282f2dc439a34f9d36768259, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

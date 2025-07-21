@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: 'Auto-reveal one Scroll: Heal. Gain +1XP for every Scroll.'
   Sprite: {fileID: -6413543000352893186, guid: 4844645bbba31344ba71550232dd5849, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

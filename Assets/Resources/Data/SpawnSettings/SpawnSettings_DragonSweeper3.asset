@@ -32,7 +32,7 @@ MonoBehaviour:
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 11400000, guid: db363986bcfbcf84f83eea2239d5176d, type: 2}
-  - Amount: 1
+  - Amount: 0
     Object: {fileID: 11400000, guid: 5debaef2f0b859644a096d9956b01a09, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0

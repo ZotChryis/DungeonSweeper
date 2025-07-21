@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Adds an Egg to the dungeon.
   Sprite: {fileID: 4646649027328027380, guid: 40b5ef490899d93449ac43047c777b2d, type: 3}
   IsUniqueEquipped: 0
+  Max: 3
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

@@ -17,21 +17,12 @@ MonoBehaviour:
   Description: Take -1 less damage from Ranged. Get -1 XP from Ranged.
   Sprite: {fileID: 21300000, guid: fdddd26b33711774083260b34c8adf4c, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 3
   Price: 8
-  PassiveEffects:
-  - Type: 3
-    Amount: -1
-    Id: 0
-    Tags: 03000000
-  - Type: 4
-    Amount: -1
-    Id: 0
-    Tags: 03000000
-  ActiveEffects: []
   Effects:
     _serializedList:
     - Key: 0
@@ -40,7 +31,15 @@ MonoBehaviour:
         Amount: -1
         Id: 0
         Tags: 03000000
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
       - Type: 4
         Amount: -1
         Id: 0
         Tags: 03000000
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

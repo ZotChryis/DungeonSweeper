@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Gain a potion at the start of the dungeon.
   Sprite: {fileID: 619147882475651941, guid: 6f88240f1ff0e314aa9ea2d19f610180, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

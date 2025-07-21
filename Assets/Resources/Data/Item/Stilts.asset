@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Auto-reveal 8 Melee at the start of the dungeon.
   Sprite: {fileID: 21300000, guid: 60c64e0533bfe3046b1169a20ada25ad, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

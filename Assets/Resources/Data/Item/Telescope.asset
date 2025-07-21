@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Auto-reveal 4 Ranged enemies at the start of the dungeon.
   Sprite: {fileID: 21300000, guid: 6bd2ea97a6fbe704bb557170438ed88b, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1

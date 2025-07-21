@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: At the start of the dungeon, upgrade Vision Orbs.
   Sprite: {fileID: 2798290011037525337, guid: 3ae3b002482a33042a858562add45472, type: 3}
   IsUniqueEquipped: 1
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
