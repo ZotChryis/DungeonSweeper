@@ -151,3 +151,18 @@ MonoBehaviour:
   - XPRequiredToLevel: 33
     MaxHealth: 27
     LabelText: 'XP Needed to get to this level: 1117'
+  - XPRequiredToLevel: 34
+    MaxHealth: 28
+    LabelText: 'XP Needed to get to this level: 1151'
+  - XPRequiredToLevel: 34
+    MaxHealth: 28
+    LabelText: 'XP Needed to get to this level: 1185'
+  - XPRequiredToLevel: 34
+    MaxHealth: 29
+    LabelText: 'XP Needed to get to this level: 1219'
+  - XPRequiredToLevel: 34
+    MaxHealth: 29
+    LabelText: 'XP Needed to get to this level: 1253'
+  - XPRequiredToLevel: 35
+    MaxHealth: 30
+    LabelText: 'XP Needed to get to this level: 1288'
