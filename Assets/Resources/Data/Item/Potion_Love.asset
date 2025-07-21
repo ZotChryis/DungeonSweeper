@@ -39,6 +39,6 @@ MonoBehaviour:
         Id: 0
         Tags: 0a000000
         Items: 
-        Decay: 0
+        Decay: 1
         DecayTrigger: 2
         DecayTags: 0a000000

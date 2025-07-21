@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
-  m_Name: NoItems3
+  m_Name: Ascetic2
   m_EditorClassIdentifier: 
-  AchievementId: 68
-  Title: Master Ascetic
-  Description: Complete the fourth dungeon level with 0 items
+  AchievementId: 67
+  Title: Advanced Ascetic
+  Description: Complete the third dungeon level with 0 items
   Reward: 
   RewardClass: -1
   RewardItem: 0
   Trigger: 0
-  Level: 3
+  Level: 2
   Class: -1
   TileData: 
   ItemData: 
