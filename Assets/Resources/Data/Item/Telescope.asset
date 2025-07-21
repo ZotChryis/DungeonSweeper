@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 49
   Name: Telescope
-  Description: Auto-reveal 5 Ranged at the start of the dungeon.
+  Description: Auto-reveal 4 Ranged enemies at the start of the dungeon.
   Sprite: {fileID: 21300000, guid: 6bd2ea97a6fbe704bb557170438ed88b, type: 3}
   IsUniqueEquipped: 1
   IsConsumbale: 0
@@ -27,7 +27,7 @@ MonoBehaviour:
     - Key: 0
       Value:
       - Type: 2
-        Amount: 5
+        Amount: 4
         Id: 0
         Tags: 03000000
         Items: 
