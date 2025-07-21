@@ -101,7 +101,7 @@ namespace Gameplay
                 return null;
             }
             
-            if (GetItemCount(itemId) >= item.Max)
+            if (item.Max != -1 && GetItemCount(itemId) >= item.Max)
             {
                 return null;
             }
