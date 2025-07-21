@@ -56,6 +56,19 @@ namespace Gameplay
 
             return items;
         }
+
+        public int GetFinishedAchievementCount()
+        {
+
+            var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
+                .FindAll(schema =>
+                {
+                    string key = "Achievement" + schema.AchievementId;
+                    return FBPP.GetBool(key);
+                });
+            
+            return achievements.Count;
+        }
         
         public void CheckAchievements(AchievementSchema.TriggerType trigger)
         {

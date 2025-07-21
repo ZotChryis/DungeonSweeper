@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Schemas;
+using TMPro;
 using UnityEngine;
 
 namespace Screens.Achievements
@@ -8,6 +9,7 @@ namespace Screens.Achievements
     public class AchievementScreen : BaseScreen
     {
         [SerializeField] private AchievementItem AchievementPrefab;
+        [SerializeField] private TMP_Text Title;
         [SerializeField] private Transform ContentRoot;
 
         private List<AchievementItem> Items;
@@ -44,6 +46,10 @@ namespace Screens.Achievements
                 item.SetSchema(schema);
                 Items.Add(item);
             }
+            
+            int completed = ServiceLocator.Instance.AchievementSystem.GetFinishedAchievementCount();
+            string text = $"ACHIEVEMENTS ({completed}/{Items.Count})";
+            Title.SetText(text);
         }
 
         private void OnAchievementCompleted(AchievementSchema obj)

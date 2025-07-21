@@ -13025,6 +13025,7 @@ MonoBehaviour:
   CloseButton: {fileID: 5623050355387788902}
   EscapeButton: {fileID: 0}
   AchievementPrefab: {fileID: 6843861134416029835, guid: 6f23cc9093132644e912b3f63d4e2df0, type: 3}
+  Title: {fileID: 4594786457274617324}
   ContentRoot: {fileID: 2915037812715018604}
 --- !u!114 &953797721623858213
 MonoBehaviour:
