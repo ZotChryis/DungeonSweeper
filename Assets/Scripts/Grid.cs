@@ -359,7 +359,7 @@ public class Grid : MonoBehaviour
     }
     
     // TODO: Refactor Tag vs Id
-    public void RevealRandomOfTag(TileSchema.Tag tileTag)
+    public void RevealRandomOfTag(TileSchema.Tag tileTag, GameObject revealVfx = null)
     {
         int yStarting = Random.Range(0, SpawnSettings.Height);
         int xStarting = Random.Range(0, SpawnSettings.Width);
@@ -371,7 +371,7 @@ public class Grid : MonoBehaviour
                     Tiles[x, y].GetHousedObject().Tags.Contains(tileTag) &&
                     Tiles[x, y].State == Tile.TileState.Hidden)
                 {
-                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    Tiles[x, y].TEMP_RevealWithoutLogic(revealVfx);
                     return;
                 }
             }
@@ -385,7 +385,7 @@ public class Grid : MonoBehaviour
                     Tiles[x, y].GetHousedObject().Tags.Contains(tileTag) &&
                     Tiles[x, y].State == Tile.TileState.Hidden)
                 {
-                    Tiles[x, y].TEMP_RevealWithoutLogic();
+                    Tiles[x, y].TEMP_RevealWithoutLogic(revealVfx);
                     return;
                 }
             }

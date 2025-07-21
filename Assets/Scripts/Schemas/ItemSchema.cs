@@ -188,6 +188,9 @@ namespace Schemas
             BusinessCard,
             
             PotionLove,
+            TreasureMap,
+            Stilts,
+            Telescope,
         }
         
         public ItemSchema.Id ItemId;

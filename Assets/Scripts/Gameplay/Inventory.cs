@@ -300,7 +300,18 @@ namespace Gameplay
                     case EffectType.AutoReveal:
                         for (int i = 0; i < effect.Amount; i++)
                         {
-                            player.AddMonsterToAutoRevealedList(effect.Id);
+                            if (effect.Id != TileSchema.Id.None)
+                            {
+                                player.AddMonsterToAutoRevealedList(effect.Id);
+                            }
+
+                            if (effect.Tags.Count > 0)
+                            {
+                                foreach (var effectTag in effect.Tags)
+                                {
+                                    player.AddMonsterToAutoRevealedByTagList(effectTag);
+                                }
+                            }
                         }
                         break;
                     
@@ -461,7 +472,18 @@ namespace Gameplay
                     case EffectType.AutoReveal:
                         for (int i = 0; i < effect.Amount; i++)
                         {
-                            player.RemoveMonsterFromAutoRevealedList(effect.Id);
+                            if (effect.Id != TileSchema.Id.None)
+                            {
+                                player.RemoveMonsterFromAutoRevealedList(effect.Id);
+                            }
+
+                            if (effect.Tags.Count > 0)
+                            {
+                                foreach (var effectTag in effect.Tags)
+                                {
+                                    player.RemoveMonsterToAutoRevealedByTagList(effectTag);
+                                }
+                            }
                         }
                         break;
                     

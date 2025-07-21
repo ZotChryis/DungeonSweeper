@@ -135,6 +135,7 @@ namespace Schemas
             Elemental,
             Humanoid,
             Lover,
+            Chest,
         }
     
         [Serializable]

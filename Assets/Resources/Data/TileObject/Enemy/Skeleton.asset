@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Skeleton
   m_EditorClassIdentifier: 
   UserFacingName: Skeleton
-  UserFacingDescription: No brain, no heart, no courage...just bones.
-  Tags: 010000000200000006000000
+  UserFacingDescription: 'No brain, no heart, no courage...just bones. '
+  Tags: 010000000300000006000000
   TileId: 17
   LibraryOverrideTileId: 0
-  Sprite: {fileID: 4354231566380549168, guid: 4c957838ba18aae499c63d20314fae83, type: 3}
+  Sprite: {fileID: 21300000, guid: 15eb861bb22cc1c478f582e125372658, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -25,6 +25,7 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 3
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -33,14 +34,17 @@ MonoBehaviour:
   DropReward: {fileID: 0}
   ItemReward: 0
   ItemRewardRarities: 
+  TileUpdateReward: []
   RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
   RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -51,5 +55,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

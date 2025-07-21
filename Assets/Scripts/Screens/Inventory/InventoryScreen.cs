@@ -3,6 +3,7 @@ using System.Linq;
 using Gameplay;
 using Screens.Inventory;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryScreen : BaseScreen
 {
@@ -74,6 +75,9 @@ public class InventoryScreen : BaseScreen
         bool hasAtLeastOnePassive = Inventory.GetAllItems().Any(i => !i.Schema.IsConsumbale);
         ConsumableLabel.SetActive(hasAtLeastOneConsumable);
         PassiveLabel.SetActive(hasAtLeastOnePassive);
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
     }
 
     protected void OnItemChargeChanged(ItemInstance itemInstance)

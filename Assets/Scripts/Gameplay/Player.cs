@@ -19,7 +19,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private GameObject DefaultVisionVfx;
     
     [HideInInspector]
-    public List<TileSchema.Id> RevealedMonsters = new();
+    public List<TileSchema.Id> AutoRevealedMonsters = new();
+    
+    [HideInInspector]
+    public List<TileSchema.Tag> AutoRevealedMonstersByTag = new();
 
     [Tooltip("Player ability, bonus spawn count. Key is spawned creation id.")]
     public Dictionary<TileSchema.Id, int> BonusSpawn = new();
@@ -146,9 +149,13 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private void OnGridGenerated()
     {
         // Do the reveal abilities
-        foreach (var monsterId in RevealedMonsters)
+        foreach (var monsterId in AutoRevealedMonsters)
         {
             ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId, DefaultVisionVfx);
+        }
+        foreach (var monsterTag in AutoRevealedMonstersByTag)
+        {
+            ServiceLocator.Instance.Grid.RevealRandomOfTag(monsterTag, DefaultVisionVfx);
         }
         
         // Clear any state for each dungeon run
@@ -450,12 +457,22 @@ public class Player : MonoBehaviour, IPointerClickHandler
     #region PlayerPowers
     public void AddMonsterToAutoRevealedList(TileSchema.Id monsterId)
     {
-        RevealedMonsters.Add(monsterId);
+        AutoRevealedMonsters.Add(monsterId);
     }
     
     public void RemoveMonsterFromAutoRevealedList(TileSchema.Id monsterId)
     {
-        RevealedMonsters.Remove(monsterId);
+        AutoRevealedMonsters.Remove(monsterId);
+    }
+    
+    public void AddMonsterToAutoRevealedByTagList(TileSchema.Tag tag)
+    {
+        AutoRevealedMonstersByTag.Add(tag);
+    }
+    
+    public void RemoveMonsterToAutoRevealedByTagList(TileSchema.Tag tag)
+    {
+        AutoRevealedMonstersByTag.Remove(tag);
     }
     
     public void AddSpawnCount(TileSchema.Id id, int amount)
