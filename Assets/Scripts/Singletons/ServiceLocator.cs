@@ -38,6 +38,9 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public ToastManager ToastManager;
+    
+    [HideInInspector]
+    public TutorialManager TutorialManager;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class
@@ -118,10 +121,20 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     {
         ToastManager = toastManager;
     }
+    
+    public void Register(TutorialManager tutorialManager)
+    {
+        TutorialManager = tutorialManager;
+    }
 
     public void DeleteSaveFile()
     {
         FBPP.DeleteAll();
         CheatManager.Restart();
+    }
+
+    public void ResetTutorial()
+    {
+        TutorialManager.ClearTutorials();
     }
 }

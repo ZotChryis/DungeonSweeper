@@ -1,5 +1,4 @@
 using Gameplay;
-using System;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +11,7 @@ namespace Screens
         [SerializeField] private Slider MusicVolume;
         [SerializeField] private Slider SFXVolume;
         [SerializeField] private DSButton Reset;
+        [SerializeField] private DSButton ResetTutorial;
         [SerializeField] private Toggle SafeMinesToggle;
         [SerializeField] private Toggle AllowLeftHoldContextMenu;
         [SerializeField] private Toggle CanPickUpItems;
@@ -30,6 +30,7 @@ namespace Screens
             LoadInitialVolumes();
 
             Reset.OnConfirmed += OnResetConfirmed;
+            ResetTutorial.OnConfirmed += OnResetTutorialConfirmed;
         }
 
         private void OnCanPickUpItemsChanged(bool value)
@@ -40,6 +41,11 @@ namespace Screens
         private void OnResetConfirmed()
         {
             ServiceLocator.Instance.DeleteSaveFile();
+        }
+        
+        private void OnResetTutorialConfirmed()
+        {
+            ServiceLocator.Instance.ResetTutorial();
         }
 
         private void LoadInitialVolumes()

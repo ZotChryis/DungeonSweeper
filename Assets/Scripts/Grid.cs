@@ -2,9 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using Schemas;
-using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -50,13 +48,7 @@ public class Grid : MonoBehaviour
     {
         ServiceLocator.Instance.Register(this);
     }
-
-    private void Start()
-    {
-        // Start the game level 1
-        GenerateGrid();
-    }
-
+    
     private void ResetGrid()
     {
         MinesDiffused = false;
@@ -227,6 +219,22 @@ public class Grid : MonoBehaviour
     public Transform GetTileTransform(int x, int y)
     {
         return !InGridBounds(x, y) ? null : Tiles[x, y].transform;
+    }
+
+    public Transform GetTileTransform(TileSchema.Id tileId)
+    {
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (!Tiles[x, y].TEMP_IsEmpty() && Tiles[x, y].GetHousedObject().TileId == tileId)
+                {
+                    return Tiles[x,  y].transform;
+                }
+            }
+        }
+
+        return null;
     }
     
     /// <summary>

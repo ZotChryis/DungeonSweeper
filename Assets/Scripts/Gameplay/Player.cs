@@ -359,7 +359,13 @@ public class Player : MonoBehaviour, IPointerClickHandler
             XPGems[i].SetLabelText((i + 1).ToString());
         }
 
-        LevelUpRoot.SetActive(CurrentXP >= xpRequiredToLevel);
+        bool canLevel = CurrentXP >= xpRequiredToLevel;
+        LevelUpRoot.SetActive(canLevel);
+
+        if (canLevel)
+        {
+            ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.XP);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
