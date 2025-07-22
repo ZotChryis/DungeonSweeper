@@ -444,7 +444,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         RevertAllDecayingEffects();
         ItemsAddedThisDungeon.Clear();
         
-        Level = 1;
+        Level = 0;
         CurrentXP = 0;
         HasRegeneratedThisRound = false;
         

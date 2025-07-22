@@ -21,22 +21,20 @@ public class LevelProgressionSchema : Schema
 
     /// <summary>
     /// Helper function to get the XP Requirement to level for the given level.
-    /// We assume players start at level 1.
     /// </summary>
     public int GetXPRequiredForLevel(int level)
     {
-        int adjustedIndex = level - 1;
-        if (adjustedIndex < 0)
+        if (level < 0)
         {
             return 0;
         }
 
-        if (adjustedIndex >= LevelProgressionEntries.Length)
+        if (level >= LevelProgressionEntries.Length)
         {
             return LevelProgressionEntries[^1].XPRequiredToLevel;
         }
         
-        return LevelProgressionEntries[adjustedIndex].XPRequiredToLevel;
+        return LevelProgressionEntries[level].XPRequiredToLevel;
     }
     
     /// <summary>
@@ -45,18 +43,17 @@ public class LevelProgressionSchema : Schema
     /// </summary>
     public int GetMaxHealthForLevel(int level)
     {
-        int adjustedIndex = level - 1;
-        if (adjustedIndex < 0)
+        if (level < 0)
         {
             return 0;
         }
 
-        if (adjustedIndex >= LevelProgressionEntries.Length)
+        if (level >= LevelProgressionEntries.Length)
         {
             return LevelProgressionEntries[^1].MaxHealth;
         }
         
-        return LevelProgressionEntries[adjustedIndex].MaxHealth;
+        return LevelProgressionEntries[level].MaxHealth;
     }
 
     private void OnValidate()

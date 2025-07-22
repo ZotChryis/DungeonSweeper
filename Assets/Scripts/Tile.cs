@@ -99,10 +99,16 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         ServiceLocator.Instance.Grid.OnTileStateChanged += OnAnyTileStateChanged;
         ServiceLocator.Instance.Grid.OnGridGenerated += TEMP_UpdateVisuals;
         ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged += OnItemChargeChanged;
+        ServiceLocator.Instance.Player.OnConquer += OnPlayerConquered;
 
         TileButton.onClick.AddListener(OnTileClicked);
         ResetLook();
 
+        TEMP_UpdateVisuals();
+    }
+
+    private void OnPlayerConquered(TileSchema obj)
+    {
         TEMP_UpdateVisuals();
     }
 
@@ -111,6 +117,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         ServiceLocator.Instance.Grid.OnTileStateChanged -= OnAnyTileStateChanged;
         ServiceLocator.Instance.Grid.OnGridGenerated -= TEMP_UpdateVisuals;
         ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged -= OnItemChargeChanged;
+        ServiceLocator.Instance.Player.OnConquer -= OnPlayerConquered;
     }
 
     private void OnItemChargeChanged(ItemInstance obj)
@@ -629,6 +636,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
                 }
+                
+                ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
             }
 
             // Random reward from Rarity
@@ -644,6 +653,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
                     }
+                    
+                    ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
                 }
             }
 

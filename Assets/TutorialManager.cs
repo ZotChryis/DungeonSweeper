@@ -9,11 +9,13 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     public enum TutorialId
     {
         Welcome,        // Shown when first playing a map
-        Dragon,         // Shown after dismissing Welcome
-        VisionOrb,      // Shown after dismissing Dragon
-        EnemyPower,     // Shown after revealing first enemy
-        NeighborPower,  // Shown after revealing first empty tile
+        Dragon,         // Shown after leveling up third time in a run
+        VisionOrb,      // Shown after dismissing Welcome
+        EnemyPower,     // Shown after using the Vision Orb
+        NeighborPower,  // Shown after leveling up first time in a run
         XP,             // Shown after getting enough XP to level
+        Library,        // Shown after leveling up second time in a run
+        Item,           // Shown after getting first item from chest
     }
     
     
@@ -29,10 +31,28 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
 
         ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGenerated;
         ServiceLocator.Instance.Grid.OnTileStateChanged += OnAnyTileStateChanged;
+        ServiceLocator.Instance.Player.OnLevelChanged += OnPlayerLevelChanged;
         
         foreach (var (tutorialId, tutorial) in Tutorials)
         {
             tutorial.OnCompleted += OnTutorialCompleted;
+        }
+    }
+
+    private void OnPlayerLevelChanged(int newLevel)
+    {
+        switch (newLevel)
+        {
+            case 1:
+                TryShowTutorial(TutorialId.NeighborPower);
+                break;
+            case 2:
+                TryShowTutorial(TutorialId.Library);
+                break;
+            case 3:
+                var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon0);
+                TryShowTutorial(TutorialId.Dragon, (RectTransform)dragon);
+                break;
         }
     }
 
@@ -56,21 +76,8 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     {
         if (tutorialId == TutorialId.Welcome)
         {
-            var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon0);
-            TryShowTutorial(TutorialId.Dragon, (RectTransform)dragon);
-            return;
-        }
-
-        if (tutorialId == TutorialId.Dragon)
-        {
             var visionOrb = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.VisionOrb);
             TryShowTutorial(TutorialId.VisionOrb, (RectTransform)visionOrb);
-            return;
-        }
-        
-        if (tutorialId == TutorialId.EnemyPower)
-        {
-            TryShowTutorial(TutorialId.NeighborPower);
             return;
         }
     }
