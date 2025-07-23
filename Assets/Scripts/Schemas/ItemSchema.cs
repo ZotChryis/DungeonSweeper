@@ -194,6 +194,7 @@ namespace Schemas
             
             Quill,
             CreditCard,
+            BaitVisionOrb,
         }
         
         public ItemSchema.Id ItemId;

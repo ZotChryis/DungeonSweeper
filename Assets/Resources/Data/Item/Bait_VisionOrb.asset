@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
+  m_Name: Bait_VisionOrb
+  m_EditorClassIdentifier: 
+  ItemId: 52
+  Name: Crystal Ball
+  Description: Adds a Vision Orb to the dungeon.
+  Sprite: {fileID: 21300000, guid: fc86f9d8ed9d75749b44c99fe6fb8860, type: 3}
+  Max: 2
+  IsConsumbale: 0
+  InitialCharges: 0
+  ShopInventory: 1
+  Rarity: 3
+  Price: 8
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 5
+        Amount: 1
+        Id: 5
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
