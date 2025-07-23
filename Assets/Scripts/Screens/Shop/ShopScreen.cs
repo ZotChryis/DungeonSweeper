@@ -28,6 +28,7 @@ namespace Screens.Shop
             base.OnShow();
             
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel);
+            ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Shop);
         }
 
         private void OnShopXpChanged()

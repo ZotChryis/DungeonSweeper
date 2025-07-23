@@ -16,6 +16,9 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         XP,             // Shown after getting enough XP to level
         Library,        // Shown after leveling up second time in a run
         Item,           // Shown after getting first item from chest
+        EndGame,        // Shown on Level Index == 4
+        Shop,           // Shown on first shop
+        SecondLevel,    // Shown on second level
     }
     
     
@@ -70,6 +73,16 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     {
         CanShowTutorials = true;
         TryShowTutorial(TutorialId.Welcome);
+
+        if (ServiceLocator.Instance.LevelManager.CurrentLevel == 1)
+        {
+            var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon1);
+            TryShowTutorial(TutorialId.SecondLevel, (RectTransform)dragon);
+        }
+        else if (ServiceLocator.Instance.LevelManager.CurrentLevel == 4)
+        {
+            TryShowTutorial(TutorialId.EndGame);
+        }
     }
 
     private void OnTutorialCompleted(TutorialId tutorialId)

@@ -43,10 +43,14 @@ public class Grid : MonoBehaviour
     public Action OnGridRequestedVisualUpdate;
     public Action OnGridGenerated;
     public bool MinesDiffused = false;
-
+    
+    private Vector3 LastMousePosition;
+    private RectTransform Rect;
+    
     private void Awake()
     {
         ServiceLocator.Instance.Register(this);
+        Rect = GetComponent<RectTransform>();
     }
     
     private void ResetGrid()
@@ -817,5 +821,15 @@ public class Grid : MonoBehaviour
         {
             Tiles[row, i].TEMP_RevealWithoutLogic();
         }
+    }
+
+    public RectTransform GetBottomLeft()
+    {
+        return Tiles[0, 0].transform as RectTransform;
+    }
+
+    public RectTransform GetTopRight()
+    {
+        return Tiles[SpawnSettings.Width - 1, SpawnSettings.Height - 1].transform as RectTransform;
     }
 }

@@ -28,7 +28,7 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
     [SerializedDictionary("Screen Type", "Screen")]
     public SerializedDictionary<ScreenType, BaseScreen> Screens;
 
-    //private BaseScreen ActiveScreen;
+    public Action<ScreenType> OnScrenShown;
     
     private Stack<BaseScreen> ScreenStack;
 
@@ -74,6 +74,7 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         ScreenStack.Push(Screen);
         Screen.Show();
         Screen.transform.SetAsLastSibling();
+        OnScrenShown?.Invoke(screenType);
     }
 
     public void RequestToggleScreen(ScreenType screenType)

@@ -10,7 +10,7 @@ public class LevelManager : MonoBehaviour
     public SpawnSettings[] Levels;
     
     /// <summary>
-    /// Levels are 0, 1, 2, and 3.
+    /// Levels are 0, 1, 2, 3, and 4.
     /// </summary>
     public int CurrentLevel
     {

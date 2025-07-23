@@ -100,6 +100,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         ServiceLocator.Instance.Grid.OnGridGenerated += TEMP_UpdateVisuals;
         ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged += OnItemChargeChanged;
         ServiceLocator.Instance.Player.OnConquer += OnPlayerConquered;
+        ServiceLocator.Instance.GridDragger.OnValidDrag += CancelMobileContextMenu;
 
         TileButton.onClick.AddListener(OnTileClicked);
         ResetLook();
@@ -118,6 +119,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         ServiceLocator.Instance.Grid.OnGridGenerated -= TEMP_UpdateVisuals;
         ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged -= OnItemChargeChanged;
         ServiceLocator.Instance.Player.OnConquer -= OnPlayerConquered;
+        ServiceLocator.Instance.GridDragger.OnValidDrag -= CancelMobileContextMenu;
     }
 
     private void OnItemChargeChanged(ItemInstance obj)
@@ -946,6 +948,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        CancelMobileContextMenu();
+    }
+
+    private void CancelMobileContextMenu()
+    {
         if (MobileContextMenuHandle != null)
         {
             StopCoroutine(MobileContextMenuHandle);
@@ -956,6 +963,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private IEnumerator HandleMobileContextMenu()
     {
         yield return new WaitForSeconds(0.5f);
+        
         ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
         ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
     }

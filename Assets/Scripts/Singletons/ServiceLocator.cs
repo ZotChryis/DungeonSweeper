@@ -41,6 +41,9 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public TutorialManager TutorialManager;
+    
+    [HideInInspector]
+    public GridDragger GridDragger;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class
@@ -125,6 +128,11 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public void Register(TutorialManager tutorialManager)
     {
         TutorialManager = tutorialManager;
+    }
+    
+    public void Register(GridDragger gridDragger)
+    {
+        GridDragger = gridDragger;
     }
 
     public void DeleteSaveFile()

@@ -111,6 +111,7 @@ namespace Schemas
             Dragon1,
             Dragon2,
             Dragon3,
+            Dragon4,
         }
         
         // !!WARNING!! DO NOT REORDER
