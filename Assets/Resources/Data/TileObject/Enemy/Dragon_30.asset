@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Dragon
   UserFacingDescription: The menace of this realm. Defeat it to advance.
-  Tags: 01000000
+  Tags: 010000000d000000
   TileId: 61
   LibraryOverrideTileId: 0
   Sprite: {fileID: 1372335161102834277, guid: b2ca6bc5e9a932d46ac4b2f37541b7e9, type: 3}
@@ -35,7 +35,6 @@ MonoBehaviour:
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
-  RevealRandLocationNextToMine: 0
   RevealOffsets: []
   RevealOffsetCount: -1
   RevealRadius: 0

@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class GridDragger : SingletonMonoBehaviour<GridDragger>, IDragHandler
 {
-    [SerializeField] private float MininmumDistance = 3f;
     [SerializeField] private Canvas Canvas;
     [SerializeField] private GraphicRaycaster Raycaster;
 
@@ -98,9 +96,11 @@ public class GridDragger : SingletonMonoBehaviour<GridDragger>, IDragHandler
             GridRect.anchoredPosition -= amount;
             return;
         }
-        
     }
 
+    // TODO: I was trying to allow dragging over the Tile buttons but it needed for us to pass
+    // a lot of events through the raycaster, and also to do logical disabling of the context menu...
+    // I deemed it too much hassle but left the shitty code i wrote for it
     /*
     private void ForwardEvent<T>(PointerEventData eventData, ExecuteEvents.EventFunction<T> handler)
         where T : IEventSystemHandler

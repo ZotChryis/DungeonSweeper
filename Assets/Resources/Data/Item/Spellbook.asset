@@ -10,27 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: EngagementRing
+  m_Name: Spellbook
   m_EditorClassIdentifier: 
-  ItemId: 35
-  Name: Engagement Ring
-  Description: Take -3 damage from the Lover (F).
-  Sprite: {fileID: 21300000, guid: a336de72282f2dc439a34f9d36768259, type: 3}
+  ItemId: 53
+  Name: Spellbook
+  Description: Gain a random spell at the start of a dungeon.
+  Sprite: {fileID: 21300000, guid: b7fe2355dba69ba419a02854799f7e25, type: 3}
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 3
-  Price: 6
+  Price: 10
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 2
       Value:
-      - Type: 3
-        Amount: -3
-        Id: 28
+      - Type: 11
+        Amount: 1
+        Id: 0
         Tags: 
-        Items: 
+        Items: 060000001e000000260000003600000037000000
         Decay: 0
         DecayTrigger: 0
         DecayTags: 

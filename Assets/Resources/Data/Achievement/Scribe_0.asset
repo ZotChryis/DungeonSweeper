@@ -15,9 +15,9 @@ MonoBehaviour:
   AchievementId: 73
   Title: Novice Scribe
   Description: Complete the first dungeon level with the Scribe.
-  Reward: 
+  Reward: Unlocks Mass Teleportation (Shop)
   RewardClass: -1
-  RewardItem: 0
+  RewardItem: 30
   Trigger: 0
   Level: 0
   Class: 12

@@ -98,6 +98,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // TODO: this probably needs a better home
         ServiceLocator.Instance.Grid.OnTileStateChanged += OnAnyTileStateChanged;
         ServiceLocator.Instance.Grid.OnGridGenerated += TEMP_UpdateVisuals;
+        ServiceLocator.Instance.Grid.OnGridRequestedVisualUpdate += TEMP_UpdateVisuals;
         ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged += OnItemChargeChanged;
         ServiceLocator.Instance.Player.OnConquer += OnPlayerConquered;
         ServiceLocator.Instance.GridDragger.OnValidDrag += CancelMobileContextMenu;
@@ -117,6 +118,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         ServiceLocator.Instance.Grid.OnTileStateChanged -= OnAnyTileStateChanged;
         ServiceLocator.Instance.Grid.OnGridGenerated -= TEMP_UpdateVisuals;
+        ServiceLocator.Instance.Grid.OnGridRequestedVisualUpdate -= TEMP_UpdateVisuals;
         ServiceLocator.Instance.Player.Inventory.OnItemChargeChanged -= OnItemChargeChanged;
         ServiceLocator.Instance.Player.OnConquer -= OnPlayerConquered;
         ServiceLocator.Instance.GridDragger.OnValidDrag -= CancelMobileContextMenu;
@@ -299,6 +301,24 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (HousedObject && HousedObject.ObscureOffsets != null && HousedObject.ObscureOffsets.Length > 0)
         {
             ServiceLocator.Instance.Grid.Obscure(XCoordinate, YCoordinate, HousedObject.ObscureOffsets);
+        }
+    }
+
+    public void UndoPlacedTileObj()
+    {
+        if (TEMP_IsEmpty())
+        {
+            return;
+        }
+        
+        if (HousedObject && HousedObject.ObscureRadius > 0)
+        {
+            ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
+        }
+
+        if (HousedObject && HousedObject.ObscureOffsets != null && HousedObject.ObscureOffsets.Length > 0)
+        {
+            ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureOffsets);
         }
     }
 
@@ -538,19 +558,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             int revealOriginX = XCoordinate;
             int revealOriginY = YCoordinate;
-            if (HousedObject.RevealRandLocationNextToMine)
-            {
-                (int revealX, int revealY) = ServiceLocator.Instance.Grid.GetPositionOfRandomType(TileSchema.Id.Mine);
-                List<(int, int)> adjacentToReveal = ServiceLocator.Instance.Grid.GetAdjacentValidPositions(revealX, revealY);
-                adjacentToReveal.Remove((revealX, revealY));
-
-                if (adjacentToReveal.Count > 0)
-                {
-                    var randomAdjacentToReveal = adjacentToReveal[UnityEngine.Random.Range(0, adjacentToReveal.Count)];
-                    revealOriginX = randomAdjacentToReveal.Item1;
-                    revealOriginY = randomAdjacentToReveal.Item2;
-                }
-            }
 
             if (HousedObject.RevealRadius > 0)
             {
@@ -611,7 +618,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             if (HousedObject.DiffuseMinesReward)
             {
-                ServiceLocator.Instance.Grid.TEMP_DiffuseMarkedOrRevealedMines();
+                ServiceLocator.Instance.Grid.TEMP_DiffuseMines();
             }
 
             if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
@@ -1012,14 +1019,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public void TEMP_UnObscure()
     {
         ObscureCounter--;
-        TEMP_UpdateVisuals();
-    }
-
-    // WARN: Only use this if you know what you're doing
-    // Currently used for Mass Teleport
-    public void TEMP_ClearObscureCounter()
-    {
-        ObscureCounter = 0;
         TEMP_UpdateVisuals();
     }
 }

@@ -461,6 +461,23 @@ namespace Gameplay
                         GrantedItems.Add(itemGranted);
                         break;
                         
+                    case EffectType.MassPolymorph:
+                        ServiceLocator.Instance.Grid.MassPolymorph(effect.Id);
+                        break;
+                    
+                    case EffectType.InstantConquer:
+                        for (int i = 0; i < effect.Amount; i++)
+                        {
+                            if (effect.Id != TileSchema.Id.None)
+                            {
+                                ServiceLocator.Instance.Grid.ConquerRandomOfType(effect.Id);
+                            }
+                            else if (effect.Tags.Count > 0)
+                            {
+                                ServiceLocator.Instance.Grid.ConquerRandomOfTag(effect.Tags.GetRandomItem());
+                            }
+                        }
+                        break;
                 }
             }
         }
@@ -488,6 +505,8 @@ namespace Gameplay
                     case EffectType.MassTeleport:
                     case EffectType.InstantXP:
                     case EffectType.InstantRevealRandomCol:
+                    case EffectType.MassPolymorph:
+                    case EffectType.InstantConquer:
                         break;
                     
                     case EffectType.BonusHP:

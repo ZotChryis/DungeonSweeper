@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Dragon_17
+  m_Name: Sheep
   m_EditorClassIdentifier: 
-  UserFacingName: Dragon
-  UserFacingDescription: The menace of this realm. Defeat it to advance.
-  Tags: 010000000d000000
-  TileId: 60
+  UserFacingName: Sheep
+  UserFacingDescription: Bahhhh! It's a sheep. Just a defenseless little guy.
+  Tags: 010000000200000005000000
+  TileId: 62
   LibraryOverrideTileId: 0
-  Sprite: {fileID: 1372335161102834277, guid: b2ca6bc5e9a932d46ac4b2f37541b7e9, type: 3}
+  Sprite: {fileID: 21300000, guid: 4bd70d3de1c24b34f946e421af55a95a, type: 3}
   SpriteFacingData:
-    ObjectToLookAtOverride: {fileID: 0}
+    ObjectToLookAtOverride: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
     Above: {fileID: 0}
     Below: {fileID: 0}
     Right: {fileID: 0}
     Left: {fileID: 0}
-    Missing: {fileID: 0}
+    Missing: {fileID: -3268197922570579268, guid: 946e49db2b7a7bf42adc0e483ddf71c1, type: 3}
     BodyGuardedByOrGuardingDead: {fileID: 0}
-  Power: 17
+  Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 17
+  XPReward: 1
   ItemsToReplenish: 
-  DropReward: {fileID: 11400000, guid: 7a0e8034b3baf1b45a5347e153cc158b, type: 2}
+  DropReward: {fileID: 0}
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
@@ -53,7 +53,7 @@ MonoBehaviour:
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
-  ScreenshakeOnConquer: 1
+  ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   RevealVfx: {fileID: 0}
   Data:

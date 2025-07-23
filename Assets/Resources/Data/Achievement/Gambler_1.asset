@@ -15,7 +15,7 @@ MonoBehaviour:
   AchievementId: 62
   Title: Intermediate Gambler
   Description: Complete the second dungeon level with the Gambler
-  Reward: Unlocks the Topaz Amulet
+  Reward: Unlocks the Topaz Amulet (Shop)
   RewardClass: -1
   RewardItem: 43
   Trigger: 0

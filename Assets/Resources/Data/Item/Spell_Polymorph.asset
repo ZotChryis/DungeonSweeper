@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: EngagementRing
+  m_Name: Spell_Polymorph
   m_EditorClassIdentifier: 
-  ItemId: 35
-  Name: Engagement Ring
-  Description: Take -3 damage from the Lover (F).
-  Sprite: {fileID: 21300000, guid: a336de72282f2dc439a34f9d36768259, type: 3}
+  ItemId: 54
+  Name: 'Spell: Polymorph'
+  Description: Use from inventory. Transform all revealed enemies into Sheep.
+  Sprite: {fileID: 21300000, guid: 09ccadb7b21608f4b95a9d7f42f4a14d, type: 3}
   Max: 1
-  IsConsumbale: 0
-  InitialCharges: 0
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
   Rarity: 3
-  Price: 6
+  Price: 8
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 4
       Value:
-      - Type: 3
-        Amount: -3
-        Id: 28
-        Tags: 
+      - Type: 18
+        Amount: 0
+        Id: 62
+        Tags: 01000000
         Items: 
         Decay: 0
         DecayTrigger: 0

@@ -17,8 +17,11 @@ MonoBehaviour:
   Description: Complete the second dungeon level with the Bard.
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 0
   Level: 1
   Class: 5
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1

@@ -329,123 +329,56 @@ public class Grid : MonoBehaviour
         UnoccupiedSpaces.RemoveUnoccupiedSpace(space.Item1, space.Item2);
     }
 
-    public void UpdateRandomTileById(TileSchema.Id From, TileSchema.Id To)
+    public void UpdateRandomTileById(TileSchema.Id from, TileSchema.Id to)
     {
-        var toSchema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(s => s.TileId == To);
+        var toSchema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(s => s.TileId == to);
         if (toSchema == null)
         {
             return;
         }
         
-        int yStarting = Random.Range(0, SpawnSettings.Height);
-        int xStarting = Random.Range(0, SpawnSettings.Width);
-        for (int y = yStarting; y < SpawnSettings.Height; y++)
+        (int, int) coord = GetPositionOfRandomType(from);
+        if (!InGridBounds(coord.Item1, coord.Item2))
         {
-            for (int x = xStarting; x < SpawnSettings.Width; x++)
-            {
-                if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().TileId == From &&
-                    Tiles[x, y].State < Tile.TileState.Conquered)
-                {
-                    Tiles[x, y].PlaceTileObj(toSchema);
-                    OnGridRequestedVisualUpdate?.Invoke();
-                    return;
-                }
-            }
+            return;
         }
-
-        for (int y = 0; y < SpawnSettings.Height; y++)
-        {
-            for (int x = 0; x < SpawnSettings.Width; x++)
-            {
-                if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().TileId == From &&
-                    Tiles[x, y].State < Tile.TileState.Conquered)
-                {
-                    Tiles[x, y].PlaceTileObj(toSchema);
-                    OnGridRequestedVisualUpdate?.Invoke();
-                    return;
-                }
-            }
-        }
+        
+        Tiles[coord.Item1, coord.Item2].PlaceTileObj(toSchema);
+        OnGridRequestedVisualUpdate?.Invoke();
     }
     
     // TODO: Refactor Tag vs Id
-    public void RevealRandomOfTag(TileSchema.Tag tileTag, GameObject revealVfx = null)
+    public void RevealRandomOfTag(TileSchema.Tag tileTag, GameObject vfx = null, Tile.TileState RequiredState = Tile.TileState.Hidden)
     {
-        int yStarting = Random.Range(0, SpawnSettings.Height);
-        int xStarting = Random.Range(0, SpawnSettings.Width);
-        for (int y = yStarting; y < SpawnSettings.Height; y++)
+        (int, int) coord = GetPositionOfRandomTag(tileTag, RequiredState);
+        if (!InGridBounds(coord.Item1, coord.Item2))
         {
-            for (int x = xStarting; x < SpawnSettings.Width; x++)
-            {
-                if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().Tags.Contains(tileTag) &&
-                    Tiles[x, y].State == Tile.TileState.Hidden)
-                {
-                    Tiles[x, y].TEMP_RevealWithoutLogic(revealVfx);
-                    return;
-                }
-            }
+            return;
         }
-
-        for (int y = 0; y < SpawnSettings.Height; y++)
-        {
-            for (int x = 0; x < SpawnSettings.Width; x++)
-            {
-                if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().Tags.Contains(tileTag) &&
-                    Tiles[x, y].State == Tile.TileState.Hidden)
-                {
-                    Tiles[x, y].TEMP_RevealWithoutLogic(revealVfx);
-                    return;
-                }
-            }
-        }
+        
+        Tiles[coord.Item1, coord.Item2].TEMP_RevealWithoutLogic(vfx);
     }
     
     /// <summary>
     /// Reveals a random tile that has the matching monster id.
     /// </summary>
-    public void RevealRandomOfType(TileSchema.Id tileId, GameObject vfx = null)
+    public void RevealRandomOfType(TileSchema.Id tileId, GameObject vfx = null, Tile.TileState RequiredState = Tile.TileState.Hidden)
     {
-        int yStarting = Random.Range(0, SpawnSettings.Height);
-        int xStarting = Random.Range(0, SpawnSettings.Width);
-        for (int y = yStarting; y < SpawnSettings.Height; y++)
+        (int, int) coord = GetPositionOfRandomType(tileId, RequiredState);
+        if (!InGridBounds(coord.Item1, coord.Item2))
         {
-            for (int x = xStarting; x < SpawnSettings.Width; x++)
-            {
-                if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().TileId == tileId &&
-                    Tiles[x, y].State == Tile.TileState.Hidden)
-                {
-                    Tiles[x, y].TEMP_RevealWithoutLogic(vfx);
-                    return;
-                }
-            }
+            return;
         }
-
-        for (int y = 0; y < SpawnSettings.Height; y++)
-        {
-            for (int x = 0; x < SpawnSettings.Width; x++)
-            {
-                if (Tiles[x, y].GetHousedObject() &&
-                    Tiles[x, y].GetHousedObject().TileId == tileId &&
-                    Tiles[x, y].State == Tile.TileState.Hidden)
-                {
-                    Tiles[x, y].TEMP_RevealWithoutLogic(vfx);
-                    return;
-                }
-            }
-        }
+        
+        Tiles[coord.Item1, coord.Item2].TEMP_RevealWithoutLogic(vfx);
     }
 
     /// <summary>
-    /// Get position of a random unrevealed monster type
+    /// Get position of a random monster of type with specified state
     /// </summary>
     /// <param name="tileId">monster id</param>
     /// <returns>x and y int coordinates</returns>
-    public (int, int) GetPositionOfRandomType(TileSchema.Id tileId)
+    public (int, int) GetPositionOfRandomType(TileSchema.Id tileId, Tile.TileState requiredState = Tile.TileState.Hidden)
     {
         int yStarting = Random.Range(0, SpawnSettings.Height);
         int xStarting = Random.Range(0, SpawnSettings.Width);
@@ -455,7 +388,7 @@ public class Grid : MonoBehaviour
             {
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().TileId == tileId &&
-                    Tiles[x, y].State == Tile.TileState.Hidden)
+                    Tiles[x, y].State == requiredState)
                 {
                     return (x, y);
                 }
@@ -468,7 +401,47 @@ public class Grid : MonoBehaviour
             {
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().TileId == tileId &&
-                    Tiles[x, y].State == Tile.TileState.Hidden)
+                    Tiles[x, y].State == requiredState)
+                {
+                    return (x, y);
+                }
+            }
+        }
+        return (-1, -1);
+    }
+    
+    /// <summary>
+    /// Get position of a random monster of tag with specified state
+    /// We EXCLUDE dragons because we dont wanna do anything with that...
+    /// </summary>
+    /// <param name="tileId">monster id</param>
+    /// <returns>x and y int coordinates</returns>
+    public (int, int) GetPositionOfRandomTag(TileSchema.Tag tagId, Tile.TileState requiredState = Tile.TileState.Hidden)
+    {
+        int yStarting = Random.Range(0, SpawnSettings.Height);
+        int xStarting = Random.Range(0, SpawnSettings.Width);
+        for (int y = yStarting; y < SpawnSettings.Height; y++)
+        {
+            for (int x = xStarting; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().Tags.Contains(tagId) &&
+                    !Tiles[x, y].GetHousedObject().Tags.Contains(TileSchema.Tag.Dragon) &&
+                    Tiles[x, y].State == requiredState)
+                {
+                    return (x, y);
+                }
+            }
+        }
+
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (Tiles[x, y].GetHousedObject() &&
+                    Tiles[x, y].GetHousedObject().Tags.Contains(tagId) &&
+                    !Tiles[x, y].GetHousedObject().Tags.Contains(TileSchema.Tag.Dragon) &&
+                    Tiles[x, y].State == requiredState)
                 {
                     return (x, y);
                 }
@@ -568,7 +541,7 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Diffuses all mines by replacing them with Diffused Mines.
     /// </summary>
-    public void TEMP_DiffuseMarkedOrRevealedMines()
+    public void TEMP_DiffuseMines()
     {
         for (int y = 0; y < SpawnSettings.Height; y++)
         {
@@ -579,19 +552,11 @@ public class Grid : MonoBehaviour
                 {
                     continue;
                 }
-
-                // Revealed mines become diffused
-                if (tile.TEMP_IsRevealed())
-                {
-                    tile.PlaceTileObj(DiffusedMine);
-                    tile.TEMP_SetState(Tile.TileState.Revealed);
-                }
-                else
-                {
-                    tile.PlaceTileObj(DiffusedMine);
-                }
+                
+                tile.PlaceTileObj(DiffusedMine);
             }
         }
+        
         MinesDiffused = true;
     }
 
@@ -766,7 +731,6 @@ public class Grid : MonoBehaviour
         {
             for (int x = 0; x < SpawnSettings.Width; x++)
             {
-                Tiles[x, y].TEMP_ClearObscureCounter();
                 if (Tiles[x, y].TEMP_IsEmpty())
                 {
                     continue;
@@ -788,6 +752,7 @@ public class Grid : MonoBehaviour
 
         for (int i = 0; i < spots.Count; i++)
         {
+            Tiles[spots[i].Item1, spots[i].Item2].UndoPlacedTileObj();
             Tiles[spots[i].Item1, spots[i].Item2].PlaceTileObj(tileObjects[i]);
         }
 
@@ -831,5 +796,62 @@ public class Grid : MonoBehaviour
     public RectTransform GetTopRight()
     {
         return Tiles[SpawnSettings.Width - 1, SpawnSettings.Height - 1].transform as RectTransform;
+    }
+    
+    public void MassPolymorph(TileSchema.Id transformTo)
+    {
+        var transformSchema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(i => i.TileId == transformTo);
+        if (transformSchema == null)
+        {
+            Debug.Log("Transform id was not found -- cannot polymorph!");
+            return;
+        }
+        
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                var tile = Tiles[x, y];
+                if (tile.TEMP_IsEmpty())
+                {
+                    continue;
+                }
+
+                if (!tile.GetHousedObject().Tags.Contains(TileSchema.Tag.Enemy))
+                {
+                    continue;
+                }
+
+                if (tile.State != Tile.TileState.Revealed && tile.State != Tile.TileState.RevealThroughCombat)
+                {
+                    continue;
+                }
+
+                Tiles[x, y].UndoPlacedTileObj();
+                Tiles[x, y].PlaceTileObj(transformSchema);
+            }
+        }
+    }
+
+    public void ConquerRandomOfType(TileSchema.Id tileId)
+    {
+        (int, int) coord = GetPositionOfRandomType(tileId);
+        if (!InGridBounds(coord.Item1, coord.Item2))
+        {
+            return;
+        }
+
+        Tiles[coord.Item1, coord.Item2].TEMP_SetState(Tile.TileState.Conquered);
+    }
+
+    public void ConquerRandomOfTag(TileSchema.Tag tileTag)
+    {
+        (int, int) coord = GetPositionOfRandomTag(tileTag);
+        if (!InGridBounds(coord.Item1, coord.Item2))
+        {
+            return;
+        }
+        
+        Tiles[coord.Item1, coord.Item2].TEMP_SetState(Tile.TileState.Conquered);
     }
 }

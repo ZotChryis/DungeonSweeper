@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: EngagementRing
+  m_Name: Spell_RainOfFire
   m_EditorClassIdentifier: 
-  ItemId: 35
-  Name: Engagement Ring
-  Description: Take -3 damage from the Lover (F).
-  Sprite: {fileID: 21300000, guid: a336de72282f2dc439a34f9d36768259, type: 3}
+  ItemId: 55
+  Name: 'Spell: Rain of Fire'
+  Description: Use from inventory. Conquer 3 random enemies.
+  Sprite: {fileID: 21300000, guid: 6c08404a04d617345b16cb7ae54b57b0, type: 3}
   Max: 1
-  IsConsumbale: 0
-  InitialCharges: 0
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
-  Rarity: 3
-  Price: 6
+  Rarity: 4
+  Price: 10
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 4
       Value:
-      - Type: 3
-        Amount: -3
-        Id: 28
-        Tags: 
+      - Type: 19
+        Amount: 3
+        Id: 0
+        Tags: 01000000
         Items: 
         Decay: 0
         DecayTrigger: 0

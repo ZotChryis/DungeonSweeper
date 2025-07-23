@@ -15,9 +15,9 @@ MonoBehaviour:
   AchievementId: 74
   Title: Intermediate Scribe
   Description: Complete the second dungeon level with the Scribe.
-  Reward: 
+  Reward: Unlocks Polymorph (Shop)
   RewardClass: -1
-  RewardItem: 0
+  RewardItem: 54
   Trigger: 0
   Level: 1
   Class: 12

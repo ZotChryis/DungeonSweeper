@@ -15,11 +15,13 @@ MonoBehaviour:
   AchievementId: 14
   Title: Intermediate Wizard
   Description: Complete the second dungeon level with the Wizard.
-  Reward: Unlocks Mass Teleportation (Shop)
+  Reward: Unlocks the Spellbook (Shop)
   RewardClass: -1
-  RewardItem: 30
+  RewardItem: 53
   Trigger: 0
   Level: 1
   Class: 3
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1

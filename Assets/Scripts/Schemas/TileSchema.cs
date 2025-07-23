@@ -112,6 +112,8 @@ namespace Schemas
             Dragon2,
             Dragon3,
             Dragon4,
+            
+            Sheep,
         }
         
         // !!WARNING!! DO NOT REORDER
@@ -138,6 +140,7 @@ namespace Schemas
             Lover,
             Chest,
             Scroll,
+            Dragon,
         }
     
         [Serializable]
@@ -208,7 +211,6 @@ namespace Schemas
         public List<TileSwapRewardEntry> TileUpdateReward = new();
 
         // TODO: Refactor all this shit honestly
-        public bool RevealRandLocationNextToMine;
         public Vector2Int[] RevealOffsets;
         public int RevealOffsetCount = -1; // If -1, all will be used, otherwise randomly for count
         public int RevealRadius;

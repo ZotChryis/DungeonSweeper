@@ -15,10 +15,13 @@ MonoBehaviour:
   AchievementId: 22
   Title: Intermediate Fortune Teller
   Description: Complete the second dungeon level with the Fortune Teller.
-  Reward: 
+  Reward: Unlocks the Crystal Ball (Shop)
   RewardClass: -1
+  RewardItem: 52
   Trigger: 0
   Level: 1
   Class: 6
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1

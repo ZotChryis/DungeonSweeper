@@ -58,4 +58,9 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
     {
         ServiceLocator.Instance.Grid.TEMP_ConquerAllTiles();
     }
+
+    public void AddCash()
+    {
+        ServiceLocator.Instance.Player.ShopXp += 10;
+    }
 }

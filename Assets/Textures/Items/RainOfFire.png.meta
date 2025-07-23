@@ -1,0 +1,559 @@
+fileFormatVersion: 2
+guid: 6c08404a04d617345b16cb7ae54b57b0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -681126827899914375
+    second: RainOfFire_0
+  - first:
+      213: -4769827322438797632
+    second: RainOfFire_1
+  - first:
+      213: -2115153540858375309
+    second: RainOfFire_2
+  - first:
+      213: -5398654757964628349
+    second: RainOfFire_3
+  - first:
+      213: 5457680158472989560
+    second: RainOfFire_4
+  - first:
+      213: 2569371824521597671
+    second: RainOfFire_5
+  - first:
+      213: 6591709261316542871
+    second: RainOfFire_6
+  - first:
+      213: 821062726587481419
+    second: RainOfFire_7
+  - first:
+      213: -595517152347174924
+    second: RainOfFire_8
+  - first:
+      213: -7322523312829761182
+    second: RainOfFire_9
+  - first:
+      213: -8806590157004070124
+    second: RainOfFire_10
+  - first:
+      213: -8193260691438783420
+    second: RainOfFire_11
+  - first:
+      213: 8018374068776882333
+    second: RainOfFire_12
+  - first:
+      213: 8752741368888176751
+    second: RainOfFire_13
+  - first:
+      213: 5708955353973764429
+    second: RainOfFire_14
+  - first:
+      213: -5912858262398501676
+    second: RainOfFire_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RainOfFire_0
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 517
+        width: 362
+        height: 407
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 977790042c62c86f0800000000000000
+      internalID: -681126827899914375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_1
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 863
+        width: 133
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c63516625b2ecdb0800000000000000
+      internalID: -4769827322438797632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_2
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 599
+        width: 394
+        height: 420
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3731ab7af0775a2e0800000000000000
+      internalID: -2115153540858375309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_3
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 728
+        width: 321
+        height: 257
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38ebb86d9102415b0800000000000000
+      internalID: -5398654757964628349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_4
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 862
+        width: 185
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87bea7720339dbb40800000000000000
+      internalID: 5457680158472989560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_5
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 644
+        width: 76
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e2d180bf0e38a320800000000000000
+      internalID: 2569371824521597671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_6
+      rect:
+        serializedVersion: 2
+        x: 735
+        y: 493
+        width: 230
+        height: 208
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 791dc6716a47a7b50800000000000000
+      internalID: 6591709261316542871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_7
+      rect:
+        serializedVersion: 2
+        x: 855
+        y: 600
+        width: 167
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4d7f8c1330056b00800000000000000
+      internalID: 821062726587481419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_8
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 247
+        width: 310
+        height: 386
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f7c1bc1e4c4cb7f0800000000000000
+      internalID: -595517152347174924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_9
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 32
+        width: 591
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 269f347e7db216a90800000000000000
+      internalID: -7322523312829761182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_10
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 550
+        width: 84
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 413225959e4b8c580800000000000000
+      internalID: -8806590157004070124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_11
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 367
+        width: 117
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 444be969fc0bb4e80800000000000000
+      internalID: -8193260691438783420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_12
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 119
+        width: 163
+        height: 213
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9056ad7bbcf64f60800000000000000
+      internalID: 8018374068776882333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_13
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 55
+        width: 75
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f603277a6ebf77970800000000000000
+      internalID: 8752741368888176751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_14
+      rect:
+        serializedVersion: 2
+        x: 263
+        y: 94
+        width: 113
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d41bb28a5a84a3f40800000000000000
+      internalID: 5708955353973764429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RainOfFire_15
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 68
+        width: 196
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dcf08eecbe41fda0800000000000000
+      internalID: -5912858262398501676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RainOfFire_0: -681126827899914375
+      RainOfFire_1: -4769827322438797632
+      RainOfFire_10: -8806590157004070124
+      RainOfFire_11: -8193260691438783420
+      RainOfFire_12: 8018374068776882333
+      RainOfFire_13: 8752741368888176751
+      RainOfFire_14: 5708955353973764429
+      RainOfFire_15: -5912858262398501676
+      RainOfFire_2: -2115153540858375309
+      RainOfFire_3: -5398654757964628349
+      RainOfFire_4: 5457680158472989560
+      RainOfFire_5: 2569371824521597671
+      RainOfFire_6: 6591709261316542871
+      RainOfFire_7: 821062726587481419
+      RainOfFire_8: -595517152347174924
+      RainOfFire_9: -7322523312829761182
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

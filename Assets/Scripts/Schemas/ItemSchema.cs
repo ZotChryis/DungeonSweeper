@@ -40,6 +40,9 @@ namespace Schemas
         InstantRevealRandomCol,
         ModXpCurve,
         AddRandomItemByDungeonLevel,
+        MassPolymorph,  // All revealed enemies are polymorphed
+        InstantConquer, // Conquers a random when triggered
+        
     }
 
     [Serializable]
@@ -195,6 +198,11 @@ namespace Schemas
             Quill,
             CreditCard,
             BaitVisionOrb,
+            
+            Spellbook,
+            SpellPolymorph,
+            SpellRainOfFire,
+            
         }
         
         public ItemSchema.Id ItemId;
