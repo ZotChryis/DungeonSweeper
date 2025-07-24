@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 42
   Name: Staff of the Demon Lord
-  Description: 'Gain +1 Max HP. Demon Knights do not spawn. '
+  Description: Gain +1 Max HP. Remove 4 Demon Knights from the dungeon.
   Sprite: {fileID: 21300000, guid: 0157be8b488d53449a0239f28d5fe86f, type: 3}
-  IsUniqueEquipped: 1
-  Max: 1
+  Max: 2
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
@@ -28,7 +27,7 @@ MonoBehaviour:
     - Key: 0
       Value:
       - Type: 5
-        Amount: -100
+        Amount: -4
         Id: 23
         Tags: 
         Items: 
