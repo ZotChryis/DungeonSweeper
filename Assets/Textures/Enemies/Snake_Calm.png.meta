@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 2f4eaf31651c5124095a881e712f75f0
+guid: 871c74adc39be654a9ff2053ff451dcc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4842878114842728377
-    second: Snake_Calm_0
+      213: 1417298967822708777
+    second: Snake_Calm 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Snake_Calm_0
+      name: Snake_Calm 1_0
       rect:
         serializedVersion: 2
-        x: 103
-        y: 57
-        width: 863
-        height: 906
+        x: 3
+        y: 32
+        width: 1019
+        height: 987
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b7d6bd9cfb553340800000000000000
-      internalID: 4842878114842728377
+      spriteID: 920b99de6e14ba310800000000000000
+      internalID: 1417298967822708777
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Snake_Calm_0: 4842878114842728377
+      Snake_Calm 1_0: 1417298967822708777
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
