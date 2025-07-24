@@ -14,7 +14,7 @@ namespace Screens.Shop
             var player = ServiceLocator.Instance.Player;
                 
             // Check for price
-            if (player.ShopXp < ItemInstance.Schema.Price)
+            if (player.ShopXp < GetPrice())
             {
                 return;
             }
@@ -45,7 +45,7 @@ namespace Screens.Shop
 
             var buttonText = Button.GetComponentInChildren<TMP_Text>();
             buttonText.SetText($"Buy ${GetPrice()}");
-            Button.interactable = ServiceLocator.Instance.Player.ShopXp >= ItemInstance.Schema.Price;
+            Button.interactable = ServiceLocator.Instance.Player.ShopXp >= GetPrice();
 
             buttonText.color = itemInstance.IsOnSale ? Color.green : Color.white;
         }
