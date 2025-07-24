@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -18,12 +17,14 @@ namespace UI
         // then we issue the action callback. 
         // DO NOT use the Button's actual callback system
         [SerializeField] public bool RequireConfirmation;
+        [SerializeField] public bool RequireConfirmationOnce;
         [SerializeField] private string ConfirmationTitle;
         [SerializeField] private string ConfirmationMessage;
 
         public Action OnConfirmed;
         
         private TextAnimation[] TextAnimations;
+        private bool Confirmed = false;
 
         private void Start()
         {
@@ -38,8 +39,20 @@ namespace UI
                 OnConfirmed?.Invoke();
                 return;
             }
+
+            if (Confirmed && RequireConfirmationOnce)
+            {
+                OnConfirmed?.Invoke();
+                return;
+            }
             
-            ServiceLocator.Instance.OverlayScreenManager.RequestConfirmationScreen(OnConfirmed, ConfirmationTitle, ConfirmationMessage);
+            ServiceLocator.Instance.OverlayScreenManager.RequestConfirmationScreen(() => {
+                    Confirmed = true;
+                    OnConfirmed?.Invoke();
+                }, 
+                ConfirmationTitle, 
+                ConfirmationMessage
+            );
         }
 
         public void OnPointerEnter(PointerEventData eventData)

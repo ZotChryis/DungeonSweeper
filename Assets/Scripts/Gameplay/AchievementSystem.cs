@@ -8,6 +8,8 @@ namespace Gameplay
 {
     public class AchievementSystem
     {
+        public bool AllowAchievementsToBeCompleted = true;
+        
         public Action<AchievementSchema> OnAchievementCompleted;
 
         public List<Class.Id> GetUnlockedClasses()
@@ -59,7 +61,6 @@ namespace Gameplay
 
         public int GetFinishedAchievementCount()
         {
-
             var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
                 .FindAll(schema =>
                 {
@@ -72,6 +73,11 @@ namespace Gameplay
         
         public void CheckAchievements(AchievementSchema.TriggerType trigger)
         {
+            if (!AllowAchievementsToBeCompleted)
+            {
+                return;
+            }
+            
             var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
                 .FindAll(a => a.Trigger == trigger);
 

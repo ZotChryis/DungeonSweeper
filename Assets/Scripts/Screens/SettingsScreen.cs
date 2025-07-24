@@ -1,3 +1,4 @@
+using System;
 using Gameplay;
 using UI;
 using UnityEngine;
@@ -15,7 +16,10 @@ namespace Screens
         [SerializeField] private Toggle SafeMinesToggle;
         [SerializeField] private Toggle AllowLeftHoldContextMenu;
         [SerializeField] private Toggle CanPickUpItems;
+        [SerializeField] private Toggle AllowCheats;
 
+        public Action<string> OnBoolSettingChanged;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -26,6 +30,7 @@ namespace Screens
             SafeMinesToggle.onValueChanged.AddListener(OnSafeMinesChanged);
             AllowLeftHoldContextMenu.onValueChanged.AddListener(OnAllowLeftHoldContextMenuChanged);
             CanPickUpItems.onValueChanged.AddListener(OnCanPickUpItemsChanged);
+            AllowCheats.onValueChanged.AddListener(OnAllowCheatsChanged);
 
             LoadInitialVolumes();
 
@@ -33,9 +38,16 @@ namespace Screens
             ResetTutorial.OnConfirmed += OnResetTutorialConfirmed;
         }
 
+        private void OnAllowCheatsChanged(bool value)
+        {
+            FBPP.SetBool(PlayerOptions.AllowCheats, value);
+            OnBoolSettingChanged?.Invoke(PlayerOptions.AllowCheats);
+        }
+
         private void OnCanPickUpItemsChanged(bool value)
         {
             FBPP.SetBool(PlayerOptions.CanPickUpItems, value);
+            OnBoolSettingChanged?.Invoke(PlayerOptions.CanPickUpItems);
         }
 
         private void OnResetConfirmed()
@@ -55,17 +67,20 @@ namespace Screens
             SFXVolume.value = FBPP.GetFloat("SfxVolume", 1.0f);
             SafeMinesToggle.isOn = FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true);
             CanPickUpItems.isOn = FBPP.GetBool(PlayerOptions.CanPickUpItems, true);
+            AllowCheats.isOn = FBPP.GetBool(PlayerOptions.AllowCheats, false);
             AllowLeftHoldContextMenu.isOn = FBPP.GetBool(PlayerOptions.AllowLeftHoldContextMenu, true);
         }
 
         private void OnSafeMinesChanged(bool value)
         {
             FBPP.SetBool(PlayerOptions.IsSafeMinesOn, value);
+            OnBoolSettingChanged?.Invoke(PlayerOptions.IsSafeMinesOn);
         }
 
         private void OnAllowLeftHoldContextMenuChanged(bool value)
         {
             FBPP.SetBool(PlayerOptions.AllowLeftHoldContextMenu, value);
+            OnBoolSettingChanged?.Invoke(PlayerOptions.AllowLeftHoldContextMenu);
         }
         
         private void OnMasterVolumeChanged(float value)
