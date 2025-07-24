@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
+  m_Name: SnakeCalm
+  m_EditorClassIdentifier: 
+  UserFacingName: Snake
+  UserFacingDescription: TBD
+  Tags: 010000000200000005000000
+  TileId: 65
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: 21300000, guid: 2f4eaf31651c5124095a881e712f75f0, type: 3}
+  SpriteFacingData:
+    ObjectToLookAtOverride: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
+    Above: {fileID: 0}
+    Below: {fileID: 0}
+    Right: {fileID: 0}
+    Left: {fileID: 0}
+    Missing: {fileID: -3268197922570579268, guid: 946e49db2b7a7bf42adc0e483ddf71c1, type: 3}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
+  Power: 2
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
+  XPReward: 2
+  ItemsToReplenish: 
+  DropReward: {fileID: 0}
+  ItemReward: 0
+  ItemRewardRarities: 
+  TileUpdateReward: []
+  RevealOffsets: []
+  RevealOffsetCount: 0
+  RevealRadius: 0
+  ObscureOffsets: []
+  ObscureRadius: 0
+  CanFlee: 0
+  FleeVfx: {fileID: 0}
+  RevealFlee: 0
+  CanEnrage: 0
+  CanBodyGuardSwap: 0
+  SpawnsFleeingChild: 0
+  FleeingChild: {fileID: 0}
+  RevealAllRewards: []
+  WinReward: 0
+  FullHealReward: 0
+  HealReward: 0
+  DiffuseMinesReward: 0
+  ShopXp: 0
+  ScreenshakeOnConquer: 0
+  UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
+  Data:
+    _serializedList: []

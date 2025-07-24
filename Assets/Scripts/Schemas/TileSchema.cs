@@ -114,6 +114,10 @@ namespace Schemas
             Dragon4,
             
             Sheep,
+            
+            SnakeCharmer,
+            Snake,
+            SnakeCalm,
         }
         
         // !!WARNING!! DO NOT REORDER
@@ -209,6 +213,7 @@ namespace Schemas
         }
 
         public List<TileSwapRewardEntry> TileUpdateReward = new();
+        public TileSwapRewardEntry ChildUpdateReward;   // If this tile spawned children (from SpawnSettings) then update them here
 
         // TODO: Refactor all this shit honestly
         public Vector2Int[] RevealOffsets;

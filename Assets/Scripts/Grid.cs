@@ -160,6 +160,7 @@ public class Grid : MonoBehaviour
                     {
                         Tiles[coordinates.Item1, coordinates.Item2].TEMP_RevealWithoutLogic();
                     }
+                    
                     if (spawnEntry.ConsecutiveSpawn != null)
                     {
                         var additionalSpawnLocations = spawnEntry.Requirement.GetRandomConsecutiveNeighborLocations(UnoccupiedSpaces, coordinates.Item1, coordinates.Item2);
@@ -171,32 +172,37 @@ public class Grid : MonoBehaviour
                         }
                         Debug.Log($"Try spawn {spawnEntry.ConsecutiveCopies}+{bonusCopies} consecutives given {additionalSpawnLocations.Count} possibilities. name:{spawnEntry.Requirement.name}");
 
+                        var childTiles = new Tile[consecutiveCopies];
                         for (int add = 0; add < consecutiveCopies && add < additionalSpawnLocations.Count; add++)
                         {
                             UnoccupiedSpaces.RemoveUnoccupiedSpace(additionalSpawnLocations[add].x, additionalSpawnLocations[add].y);
-                            Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].PlaceTileObj(spawnEntry.ConsecutiveSpawn);
+                            Tile childTile = Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y];
+                            childTile.PlaceTileObj(spawnEntry.ConsecutiveSpawn);
+                            childTiles[add] = childTile;
                             if (spawnEntry.GuardRelationship)
                             {
                                 // Minotaur.GuardingTile = chest
-                                Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].GuardingTile = Tiles[coordinates.Item1, coordinates.Item2];
+                                childTile.GuardingTile = Tiles[coordinates.Item1, coordinates.Item2];
                                 if(spawnEntry.LookTowardsEachOther)
                                 {
-                                    Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].LookTowardsHorizontally(coordinates.Item1, coordinates.Item2, false, false);
+                                    childTile.LookTowardsHorizontally(coordinates.Item1, coordinates.Item2, false, false);
                                 }
                                 else
                                 {
-                                    Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].LookAwayFrom(coordinates.Item1, coordinates.Item2, false);
+                                    childTile.LookAwayFrom(coordinates.Item1, coordinates.Item2, false);
                                 }
 
                                 // Chest.BodyGuardedByTile = Minotaur
-                                Tiles[coordinates.Item1, coordinates.Item2].BodyGuardedByTile = Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y];
+                                // TODO: Support multiple bodyguards
+                                Tiles[coordinates.Item1, coordinates.Item2].BodyGuardedByTile = childTile;
                             }
                             else if (spawnEntry.LookTowardsEachOther)
                             {
-                                Tiles[additionalSpawnLocations[add].x, additionalSpawnLocations[add].y].LookTowardsOrthogonally(coordinates.Item1, coordinates.Item2, false, false);
+                                childTile.LookTowardsOrthogonally(coordinates.Item1, coordinates.Item2, false, false);
                                 Tiles[coordinates.Item1, coordinates.Item2].LookTowardsOrthogonally(additionalSpawnLocations[add].x, additionalSpawnLocations[add].y, false, false);
                             }
                         }
+                        Tiles[coordinates.Item1, coordinates.Item2].ChildrenTiles = childTiles;
                     }
                 }
                 else
@@ -343,7 +349,21 @@ public class Grid : MonoBehaviour
             return;
         }
         
+        Tiles[coord.Item1, coord.Item2].UndoPlacedTileObj();
         Tiles[coord.Item1, coord.Item2].PlaceTileObj(toSchema);
+        OnGridRequestedVisualUpdate?.Invoke();
+    }
+
+    public void UpdateTile(Tile from, TileSchema.Id to)
+    {
+        var toSchema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(s => s.TileId == to);
+        if (toSchema == null)
+        {
+            return;
+        }
+        
+        from.UndoPlacedTileObj();
+        from.PlaceTileObj(toSchema);
         OnGridRequestedVisualUpdate?.Invoke();
     }
     

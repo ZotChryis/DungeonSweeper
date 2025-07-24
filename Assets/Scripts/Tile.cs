@@ -82,6 +82,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     /// </summary>
     [HideInInspector]
     public Tile GuardingTile;
+
+    /// <summary>
+    /// References to all tiles that were spawned from this tile's spawn requirements.
+    /// </summary>
+    [HideInInspector] 
+    public Tile[] ChildrenTiles;
+    
     /// <summary>
     /// A reference to the tile that is guarding you.
     /// </summary>
@@ -680,6 +687,24 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.Grid.UpdateRandomTileById(entry.From, entry.To);
                 }
             }
+
+            if (HousedObject.ChildUpdateReward.Amount > 0)
+            {
+                ChildrenTiles.Shuffle();
+                int transformed = 0;
+                for (int i = 0; transformed < HousedObject.ChildUpdateReward.Amount && i < ChildrenTiles.Length; i++)
+                {
+                    var childTile = ChildrenTiles[i];
+                    if (childTile.GetHousedObject().TileId != HousedObject.ChildUpdateReward.From)
+                    {
+                        continue;
+                    }
+
+                    transformed++;
+                    ServiceLocator.Instance.Grid.UpdateTile(ChildrenTiles[i], HousedObject.ChildUpdateReward.To);
+                }
+            }
+            
         }
 
         var objectOverrides = HousedObject ? HousedObject.GetOverrides(State) : default;
