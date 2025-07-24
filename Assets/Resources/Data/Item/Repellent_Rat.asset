@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Repellent_Rat
   m_EditorClassIdentifier: 
   ItemId: 41
-  Name: Rat Repellent
+  Name: 'Repellent: Rat'
   Description: Gain +1 Max HP. Remove 12 Rats from the dungeon.
   Sprite: {fileID: 21300000, guid: 10b05aca36d52c748aa5ce97274842e6, type: 3}
   Max: 2

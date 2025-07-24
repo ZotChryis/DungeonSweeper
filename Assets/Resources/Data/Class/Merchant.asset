@@ -15,6 +15,6 @@ MonoBehaviour:
   Id: 11
   Sprite: {fileID: -3456532010920386237, guid: 2aa702e4319876d4b82812f2c69822f7, type: 3}
   Name: Merchant
-  Description: Starts with the Business Card.
-  StartingItem: 45
+  Description: Starts with the Credit Card.
+  StartingItem: 51
   HitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}

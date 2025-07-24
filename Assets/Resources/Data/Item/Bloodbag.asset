@@ -10,35 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Potion_Bloodrose
+  m_Name: Bloodbag
   m_EditorClassIdentifier: 
   ItemId: 39
-  Name: 'Potion: Bloodrose'
-  Description: Use from inventory. Take 1 Damage. Reveal two random tiles.
+  Name: Blood Bag
+  Description: Use from inventory. Take 2 Damage. Gain a Copper Coin.
   Sprite: {fileID: 6997616985800771554, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
   Max: -1
   IsConsumbale: 1
-  InitialCharges: 3
+  InitialCharges: 2
   ShopInventory: 1
   Rarity: 2
-  Price: 4
+  Price: 3
   Effects:
     _serializedList:
     - Key: 4
       Value:
       - Type: 7
-        Amount: 1
+        Amount: 2
         Id: 0
         Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
-      - Type: 12
-        Amount: 2
+      - Type: 11
+        Amount: 1
         Id: 0
-        Tags: 0100000000000000
-        Items: 
+        Tags: 
+        Items: 20000000
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
