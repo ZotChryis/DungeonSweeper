@@ -72,6 +72,12 @@ namespace Schemas
         /// If the effect type needs an amount, this will be used.
         /// </summary>
         public int Amount;
+
+        /// <summary>
+        /// Items in the inventory abide by "max" amount, but this bool will overwrite that and allow an item to be
+        /// added beyond max.
+        /// </summary>
+        public bool GrantItemForceAllowDuplicates;
         
         /// <summary>
         /// The effect will only apply if the object in question has this id

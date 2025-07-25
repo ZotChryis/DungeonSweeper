@@ -12,9 +12,6 @@ public class GridDragger : SingletonMonoBehaviour<GridDragger>, IDragHandler
     [SerializeField] private RectTransform Left;
     [SerializeField] private RectTransform Right;
     
-    private Vector3 StartDragPosition;
-    private bool IsValidDrag = false;
-
     public Action OnValidDrag;
     private RectTransform GridRect;
 
@@ -26,7 +23,6 @@ public class GridDragger : SingletonMonoBehaviour<GridDragger>, IDragHandler
         base.Awake();
         
         ServiceLocator.Instance.Register(this);
-        ServiceLocator.Instance.OverlayScreenManager.OnScrenShown += OnScreenShown;
         
         GridRect = ServiceLocator.Instance.Grid.transform as RectTransform;
         
@@ -37,16 +33,6 @@ public class GridDragger : SingletonMonoBehaviour<GridDragger>, IDragHandler
         Vector3[] rCorners = new Vector3[4];
         Right.GetWorldCorners(rCorners);
         RightWall = rCorners[3];
-    }
-
-    private void OnDestroy()
-    {
-        ServiceLocator.Instance.OverlayScreenManager.OnScrenShown -= OnScreenShown;
-    }
-
-    private void OnScreenShown(OverlayScreenManager.ScreenType screen)
-    {
-        IsValidDrag = false;
     }
     
     public void OnDrag(PointerEventData eventData)

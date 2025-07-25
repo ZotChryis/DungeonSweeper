@@ -496,6 +496,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 return;
             }
 
+            if (HousedObject.TileId == TileSchema.Id.Balrog)
+            {
+                ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.DemonLord);
+            }
+
             if (!HousedObject.GetOverrides(State).Sfx.UseOverride)
             {
                 ServiceLocator.Instance.AudioManager.PlaySfx("Attack");

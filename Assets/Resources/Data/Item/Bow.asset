@@ -17,7 +17,6 @@ MonoBehaviour:
   Description: Take -1 less damage from Flying. Get -1 XP from Flying (except the
     Dragon).
   Sprite: {fileID: -7856493677412862020, guid: e8eec721b10b5824e8cf4fb1aa6e578a, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
@@ -30,6 +29,7 @@ MonoBehaviour:
       Value:
       - Type: 3
         Amount: -1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 04000000
         Items: 
@@ -38,6 +38,7 @@ MonoBehaviour:
         DecayTags: 
       - Type: 4
         Amount: -1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 04000000
         Items: 

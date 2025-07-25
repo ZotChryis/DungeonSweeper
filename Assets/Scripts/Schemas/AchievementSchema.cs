@@ -112,6 +112,9 @@ namespace Schemas
             Scribe1,
             Scribe2,
             Scribe3,
+            
+            DemonLord,
+            
         }
 
         [Serializable]
@@ -120,6 +123,7 @@ namespace Schemas
             Victory,
             Pacifist,
             FullBoardClear,
+            DemonLord,
         }
         
         public Id AchievementId;

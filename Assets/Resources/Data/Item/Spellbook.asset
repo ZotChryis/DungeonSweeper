@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 53
   Name: Spellbook
-  Description: Gain a random spell at the start of a dungeon.
+  Description: Gain a random spell at the start of a dungeon (can be duplicates).
   Sprite: {fileID: 21300000, guid: b7fe2355dba69ba419a02854799f7e25, type: 3}
   Max: 1
   IsConsumbale: 0
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 11
         Amount: 1
+        GrantItemForceAllowDuplicates: 1
         Id: 0
         Tags: 
         Items: 060000001e000000260000003600000037000000

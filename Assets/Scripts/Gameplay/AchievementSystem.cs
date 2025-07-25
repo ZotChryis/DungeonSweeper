@@ -138,6 +138,11 @@ namespace Gameplay
                         
                         Complete(schema);
                         break;
+                    
+                    // This is bespoke sent by Tile.cs when the tileId == Balrog
+                    case AchievementSchema.TriggerType.DemonLord:
+                        Complete(schema);
+                        break;
                 }
             }
         }

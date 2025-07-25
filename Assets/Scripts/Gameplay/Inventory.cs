@@ -91,7 +91,7 @@ namespace Gameplay
         /// <summary>
         /// Returns whether or not the itemId can be added to the inventory. Handles stacking logic.
         /// </summary>
-        public ItemInstance AddItem(ItemSchema.Id itemId)
+        public ItemInstance AddItem(ItemSchema.Id itemId, bool forceAllowDuplicates = false)
         {
             if (!FBPP.GetBool(PlayerOptions.CanPickUpItems, true))
             {
@@ -104,7 +104,7 @@ namespace Gameplay
                 return null;
             }
             
-            if (item.Max != -1 && GetItemCount(itemId) >= item.Max)
+            if (!forceAllowDuplicates && item.Max != -1 && GetItemCount(itemId) >= item.Max)
             {
                 return null;
             }
@@ -402,7 +402,7 @@ namespace Gameplay
                         for (int i = 0; i < effect.Amount; i++)
                         {
                             var item = effect.Items.GetRandomItem();
-                            var granted = ServiceLocator.Instance.Player.Inventory.AddItem(item);
+                            var granted = ServiceLocator.Instance.Player.Inventory.AddItem(item, effect.GrantItemForceAllowDuplicates);
                             if (granted != null)
                             {
                                 GrantedItems.Add(granted);
