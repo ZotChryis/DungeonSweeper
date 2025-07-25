@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 3
   Name: Magic Carpet
-  Description: 'Take -1 less damage from Melee. Get -1 XP from Melee. '
+  Description: Take -1 less damage from Melee. Get -1 XP from Melee. Gain +1 Max
+    HP.
   Sprite: {fileID: 1457491203435894738, guid: 0d95b31c52cf45645ad9427a06b03317, type: 3}
   Max: 1
   IsConsumbale: 0
@@ -40,6 +41,15 @@ MonoBehaviour:
         GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 02000000
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+      - Type: 0
+        Amount: 1
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
