@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Gargoyle
   UserFacingDescription: Never alone; born a twin.
-  Tags: 010000000400000009000000
+  Tags: 010000000400000006000000
   TileId: 18
   LibraryOverrideTileId: 0
   Sprite: {fileID: -2990900167212558872, guid: db7c954521c3d924dbe703bdd1ae714a, type: 3}
@@ -35,8 +35,12 @@ MonoBehaviour:
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
-  RevealRandLocationNextToMine: 0
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets: []
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0

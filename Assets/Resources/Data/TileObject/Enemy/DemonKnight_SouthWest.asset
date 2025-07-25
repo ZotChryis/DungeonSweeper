@@ -36,8 +36,12 @@ MonoBehaviour:
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
-  RevealRandLocationNextToMine: 0
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets: []
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0

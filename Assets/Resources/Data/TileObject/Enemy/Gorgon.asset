@@ -15,7 +15,7 @@ MonoBehaviour:
   UserFacingName: Gorgon
   UserFacingDescription: A foul demon that petrifies anyone in her way. Avenge the
     fallen to weaken her.
-  Tags: 010000000300000006000000
+  Tags: 01000000030000000600000009000000
   TileId: 35
   LibraryOverrideTileId: 0
   Sprite: {fileID: 4309098291213245400, guid: a756c5a664f66f84086af0c8c01b0506, type: 3}
@@ -36,8 +36,12 @@ MonoBehaviour:
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
-  RevealRandLocationNextToMine: 0
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets: []
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
