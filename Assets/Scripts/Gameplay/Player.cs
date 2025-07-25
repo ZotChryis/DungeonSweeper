@@ -100,6 +100,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     
     public Action<int> OnLevelChanged;
     public Action<TileSchema> OnConquer;
+    public Action<TileSchema> OnHeal;       // does not fire when healed from level ups
 
     private int m_shopXp;
     public OnPlayerPropertyChanged OnShopXpChanged;
@@ -281,7 +282,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// </summary>
     public void Heal(TileSchema source, int amount) //, bool allowOverheal)
     {
-        // No damage, we do not die. Do not heal with negative damage.
+        // Do not damage with negative heal
         if (amount <= 0)
         {
             return;
@@ -293,6 +294,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ServiceLocator.Instance.AudioManager.PlaySfx("Heal");
         
         TEMP_UpdateVisuals();
+
+        OnHeal?.Invoke(source);
     }
 
     public void TEMP_UpdateXP(TileSchema source, int amount)

@@ -53,6 +53,7 @@ namespace Schemas
         DungeonLevel,   // When the dungeon levels up (Victory screen)
         Conquer,        // When anything is conquered 
         Used,           // Consumables only: When the Use button is clicked in inventory
+        Heal,           // When the player heals mid-dungeon 
     }
 
     [Serializable]
@@ -64,7 +65,7 @@ namespace Schemas
     }
     
     [Serializable]
-    public struct Effect
+    public class Effect
     {
         public EffectType Type;
         
@@ -156,7 +157,7 @@ namespace Schemas
             DetectorRat,
             DetectorBat,
             DetectorBrick,
-            SacrificialKris,
+            SacrificialWhip,
             BaitRat,
             BaitBat,
             BaitFaerie,
@@ -192,7 +193,7 @@ namespace Schemas
             RepellentRat,
             RepellentDemonKnight,
             
-            AmuletLuck,
+            AmuletTopaz,
             Dice,
             BusinessCard,
             
@@ -210,6 +211,12 @@ namespace Schemas
             SpellRainOfFire,
             
             BloodDonorCard,
+            
+            AmuletRuby,
+            AmuletSapphire,
+            AmuletEmerald,
+            
+            ScrimshawKit,
             
         }
         

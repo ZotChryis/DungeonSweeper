@@ -28,7 +28,17 @@ namespace Gameplay
             {
                 ServiceLocator.Instance.Player.OnLevelChanged += OnPlayerLevelChanged;
                 ServiceLocator.Instance.Player.OnConquer += OnConquer;
+                ServiceLocator.Instance.Player.OnHeal += OnHeal;
                 ServiceLocator.Instance.LevelManager.OnLevelChanged += OnDungeonLevelChanged;
+            }
+        }
+
+        private void OnHeal(TileSchema tileObject)
+        {
+            for (int i = 0; i < Items.Count; i++)
+            {
+                var itemInstance  = Items[i];
+                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Heal);
             }
         }
 
