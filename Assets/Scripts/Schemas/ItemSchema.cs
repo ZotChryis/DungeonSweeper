@@ -209,6 +209,8 @@ namespace Schemas
             SpellPolymorph,
             SpellRainOfFire,
             
+            BloodDonorCard,
+            
         }
         
         public ItemSchema.Id ItemId;

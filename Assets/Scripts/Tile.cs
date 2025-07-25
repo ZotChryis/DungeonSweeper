@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using AYellowpaper.SerializedCollections;
 using Gameplay;
 using Schemas;
 using TMPro;
@@ -59,7 +60,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [SerializeField]
     private TMP_Text Annotation;
 
-    public Image FlagAnnotation;
+    [SerializedDictionary]
+    public SerializedDictionary<int, GameObject> SpecialAnnotations = new();
 
     [SerializeField]
     private Color PowerColor;
@@ -157,7 +159,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             return;
         }
 
-        if (FlagAnnotation.enabled && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
+        if (SpecialAnnotations[100].activeInHierarchy && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
         {
             // If safety on don't let the player blow themselves up.
             StartCoroutine(ShakeFlagX());
@@ -199,7 +201,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (!isAlreadyShaking)
         {
             isAlreadyShaking = true;
-            Vector3 originalPosition = FlagAnnotation.transform.localPosition;
+            Vector3 originalPosition = SpecialAnnotations[100].transform.localPosition;
             float elapsed = 0.0f;
 
             while (elapsed < duration)
@@ -207,12 +209,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 float percentElapsedInvertSquared = 1f - elapsed / duration;
                 percentElapsedInvertSquared = percentElapsedInvertSquared * percentElapsedInvertSquared;
                 float x = UnityEngine.Random.Range(-1, 1f) * magnitude * percentElapsedInvertSquared + originalPosition.x;
-                FlagAnnotation.transform.localPosition = new Vector3(x, originalPosition.y, originalPosition.z);
+                SpecialAnnotations[100].transform.localPosition = new Vector3(x, originalPosition.y, originalPosition.z);
                 elapsed += Time.deltaTime;
                 yield return null;
             }
 
-            FlagAnnotation.transform.localPosition = originalPosition;
+            SpecialAnnotations[100].transform.localPosition = originalPosition;
             isAlreadyShaking = false;
         }
     }
@@ -399,8 +401,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         Power.enabled = true;
         Annotation.enabled = false;
-        FlagAnnotation.enabled = false;
-
+        
+        foreach (var keyValuePair in SpecialAnnotations)
+        {
+            keyValuePair.Value.SetActive(false);
+        }
+        
         UpdateObjectSelfVisuals();
 
         if (GetHousedObject() == null)
@@ -557,13 +563,27 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (TileState.Collected == State)
         {
             // Fleeing Child -> Spawns a new object type at another location if possible (Faerie)
-            if (HousedObject.SpawnsFleeingChild && ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild, HousedObject.RevealFlee))
+            
+            if (HousedObject.SpawnsFleeingChild)
             {
                 if (HousedObject.FleeVfx != null)
                 {
                     Instantiate(HousedObject.FleeVfx, transform);
                 }
+                
+                bool newLocation =
+                    ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild, HousedObject.RevealFlee);
 
+                // Special case: If it cant find a spot to spawn the fleeing child, spawns the child at current location
+                // to ensure it spawns somewhere
+                if (!newLocation)
+                {
+                    PlaceTileObj(HousedObject.FleeingChild);
+                    TEMP_SetState(TileState.Hidden);
+                    TEMP_RevealWithoutLogic();
+                    return;
+                }
+                
                 TEMP_SetState(TileState.Empty);
                 return;
             }
@@ -864,7 +884,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
-                FlagAnnotation.enabled = false;
+                foreach (var keyValuePair in SpecialAnnotations)
+                {
+                    keyValuePair.Value.SetActive(false);
+                }
                 ExclamationMarker.enabled = IsEnraged;
                 break;
 
@@ -874,7 +897,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = true;
                 Annotation.enabled = false;
-                FlagAnnotation.enabled = false;
+                foreach (var keyValuePair in SpecialAnnotations)
+                {
+                    keyValuePair.Value.SetActive(false);
+                }
                 ExclamationMarker.enabled = IsEnraged;
                 break;
 
@@ -884,7 +910,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
-                FlagAnnotation.enabled = false;
+                foreach (var keyValuePair in SpecialAnnotations)
+                {
+                    keyValuePair.Value.SetActive(false);
+                }
                 ExclamationMarker.enabled = false;
                 break;
 
@@ -894,7 +923,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 HousedObjectSprite.enabled = false;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;
-                FlagAnnotation.enabled = false;
+                foreach (var keyValuePair in SpecialAnnotations)
+                {
+                    keyValuePair.Value.SetActive(false);
+                }
                 ExclamationMarker.enabled = false;
                 TileButton.interactable = false;
                 break;
@@ -1011,23 +1043,37 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     /// <param name="annotation"></param>
     public void SetAnnotation(int power)
     {
-        // Mines use a special flag.
-        if (power == 100)
+        // Handle special annotations first
+        if (SpecialAnnotations.ContainsKey(power))
         {
             Annotation.SetText(string.Empty);
-            FlagAnnotation.enabled = !FlagAnnotation.enabled;
+            SpecialAnnotations[power].SetActive(!SpecialAnnotations[power].activeInHierarchy);
+            
+            // Then we must do the rest of the images and hide them
+            foreach (var keyValuePair in SpecialAnnotations)
+            {
+                if (keyValuePair.Key == power)
+                {
+                    continue;
+                }
+                keyValuePair.Value.SetActive(false);
+            }
+            
             return;
         }
-
+        
+        foreach (var keyValuePair in SpecialAnnotations)
+        {
+            keyValuePair.Value.SetActive(false);
+        }
+        
         if (Annotation.text.Equals(power.ToString()))
         {
             Annotation.SetText(string.Empty);
-            FlagAnnotation.enabled = false;
             return;
         }
 
         Annotation.SetText(power.ToString());
-        FlagAnnotation.enabled = false;
     }
 
     public bool TEMP_IsRevealed()

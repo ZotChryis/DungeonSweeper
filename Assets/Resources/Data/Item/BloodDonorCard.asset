@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Bloodbag
+  m_Name: BloodDonorCard
   m_EditorClassIdentifier: 
-  ItemId: 39
-  Name: Blood Bag
+  ItemId: 56
+  Name: Blood Donor Card
   Description: Use from inventory. Take 2 Damage. Gain a Copper Coin.
-  Sprite: {fileID: 6997616985800771554, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
+  Sprite: {fileID: 21300000, guid: 02dd697384fc0614c8c931cb53ece025, type: 3}
   Max: -1
   IsConsumbale: 1
   InitialCharges: 2
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 7
         Amount: 2
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 
         Items: 
@@ -36,6 +37,7 @@ MonoBehaviour:
         DecayTags: 
       - Type: 11
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 
         Items: 20000000

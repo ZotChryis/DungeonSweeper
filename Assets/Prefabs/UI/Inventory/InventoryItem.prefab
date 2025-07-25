@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7264151, g: 0.6553764, b: 0.56537026, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -300,5 +300,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 8970099338831785955}
+  RarityFrame: {fileID: 6833608663451219968}
   Button: {fileID: 9187411490232872651}
   Sale: {fileID: 802864408452947412}
+  RarityColors:
+    _serializedList:
+    - Key: 0
+      Value: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 1
+      Value: {r: 0.47058827, g: 0.9921569, b: 0.43921572, a: 1}
+    - Key: 2
+      Value: {r: 0.14017442, g: 0.57725734, b: 0.8490566, a: 1}
+    - Key: 3
+      Value: {r: 0.57637453, g: 0.18316127, b: 0.7924528, a: 1}
+    - Key: 4
+      Value: {r: 1, g: 0.70993286, b: 0.1273585, a: 1}

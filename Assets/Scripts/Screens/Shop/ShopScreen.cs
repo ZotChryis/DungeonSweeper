@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Gameplay;
 using Schemas;
+using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -89,6 +90,8 @@ namespace Screens.Shop
                 allItems.RemoveAll(schema => schema.ItemId == lockedItemId);
             }
             
+            allItems.Sort((i1, i2) => i1.Rarity.CompareTo(i2.Rarity));
+            
             // Roll by rarity to see if they are included
             float addedChanceFromLevel = level * 0.1f;
             foreach (var itemSchema in allItems)
@@ -132,7 +135,9 @@ namespace Screens.Shop
             }
             
             // Get all the items in the game
-            var allItems = ServiceLocator.Instance.Schemas.ItemSchemas;
+            List<ItemSchema> allItems = new List<ItemSchema>();
+            allItems.AddRange(ServiceLocator.Instance.Schemas.ItemSchemas);
+            allItems.Sort((i1, i2) => i1.Rarity.CompareTo(i2.Rarity));
             
             // Roll by rarity to see if they are included
             foreach (var itemSchema in allItems)

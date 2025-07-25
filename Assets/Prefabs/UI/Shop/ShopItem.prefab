@@ -354,8 +354,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Icon: {fileID: 3274232597579273613}
+  RarityFrame: {fileID: 1142087183561507438}
   Button: {fileID: 3354169017707484325}
   Sale: {fileID: 2431336428984107499}
+  RarityColors:
+    _serializedList:
+    - Key: 0
+      Value: {r: 1, g: 1, b: 1, a: 1}
+    - Key: 1
+      Value: {r: 0.47058824, g: 0.99215686, b: 0.4392157, a: 1}
+    - Key: 2
+      Value: {r: 0.14117648, g: 0.5764706, b: 0.8509804, a: 1}
+    - Key: 3
+      Value: {r: 0.5764706, g: 0.18431373, b: 0.7921569, a: 1}
+    - Key: 4
+      Value: {r: 1, g: 0.70980394, b: 0.1254902, a: 1}
 --- !u!1 &5795522966128312671
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7264151, g: 0.6553764, b: 0.56537026, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

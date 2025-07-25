@@ -39,7 +39,7 @@ namespace Screens.Achievements
             }
             
             var schemas = ServiceLocator.Instance.Schemas.AchievementSchemas;
-            schemas.Sort((a1, a2) => a1.AchievementId < a2.AchievementId ? 1 : -1);
+            schemas.Sort((a1, a2) => a1.AchievementId < a2.AchievementId ? -1 : 1);
             Items = new List<AchievementItem>(schemas.Count);
             
             foreach (var schema in schemas)

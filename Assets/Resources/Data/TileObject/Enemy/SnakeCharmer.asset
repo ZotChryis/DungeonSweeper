@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SnakeCharmer
   m_EditorClassIdentifier: 
   UserFacingName: Snake Charmer
-  UserFacingDescription: TBD
+  UserFacingDescription: Plays a hypnotic tune that snakes both love and hate.
   Tags: 010000000300000009000000
   TileId: 63
   LibraryOverrideTileId: 0

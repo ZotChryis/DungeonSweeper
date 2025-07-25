@@ -1,4 +1,6 @@
-﻿using Gameplay;
+﻿using AYellowpaper.SerializedCollections;
+using Gameplay;
+using Schemas;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,8 +9,10 @@ namespace Screens.Inventory
     public class InventoryItem : MonoBehaviour
     {
         [SerializeField] private Image Icon;
+        [SerializeField] private Image RarityFrame;
         [SerializeField] private Button Button;
         [SerializeField] private GameObject Sale;
+        [SerializeField] [SerializedDictionary] private SerializedDictionary<Rarity, Color> RarityColors = new();
         
         private InventoryScreen Screen;
         private ItemInstance ItemInstance;
@@ -32,6 +36,18 @@ namespace Screens.Inventory
             SetSaleStatus(itemInstance.IsOnSale);
 
             itemInstance.IsOnSaleChanged += SetSaleStatus;
+
+            RarityFrame.color = GetColorFromRarity();
+        }
+
+        private Color GetColorFromRarity()
+        {
+            if (RarityColors.TryGetValue(ItemInstance.Schema.Rarity, out Color color))
+            {
+                return color;
+            }
+
+            return Color.white;
         }
 
         public ItemInstance GetItemInstance()
