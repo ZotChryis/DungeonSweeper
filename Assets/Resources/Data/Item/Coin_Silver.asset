@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Silver Coin
   Description: Gain $5 when picked up.
   Sprite: {fileID: 8085578190399825063, guid: 09c09d08d9b697541b7e1719196787f7, type: 3}
-  IsUniqueEquipped: 0
+  Max: -1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 0
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 9
         Amount: 5
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 
         Items: 

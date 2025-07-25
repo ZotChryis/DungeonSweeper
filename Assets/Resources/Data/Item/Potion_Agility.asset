@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: 'Potion: Agility'
   Description: Use from inventory. Gain +3 XP.
   Sprite: {fileID: -1061600653231999548, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
-  IsUniqueEquipped: 0
+  Max: -1
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
-  Rarity: 1
+  Rarity: 2
   Price: 4
   Effects:
     _serializedList:
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 14
         Amount: 3
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 
         Items: 

@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: 'Potion: Healing'
   Description: Use from inventory. Heal +5 HP. Does not overheal.
   Sprite: {fileID: 1185527514606905908, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
-  IsUniqueEquipped: 0
+  Max: -1
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
-  Rarity: 2
+  Rarity: 1
   Price: 4
   Effects:
     _serializedList:
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 8
         Amount: 5
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 
         Items: 

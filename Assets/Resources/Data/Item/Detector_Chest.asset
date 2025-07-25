@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: Chest Detector
   Description: Auto-reveal one chest at the start of the dungeon.
   Sprite: {fileID: -2626895022354382467, guid: d2a32a8bbec13fe4bb11495b9810eb3b, type: 3}
-  IsUniqueEquipped: 0
+  Max: -1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 2
+  Rarity: 1
   Price: 2
   Effects:
     _serializedList:
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 2
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 7
         Tags: 
         Items: 

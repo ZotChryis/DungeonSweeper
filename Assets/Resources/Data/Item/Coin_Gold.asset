@@ -16,11 +16,11 @@ MonoBehaviour:
   Name: Gold Coin
   Description: Gain $10 when picked up.
   Sprite: {fileID: -6474822756817492616, guid: 34fe419843a55ef478c2080cc78acb86, type: 3}
-  IsUniqueEquipped: 0
+  Max: -1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 0
-  Rarity: 0
+  Rarity: 2
   Price: 0
   Effects:
     _serializedList:
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 9
         Amount: 10
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 
         Items: 

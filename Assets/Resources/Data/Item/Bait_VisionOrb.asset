@@ -20,7 +20,7 @@ MonoBehaviour:
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 3
+  Rarity: 1
   Price: 8
   Effects:
     _serializedList:
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 5
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 5
         Tags: 
         Items: 

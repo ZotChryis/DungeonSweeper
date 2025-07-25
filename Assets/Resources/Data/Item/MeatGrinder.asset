@@ -16,12 +16,11 @@ MonoBehaviour:
   Name: Meat Grinder
   Description: Beasts give +1 XP.
   Sprite: {fileID: 7171381172979918087, guid: 17b4ee918d187974dac0ab21f204763b, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 3
+  Rarity: 4
   Price: 8
   Effects:
     _serializedList:
@@ -29,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 4
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 05000000
         Items: 

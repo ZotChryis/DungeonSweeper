@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Use from inventory. Gain extra +1 XP from enemies until next Level
     Up.
   Sprite: {fileID: -3065595510956808684, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
-  IsUniqueEquipped: 0
+  Max: -1
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
@@ -29,6 +29,7 @@ MonoBehaviour:
       Value:
       - Type: 4
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 01000000
         Items: 

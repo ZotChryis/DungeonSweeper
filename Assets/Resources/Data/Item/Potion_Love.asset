@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: 'Potion: Love'
   Description: Use from inventory. Reveal a Lover. The next Lover deals -2 damage.
   Sprite: {fileID: -1972361127685065434, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
-  IsUniqueEquipped: 0
+  Max: -1
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
@@ -28,6 +28,7 @@ MonoBehaviour:
       Value:
       - Type: 12
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 0a000000
         Items: 
@@ -36,6 +37,7 @@ MonoBehaviour:
         DecayTags: 
       - Type: 3
         Amount: -2
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 0a000000
         Items: 
