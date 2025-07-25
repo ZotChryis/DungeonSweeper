@@ -20,7 +20,7 @@ MonoBehaviour:
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
-  Rarity: 2
+  Rarity: 1
   Price: 4
   Effects:
     _serializedList:
