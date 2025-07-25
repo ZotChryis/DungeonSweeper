@@ -20,8 +20,8 @@ MonoBehaviour:
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  Rarity: 2
+  Price: 10
   Effects:
     _serializedList:
     - Key: 3
