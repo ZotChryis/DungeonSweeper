@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
-  m_Name: Ballrog
+  m_Name: DemonLord
   m_EditorClassIdentifier: 
   AchievementId: 77
   Title: Demon Lord
-  Description: Conquer the Demon Lord.
+  Description: Conquer the Balrog.
   Reward: 
   RewardClass: -1
   RewardItem: 0
