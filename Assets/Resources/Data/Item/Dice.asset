@@ -17,7 +17,6 @@ MonoBehaviour:
   Description: Take 7 Damage. Get a random item. Higher dungeon levels yield higher
     rarity items.
   Sprite: {fileID: 21300000, guid: 38e25ac04e03c8c45b1847124e0568e2, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 1
   InitialCharges: 1
@@ -30,6 +29,7 @@ MonoBehaviour:
       Value:
       - Type: 17
         Amount: 1
+        GrantItemForceAllowDuplicates: 1
         Id: 0
         Tags: 
         Items: 
@@ -38,6 +38,7 @@ MonoBehaviour:
         DecayTags: 
       - Type: 7
         Amount: 7
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 
         Items: 
