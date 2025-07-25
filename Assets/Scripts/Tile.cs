@@ -99,6 +99,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public CompassDirections DirectionToLook = CompassDirections.West;
     private bool IsEnraged = false;
     private bool ShouldStandUp = false;
+    private bool IsAlreadyShakingAnnotation = false;
 
     private Coroutine MobileContextMenuHandle;
 
@@ -159,12 +160,16 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             return;
         }
 
-        if (SpecialAnnotations[100].activeInHierarchy && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
+        foreach (var specialAnnotation in SpecialAnnotations)
         {
-            // If safety on don't let the player blow themselves up.
-            StartCoroutine(ShakeFlagX());
-            return;
+            if (specialAnnotation.Value.activeInHierarchy && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
+            {
+                // If safety on don't let the player blow themselves up.
+                StartCoroutine(ShakeAnnotation(specialAnnotation.Value));
+                return;
+            }
         }
+        
 
         // TODO: Refactor the click handle logic
         if (State == TileState.Revealed || State == TileState.RevealThroughCombat)
@@ -188,20 +193,17 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             TEMP_SetState(State + 1);
         }
     }
-
-    private bool isAlreadyShaking = false;
+    
     /// <summary>
     /// Shakes the FlagAnnotation. Copied from Grid.cs.
     /// </summary>
-    /// <param name="duration"></param>
-    /// <param name="magnitude"></param>
     /// <returns></returns>
-    public IEnumerator ShakeFlagX(float duration = 0.50f, float magnitude = 10)
+    public IEnumerator ShakeAnnotation(GameObject toShake, float duration = 0.50f, float magnitude = 10)
     {
-        if (!isAlreadyShaking)
+        if (!IsAlreadyShakingAnnotation)
         {
-            isAlreadyShaking = true;
-            Vector3 originalPosition = SpecialAnnotations[100].transform.localPosition;
+            IsAlreadyShakingAnnotation = true;
+            Vector3 originalPosition = toShake.transform.localPosition;
             float elapsed = 0.0f;
 
             while (elapsed < duration)
@@ -209,13 +211,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 float percentElapsedInvertSquared = 1f - elapsed / duration;
                 percentElapsedInvertSquared = percentElapsedInvertSquared * percentElapsedInvertSquared;
                 float x = UnityEngine.Random.Range(-1, 1f) * magnitude * percentElapsedInvertSquared + originalPosition.x;
-                SpecialAnnotations[100].transform.localPosition = new Vector3(x, originalPosition.y, originalPosition.z);
+                toShake.transform.localPosition = new Vector3(x, originalPosition.y, originalPosition.z);
                 elapsed += Time.deltaTime;
                 yield return null;
             }
 
-            SpecialAnnotations[100].transform.localPosition = originalPosition;
-            isAlreadyShaking = false;
+            toShake.transform.localPosition = originalPosition;
+            IsAlreadyShakingAnnotation = false;
         }
     }
 
