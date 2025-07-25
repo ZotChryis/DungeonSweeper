@@ -452,13 +452,18 @@ namespace Gameplay
                                 rarity = Rarity.Epic;
                                 break;
                             case 3:
+                            case 4:
                                 rarity = Rarity.Legendary;
                                 break;
                         }
                         
                         var itemsOfRarity = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(x => x.Rarity == rarity);
-                        ItemInstance itemGranted = ServiceLocator.Instance.Player.Inventory.AddItem(itemsOfRarity.GetRandomItem().ItemId);
-                        GrantedItems.Add(itemGranted);
+                        ItemInstance itemGranted = ServiceLocator.Instance.Player.Inventory.AddItem(itemsOfRarity.GetRandomItem().ItemId, effect.GrantItemForceAllowDuplicates);
+                        if (itemGranted != null)
+                        {
+                            GrantedItems.Add(itemGranted);
+                        }
+                        
                         break;
                         
                     case EffectType.MassPolymorph:
