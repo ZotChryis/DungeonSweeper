@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 15
   Name: Sacrificial Whip
-  Description: Gain a Health Potions. Take 1 more damage from enemies. Get +1 XP
-    from enemies. Gain +1 Max HP.
+  Description: Gain a Health Potion. Take 1 more damage from enemies. Get +1 XP from
+    enemies. Gain +1 Max HP.
   Sprite: {fileID: -9221110098587984580, guid: 5659cc45055420b408ddc8421da2dea5, type: 3}
   Max: 1
   IsConsumbale: 0
