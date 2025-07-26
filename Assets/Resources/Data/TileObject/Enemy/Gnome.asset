@@ -36,13 +36,18 @@ MonoBehaviour:
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
-  RevealRandLocationNextToMine: 0
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets: []
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 1
   FleeVfx: {fileID: 5247689757557250064, guid: bf00873524711144eadc7de4454fb8d8, type: 3}
+  FleeSfx: Gnome
   RevealFlee: 0
   CanEnrage: 0
   CanBodyGuardSwap: 0
@@ -59,29 +64,6 @@ MonoBehaviour:
   RevealVfx: {fileID: 0}
   Data:
     _serializedList:
-    - Key: 2
-      Value:
-        AutoContinue:
-          UseOverride: 1
-          Value: 1
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
-          UseOverride: 1
-          Value: 0
-        EnableSprite:
-          UseOverride: 0
-          Value: 0
-        EnableDeathSprite:
-          UseOverride: 0
-          Value: 0
-        Sfx:
-          UseOverride: 1
-          Value: Gnome
-        Vfx:
-          UseOverride: 0
-          Value: {fileID: 0}
     - Key: 1
       Value:
         AutoContinue:
@@ -100,8 +82,31 @@ MonoBehaviour:
           UseOverride: 0
           Value: 0
         Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 2
+      Value:
+        AutoContinue:
           UseOverride: 1
-          Value: Gnome
+          Value: 1
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}

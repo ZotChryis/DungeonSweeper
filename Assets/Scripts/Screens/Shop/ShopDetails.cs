@@ -19,6 +19,9 @@ namespace Screens.Shop
                 return;
             }
 
+            // Play purchase sfx
+            ServiceLocator.Instance.AudioManager.PlaySfx("Purchase");
+            
             // Deduct cost
             player.ShopXp -= GetPrice();
             

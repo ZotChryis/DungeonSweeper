@@ -249,6 +249,11 @@ namespace Schemas
         /// How much "ShopXP" it will cost to buy one instance.
         /// </summary>
         public int Price;
+
+        /// <summary>
+        /// Played when used. Empty will be ignored.
+        /// </summary>
+        public string UseSfx;
         
         [SerializedDictionary("EffectTrigger", "Effects")]
         public SerializedDictionary<EffectTrigger, Effect[]> Effects =  new SerializedDictionary<EffectTrigger, Effect[]>();

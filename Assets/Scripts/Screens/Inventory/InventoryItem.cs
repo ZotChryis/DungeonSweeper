@@ -25,6 +25,7 @@ namespace Screens.Inventory
         private void OnButtonClicked()
         {
             Screen.FocusItem(ItemInstance);
+            ServiceLocator.Instance.AudioManager.PlaySfx("ClickGood");
         }
 
         public void Initialize(InventoryScreen screen, ItemInstance itemInstance)

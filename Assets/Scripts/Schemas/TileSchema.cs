@@ -226,6 +226,7 @@ namespace Schemas
         public bool CanFlee;
         [Tooltip("Fleeing VFX played when this successfully flees.")]
         public GameObject FleeVfx;
+        public string FleeSfx;
         public bool RevealFlee;
         public bool CanEnrage;
         /// <summary>

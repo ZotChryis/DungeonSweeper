@@ -161,6 +161,7 @@ namespace Gameplay
             FBPP.SetString(key, DateTime.Today.ToString("d"));
             
             OnAchievementCompleted?.Invoke(schema);
+            ServiceLocator.Instance.AudioManager.PlaySfx("Achievement");
         }
     }
 }

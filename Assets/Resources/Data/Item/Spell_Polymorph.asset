@@ -22,12 +22,14 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 3
   Price: 8
+  UseSfx: Sheep
   Effects:
     _serializedList:
     - Key: 4
       Value:
       - Type: 18
         Amount: 0
+        GrantItemForceAllowDuplicates: 0
         Id: 62
         Tags: 01000000
         Items: 

@@ -837,7 +837,13 @@ public class Grid : MonoBehaviour
                     continue;
                 }
 
-                if (!tile.GetHousedObject().Tags.Contains(TileSchema.Tag.Enemy))
+                var tags = tile.GetHousedObject().Tags;
+                if (tags.Contains(TileSchema.Tag.Dragon))
+                {
+                    continue;
+                }
+                
+                if (!tags.Contains(TileSchema.Tag.Enemy))
                 {
                     continue;
                 }

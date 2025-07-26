@@ -558,6 +558,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     Instantiate(HousedObject.FleeVfx, transform);
                 }
+
+                if (!string.IsNullOrEmpty(HousedObject.FleeSfx))
+                {
+                    ServiceLocator.Instance.AudioManager.PlaySfx(HousedObject.FleeSfx);
+                }
                 return;
             }
         }
@@ -571,6 +576,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 if (HousedObject.FleeVfx != null)
                 {
                     Instantiate(HousedObject.FleeVfx, transform);
+                }
+                if (!string.IsNullOrEmpty(HousedObject.FleeSfx))
+                {
+                    ServiceLocator.Instance.AudioManager.PlaySfx(HousedObject.FleeSfx);
                 }
                 
                 bool newLocation =

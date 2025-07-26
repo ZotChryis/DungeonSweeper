@@ -165,6 +165,13 @@ namespace Gameplay
             itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
             itemInstance.RemoveCharge(1);
             OnItemChargeChanged?.Invoke(itemInstance);
+            
+            // Play used sfx if available
+            if (!string.IsNullOrEmpty(itemInstance.Schema.UseSfx))
+            {
+                ServiceLocator.Instance.AudioManager.PlaySfx(itemInstance.Schema.UseSfx);
+            }
+            
             return true;
         }
 
