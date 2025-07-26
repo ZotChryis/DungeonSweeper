@@ -25,7 +25,7 @@ namespace Screens
         {
             Title.SetText(title);
             Message.SetText(message);
-            Callback = callback;
+            Callback += callback;
         }
         
         private void OnYesClicked()
@@ -38,7 +38,6 @@ namespace Screens
         {
             ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
             Callback = null;
-            Yes.onClick.RemoveAllListeners();
         }
     }
 }
