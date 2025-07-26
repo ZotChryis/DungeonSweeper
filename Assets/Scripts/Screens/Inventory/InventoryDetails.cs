@@ -50,8 +50,8 @@ namespace Screens.Inventory
 
         public void ClearFocusedItem()
         {
-            Name.SetText("CHOOSE AN ITEM");
-            Description.SetText("");
+            Name.SetText("---");
+            Description.SetText("---");
             Button.GetComponentInChildren<TMP_Text>().SetText("---");
             Button.interactable = false;
         }
