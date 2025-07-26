@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Gameplay;
 using Schemas;
-using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
