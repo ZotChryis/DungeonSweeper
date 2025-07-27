@@ -12,9 +12,7 @@ public class InventoryScreen : BaseScreen
 
     [SerializeField] protected GameObject ConsumableLabel;
     [SerializeField] protected GameObject PassiveLabel;
-
-    [SerializeField] 
-    protected Transform ScrollRectRoot;
+    
     [SerializeField] 
     protected Transform ConsumableListRoot;
     [SerializeField]
@@ -124,6 +122,5 @@ public class InventoryScreen : BaseScreen
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
-        //LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ScrollRectRoot);
     }
 }
