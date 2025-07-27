@@ -46,8 +46,7 @@ public class InventoryScreen : BaseScreen
 
     public void OnEnable()
     {
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
+        ForceRefreshLayout();
     }
 
     // TODO: Too lazy right now to remove items one at a time. need to track them better 
