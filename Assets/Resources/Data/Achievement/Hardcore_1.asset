@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
   m_Name: Hardcore_1
   m_EditorClassIdentifier: 
-  AchievementId: 82
+  AchievementId: 83
   Title: Hardcore+
-  Description: Defeat the first level of the dungeon without a Retry.
+  Description: Defeat the second level of the dungeon without a Retry.
   Reward: 
   RewardClass: -1
   RewardItem: 0
   Trigger: 0
-  Level: 0
+  Level: 1
   Class: -1
   TileData: 
   ItemData: 
   ItemAcquiredMinCount: -1
   ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
