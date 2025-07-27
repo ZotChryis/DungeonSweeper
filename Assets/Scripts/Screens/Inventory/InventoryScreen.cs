@@ -124,6 +124,6 @@ public class InventoryScreen : BaseScreen
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ScrollRectRoot);
+        //LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ScrollRectRoot);
     }
 }
