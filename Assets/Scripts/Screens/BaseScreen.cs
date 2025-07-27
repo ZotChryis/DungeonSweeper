@@ -17,9 +17,13 @@ public class BaseScreen : MonoBehaviour
     [Tooltip("The button that is triggered if Escape key is pressed")]
     [SerializeField]
     private Button EscapeButton;
+    
+    private CanvasGroup CanvasGroup;
+    
     protected virtual void Awake()
     {
         CloseButton?.onClick.AddListener(OnCloseButtonClicked);
+        CanvasGroup = GetComponent<CanvasGroup>();
     }
 
     protected virtual void OnCloseButtonClicked()
@@ -33,6 +37,7 @@ public class BaseScreen : MonoBehaviour
         Container.SetActive(true);
         MainContentRoot.transform.localScale = Vector3.zero;
         MainContentRoot.transform.DOScale(Vector3.one, 0.25f);
+        CanvasGroup.DOFade(1, 0.25f).From(0.0f);
         
         OnShow();
     }
@@ -49,7 +54,7 @@ public class BaseScreen : MonoBehaviour
 
     private IEnumerator HideHelper()
     {
-        yield return MainContentRoot.transform.DOScale(Vector3.zero, 0.25f).WaitForCompletion();
+        yield return CanvasGroup.DOFade(0.0f, 0.25f).From(1.0f).WaitForCompletion();
         Container.SetActive(false);
     }
 

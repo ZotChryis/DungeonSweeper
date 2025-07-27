@@ -1575,6 +1575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100475404}
   - component: {fileID: 100475405}
+  - component: {fileID: 100475406}
   m_Layer: 0
   m_Name: Confirmation
   m_TagString: Untagged
@@ -1616,13 +1617,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 1461871578}
   MainContentRoot: {fileID: 290874061}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 0}
   EscapeButton: {fileID: 0}
   Title: {fileID: 1030402805}
   Message: {fileID: 1429175314}
   Yes: {fileID: 2069090746}
   No: {fileID: 1196684467}
+--- !u!225 &100475406
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100475403}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &102132504
 GameObject:
   m_ObjectHideFlags: 0
@@ -22471,6 +22483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2013997458}
   - component: {fileID: 2013997459}
+  - component: {fileID: 2013997460}
   m_Layer: 0
   m_Name: Settings
   m_TagString: Untagged
@@ -22512,7 +22525,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 1391784027}
   MainContentRoot: {fileID: 677531918}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 944659780}
   EscapeButton: {fileID: 944659780}
   MasterVolume: {fileID: 2090150759}
@@ -22524,6 +22536,18 @@ MonoBehaviour:
   AllowLeftHoldContextMenu: {fileID: 1159807276}
   CanPickUpItems: {fileID: 1983239148}
   AllowCheats: {fileID: 224784610}
+--- !u!225 &2013997460
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013997457}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2024604446
 GameObject:
   m_ObjectHideFlags: 0
@@ -24357,7 +24381,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 530071009534961686}
   MainContentRoot: {fileID: 2065575491860302045}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 0}
   EscapeButton: {fileID: 0}
   MainMenu: {fileID: 30887351}
@@ -24497,6 +24520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8193669267837045373}
   - component: {fileID: 8151431571390357827}
+  - component: {fileID: 8193669267837045374}
   m_Layer: 0
   m_Name: ClassSelection
   m_TagString: Untagged
@@ -24820,6 +24844,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8649098557961986100}
   - component: {fileID: 3196570121149158249}
+  - component: {fileID: 8649098557961986101}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -25496,7 +25521,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 3314563171841410822}
   MainContentRoot: {fileID: 8454022165926743320}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 5623050355387788902}
   EscapeButton: {fileID: 0}
   AchievementPrefab: {fileID: 6843861134416029835, guid: 6f23cc9093132644e912b3f63d4e2df0, type: 3}
@@ -27125,6 +27149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2360978000038255375}
   - component: {fileID: 7072308076171788796}
+  - component: {fileID: 7072308076171788797}
   m_Layer: 0
   m_Name: ShopScreen
   m_TagString: Untagged
@@ -27847,7 +27872,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 7778283927346899689}
   MainContentRoot: {fileID: 7068766834930961015}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 0}
   EscapeButton: {fileID: 0}
   Retry: {fileID: 595367062}
@@ -28931,7 +28955,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 5906784981110270225}
   MainContentRoot: {fileID: 8105825995829222141}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 0}
   EscapeButton: {fileID: 0}
   NewGameButton: {fileID: 1240008421}
@@ -29282,6 +29305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6429661429712517503}
   - component: {fileID: 6694895682029625934}
+  - component: {fileID: 6694895682029625935}
   m_Layer: 0
   m_Name: Instructions
   m_TagString: Untagged
@@ -31242,6 +31266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8123850048323305345}
   - component: {fileID: 7517944213114515278}
+  - component: {fileID: 8123850048323305346}
   m_Layer: 0
   m_Name: TileContextMenu
   m_TagString: Untagged
@@ -33975,6 +34000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2881332770211333768}
   - component: {fileID: 8776863111530420795}
+  - component: {fileID: 8776863111530420796}
   m_Layer: 0
   m_Name: Library
   m_TagString: Untagged
@@ -34694,7 +34720,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 581655399358250822}
   MainContentRoot: {fileID: 345341017}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 7774571558954685990}
   EscapeButton: {fileID: 7774571558954685990}
   ItemPrefab: {fileID: 4521406146511226897, guid: 94cda348b2c77464eb907bece8d8eab1, type: 3}
@@ -35114,6 +35139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3391366680566757035}
   - component: {fileID: 6231945419916815006}
+  - component: {fileID: 6484850609037991929}
   m_Layer: 0
   m_Name: Inventory
   m_TagString: Untagged
@@ -35121,6 +35147,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!225 &6484850609037991929
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6484850609037991928}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &6489283640022802373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35572,9 +35610,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 1706507251292749241}
   MainContentRoot: {fileID: 731995301}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 3035257827022850094}
   EscapeButton: {fileID: 0}
+--- !u!225 &6694895682029625935
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355973955643948564}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &6746929435814174886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35677,6 +35726,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1244086434079438127}
   - component: {fileID: 2626526021519868772}
+  - component: {fileID: 6852281099091151208}
   m_Layer: 0
   m_Name: GameOverScreen
   m_TagString: Untagged
@@ -35684,6 +35734,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!225 &6852281099091151208
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6852281099091151207}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6901799527352204791
 GameObject:
   m_ObjectHideFlags: 0
@@ -35936,7 +35998,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 7731061392783683653}
   MainContentRoot: {fileID: 1582358139527644207}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 0}
   EscapeButton: {fileID: 0}
   ItemPrefab: {fileID: 8439486855940079838, guid: 107a765d8085289408ee112a490026f5, type: 3}
@@ -35947,6 +36008,18 @@ MonoBehaviour:
   Details: {fileID: 2247794619226298090}
   Reroll: {fileID: 762597855}
   Continue: {fileID: 1953959622}
+--- !u!225 &7072308076171788797
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2347913528673089120}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7074020231225883601
 GameObject:
   m_ObjectHideFlags: 0
@@ -36567,6 +36640,7 @@ GameObject:
   - component: {fileID: 8295379418824451296}
   - component: {fileID: 467337832107482927}
   - component: {fileID: 7509778537908513801}
+  - component: {fileID: 8295379418824451297}
   m_Layer: 0
   m_Name: Victory
   m_TagString: Untagged
@@ -36760,7 +36834,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 3236183872433618498}
   MainContentRoot: {fileID: 8168596147924323684}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 4406532541457808513}
   EscapeButton: {fileID: 4406532541457808513}
   Content: {fileID: 8947559755575645553}
@@ -38925,6 +38998,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &8123850048323305346
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210858354411401714}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8141002372956930086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38966,7 +39051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 6248524922543342480}
   MainContentRoot: {fileID: 1016179321435031950}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 3837523637970791152}
   EscapeButton: {fileID: 3837523637970791152}
 --- !u!114 &8151899059454063026
@@ -39070,6 +39154,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &8193669267837045374
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530190605014262574}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8196874590458614754
 GameObject:
   m_ObjectHideFlags: 0
@@ -39258,6 +39354,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &8295379418824451297
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7411669288366120712}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8300808134350557674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39995,6 +40103,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &8649098557961986101
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667125211695321704}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8653284475285843973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40170,11 +40290,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Container: {fileID: 71624821960265573}
   MainContentRoot: {fileID: 6364571021536544123}
-  LockAnchoredPositionRects: []
   CloseButton: {fileID: 7136183683823445509}
   EscapeButton: {fileID: 7136183683823445509}
   LibraryItemPrefab: {fileID: 6492784225575291518, guid: 99847db410df4fe4cbf3d574d89a4ff3, type: 3}
   LibraryListRoot: {fileID: 393375246793314575}
+--- !u!225 &8776863111530420796
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5841964355889541083}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &8782096734925711280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40566,6 +40697,7 @@ GameObject:
   m_Component:
   - component: {fileID: 791871721658011371}
   - component: {fileID: 951893482096180997}
+  - component: {fileID: 8940512091877664697}
   m_Layer: 0
   m_Name: Achievements
   m_TagString: Untagged
@@ -40573,6 +40705,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!225 &8940512091877664697
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940512091877664696}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!224 &8947559755575645553
 RectTransform:
   m_ObjectHideFlags: 0
