@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 13
   Sprite: {fileID: 21300000, guid: 3946733709967e8459a905ed40e49c3c, type: 3}
-  Name: Wizard
+  Name: Dryad
   Description: Starts with the Forest Diadem.
   StartingItem: 62
   HitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
