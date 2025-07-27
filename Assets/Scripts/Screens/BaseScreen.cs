@@ -1,3 +1,5 @@
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,20 +7,19 @@ public class BaseScreen : MonoBehaviour
 {
     [SerializeField]
     private GameObject Container;
-
+    
+    [SerializeField]
+    private GameObject MainContentRoot;
+    
     [SerializeField]
     private Button CloseButton;
 
     [Tooltip("The button that is triggered if Escape key is pressed")]
     [SerializeField]
     private Button EscapeButton;
-
-    private Animator Animator;
-
     protected virtual void Awake()
     {
         CloseButton?.onClick.AddListener(OnCloseButtonClicked);
-        Animator =  GetComponent<Animator>();
     }
 
     protected virtual void OnCloseButtonClicked()
@@ -29,14 +30,9 @@ public class BaseScreen : MonoBehaviour
     // TODO: Add animations and shit
     public void Show()
     {
-        if (Animator)
-        {
-            Animator.SetTrigger("Show");
-        }
-        else
-        {
-            Container.SetActive(true);
-        }
+        Container.SetActive(true);
+        MainContentRoot.transform.localScale = Vector3.zero;
+        MainContentRoot.transform.DOScale(Vector3.one, 0.25f);
         
         OnShow();
     }
@@ -47,16 +43,14 @@ public class BaseScreen : MonoBehaviour
 
     public void Hide()
     {
-        if (Animator)
-        {
-            Animator.SetTrigger("Hide");
-        }
-        else
-        {
-            Container.SetActive(false);
-        }
-        
+        StartCoroutine(HideHelper());
         OnHide();
+    }
+
+    private IEnumerator HideHelper()
+    {
+        yield return MainContentRoot.transform.DOScale(Vector3.zero, 0.25f).WaitForCompletion();
+        Container.SetActive(false);
     }
 
     protected virtual void OnHide()
