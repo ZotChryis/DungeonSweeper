@@ -13,9 +13,12 @@ public class BaseScreen : MonoBehaviour
     [SerializeField]
     private Button EscapeButton;
 
+    private Animator Animator;
+
     protected virtual void Awake()
     {
         CloseButton?.onClick.AddListener(OnCloseButtonClicked);
+        Animator =  GetComponent<Animator>();
     }
 
     protected virtual void OnCloseButtonClicked()
@@ -26,7 +29,15 @@ public class BaseScreen : MonoBehaviour
     // TODO: Add animations and shit
     public void Show()
     {
-        Container.SetActive(true);
+        if (Animator)
+        {
+            Animator.SetTrigger("Show");
+        }
+        else
+        {
+            Container.SetActive(true);
+        }
+        
         OnShow();
     }
 
@@ -36,7 +47,15 @@ public class BaseScreen : MonoBehaviour
 
     public void Hide()
     {
-        Container.SetActive(false);
+        if (Animator)
+        {
+            Animator.SetTrigger("Hide");
+        }
+        else
+        {
+            Container.SetActive(false);
+        }
+        
         OnHide();
     }
 

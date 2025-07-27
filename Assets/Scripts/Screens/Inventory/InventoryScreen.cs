@@ -12,7 +12,9 @@ public class InventoryScreen : BaseScreen
 
     [SerializeField] protected GameObject ConsumableLabel;
     [SerializeField] protected GameObject PassiveLabel;
-    
+
+    [SerializeField] 
+    protected Transform ScrollRectRoot;
     [SerializeField] 
     protected Transform ConsumableListRoot;
     [SerializeField]
@@ -82,8 +84,7 @@ public class InventoryScreen : BaseScreen
         ConsumableLabel.SetActive(hasAtLeastOneConsumable);
         PassiveLabel.SetActive(hasAtLeastOnePassive);
 
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
+        ForceRefreshLayout();
     }
 
     protected void OnItemChargeChanged(ItemInstance itemInstance)
@@ -118,5 +119,12 @@ public class InventoryScreen : BaseScreen
     {
         FocusedItem = null;
         Details.ClearFocusedItem();
+    }
+
+    protected void ForceRefreshLayout()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
+        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ScrollRectRoot);
     }
 }

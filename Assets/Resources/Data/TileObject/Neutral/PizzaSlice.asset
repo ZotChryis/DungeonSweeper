@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Pizza
+  m_Name: PizzaSlice
   m_EditorClassIdentifier: 
-  UserFacingName: Pizza
-  UserFacingDescription: Eat it to heal a large amount.
+  UserFacingName: Pizza Slice
+  UserFacingDescription: Eat it to heal a small amount.
   Tags: 00000000
   TileId: 3
   LibraryOverrideTileId: 0
-  Sprite: {fileID: 21300000, guid: 9089c452aff28cd48b1611951bb5e838, type: 3}
+  Sprite: {fileID: 21300000, guid: da0ba34d0cbc70743a658092d8212231, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -55,11 +55,11 @@ MonoBehaviour:
   RevealAllRewards: []
   WinReward: 0
   FullHealReward: 0
-  HealReward: 7
+  HealReward: 3
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
-  UpgradedVersion: {fileID: 0}
+  UpgradedVersion: {fileID: 11400000, guid: ba4d310b0b54eeb46a6e4eea01690e0c, type: 2}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList:

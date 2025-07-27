@@ -217,6 +217,7 @@ namespace Schemas
             AmuletEmerald,
             
             ScrimshawKit,
+            PizzaBox,
             
         }
         

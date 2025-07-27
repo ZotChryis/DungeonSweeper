@@ -17,6 +17,8 @@ namespace Screens
         
         protected override void Awake()
         {
+            base.Awake();
+            
             Yes.onClick.AddListener(OnYesClicked);
             No.onClick.AddListener(OnNoClicked);
         }

@@ -35,7 +35,7 @@ namespace Schemas
             Global,
         
             Egg,
-            Pizza,
+            PizzaSlice,
             TarotCard,
             VisionOrb,
         
@@ -118,6 +118,8 @@ namespace Schemas
             SnakeCharmer,
             Snake,
             SnakeCalm,
+            
+            Pizza,
         }
         
         // !!WARNING!! DO NOT REORDER
@@ -178,7 +180,6 @@ namespace Schemas
 
         public List<Tag> Tags = new List<Tag>();
     
-        // TODO: Make this an enum and add to all 
         public Id TileId;
         
         // If this is not None, when this tile object is on the map, it will appear as this object in the library
