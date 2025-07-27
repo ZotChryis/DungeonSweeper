@@ -120,6 +120,7 @@ namespace Schemas
             SnakeCalm,
             
             Pizza,
+            ForestSpirit,
         }
         
         // !!WARNING!! DO NOT REORDER

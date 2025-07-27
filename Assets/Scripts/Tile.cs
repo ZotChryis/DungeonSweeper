@@ -321,6 +321,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             return;
         }
+
+        DirectionToLook = CompassDirections.West;
+        IsEnraged = false;
+        ShouldStandUp = false;
         
         if (HousedObject && HousedObject.ObscureRadius > 0)
         {
@@ -771,6 +775,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             IsEnraged = true;
         }
+        
         // if our position is to the right of our target flip us around.
         if (xCoordinate < this.XCoordinate)
         {

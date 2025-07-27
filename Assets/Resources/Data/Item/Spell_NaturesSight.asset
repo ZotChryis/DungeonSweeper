@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
+  m_Name: Spell_NaturesSight
+  m_EditorClassIdentifier: 
+  ItemId: 65
+  Name: 'Spell: Nature''s Sight'
+  Description: Use from inventory. Reveal two Elementals.
+  Sprite: {fileID: 21300000, guid: 2ef57084b3b4f424eb5e68af35b421e8, type: 3}
+  Max: 1
+  IsConsumbale: 1
+  InitialCharges: 1
+  ShopInventory: 1
+  Rarity: 2
+  Price: 6
+  UseSfx: 
+  Effects:
+    _serializedList:
+    - Key: 4
+      Value:
+      - Type: 12
+        Amount: 2
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        Tags: 08000000
+        Items: 
+        Decay: -1
+        DecayTrigger: 0
+        DecayTags: 

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Firefly
+  m_Name: ForestSpirit
   m_EditorClassIdentifier: 
-  UserFacingName: Firefly
-  UserFacingDescription: Usually a tame little bug, but heavily inspired by her Firelord.
-  Tags: 010000000400000008000000
-  TileId: 54
+  UserFacingName: Forest Spirit
+  UserFacingDescription: A guardian of the Forest and it's inhabitants.
+  Tags: 010000000200000008000000
+  TileId: 67
   LibraryOverrideTileId: 0
-  Sprite: {fileID: 6344688186545429146, guid: a2f503b0f4386e144a8a5bb60899e475, type: 3}
+  Sprite: {fileID: 21300000, guid: 9e3a1f49ca573974fa256bf9866f931f, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -26,10 +26,10 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
-  Power: 7
+  Power: 4
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 7
+  XPReward: 4
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   ItemReward: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
-  UpgradedVersion: {fileID: 11400000, guid: 2bdbd435454726545aff12ed5a2a2f8f, type: 2}
+  UpgradedVersion: {fileID: 0}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

@@ -42,6 +42,7 @@ namespace Schemas
         AddRandomItemByDungeonLevel,
         MassPolymorph,  // All revealed enemies are polymorphed
         InstantConquer, // Conquers a random when triggered
+        SwapTiles,      // HACK: Takes all matching tiles using Tags[0], and swaps them to the TileId
         
     }
 
@@ -218,6 +219,11 @@ namespace Schemas
             
             ScrimshawKit,
             PizzaBox,
+            
+            ForestDiadem,
+            SpiritualTattoos,
+            Wardstones,
+            SpellNaturesSight,
             
         }
         

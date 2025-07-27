@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
+  m_Name: SpiritialTattoos
+  m_EditorClassIdentifier: 
+  ItemId: 63
+  Name: Spiritial Tattoos
+  Description: Defeating an Elemental reveals another Elemental.
+  Sprite: {fileID: 21300000, guid: 787e161f978f6ee4d90c6ab0d1625c53, type: 3}
+  Max: 1
+  IsConsumbale: 0
+  InitialCharges: 0
+  ShopInventory: 1
+  Rarity: 2
+  Price: 8
+  UseSfx: 
+  Effects:
+    _serializedList:
+    - Key: 3
+      Value:
+      - Type: 12
+        Amount: 1
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        Tags: 08000000
+        Items: 
+        Decay: -1
+        DecayTrigger: 0
+        DecayTags: 

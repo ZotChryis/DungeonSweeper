@@ -387,6 +387,14 @@ namespace Gameplay
                         // TODO: Support by Tag?
                         break;
                     
+                    case EffectType.SwapTiles:
+                        if (effect.Id != TileSchema.Id.None && effect.Tags != null && effect.Tags.Count > 0)
+                        {
+                            player.AddTileSwapEntry(effect.Tags[0], effect.Id, effect.Amount);
+                        }
+                        
+                        break;
+                    
                     case EffectType.UpgradeTileObject:
                         if (effect.Id != TileSchema.Id.None)
                         {
@@ -563,6 +571,14 @@ namespace Gameplay
                             player.AddSpawnCount(effect.Id, -effect.Amount);
                         }
                         // TODO: Support by Tag?
+                        break;
+                    
+                    case EffectType.SwapTiles:
+                        if (effect.Id != TileSchema.Id.None && effect.Tags != null && effect.Tags.Count > 0)
+                        {
+                            player.AddTileSwapEntry(effect.Tags[0], effect.Id, -effect.Amount);
+                        }
+                        
                         break;
                     
                     case EffectType.UpgradeTileObject:

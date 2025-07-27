@@ -19,6 +19,7 @@
             Gambler,
             Merchant,
             Scribe,
+            Dryad,
         }
     }
 }

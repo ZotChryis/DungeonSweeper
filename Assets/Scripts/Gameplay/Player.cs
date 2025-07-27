@@ -26,6 +26,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     [Tooltip("Player ability, bonus spawn count. Key is spawned creation id.")]
     public Dictionary<TileSchema.Id, int> BonusSpawn = new();
+    
+    public Dictionary<(TileSchema.Tag, TileSchema.Id), int> TileSwaps = new();
 
     [SerializeField] 
     private Image PlayerIcon;
@@ -491,6 +493,13 @@ public class Player : MonoBehaviour, IPointerClickHandler
         BonusSpawn[id] = bonusSpawn;
     }
 
+    public void AddTileSwapEntry(TileSchema.Tag fromTag, TileSchema.Id toTile, int amount)
+    {
+        TileSwaps.TryGetValue((fromTag, toTile), out int swapCount);
+        swapCount += amount;
+        TileSwaps[(fromTag, toTile)] = swapCount;
+    }
+    
     public void AddBonusStartHp(int amount)
     {
         BonusMaxHp += amount;
@@ -667,4 +676,5 @@ public class Player : MonoBehaviour, IPointerClickHandler
     }
     
     #endregion
+    
 }

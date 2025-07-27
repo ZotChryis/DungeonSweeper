@@ -42,8 +42,10 @@ public class InventoryScreen : BaseScreen
         RefreshItems();
     }
 
-    public void OnEnable()
+    protected override void OnShow()
     {
+        base.OnShow();
+        
         ForceRefreshLayout();
     }
 

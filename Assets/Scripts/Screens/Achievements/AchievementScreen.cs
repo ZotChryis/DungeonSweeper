@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Gameplay;
 using Schemas;
 using Sirenix.Utilities;
 using TMPro;
@@ -39,7 +40,24 @@ namespace Screens.Achievements
             }
             
             var schemas = ServiceLocator.Instance.Schemas.AchievementSchemas;
-            schemas.Sort((a1, a2) => a1.AchievementId < a2.AchievementId ? -1 : 1);
+            schemas.Sort((a1, a2) =>
+            {
+                if (a1.Class == a2.Class)
+                {
+                    return a1.AchievementId > a2.AchievementId ? 1 : -1;
+                }
+
+                if (a1.Class != Class.Id.None && a2.Class == Class.Id.None)
+                {
+                    return -1;
+                }
+                else if (a1.Class == Class.Id.None && a2.Class != Class.Id.None)
+                {
+                    return 1;
+                }
+                
+                return a1.Class > a2.Class ? 1 : -1;
+            });
             Items = new List<AchievementItem>(schemas.Count);
             
             foreach (var schema in schemas)

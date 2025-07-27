@@ -115,15 +115,19 @@ public class Grid : MonoBehaviour
         // The spawn entries are handled in order, so fill those out with that in mind
         SpawnEntriesInArray(SpawnSettings.GridSpawns);
         SpawnEntriesInArray(SpawnSettings.NormalSpawns);
+        
+        // Now do the swaps once things are spawned
+        HandleEntriesSwaps();
     }
 
     private void SpawnEntriesInArray(SpawnSettings.GridSpawnEntry[] entries)
     {
+        
         // TODO: Issue here !! If they don't exist in the Entries list then they don't get the bonus spawns.
         //  I've added a helper button to add 0 entries on missing items but its not ideal. 
         //  The reason I can't just inject it is because the spawn requirements are not IN the tile object but they are 
         //  assosciated instead. We might wanna consider hard linking them? idk
-        // TODO: Should we suppor bonus spawns when it comes to ConsecutiveSpawn types? maybe?? 
+        // TODO: Should we support bonus spawns when it comes to ConsecutiveSpawn types? maybe?? 
         foreach (var (key, bonus) in ServiceLocator.Instance.Player.BonusSpawn)
         {
             for (var i = 0; i < entries.Length; i++)
@@ -221,6 +225,37 @@ public class Grid : MonoBehaviour
         }
     }
 
+    private void HandleEntriesSwaps()
+    {
+        foreach (var ((fromTag, toTileId), amount) in ServiceLocator.Instance.Player.TileSwaps)
+        {
+            List<Tile> validGridTiles = new List<Tile>();
+            TileSchema schema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(s => s.TileId == toTileId);
+            if (schema == null)
+            {
+                continue;
+            }
+            
+            for (int y = 0; y < SpawnSettings.Height; y++)
+            {
+                for (int x = 0; x < SpawnSettings.Width; x++)
+                {
+                    if (!Tiles[x, y].TEMP_IsEmpty() && Tiles[x, y].GetHousedObject().Tags.Contains(fromTag))
+                    {
+                        validGridTiles.Add(Tiles[x, y]);
+                    }
+                }
+            }
+            
+            validGridTiles.Shuffle();
+            for (var i = 0; i < validGridTiles.Count && i < amount; i++)
+            {
+                validGridTiles[i].UndoPlacedTileObj();
+                validGridTiles[i].PlaceTileObj(schema);
+            }
+        }
+    }
+    
     public bool InGridBounds(int x, int y)
     {
         return x >= 0 && y >= 0 && x < SpawnSettings.Width && y < SpawnSettings.Height;

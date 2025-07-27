@@ -115,6 +115,10 @@ namespace Schemas
             
             DemonLord,
             
+            Dryad0,
+            Dryad1,
+            Dryad2,
+            Dryad3,
         }
 
         [Serializable]
