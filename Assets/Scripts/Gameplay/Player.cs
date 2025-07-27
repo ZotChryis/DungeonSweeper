@@ -98,7 +98,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    private bool IsHardcore = true;
+    public bool IsHardcore = true;
     
     public Action<int> OnLevelChanged;
     public Action<TileSchema> OnConquer;

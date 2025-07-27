@@ -119,6 +119,12 @@ namespace Schemas
             Dryad1,
             Dryad2,
             Dryad3,
+            
+            Hardcore0,
+            Hardcore1,
+            Hardcore2,
+            Hardcore3,
+            Hardcore4,
         }
 
         [Serializable]
@@ -182,5 +188,10 @@ namespace Schemas
         /// Some achievements require you to not get items. -1 means any number of items.
         /// </summary>
         public int ItemAcquiredMaxCount = -1;
+
+        /// <summary>
+        /// Some achievements require NO RETRY.
+        /// </summary>
+        public bool RequiresHardcore = false;
     }
 }

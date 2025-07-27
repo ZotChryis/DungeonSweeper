@@ -93,6 +93,11 @@ namespace Gameplay
                 {
                     continue;
                 }
+
+                if (schema.RequiresHardcore && !ServiceLocator.Instance.Player.IsHardcore)
+                {
+                    continue;
+                }
                 
                 switch (trigger)
                 {
