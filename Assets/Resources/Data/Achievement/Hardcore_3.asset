@@ -25,4 +25,4 @@ MonoBehaviour:
   ItemData: 
   ItemAcquiredMinCount: -1
   ItemAcquiredMaxCount: -1
-  RequiresHardcore: 0
+  RequiresHardcore: 1
