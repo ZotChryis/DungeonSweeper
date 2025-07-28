@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 45
   Name: Business Card
-  Description: Levels require +1 XP. Gain a Copper Coin when conquering a Humanoid.
+  Description: Gain a Copper Coin when conquering a Humanoid. Humanoids give -1XP.
   Sprite: {fileID: 21300000, guid: dbb5baa2ffb7e9b4ebc2d16550bb331a, type: 3}
   Max: 1
   IsConsumbale: 0
@@ -22,12 +22,15 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 3
   Price: 8
+  UseSfx: 
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 3
       Value:
       - Type: 11
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 09000000
         Items: 20000000
@@ -36,11 +39,12 @@ MonoBehaviour:
         DecayTags: 
     - Key: 0
       Value:
-      - Type: 16
-        Amount: 1
+      - Type: 4
+        Amount: -1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
-        Tags: 
+        Tags: 09000000
         Items: 
-        Decay: 0
+        Decay: -1
         DecayTrigger: 0
         DecayTags: 

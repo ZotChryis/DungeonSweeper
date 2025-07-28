@@ -226,7 +226,7 @@ namespace Schemas
             SpellNaturesSight,
             
             BloodMoon,
-            
+            WishingWell,
         }
         
         public ItemSchema.Id ItemId;

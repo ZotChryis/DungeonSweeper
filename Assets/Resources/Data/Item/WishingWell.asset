@@ -10,30 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Coin_Copper
+  m_Name: WishingWell
   m_EditorClassIdentifier: 
-  ItemId: 32
-  Name: Copper Coin
-  Description: Gain $2 when picked up.
-  Sprite: {fileID: -8571437415864897970, guid: 165ff70720ead2e4fb148418f666159c, type: 3}
-  Max: -1
+  ItemId: 67
+  Name: Wishing Well
+  Description: Magic Fountains give a Silver Coin.
+  Sprite: {fileID: 21300000, guid: b88e6f4e470e15a4dbcca5a442aed6d1, type: 3}
+  Max: 1
   IsConsumbale: 0
   InitialCharges: 0
-  ShopInventory: 0
-  Rarity: 0
-  Price: 0
+  ShopInventory: 1
+  Rarity: 2
+  Price: 8
   UseSfx: 
-  CanStack: 1
+  CanStack: 0
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 3
       Value:
-      - Type: 9
-        Amount: 2
+      - Type: 11
+        Amount: 1
         GrantItemForceAllowDuplicates: 0
-        Id: 0
+        Id: 43
         Tags: 
-        Items: 
-        Decay: 0
+        Items: 21000000
+        Decay: -1
         DecayTrigger: 0
         DecayTags: 

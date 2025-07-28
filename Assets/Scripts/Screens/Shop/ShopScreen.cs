@@ -94,7 +94,7 @@ namespace Screens.Shop
             float addedChanceFromLevel = level * 0.1f;
             foreach (var itemSchema in allItems)
             {
-                if (UnityEngine.Random.Range(0.0f, 1.0f) + addedChanceFromLevel <= itemSchema.GetShopAppearanceRate())
+                if (UnityEngine.Random.Range(0.0f, 1.0f) <= itemSchema.GetShopAppearanceRate() + addedChanceFromLevel)
                 {
                     // TODO: Do inventory better instead of adding multiple entries??
                     for (int i = 0; i < itemSchema.ShopInventory; i++)
