@@ -34,6 +34,7 @@ namespace Screens
         {
             ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
             Callback?.Invoke();
+            Callback = null;
         }
         
         private void OnNoClicked()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 62
   Name: Forest Diadem
-  Description: ALL Beasts become Forest Spirits.
+  Description: ALL Beasts become Forest Spirits. Reveal 6 random Elementals.
   Sprite: {fileID: 21300000, guid: 9dc776246199ea5449866a5b5e3aa779, type: 3}
   Max: 1
   IsConsumbale: 0
@@ -34,5 +34,14 @@ MonoBehaviour:
         Tags: 05000000
         Items: 
         Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+      - Type: 2
+        Amount: 8
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        Tags: 08000000
+        Items: 
+        Decay: -1
         DecayTrigger: 0
         DecayTags: 
