@@ -26,10 +26,10 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
-  Power: 4
+  Power: 2
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 4
+  XPReward: 2
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   ItemReward: 0
@@ -60,6 +60,7 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList: []
