@@ -24,6 +24,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Serializable]
     public enum TileState
     {
+        // Special case for some hacky logic
+        Any = -1,
+        
         // No number, unknown to player
         Hidden,
         // No number, if monster/item is on this tile it is revealed
@@ -668,6 +671,22 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 ServiceLocator.Instance.Grid.TEMP_DiffuseMines();
             }
 
+            // Try to swap tiles
+            // It is important to do this before any reveal rewards
+            // TODO: Incorporate the Any state for better control. For now this works...
+            foreach (var entry in HousedObject.TileUpdateReward)
+            {
+                if (entry.Amount <= 0)
+                {
+                    continue;
+                }
+
+                for (int i = 0; i < entry.Amount; i++)
+                {
+                    ServiceLocator.Instance.Grid.UpdateRandomTileById(entry.From, entry.To);
+                }
+            }
+            
             if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
             {
                 foreach (var revealReward in HousedObject.RevealAllRewards)
@@ -711,20 +730,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     }
                     
                     ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
-                }
-            }
-
-            // Try to swap tiles
-            foreach (var entry in HousedObject.TileUpdateReward)
-            {
-                if (entry.Amount <= 0)
-                {
-                    continue;
-                }
-
-                for (int i = 0; i < entry.Amount; i++)
-                {
-                    ServiceLocator.Instance.Grid.UpdateRandomTileById(entry.From, entry.To);
                 }
             }
 

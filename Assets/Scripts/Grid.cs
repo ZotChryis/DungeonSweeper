@@ -378,7 +378,7 @@ public class Grid : MonoBehaviour
             return;
         }
         
-        (int, int) coord = GetPositionOfRandomType(from);
+        (int, int) coord = GetPositionOfRandomType(from, Tile.TileState.Any);
         if (!InGridBounds(coord.Item1, coord.Item2))
         {
             return;
@@ -443,7 +443,7 @@ public class Grid : MonoBehaviour
             {
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().TileId == tileId &&
-                    Tiles[x, y].State == requiredState)
+                    (Tiles[x, y].State == requiredState || requiredState == Tile.TileState.Any))
                 {
                     return (x, y);
                 }
@@ -456,7 +456,7 @@ public class Grid : MonoBehaviour
             {
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().TileId == tileId &&
-                    Tiles[x, y].State == requiredState)
+                    (Tiles[x, y].State == requiredState || requiredState == Tile.TileState.Any))
                 {
                     return (x, y);
                 }
@@ -482,7 +482,7 @@ public class Grid : MonoBehaviour
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().Tags.Contains(tagId) &&
                     !Tiles[x, y].GetHousedObject().Tags.Contains(TileSchema.Tag.Dragon) &&
-                    Tiles[x, y].State == requiredState)
+                    (Tiles[x, y].State == requiredState || requiredState == Tile.TileState.Any))
                 {
                     return (x, y);
                 }
@@ -496,7 +496,7 @@ public class Grid : MonoBehaviour
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().Tags.Contains(tagId) &&
                     !Tiles[x, y].GetHousedObject().Tags.Contains(TileSchema.Tag.Dragon) &&
-                    Tiles[x, y].State == requiredState)
+                    (Tiles[x, y].State == requiredState || requiredState == Tile.TileState.Any))
                 {
                     return (x, y);
                 }

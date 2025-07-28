@@ -225,6 +225,8 @@ namespace Schemas
             Wardstones,
             SpellNaturesSight,
             
+            BloodMoon,
+            
         }
         
         public ItemSchema.Id ItemId;

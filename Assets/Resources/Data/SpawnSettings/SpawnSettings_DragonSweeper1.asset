@@ -257,4 +257,28 @@ MonoBehaviour:
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 11400000, guid: 51f7626f97f3b1d45bbd5d50fef687fd, type: 2}
+  - Amount: 0
+    Object: {fileID: 11400000, guid: dcf4936345757264a95cfa18e3181dde, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 0}
+  - Amount: 0
+    Object: {fileID: 11400000, guid: e5bc210c63eed6a45b3b1cfb017f0047, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 0}
+  - Amount: 0
+    Object: {fileID: 11400000, guid: c0a2a1d1cae9f764c80a50c212ccd257, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 0}
   AnnihilatorRewards: 21000000

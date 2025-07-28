@@ -121,6 +121,9 @@ namespace Schemas
             
             Pizza,
             ForestSpirit,
+            WerewolfBeast,
+            WerewolfHuman,
+            BloodMoon,
         }
         
         // !!WARNING!! DO NOT REORDER
@@ -245,9 +248,11 @@ namespace Schemas
         public bool DiffuseMinesReward;
         public int ShopXp = 0;
         public bool ScreenshakeOnConquer = false;
-
         public TileSchema UpgradedVersion;
-
+        
+        // TODO: Give each obscure source a color
+        public Color ObscureColor = Color.white;
+        
         [Serializable]
         public struct ValueOverride<T>
         {
