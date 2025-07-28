@@ -10,6 +10,7 @@ namespace Gameplay
         public Action<ItemInstance> OnItemAdded;
         public Action<ItemInstance> OnItemChargeChanged;
         public Action<ItemInstance> OnItemRemoved;
+        public Action<(ItemInstance, int)> OnItemStackChanged;
         
         /// <summary>
         /// For stacks of items, Item has a Quantity that should be updated instead of trying to add collisions to the dictionary.
@@ -90,7 +91,14 @@ namespace Gameplay
         /// </summary>
         public int GetItemCount(ItemSchema.Id itemId)
         {
-            return Items.FindAll(item => item.Schema.ItemId == itemId).Count();
+            int amount = 0;
+            var matchingItems = Items.FindAll(item => item.Schema.ItemId == itemId);
+            foreach (var matchingItem in matchingItems)
+            {
+                amount += matchingItem.StackCount;
+            }
+
+            return amount;
         }
 
         public ItemInstance GetFirstItem(ItemSchema.Id itemId)
@@ -118,6 +126,21 @@ namespace Gameplay
             {
                 return null;
             }
+
+            if (item.CanStack && HasItem(itemId))
+            {
+                var itemInstance = GetFirstItem(itemId);
+                itemInstance.StackCount += 1;
+                
+                // TODO: REFACTOR candidate
+                if (IsPlayerInventoy)
+                {
+                    itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Purchase);
+                }
+                
+                OnItemStackChanged?.Invoke((itemInstance, 1));
+                return itemInstance;
+            }
             
             foreach (var itemSchema in ServiceLocator.Instance.Schemas.ItemSchemas)
             {
@@ -144,6 +167,23 @@ namespace Gameplay
         
         public void RemoveItem(ItemInstance item)
         {
+            if (item.Schema.CanStack)
+            {
+                if (item.StackCount > 1)
+                {
+                    item.StackCount--;
+                    
+                    // TODO: REFACTOR candidate
+                    if (IsPlayerInventoy)
+                    {
+                        item.UndoEffect(ServiceLocator.Instance.Player, EffectTrigger.Purchase);
+                    }
+                    
+                    OnItemStackChanged?.Invoke((item, -1));
+                    return;
+                }
+            }
+            
             Items.Remove(item);
             
             // TODO: REFACTOR candidate
@@ -184,9 +224,9 @@ namespace Gameplay
                     continue;
                 }
                 
-                int oldCharge = item.CurrentQuantity;
+                int oldCharge = item.CurrentCharges;
                 item.ReplenishAllCharges();
-                int newCharge = item.CurrentQuantity;
+                int newCharge = item.CurrentCharges;
 
                 if (oldCharge != newCharge)
                 {
@@ -214,9 +254,9 @@ namespace Gameplay
                     continue;
                 }
 
-                int oldCharge = item.CurrentQuantity;
+                int oldCharge = item.CurrentCharges;
                 item.ReplenishAllCharges();
-                int newCharge = item.CurrentQuantity;
+                int newCharge = item.CurrentCharges;
 
                 if (oldCharge != newCharge)
                 {
@@ -247,11 +287,27 @@ namespace Gameplay
     public class ItemInstance
     {
         public ItemSchema Schema;
-        public int MaxQuantity;
-        public int CurrentQuantity;
+        public int MaxCharges;
+        private int _CurrentCharges;
+        private int _StackCount;
 
+        public Action<int> CurrentChargesChanged;
+        public Action<int> StackCountChanged;
         public Action<bool> IsOnSaleChanged;
 
+        public int CurrentCharges
+        {
+            set
+            {
+                _CurrentCharges = value;
+                CurrentChargesChanged?.Invoke(_CurrentCharges);
+            }
+            get
+            {
+                return _CurrentCharges;
+            }
+        }
+        
         public bool IsOnSale
         {
             set
@@ -265,30 +321,44 @@ namespace Gameplay
             }
         }
 
+        public int StackCount
+        {
+            set
+            {
+                _StackCount = value;
+                StackCountChanged?.Invoke(_StackCount);
+            }
+            get
+            {
+                return _StackCount;
+            }
+        }
+
         private bool _IsOnSale = false;
         private List<ItemInstance> GrantedItems = new List<ItemInstance>();
 
         public ItemInstance (ItemSchema schema)
         {
             Schema = schema;
-            CurrentQuantity = schema.InitialCharges;
-            MaxQuantity = schema.InitialCharges;
+            CurrentCharges = schema.InitialCharges;
+            MaxCharges = schema.InitialCharges;
+            StackCount = 1;
         }
 
         public void AddCharge(int amount)
         {
-            CurrentQuantity += amount;
-            MaxQuantity += amount;
+            CurrentCharges += amount;
+            MaxCharges += amount;
         }
 
         public void RemoveCharge(int amount)
         {
-            CurrentQuantity -= amount;
+            CurrentCharges -= amount;
         }
 
         public bool CanBeUsed()
         {
-            return Schema.IsConsumbale && CurrentQuantity > 0;
+            return Schema.IsConsumbale && CurrentCharges > 0;
         }
 
         // TODO: O(N^2) to check validity -> application, but im too lazy to fix the model
@@ -616,7 +686,7 @@ namespace Gameplay
         
         public void ReplenishAllCharges()
         {
-            CurrentQuantity = MaxQuantity;
+            CurrentCharges = MaxCharges;
         }
 
         public void KeepGrantedItems()

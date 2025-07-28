@@ -22,6 +22,8 @@ MonoBehaviour:
   ShopInventory: 0
   Rarity: 1
   Price: 0
+  UseSfx: 
+  CanStack: 1
   Effects:
     _serializedList:
     - Key: 0

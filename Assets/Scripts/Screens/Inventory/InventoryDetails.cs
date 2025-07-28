@@ -45,7 +45,7 @@ namespace Screens.Inventory
             Charges.enabled = itemInstance.Schema.IsConsumbale;
             Charges.color = itemInstance.CanBeUsed() ? Color.white : Color.red;
             
-            Charges.SetText($"{itemInstance.CurrentQuantity}/{itemInstance.MaxQuantity}");
+            Charges.SetText($"{itemInstance.CurrentCharges}/{itemInstance.MaxCharges}");
         }
 
         public void ClearFocusedItem()

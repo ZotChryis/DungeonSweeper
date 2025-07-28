@@ -263,6 +263,11 @@ namespace Schemas
         /// Played when used. Empty will be ignored.
         /// </summary>
         public string UseSfx;
+
+        /// <summary>
+        /// If true, will be stacked in inventory. Mostly for Coins.
+        /// </summary>
+        public bool CanStack;
         
         [SerializedDictionary("EffectTrigger", "Effects")]
         public SerializedDictionary<EffectTrigger, Effect[]> Effects =  new SerializedDictionary<EffectTrigger, Effect[]>();

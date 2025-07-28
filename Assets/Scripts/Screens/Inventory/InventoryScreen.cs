@@ -35,6 +35,7 @@ public class InventoryScreen : BaseScreen
         
         // Bind to the inventory change events 
         Inventory.OnItemAdded += OnItemAdded;
+        //Inventory.OnItemStackChanged += OnItemStackChanged;
         Inventory.OnItemChargeChanged += OnItemChargeChanged;
         Inventory.OnItemRemoved += OnItemRemoved;
         
@@ -85,7 +86,7 @@ public class InventoryScreen : BaseScreen
 
         ForceRefreshLayout();
     }
-
+    
     protected void OnItemChargeChanged(ItemInstance itemInstance)
     {
         FocusItem(itemInstance);

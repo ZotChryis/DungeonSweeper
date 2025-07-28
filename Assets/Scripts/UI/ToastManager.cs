@@ -26,6 +26,7 @@ namespace UI
             ServiceLocator.Instance.Register(this);
 
             ServiceLocator.Instance.Player.Inventory.OnItemAdded += OnItemAdded;
+            ServiceLocator.Instance.Player.Inventory.OnItemStackChanged += OnItemChargeChanged;
             ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted += OnAchievementCompleted;
         }
 
@@ -38,6 +39,14 @@ namespace UI
         private void OnItemAdded(ItemInstance newItem)
         {
             RequestToast(newItem.Schema.Sprite, "Item Granted!", newItem.Schema.Name);
+        }
+
+        private void OnItemChargeChanged((ItemInstance, int) data)
+        {
+            if (data.Item2 > 0)
+            {
+                RequestToast(data.Item1.Schema.Sprite, "Item Granted!", data.Item1.Schema.Name);
+            }
         }
         
         private void OnAchievementCompleted(AchievementSchema newAchievement)

@@ -16,18 +16,21 @@ MonoBehaviour:
   Name: Copper Coin
   Description: Gain $3 when picked up.
   Sprite: {fileID: -8571437415864897970, guid: 165ff70720ead2e4fb148418f666159c, type: 3}
-  IsUniqueEquipped: 0
+  Max: -1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 0
   Rarity: 0
   Price: 0
+  UseSfx: 
+  CanStack: 1
   Effects:
     _serializedList:
     - Key: 0
       Value:
       - Type: 9
         Amount: 3
+        GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 
         Items: 
