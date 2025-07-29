@@ -44,6 +44,9 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public GridDragger GridDragger;
+    
+    [HideInInspector]
+    public TransitionManager TransitionManager;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class
@@ -133,6 +136,11 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public void Register(GridDragger gridDragger)
     {
         GridDragger = gridDragger;
+    }
+    
+    public void Register(TransitionManager transitionManager)
+    {
+        TransitionManager = transitionManager;
     }
 
     public void DeleteSaveFile()

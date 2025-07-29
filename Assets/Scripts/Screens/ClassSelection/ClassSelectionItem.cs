@@ -44,12 +44,17 @@ public class ClassSelectionItem : MonoBehaviour
 
     private void OnButtonClicked()
     {
+        ServiceLocator.Instance.TransitionManager.DoTransition(TransitionManager.TransitionType.Goop, SetClassAndStartGame);
+        ServiceLocator.Instance.AudioManager.PlaySfx("ClickGood");
+    }
+
+    private void SetClassAndStartGame()
+    {
         ServiceLocator.Instance.Player.TEMP_SetClass(Class);
         ServiceLocator.Instance.LevelManager.SetLevel(0);
         
         // When a class is selected, we will close the class selection screen AND the main menu screen
         // TODO: Do proper scene mangagement
         ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
-        ServiceLocator.Instance.AudioManager.PlaySfx("ClickGood");
     }
 }
