@@ -66,7 +66,7 @@ namespace Schemas
     }
     
     [Serializable]
-    public class Effect
+    public struct Effect
     {
         public EffectType Type;
         

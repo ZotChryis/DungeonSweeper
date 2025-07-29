@@ -654,6 +654,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
             
             effect.Decay--;
+            DecayingEffects[i] = effect;
 
             if (effect.Decay > 0)
             {
