@@ -227,6 +227,8 @@ namespace Schemas
             
             BloodMoon,
             WishingWell,
+            SolarRing,
+            ElementalRefiner,
         }
         
         public ItemSchema.Id ItemId;
