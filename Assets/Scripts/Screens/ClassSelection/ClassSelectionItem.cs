@@ -44,7 +44,7 @@ public class ClassSelectionItem : MonoBehaviour
 
     private void OnButtonClicked()
     {
-        ServiceLocator.Instance.TransitionManager.DoTransition(TransitionManager.TransitionType.Goop, SetClassAndStartGame);
+        TransitionManager.Instance.DoTransition(TransitionManager.TransitionType.Goop, SetClassAndStartGame);
         ServiceLocator.Instance.AudioManager.PlaySfx("ClickGood");
     }
 

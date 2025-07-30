@@ -15,9 +15,6 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     // MonoBehavior backed systems
     // They must self-register
     [HideInInspector]
-    public CheatManager CheatManager;
-
-    [HideInInspector]
     public Grid Grid;
 
     [HideInInspector]
@@ -44,9 +41,6 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public GridDragger GridDragger;
-    
-    [HideInInspector]
-    public TransitionManager TransitionManager;
 
     // Non-MonoBehavior backed systems
     // These are managed within this class
@@ -98,11 +92,6 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
         Player = player;
     }
 
-    public void Register(CheatManager cheatManager)
-    {
-        CheatManager = cheatManager;
-    }
-
     public void Register(OverlayScreenManager screenManager)
     {
         OverlayScreenManager = screenManager;
@@ -138,15 +127,10 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
         GridDragger = gridDragger;
     }
     
-    public void Register(TransitionManager transitionManager)
-    {
-        TransitionManager = transitionManager;
-    }
-
     public void DeleteSaveFile()
     {
         FBPP.DeleteAll();
-        CheatManager.Restart();
+        CheatManager.Instance.Restart();
     }
 
     public void ResetTutorial()

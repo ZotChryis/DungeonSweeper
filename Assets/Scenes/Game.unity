@@ -912,8 +912,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: ConquerAll
         m_Mode: 1
         m_Arguments:
@@ -7333,7 +7333,7 @@ PrefabInstance:
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7239081660589115082}
+      objectReference: {fileID: 0}
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -9114,9 +9114,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
-        m_MethodName: AddCash
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
+        m_MethodName: Cash
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10359,8 +10359,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: Regenerate
         m_Mode: 2
         m_Arguments:
@@ -18488,8 +18488,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: Regenerate
         m_Mode: 2
         m_Arguments:
@@ -20800,6 +20800,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1773311346}
   m_CullTransparentMesh: 1
+--- !u!1 &1794773071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794773073}
+  - component: {fileID: 1794773072}
+  m_Layer: 0
+  m_Name: CheatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1794773072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794773071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e107f65d001d26049999e66a87e0cadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1794773073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794773071}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 485.80524, y: 582.9595, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1811008769
 GameObject:
   m_ObjectHideFlags: 0
@@ -23997,7 +24041,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ab4e7c1bef0fa249a2857c59e17336d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CheatManager: {fileID: 7239081660589115082}
   Grid: {fileID: 0}
   Player: {fileID: 447340571}
   OverlayScreenManager: {fileID: 0}
@@ -24007,7 +24050,6 @@ MonoBehaviour:
   ToastManager: {fileID: 0}
   TutorialManager: {fileID: 0}
   GridDragger: {fileID: 0}
-  TransitionManager: {fileID: 0}
 --- !u!4 &2141878072
 Transform:
   m_ObjectHideFlags: 0
@@ -26206,7 +26248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4892007329525779251}
   - component: {fileID: 7684935161378738517}
-  - component: {fileID: 7239081660589115082}
+  - component: {fileID: 7684935161378738518}
   m_Layer: 0
   m_Name: Cheats
   m_TagString: Untagged
@@ -26989,9 +27031,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
-        m_MethodName: RevealAllTiles
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
+        m_MethodName: RevealAll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -28031,8 +28073,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: Regenerate
         m_Mode: 1
         m_Arguments:
@@ -28267,8 +28309,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: Regenerate
         m_Mode: 2
         m_Arguments:
@@ -28552,9 +28594,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
-        m_MethodName: LevelUp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
+        m_MethodName: RevealAll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -29274,8 +29316,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: GodMode
         m_Mode: 1
         m_Arguments:
@@ -31963,8 +32005,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -33605,8 +33647,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: RollShop
         m_Mode: 1
         m_Arguments:
@@ -35206,8 +35248,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: Regenerate
         m_Mode: 2
         m_Arguments:
@@ -36058,9 +36100,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
-        m_MethodName: RollShopWithAll
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
+        m_MethodName: RollShopAll
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -36512,18 +36554,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7239081660589115082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292971843761446324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e107f65d001d26049999e66a87e0cadf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7284279096601903649
 GameObject:
   m_ObjectHideFlags: 0
@@ -37403,6 +37433,18 @@ MonoBehaviour:
   m_Spacing: {x: 10, y: 10}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &7684935161378738518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1292971843761446324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed0baca0781ee3541b7bddc6ef256fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7695091518358905220
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40521,8 +40563,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7239081660589115082}
-        m_TargetAssemblyTypeName: CheatManager, Assembly-CSharp
+      - m_Target: {fileID: 7684935161378738518}
+        m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
         m_MethodName: Regenerate
         m_Mode: 2
         m_Arguments:
@@ -41011,18 +41053,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7239081660589115082}
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
@@ -41030,11 +41084,23 @@ PrefabInstance:
       value: Restart
       objectReference: {fileID: 0}
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Restart
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: CheatManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: CheatManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7516114615617690455, guid: d6028f44d285efb44954e5176feec887, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8590612709264195407, guid: d6028f44d285efb44954e5176feec887, type: 3}
@@ -41605,7 +41671,8 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 3815483883311333633}
-  - {fileID: 1468035609}
   - {fileID: 2141878072}
   - {fileID: 1618852768}
   - {fileID: 412119834}
+  - {fileID: 1468035609}
+  - {fileID: 1794773073}

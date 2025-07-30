@@ -3,9 +3,14 @@ using UnityEngine.SceneManagement;
 
 public class CheatManager : SingletonMonoBehaviour<CheatManager>
 {
-    private void Start()
+    protected override void Awake()
     {
-        ServiceLocator.Instance.Register(this);
+        base.Awake();
+
+        if (Instance == this)
+        {
+            DontDestroyOnLoad(gameObject);
+        }
     }
 
     public void RevealAllTiles()

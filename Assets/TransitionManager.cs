@@ -4,7 +4,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TransitionManager : MonoBehaviour
+public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
 {
     public float FadeDuration = 1f;
     
@@ -23,15 +23,19 @@ public class TransitionManager : MonoBehaviour
         Goop,
     }
     
-    protected void Awake()
+    protected override void Awake()
     {
-        ServiceLocator.Instance.Register(this);
-        
-        Image = GetComponent<Image>();
-        
-        // Make an instance of the material so we don't update the serialized one
-        Material = new Material(Image.material);
-        Image.material = Material;
+        base.Awake();
+        if (Instance == this)
+        {
+            DontDestroyOnLoad(gameObject);
+            
+            Image = GetComponent<Image>();
+
+            // Make an instance of the material so we don't update the serialized one
+            Material = new Material(Image.material);
+            Image.material = Material;
+        }
     }
 
     private void OnDestroy()

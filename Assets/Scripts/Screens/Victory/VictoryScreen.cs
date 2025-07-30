@@ -25,7 +25,7 @@ namespace Screens.Victory
         private void OnMainMenuClicked()
         {
             // TODO: We need a real 'reset' of the game, right now this just reloads the whole scene lmao
-            ServiceLocator.Instance.CheatManager.Restart();
+            CheatManager.Instance.Restart();
         }
 
         protected override void OnShow()

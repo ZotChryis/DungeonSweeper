@@ -14,16 +14,23 @@ namespace Screens
             base.Awake();
 
             Retry.OnConfirmed += OnRetryConfrimed;
+            MainMenu.OnConfirmed += OnMainMenuConfirmed;
         }
 
         protected void OnDestroy()
         {
             Retry.OnConfirmed -= OnRetryConfrimed;
+            MainMenu.OnConfirmed -= OnMainMenuConfirmed;
         }
         
         private void OnRetryConfrimed()
         {
-            ServiceLocator.Instance.TransitionManager.DoTransition(TransitionManager.TransitionType.Goop, HandleRetry);
+            TransitionManager.Instance.DoTransition(TransitionManager.TransitionType.Goop, HandleRetry);
+        }
+        
+        private void OnMainMenuConfirmed()
+        {
+            TransitionManager.Instance.DoTransition(TransitionManager.TransitionType.Goop, CheatManager.Instance.Restart);
         }
 
         private void HandleRetry()
