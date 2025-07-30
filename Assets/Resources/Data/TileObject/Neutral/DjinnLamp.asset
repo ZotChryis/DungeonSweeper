@@ -1,0 +1,158 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
+  m_Name: DjinnLamp
+  m_EditorClassIdentifier: 
+  UserFacingName: Djinn Lamp
+  UserFacingDescription: Home to a mystical being. Collecting it grants riches, but
+    must be shared with all who see.
+  Tags: 00000000
+  TileId: 72
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: 21300000, guid: 05c91e33c0b07234b8cd11085c21e1d0, type: 3}
+  SpriteFacingData:
+    ObjectToLookAtOverride: {fileID: 0}
+    Above: {fileID: 0}
+    Below: {fileID: 0}
+    Right: {fileID: 0}
+    Left: {fileID: 0}
+    Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
+  Power: 0
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
+  XPReward: 0
+  ItemsToReplenish: 
+  DropReward: {fileID: 0}
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList:
+    - Key: 0
+      Value: 34
+    - Key: 1
+      Value: 33
+    - Key: 2
+      Value: 33
+    - Key: 3
+      Value: 33
+    - Key: 4
+      Value: 32
+    - Key: 5
+      Value: 32
+    - Key: 6
+      Value: 32
+    - Key: 7
+      Value: 32
+    - Key: 8
+      Value: 32
+  ItemReward: 0
+  ItemRewardRarities: 
+  TileUpdateReward: []
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
+  RevealOffsets: []
+  RevealOffsetCount: -1
+  RevealRadius: 0
+  ObscureOffsets: []
+  ObscureRadius: 0
+  CanFlee: 0
+  FleeVfx: {fileID: 0}
+  FleeSfx: 
+  RevealFlee: 0
+  CanEnrage: 0
+  CanBodyGuardSwap: 0
+  SpawnsFleeingChild: 0
+  FleeingChild: {fileID: 0}
+  RevealAllRewards: []
+  WinReward: 0
+  FullHealReward: 0
+  HealReward: 0
+  DiffuseMinesReward: 0
+  ShopXp: 0
+  ScreenshakeOnConquer: 0
+  UpgradedVersion: {fileID: 0}
+  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
+  RevealVfx: {fileID: 0}
+  Data:
+    _serializedList:
+    - Key: 1
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 2
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 3
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 1
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}

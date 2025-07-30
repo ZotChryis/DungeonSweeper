@@ -361,4 +361,12 @@ MonoBehaviour:
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 0}
+  - Amount: 0
+    Object: {fileID: 11400000, guid: 6ca3c3153bd26b94a8761fa9e31b5fb1, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 0}
   AnnihilatorRewards: 

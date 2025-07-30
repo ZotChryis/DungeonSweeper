@@ -548,8 +548,9 @@ public class Grid : MonoBehaviour
 
     /// <summary>
     /// Gets the total amount of neighbors that are not conquered+.
+    /// This includes NON enemies like blocks by default!
     /// </summary>
-    public int TEMP_GetUnconqueredNeighborCount(int x, int y)
+    public int TEMP_GetUnconqueredNeighborCount(int x, int y, bool onlyEnemies = false)
     {
         int amount = 0;
         for (int i = -1; i <= 1; i++)
@@ -562,6 +563,14 @@ public class Grid : MonoBehaviour
                 }
 
                 if (!InGridBounds(x + i, y + j))
+                {
+                    continue;
+                }
+
+                if (onlyEnemies &&
+                    !Tiles[x + i, y + j].TEMP_IsEmpty() &&
+                    !Tiles[x + i, y + j].GetHousedObject().Tags.Contains(TileSchema.Tag.Enemy)
+                )
                 {
                     continue;
                 }

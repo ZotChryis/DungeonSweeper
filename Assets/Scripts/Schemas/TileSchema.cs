@@ -124,6 +124,9 @@ namespace Schemas
             WerewolfBeast,
             WerewolfHuman,
             BloodMoon,
+            
+            Jinn,
+            JinnLamp,
         }
         
         // !!WARNING!! DO NOT REORDER
@@ -202,6 +205,10 @@ namespace Schemas
 
         // When fully collected, instead of becoming Empty, this object will be the new housed object on the tile.
         public TileSchema DropReward;
+        
+        // When fully collected AND HAS X ENEMY NEIGHBORS, instead of becoming Empty, this object will be the new housed object on the tile.
+        public SerializedDictionary<int, TileSchema> NumNeighborDropReward = new();
+        public SerializedDictionary<int, ItemSchema.Id> NumNeighborItemReward = new();
         
         public ItemSchema.Id ItemReward;
         public Rarity[] ItemRewardRarities;

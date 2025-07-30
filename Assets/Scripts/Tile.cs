@@ -463,13 +463,23 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         TryPlaySfx(State);
         TryPlayVfx(State);
 
+        int neighborEnemies = ServiceLocator.Instance.Grid.TEMP_GetUnconqueredNeighborCount(XCoordinate, YCoordinate);
+        
         if (State == TileState.Empty)
         {
             // TODO: HACK - need to remove any fully empty tile when it is revealed to make Flee work
             ServiceLocator.Instance.Grid.UnoccupiedSpaces.RemoveUnoccupiedSpace(XCoordinate, YCoordinate);
-
+            
+            if (HousedObject && HousedObject.NumNeighborDropReward.TryGetValue(neighborEnemies, out TileSchema reward)) {
+                UndoPlacedTileObj();
+                PlaceTileObj(reward);
+                TEMP_SetState(TileState.Revealed);
+                return;
+            }
+            
             if (HousedObject && HousedObject.DropReward)
             {
+                UndoPlacedTileObj();
                 PlaceTileObj(HousedObject.DropReward);
                 TEMP_SetState(TileState.Revealed);
                 return;
@@ -710,9 +720,18 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 if (itemInstance != null)
                 {
                     ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
+                    ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
                 }
-                
-                ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
+            }
+
+            if (HousedObject.NumNeighborItemReward.TryGetValue(neighborEnemies, out ItemSchema.Id itemId))
+            {
+                ItemInstance itemInstance = ServiceLocator.Instance.Player.Inventory.AddItem(itemId);
+                if (itemInstance != null)
+                {
+                    ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
+                    ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
+                }
             }
 
             // Random reward from Rarity

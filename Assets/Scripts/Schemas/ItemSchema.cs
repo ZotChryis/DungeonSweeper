@@ -229,6 +229,7 @@ namespace Schemas
             WishingWell,
             SolarRing,
             ElementalRefiner,
+            Lamp,
         }
         
         public ItemSchema.Id ItemId;
