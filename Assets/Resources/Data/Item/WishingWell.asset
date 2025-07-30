@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 67
   Name: Wishing Well
-  Description: Magic Fountains give a Silver Coin.
+  Description: Magic Fountains give a Silver Coin or Gold Coin.
   Sprite: {fileID: 21300000, guid: b88e6f4e470e15a4dbcca5a442aed6d1, type: 3}
   Max: 1
   IsConsumbale: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
         GrantItemForceAllowDuplicates: 0
         Id: 43
         Tags: 
-        Items: 21000000
+        Items: 2100000021000000210000002100000022000000
         Decay: -1
         DecayTrigger: 0
         DecayTags: 
