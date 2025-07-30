@@ -76,6 +76,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private TileSchema HousedObject;
 
     public TileState State { get; private set; } = TileState.Hidden;
+    
+    // TODO: HUGE HACK HERE to allow for Rain of Fire (aka, conquering stuff for 0 dmg taken)
+    public bool AllowDamage = true;
 
     public int XCoordinate = 0;
     public int YCoordinate = 0;
@@ -500,25 +503,28 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         int adjustedPower = GetAdjustedPower();
         if (TileState.Conquered == State)
         {
-            if (player.TEMP_PredictDeath(adjustedPower))
+            if (AllowDamage)
             {
-                // TODO: I don't like that we enter conquer state before deducting cost, but w/e we can fix later
-                //  player has died, so unconquer yourself 
-                State = TileState.Revealed;
-                ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
-            }
-
-            // If we die because of this, we can stop here
-            // TODO: Refactor where we do the damage adjustment/prediction. We use base power because Damage() still does
-            //  the damage adjustments internally as well
-            if (player.Damage(HousedObject, basePower))
-            {
-                // HACK: We dont currently support this weird edge case, so do it here
-                if (HousedObject.TileId == TileSchema.Id.Mimic)
+                if (player.TEMP_PredictDeath(adjustedPower))
                 {
-                    HousedObjectSprite.sprite = HousedObject.GetOverrides(TileState.Conquered).Sprite.Value;
+                    // TODO: I don't like that we enter conquer state before deducting cost, but w/e we can fix later
+                    //  player has died, so unconquer yourself 
+                    State = TileState.Revealed;
+                    ServiceLocator.Instance.Grid.OnTileStateChanged?.Invoke(this);
                 }
-                return;
+
+                // If we die because of this, we can stop here
+                // TODO: Refactor where we do the damage adjustment/prediction. We use base power because Damage() still does
+                //  the damage adjustments internally as well
+                if (player.Damage(HousedObject, basePower))
+                {
+                    // HACK: We dont currently support this weird edge case, so do it here
+                    if (HousedObject.TileId == TileSchema.Id.Mimic)
+                    {
+                        HousedObjectSprite.sprite = HousedObject.GetOverrides(TileState.Conquered).Sprite.Value;
+                    }
+                    return;
+                }
             }
 
             if (HousedObject.TileId == TileSchema.Id.Balrog)

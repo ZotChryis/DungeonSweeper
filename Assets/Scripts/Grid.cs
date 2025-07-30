@@ -911,7 +911,9 @@ public class Grid : MonoBehaviour
             return;
         }
 
+        Tiles[coord.Item1, coord.Item2].AllowDamage = false;
         Tiles[coord.Item1, coord.Item2].TEMP_SetState(Tile.TileState.Conquered);
+        Tiles[coord.Item1, coord.Item2].AllowDamage = true;
     }
 
     public void ConquerRandomOfTag(TileSchema.Tag tileTag)
@@ -922,6 +924,8 @@ public class Grid : MonoBehaviour
             return;
         }
         
+        Tiles[coord.Item1, coord.Item2].AllowDamage = false;
         Tiles[coord.Item1, coord.Item2].TEMP_SetState(Tile.TileState.Conquered);
+        Tiles[coord.Item1, coord.Item2].AllowDamage = true;
     }
 }
