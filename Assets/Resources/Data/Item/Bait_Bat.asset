@@ -16,18 +16,21 @@ MonoBehaviour:
   Name: Bat Bait
   Description: Adds a Bat to the dungeon.
   Sprite: {fileID: -3906117124756079597, guid: 6420758abf626ad4dab69c799dc5f73d, type: 3}
-  IsUniqueEquipped: 0
+  Max: 4
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 0
   Price: 2
+  UseSfx: 
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 0
       Value:
       - Type: 5
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 16
         Tags: 
         Items: 

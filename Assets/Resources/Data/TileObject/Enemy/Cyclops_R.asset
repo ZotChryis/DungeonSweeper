@@ -33,10 +33,17 @@ MonoBehaviour:
   XPReward: 12
   ItemsToReplenish: 
   DropReward: {fileID: 0}
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList: []
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
-  RevealRandLocationNextToMine: 0
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets:
   - {x: 1, y: 0}
   - {x: 2, y: 0}
@@ -58,6 +65,7 @@ MonoBehaviour:
   - {x: 18, y: 0}
   - {x: 19, y: 0}
   - {x: 20, y: 0}
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets:
   - {x: 1, y: 0}
@@ -83,6 +91,7 @@ MonoBehaviour:
   ObscureRadius: 0
   CanFlee: 0
   FleeVfx: {fileID: 0}
+  FleeSfx: 
   RevealFlee: 0
   CanEnrage: 0
   CanBodyGuardSwap: 0
@@ -96,6 +105,7 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}
   Data:
     _serializedList: []

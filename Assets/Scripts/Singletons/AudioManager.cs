@@ -1,13 +1,14 @@
 using System.Linq;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Singletons
 {
     public class AudioManager : SingletonMonoBehaviour<AudioManager>
     {
         [SerializeField] private AudioSource MusicSource;
-        [SerializeField] private AudioSource SfxSource;
+        [SerializeField] private AudioSource[] SfxSources;
 
         [SerializeField] private SerializedDictionary<string, AudioClip> MusicClips;
         [SerializeField] private SerializedDictionary<string, AudioClip> SfxClips;
@@ -47,19 +48,23 @@ namespace Singletons
             }
             
             // TODO: Make a batch/pool system where we can support multiple effects at once
-            if (SfxSource.isPlaying)
+            var source = FindBestSfxSource();
+            if (source.isPlaying)
             {
-                SfxSource.Stop();
+                source.Stop();
             }
         
-            SfxSource.clip = clip;
-            SfxSource.Play();
+            source.clip = clip;
+            source.Play();
         }
 
         private void RecalibrateVolumes()
         {
             MusicSource.volume = MusicVolume * MasterVolume;
-            SfxSource.volume = SfxVolume * MasterVolume;
+            foreach (var source in SfxSources)
+            {
+                source.volume = SfxVolume * MasterVolume;
+            }
         }
 
         public void PlayRandomMusic()
@@ -84,6 +89,22 @@ namespace Singletons
         {
             SfxVolume = value;
             RecalibrateVolumes();
+        }
+
+        private AudioSource FindBestSfxSource()
+        {
+            for (var i = 0; i < SfxSources.Length; i++)
+            {
+                if (SfxSources[i].isPlaying)
+                {
+                    continue;
+                }
+                
+                return SfxSources[i];
+            }
+            
+            // If all are playing, then we just use the first one and overwrite it
+            return SfxSources[0];
         }
     }
 }

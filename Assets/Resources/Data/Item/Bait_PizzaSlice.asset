@@ -16,13 +16,14 @@ MonoBehaviour:
   Name: Pizza Slice
   Description: Adds a Pizza to the dungeon.
   Sprite: {fileID: 21300000, guid: da0ba34d0cbc70743a658092d8212231, type: 3}
-  Max: -1
+  Max: 4
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 0
   Price: 3
   UseSfx: 
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 0

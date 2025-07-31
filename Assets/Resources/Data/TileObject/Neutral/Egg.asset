@@ -16,6 +16,7 @@ MonoBehaviour:
   UserFacingDescription: The Dragon's prized posession. Makes for a good omelette!
   Tags: 00000000
   TileId: 2
+  LibraryOverrideTileId: 0
   Sprite: {fileID: 4646649027328027380, guid: 40b5ef490899d93449ac43047c777b2d, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -24,18 +25,35 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 3
+  ItemsToReplenish: 
   DropReward: {fileID: 0}
-  RevealRandLocationNextToMine: 0
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList: []
+  ItemReward: 0
+  ItemRewardRarities: 
+  TileUpdateReward: []
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets: []
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
+  FleeSfx: 
+  RevealFlee: 0
   CanEnrage: 0
+  CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -46,6 +64,8 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList:
     - Key: 1
@@ -65,3 +85,9 @@ MonoBehaviour:
         EnableDeathSprite:
           UseOverride: 0
           Value: 0
+        Sfx:
+          UseOverride: 1
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}

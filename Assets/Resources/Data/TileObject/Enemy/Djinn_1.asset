@@ -51,7 +51,7 @@ MonoBehaviour:
   ObscureRadius: 0
   CanFlee: 0
   FleeVfx: {fileID: 5247689757557250064, guid: 479fdfcde255a3245817e931640f9030, type: 3}
-  FleeSfx: 
+  FleeSfx: Gnome
   RevealFlee: 0
   CanEnrage: 0
   CanBodyGuardSwap: 0

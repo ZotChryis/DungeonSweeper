@@ -532,7 +532,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.DemonLord);
             }
 
-            if (!HousedObject.GetOverrides(State).Sfx.UseOverride)
+            if (!HousedObject.GetOverrides(TileState.Conquered).Sfx.UseOverride)
             {
                 ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
             }
@@ -745,6 +745,19 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 var matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
                     HousedObject.ItemRewardRarities.Contains(item.Rarity));
+                
+                // Remove any item that is locked
+                var lockedItemIds = ServiceLocator.Instance.AchievementSystem.GetLockedItems();
+                foreach (var lockedItemId in lockedItemIds)
+                {
+                    matchingItems.RemoveAll(schema => schema.ItemId == lockedItemId);
+                }
+                
+                // Try to adhere to maximums
+                matchingItems.RemoveAll(schema =>
+                    schema.Max != -1 && ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
+                );
+                
                 if (matchingItems.Count > 0)
                 {
                     var rewardItem = matchingItems.GetRandomItem();

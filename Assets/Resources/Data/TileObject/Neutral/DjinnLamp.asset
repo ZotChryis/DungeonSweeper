@@ -151,7 +151,7 @@ MonoBehaviour:
           UseOverride: 0
           Value: 0
         Sfx:
-          UseOverride: 0
+          UseOverride: 1
           Value: 
         Vfx:
           UseOverride: 0

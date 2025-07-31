@@ -33,6 +33,10 @@ MonoBehaviour:
   XPReward: 0
   ItemsToReplenish: 4100000036000000370000001e00000006000000260000001700000018000000190000001a0000001b00000027000000280000002e000000
   DropReward: {fileID: 0}
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList: []
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
@@ -61,6 +65,7 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList:
@@ -128,7 +133,7 @@ MonoBehaviour:
           UseOverride: 0
           Value: 0
         Sfx:
-          UseOverride: 0
+          UseOverride: 1
           Value: 
         Vfx:
           UseOverride: 0
