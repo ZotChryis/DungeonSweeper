@@ -905,7 +905,7 @@ public class Grid : MonoBehaviour
 
     public void ConquerRandomOfType(TileSchema.Id tileId)
     {
-        (int, int) coord = GetPositionOfRandomType(tileId);
+        (int, int) coord = GetPositionOfRandomType(tileId, Tile.TileState.Any);
         if (!InGridBounds(coord.Item1, coord.Item2))
         {
             return;
@@ -918,7 +918,7 @@ public class Grid : MonoBehaviour
 
     public void ConquerRandomOfTag(TileSchema.Tag tileTag)
     {
-        (int, int) coord = GetPositionOfRandomTag(tileTag);
+        (int, int) coord = GetPositionOfRandomTag(tileTag, Tile.TileState.Any);
         if (!InGridBounds(coord.Item1, coord.Item2))
         {
             return;
