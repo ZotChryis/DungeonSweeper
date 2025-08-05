@@ -24,9 +24,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     [Serializable]
     public enum TileState
     {
-        // Special case for some hacky logic
-        Any = -1,
-        
         // No number, unknown to player
         Hidden,
         // No number, if monster/item is on this tile it is revealed

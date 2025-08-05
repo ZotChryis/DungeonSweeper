@@ -2,17 +2,18 @@ using System;
 using Schemas;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI
 {
-    public class ToastItem : MonoBehaviour
+    public class ToastItem : MonoBehaviour, IPointerDownHandler
     {
         [SerializeField] private Image Icon;
         [SerializeField] private TMP_Text Title;
         [SerializeField] private TMP_Text Message;
         [SerializeField] private Animator Animator;
-
+        
         private Action OnAnimationEnded;
         
         /// <summary>
@@ -32,6 +33,12 @@ namespace UI
 
             
             OnAnimationEnded += onAnimationEnded;
+        }
+
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            // If the toast is pressed, we dismiss early
+            OnAnimationEnded?.Invoke();
         }
     }
 }

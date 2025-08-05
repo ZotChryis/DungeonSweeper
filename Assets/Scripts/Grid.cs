@@ -378,7 +378,7 @@ public class Grid : MonoBehaviour
             return;
         }
         
-        (int, int) coord = GetPositionOfRandomType(from, Tile.TileState.Any);
+        (int, int) coord = GetPositionOfRandomType(from);
         if (!InGridBounds(coord.Item1, coord.Item2))
         {
             return;
@@ -403,9 +403,9 @@ public class Grid : MonoBehaviour
     }
     
     // TODO: Refactor Tag vs Id
-    public void RevealRandomOfTag(TileSchema.Tag tileTag, GameObject vfx = null, Tile.TileState RequiredState = Tile.TileState.Hidden)
+    public void RevealRandomOfTag(TileSchema.Tag tileTag, GameObject vfx = null, List<Tile.TileState> validStates = null)
     {
-        (int, int) coord = GetPositionOfRandomTag(tileTag, RequiredState);
+        (int, int) coord = GetPositionOfRandomTag(tileTag, validStates);
         if (!InGridBounds(coord.Item1, coord.Item2))
         {
             return;
@@ -417,9 +417,9 @@ public class Grid : MonoBehaviour
     /// <summary>
     /// Reveals a random tile that has the matching monster id.
     /// </summary>
-    public void RevealRandomOfType(TileSchema.Id tileId, GameObject vfx = null, Tile.TileState RequiredState = Tile.TileState.Hidden)
+    public void RevealRandomOfType(TileSchema.Id tileId, GameObject vfx = null, List<Tile.TileState> validStates = null)
     {
-        (int, int) coord = GetPositionOfRandomType(tileId, RequiredState);
+        (int, int) coord = GetPositionOfRandomType(tileId, validStates);
         if (!InGridBounds(coord.Item1, coord.Item2))
         {
             return;
@@ -433,7 +433,7 @@ public class Grid : MonoBehaviour
     /// </summary>
     /// <param name="tileId">monster id</param>
     /// <returns>x and y int coordinates</returns>
-    public (int, int) GetPositionOfRandomType(TileSchema.Id tileId, Tile.TileState requiredState = Tile.TileState.Hidden)
+    public (int, int) GetPositionOfRandomType(TileSchema.Id tileId, List<Tile.TileState> validStates = null)
     {
         int yStarting = Random.Range(0, SpawnSettings.Height);
         int xStarting = Random.Range(0, SpawnSettings.Width);
@@ -443,7 +443,7 @@ public class Grid : MonoBehaviour
             {
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().TileId == tileId &&
-                    (Tiles[x, y].State == requiredState || requiredState == Tile.TileState.Any))
+                    (validStates == null || validStates.Contains(Tiles[x, y].State)))
                 {
                     return (x, y);
                 }
@@ -456,7 +456,7 @@ public class Grid : MonoBehaviour
             {
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().TileId == tileId &&
-                    (Tiles[x, y].State == requiredState || requiredState == Tile.TileState.Any))
+                    (validStates == null || validStates.Contains(Tiles[x, y].State)))
                 {
                     return (x, y);
                 }
@@ -471,7 +471,7 @@ public class Grid : MonoBehaviour
     /// </summary>
     /// <param name="tileId">monster id</param>
     /// <returns>x and y int coordinates</returns>
-    public (int, int) GetPositionOfRandomTag(TileSchema.Tag tagId, Tile.TileState requiredState = Tile.TileState.Hidden)
+    public (int, int) GetPositionOfRandomTag(TileSchema.Tag tagId, List<Tile.TileState> validStates = null)
     {
         int yStarting = Random.Range(0, SpawnSettings.Height);
         int xStarting = Random.Range(0, SpawnSettings.Width);
@@ -482,7 +482,7 @@ public class Grid : MonoBehaviour
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().Tags.Contains(tagId) &&
                     !Tiles[x, y].GetHousedObject().Tags.Contains(TileSchema.Tag.Dragon) &&
-                    (Tiles[x, y].State == requiredState || requiredState == Tile.TileState.Any))
+                    (validStates == null || validStates.Contains(Tiles[x, y].State)))
                 {
                     return (x, y);
                 }
@@ -496,7 +496,7 @@ public class Grid : MonoBehaviour
                 if (Tiles[x, y].GetHousedObject() &&
                     Tiles[x, y].GetHousedObject().Tags.Contains(tagId) &&
                     !Tiles[x, y].GetHousedObject().Tags.Contains(TileSchema.Tag.Dragon) &&
-                    (Tiles[x, y].State == requiredState || requiredState == Tile.TileState.Any))
+                    (validStates == null  || validStates.Contains(Tiles[x, y].State)))
                 {
                     return (x, y);
                 }
@@ -905,7 +905,7 @@ public class Grid : MonoBehaviour
 
     public void ConquerRandomOfType(TileSchema.Id tileId)
     {
-        (int, int) coord = GetPositionOfRandomType(tileId, Tile.TileState.Any);
+        (int, int) coord = GetPositionOfRandomType(tileId, new List<Tile.TileState>() {Tile.TileState.Hidden, Tile.TileState.Revealed, Tile.TileState.RevealThroughCombat});
         if (!InGridBounds(coord.Item1, coord.Item2))
         {
             return;
@@ -918,7 +918,7 @@ public class Grid : MonoBehaviour
 
     public void ConquerRandomOfTag(TileSchema.Tag tileTag)
     {
-        (int, int) coord = GetPositionOfRandomTag(tileTag, Tile.TileState.Any);
+        (int, int) coord = GetPositionOfRandomTag(tileTag, new List<Tile.TileState>() {Tile.TileState.Hidden, Tile.TileState.Revealed, Tile.TileState.RevealThroughCombat});
         if (!InGridBounds(coord.Item1, coord.Item2))
         {
             return;

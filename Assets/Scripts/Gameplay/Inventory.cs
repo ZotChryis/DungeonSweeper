@@ -509,11 +509,20 @@ namespace Gameplay
                         {
                             if (effect.Id != TileSchema.Id.None)
                             {
-                                ServiceLocator.Instance.Grid.RevealRandomOfType(effect.Id);
+                                // TODO: Provide VFX
+                                ServiceLocator.Instance.Grid.RevealRandomOfType(effect.Id, 
+                                    null, 
+                                    new List<Tile.TileState>() { Tile.TileState.Hidden }
+                                );
                             }
                             else if (effect.Tags.Count > 0)
                             {
-                                ServiceLocator.Instance.Grid.RevealRandomOfTag(effect.Tags.GetRandomItem());
+                                // TODO: Provide VFX
+                                ServiceLocator.Instance.Grid.RevealRandomOfTag(
+                                    effect.Tags.GetRandomItem(), 
+                                    null, 
+                                    new List<Tile.TileState>() { Tile.TileState.Hidden }
+                                );
                             }
                         }
                         break;
