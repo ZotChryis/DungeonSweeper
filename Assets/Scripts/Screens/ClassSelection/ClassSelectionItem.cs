@@ -50,6 +50,7 @@ public class ClassSelectionItem : MonoBehaviour
 
     private void SetClassAndStartGame()
     {
+        ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = true;
         ServiceLocator.Instance.Player.TEMP_SetClass(Class);
         ServiceLocator.Instance.LevelManager.SetLevel(0);
         
