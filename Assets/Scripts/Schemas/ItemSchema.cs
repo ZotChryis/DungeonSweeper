@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Schemas
@@ -261,6 +260,9 @@ namespace Schemas
             Lamp,
             PotionVision,
             BaitBlueSlime,
+            RepellentCyclops,
+            RepellentBrick,
+            RerollCreditCard,
         }
         
         public ItemSchema.Id ItemId;

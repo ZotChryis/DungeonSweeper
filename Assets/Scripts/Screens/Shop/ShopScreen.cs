@@ -53,6 +53,10 @@ namespace Screens.Shop
             }
 
             ServiceLocator.Instance.Player.ShopXp -= 2;
+            if (ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.RerollCreditCard))
+            {
+                ServiceLocator.Instance.Player.ShopXp++;
+            }
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, false);
         }
 
