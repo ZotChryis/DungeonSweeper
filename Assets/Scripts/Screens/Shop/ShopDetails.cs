@@ -32,6 +32,7 @@ namespace Screens.Shop
             ShopScreen shopScreen = ServiceLocator.Instance.OverlayScreenManager.Screens[OverlayScreenManager.ScreenType.Shop] as ShopScreen;
             shopScreen.RemoveItem(ItemInstance);
             shopScreen.ClearFocusedItem();
+            shopScreen.RefreshRerollText();
             
             // And you can't press the buy button until another selection is made
             Button.interactable = false;

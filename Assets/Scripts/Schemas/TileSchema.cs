@@ -127,6 +127,11 @@ namespace Schemas
             
             Jinn,
             JinnLamp,
+            
+            LesserGolem,
+            GreaterGolem,
+            Vampire,
+            Jello,
         }
         
         // !!WARNING!! DO NOT REORDER

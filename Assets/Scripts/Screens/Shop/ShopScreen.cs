@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Gameplay;
 using Schemas;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +28,7 @@ namespace Screens.Shop
         {
             base.OnShow();
 
+            RefreshRerollText();
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, true);
             ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Shop);
         }
@@ -52,14 +54,19 @@ namespace Screens.Shop
                 return;
             }
 
-            ServiceLocator.Instance.Player.ShopXp -= 2;
-            if (ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.RerollCreditCard))
-            {
-                ServiceLocator.Instance.Player.ShopXp++;
-            }
+            // Reroll card reduces cost from 2 -> 1
+            bool hasRerollCard = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.RerollCreditCard);
+            ServiceLocator.Instance.Player.ShopXp -= hasRerollCard ? 1 : 2;
+
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, false);
         }
 
+        public void RefreshRerollText()
+        {
+            bool hasRerollCard = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.RerollCreditCard);
+            Reroll.GetComponentInChildren<TMP_Text>().SetText(hasRerollCard ? "$1" : "$2");
+        }
+        
         protected override void SetupInventory()
         {
             Inventory = new Gameplay.Inventory(false);

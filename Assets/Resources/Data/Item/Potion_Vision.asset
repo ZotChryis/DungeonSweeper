@@ -32,6 +32,7 @@ MonoBehaviour:
         Amount: 1
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 0000000001000000
         Items: 
         Decay: 0

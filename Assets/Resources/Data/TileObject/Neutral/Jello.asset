@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Brick_2
+  m_Name: Jello
   m_EditorClassIdentifier: 
-  UserFacingName: Brick
-  UserFacingDescription: Hit it a few times to make it shatter. Cannot kill you.
+  UserFacingName: Jello
+  UserFacingDescription: Eat it to heal a medium amount.
   Tags: 00000000
-  TileId: 6
-  LibraryOverrideTileId: 6
-  Sprite: {fileID: 1859843939744854257, guid: da1fd93e9e2852f4190a7cf9fa3047a0, type: 3}
+  TileId: 76
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: 21300000, guid: 8b8ddb762cd8f014ca8a384b0c2100bd, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -26,12 +26,12 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
-  Power: 1
-  HidePowerToNeighbors: 1
-  PreventConsumeIfKillingBlow: 1
+  Power: 0
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
   XPReward: 0
   ItemsToReplenish: 
-  DropReward: {fileID: 11400000, guid: eef7ee7a0e9497040ae96dcf05e6d49d, type: 2}
+  DropReward: {fileID: 0}
   NumNeighborDropReward:
     _serializedList: []
   NumNeighborItemReward:
@@ -59,7 +59,7 @@ MonoBehaviour:
   RevealAllRewards: []
   WinReward: 0
   FullHealReward: 0
-  HealReward: 0
+  HealReward: 5
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
@@ -129,10 +129,10 @@ MonoBehaviour:
           UseOverride: 0
           Value: 0
         EnableDeathSprite:
-          UseOverride: 1
+          UseOverride: 0
           Value: 0
         Sfx:
-          UseOverride: 0
+          UseOverride: 1
           Value: 
         Vfx:
           UseOverride: 0

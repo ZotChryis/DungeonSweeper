@@ -22,7 +22,7 @@ MonoBehaviour:
   InitialCharges: 1
   ShopInventory: 1
   Rarity: 3
-  Price: 5
+  Price: 6
   UseSfx: 
   CanStack: 0
   Effects:
@@ -33,6 +33,7 @@ MonoBehaviour:
         Amount: 1
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 01000000
         Items: 
         Decay: 1

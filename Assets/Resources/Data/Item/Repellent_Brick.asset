@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 74
   Name: 'Repellent: Brick'
-  Description: Remove 1 Brick from the dungeon.
+  Description: Remove 2 Bricks from the dungeon.
   Sprite: {fileID: 21300000, guid: 83f2f3265344a2c4d83f595e4f081d56, type: 3}
   Max: 2
   IsConsumbale: 0
@@ -29,9 +29,10 @@ MonoBehaviour:
     - Key: 0
       Value:
       - Type: 5
-        Amount: -1
+        Amount: -2
         GrantItemForceAllowDuplicates: 0
         Id: 6
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0

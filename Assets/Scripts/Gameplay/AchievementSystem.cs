@@ -73,7 +73,13 @@ namespace Gameplay
         
         public void CheckAchievements(AchievementSchema.TriggerType trigger)
         {
-            if (!AllowAchievementsToBeCompleted)
+            bool allowAchievement = AllowAchievementsToBeCompleted;
+            
+#if UNITY_EDITOR
+            // Shitty hack to allow achievement testing with cheats
+            allowAchievement = true;
+#endif
+            if (!allowAchievement)
             {
                 return;
             }

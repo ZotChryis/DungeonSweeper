@@ -420,7 +420,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (GetHousedObject() == null)
         {
-            if (ObscureCounter > 0)
+            bool hasMysticalMagnifyingGlass = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.MysticMagnifyingGlass);
+            if (ObscureCounter > 0 && !hasMysticalMagnifyingGlass)
             {
                 NeighborPower.SetText("?");
                 NeighborPower.enabled = true;

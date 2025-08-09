@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Schemas
 {
@@ -70,7 +71,7 @@ namespace Schemas
         AddRandomItemByDungeonLevel,
         MassPolymorph,  // All revealed enemies are polymorphed
         InstantConquer, // Conquers a random when triggered
-        SwapTiles,      // HACK: Takes all matching tiles using Tags[0], and swaps them to the TileId
+        SwapTiles,
         
     }
 
@@ -114,6 +115,11 @@ namespace Schemas
         /// </summary>
         public TileSchema.Id Id;
 
+        /// <summary>
+        /// Some effects (like TileSwap) requires a secondary tile reference. This is that tile.
+        /// </summary>
+        public TileSchema.Id OtherId;
+        
         /// <summary>
         /// The effect will only apply if at least one of these tags are on the object in question
         /// </summary>
@@ -263,6 +269,14 @@ namespace Schemas
             RepellentCyclops,
             RepellentBrick,
             RerollCreditCard,
+            
+            Jackhammer,
+            Jello,
+            VampireFangs,
+            MysticMagnifyingGlass,
+            
+            BaitGolem,
+            Claymancy,
         }
         
         public ItemSchema.Id ItemId;

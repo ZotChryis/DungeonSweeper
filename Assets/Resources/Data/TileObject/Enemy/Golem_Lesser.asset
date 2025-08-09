@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Rat
+  m_Name: Golem_Lesser
   m_EditorClassIdentifier: 
-  UserFacingName: Rat
-  UserFacingDescription: A simple rat with no sense of self. It follows a command.
-  Tags: 010000000200000005000000
-  TileId: 15
+  UserFacingName: Lesser Clay Golem
+  UserFacingDescription: Watch out, It hits like a brick!
+  Tags: 010000000200000008000000
+  TileId: 73
   LibraryOverrideTileId: 0
-  Sprite: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
+  Sprite: {fileID: 21300000, guid: 280bf52951a3bc24fb470b60c6cd5897, type: 3}
   SpriteFacingData:
-    ObjectToLookAtOverride: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
+    ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
     Below: {fileID: 0}
     Right: {fileID: 0}
     Left: {fileID: 0}
-    Missing: {fileID: -3268197922570579268, guid: 946e49db2b7a7bf42adc0e483ddf71c1, type: 3}
+    Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
-  Power: 1
+  Power: 2
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 1
+  XPReward: 3
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   NumNeighborDropReward:

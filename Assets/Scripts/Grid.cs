@@ -227,7 +227,7 @@ public class Grid : MonoBehaviour
 
     private void HandleEntriesSwaps()
     {
-        foreach (var ((fromTag, toTileId), amount) in ServiceLocator.Instance.Player.TileSwaps)
+        foreach (var ((fromTag, toTileId), amount) in ServiceLocator.Instance.Player.TileSwapsByTag)
         {
             List<Tile> validGridTiles = new List<Tile>();
             TileSchema schema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(s => s.TileId == toTileId);
@@ -241,6 +241,34 @@ public class Grid : MonoBehaviour
                 for (int x = 0; x < SpawnSettings.Width; x++)
                 {
                     if (!Tiles[x, y].TEMP_IsEmpty() && Tiles[x, y].GetHousedObject().Tags.Contains(fromTag))
+                    {
+                        validGridTiles.Add(Tiles[x, y]);
+                    }
+                }
+            }
+            
+            validGridTiles.Shuffle();
+            for (var i = 0; i < validGridTiles.Count && i < amount; i++)
+            {
+                validGridTiles[i].UndoPlacedTileObj();
+                validGridTiles[i].PlaceTileObj(schema);
+            }
+        }
+        
+        foreach (var ((fromId, toTileId), amount) in ServiceLocator.Instance.Player.TileSwaps)
+        {
+            List<Tile> validGridTiles = new List<Tile>();
+            TileSchema schema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(s => s.TileId == toTileId);
+            if (schema == null)
+            {
+                continue;
+            }
+            
+            for (int y = 0; y < SpawnSettings.Height; y++)
+            {
+                for (int x = 0; x < SpawnSettings.Width; x++)
+                {
+                    if (!Tiles[x, y].TEMP_IsEmpty() && Tiles[x, y].GetHousedObject().TileId == fromId)
                     {
                         validGridTiles.Add(Tiles[x, y]);
                     }

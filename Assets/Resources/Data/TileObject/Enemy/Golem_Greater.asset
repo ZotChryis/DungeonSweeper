@@ -10,26 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Rat
+  m_Name: Golem_Greater
   m_EditorClassIdentifier: 
-  UserFacingName: Rat
-  UserFacingDescription: A simple rat with no sense of self. It follows a command.
-  Tags: 010000000200000005000000
-  TileId: 15
+  UserFacingName: Greater Clay Golem
+  UserFacingDescription: Looks like a brick, hits like a brich, and...thinks like
+    a brick?
+  Tags: 010000000200000008000000
+  TileId: 74
   LibraryOverrideTileId: 0
-  Sprite: {fileID: -3578019587575532720, guid: 80e99c5656a6be24e9ef8659c4562b70, type: 3}
+  Sprite: {fileID: 21300000, guid: ff247f72d7476bc41bce1310792a420c, type: 3}
   SpriteFacingData:
-    ObjectToLookAtOverride: {fileID: 11400000, guid: f062032d521520040bebb17b3f13f7bd, type: 2}
+    ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
     Below: {fileID: 0}
     Right: {fileID: 0}
     Left: {fileID: 0}
-    Missing: {fileID: -3268197922570579268, guid: 946e49db2b7a7bf42adc0e483ddf71c1, type: 3}
+    Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
-  Power: 1
+  Power: 11
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 1
+  XPReward: 11
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   NumNeighborDropReward:
@@ -56,7 +57,11 @@ MonoBehaviour:
   CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
-  RevealAllRewards: []
+  RevealAllRewards:
+  - {fileID: 11400000, guid: ad646da970d47914fae19377be93ef3d, type: 2}
+  - {fileID: 11400000, guid: 03b1b4c52206b40458a78b128e19d479, type: 2}
+  - {fileID: 11400000, guid: eef7ee7a0e9497040ae96dcf05e6d49d, type: 2}
+  - {fileID: 11400000, guid: 4a4fd028439b07f40ac000991c3441fc, type: 2}
   WinReward: 0
   FullHealReward: 0
   HealReward: 0
@@ -65,6 +70,6 @@ MonoBehaviour:
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   ObscureColor: {r: 1, g: 1, b: 1, a: 1}
-  RevealVfx: {fileID: 0}
+  RevealVfx: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}
   Data:
     _serializedList: []

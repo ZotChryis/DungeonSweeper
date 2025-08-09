@@ -458,9 +458,14 @@ namespace Gameplay
                         break;
                     
                     case EffectType.SwapTiles:
-                        if (effect.Id != TileSchema.Id.None && effect.Tags != null && effect.Tags.Count > 0)
+                        if (effect.OtherId != TileSchema.Id.None && effect.Tags != null && effect.Tags.Count > 0)
                         {
-                            player.AddTileSwapEntry(effect.Tags[0], effect.Id, effect.Amount);
+                            player.AddTileSwapByTagEntry(effect.Tags[0], effect.OtherId, effect.Amount);
+                        }
+
+                        if (effect.Id != TileSchema.Id.None && effect.OtherId != TileSchema.Id.None)
+                        {
+                            player.AddTileSwapEntry(effect.Id, effect.OtherId, effect.Amount);
                         }
                         
                         break;
@@ -655,7 +660,7 @@ namespace Gameplay
                     case EffectType.SwapTiles:
                         if (effect.Id != TileSchema.Id.None && effect.Tags != null && effect.Tags.Count > 0)
                         {
-                            player.AddTileSwapEntry(effect.Tags[0], effect.Id, -effect.Amount);
+                            player.AddTileSwapByTagEntry(effect.Tags[0], effect.Id, -effect.Amount);
                         }
                         
                         break;

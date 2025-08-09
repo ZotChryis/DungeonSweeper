@@ -23,6 +23,7 @@ MonoBehaviour:
   Rarity: 3
   Price: 8
   UseSfx: 
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 0
@@ -30,7 +31,8 @@ MonoBehaviour:
       - Type: 20
         Amount: 100
         GrantItemForceAllowDuplicates: 0
-        Id: 67
+        Id: 0
+        OtherId: 67
         Tags: 05000000
         Items: 
         Decay: 0
@@ -40,6 +42,7 @@ MonoBehaviour:
         Amount: 8
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 08000000
         Items: 
         Decay: -1
