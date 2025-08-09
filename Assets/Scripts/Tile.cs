@@ -992,7 +992,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // Allow the object itself to override these settings
         UpdateObjectSelfVisuals();
 
-        if (ObscureCounter > 0)
+        bool hasMysticalMagnifyingGlass = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.MysticMagnifyingGlass);
+        if (ObscureCounter > 0 && !hasMysticalMagnifyingGlass)
         {
             NeighborPower.SetText("?");
         }
