@@ -10,29 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: Amulet_Sapphire
+  m_Name: Potion_Vision
   m_EditorClassIdentifier: 
-  ItemId: 58
-  Name: Sapphire Amulet
-  Description: Magic Fountains give +8 XP.
-  Sprite: {fileID: 21300000, guid: 23dfa039fafc4ed4093e951e27f567e7, type: 3}
-  Max: 1
-  IsConsumbale: 0
-  InitialCharges: 0
+  ItemId: 71
+  Name: 'Potion: Vision'
+  Description: Use from inventory. Reveal a random tile.
+  Sprite: {fileID: 21300000, guid: debae95e00958984590e88c65e4ef42c, type: 3}
+  Max: 3
+  IsConsumbale: 1
+  InitialCharges: 1
   ShopInventory: 1
-  Rarity: 2
-  Price: 8
-  UseSfx: 
+  Rarity: 1
+  Price: 4
+  UseSfx: Vision
   CanStack: 0
   Effects:
     _serializedList:
-    - Key: 0
+    - Key: 4
       Value:
-      - Type: 4
-        Amount: 5
+      - Type: 12
+        Amount: 1
         GrantItemForceAllowDuplicates: 0
-        Id: 43
-        Tags: 
+        Id: 0
+        Tags: 0000000001000000
         Items: 
         Decay: 0
         DecayTrigger: 0

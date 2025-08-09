@@ -14,20 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 40
   Name: 'Potion: Agility'
-  Description: Use from inventory. Gain +3 XP.
+  Description: Use from inventory. Gain +2 XP.
   Sprite: {fileID: -1061600653231999548, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
-  Max: -1
+  Max: 3
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
   Rarity: 1
   Price: 4
+  UseSfx: 
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 4
       Value:
       - Type: 14
-        Amount: 3
+        Amount: 2
         GrantItemForceAllowDuplicates: 0
         Id: 0
         Tags: 

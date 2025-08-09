@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Schemas
@@ -8,15 +9,43 @@ namespace Schemas
     /// <summary>
     /// The shop will care about having rarity.
     /// Some items might increase rarity given in the shop.
+    /// Each level except the first increases the max of each.
     /// </summary>
     [Serializable]
     public enum Rarity
     {
         Common,     // 100% chance to appear in the shop
-        Uncommon,   // 75% chance to appear in the shop
-        Rare,       // 50% chance to appear in the shop
-        Epic,       // 25% chance to appear in the shop
-        Legendary,  // 5% chance to appear in the shop
+        Uncommon,   // 75% chance to appear in the shop. Max 8 uncommon.
+        Rare,       // 50% chance to appear in the shop. Max 6 rare.
+        Epic,       // 25% chance to appear in the shop. Max 4 epic.
+        Legendary,  // 5% chance to appear in the shop. Max 2 legendary.
+    }
+
+    public static class RarityExtensions
+    {
+        public static int GetMaxItemQuantityForLevel(this Rarity rarity, int level)
+        {
+            int max = level;
+            switch (rarity)
+            {
+                case Rarity.Common:
+                    max += 99;
+                    break;
+                case Rarity.Uncommon:
+                    max += 8;
+                    break;
+                case Rarity.Rare:
+                    max += 6;
+                    break;
+                case Rarity.Epic:
+                    max += 4;
+                    break;
+                case Rarity.Legendary:
+                    max += 2;
+                    break;
+            }
+            return max;
+        }
     }
 
     [Serializable]
@@ -230,6 +259,8 @@ namespace Schemas
             SolarRing,
             ElementalRefiner,
             Lamp,
+            PotionVision,
+            BaitBlueSlime,
         }
         
         public ItemSchema.Id ItemId;

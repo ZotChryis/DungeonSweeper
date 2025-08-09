@@ -16,12 +16,12 @@ MonoBehaviour:
   Name: 'Potion: Stoneshield'
   Description: Use from inventory. The next Melee enemy does -4 damage.
   Sprite: {fileID: 8618505411793156745, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
-  Max: -1
+  Max: 3
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
-  Rarity: 1
-  Price: 4
+  Rarity: 2
+  Price: 5
   UseSfx: 
   CanStack: 0
   Effects:

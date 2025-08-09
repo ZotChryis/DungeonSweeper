@@ -16,12 +16,14 @@ MonoBehaviour:
   Name: 'Potion: Bloodrose'
   Description: Use from inventory. Take 1 Damage. Reveal two random tiles.
   Sprite: {fileID: 6997616985800771554, guid: 1621e8fe8d32db84e96669bc93b5a2ae, type: 3}
-  Max: -1
+  Max: 3
   IsConsumbale: 1
   InitialCharges: 3
   ShopInventory: 1
   Rarity: 1
   Price: 4
+  UseSfx: Vision
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 4

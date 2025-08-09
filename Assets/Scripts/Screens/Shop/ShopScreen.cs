@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Gameplay;
 using Schemas;
 using UnityEngine;
@@ -25,8 +26,8 @@ namespace Screens.Shop
         protected override void OnShow()
         {
             base.OnShow();
-            
-            Roll(ServiceLocator.Instance.LevelManager.CurrentLevel);
+
+            Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, true);
             ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Shop);
         }
 
@@ -34,7 +35,7 @@ namespace Screens.Shop
         {
             Reroll.interactable = ServiceLocator.Instance.Player.ShopXp >= 2;
         }
-        
+
         private void OnContinueClicked()
         {
             // TODO: This logic needs to go somewhere else...
@@ -43,7 +44,7 @@ namespace Screens.Shop
             ServiceLocator.Instance.Player.ResetPlayer();
             ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
         }
-        
+
         private void OnRerollClicked()
         {
             if (ServiceLocator.Instance.Player.ShopXp < 2)
@@ -52,58 +53,84 @@ namespace Screens.Shop
             }
 
             ServiceLocator.Instance.Player.ShopXp -= 2;
-            Roll(ServiceLocator.Instance.LevelManager.CurrentLevel);
+            Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, false);
         }
 
         protected override void SetupInventory()
         {
             Inventory = new Gameplay.Inventory(false);
         }
-        
+
         /// <summary>
         /// Adds items to the shop given the current level.
         /// </summary>
         /// TODO: Make Level matter more??
-        public void Roll(int level)
+        public void Roll(int level, bool limitShopInventoryByPlayerXp)
         {
             // Clear current shop
             foreach (var itemInstance in Inventory.GetAllItems())
             {
                 Inventory.RemoveItem(itemInstance);
             }
-            
+
             // Get all the items in the game
             List<ItemSchema> allItems = new List<ItemSchema>();
             allItems.AddRange(ServiceLocator.Instance.Schemas.ItemSchemas);
-            
+
             // Remove any items that they already have max copies of
             allItems.RemoveAll(schema =>
                 schema.Max != -1 && ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
             );
-            
+
             // Remove any item that is locked
             var lockedItemIds = ServiceLocator.Instance.AchievementSystem.GetLockedItems();
             foreach (var lockedItemId in lockedItemIds)
             {
                 allItems.RemoveAll(schema => schema.ItemId == lockedItemId);
             }
-            
+
+            allItems.Shuffle();
             allItems.Sort((i1, i2) => i1.Rarity.CompareTo(i2.Rarity));
-            
+
+
+            var player = ServiceLocator.Instance.Player;
+
+            // Check for price
+            var maxItemCostAllowed = limitShopInventoryByPlayerXp ? player.ShopXp : 9999;
+
             // Roll by rarity to see if they are included
             float addedChanceFromLevel = level * 0.1f;
+            var numberOfItemsAddedPerRarity = new Dictionary<Rarity, int>(5);
             foreach (var itemSchema in allItems)
             {
+                if (itemSchema.Price > maxItemCostAllowed)
+                {
+                    Debug.Log("Item: " + itemSchema.ItemId + " is too expensive at price " + itemSchema.Price + ", skipping spawn of item.");
+                    continue;
+                }
+                if (itemSchema.ShopInventory <= 0)
+                {
+                    Debug.Log("Skipping item " + itemSchema.ItemId + " because shop inventory is " + itemSchema.ShopInventory);
+                    continue;
+                }
+                numberOfItemsAddedPerRarity.TryGetValue(itemSchema.Rarity, out int numberOfItemsOfRarityAlreadyAdded);
+                if (numberOfItemsOfRarityAlreadyAdded >= itemSchema.Rarity.GetMaxItemQuantityForLevel(level))
+                {
+                    Debug.Log("Already spawned " + numberOfItemsOfRarityAlreadyAdded + " for rarity " + itemSchema.Rarity + " on level " + level + ", skipping item spawn.");
+                    continue;
+                }
                 if (UnityEngine.Random.Range(0.0f, 1.0f) <= itemSchema.GetShopAppearanceRate() + addedChanceFromLevel)
                 {
+                    Debug.Log("Success on " + (itemSchema.GetShopAppearanceRate() + addedChanceFromLevel) + " chance. Spawning item : " + itemSchema.ItemId);
                     // TODO: Do inventory better instead of adding multiple entries??
                     for (int i = 0; i < itemSchema.ShopInventory; i++)
                     {
                         Inventory.AddItem(itemSchema.ItemId);
                     }
+                    numberOfItemsAddedPerRarity[itemSchema.Rarity] = numberOfItemsOfRarityAlreadyAdded + 1;
                 }
             }
-            
+
             // Offer sales if the user has the credit card
             if (ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.CreditCard))
             {
@@ -131,12 +158,12 @@ namespace Screens.Shop
             {
                 Inventory.RemoveItem(itemInstance);
             }
-            
+
             // Get all the items in the game
             List<ItemSchema> allItems = new List<ItemSchema>();
             allItems.AddRange(ServiceLocator.Instance.Schemas.ItemSchemas);
             allItems.Sort((i1, i2) => i1.Rarity.CompareTo(i2.Rarity));
-            
+
             // Roll by rarity to see if they are included
             foreach (var itemSchema in allItems)
             {

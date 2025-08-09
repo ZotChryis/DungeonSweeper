@@ -56,7 +56,7 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
     {
         ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = false;
         ShopScreen shop = ServiceLocator.Instance.OverlayScreenManager.Screens[OverlayScreenManager.ScreenType.Shop] as ShopScreen;
-        shop.Roll(ServiceLocator.Instance.LevelManager.CurrentLevel);
+        shop.Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, false);
     }
 
     public void RollShopWithAll()

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Djinn
   UserFacingDescription: A mystical being who tries not to fight but gets stronger
-    when he does. Find his home for a untold riches.
+    when he does. Find his home for untold riches.
   Tags: 010000000400000008000000
   TileId: 71
   LibraryOverrideTileId: 0
