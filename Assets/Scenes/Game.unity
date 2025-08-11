@@ -26719,7 +26719,7 @@ MonoBehaviour:
   Container: {fileID: 3314563171841410822}
   MainContentRoot: {fileID: 8454022165926743320}
   CloseButton: {fileID: 5623050355387788902}
-  EscapeButton: {fileID: 0}
+  EscapeButton: {fileID: 5623050355387788902}
   AchievementPrefab: {fileID: 6843861134416029835, guid: 6f23cc9093132644e912b3f63d4e2df0, type: 3}
   Title: {fileID: 2009766397}
   ContentRoot: {fileID: 2915037812715018604}
@@ -36785,7 +36785,7 @@ MonoBehaviour:
   Container: {fileID: 1706507251292749241}
   MainContentRoot: {fileID: 731995301}
   CloseButton: {fileID: 3035257827022850094}
-  EscapeButton: {fileID: 0}
+  EscapeButton: {fileID: 3035257827022850094}
 --- !u!225 &6694895682029625935
 CanvasGroup:
   m_ObjectHideFlags: 0

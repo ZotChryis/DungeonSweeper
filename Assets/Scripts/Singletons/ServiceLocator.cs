@@ -57,6 +57,8 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
         {
             DontDestroyOnLoad(gameObject);
 
+            Application.targetFrameRate = 60;
+            
             Schemas = new SchemaContainer();
             Schemas.Initialize();
 
