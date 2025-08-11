@@ -5,7 +5,11 @@ using UnityEngine.UI;
 // TODO: Make a new fucking name
 public class PlayerUIItem : MonoBehaviour
 {
-    public Image GhostFull;
+    [SerializeField]
+    private Image Half;
+    
+    [SerializeField]
+    private Image GhostFull;
 
     [SerializeField]
     private Image Full;
@@ -16,6 +20,16 @@ public class PlayerUIItem : MonoBehaviour
     [SerializeField]
     private TMP_Text Label;
 
+    public void SetHalf(bool isHalf)
+    {
+        Half.enabled = isHalf;
+        
+        Full.enabled = !isHalf;
+        Empty.enabled = !isHalf;
+        GhostFull.enabled = !isHalf;
+        Label.enabled = !isHalf;
+    }
+    
     public void SetFull(bool full)
     {
         Full.enabled = full;
@@ -24,14 +38,12 @@ public class PlayerUIItem : MonoBehaviour
 
     public void SetGhostFull(bool ghostFull)
     {
-        if (GhostFull)
-        {
-            GhostFull.enabled = ghostFull;
-        }
+        GhostFull.enabled = ghostFull;
     }
 
     public void SetLabelText(string text)
     {
+        Label.enabled = true;
         Label.SetText(text);
     }
 }

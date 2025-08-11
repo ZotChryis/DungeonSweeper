@@ -45,7 +45,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int Level;
     private int CurrentHealth;
     private int MaxHealth;
-    [FormerlySerializedAs("BonusHp")] [FormerlySerializedAs("BonusStartingHp")] public int BonusMaxHp = 0;
+    
+    public int BonusMaxHp = 0;
     public int BonusStartXp = 0;
     public int SecondWindRegeneration = 0;
     
@@ -63,13 +64,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public Class.Id Class = Gameplay.Class.Id.Adventurer;
     public ClassSchema ClassSchema;
     public Inventory Inventory;
-
-    /// <summary>
-    /// Bonus maxHP added to the level up table.
-    /// Mostly, for god mode.
-    /// </summary>
-    private int GodModeBonusMaxHp = 0;
     
+    private bool IsGod = false;
     private bool HasRegeneratedThisRound = false;
 
     [SerializeField]
@@ -292,7 +288,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
 
         // TODO: Add overheal mechanic?
-        CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth) + GodModeBonusMaxHp;
+        CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth);
         
         ServiceLocator.Instance.AudioManager.PlaySfx("Heal");
         
@@ -351,10 +347,23 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         for (int i = 0; i < Hearts.Length; i++)
         {
-            Hearts[i].gameObject.SetActive(i < Mathf.Max(MaxHealth, CurrentHealth));
-            Hearts[i].SetFull(CurrentHealth > i);
-            Hearts[i].SetGhostFull(CurrentHealth > i && i >= MaxHealth);
+            Hearts[i].SetHalf(false);
+            Hearts[i].gameObject.SetActive(i < MaxHealth);
+            Hearts[i].SetFull(i < CurrentHealth);
             Hearts[i].SetLabelText((i + 1).ToString());
+            
+            // "Ghost" was like overhealth... I want to make this a real mechanic so I'll refactor it later. For now just
+            // turn it all off
+            Hearts[i].SetGhostFull(false);
+        }
+        
+        var currentLevelHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
+        var nextLevelHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level + 1);
+        bool showHalfHeart = nextLevelHealth > currentLevelHealth;
+        if (!IsGod && showHalfHeart)
+        {
+            Hearts[MaxHealth].gameObject.SetActive(true);
+            Hearts[MaxHealth].SetHalf(true);
         }
 
         int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
@@ -392,8 +401,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         Level++;
 
-        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
-        CurrentHealth = MaxHealth + GodModeBonusMaxHp;
+        MaxHealth = IsGod
+            ? 99999
+            : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
+        CurrentHealth = MaxHealth;
 
         TEMP_UpdateVisuals();
         
@@ -402,10 +413,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
         AdvanceEffects(null, DecayTrigger.PlayerLevel);
     }
 
-    public void GodMode()
+    public void ToggleGodMode()
     {
-        GodModeBonusMaxHp = GodModeBonusMaxHp == 0 ? 999999 : 0;
-        CurrentHealth = MaxHealth + GodModeBonusMaxHp;
+        IsGod = !IsGod;
+
+        MaxHealth = IsGod
+            ? 99999
+            : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
+        
+        CurrentHealth = MaxHealth;
         TEMP_UpdateVisuals();
     }
 
@@ -454,8 +470,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentXP = 0;
         HasRegeneratedThisRound = false;
         
-        MaxHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
-        CurrentHealth = MaxHealth + GodModeBonusMaxHp;
+        MaxHealth = IsGod
+            ? 99999
+            : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
+        
+        CurrentHealth = MaxHealth + MaxHealth;
         
         // Apply any bonuses from items
         TEMP_UpdateXP(null, BonusStartXp);

@@ -31,7 +31,7 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
     public void GodMode()
     {
         ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = false;
-        ServiceLocator.Instance.Player.GodMode();
+        ServiceLocator.Instance.Player.ToggleGodMode();
     }
 
     public void Regenerate()
