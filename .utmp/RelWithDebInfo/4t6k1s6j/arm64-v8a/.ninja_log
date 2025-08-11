@@ -1,0 +1,21 @@
+# ninja log v5
+1	2615	7766517330683475	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	8fab9bfccb2dadf9
+90	566	7766517310226638	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	36edf45a4dc5e9e5
+568	826	7766517312674079	C:/Users/navac/OneDrive/Documents/GitHub/DungeonSweeper/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4t6k1s6j/obj/arm64-v8a/libswappywrapper.so	3547c48952e431a1
+2616	2747	7766517332032802	C:/Users/navac/OneDrive/Documents/GitHub/DungeonSweeper/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4t6k1s6j/obj/arm64-v8a/libgame.so	14776f041f9520d4
+29	2233	7766517326902475	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	11fbb658d34076e7
+76	2241	7766517326972757	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ffc9010a7e2734f
+64	2335	7766517327884823	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	b21721607c2bd5bc
+19	2265	7766517327203982	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	83b0dfa7bec0b2ea
+10	2337	7766517327921467	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	fade09c4227d2ef0
+51	2276	7766517327318565	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	443ca9d4d8074227
+40	2516	7766517329719731	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	72a9ca16e2af4137
+52	1532	7766524735282891	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ffc9010a7e2734f
+42	1556	7766524735544626	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	11fbb658d34076e7
+11	1592	7766524735898226	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	83b0dfa7bec0b2ea
+66	1598	7766524735921694	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	443ca9d4d8074227
+21	1703	7766524737038780	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	fade09c4227d2ef0
+106	1706	7766524737028226	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	b21721607c2bd5bc
+87	1961	7766524739595913	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	72a9ca16e2af4137
+30	2071	7766524740679849	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	8fab9bfccb2dadf9
+2071	2231	7766524742287922	C:/Users/navac/OneDrive/Documents/GitHub/DungeonSweeper/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/4t6k1s6j/obj/arm64-v8a/libgame.so	14776f041f9520d4
