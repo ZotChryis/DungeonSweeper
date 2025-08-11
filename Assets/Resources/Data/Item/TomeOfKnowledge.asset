@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
+  m_Name: TomeOfKnowledge
+  m_EditorClassIdentifier: 
+  ItemId: 83
+  Name: Tome of Knowledge
+  Description: Using a Scroll gives +1 Shield.
+  Sprite: {fileID: 21300000, guid: eb52f52a9c3fb3349b2292e90b37c2fb, type: 3}
+  Max: 1
+  IsConsumbale: 0
+  InitialCharges: 0
+  ShopInventory: 1
+  Rarity: 2
+  Price: 4
+  UseSfx: 
+  CanStack: 0
+  Effects:
+    _serializedList:
+    - Key: 3
+      Value:
+      - Type: 21
+        Amount: 1
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        OtherId: 0
+        Tags: 0c000000
+        Items: 
+        Decay: -1
+        DecayTrigger: 0
+        DecayTags: 

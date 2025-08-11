@@ -42,8 +42,8 @@ namespace Screens.Shop
         {
             // TODO: This logic needs to go somewhere else...
             // Reset the player, close the shop and update the level
-            ServiceLocator.Instance.LevelManager.NextLevel();
             ServiceLocator.Instance.Player.ResetPlayer();
+            ServiceLocator.Instance.LevelManager.NextLevel();
             ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
         }
 

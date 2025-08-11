@@ -43,6 +43,7 @@ namespace Screens.Victory
             //  of being told to check
             ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Victory);
             ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Pacifist);
+            ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Killer);
             ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.FullBoardClear);
         }
     }

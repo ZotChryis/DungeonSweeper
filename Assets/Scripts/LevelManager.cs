@@ -35,8 +35,7 @@ public class LevelManager : MonoBehaviour
     {
         ServiceLocator.Instance.Register(this);
     }
-
-    // TODO: Let's remove asset usages of functions like this. If its on a button, we should bind the callback in code
+    
     public void NextLevel()
     {
         SetLevel(CurrentLevel + 1);

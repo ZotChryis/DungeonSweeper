@@ -105,6 +105,7 @@ namespace Gameplay
                     continue;
                 }
                 
+                int kills = 0;
                 switch (trigger)
                 {
                     case AchievementSchema.TriggerType.Victory:
@@ -127,13 +128,28 @@ namespace Gameplay
                         break;
                     
                     case AchievementSchema.TriggerType.Pacifist:
-                        int kills = 0;
+                        kills = 0;
                         foreach (var id in schema.TileData)
                         {
                             kills += ServiceLocator.Instance.Player.GetKillCount(id);
                         }
 
                         if (kills > 0)
+                        {
+                            continue;
+                        }
+                        
+                        Complete(schema);
+                        break;
+                    
+                    case AchievementSchema.TriggerType.Killer:
+                        kills = 0;
+                        foreach (var id in schema.TileData)
+                        {
+                            kills += ServiceLocator.Instance.Player.GetKillCount(id);
+                        }
+
+                        if (kills < schema.MinimumKillCount)
                         {
                             continue;
                         }

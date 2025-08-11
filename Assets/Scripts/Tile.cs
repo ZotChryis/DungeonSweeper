@@ -937,7 +937,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             case TileState.Revealed:
             case TileState.RevealThroughCombat:
                 Power.enabled = true;
-                NeighborPower.enabled = GetHousedObject() != null && ServiceLocator.Instance.Player.TilesWhichShowNeighborPower.Contains(GetHousedObject().TileId);
+                NeighborPower.enabled = false;
                 HousedObjectSprite.enabled = true;
                 XSpriteRenderer.enabled = false;
                 Annotation.enabled = false;

@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
-  m_Name: Priest_1
+  m_Name: Killer_Vampire
   m_EditorClassIdentifier: 
-  AchievementId: 46
-  Title: Intermediate Priest
-  Description: Complete the second dungeon level with the Priest.
-  Reward: 'Unlocks Spell: Holy Shield (Shop)'
+  AchievementId: 88
+  Title: Vampire Killer
+  Description: Complete any dungeon after killing 10 Vampires.
+  Reward: 
   RewardClass: -1
-  RewardItem: 82
-  Trigger: 0
-  Level: 1
-  Class: 8
-  TileData: 
+  RewardItem: 0
+  Trigger: 4
+  Level: -1
+  Class: -1
+  TileData: 4b000000
   ItemData: 
   ItemAcquiredMinCount: -1
   ItemAcquiredMaxCount: -1
   RequiresHardcore: 0
-  MinimumKillCount: 0
+  MinimumKillCount: 10

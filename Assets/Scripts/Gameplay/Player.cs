@@ -45,10 +45,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int Level;
     private int CurrentHealth;
     private int MaxHealth;
-    
-    public int BonusMaxHp = 0;
-    public int BonusStartXp = 0;
-    public int SecondWindRegeneration = 0;
+    private int Shield;
+
+    private int BonusMaxHp = 0;
+    private int BonusStartXp = 0;
+    private int SecondWindRegeneration = 0;
     
     //TODO: Merge these concepts (id and Tag)
     // By id, "global" is an overall id
@@ -74,7 +75,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     public int ModXpCurve = 0;
     
-    public HashSet<TileSchema.Id> TilesWhichShowNeighborPower = new();
     public Dictionary<TileSchema.Id, int> TileObjectsThatShouldUpgrade = new();
     
     private Dictionary<TileSchema.Id, int> Kills = new Dictionary<TileSchema.Id, int>();
@@ -194,7 +194,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     
     public bool TEMP_PredictDeath(int amount)
     {
-        return CurrentHealth - amount < 0;
+        return CurrentHealth + Shield - amount < 0;
     }
 
     public int GetAdjustedDamage(TileSchema source, int amount)
@@ -240,9 +240,21 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // Now deal with item bonuses
         amount = GetAdjustedDamage(source, amount);
         
+        // Handle shield first
+        if (amount >= Shield)
+        {
+            amount -= Shield;
+            Shield = 0;
+        }
+        else
+        {
+            Shield -= amount;
+            amount = 0;
+        }
+        
         CurrentHealth = Math.Max(-1, CurrentHealth - amount);
         
-        // Special Case: Regeneration power
+        // Special Case: Regeneration power (currently unused)
         if (CurrentHealth < 0 && !HasRegeneratedThisRound && SecondWindRegeneration > 0)
         {
             HasRegeneratedThisRound = true;
@@ -277,17 +289,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// <summary>
     /// Heals the player for the specified amount.
     /// Amount should never be 0 or less.
-    /// AllowOverheal will generate "shield" hearts that will not replenish on level.
     /// </summary>
-    public void Heal(TileSchema source, int amount) //, bool allowOverheal)
+    public void Heal(TileSchema source, int amount)
     {
         // Do not damage with negative heal
         if (amount <= 0)
         {
             return;
         }
-
-        // TODO: Add overheal mechanic?
+        
         CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth);
         
         ServiceLocator.Instance.AudioManager.PlaySfx("Heal");
@@ -348,13 +358,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         for (int i = 0; i < Hearts.Length; i++)
         {
             Hearts[i].SetHalf(false);
-            Hearts[i].gameObject.SetActive(i < MaxHealth);
+            Hearts[i].gameObject.SetActive(i < MaxHealth + Shield);
             Hearts[i].SetFull(i < CurrentHealth);
+            Hearts[i].SetShield(i >= MaxHealth);
             Hearts[i].SetLabelText((i + 1).ToString());
-            
-            // "Ghost" was like overhealth... I want to make this a real mechanic so I'll refactor it later. For now just
-            // turn it all off
-            Hearts[i].SetGhostFull(false);
         }
         
         var currentLevelHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
@@ -362,8 +369,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         bool showHalfHeart = nextLevelHealth > currentLevelHealth;
         if (!IsGod && showHalfHeart)
         {
-            Hearts[MaxHealth].gameObject.SetActive(true);
-            Hearts[MaxHealth].SetHalf(true);
+            Hearts[MaxHealth + Shield].gameObject.SetActive(true);
+            Hearts[MaxHealth + Shield].SetHalf(true);
         }
 
         int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
@@ -468,13 +475,14 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
         Level = 0;
         CurrentXP = 0;
+        Shield = 0;
         HasRegeneratedThisRound = false;
         
         MaxHealth = IsGod
             ? 99999
             : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
         
-        CurrentHealth = MaxHealth + MaxHealth;
+        CurrentHealth = MaxHealth;
         
         // Apply any bonuses from items
         TEMP_UpdateXP(null, BonusStartXp);
@@ -541,10 +549,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         SecondWindRegeneration++;
     }
-    
-    public void AddRevealNeighborPower(TileSchema.Id ObjectId)
+
+    public void AddShield(int amount)
     {
-        TilesWhichShowNeighborPower.Add(ObjectId);
+        Shield += amount;
+        TEMP_UpdateVisuals();
     }
     
     public void AddOrIncrementTileLevel(TileSchema.Id ObjectId)

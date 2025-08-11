@@ -15,9 +15,9 @@ MonoBehaviour:
   AchievementId: 75
   Title: Advanced Scribe
   Description: Complete the third dungeon level with the Scribe.
-  Reward: 
+  Reward: Unlocks Tome of Knowledge (Shop)
   RewardClass: -1
-  RewardItem: 0
+  RewardItem: 83
   Trigger: 0
   Level: 2
   Class: 12
@@ -25,3 +25,5 @@ MonoBehaviour:
   ItemData: 
   ItemAcquiredMinCount: -1
   ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

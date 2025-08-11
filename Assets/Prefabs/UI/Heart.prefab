@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 9034260281879731638}
   - component: {fileID: 6634106691015308181}
   m_Layer: 0
-  m_Name: GhostFull
+  m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Half: {fileID: 6212445885590290724}
-  GhostFull: {fileID: 6634106691015308181}
+  Shield: {fileID: 6634106691015308181}
   Full: {fileID: 6177410102838722112}
   Empty: {fileID: 5986030022688508921}
   Label: {fileID: 4094973910642299697}

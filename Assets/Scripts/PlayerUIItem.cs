@@ -2,14 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO: Make a new fucking name
 public class PlayerUIItem : MonoBehaviour
 {
     [SerializeField]
     private Image Half;
     
     [SerializeField]
-    private Image GhostFull;
+    private Image Shield;
 
     [SerializeField]
     private Image Full;
@@ -26,7 +25,7 @@ public class PlayerUIItem : MonoBehaviour
         
         Full.enabled = !isHalf;
         Empty.enabled = !isHalf;
-        GhostFull.enabled = !isHalf;
+        Shield.enabled = !isHalf;
         Label.enabled = !isHalf;
     }
     
@@ -36,9 +35,9 @@ public class PlayerUIItem : MonoBehaviour
         Empty.enabled = !full;
     }
 
-    public void SetGhostFull(bool ghostFull)
+    public void SetShield(bool shield)
     {
-        GhostFull.enabled = ghostFull;
+        Shield.enabled = shield;
     }
 
     public void SetLabelText(string text)

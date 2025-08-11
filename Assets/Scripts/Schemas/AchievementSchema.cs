@@ -125,6 +125,10 @@ namespace Schemas
             Hardcore2,
             Hardcore3,
             Hardcore4,
+            
+            KillerSheep,
+            KillerVampire,
+            KillerWerewolf,
         }
 
         [Serializable]
@@ -134,6 +138,7 @@ namespace Schemas
             Pacifist,
             FullBoardClear,
             DemonLord,
+            Killer,
         }
         
         public Id AchievementId;
@@ -193,5 +198,10 @@ namespace Schemas
         /// Some achievements require NO RETRY.
         /// </summary>
         public bool RequiresHardcore = false;
+
+        /// <summary>
+        /// KILLER achievements require a minimum kill count. This is that count.
+        /// </summary>
+        public int MinimumKillCount;
     }
 }

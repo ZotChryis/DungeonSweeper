@@ -592,6 +592,11 @@ namespace Gameplay
                             }
                         }
                         break;
+                    
+                    case EffectType.Shield:
+                        ServiceLocator.Instance.Player.AddShield(effect.Amount);
+                        break;
+                    
                 }
             }
         }
@@ -621,6 +626,7 @@ namespace Gameplay
                     case EffectType.InstantRevealRandomCol:
                     case EffectType.MassPolymorph:
                     case EffectType.InstantConquer:
+                    case EffectType.Shield:
                         break;
                     
                     case EffectType.BonusHP:
