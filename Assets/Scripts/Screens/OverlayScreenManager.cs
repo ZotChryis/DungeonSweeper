@@ -2,9 +2,7 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Screens;
-using Screens.Shop;
-using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
 {
@@ -43,7 +41,7 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape) && ScreenStack.Count >= 1)
+        if (Keyboard.current[Key.Escape].wasPressedThisFrame && ScreenStack.Count >= 1)
         {
             ScreenStack.Peek().EscapeOut();
         }
