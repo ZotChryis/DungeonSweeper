@@ -24,6 +24,9 @@ public class InventoryScreen : BaseScreen
     protected Inventory Inventory;
     protected List<InventoryItem> Items;
     protected ItemInstance FocusedItem;
+
+    protected int PassiveItems = 0;
+    protected int ConsumableItems = 0;
     
     protected override void Awake()
     {
@@ -35,7 +38,6 @@ public class InventoryScreen : BaseScreen
         
         // Bind to the inventory change events 
         Inventory.OnItemAdded += OnItemAdded;
-        //Inventory.OnItemStackChanged += OnItemStackChanged;
         Inventory.OnItemChargeChanged += OnItemChargeChanged;
         Inventory.OnItemRemoved += OnItemRemoved;
         
@@ -53,6 +55,9 @@ public class InventoryScreen : BaseScreen
     // TODO: Too lazy right now to remove items one at a time. need to track them better 
     private void RefreshItems()
     {
+        PassiveItems = 0;
+        ConsumableItems = 0;
+        
         ConsumableLabel.SetActive(false);
         PassiveLabel.SetActive(false);
         
@@ -75,10 +80,20 @@ public class InventoryScreen : BaseScreen
 
     private void OnItemAdded(ItemInstance itemInstance)
     {
-        InventoryItem newItem = Instantiate<InventoryItem>(ItemPrefab, itemInstance.Schema.IsConsumbale ? ConsumableListRoot : PassiveListRoot);
+        bool isConsumable = itemInstance.Schema.IsConsumbale;
+        if (isConsumable)
+        {
+            ConsumableItems++;
+        }
+        else
+        {
+            PassiveItems++;
+        }
+        
+        InventoryItem newItem = Instantiate<InventoryItem>(ItemPrefab, isConsumable ? ConsumableListRoot : PassiveListRoot);
         newItem.Initialize(this, itemInstance);
         Items.Add(newItem);
-
+        
         bool hasAtLeastOneConsumable = Inventory.GetAllItems().Any(i => i.Schema.IsConsumbale);
         bool hasAtLeastOnePassive = Inventory.GetAllItems().Any(i => !i.Schema.IsConsumbale);
         ConsumableLabel.SetActive(hasAtLeastOneConsumable);
@@ -103,7 +118,18 @@ public class InventoryScreen : BaseScreen
         {
             if (Items[i].GetItemInstance() == itemInstance)
             {
+                bool isConsumable = itemInstance.Schema.IsConsumbale;
+                if (isConsumable)
+                {
+                    ConsumableItems--;
+                }
+                else
+                {
+                    PassiveItems--;
+                }
+                
                 Destroy(Items[i].gameObject);
+                ForceRefreshLayout();
                 return;
             }
         }
@@ -123,7 +149,20 @@ public class InventoryScreen : BaseScreen
 
     protected void ForceRefreshLayout()
     {
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
-        LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
+        //LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
+        //LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
+
+        RectTransform consumableListRect = (RectTransform)ConsumableListRoot;
+        RectTransform passiveListRect = (RectTransform)PassiveListRoot;
+
+        int consumableRows = (ConsumableItems + 3) / 4;
+        Vector2 newConsumableSizeDelta = consumableListRect.sizeDelta;
+        newConsumableSizeDelta.y = consumableRows * 175;
+        consumableListRect.sizeDelta = newConsumableSizeDelta;
+        
+        int  passiveRows = (PassiveItems + 3) / 4;
+        Vector2 newPassiveSizeDelta = passiveListRect.sizeDelta;
+        newPassiveSizeDelta.y = passiveRows * 175;
+        passiveListRect.sizeDelta = newPassiveSizeDelta;
     }
 }
