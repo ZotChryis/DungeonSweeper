@@ -64,6 +64,22 @@ MonoBehaviour:
     GuardRelationship: 1
     LookTowardsEachOther: 1
     Requirement: {fileID: 11400000, guid: 8b3f343d121a5b64caf6830a87cfb515, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: f4ba156d9a388dc4c850b7e40f9185df, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 11400000, guid: d91028edc1f7ab248b01f09c5c64650c, type: 2}
+  - Amount: 1
+    Object: {fileID: 11400000, guid: d91fe7bcbf3f791499bf9a0f3160dfa9, type: 2}
+    ConsecutiveSpawn: {fileID: 0}
+    ConsecutiveCopies: 0
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 11400000, guid: 5fede6b22e4606049ad7643253200f5e, type: 2}
   - Amount: 4
     Object: {fileID: 11400000, guid: 8e71daf37aadda948989a4014a26b368, type: 2}
     ConsecutiveSpawn: {fileID: 11400000, guid: bdb6fb82ec3ced2438bfc899310bd68b, type: 2}
@@ -289,22 +305,6 @@ MonoBehaviour:
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 0}
-  - Amount: 1
-    Object: {fileID: 11400000, guid: f4ba156d9a388dc4c850b7e40f9185df, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    ConsecutiveStackedInLibrary: 0
-    GuardRelationship: 0
-    LookTowardsEachOther: 0
-    Requirement: {fileID: 11400000, guid: dee4d546227ae4e4080c969a2a3a4860, type: 2}
-  - Amount: 1
-    Object: {fileID: 11400000, guid: d91fe7bcbf3f791499bf9a0f3160dfa9, type: 2}
-    ConsecutiveSpawn: {fileID: 0}
-    ConsecutiveCopies: 0
-    ConsecutiveStackedInLibrary: 0
-    GuardRelationship: 0
-    LookTowardsEachOther: 0
-    Requirement: {fileID: 11400000, guid: da2e4f9799e9fe94b98c30db216b6af7, type: 2}
   - Amount: 0
     Object: {fileID: 11400000, guid: dcf4936345757264a95cfa18e3181dde, type: 2}
     ConsecutiveSpawn: {fileID: 0}

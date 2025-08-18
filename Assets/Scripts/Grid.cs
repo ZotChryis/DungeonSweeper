@@ -326,7 +326,8 @@ public class Grid : MonoBehaviour
             {
                 if (InGridBounds(x + i, y + j))
                 {
-                    Tiles[x + i, y + j].TEMP_RevealWithoutLogic(vfx);
+                    // This is the grid reveal so use the fast reveal without logic
+                    Tiles[x + i, y + j].FastRevealWithoutLogic_VisionOrb(vfx);
                 }
             }
         }

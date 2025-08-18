@@ -373,6 +373,37 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    /// <summary>
+    /// Does the "Vision Orb" start of game thing. Copies TEMP_RevealWithoutLogic
+    /// but without OnTileStateChanged. Actually, just for vision orb for when you want
+    /// to reveal multiple tiles quickly.
+    /// </summary>
+    public void FastRevealWithoutLogic_VisionOrb(GameObject vfx = null)
+    {
+        if(State >= TileState.Revealed)
+        {
+            return;
+        }
+
+        State = TileState.Revealed;
+        TryPlaySfx(State);
+        TryPlayVfx(State);
+
+        if (vfx != null)
+        {
+            Instantiate(vfx, transform);
+        }
+
+        TEMP_UpdateVisuals();
+
+        // TODO: Total hack, fix later
+        if (!HousedObject && State == TileState.Revealed)
+        {
+            TEMP_SetState(TileState.Empty);
+            return;
+        }
+    }
+
     private void TryPlaySfx(TileState state)
     {
         if (HousedObject)
