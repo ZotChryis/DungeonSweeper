@@ -131,14 +131,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private void Start()
     {
         ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGenerated;
-        ServiceLocator.Instance.LevelManager.OnLevelChanged += OnDungeonLevelChanged;
         ResetPlayer();
     }
 
     private void OnDestroy()
     {
         ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
-        ServiceLocator.Instance.LevelManager.OnLevelChanged -= OnDungeonLevelChanged;
     }
 
     // TODO: Fix hack....retry has a lot of holes :(
@@ -165,18 +163,13 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         // TODO: Should decaying effects be cleared here??
     }
-    
-    private void OnDungeonLevelChanged(int newLevel)
-    {
-        AdvanceEffects(null, DecayTrigger.DungeonLevel);
-    }
 
     public int GetKillCount(TileSchema.Id tileId)
     {
         return Kills.GetValueOrDefault(tileId, 0);
     }
     
-    public void TEMP_SetClass(Class.Id classId)
+    public void TEMP_SetClass(Class.Id classId, bool giveItem = true)
     {
         ClassSchema schema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == classId);
         if (schema == null)
@@ -188,7 +181,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ClassSchema = schema;
         PlayerIcon.sprite = schema.Sprite;
 
-        Inventory.AddItem(schema.StartingItem);
+        if (giveItem)
+        {
+            Inventory.AddItem(schema.StartingItem);
+        }
         
         ResetPlayer();
     }

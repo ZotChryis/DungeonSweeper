@@ -64,8 +64,18 @@ namespace Gameplay
                 RunData data = JsonUtility.FromJson<RunData>(json);
 
                 ServiceLocator.Instance.LevelManager.SetLevel(data.dungeonLevel);
-                ServiceLocator.Instance.Player.TEMP_SetClass(data.playerClass);
+                
+                ServiceLocator.Instance.Player.ResetPlayer();
+                ServiceLocator.Instance.Player.TEMP_SetClass(data.playerClass, false);
                 ServiceLocator.Instance.Player.ShopXp = data.shopXp;
+                
+                ServiceLocator.Instance.Player.Inventory.Clear();
+                foreach (var item in data.items)
+                {
+                    ServiceLocator.Instance.Player.Inventory.AddItem(item);
+                }
+                
+                ServiceLocator.Instance.LevelManager.RetryCurrentLevel();
             }
             else
             {

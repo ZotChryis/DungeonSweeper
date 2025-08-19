@@ -26,7 +26,7 @@ MonoBehaviour:
   CanStack: 0
   Effects:
     _serializedList:
-    - Key: 2
+    - Key: 0
       Value:
       - Type: 3
         Amount: -1

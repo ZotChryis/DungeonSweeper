@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Schemas
 {
@@ -80,7 +79,7 @@ namespace Schemas
     {
         Purchase,       // When the item is purchased
         PlayerLevel,    // When the player levels up mid-dungeon round
-        DungeonLevel,   // When the dungeon levels up (Victory screen)
+        DungeonLevel,   // When the dungeon levels up (Victory screen). !!!! ONLY GRANT ITEMS WITH THIS !!!!!!!!
         Conquer,        // When anything is conquered 
         Used,           // Consumables only: When the Use button is clicked in inventory
         Heal,           // When the player heals mid-dungeon 
@@ -89,9 +88,9 @@ namespace Schemas
     [Serializable]
     public enum DecayTrigger
     {
-        PlayerLevel,        // not implemented yet
-        DungeonLevel,       // not implemented yet
-        Conquer,
+        PlayerLevel = 0,        // 
+        //DungeonLevel,       // DO NOT USE
+        Conquer = 2,
     }
     
     [Serializable]
@@ -281,6 +280,8 @@ namespace Schemas
             SpellHolyShield,
             TomeOfKnowledge,
             LunarRing,
+            
+            TarotCard,
         }
         
         public ItemSchema.Id ItemId;

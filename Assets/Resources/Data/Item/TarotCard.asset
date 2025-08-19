@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
-  m_Name: TarotDeck
+  m_Name: TarotCard
   m_EditorClassIdentifier: 
-  ItemId: 5
-  Name: Tarot Deck
-  Description: Gain a Tarot Card at the start of each dungeon.
-  Sprite: {fileID: 848434953770885490, guid: ff2ece802321eec4a89fff23a5b79e11, type: 3}
-  Max: 1
+  ItemId: 85
+  Name: Tarot Card
+  Description: 'Add a Tarot Card to the dungeon. '
+  Sprite: {fileID: 116448157027243579, guid: c769290e16f2a784b9e36df1b13e593f, type: 3}
+  Max: -1
   IsConsumbale: 0
   InitialCharges: 0
-  ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  ShopInventory: 0
+  Rarity: 0
+  Price: 3
   UseSfx: 
-  CanStack: 0
+  CanStack: 1
   Effects:
     _serializedList:
-    - Key: 2
+    - Key: 0
       Value:
-      - Type: 11
+      - Type: 5
         Amount: 1
         GrantItemForceAllowDuplicates: 0
-        Id: 0
+        Id: 4
         OtherId: 0
         Tags: 
-        Items: 55000000
+        Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 

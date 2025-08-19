@@ -680,6 +680,19 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     List<Vector2Int> offsets = new List<Vector2Int>();
                     List<Vector2Int> offsetsRemaining = new List<Vector2Int>();
                     offsetsRemaining.AddRange(HousedObject.RevealOffsets);
+
+                    for (int i = offsetsRemaining.Count - 1; i >= 0; i--)
+                    {
+                        var offset = offsetsRemaining[i];
+                        if (ServiceLocator.Instance.Grid.IsTileRevealed(
+                                revealOriginX + offset.x,
+                                revealOriginY + offset.y
+                        )) {
+                            offsetsRemaining.RemoveAt(i);
+                            continue;
+                        }
+                    }
+                    
                     for (int i = 0; offsetsRemaining.Count > 0 && i < HousedObject.RevealOffsetCount; i++)
                     {
                         var offset = offsetsRemaining.GetRandomItem();

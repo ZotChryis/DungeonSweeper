@@ -26,9 +26,9 @@ namespace Screens.Inventory
             SetStackCount(1);
         }
 
-        private void SetStackCount(int amount)
+        private void SetStackCount(int _)
         {
-            StackCount.SetText(amount.ToString());
+            StackCount.SetText(ItemInstance.StackCount.ToString());
         }
 
         private void OnButtonClicked()

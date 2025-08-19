@@ -282,6 +282,11 @@ namespace Gameplay
                 }
             }
         }
+
+        public void Clear()
+        {
+            Items.Clear();
+        }
     }
     
     public class ItemInstance

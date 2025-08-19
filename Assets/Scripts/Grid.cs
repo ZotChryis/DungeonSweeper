@@ -309,6 +309,11 @@ public class Grid : MonoBehaviour
 
         return null;
     }
+
+    public bool IsTileRevealed(int x, int y)
+    {
+        return InGridBounds(x, y) && Tiles[x, y].State >= Tile.TileState.Revealed;
+    }
     
     /// <summary>
     /// Reveals tiles in a radius from the origin x,y.
