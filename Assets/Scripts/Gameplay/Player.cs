@@ -468,11 +468,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
         DecayingEffects.Clear();
     }
-
-    public void MarkPlayerSoftcore()
-    {
-        IsHardcore = false;
-    }
     
     public void RevokeItemsForCurrentDungeon()
     {

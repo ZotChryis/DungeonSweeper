@@ -12,6 +12,8 @@ namespace Gameplay
         public Class.Id playerClass;
         public List<ItemSchema.Id> items = new List<ItemSchema.Id>();
         public int shopXp;
+        public bool canGetAchievements;
+        public bool isHardcore;
     }
 
     public class SaveSystem
@@ -43,6 +45,8 @@ namespace Gameplay
             data.dungeonLevel = ServiceLocator.Instance.LevelManager.CurrentLevel;
             data.playerClass = ServiceLocator.Instance.Player.Class;
             data.shopXp = ServiceLocator.Instance.Player.ShopXp;
+            data.canGetAchievements = ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted;
+            data.isHardcore = ServiceLocator.Instance.Player.IsHardcore;
             
             foreach (ItemInstance itemInstance in ServiceLocator.Instance.Player.Inventory.GetAllItems())
             {
@@ -56,6 +60,12 @@ namespace Gameplay
             File.WriteAllText(_saveFilePath, json);
         }
 
+        /// <summary>
+        /// HACK ALERT !!!
+        /// This tries to recreate the state of the dungeon at a specific level with player items 're-added' back.
+        /// This means we are limited to what we can and cannot do mid-rounds.
+        /// Anything an item does will always be re-done when added back, so rely on Purchase trigger and not much else.
+        /// </summary>
         public void LoadGame()
         {
             if (File.Exists(_saveFilePath))
@@ -63,19 +73,31 @@ namespace Gameplay
                 string json = File.ReadAllText(_saveFilePath);
                 RunData data = JsonUtility.FromJson<RunData>(json);
 
+                // First set the level -- this is important to do first so that we set spawn settings
                 ServiceLocator.Instance.LevelManager.SetLevel(data.dungeonLevel);
                 
+                // Reset the player to be as close as vanilla as possible
                 ServiceLocator.Instance.Player.ResetPlayer();
-                ServiceLocator.Instance.Player.TEMP_SetClass(data.playerClass, false);
-                ServiceLocator.Instance.Player.ShopXp = data.shopXp;
                 
+                // Sets the class info but importantly DO NOT grant the item, because...
+                ServiceLocator.Instance.Player.TEMP_SetClass(data.playerClass, false);
+                
+                // We clear all player items that might be lingering, and re-add the serialized items
                 ServiceLocator.Instance.Player.Inventory.Clear();
                 foreach (var item in data.items)
                 {
                     ServiceLocator.Instance.Player.Inventory.AddItem(item);
                 }
                 
-                ServiceLocator.Instance.LevelManager.RetryCurrentLevel();
+                // Regenerate grid because items may effect generation
+                ServiceLocator.Instance.Grid.GenerateGrid();
+                
+                // Set player money AFTER items have been added -- this should handle cash generation items
+                ServiceLocator.Instance.Player.ShopXp = data.shopXp;
+                
+                // Set important bools after all is said and done
+                ServiceLocator.Instance.Player.IsHardcore = data.isHardcore;
+                ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = data.canGetAchievements;
             }
             else
             {

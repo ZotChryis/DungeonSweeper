@@ -55,6 +55,7 @@ public class ClassSelectionItem : MonoBehaviour
         ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = true;
         ServiceLocator.Instance.Player.TEMP_SetClass(Class);
         ServiceLocator.Instance.LevelManager.SetLevel(0);
+        ServiceLocator.Instance.Grid.GenerateGrid();
         
         // When a class is selected, we will close the class selection screen AND the main menu screen
         // TODO: Do proper scene mangagement

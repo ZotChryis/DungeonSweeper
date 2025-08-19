@@ -39,13 +39,13 @@ public class LevelManager : MonoBehaviour
     public void NextLevel()
     {
         SetLevel(CurrentLevel + 1);
+        ServiceLocator.Instance.Grid.GenerateGrid();
     }
     
     public void SetLevel(int level)
     {
         CurrentLevel = level;
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
-        ServiceLocator.Instance.Grid.GenerateGrid();
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void RetryCurrentLevel()
     {
-        ServiceLocator.Instance.Player.MarkPlayerSoftcore();
+        ServiceLocator.Instance.Player.IsHardcore = false;
         ServiceLocator.Instance.Player.RevokeItemsForCurrentDungeon();
         ServiceLocator.Instance.Player.ResetPlayer();
         ServiceLocator.Instance.Grid.GenerateGrid();
