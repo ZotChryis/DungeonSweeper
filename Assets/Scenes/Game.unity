@@ -33178,19 +33178,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &5063287249975397155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7074020231225883601}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowMaskGraphic: 0
 --- !u!222 &5085802169745944336
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -36586,7 +36573,7 @@ GameObject:
   - component: {fileID: 2598577851196048559}
   - component: {fileID: 8760857879810575841}
   - component: {fileID: 5834460969652313848}
-  - component: {fileID: 5063287249975397155}
+  - component: {fileID: 8760857879810575842}
   m_Layer: 0
   m_Name: Viewport
   m_TagString: Untagged
@@ -44074,6 +44061,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7074020231225883601}
   m_CullTransparentMesh: 1
+--- !u!114 &8760857879810575842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074020231225883601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding: {x: 0, y: 0, z: 0, w: 0}
+  m_Softness: {x: 0, y: 0}
 --- !u!224 &8775094566556980014
 RectTransform:
   m_ObjectHideFlags: 0
