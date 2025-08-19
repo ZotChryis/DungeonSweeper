@@ -22,14 +22,17 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 2
   Price: 8
+  UseSfx: 
+  CanStack: 0
   Effects:
     _serializedList:
-    - Key: 2
+    - Key: 0
       Value:
       - Type: 16
         Amount: -1
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0
