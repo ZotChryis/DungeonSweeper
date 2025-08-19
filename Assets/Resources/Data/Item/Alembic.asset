@@ -16,22 +16,25 @@ MonoBehaviour:
   Name: Alembic
   Description: Gain a potion at the start of the dungeon.
   Sprite: {fileID: 619147882475651941, guid: 6f88240f1ff0e314aa9ea2d19f610180, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 3
   Price: 8
+  UseSfx: 
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 2
       Value:
       - Type: 11
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 
-        Items: 170000001b0000001a00000027000000280000002e000000
+        Items: 170000001b0000001a00000027000000280000002e00000047000000
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
