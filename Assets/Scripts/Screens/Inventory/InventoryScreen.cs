@@ -9,10 +9,12 @@ public class InventoryScreen : BaseScreen
 {
     [SerializeField] 
     protected InventoryItem ItemPrefab;
-
+    
     [SerializeField] protected GameObject ConsumableLabel;
     [SerializeField] protected GameObject PassiveLabel;
     
+    [SerializeField] 
+    protected Transform AllInventoryContent;
     [SerializeField] 
     protected Transform ConsumableListRoot;
     [SerializeField]
@@ -93,9 +95,9 @@ public class InventoryScreen : BaseScreen
         InventoryItem newItem = Instantiate<InventoryItem>(ItemPrefab, isConsumable ? ConsumableListRoot : PassiveListRoot);
         newItem.Initialize(this, itemInstance);
         Items.Add(newItem);
-        
-        bool hasAtLeastOneConsumable = Inventory.GetAllItems().Any(i => i.Schema.IsConsumbale);
-        bool hasAtLeastOnePassive = Inventory.GetAllItems().Any(i => !i.Schema.IsConsumbale);
+
+        bool hasAtLeastOneConsumable = ConsumableItems > 0;
+        bool hasAtLeastOnePassive = PassiveItems > 0;
         ConsumableLabel.SetActive(hasAtLeastOneConsumable);
         PassiveLabel.SetActive(hasAtLeastOnePassive);
 
@@ -152,6 +154,7 @@ public class InventoryScreen : BaseScreen
         //LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
         //LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
 
+        RectTransform allInventoryRect = (RectTransform)AllInventoryContent;
         RectTransform consumableListRect = (RectTransform)ConsumableListRoot;
         RectTransform passiveListRect = (RectTransform)PassiveListRoot;
 
@@ -164,5 +167,14 @@ public class InventoryScreen : BaseScreen
         Vector2 newPassiveSizeDelta = passiveListRect.sizeDelta;
         newPassiveSizeDelta.y = passiveRows * 175;
         passiveListRect.sizeDelta = newPassiveSizeDelta;
+
+        Vector2 newOverallSizeDelta = allInventoryRect.sizeDelta;
+        newOverallSizeDelta.y = newConsumableSizeDelta.y + newPassiveSizeDelta.y;
+        
+        bool hasAtLeastOneConsumable = ConsumableItems > 0;
+        bool hasAtLeastOnePassive = PassiveItems > 0;
+        newOverallSizeDelta.y += hasAtLeastOneConsumable ? 75 : 0;
+        newOverallSizeDelta.y += hasAtLeastOnePassive ? 75 : 0;
+        allInventoryRect.sizeDelta = newOverallSizeDelta;
     }
 }
