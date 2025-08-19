@@ -18,10 +18,18 @@ namespace Screens.Shop
         protected override void Awake()
         {
             base.Awake();
+            
             Continue.onClick.AddListener(OnContinueClicked);
             Reroll.onClick.AddListener(OnRerollClicked);
 
             ServiceLocator.Instance.Player.OnShopXpChanged += OnShopXpChanged;
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+            
+            ServiceLocator.Instance.Player.OnShopXpChanged -= OnShopXpChanged;
         }
 
         protected override void OnShow()
@@ -102,8 +110,7 @@ namespace Screens.Shop
 
             allItems.Shuffle();
             allItems.Sort((i1, i2) => i1.Rarity.CompareTo(i2.Rarity));
-
-
+            
             var player = ServiceLocator.Instance.Player;
 
             // Check for price
@@ -116,23 +123,23 @@ namespace Screens.Shop
             {
                 if (itemSchema.Price > maxItemCostAllowed)
                 {
-                    Debug.Log("Item: " + itemSchema.ItemId + " is too expensive at price " + itemSchema.Price + ", skipping spawn of item.");
+                    //Debug.Log("Item: " + itemSchema.ItemId + " is too expensive at price " + itemSchema.Price + ", skipping spawn of item.");
                     continue;
                 }
                 if (itemSchema.ShopInventory <= 0)
                 {
-                    Debug.Log("Skipping item " + itemSchema.ItemId + " because shop inventory is " + itemSchema.ShopInventory);
+                    //Debug.Log("Skipping item " + itemSchema.ItemId + " because shop inventory is " + itemSchema.ShopInventory);
                     continue;
                 }
                 numberOfItemsAddedPerRarity.TryGetValue(itemSchema.Rarity, out int numberOfItemsOfRarityAlreadyAdded);
                 if (numberOfItemsOfRarityAlreadyAdded >= itemSchema.Rarity.GetMaxItemQuantityForLevel(level))
                 {
-                    Debug.Log("Already spawned " + numberOfItemsOfRarityAlreadyAdded + " for rarity " + itemSchema.Rarity + " on level " + level + ", skipping item spawn.");
+                    //Debug.Log("Already spawned " + numberOfItemsOfRarityAlreadyAdded + " for rarity " + itemSchema.Rarity + " on level " + level + ", skipping item spawn.");
                     continue;
                 }
                 if (UnityEngine.Random.Range(0.0f, 1.0f) <= itemSchema.GetShopAppearanceRate() + addedChanceFromLevel)
                 {
-                    Debug.Log("Success on " + (itemSchema.GetShopAppearanceRate() + addedChanceFromLevel) + " chance. Spawning item : " + itemSchema.ItemId);
+                    //Debug.Log("Success on " + (itemSchema.GetShopAppearanceRate() + addedChanceFromLevel) + " chance. Spawning item : " + itemSchema.ItemId);
                     // TODO: Do inventory better instead of adding multiple entries??
                     for (int i = 0; i < itemSchema.ShopInventory; i++)
                     {

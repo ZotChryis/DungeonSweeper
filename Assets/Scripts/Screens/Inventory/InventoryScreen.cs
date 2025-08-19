@@ -1,17 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Gameplay;
 using Screens.Inventory;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InventoryScreen : BaseScreen
 {
     [SerializeField] 
     protected InventoryItem ItemPrefab;
     
-    [SerializeField] protected GameObject ConsumableLabel;
-    [SerializeField] protected GameObject PassiveLabel;
+    [SerializeField] 
+    protected Transform ConsumableLabel;
+    [SerializeField] 
+    protected Transform PassiveLabel;
     
     [SerializeField] 
     protected Transform AllInventoryContent;
@@ -47,6 +47,13 @@ public class InventoryScreen : BaseScreen
         RefreshItems();
     }
 
+    protected virtual void OnDestroy()
+    {
+        Inventory.OnItemAdded -= OnItemAdded;
+        Inventory.OnItemChargeChanged -= OnItemChargeChanged;
+        Inventory.OnItemRemoved -= OnItemRemoved;
+    }
+
     protected override void OnShow()
     {
         base.OnShow();
@@ -60,9 +67,6 @@ public class InventoryScreen : BaseScreen
         PassiveItems = 0;
         ConsumableItems = 0;
         
-        ConsumableLabel.SetActive(false);
-        PassiveLabel.SetActive(false);
-        
         foreach (var inventoryItem in Items)
         {
             Destroy(inventoryItem.gameObject);
@@ -71,8 +75,10 @@ public class InventoryScreen : BaseScreen
         
         foreach (var item in Inventory.GetAllItems())
         {
-            OnItemAdded(item);
+            OnItemAdded(item, false);
         }
+        
+        ForceRefreshLayout();
     }
 
     protected virtual void SetupInventory()
@@ -80,7 +86,12 @@ public class InventoryScreen : BaseScreen
         Inventory = ServiceLocator.Instance.Player.Inventory;
     }
 
-    private void OnItemAdded(ItemInstance itemInstance)
+    private void OnItemAdded(ItemInstance item)
+    {
+        OnItemAdded(item, true);
+    }
+    
+    private void OnItemAdded(ItemInstance itemInstance, bool forceLayoutRefresh)
     {
         bool isConsumable = itemInstance.Schema.IsConsumbale;
         if (isConsumable)
@@ -96,12 +107,10 @@ public class InventoryScreen : BaseScreen
         newItem.Initialize(this, itemInstance);
         Items.Add(newItem);
 
-        bool hasAtLeastOneConsumable = ConsumableItems > 0;
-        bool hasAtLeastOnePassive = PassiveItems > 0;
-        ConsumableLabel.SetActive(hasAtLeastOneConsumable);
-        PassiveLabel.SetActive(hasAtLeastOnePassive);
-
-        ForceRefreshLayout();
+        if (forceLayoutRefresh)
+        {
+            ForceRefreshLayout();
+        }
     }
     
     protected void OnItemChargeChanged(ItemInstance itemInstance)
@@ -149,30 +158,61 @@ public class InventoryScreen : BaseScreen
         Details.ClearFocusedItem();
     }
 
+    /// <summary>
+    /// We needed to homebrew this positioning because originally it was created as:
+    ///     VerticalLayoutGroup (ContentSizeFitter)
+    ///         Header Label
+    ///         GridLayoutGroup (ContentSizeFitter)
+    ///         Header Label
+    ///         GridLayoutGroup (ContentSizeFitter)
+    ///  However, the VerticalLayoutGroup + GridLayoutGroups do NOT play well with each other in mobile.
+    ///  So, we now mimic the VerticalLayoutGroup's job here.
+    ///  Additionally, the (ContentSizeFitter) were also eliminated to help with performance on this screen.
+    ///  Really a shamne....
+    /// </summary>
     protected void ForceRefreshLayout()
     {
-        //LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)ConsumableListRoot);
-        //LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)PassiveListRoot);
-
+        bool hasAtLeastOneConsumable = ConsumableItems > 0;
+        bool hasAtLeastOnePassive = PassiveItems > 0;
+        
+        ConsumableLabel.gameObject.SetActive(hasAtLeastOneConsumable);
+        PassiveLabel.gameObject.SetActive(hasAtLeastOnePassive);
+        
+        RectTransform consumableLabelRect = (RectTransform)ConsumableLabel;
+        RectTransform passiveLabelRect = (RectTransform)PassiveLabel;
         RectTransform allInventoryRect = (RectTransform)AllInventoryContent;
         RectTransform consumableListRect = (RectTransform)ConsumableListRoot;
         RectTransform passiveListRect = (RectTransform)PassiveListRoot;
 
+        int currentDeltaY = 0;
+        consumableLabelRect.anchoredPosition = new Vector2(0, currentDeltaY);
+        if (hasAtLeastOneConsumable)
+        {
+            currentDeltaY -= 75;
+        }
+        
         int consumableRows = (ConsumableItems + 3) / 4;
         Vector2 newConsumableSizeDelta = consumableListRect.sizeDelta;
         newConsumableSizeDelta.y = consumableRows * 175;
         consumableListRect.sizeDelta = newConsumableSizeDelta;
+        consumableListRect.anchoredPosition = new Vector2(0, currentDeltaY);
+        currentDeltaY -= consumableRows * 175;
+        
+        passiveLabelRect.anchoredPosition = new Vector2(0, currentDeltaY);
+        if (hasAtLeastOnePassive)
+        {
+            currentDeltaY -= 75;
+        }
         
         int  passiveRows = (PassiveItems + 3) / 4;
         Vector2 newPassiveSizeDelta = passiveListRect.sizeDelta;
         newPassiveSizeDelta.y = passiveRows * 175;
         passiveListRect.sizeDelta = newPassiveSizeDelta;
+        passiveListRect.anchoredPosition = new Vector2(0, currentDeltaY);
+        currentDeltaY -= consumableRows * 175;
 
         Vector2 newOverallSizeDelta = allInventoryRect.sizeDelta;
         newOverallSizeDelta.y = newConsumableSizeDelta.y + newPassiveSizeDelta.y;
-        
-        bool hasAtLeastOneConsumable = ConsumableItems > 0;
-        bool hasAtLeastOnePassive = PassiveItems > 0;
         newOverallSizeDelta.y += hasAtLeastOneConsumable ? 75 : 0;
         newOverallSizeDelta.y += hasAtLeastOnePassive ? 75 : 0;
         allInventoryRect.sizeDelta = newOverallSizeDelta;
