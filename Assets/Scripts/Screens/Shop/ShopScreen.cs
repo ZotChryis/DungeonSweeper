@@ -53,6 +53,8 @@ namespace Screens.Shop
             ServiceLocator.Instance.Player.ResetPlayer();
             ServiceLocator.Instance.LevelManager.NextLevel();
             ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
+            
+            ServiceLocator.Instance.SaveSystem.SaveGame();
         }
 
         private void OnRerollClicked()

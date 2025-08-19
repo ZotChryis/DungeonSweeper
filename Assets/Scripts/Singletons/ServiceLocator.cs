@@ -49,6 +49,9 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public AchievementSystem AchievementSystem;
+    
+    [HideInInspector]
+    public SaveSystem SaveSystem;
 
     protected override void Awake()
     {
@@ -63,6 +66,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
             Schemas.Initialize();
 
             AchievementSystem = new AchievementSystem();
+            SaveSystem = new SaveSystem();
             
             string path = Application.persistentDataPath;
             #if PLATFORM_WEBGL
