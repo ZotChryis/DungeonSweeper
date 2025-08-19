@@ -9,6 +9,8 @@ using UnityEngine;
 public class Quadrant : SpawnRequirement
 {
     public CompassDirections SpawnArea;
+    public int XMargin = 0;
+    public int YMargin = 0;
     public override List<(int x, int y)> GetRandomConsecutiveNeighborLocations(RandomBoard board, int inputX, int inputY)
     {
         return new List<(int x, int y)>(0);
@@ -24,27 +26,27 @@ public class Quadrant : SpawnRequirement
         // calculate board quadrant possible locations.
         if (SpawnArea == CompassDirections.NorthEast)
         {
-            xPos = Random.Range(centerX + 1, board.width);
-            yPos = Random.Range(centerY + 1, board.height);
-            (retX, retY) = board.GetNextUnoccupiedSpaceWithMargin(centerX + 1, 0, 0, centerY + 1, xPos, yPos);
+            xPos = Random.Range(centerX + 1, board.width - XMargin);
+            yPos = Random.Range(centerY + 1, board.height - YMargin);
+            (retX, retY) = board.GetNextUnoccupiedSpaceWithMargin(centerX + 1, XMargin, YMargin, centerY + 1, xPos, yPos);
         }
         if (SpawnArea == CompassDirections.NorthWest)
         {
-            xPos = Random.Range(0, centerX);
-            yPos = Random.Range(centerY + 1, board.height);
-            (retX, retY) = board.GetNextUnoccupiedSpaceWithMargin(0, centerX + 1, 0, centerY + 1, xPos, yPos);
+            xPos = Random.Range(XMargin, centerX);
+            yPos = Random.Range(centerY + 1, board.height - YMargin);
+            (retX, retY) = board.GetNextUnoccupiedSpaceWithMargin(XMargin, centerX + 1, YMargin, centerY + 1, xPos, yPos);
         }
         if (SpawnArea == CompassDirections.SouthEast)
         {
-            xPos = Random.Range(centerX + 1, board.width);
-            yPos = Random.Range(0, centerY + 1);
-            (retX, retY) = board.GetNextUnoccupiedSpaceWithMargin(centerX + 1, 0, centerY + 1, 0, xPos, yPos);
+            xPos = Random.Range(centerX + 1, board.width - XMargin);
+            yPos = Random.Range(YMargin, centerY + 1);
+            (retX, retY) = board.GetNextUnoccupiedSpaceWithMargin(centerX + 1, XMargin, centerY + 1, YMargin, xPos, yPos);
         }
         if(SpawnArea == CompassDirections.SouthWest)
         {
-            xPos = Random.Range(0, centerX + 1);
-            yPos = Random.Range(0, centerY + 1);
-            (retX, retY) = board.GetNextUnoccupiedSpaceWithMargin(0, centerX + 1, centerY + 1, 0, xPos, yPos);
+            xPos = Random.Range(XMargin, centerX + 1);
+            yPos = Random.Range(YMargin, centerY + 1);
+            (retX, retY) = board.GetNextUnoccupiedSpaceWithMargin(XMargin, centerX + 1, centerY + 1, YMargin, xPos, yPos);
         }
         Debug.Log("Quadrant would return " + xPos + ", " + yPos + ", but instead: " + retX + ", " + retY);
         return (retX, retY);
