@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 8669251620210040706, guid: 5cf52dd6d979e664b87b2e3b08274846, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -142,7 +142,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 8669251620210040706, guid: 5cf52dd6d979e664b87b2e3b08274846, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -159,8 +159,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9094372056194017880}
-  - component: {fileID: 2103400008164666951}
   - component: {fileID: 3544983535111953844}
+  - component: {fileID: 3274148202383210801}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Untagged
@@ -192,26 +192,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 30, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2103400008164666951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4545938991555585654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreLayout: 0
-  m_MinWidth: -1
-  m_MinHeight: -1
-  m_PreferredWidth: 30
-  m_PreferredHeight: 30
-  m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
-  m_LayoutPriority: 1
 --- !u!114 &3544983535111953844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,6 +209,26 @@ MonoBehaviour:
   Full: {fileID: 6177410102838722112}
   Empty: {fileID: 5986030022688508921}
   Label: {fileID: 4094973910642299697}
+--- !u!114 &3274148202383210801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545938991555585654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 50
+  m_PreferredHeight: 50
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &6450074973782399331
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +296,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 8669251620210040706, guid: 5cf52dd6d979e664b87b2e3b08274846, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -507,7 +507,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -1031049354629045415, guid: 58272b104dbbdae4294178af8b7c65c9, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
