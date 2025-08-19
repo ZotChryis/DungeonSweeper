@@ -1,9 +1,13 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerUIItem : MonoBehaviour
 {
+    [SerializeField] 
+    private GameObject Container;
+    
     [SerializeField]
     private Image Half;
     
@@ -44,5 +48,10 @@ public class PlayerUIItem : MonoBehaviour
     {
         Label.enabled = true;
         Label.SetText(text);
+    }
+
+    public void Animate(float duration, float delay)
+    {
+        Container.transform.DOScale(Vector3.one, duration).From(Vector3.zero).SetDelay(delay);
     }
 }

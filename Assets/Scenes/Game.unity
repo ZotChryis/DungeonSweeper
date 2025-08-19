@@ -28888,7 +28888,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7684935161378738518}
         m_TargetAssemblyTypeName: CheatMenu, Assembly-CSharp
-        m_MethodName: RevealAll
+        m_MethodName: LevelUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

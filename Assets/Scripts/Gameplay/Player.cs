@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using Gameplay;
 using Schemas;
 using Sirenix.OdinInspector;
@@ -353,15 +354,24 @@ public class Player : MonoBehaviour, IPointerClickHandler
     /// <summary>
     /// Updates all visuals for the player. We should probably make a real MVC
     /// </summary>
-    private void TEMP_UpdateVisuals()
+    private void TEMP_UpdateVisuals(bool animate = false)
     {
+        float duration = 0.05f;
+        float delay = 0f;
         for (int i = 0; i < Hearts.Length; i++)
         {
+            bool active = i < MaxHealth + Shield;
             Hearts[i].SetHalf(false);
-            Hearts[i].gameObject.SetActive(i < MaxHealth + Shield);
+            Hearts[i].gameObject.SetActive(active);
             Hearts[i].SetFull(i < CurrentHealth);
             Hearts[i].SetShield(i >= MaxHealth);
             Hearts[i].SetLabelText((i + 1).ToString());
+
+            if (animate && active)
+            {
+                Hearts[i].Animate(duration, delay);
+                delay += duration;
+            }
         }
         
         var currentLevelHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
@@ -371,14 +381,27 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             Hearts[MaxHealth + Shield].gameObject.SetActive(true);
             Hearts[MaxHealth + Shield].SetHalf(true);
+            
+            if (animate)
+            {
+                Hearts[MaxHealth + Shield].Animate(duration, delay);
+            }
         }
 
+        delay = 0f;
         int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         for (int i = 0; i < XPGems.Length; i++)
         {
-            XPGems[i].gameObject.SetActive(i < xpRequiredToLevel);
+            bool active = i < xpRequiredToLevel;
+            XPGems[i].gameObject.SetActive(active);
             XPGems[i].SetFull(CurrentXP > i);
             XPGems[i].SetLabelText((i + 1).ToString());
+
+            if (animate && active)
+            {
+                XPGems[i].Animate(duration, delay);
+                delay += duration;
+            }
         }
 
         bool canLevel = CurrentXP >= xpRequiredToLevel;
@@ -413,7 +436,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
         CurrentHealth = MaxHealth;
 
-        TEMP_UpdateVisuals();
+        TEMP_UpdateVisuals(true);
         
         ServiceLocator.Instance.AudioManager.PlaySfx("LevelUp");
         
