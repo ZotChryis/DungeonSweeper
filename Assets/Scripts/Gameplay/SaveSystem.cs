@@ -95,7 +95,7 @@ namespace Gameplay
                 // Set player money AFTER items have been added -- this should handle cash generation items
                 ServiceLocator.Instance.Player.ShopXp = data.shopXp;
                 
-                // Set important bools after all is said and done
+                // Set important booleans after all is said and done
                 ServiceLocator.Instance.Player.IsHardcore = data.isHardcore;
                 ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = data.canGetAchievements;
             }
