@@ -83,11 +83,14 @@ namespace Gameplay
                 ServiceLocator.Instance.Player.TEMP_SetClass(data.playerClass, false);
                 
                 // We clear all player items that might be lingering, and re-add the serialized items
+                // HACK: SuppressAllToasts because I hated seeing all the items being added on a load
+                ServiceLocator.Instance.ToastManager.SuppressAllToasts = true;
                 ServiceLocator.Instance.Player.Inventory.Clear();
                 foreach (var item in data.items)
                 {
                     ServiceLocator.Instance.Player.Inventory.AddItem(item);
                 }
+                ServiceLocator.Instance.ToastManager.SuppressAllToasts = false;
                 
                 // Regenerate grid because items may effect generation
                 ServiceLocator.Instance.Grid.GenerateGrid();

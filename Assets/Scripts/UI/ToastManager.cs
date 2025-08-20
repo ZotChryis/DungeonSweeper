@@ -20,7 +20,8 @@ namespace UI
         
         private Queue<ToastData> Requests = new();
         private ToastItem CurrentToast;
-        
+        public bool SuppressAllToasts = false;
+
         private void Start()
         {
             ServiceLocator.Instance.Register(this);
@@ -68,6 +69,12 @@ namespace UI
 
         public void RequestToast(Sprite sprite, string title, string message)
         {
+            if (SuppressAllToasts)
+            {
+                Debug.Log($"Toast was suppressed: {title}");
+                return;
+            }
+            
             ToastData td = new ToastData()
             {
                 Title = title,
