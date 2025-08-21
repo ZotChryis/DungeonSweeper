@@ -496,7 +496,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7627236782136737986}
-  - component: {fileID: 1139908717197863084}
   - component: {fileID: 8544185737753382504}
   - component: {fileID: 1792296728649195510}
   m_Layer: 0
@@ -528,28 +527,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 600, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1139908717197863084
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6314670118842143906}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0c7bf39752015e346a21d79ad468c803, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!225 &8544185737753382504
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -577,7 +554,7 @@ MonoBehaviour:
   Icon: {fileID: 921629303015454228}
   Title: {fileID: 7753672199824865020}
   Message: {fileID: 6832861011880511486}
-  Animator: {fileID: 1139908717197863084}
+  CanvasGroup: {fileID: 8544185737753382504}
 --- !u!1 &6495538871109211568
 GameObject:
   m_ObjectHideFlags: 0
