@@ -276,8 +276,11 @@ namespace Gameplay
                 //  The entire game was not build right for "retry" lol. Probably better if we serialize the game state
                 //  and reload it instead of doing this shit but im too lazy. Maybe George wants to try and tackle that 
                 //  nightmare?? lol
-                if (itemInstance.Schema.ItemId == ItemSchema.Id.Pickaxe || itemInstance.Schema.ItemId == ItemSchema.Id.BusinessCard)
-                {
+                if (itemInstance.Schema.ItemId == ItemSchema.Id.Pickaxe || 
+                    itemInstance.Schema.ItemId == ItemSchema.Id.BusinessCard || 
+                    itemInstance.Schema.ItemId == ItemSchema.Id.Dice || 
+                    itemInstance.Schema.ItemId == ItemSchema.Id.BloodDonorCard
+                ) {
                     itemInstance.RemoveGrantedItems();
                 }
             }
