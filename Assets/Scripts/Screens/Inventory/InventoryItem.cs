@@ -9,8 +9,8 @@ namespace Screens.Inventory
 {
     public class InventoryItem : MonoBehaviour
     {
+        [SerializeField] private CanvasGroup CanvasGroup;
         [SerializeField] private Image Icon;
-        [SerializeField] private Image ConsumableEmpty;
         [SerializeField] private Image RarityFrame;
         [SerializeField] private Button Button;
         [SerializeField] private GameObject Sale;
@@ -52,12 +52,12 @@ namespace Screens.Inventory
             RarityFrame.color = GetColorFromRarity();
             
             StackCount.transform.parent.gameObject.SetActive(itemInstance.Schema.CanStack);
-            ConsumableEmpty.gameObject.SetActive(false);
+            CanvasGroup.alpha = 1.0f;
         }
 
         private void CurrentChangesChanged(int remainingCharges)
         {
-            ConsumableEmpty.gameObject.SetActive(!ItemInstance.CanBeUsed());
+            CanvasGroup.alpha = ItemInstance.CanBeUsed() ? 1.0f : 0.5f;
         }
 
         private Color GetColorFromRarity()
