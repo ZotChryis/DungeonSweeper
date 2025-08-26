@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using UI;
 using UnityEngine;
@@ -8,7 +9,7 @@ namespace Screens
     {
         [SerializeField] private DSButton Retry;
         [SerializeField] private DSButton MainMenu;
-        
+
         protected override void Awake()
         {
             base.Awake();
@@ -22,12 +23,12 @@ namespace Screens
             Retry.OnConfirmed -= OnRetryConfrimed;
             MainMenu.OnConfirmed -= OnMainMenuConfirmed;
         }
-        
+
         private void OnRetryConfrimed()
         {
             TransitionManager.Instance.DoTransition(TransitionManager.TransitionType.Goop, HandleRetry);
         }
-        
+
         private void OnMainMenuConfirmed()
         {
             TransitionManager.Instance.DoTransition(TransitionManager.TransitionType.Goop, CheatManager.Instance.Restart);
@@ -39,6 +40,11 @@ namespace Screens
             Retry.RequireConfirmation = false;
             ServiceLocator.Instance.LevelManager.RetryCurrentLevel();
             ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
+        }
+
+        public void ToggleShowGameOver()
+        {
+            MainContentRoot.SetActive(!MainContentRoot.activeSelf);
         }
     }
 }

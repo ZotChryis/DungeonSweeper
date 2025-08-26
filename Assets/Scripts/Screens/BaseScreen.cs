@@ -9,7 +9,7 @@ public class BaseScreen : MonoBehaviour
     private GameObject Container;
     
     [SerializeField]
-    private GameObject MainContentRoot;
+    protected GameObject MainContentRoot;
     
     [SerializeField]
     private Button CloseButton;
