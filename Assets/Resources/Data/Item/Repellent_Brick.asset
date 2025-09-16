@@ -29,7 +29,7 @@ MonoBehaviour:
     - Key: 0
       Value:
       - Type: 5
-        Amount: -2
+        Amount: -1
         GrantItemForceAllowDuplicates: 0
         Id: 6
         OtherId: 0

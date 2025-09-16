@@ -172,7 +172,9 @@ public class Grid : MonoBehaviour
                         int consecutiveCopies = spawnEntry.ConsecutiveCopies;
                         if (ServiceLocator.Instance.Player.BonusSpawn.TryGetValue(spawnEntry.ConsecutiveSpawn.TileId, out int bonusCopies))
                         {
-                            consecutiveCopies += bonusCopies;
+                            // Do not allow to go down in bonus copies; this might have some oddities but was causing a crash 
+                            // with negative bonus (repellents + bricks, bascically)
+                            consecutiveCopies = Mathf.Max(consecutiveCopies, consecutiveCopies + bonusCopies);
                         }
                         Debug.Log($"Try spawn {spawnEntry.ConsecutiveCopies}+{bonusCopies} consecutives given {additionalSpawnLocations.Count} possibilities. name:{spawnEntry.Requirement.name}");
 

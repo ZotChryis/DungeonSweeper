@@ -63,6 +63,11 @@ public class SpawnSettings : Schema
             {
                 toCheck.Enqueue((entry.ConsecutiveSpawn, entry.ConsecutiveCopies * entry.Amount));
             }
+
+            if (entry.ConsecutiveCopies < 0)
+            {
+                Debug.LogError($"Entry TileId={entry.Object.TileId} has negative consecutive copies -- this is not allowed");
+            }
         }
 
         foreach (var entry in NormalSpawns)
