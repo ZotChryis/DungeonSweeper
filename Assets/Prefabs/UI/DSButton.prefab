@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &3853973028486661353
 RectTransform:
@@ -169,7 +169,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &5318692620870017992
 RectTransform:
@@ -287,3 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Button: {fileID: 7516114615617690455}
   AnimateTextOnHover: 1
+  RequireConfirmation: 0
+  RequireConfirmationOnce: 0
+  ConfirmationTitle: 
+  ConfirmationMessage: 
