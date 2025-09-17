@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Gameplay;
 using Schemas;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ namespace Screens.Shop
     {
         [SerializeField] private Button Reroll;
         [SerializeField] private Button Continue;
+        [SerializeField] private Sprite ItemsDisabledIcon;
 
         protected override void Awake()
         {
@@ -92,6 +94,13 @@ namespace Screens.Shop
             foreach (var itemInstance in Inventory.GetAllItems())
             {
                 Inventory.RemoveItem(itemInstance);
+            }
+
+            // skip this step completely if items are not allowed.
+            if (!FBPP.GetBool(PlayerOptions.CanPickUpItems, true))
+            {
+                ToastManager.Instance.RequestToast(ItemsDisabledIcon, "Items Disabled!", "Items disabled in settings!");
+                return;
             }
 
             // Get all the items in the game

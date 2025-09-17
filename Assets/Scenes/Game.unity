@@ -36937,6 +36937,7 @@ MonoBehaviour:
   Details: {fileID: 2247794619226298090}
   Reroll: {fileID: 762597855}
   Continue: {fileID: 1953959622}
+  ItemsDisabledIcon: {fileID: 21300000, guid: 1bd83ed8cfb77ec429955a4fb3f10f7f, type: 3}
 --- !u!225 &7072308076171788797
 CanvasGroup:
   m_ObjectHideFlags: 0
