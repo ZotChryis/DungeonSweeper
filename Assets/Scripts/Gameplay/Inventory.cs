@@ -489,6 +489,7 @@ namespace Gameplay
                     case EffectType.Damage:
                         // TODO: should the item be the source?
                         player.Damage(null, effect.Amount);
+                        ServiceLocator.Instance.AudioManager.PlaySfx("HealthPayment");
                         break;
                     
                     case EffectType.Heal:

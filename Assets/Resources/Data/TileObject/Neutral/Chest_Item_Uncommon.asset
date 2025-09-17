@@ -91,6 +91,29 @@ MonoBehaviour:
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}
+    - Key: 4
+      Value:
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 1
+          Value: XP
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
     - Key: 2
       Value:
         AutoContinue:
@@ -132,8 +155,8 @@ MonoBehaviour:
           UseOverride: 1
           Value: 0
         Sfx:
-          UseOverride: 0
-          Value: 
+          UseOverride: 1
+          Value: ChestOpen
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}

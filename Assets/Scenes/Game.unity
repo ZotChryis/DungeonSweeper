@@ -5092,12 +5092,26 @@ MonoBehaviour:
       Value: {fileID: 8300000, guid: 4e736ddf87bdeed48aa17cff45356934, type: 3}
   SfxClips:
     _serializedList:
-    - Key: ClickGood
-      Value: {fileID: 8300000, guid: 9f9bddccb34cc304888347df7f727bbc, type: 3}
+    - Key: AngryGrunt
+      Value: {fileID: 8300000, guid: 5ae29cdbdaefb1244b1f644d5d867552, type: 3}
+    - Key: ChestOpen
+      Value: {fileID: 8300000, guid: ae181fed755649d45a0b22eb0eb6d4fd, type: 3}
     - Key: ClickBad
       Value: {fileID: 8300000, guid: a0ad1688ba6010143b64d18de1710466, type: 3}
+    - Key: ClickGood
+      Value: {fileID: 8300000, guid: 9f9bddccb34cc304888347df7f727bbc, type: 3}
+    - Key: DramaticDeath
+      Value: {fileID: 8300000, guid: bbcf63d839b2f914c9538dbaf88a2172, type: 3}
+    - Key: EggCrack
+      Value: {fileID: 8300000, guid: 25cf5e7f42ba6034aa84d84bab9029ce, type: 3}
+    - Key: FluteJingle
+      Value: {fileID: 8300000, guid: 7cc3ca9a23074d64493a80190b6bcea2, type: 3}
     - Key: Gnome
       Value: {fileID: 8300000, guid: 41196bf7c9ad78f48ac265d956803619, type: 3}
+    - Key: HealthPayment
+      Value: {fileID: 8300000, guid: 1f91197170d16ad4eae2dbba22b76346, type: 3}
+    - Key: MonsterRoar
+      Value: {fileID: 8300000, guid: cd12491bfa172c941bfdb2fb508d0676, type: 3}
     - Key: XP
       Value: {fileID: 8300000, guid: a1acdf488c18cef4db4aa36a882b26d5, type: 3}
     - Key: Heal

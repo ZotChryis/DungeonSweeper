@@ -5,6 +5,7 @@ using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Gameplay;
 using Schemas;
+using Singletons;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -594,6 +595,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 BodyGuardedByTile.IsBodyGuardByOrGuardingDead = true;
                 BodyGuardedByTile.LookTowardsHorizontally(XCoordinate, YCoordinate, true, false);
                 BodyGuardedByTile.TEMP_UpdateVisuals();
+                if (BodyGuardedByTile.State == TileState.RevealThroughCombat || BodyGuardedByTile.State == TileState.Revealed)
+                {
+                    ServiceLocator.Instance.AudioManager.PlaySfx("AngryGrunt");
+                }
             }
 
             if (GuardingTile != null && GuardingTile.State < TileState.Conquered)

@@ -134,7 +134,7 @@ MonoBehaviour:
           Value: 0
         Sfx:
           UseOverride: 1
-          Value: 
+          Value: FluteJingle
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}

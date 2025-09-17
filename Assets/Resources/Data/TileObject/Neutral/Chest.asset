@@ -133,7 +133,7 @@ MonoBehaviour:
           Value: 0
         Sfx:
           UseOverride: 1
-          Value: Chest
+          Value: ChestOpen
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}
