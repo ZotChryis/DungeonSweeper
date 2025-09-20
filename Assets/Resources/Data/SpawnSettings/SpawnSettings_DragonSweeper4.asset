@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b04a0700e14d718fd71067cd25b205, type: 3}
   m_Name: SpawnSettings_DragonSweeper4
   m_EditorClassIdentifier: 
-  LabelText: 'Max XP Available Before Dragon: 1329'
+  LabelText: 'Max XP Available Before Dragon: 1333'
   Height: 11
   Width: 40
   GridSpawns:
@@ -57,7 +57,7 @@ MonoBehaviour:
     LookTowardsEachOther: 0
     Requirement: {fileID: 11400000, guid: 4b6a2eda35035af48bbca1f0508fb7d9, type: 2}
   - Amount: 1
-    Object: {fileID: 11400000, guid: 6e6ca0b16f923994da90bf743ef6868e, type: 2}
+    Object: {fileID: 11400000, guid: 40a4c49e06059eb46a4c58ea72c0cafa, type: 2}
     ConsecutiveSpawn: {fileID: 0}
     ConsecutiveCopies: 0
     ConsecutiveStackedInLibrary: 0

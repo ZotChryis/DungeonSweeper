@@ -132,6 +132,11 @@ namespace Schemas
             GreaterGolem,
             Vampire,
             Jello,
+            Lich1,
+            Lich2,
+            Lich3,
+            Lich4,
+            Lich5,
         }
         
         // !!WARNING!! DO NOT REORDER

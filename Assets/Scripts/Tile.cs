@@ -7,6 +7,7 @@ using Gameplay;
 using Schemas;
 using Singletons;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -106,6 +107,19 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool IsAlreadyShakingAnnotation = false;
 
     private Coroutine MobileContextMenuHandle;
+
+    // Neighbor power color
+    public Color neighborColor1;
+    public Color neighborColor2;
+    public Color neighborColor3;
+    public Color neighborColor4;
+    public Color neighborColor5;
+    public Color neighborColor6;
+    public Color neighborColor7;
+    public Color neighborColor8;
+    public Color neighborColor9;
+    public Color neighborColor100;
+    public Color neighborColorUnknown;
 
     private void Start()
     {
@@ -455,7 +469,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             bool hasMysticalMagnifyingGlass = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.MysticMagnifyingGlass);
             if (ObscureCounter > 0 && !hasMysticalMagnifyingGlass)
             {
-                NeighborPower.SetText("?");
+                SetNeighborPower(0, true);
                 NeighborPower.enabled = true;
             }
             else
@@ -463,7 +477,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborPower(XCoordinate, YCoordinate);
                 if (neighborPower != 0)
                 {
-                    NeighborPower.SetText(neighborPower.ToString());
+                    SetNeighborPower(neighborPower, false);
                     NeighborPower.enabled = true;
                 }
             }
@@ -1044,13 +1058,97 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         bool hasMysticalMagnifyingGlass = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.MysticMagnifyingGlass);
         if (ObscureCounter > 0 && !hasMysticalMagnifyingGlass)
         {
-            NeighborPower.SetText("?");
+            SetNeighborPower(0, true);
         }
         else
         {
             int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetTotalNeighborPower(XCoordinate, YCoordinate);
-            NeighborPower.SetText(neighborPower == 0 ? string.Empty : neighborPower.ToString());
+            SetNeighborPower(neighborPower, false);
         }
+    }
+
+    private void SetNeighborPower(int neighborPower, bool unknown)
+    {
+        if (unknown)
+        {
+            NeighborPower.SetText($"<color=#{neighborColorUnknown.ToHexString()}>?</color>");
+            return;
+        }
+        if (neighborPower == 0)
+        {
+            NeighborPower.SetText(string.Empty);
+        }
+        int HundredOrMore = neighborPower / 100;
+        int remainder = neighborPower % 100;
+        string firstHundredText = string.Empty;
+        string remainderColorToUse = "#";
+        string remainderFormat;
+        if (HundredOrMore > 0)
+        {
+            firstHundredText = $"<color=#{neighborColor100.ToHexString()}>{HundredOrMore}</color>";
+            remainderFormat = "00";
+        }
+        else
+        {
+            remainderFormat = string.Empty;
+        }
+        switch (remainder)
+        {
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                remainderColorToUse += neighborColor1.ToHexString();
+                break;
+            case 6:
+                remainderColorToUse += neighborColor2.ToHexString();
+                break;
+            case 7:
+                remainderColorToUse += neighborColor3.ToHexString();
+                break;
+            case 8:
+                remainderColorToUse += neighborColor4.ToHexString();
+                break;
+            case 9:
+            case 10:
+            case 11:
+                remainderColorToUse += neighborColor5.ToHexString();
+                break;
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+                remainderColorToUse += neighborColor6.ToHexString();
+                break;
+            case 17:
+            case 18:
+            case 19:
+            case 20:
+            case 21:
+            case 22:
+            case 23:
+                remainderColorToUse += neighborColor7.ToHexString();
+                break;
+            case 24:
+            case 25:
+            case 26:
+            case 27:
+            case 28:
+            case 29:
+            case 30:
+            case 31:
+                remainderColorToUse += neighborColor8.ToHexString();
+                break;
+            // 32 or higher default to white
+            default:
+                remainderColorToUse += neighborColor9.ToHexString();
+                break;
+        }
+        string remainderText = $"<color={remainderColorToUse}>{remainder.ToString(remainderFormat)}</color>";
+        string fullText = firstHundredText + remainderText;
+        NeighborPower.SetText(fullText);
     }
 
     private void UpdateObjectSelfVisuals()
