@@ -18,7 +18,7 @@ MonoBehaviour:
   Tags: 010000000300000006000000
   TileId: 30
   LibraryOverrideTileId: 0
-  Sprite: {fileID: -2858330702786226967, guid: 5815ab2fcc572684aa5cece91ef51573, type: 3}
+  Sprite: {fileID: 21300000, guid: 1427e9487ee91df4fa3bdcc9c34cbb9f, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}

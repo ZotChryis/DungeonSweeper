@@ -1077,6 +1077,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (neighborPower == 0)
         {
             NeighborPower.SetText(string.Empty);
+            return;
         }
         int HundredOrMore = neighborPower / 100;
         int remainder = neighborPower % 100;
