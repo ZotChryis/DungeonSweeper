@@ -33,24 +33,24 @@ namespace Schemas
             // Special cases for item logic purposes (match any id)
             None,
             Global,
-        
+
             Egg,
             PizzaSlice,
             TarotCard,
             VisionOrb,
-        
+
             Brick,
             Chest,
             ChestHeal,
-        
+
             ScrollHeal,
             ScrollVision,
             ScrollRat,
             ScrollSlime,
             ScrollMine,
-            
+
             TreasureMap,
-        
+
             Rat,
             Bat,
             Skeleton,
@@ -59,75 +59,75 @@ namespace Schemas
             PiedPiper,
             Beholder,
             Minotaur,
-        
+
             DemonKnight,
-        
+
             SlimeGreen,
             SlimePurple,
             SlimeWizardPurple,
-            
+
             LoverMale,
             LoverFemale,
             Gnome,
-            
+
             Lich,
             Mimic,
-        
+
             Dragon0,
             Mine,
-            
+
             Faerie,
             Gorgon,
             Balrog,
-            
+
             Crown,
             MineDiffused,
-            
+
             ScrollHealChest,
             ScrollVisionLevel2,
             VisionOrbLevel2,
-            
+
             BrickFinal,
-            
+
             MagicFountain,
             ChestItemCommon,
             ChestItemUncommon,
             ChestItemRare,
             ChestItemEpic,
             ChestItemLegendary,
-            
+
             Ouroboros,
             SlimeBlue,
             SlimeWizardGreen,
             SlimeWizardBlue,
-            
+
             Firelord,
             Firefly,
             FireflyCalm,
-            
+
             CyclopsL,
             CyclopsR,
-            
+
             Dragon1,
             Dragon2,
             Dragon3,
             Dragon4,
-            
+
             Sheep,
-            
+
             SnakeCharmer,
             Snake,
             SnakeCalm,
-            
+
             Pizza,
             ForestSpirit,
             WerewolfBeast,
             WerewolfHuman,
             BloodMoon,
-            
+
             Jinn,
             JinnLamp,
-            
+
             LesserGolem,
             GreaterGolem,
             Vampire,
@@ -138,22 +138,22 @@ namespace Schemas
             Lich4,
             Lich5,
         }
-        
+
         // !!WARNING!! DO NOT REORDER
         [Serializable]
         public enum Tag
         {
             // Used mostly for items/cards/bricks,
             Neutral,
-        
+
             // Used for things that deal damage to you
             Enemy,
-        
+
             // Role
             Melee,
             Ranged,
             Flying,
-        
+
             // Families/Groupings
             Beast,
             Demon,
@@ -165,7 +165,7 @@ namespace Schemas
             Scroll,
             Dragon,
         }
-    
+
         [Serializable]
         public struct SpriteFacing
         {
@@ -196,13 +196,13 @@ namespace Schemas
         public string UserFacingDescription;
 
         public List<Tag> Tags = new List<Tag>();
-    
+
         public Id TileId;
-        
+
         // If this is not None, when this tile object is on the map, it will appear as this object in the library
         // This is necessary for some oddities like Bricks and GargoyleL/R, etc.
         public Id LibraryOverrideTileId;
-        
+
         public Sprite Sprite;
         public SpriteFacing SpriteFacingData;
 
@@ -215,11 +215,11 @@ namespace Schemas
 
         // When fully collected, instead of becoming Empty, this object will be the new housed object on the tile.
         public TileSchema DropReward;
-        
+
         // When fully collected AND HAS X ENEMY NEIGHBORS, instead of becoming Empty, this object will be the new housed object on the tile.
         public SerializedDictionary<int, TileSchema> NumNeighborDropReward = new();
         public SerializedDictionary<int, ItemSchema.Id> NumNeighborItemReward = new();
-        
+
         public ItemSchema.Id ItemReward;
         public Rarity[] ItemRewardRarities;
 
@@ -251,10 +251,15 @@ namespace Schemas
         public string FleeSfx;
         public bool RevealFlee;
         public bool CanEnrage;
+
         /// <summary>
-        /// When the thing you are body guarding or guarded by dies, swap sprite
+        /// Optional grunt to play, on conquer, if the tile you are guarding is conquered while you are revealed.
         /// </summary>
-        public bool CanBodyGuardSwap;
+        public string BodyguardGrunt;
+        /// <summary>
+        /// Optional grunt to play, on conquer, if the you are guarding is revealed while you are conquered.
+        /// </summary>
+        public string GuardingGrunt;
         public bool SpawnsFleeingChild;
         public TileSchema FleeingChild;
 
@@ -266,10 +271,10 @@ namespace Schemas
         public int ShopXp = 0;
         public bool ScreenshakeOnConquer = false;
         public TileSchema UpgradedVersion;
-        
+
         // TODO: Give each obscure source a color
         public Color ObscureColor = Color.white;
-        
+
         [Serializable]
         public struct ValueOverride<T>
         {
@@ -303,16 +308,16 @@ namespace Schemas
             /// </summary>
             public ValueOverride<GameObject> Vfx;
         }
-        
+
         /// <summary>
         /// This is what will be spawned on every tile that is revealed by this object's reveal radius/offsets.
         /// </summary>
-        [SerializeField] 
+        [SerializeField]
         public GameObject RevealVfx;
-        
+
         [SerializedDictionary("Tile State", "State Overrides")]
         public SerializedDictionary<Tile.TileState, TileStateData> Data;
-        
+
         public TileStateData GetOverrides(Tile.TileState state)
         {
             return Data.GetValueOrDefault(state);
@@ -326,7 +331,7 @@ namespace Schemas
                 return SpriteFacingData.Missing;
             }
 
-            if(SpriteFacingData.BodyGuardedByOrGuardingDead != null && isBodyGuardByOrGuardingDead)
+            if (SpriteFacingData.BodyGuardedByOrGuardingDead != null && isBodyGuardByOrGuardingDead)
             {
                 return SpriteFacingData.BodyGuardedByOrGuardingDead;
             }

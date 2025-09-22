@@ -1,11 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using AYellowpaper.SerializedCollections;
 using Gameplay;
 using Schemas;
 using Singletons;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -576,11 +576,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.DemonLord);
             }
 
-            if (!HousedObject.GetOverrides(TileState.Conquered).Sfx.UseOverride)
-            {
-                ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
-            }
-
             if (HousedObject && HousedObject.ObscureRadius > 0)
             {
                 ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
@@ -603,6 +598,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 Instantiate(ServiceLocator.Instance.Player.ClassSchema.HitEffect, transform);
             }
 
+            // You can't play both sfx.
+            string guardSfxToPlay = "";
             // Associated guard gets enraged when yourself is conquered
             if (BodyGuardedByTile != null && BodyGuardedByTile.State < TileState.Conquered)
             {
@@ -611,14 +608,20 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 BodyGuardedByTile.TEMP_UpdateVisuals();
                 if (BodyGuardedByTile.State == TileState.RevealThroughCombat || BodyGuardedByTile.State == TileState.Revealed)
                 {
-                    ServiceLocator.Instance.AudioManager.PlaySfx("AngryGrunt");
+                    guardSfxToPlay = BodyGuardedByTile.HousedObject.BodyguardGrunt;
                 }
             }
 
             if (GuardingTile != null && GuardingTile.State < TileState.Conquered)
             {
                 GuardingTile.IsBodyGuardByOrGuardingDead = true;
+                GuardingTile.TEMP_UpdateVisuals();
+                if (GuardingTile.State == TileState.RevealThroughCombat || GuardingTile.State == TileState.Revealed)
+                {
+                    guardSfxToPlay = HousedObject.GuardingGrunt;
+                }
             }
+            AudioManager.Instance.PlaySfx(guardSfxToPlay);
 
             // Flee as soon as clicked
             // Flee -> Itself moves to another location if possible (Gnome)
@@ -635,6 +638,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.AudioManager.PlaySfx(HousedObject.FleeSfx);
                 }
                 return;
+            }
+            else if (!HousedObject.GetOverrides(TileState.Conquered).Sfx.UseOverride)
+            {
+                ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
             }
         }
 

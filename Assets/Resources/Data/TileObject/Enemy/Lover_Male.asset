@@ -32,19 +32,29 @@ MonoBehaviour:
   XPReward: 9
   ItemsToReplenish: 
   DropReward: {fileID: 11400000, guid: 149ab7b7ee381b74984d4c7d0b997ebd, type: 2}
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList: []
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
-  RevealRandLocationNextToMine: 0
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets: []
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
   FleeVfx: {fileID: 0}
+  FleeSfx: 
   RevealFlee: 0
   CanEnrage: 0
-  CanBodyGuardSwap: 0
+  BodyguardGrunt: Heartbreak
+  GuardingGrunt: Heartbreak
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -55,6 +65,7 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

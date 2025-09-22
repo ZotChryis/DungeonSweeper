@@ -22,7 +22,8 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 2
   Price: 6
-  UseSfx: 
+  UseSfx: Vision
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 4
@@ -31,6 +32,7 @@ MonoBehaviour:
         Amount: 2
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 08000000
         Items: 
         Decay: -1

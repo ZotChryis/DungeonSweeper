@@ -33,6 +33,10 @@ MonoBehaviour:
   XPReward: 6
   ItemsToReplenish: 
   DropReward: {fileID: 0}
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList: []
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
@@ -50,6 +54,7 @@ MonoBehaviour:
   FleeSfx: 
   RevealFlee: 0
   CanEnrage: 1
+  BodyguardGrunt: AngryGrunt
   CanBodyGuardSwap: 0
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
