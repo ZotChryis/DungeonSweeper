@@ -14,22 +14,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 21
   Name: Candle
-  Description: At the start of the dungeon, upgrade Vision Orbs.
+  Description: Upgrade Vision Orbs.
   Sprite: {fileID: 2798290011037525337, guid: 3ae3b002482a33042a858562add45472, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 2
   Price: 6
+  UseSfx: 
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 0
       Value:
       - Type: 6
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 5
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0

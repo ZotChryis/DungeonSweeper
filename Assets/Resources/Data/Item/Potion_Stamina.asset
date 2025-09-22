@@ -23,7 +23,7 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 3
   Price: 6
-  UseSfx: 
+  UseSfx: XP
   CanStack: 0
   Effects:
     _serializedList:

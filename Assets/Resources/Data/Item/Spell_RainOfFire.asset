@@ -22,6 +22,8 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 4
   Price: 10
+  UseSfx: Explosion
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 4
@@ -30,6 +32,7 @@ MonoBehaviour:
         Amount: 3
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 01000000
         Items: 
         Decay: 0

@@ -22,7 +22,7 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 2
   Price: 5
-  UseSfx: 
+  UseSfx: EarthSpell
   CanStack: 0
   Effects:
     _serializedList:
@@ -32,6 +32,7 @@ MonoBehaviour:
         Amount: -4
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 02000000
         Items: 
         Decay: 1

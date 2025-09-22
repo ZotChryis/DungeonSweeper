@@ -16,20 +16,23 @@ MonoBehaviour:
   Name: 'Spell: Holy Light'
   Description: Use from inventory. The next Demon enemy does -3 damage.
   Sprite: {fileID: -3448573314377300975, guid: 98807c1cd39169245b541e41b8b091bb, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 1
   InitialCharges: 1
   ShopInventory: 1
   Rarity: 3
   Price: 8
+  UseSfx: Holy
+  CanStack: 0
   Effects:
     _serializedList:
     - Key: 4
       Value:
       - Type: 3
         Amount: -3
+        GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 06000000
         Items: 
         Decay: 1
