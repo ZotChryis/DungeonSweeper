@@ -42,6 +42,10 @@ public class PlayerUIItem : MonoBehaviour
     public void SetShield(bool shield)
     {
         Shield.enabled = shield;
+        if (shield)
+        {
+            Empty.enabled = !shield;
+        }
     }
 
     public void SetLabelText(string text)

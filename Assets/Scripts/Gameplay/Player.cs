@@ -357,7 +357,6 @@ public class Player : MonoBehaviour, IPointerClickHandler
         for (int i = 0; i < Hearts.Length; i++)
         {
             bool active = i < MaxHealth + Shield;
-            Hearts[i].SetHalf(false);
             Hearts[i].gameObject.SetActive(active);
             Hearts[i].SetFull(i < CurrentHealth);
             Hearts[i].SetShield(i >= MaxHealth);
@@ -365,7 +364,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
             if (animate && active)
             {
-                Hearts[i].Animate(duration, delay);
+                Hearts[i].Animate(duration, i * duration);
                 delay += duration;
             }
         }
