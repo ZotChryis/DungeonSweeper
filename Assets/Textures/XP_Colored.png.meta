@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 58272b104dbbdae4294178af8b7c65c9
+guid: 88bae5b1665a9b844be7de2e9bdc5968
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -1031049354629045415
-    second: Heart_Empty_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -97,7 +94,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -152,23 +149,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heart_Empty_0
+      name: ScrimshawKit_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 24
-        width: 153
-        height: 140
+        x: 15
+        y: 65
+        width: 391
+        height: 881
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 953a07f131af0b1f0800000000000000
-      internalID: -1031049354629045415
+      spriteID: ee7ccddb530c0eb90800000000000000
+      internalID: -7214555265996371986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrimshawKit_1
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 55
+        width: 776
+        height: 950
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc960b6c50598d10800000000000000
+      internalID: 2128320656772078847
       vertices: []
       indices: 
       edges: []
@@ -177,7 +196,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 14db8a2d1d3a5ea408140bc75ec76af6
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -187,7 +206,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Heart_Empty_0: -1031049354629045415
+      ScrimshawKit_0: -7214555265996371986
+      ScrimshawKit_1: 2128320656772078847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
