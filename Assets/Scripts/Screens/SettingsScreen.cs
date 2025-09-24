@@ -13,6 +13,7 @@ namespace Screens
         [SerializeField] private Slider SFXVolume;
         [SerializeField] private DSButton Reset;
         [SerializeField] private DSButton ResetTutorial;
+        [SerializeField] private DSButton MainMenu;
         [SerializeField] private Toggle SafeMinesToggle;
         [SerializeField] private Toggle AllowLeftHoldContextMenu;
         [SerializeField] private Toggle CanPickUpItems;
@@ -36,6 +37,25 @@ namespace Screens
 
             Reset.OnConfirmed += OnResetConfirmed;
             ResetTutorial.OnConfirmed += OnResetTutorialConfirmed;
+            MainMenu.OnConfirmed += OnMainMenuConfirmed;
+        }
+
+        protected void OnDestroy()
+        {
+            Reset.OnConfirmed -= OnResetConfirmed;
+            ResetTutorial.OnConfirmed -= OnResetTutorialConfirmed;
+            MainMenu.OnConfirmed -= OnMainMenuConfirmed;
+        }
+
+        protected override void OnShow()
+        {
+            base.OnShow();
+            SetMainMenuActive(true);
+        }
+        
+        public void SetMainMenuActive(bool active)
+        {
+            MainMenu.gameObject.SetActive(active);
         }
 
         private void OnAllowCheatsChanged(bool value)
@@ -48,6 +68,11 @@ namespace Screens
         {
             FBPP.SetBool(PlayerOptions.CanPickUpItems, value);
             OnBoolSettingChanged?.Invoke(PlayerOptions.CanPickUpItems);
+        }
+
+        private void OnMainMenuConfirmed()
+        {
+            TransitionManager.Instance.DoTransition(TransitionManager.TransitionType.Goop, CheatManager.Instance.Restart);
         }
 
         private void OnResetConfirmed()

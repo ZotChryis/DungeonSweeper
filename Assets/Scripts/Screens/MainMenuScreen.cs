@@ -57,7 +57,12 @@ namespace Screens
         // TODO: Show settings screen
         public void OnSettingsPressed()
         {
-            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Settings);
+            BaseScreen screen = ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Settings);
+            if(screen is SettingsScreen settingsScreen)
+            {
+                // Don't show main menu button from main menu.
+                settingsScreen.SetMainMenuActive(false);
+            }
         }
     }
 }

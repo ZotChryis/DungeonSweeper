@@ -54,17 +54,17 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
     }
     
     // TODO: Make a stack/queue system. Right now its only 1 allowed at a time. Im lazy rn
-    public void RequestShowScreen(ScreenType screenType)
+    public BaseScreen RequestShowScreen(ScreenType screenType)
     {
         if (!Screens.TryGetValue(screenType, out BaseScreen Screen))
         {
-            return;
+            return null;
         }
         
         // TODO: We currently will only support 1 instance of the screen at a time
         if (ScreenStack.Contains(Screen))
         {
-            return;
+            return null;
         }
         
         // TODO: Check if current screen allows for things to appear on top
@@ -73,6 +73,7 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         Screen.Show();
         Screen.transform.SetAsLastSibling();
         OnScrenShown?.Invoke(screenType);
+        return Screen;
     }
 
     public void RequestToggleScreen(ScreenType screenType)
