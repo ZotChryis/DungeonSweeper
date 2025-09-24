@@ -33,6 +33,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] 
     private Image PlayerIcon;
+
+    [SerializeField]
+    private GameObject DeathIcon;
     
     [SerializeField] 
     private GameObject LevelUpRoot;
@@ -189,6 +192,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ResetPlayer();
     }
     
+    public void SetDeathIcon(bool isDead)
+    {
+        DeathIcon.SetActive(isDead);
+        PlayerIcon.gameObject.SetActive(!isDead);
+    }
+
     public bool TEMP_PredictDeath(int amount)
     {
         return CurrentHealth + Shield - amount < 0;
@@ -267,6 +276,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
             ServiceLocator.Instance.AudioManager.PlaySfx("Death");
+            SetDeathIcon(true);
             return true;
         }
         
@@ -482,6 +492,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     
     public void ResetPlayer()
     {
+        SetDeathIcon(false);
+
         // Remove any decaying effects that may be lingering
         RevertAllDecayingEffects();
         ItemsAddedThisDungeon.Clear();

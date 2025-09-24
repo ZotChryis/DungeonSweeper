@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Schemas;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,7 @@ namespace Screens
     public class MainMenuScreen : BaseScreen
     {
         [SerializeField] private Button NewGameButton;
+        [SerializeField] private Button NewGamePlusButton;
         [SerializeField] private Button LoadGameButton;
         [SerializeField] private Button AchievementButton;
         [SerializeField] private Button SettingsButton;
@@ -15,6 +17,11 @@ namespace Screens
         private void Start()
         {
             NewGameButton.onClick.AddListener(OnNewGamePressed);
+
+            NewGamePlusButton.onClick.AddListener(OnNewGamePlusPressed);
+            // check if Adventurer2 is achieved
+            NewGamePlusButton.gameObject.SetActive(AchievementSchema.Id.Adventurer2.IsAchieved());
+
             LoadGameButton.onClick.AddListener(OnLoadGamePressed);
             AchievementButton.onClick.AddListener(OnAchievementsPressed);
             SettingsButton.onClick.AddListener(OnSettingsPressed);
@@ -39,6 +46,13 @@ namespace Screens
         {
             // Open the class selection screen
             // That screen has logic to start a game when something is selected
+            ServiceLocator.Instance.LevelManager.StartingLevel = 0;
+            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.ClassSelection);
+        }
+
+        private void OnNewGamePlusPressed()
+        {
+            ServiceLocator.Instance.LevelManager.StartingLevel = 1;
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.ClassSelection);
         }
 

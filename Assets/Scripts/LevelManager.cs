@@ -8,6 +8,9 @@ public class LevelManager : MonoBehaviour
 {
     [Tooltip("Levels in order")]
     public SpawnSettings[] Levels;
+
+    [HideInInspector]
+    public int StartingLevel = 0;
     
     /// <summary>
     /// Levels are 0, 1, 2, 3, and 4.
@@ -46,6 +49,11 @@ public class LevelManager : MonoBehaviour
     {
         CurrentLevel = level;
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
+    }
+
+    public void SetToStartingLevel()
+    {
+        SetLevel(StartingLevel);
     }
 
     /// <summary>

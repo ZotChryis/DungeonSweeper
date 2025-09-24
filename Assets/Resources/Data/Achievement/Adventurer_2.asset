@@ -15,10 +15,15 @@ MonoBehaviour:
   AchievementId: 3
   Title: Advanced Adventurer
   Description: Complete the third dungeon level with the Adventurer.
-  Reward: 
+  Reward: Unlocks NewGame+
   RewardClass: -1
+  RewardItem: 0
   Trigger: 0
   Level: 2
   Class: 0
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

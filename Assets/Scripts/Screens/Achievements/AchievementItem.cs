@@ -19,7 +19,7 @@ namespace Screens.Achievements
             Description.SetText(schema.Description);
             Reward.SetText(schema.Reward);
 
-            bool achieved = FBPP.GetBool("Achievement" + schema.AchievementId, false);
+            bool achieved = schema.AchievementId.IsAchieved();
             string dateAchieved = FBPP.GetString("Achievement" + schema.AchievementId, "");
 
             Check.SetActive(achieved);

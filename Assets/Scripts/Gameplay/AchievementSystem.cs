@@ -24,10 +24,8 @@ namespace Gameplay
 
             foreach (var schema in achievements)
             {
-                string key = "Achievement" + schema.AchievementId;
-
                 // Not completed
-                if (!FBPP.GetBool(key))
+                if (!schema.AchievementId.IsAchieved())
                 {
                     continue;
                 }
@@ -49,8 +47,7 @@ namespace Gameplay
             // The item is locked if the achievement is not complete
             foreach (var achievementSchema in achievements)
             {
-                string key = "Achievement" + achievementSchema.AchievementId;
-                if (!FBPP.GetBool(key))
+                if (!achievementSchema.AchievementId.IsAchieved())
                 {
                     items.Add(achievementSchema.RewardItem);
                 }
@@ -64,8 +61,7 @@ namespace Gameplay
             var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
                 .FindAll(schema =>
                 {
-                    string key = "Achievement" + schema.AchievementId;
-                    return FBPP.GetBool(key);
+                    return schema.AchievementId.IsAchieved();
                 });
             
             return achievements.Count;
@@ -176,13 +172,13 @@ namespace Gameplay
 
         private void Complete(AchievementSchema schema)
         {
-            string key = "Achievement" + schema.AchievementId;
-
             // Already completed
-            if (FBPP.GetBool(key))
+            if (schema.AchievementId.IsAchieved())
             {
                 return;
             }
+
+            string key = "Achievement" + schema.AchievementId;
             
             FBPP.SetBool(key, true);
             FBPP.SetString(key, DateTime.Today.ToString("d"));
