@@ -66,16 +66,15 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public SerializedDictionary<int, GameObject> SpecialAnnotations = new();
 
     [SerializeField]
-    private Color PowerColor;
-
-    [SerializeField]
     private Color RewardColor;
 
     [SerializeField]
     private TileSchema HousedObject;
 
     public TileState State { get; private set; } = TileState.Hidden;
-    
+
+    public static string[] Colors => colors;
+
     // TODO: HUGE HACK HERE to allow for Rain of Fire (aka, conquering stuff for 0 dmg taken)
     public bool AllowDamage = true;
 
@@ -93,9 +92,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     /// <summary>
     /// References to all tiles that were spawned from this tile's spawn requirements.
     /// </summary>
-    [HideInInspector] 
+    [HideInInspector]
     public Tile[] ChildrenTiles;
-    
+
     /// <summary>
     /// A reference to the tile that is guarding you.
     /// </summary>
@@ -108,17 +107,52 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     private Coroutine MobileContextMenuHandle;
 
-    // Neighbor power color
-    public Color neighborColor1;
-    public Color neighborColor2;
-    public Color neighborColor3;
-    public Color neighborColor4;
-    public Color neighborColor5;
-    public Color neighborColor6;
-    public Color neighborColor7;
-    public Color neighborColor8;
-    public Color neighborColor9;
-    public Color neighborColor100;
+    // Power color. Based on 
+    private const string darkred = "8b0000";
+    private const string crimson = "dc143c";
+    private const string maroon3 = "b03060";
+    private const string darkmagenta = "8b008b";
+    private const string fuchsia = "ff00ff";
+    private const string violet = "ee82ee";
+    private const string purple3 = "a020f0";
+    private const string darkblue = "00008b";
+    private const string midnightblue = "191970";
+    private const string mediumblue = "0000cd";
+    private const string slateblue = "6a5acd";
+    private const string deepskyblue = "00bfff";
+    private const string darkturquoise = "00ced1";
+    private const string teal = "008080";
+    private const string mediumspringgreen = "00fa9a";
+    private const string cornflower = "6495ed";
+    private const string darkolivegreen = "556b2f";
+    private const string olive = "808000";
+    private const string orangered = "ff4500";
+    private const string darkorange = "ff8c00";
+    private const string goldenrod = "daa520";
+    private const string coral = "ff7f50";
+    private const string lightcoral = "f08080";
+    private const string plum = "dda0dd";
+    private const string pink = "ffc0cb";
+    private const string aquamarine = "7fffd4";
+    private const string lightsteelblue = "b0c4de";
+    private const string darkseagreen = "8fbc8f";
+    private const string tan = "d2b48c";
+    private const string carmineRed = "ff0038";
+    private const string khaki = "f0e68c";
+    private const string hotpink = "ff69b4";
+    private const string slimePurple = "AB5FBE";
+    private const string minesweeperRed = "F90101";
+    private const string sienna = "a0522d";
+    private const string lime = "00ff00";
+    private const string greenyellow = "adff2f";
+    private const string laserlemon = "ffff54";
+    private const string limegreen = "32cd32";
+    private const string green = "008000";
+
+    private static string[] colors = new string[] { green, limegreen, laserlemon, greenyellow, lime, sienna, minesweeperRed, slimePurple, hotpink, khaki, carmineRed, tan, darkseagreen, lightsteelblue, aquamarine, pink, plum, lightcoral, coral, goldenrod, darkorange, orangered, olive, darkolivegreen, cornflower, mediumspringgreen, teal, darkturquoise, deepskyblue, slateblue, mediumblue, midnightblue, darkblue, purple3, violet, fuchsia, darkmagenta, maroon3, crimson, darkred };
+
+    private const string black_300 = "161616";
+    private const string gray_mine = "808080";
     public Color neighborColorUnknown;
 
     private void Start()
@@ -187,7 +221,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 return;
             }
         }
-        
+
 
         // TODO: Refactor the click handle logic
         if (State == TileState.Revealed || State == TileState.RevealThroughCombat)
@@ -211,7 +245,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             TEMP_SetState(State + 1);
         }
     }
-    
+
     /// <summary>
     /// Shakes the FlagAnnotation. Copied from Grid.cs.
     /// </summary>
@@ -343,7 +377,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         DirectionToLook = CompassDirections.West;
         IsEnraged = false;
         ShouldStandUp = false;
-        
+
         if (HousedObject && HousedObject.ObscureRadius > 0)
         {
             ServiceLocator.Instance.Grid.Unobscure(XCoordinate, YCoordinate, HousedObject.ObscureRadius);
@@ -395,7 +429,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     /// </summary>
     public void FastRevealWithoutLogic_VisionOrb(GameObject vfx = null)
     {
-        if(State >= TileState.Revealed)
+        if (State >= TileState.Revealed)
         {
             return;
         }
@@ -456,12 +490,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         Power.enabled = true;
         Annotation.enabled = false;
-        
+
         foreach (var keyValuePair in SpecialAnnotations)
         {
             keyValuePair.Value.SetActive(false);
         }
-        
+
         UpdateObjectSelfVisuals();
 
         if (GetHousedObject() == null)
@@ -511,19 +545,20 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         TryPlayVfx(State);
 
         int neighborEnemies = ServiceLocator.Instance.Grid.TEMP_GetUnconqueredNeighborCount(XCoordinate, YCoordinate);
-        
+
         if (State == TileState.Empty)
         {
             // TODO: HACK - need to remove any fully empty tile when it is revealed to make Flee work
             ServiceLocator.Instance.Grid.UnoccupiedSpaces.RemoveUnoccupiedSpace(XCoordinate, YCoordinate);
-            
-            if (HousedObject && HousedObject.NumNeighborDropReward.TryGetValue(neighborEnemies, out TileSchema reward)) {
+
+            if (HousedObject && HousedObject.NumNeighborDropReward.TryGetValue(neighborEnemies, out TileSchema reward))
+            {
                 UndoPlacedTileObj();
                 PlaceTileObj(reward);
                 TEMP_SetState(TileState.Revealed);
                 return;
             }
-            
+
             if (HousedObject && HousedObject.DropReward)
             {
                 UndoPlacedTileObj();
@@ -648,7 +683,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (TileState.Collected == State)
         {
             // Fleeing Child -> Spawns a new object type at another location if possible (Faerie)
-            
+
             if (HousedObject.SpawnsFleeingChild)
             {
                 if (HousedObject.FleeVfx != null)
@@ -659,7 +694,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 {
                     ServiceLocator.Instance.AudioManager.PlaySfx(HousedObject.FleeSfx);
                 }
-                
+
                 bool newLocation =
                     ServiceLocator.Instance.Grid.TEMP_HandleFlee(HousedObject.FleeingChild, HousedObject.RevealFlee);
 
@@ -672,7 +707,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     TEMP_RevealWithoutLogic();
                     return;
                 }
-                
+
                 TEMP_SetState(TileState.Empty);
                 return;
             }
@@ -713,19 +748,20 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                         if (ServiceLocator.Instance.Grid.IsTileRevealed(
                                 revealOriginX + offset.x,
                                 revealOriginY + offset.y
-                        )) {
+                        ))
+                        {
                             offsetsRemaining.RemoveAt(i);
                             continue;
                         }
                     }
-                    
+
                     for (int i = 0; offsetsRemaining.Count > 0 && i < HousedObject.RevealOffsetCount; i++)
                     {
                         var offset = offsetsRemaining.GetRandomItem();
                         offsetsRemaining.Remove(offset);
                         offsets.Add(offset);
                     }
-                    
+
                     ServiceLocator.Instance.Grid.TEMP_RevealTiles(
                         revealOriginX,
                         revealOriginY,
@@ -733,7 +769,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                         HousedObject.RevealVfx
                     );
                 }
-                
+
             }
 
             player.TEMP_UpdateXP(HousedObject, HousedObject.XPReward);
@@ -770,7 +806,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.Grid.UpdateRandomTileById(entry.From, entry.To);
                 }
             }
-            
+
             if (HousedObject.RevealAllRewards != null && HousedObject.RevealAllRewards.Length > 0)
             {
                 foreach (var revealReward in HousedObject.RevealAllRewards)
@@ -813,19 +849,19 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 var matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
                     HousedObject.ItemRewardRarities.Contains(item.Rarity));
-                
+
                 // Remove any item that is locked
                 var lockedItemIds = ServiceLocator.Instance.AchievementSystem.GetLockedItems();
                 foreach (var lockedItemId in lockedItemIds)
                 {
                     matchingItems.RemoveAll(schema => schema.ItemId == lockedItemId);
                 }
-                
+
                 // Try to adhere to maximums
                 matchingItems.RemoveAll(schema =>
                     schema.Max != -1 && ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
                 );
-                
+
                 if (matchingItems.Count > 0)
                 {
                     var rewardItem = matchingItems.GetRandomItem();
@@ -834,7 +870,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
                     }
-                    
+
                     ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
                 }
             }
@@ -855,7 +891,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.Grid.UpdateTile(ChildrenTiles[i], HousedObject.ChildUpdateReward.To);
                 }
             }
-            
+
         }
 
         var objectOverrides = HousedObject ? HousedObject.GetOverrides(State) : default;
@@ -886,7 +922,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             IsEnraged = true;
         }
-        
+
         // if our position is to the right of our target flip us around.
         if (xCoordinate < this.XCoordinate)
         {
@@ -1078,7 +1114,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (unknown)
         {
-            NeighborPower.SetText($"<color=#{neighborColorUnknown.ToHexString()}>?</color>");
+            NeighborPower.SetText($"<color=#{GetHexColorBasedOnPower(neighborPower, unknown)}>?</color>");
             return;
         }
         if (neighborPower == 0)
@@ -1086,77 +1122,53 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             NeighborPower.SetText(string.Empty);
             return;
         }
-        int HundredOrMore = neighborPower / 100;
-        int remainder = neighborPower % 100;
-        string firstHundredText = string.Empty;
-        string remainderColorToUse = "#";
-        string remainderFormat;
-        if (HundredOrMore > 0)
-        {
-            firstHundredText = $"<color=#{neighborColor100.ToHexString()}>{HundredOrMore}</color>";
-            remainderFormat = "00";
-        }
-        else
-        {
-            remainderFormat = string.Empty;
-        }
-        switch (remainder)
-        {
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                remainderColorToUse += neighborColor1.ToHexString();
-                break;
-            case 6:
-                remainderColorToUse += neighborColor2.ToHexString();
-                break;
-            case 7:
-                remainderColorToUse += neighborColor3.ToHexString();
-                break;
-            case 8:
-                remainderColorToUse += neighborColor4.ToHexString();
-                break;
-            case 9:
-            case 10:
-            case 11:
-                remainderColorToUse += neighborColor5.ToHexString();
-                break;
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
-                remainderColorToUse += neighborColor6.ToHexString();
-                break;
-            case 17:
-            case 18:
-            case 19:
-            case 20:
-            case 21:
-            case 22:
-            case 23:
-                remainderColorToUse += neighborColor7.ToHexString();
-                break;
-            case 24:
-            case 25:
-            case 26:
-            case 27:
-            case 28:
-            case 29:
-            case 30:
-            case 31:
-                remainderColorToUse += neighborColor8.ToHexString();
-                break;
-            // 32 or higher default to white
-            default:
-                remainderColorToUse += neighborColor9.ToHexString();
-                break;
-        }
-        string remainderText = $"<color={remainderColorToUse}>{remainder.ToString(remainderFormat)}</color>";
-        string fullText = firstHundredText + remainderText;
+
+        string fullText = $"<color=#{GetHexColorBasedOnPower(neighborPower, unknown)}>{neighborPower.ToString()}</color>";
         NeighborPower.SetText(fullText);
+    }
+
+    private string GetHexColorBasedOnPower(int totalPower, bool unknown)
+    {
+        if(unknown)
+        {
+            return neighborColorUnknown.ToHexString();
+        }
+        if(totalPower <= 0 || totalPower == 100)
+        {
+            return gray_mine;
+        }
+        if(totalPower == 300)
+        {
+            return black_300;
+        }
+        int remainder = totalPower % 100;
+        if(remainder == 0)
+        {
+            if(totalPower >= 300)
+            {
+                return black_300;
+            }
+            return gray_mine;
+        }
+
+        string remainderColorToUse;
+        try
+        {
+            if (remainder - 1 < colors.Length)
+            {
+                remainderColorToUse = colors[remainder - 1];
+            }
+            else
+            {
+                remainderColorToUse = darkred;
+            }
+        }
+        catch
+        {
+            Debug.LogError("Remainder : " + remainder + " + CAUSED EXCEPTION. with colors length: " + colors.Length);
+            remainderColorToUse = black_300;
+        }
+        return remainderColorToUse;
     }
 
     private void UpdateObjectSelfVisuals()
@@ -1189,15 +1201,34 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             HousedObjectSprite.sprite = objectOverrides.Sprite.Value;
         }
 
-        // TEMP: Change color depending on the state
-        // TODO: Seperate these 2 labels and control independently
-        Power.color = State < TileState.Conquered ? PowerColor : RewardColor;
+        string color;
+        string text;
+        if (HousedObject)
+        {
+            if (State < TileState.Conquered)
+            {
+                if (GetHousedObject().OverridePowerColor != Color.white)
+                {
+                    color = GetHousedObject().OverridePowerColor.ToHexString();
+                }
+                else
+                {
+                    color = GetHexColorBasedOnPower(GetAdjustedPower(), GetHousedObject().ObscureRadius > 0);
+                }
+                text = $"<color=#{color}>{GetAdjustedPower().ToString()}</color>";
+            }
+            else
+            {
+                color = RewardColor.ToHexString();
+                text = $"<color=#{color}>{ServiceLocator.Instance.Player.GetModifiedXp(HousedObject, HousedObject.XPReward).ToString()}</color>";
+            }
+        }
+        else
+        {
+            text = string.Empty;
+        }
 
-        Power.SetText(HousedObject ? State < TileState.Conquered
-                ? GetAdjustedPower().ToString()
-                : ServiceLocator.Instance.Player.GetModifiedXp(HousedObject, HousedObject.XPReward).ToString()
-            : string.Empty
-        );
+        Power.SetText(text);
     }
 
     public TileSchema GetHousedObject()
@@ -1245,7 +1276,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private IEnumerator HandleMobileContextMenu()
     {
         yield return new WaitForSeconds(0.5f);
-        
+
         ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
         ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
     }
@@ -1261,7 +1292,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             Annotation.SetText(string.Empty);
             SpecialAnnotations[power].SetActive(!SpecialAnnotations[power].activeInHierarchy);
-            
+
             // Then we must do the rest of the images and hide them
             foreach (var keyValuePair in SpecialAnnotations)
             {
@@ -1271,15 +1302,15 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
                 keyValuePair.Value.SetActive(false);
             }
-            
+
             return;
         }
-        
+
         foreach (var keyValuePair in SpecialAnnotations)
         {
             keyValuePair.Value.SetActive(false);
         }
-        
+
         if (Annotation.text.Equals(power.ToString()))
         {
             Annotation.SetText(string.Empty);

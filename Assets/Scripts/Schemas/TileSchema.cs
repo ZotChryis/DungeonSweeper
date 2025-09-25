@@ -206,6 +206,7 @@ namespace Schemas
         public Sprite Sprite;
         public SpriteFacing SpriteFacingData;
 
+        public Color OverridePowerColor = Color.white;
         public int Power;
         public bool HidePowerToNeighbors;
         public bool PreventConsumeIfKillingBlow;
@@ -271,9 +272,6 @@ namespace Schemas
         public int ShopXp = 0;
         public bool ScreenshakeOnConquer = false;
         public TileSchema UpgradedVersion;
-
-        // TODO: Give each obscure source a color
-        public Color ObscureColor = Color.white;
 
         [Serializable]
         public struct ValueOverride<T>
