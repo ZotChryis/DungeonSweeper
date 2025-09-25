@@ -15,6 +15,7 @@ namespace Screens
         [SerializeField] private Button LevelSelectButton;
         [SerializeField] private GameObject LevelSelectGrid;
         [SerializeField] private Button[] LevelSelectButtons;
+        [SerializeField] private int[] StartingLevelStartingXp;
         [SerializeField] private Button LoadGameButton;
         [SerializeField] private Button AchievementButton;
         [SerializeField] private Button SettingsButton;
@@ -76,6 +77,7 @@ namespace Screens
         {
             // Open the class selection screen
             // That screen has logic to start a game when something is selected
+            ServiceLocator.Instance.Player.ShopXp = StartingLevelStartingXp[ServiceLocator.Instance.LevelManager.StartingLevel];
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.ClassSelection);
         }
 

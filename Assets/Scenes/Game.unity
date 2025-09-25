@@ -33006,6 +33006,7 @@ MonoBehaviour:
   - {fileID: 1493517163}
   - {fileID: 1995099874}
   - {fileID: 1093641003}
+  StartingLevelStartingXp: 000000000a000000190000002d0000003700000037000000
   LoadGameButton: {fileID: 1028644610}
   AchievementButton: {fileID: 143437612}
   SettingsButton: {fileID: 1066471665}

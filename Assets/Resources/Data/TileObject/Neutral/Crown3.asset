@@ -53,7 +53,8 @@ MonoBehaviour:
   FleeSfx: 
   RevealFlee: 0
   CanEnrage: 0
-  CanBodyGuardSwap: 0
+  BodyguardGrunt: 
+  GuardingGrunt: 
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -61,7 +62,7 @@ MonoBehaviour:
   FullHealReward: 0
   HealReward: 0
   DiffuseMinesReward: 0
-  ShopXp: 0
+  ShopXp: 10
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
   ObscureColor: {r: 1, g: 1, b: 1, a: 1}
