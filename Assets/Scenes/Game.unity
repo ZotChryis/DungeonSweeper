@@ -19865,7 +19865,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeDuration: 0.5
-  inputBlocker: {fileID: 1120713468}
 --- !u!1 &1471641547
 GameObject:
   m_ObjectHideFlags: 0
@@ -50049,6 +50048,7 @@ MonoBehaviour:
       Value: {fileID: 2013997459}
     - Key: 7
       Value: {fileID: 6231945419916815006}
+  inputBlocker: {fileID: 1120713468}
 --- !u!224 &9069335582447551438
 RectTransform:
   m_ObjectHideFlags: 0

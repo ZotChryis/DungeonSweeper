@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using Screens;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
@@ -25,6 +26,8 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
 
     [SerializedDictionary("Screen Type", "Screen")]
     public SerializedDictionary<ScreenType, BaseScreen> Screens;
+
+    public GameObject inputBlocker;
 
     public Action<ScreenType> OnScrenShown;
     
