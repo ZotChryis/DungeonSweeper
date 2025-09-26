@@ -54,7 +54,9 @@ public class BaseScreen : MonoBehaviour
 
     private IEnumerator HideHelper()
     {
+        OverlayScreenManager.Instance.inputBlocker.SetActive(true);
         yield return CanvasGroup.DOFade(0.0f, 0.25f).From(1.0f).WaitForCompletion();
+        OverlayScreenManager.Instance.inputBlocker.SetActive(false);
         Container.SetActive(false);
     }
 

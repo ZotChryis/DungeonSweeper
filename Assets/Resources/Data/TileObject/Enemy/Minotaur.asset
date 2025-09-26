@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Minotaur
   m_EditorClassIdentifier: 
   UserFacingName: Minotaur
-  UserFacingDescription: The best guard in the land, the Dragon knows exactly where
-    to place them.
+  UserFacingDescription: Guards a treasure chest and quick to anger.
   Tags: 01000000020000000500000009000000
   TileId: 22
   LibraryOverrideTileId: 0
