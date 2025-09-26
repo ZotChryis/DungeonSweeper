@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
 {
     public float FadeDuration = 1f;
+    public GameObject inputBlocker;
     
     private int FadeAmount = Shader.PropertyToID("_FadeAmount");
     private int UseShutters =  Shader.PropertyToID("_UseShutters");
@@ -36,6 +38,7 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
             Material = new Material(Image.material);
             Image.material = Material;
         }
+        inputBlocker.SetActive(false);
     }
 
     private void OnDestroy()
@@ -50,10 +53,13 @@ public class TransitionManager : SingletonMonoBehaviour<TransitionManager>
 
     private IEnumerator DoTransitionHelper(TransitionType transition, Action onTransitionIn)
     {
+        inputBlocker.SetActive(true);
         TransitionOut(transition);
         yield return new WaitForSeconds(FadeDuration);
         onTransitionIn?.Invoke();
         TransitionIn(transition);
+        yield return new WaitForSeconds(FadeDuration);
+        inputBlocker.SetActive(false);
     }
 
     public void TransitionOut(TransitionType transition)

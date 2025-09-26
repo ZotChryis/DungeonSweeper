@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Chest_Item_Common
+  m_Name: Chest_Guarded
   m_EditorClassIdentifier: 
-  UserFacingName: Item Chest (Common)
-  UserFacingDescription: An item awaits you for opening this chest!
+  UserFacingName: Chest
+  UserFacingDescription: Treasure awaits you for opening this chest!
   Tags: 000000000b000000
-  TileId: 44
+  TileId: 7
   LibraryOverrideTileId: 82
   Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
   SpriteFacingData:
@@ -30,7 +30,7 @@ MonoBehaviour:
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 0
+  XPReward: 5
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   NumNeighborDropReward:
@@ -38,7 +38,7 @@ MonoBehaviour:
   NumNeighborItemReward:
     _serializedList: []
   ItemReward: 0
-  ItemRewardRarities: 00000000
+  ItemRewardRarities: 
   TileUpdateReward: []
   ChildUpdateReward:
     From: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
-  UpgradedVersion: {fileID: 11400000, guid: edfbc10f914876045b25aa30a69ada04, type: 2}
+  UpgradedVersion: {fileID: 0}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList:
@@ -89,29 +89,6 @@ MonoBehaviour:
         Sfx:
           UseOverride: 0
           Value: 
-        Vfx:
-          UseOverride: 0
-          Value: {fileID: 0}
-    - Key: 4
-      Value:
-        AutoContinue:
-          UseOverride: 0
-          Value: 0
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
-          UseOverride: 0
-          Value: 0
-        EnableSprite:
-          UseOverride: 0
-          Value: 0
-        EnableDeathSprite:
-          UseOverride: 0
-          Value: 0
-        Sfx:
-          UseOverride: 1
-          Value: XP
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}
@@ -145,7 +122,7 @@ MonoBehaviour:
           Value: 0
         Sprite:
           UseOverride: 1
-          Value: {fileID: 5080965414245196560, guid: 77d92d9dd60e24147a59e179ecfb7211, type: 3}
+          Value: {fileID: 2067646171788204918, guid: 0f5d2d9d4ce81124e90a9e1565e5ce06, type: 3}
         EnablePower:
           UseOverride: 0
           Value: 0
@@ -158,6 +135,29 @@ MonoBehaviour:
         Sfx:
           UseOverride: 1
           Value: ChestOpen
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 5
+      Value:
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
+        Sprite:
+          UseOverride: 1
+          Value: {fileID: 21300000, guid: 8bcf42c45965a034491d7e23162610ee, type: 3}
+        EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
+          UseOverride: 1
+          Value: 1
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}

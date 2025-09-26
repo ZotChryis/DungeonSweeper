@@ -9,6 +9,13 @@ Using Unity 6000.042f1 Personal. https://unity3d.com/get-unity/download
 
 Set your File->Build Profiles to Web.
 
+### To Build WebGL
+Uncomment:
+```
+config.autoSyncPersistentDataPath = true;
+```
+Then zip up the build contents.
+
 ## Miro board
 https://miro.com/app/board/ - None
 

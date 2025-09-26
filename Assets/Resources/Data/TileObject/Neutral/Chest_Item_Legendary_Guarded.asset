@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Chest_Item_Common
+  m_Name: Chest_Item_Legendary_Guarded
   m_EditorClassIdentifier: 
-  UserFacingName: Item Chest (Common)
+  UserFacingName: Item Chest (Legendary)
   UserFacingDescription: An item awaits you for opening this chest!
   Tags: 000000000b000000
-  TileId: 44
+  TileId: 48
   LibraryOverrideTileId: 82
   Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
   SpriteFacingData:
@@ -38,7 +38,7 @@ MonoBehaviour:
   NumNeighborItemReward:
     _serializedList: []
   ItemReward: 0
-  ItemRewardRarities: 00000000
+  ItemRewardRarities: 04000000
   TileUpdateReward: []
   ChildUpdateReward:
     From: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
-  UpgradedVersion: {fileID: 11400000, guid: edfbc10f914876045b25aa30a69ada04, type: 2}
+  UpgradedVersion: {fileID: 0}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList:
@@ -158,6 +158,29 @@ MonoBehaviour:
         Sfx:
           UseOverride: 1
           Value: ChestOpen
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 5
+      Value:
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
+        Sprite:
+          UseOverride: 1
+          Value: {fileID: 21300000, guid: 00bb6874b78b172489e6fd98c16be075, type: 3}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 1
+          Value: 1
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}

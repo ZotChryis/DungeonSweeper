@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Chest_Item_Common
+  m_Name: Scroll_ChestHeal
   m_EditorClassIdentifier: 
-  UserFacingName: Item Chest (Common)
-  UserFacingDescription: An item awaits you for opening this chest!
-  Tags: 000000000b000000
-  TileId: 44
-  LibraryOverrideTileId: 82
-  Sprite: {fileID: -5281422124547630143, guid: 528f1cd4a6be9944e9231c9099678f7e, type: 3}
+  UserFacingName: Healing Scroll
+  UserFacingDescription: Use to heal to full.
+  Tags: 000000000c000000
+  TileId: 9
+  LibraryOverrideTileId: 0
+  Sprite: {fileID: -6413543000352893186, guid: 4844645bbba31344ba71550232dd5849, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -38,7 +38,7 @@ MonoBehaviour:
   NumNeighborItemReward:
     _serializedList: []
   ItemReward: 0
-  ItemRewardRarities: 00000000
+  ItemRewardRarities: 
   TileUpdateReward: []
   ChildUpdateReward:
     From: 0
@@ -60,12 +60,12 @@ MonoBehaviour:
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
   WinReward: 0
-  FullHealReward: 0
+  FullHealReward: 1
   HealReward: 0
   DiffuseMinesReward: 0
   ShopXp: 0
   ScreenshakeOnConquer: 0
-  UpgradedVersion: {fileID: 11400000, guid: edfbc10f914876045b25aa30a69ada04, type: 2}
+  UpgradedVersion: {fileID: 0}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList:
@@ -89,29 +89,6 @@ MonoBehaviour:
         Sfx:
           UseOverride: 0
           Value: 
-        Vfx:
-          UseOverride: 0
-          Value: {fileID: 0}
-    - Key: 4
-      Value:
-        AutoContinue:
-          UseOverride: 0
-          Value: 0
-        Sprite:
-          UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
-          UseOverride: 0
-          Value: 0
-        EnableSprite:
-          UseOverride: 0
-          Value: 0
-        EnableDeathSprite:
-          UseOverride: 0
-          Value: 0
-        Sfx:
-          UseOverride: 1
-          Value: XP
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}
@@ -141,23 +118,69 @@ MonoBehaviour:
     - Key: 3
       Value:
         AutoContinue:
-          UseOverride: 0
-          Value: 0
-        Sprite:
           UseOverride: 1
-          Value: {fileID: 5080965414245196560, guid: 77d92d9dd60e24147a59e179ecfb7211, type: 3}
-        EnablePower:
+          Value: 1
+        Sprite:
           UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
           Value: 0
         EnableSprite:
           UseOverride: 0
           Value: 0
         EnableDeathSprite:
-          UseOverride: 1
+          UseOverride: 0
           Value: 0
         Sfx:
           UseOverride: 1
-          Value: ChestOpen
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 4
+      Value:
+        AutoContinue:
+          UseOverride: 1
+          Value: 1
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 1
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 5
+      Value:
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
+        Sprite:
+          UseOverride: 1
+          Value: {fileID: 21300000, guid: 3ae273e15d5ab3443b75c20ce96ece24, type: 3}
+        EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
+          UseOverride: 1
+          Value: 1
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}

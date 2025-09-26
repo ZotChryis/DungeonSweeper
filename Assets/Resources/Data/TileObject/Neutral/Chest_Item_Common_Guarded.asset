@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Chest_Item_Common
+  m_Name: Chest_Item_Common_Guarded
   m_EditorClassIdentifier: 
   UserFacingName: Item Chest (Common)
   UserFacingDescription: An item awaits you for opening this chest!
@@ -158,6 +158,29 @@ MonoBehaviour:
         Sfx:
           UseOverride: 1
           Value: ChestOpen
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
+    - Key: 5
+      Value:
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
+        Sprite:
+          UseOverride: 1
+          Value: {fileID: 21300000, guid: 00bb6874b78b172489e6fd98c16be075, type: 3}
+        EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
+          UseOverride: 1
+          Value: 1
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
         Vfx:
           UseOverride: 0
           Value: {fileID: 0}

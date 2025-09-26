@@ -683,7 +683,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (TileState.Collected == State)
         {
             // Fleeing Child -> Spawns a new object type at another location if possible (Faerie)
-
             if (HousedObject.SpawnsFleeingChild)
             {
                 if (HousedObject.FleeVfx != null)
@@ -693,6 +692,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 if (!string.IsNullOrEmpty(HousedObject.FleeSfx))
                 {
                     ServiceLocator.Instance.AudioManager.PlaySfx(HousedObject.FleeSfx);
+                }
+
+                if(HousedObject.XPReward > 0)
+                {
+                    player.TEMP_UpdateXP(HousedObject, HousedObject.XPReward);
                 }
 
                 bool newLocation =

@@ -137,6 +137,7 @@ namespace Schemas
             Lich3,
             Lich4,
             Lich5,
+            Chest_Generic, // Unified library description for all chests.
         }
 
         // !!WARNING!! DO NOT REORDER

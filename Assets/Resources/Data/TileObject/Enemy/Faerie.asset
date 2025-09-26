@@ -27,10 +27,11 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
+  OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 4
+  XPReward: 0
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   NumNeighborDropReward:
@@ -54,7 +55,8 @@ MonoBehaviour:
   FleeSfx: Gnome
   RevealFlee: 0
   CanEnrage: 0
-  CanBodyGuardSwap: 0
+  BodyguardGrunt: 
+  GuardingGrunt: 
   SpawnsFleeingChild: 1
   FleeingChild: {fileID: 11400000, guid: 12e8f344d6349624babf8053940d9804, type: 2}
   RevealAllRewards: []
@@ -65,7 +67,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
-  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList:

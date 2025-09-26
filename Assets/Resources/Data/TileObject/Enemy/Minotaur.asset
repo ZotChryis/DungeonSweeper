@@ -27,6 +27,7 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
+  OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
   Power: 6
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -55,7 +56,7 @@ MonoBehaviour:
   RevealFlee: 0
   CanEnrage: 1
   BodyguardGrunt: AngryGrunt
-  CanBodyGuardSwap: 0
+  GuardingGrunt: 
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -66,7 +67,29 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
-  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 0}
   Data:
-    _serializedList: []
+    _serializedList:
+    - Key: 5
+      Value:
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
+        Sprite:
+          UseOverride: 1
+          Value: {fileID: 21300000, guid: 6c3b8782eb5cc5440a08b2cf0ad4a3e7, type: 3}
+        EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 0
+          Value: 
+        Vfx:
+          UseOverride: 0
+          Value: {fileID: 0}
