@@ -412,9 +412,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         bool canLevel = CurrentXP >= xpRequiredToLevel;
         LevelUpRoot.SetActive(canLevel);
 
-        if (canLevel)
+        if (canLevel && CurrentHealth == 0)
         {
-            ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.XP);
+            ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.XP, TutorialManager.Instance.LevelupFocusTarget, true);
         }
     }
 

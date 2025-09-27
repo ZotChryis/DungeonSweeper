@@ -13,20 +13,29 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         VisionOrb,      // Shown after dismissing Welcome
         EnemyPower,     // Shown after using the Vision Orb
         NeighborPower,  // Shown after leveling up first time in a run
-        XP,             // Shown after getting enough XP to level
+        XP,             // Shown after getting enough XP to level and 0 health
         Library,        // Shown after leveling up second time in a run
         Item,           // Shown after getting first item from chest
         EndGame,        // Shown on Level Index == 4
         Shop,           // Shown on first shop
         SecondLevel,    // Shown on second level
     }
-    
-    
-    [SerializeField] [SerializedDictionary("Tutorial ID", "Tutorial")]
+
+    public GameObject FocusObject;
+    [Tooltip("Force the player to look at an object but they can't click it.")]
+    public GameObject FocusDontForceClick;
+
+    public RectTransform LevelupFocusTarget;
+    public RectTransform LibraryFocusTarget;
+    public RectTransform InventoryFocusTarget;
+
+    [SerializeField]
+    [SerializedDictionary("Tutorial ID", "Tutorial")]
     private SerializedDictionary<TutorialId, Tutorial> Tutorials = new();
 
     private bool CanShowTutorials = false;
-    
+    private Tutorial LastTutorial;
+
     protected override void Awake()
     {
         base.Awake();
@@ -35,7 +44,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         ServiceLocator.Instance.Grid.OnGridGenerated += OnGridGenerated;
         ServiceLocator.Instance.Grid.OnTileStateChanged += OnAnyTileStateChanged;
         ServiceLocator.Instance.Player.OnLevelChanged += OnPlayerLevelChanged;
-        
+
         foreach (var (tutorialId, tutorial) in Tutorials)
         {
             tutorial.OnCompleted += OnTutorialCompleted;
@@ -50,21 +59,22 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
                 TryShowTutorial(TutorialId.NeighborPower);
                 break;
             case 2:
-                TryShowTutorial(TutorialId.Library);
+                TryShowTutorial(TutorialId.Library, LibraryFocusTarget, true);
                 break;
-            case 3:
-                var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon0);
-                TryShowTutorial(TutorialId.Dragon, (RectTransform)dragon);
-                break;
+                //case 3:
+                //var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon0);
+                //TryShowTutorial(TutorialId.Dragon, (RectTransform)dragon);
+                //break;
         }
     }
 
     private void OnAnyTileStateChanged(Tile tile)
     {
-        if (!tile.TEMP_IsEmpty() && 
+        if (!tile.TEMP_IsEmpty() &&
             tile.GetHousedObject().TileId == TileSchema.Id.VisionOrb &&
             tile.State == Tile.TileState.Collected
-        ) {
+        )
+        {
             TryShowTutorial(TutorialId.EnemyPower);
         }
     }
@@ -72,12 +82,13 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     private void OnGridGenerated()
     {
         CanShowTutorials = true;
-        TryShowTutorial(TutorialId.Welcome);
+        var dragon0 = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon0);
+        TryShowTutorial(TutorialId.Welcome, (RectTransform)dragon0, false, true);
 
         if (ServiceLocator.Instance.LevelManager.CurrentLevel == 1)
         {
             var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon1);
-            TryShowTutorial(TutorialId.SecondLevel, (RectTransform)dragon);
+            TryShowTutorial(TutorialId.SecondLevel, (RectTransform)dragon, false, true);
         }
         else if (ServiceLocator.Instance.LevelManager.CurrentLevel == 4)
         {
@@ -90,38 +101,58 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         if (tutorialId == TutorialId.Welcome)
         {
             var visionOrb = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.VisionOrb);
-            TryShowTutorial(TutorialId.VisionOrb, (RectTransform)visionOrb);
+            TryShowTutorial(TutorialId.VisionOrb, (RectTransform)visionOrb, true);
             return;
         }
     }
 
-    public void TryShowTutorial(TutorialId tutorialId, RectTransform focus = null)
+    public void TryShowInventoryTutorial()
+    {
+        TryShowTutorial(TutorialManager.TutorialId.Item, InventoryFocusTarget, true);
+    }
+
+    public void TryShowTutorial(TutorialId tutorialId, RectTransform focus = null, bool forcePlayerToClickFocus = false, bool waitOneFrame = false)
     {
         if (!CanShowTutorials)
         {
             return;
         }
-        
+
         var tutorialKey = "Tutorial" + tutorialId;
-        
+
         // Already seen this tutorial?
         if (FBPP.GetBool(tutorialKey, false))
         {
             return;
         }
-        
+
         // No tutorial defined?
         if (!Tutorials.TryGetValue(tutorialId, out Tutorial tutorial))
         {
             return;
         }
-        
+
+        TryHideLastTutorial();
         tutorial.gameObject.SetActive(true);
+        LastTutorial = tutorial;
         if (focus != null)
         {
-            tutorial.SetFocus(focus);
+            tutorial.SetFocus(focus, forcePlayerToClickFocus, waitOneFrame);
         }
         FBPP.SetBool(tutorialKey, true);
+    }
+
+    public void TryHideLastTutorial()
+    {
+        FocusObject.SetActive(false);
+        FocusDontForceClick.SetActive(false);
+
+        if (LastTutorial)
+        {
+            Tutorial foundTutorial = LastTutorial;
+            LastTutorial = null;
+            foundTutorial.CompleteTutorial();
+        }
     }
 
     public void ClearTutorials()

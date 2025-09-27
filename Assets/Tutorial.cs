@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,21 +8,53 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private TutorialManager.TutorialId Id;
     [SerializeField] private Button Button;
     [SerializeField] private RectTransform Content;
-    
+    private Button buttonInContent;
+
     public Action<TutorialManager.TutorialId> OnCompleted;
 
     private void Awake()
     {
         Button.onClick.AddListener(OnButtonClicked);
+        buttonInContent = Content.GetComponentInChildren<Button>();
+        if (buttonInContent)
+        {
+            buttonInContent.onClick.AddListener(OnButtonClicked);
+        }
     }
 
     private void OnButtonClicked()
     {
+        CompleteTutorial();
+    }
+
+    public void CompleteTutorial()
+    {
+        TutorialManager.Instance.FocusObject.SetActive(false);
+        TutorialManager.Instance.FocusDontForceClick.SetActive(false);
         OnCompleted?.Invoke(Id);
         gameObject.SetActive(false);
     }
 
-    public void SetFocus(RectTransform focus)
+    private IEnumerator SetFocusAfterFrame(RectTransform focus, bool forcePlayerToClickFocus)
+    {
+        // Some tutorials are triggered after grid generation. Wait 1 frame so things are moved.
+        yield return 0;
+        SetFocusInternal(focus, forcePlayerToClickFocus);
+    }
+
+    public void SetFocus(RectTransform focus, bool forcePlayerToClickFocus, bool waitOneFrame)
+    {
+        if (waitOneFrame)
+        {
+            StartCoroutine(SetFocusAfterFrame(focus, forcePlayerToClickFocus));
+        }
+        else
+        {
+            SetFocusInternal(focus, forcePlayerToClickFocus);
+        }
+    }
+
+    private void SetFocusInternal(RectTransform focus, bool forcePlayerToClickFocus)
     {
         var canvas = GetComponentInParent<Canvas>();
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, focus.position);
@@ -34,5 +67,25 @@ public class Tutorial : MonoBehaviour
         );
 
         Content.localPosition = localPoint + new Vector2(0, Content.rect.height / 2 + focus.rect.height / 2 + 5);
+        Debug.Log("Translating recttransform global position: " + focus.position + " into " + localPoint + " screen point: " + screenPoint);
+
+        if (forcePlayerToClickFocus)
+        {
+            TutorialManager.Instance.FocusObject.GetComponent<FocusBox>().SetPositionAndShow(localPoint, focus, Screen.width / 2f > screenPoint.x);
+
+            if (buttonInContent)
+            {
+                buttonInContent.enabled = false;
+            }
+        }
+        else
+        {
+            TutorialManager.Instance.FocusDontForceClick.SetActive(true);
+            TutorialManager.Instance.FocusDontForceClick.transform.localPosition = localPoint;
+        }
+
+        // Disable the default close tutorial bg buttons.
+        // Focus will control the bg and the player must click what is focused on.
+        Button.gameObject.SetActive(false);
     }
 }

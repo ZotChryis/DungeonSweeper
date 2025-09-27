@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 3fa92850a3f31cf48a9ac2aba9e9e344
+guid: e07171735eb774443b7f992cd24b497e
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -2521409195606705084
-    second: Tutorial_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,17 +119,43 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tutorial_0
+      name: ScrimshawKit_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 321
-        height: 324
+        x: 15
+        y: 65
+        width: 391
+        height: 881
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +164,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44c757212b7220dd0800000000000000
-      internalID: -2521409195606705084
+      spriteID: ee7ccddb530c0eb90800000000000000
+      internalID: -7214555265996371986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrimshawKit_1
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 55
+        width: 776
+        height: 950
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc960b6c50598d10800000000000000
+      internalID: 2128320656772078847
       vertices: []
       indices: 
       edges: []
@@ -161,7 +206,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tutorial_0: -2521409195606705084
+      ScrimshawKit_0: -7214555265996371986
+      ScrimshawKit_1: 2128320656772078847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

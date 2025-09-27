@@ -597,6 +597,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 //  the damage adjustments internally as well
                 if (player.Damage(HousedObject, basePower))
                 {
+                    State = TileState.RevealThroughCombat;
+                    TileButton.targetGraphic.color = Color.white;
                     // HACK: We dont currently support this weird edge case, so do it here
                     if (HousedObject.TileId == TileSchema.Id.Mimic)
                     {
@@ -834,7 +836,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 if (itemInstance != null)
                 {
                     ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
-                    ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
+                    if (itemInstance.Schema.IsConsumbale)
+                    {
+                        ServiceLocator.Instance.TutorialManager.TryShowInventoryTutorial();
+                    }
                 }
             }
 
@@ -844,7 +849,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 if (itemInstance != null)
                 {
                     ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
-                    ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
+                    if (itemInstance.Schema.IsConsumbale)
+                    {
+                        ServiceLocator.Instance.TutorialManager.TryShowInventoryTutorial();
+                    }
                 }
             }
 
@@ -873,9 +881,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     if (itemInstance != null)
                     {
                         ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
-                    }
 
-                    ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Item);
+                        if (itemInstance.Schema.IsConsumbale)
+                        {
+                            ServiceLocator.Instance.TutorialManager.TryShowInventoryTutorial();
+                        }
+                    }
                 }
             }
 
@@ -1059,6 +1070,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 break;
 
             case TileState.Conquered:
+                TileButton.targetGraphic.color = RewardColor;
                 Power.enabled = true;
                 NeighborPower.enabled = false;
                 HousedObjectSprite.enabled = true;
@@ -1072,6 +1084,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 break;
 
             case TileState.Collected:
+                TileButton.targetGraphic.color = Color.white;
                 Power.enabled = false;
                 NeighborPower.enabled = true;
                 HousedObjectSprite.enabled = false;
@@ -1085,6 +1098,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 break;
 
             case TileState.Empty:
+                TileButton.targetGraphic.color = Color.white;
                 Power.enabled = false;
                 NeighborPower.enabled = true;
                 HousedObjectSprite.enabled = false;
