@@ -100,6 +100,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     }
 
     public bool IsHardcore = true;
+    public bool WasLastLevelUpInefficient = false;
     
     public Action<int> OnLevelChanged;
     public Action<TileSchema> OnConquer;
@@ -436,6 +437,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         Level++;
 
+        WasLastLevelUpInefficient = CurrentHealth >= 0;
+
         MaxHealth = IsGod
             ? 99999
             : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
@@ -502,6 +505,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentXP = 0;
         Shield = 0;
         HasRegeneratedThisRound = false;
+        WasLastLevelUpInefficient = false;
         
         MaxHealth = IsGod
             ? 99999

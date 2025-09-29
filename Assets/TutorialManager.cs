@@ -11,7 +11,6 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         Welcome,        // Shown when first playing a map
         Dragon,         // Shown after leveling up third time in a run
         VisionOrb,      // Shown after dismissing Welcome
-        EnemyPower,     // Shown after using the Vision Orb. Player is instructed to click tutorial slime.
         NeighborPower,  // Shown after leveling up first time in a run
         XP,             // Shown after getting enough XP to level and 0 health
         Library,        // Shown after leveling up second time in a run
@@ -20,6 +19,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         Shop,           // Shown on first shop
         SecondLevel,    // Shown on second level
         SafeToCollect,  // Shown after killing tutorial slime
+        WarnLevelUpNonEmpty, // Shown on level up but the player had some remaining health
     }
 
     public GameObject FocusObject;
@@ -54,6 +54,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
 
     private void OnPlayerLevelChanged(int newLevel)
     {
+        if(ServiceLocator.Instance.Player.WasLastLevelUpInefficient)
+        {
+            TryShowTutorial(TutorialId.WarnLevelUpNonEmpty);
+        }
         switch (newLevel)
         {
             case 1:
@@ -123,11 +127,19 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         TryShowTutorial(TutorialManager.TutorialId.Item, InventoryFocusTarget, true);
     }
 
-    public void TryShowTutorial(TutorialId tutorialId, RectTransform focus = null, bool forcePlayerToClickFocus = false, bool waitOneFrame = false)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="tutorialId">The tutorialId</param>
+    /// <param name="focus">The RectTransform to focus on.</param>
+    /// <param name="forcePlayerToClickFocus">If true, force the player to click the <paramref name="focus"/></param>
+    /// <param name="waitOneFrame">Sometimes a transition, animation, or grid generation needs to happen first. Set to true to account for that.</param>
+    /// <returns>True if successfully showed a tutorial</returns>
+    public bool TryShowTutorial(TutorialId tutorialId, RectTransform focus = null, bool forcePlayerToClickFocus = false, bool waitOneFrame = false)
     {
         if (!CanShowTutorials)
         {
-            return;
+            return false;
         }
 
         var tutorialKey = tutorialId.GetTutorialKey();
@@ -135,13 +147,13 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         // Already seen this tutorial?
         if (FBPP.GetBool(tutorialKey, false))
         {
-            return;
+            return false;
         }
 
         // No tutorial defined?
         if (!Tutorials.TryGetValue(tutorialId, out Tutorial tutorial))
         {
-            return;
+            return false;
         }
 
         TryHideLastTutorial();
@@ -152,6 +164,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             tutorial.SetFocus(focus, forcePlayerToClickFocus, waitOneFrame);
         }
         FBPP.SetBool(tutorialKey, true);
+        return true;
     }
 
     /// <summary>
