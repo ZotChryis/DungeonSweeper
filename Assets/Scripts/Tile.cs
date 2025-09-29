@@ -149,11 +149,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private const string limegreen = "32cd32";
     private const string green = "008000";
 
-    private static string[] colors = new string[] { green, limegreen, laserlemon, greenyellow, lime, sienna, minesweeperRed, slimePurple, hotpink, khaki, carmineRed, tan, darkseagreen, lightsteelblue, aquamarine, pink, plum, lightcoral, coral, goldenrod, darkorange, orangered, olive, darkolivegreen, cornflower, mediumspringgreen, teal, darkturquoise, deepskyblue, slateblue, mediumblue, midnightblue, darkblue, purple3, violet, fuchsia, darkmagenta, maroon3, crimson, darkred };
-
-    private const string black_300 = "161616";
-    private const string gray_mine = "808080";
-    public Color neighborColorUnknown;
+    public static string[] colors = new string[] { green, limegreen, laserlemon, greenyellow, lime, sienna, minesweeperRed, slimePurple, hotpink, khaki, carmineRed, tan, darkseagreen, lightsteelblue, aquamarine, pink, plum, lightcoral, coral, goldenrod, darkorange, orangered, olive, darkolivegreen, cornflower, mediumspringgreen, teal, darkturquoise, deepskyblue, slateblue, mediumblue, midnightblue, darkblue, purple3, violet, fuchsia, darkmagenta, maroon3, crimson, darkred };
+    public static Color neighborColorUnknown = new Color(138, 0, 196);
+    public const string black_300 = "161616";
+    public const string gray_mine = "808080";
 
     private void Start()
     {
@@ -1145,7 +1144,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         NeighborPower.SetText(fullText);
     }
 
-    private string GetHexColorBasedOnPower(int totalPower, bool unknown)
+    public static string GetHexColorBasedOnPower(int totalPower, bool unknown)
     {
         if(unknown)
         {

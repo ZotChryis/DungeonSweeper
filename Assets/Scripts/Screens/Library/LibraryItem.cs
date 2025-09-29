@@ -1,7 +1,9 @@
-using System.Collections.Generic;
 using Schemas;
 using Screens.Library;
+using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,7 +35,18 @@ public class LibraryItem : MonoBehaviour
     public void SetData(TileSchema tileObject, int amount)
     {
         Icon.sprite = tileObject.Sprite;
-        Power.SetText(tileObject.Power.ToString());
+
+        string hexColor;
+        if (tileObject.OverridePowerColor != UnityEngine.Color.white)
+        {
+            hexColor = tileObject.OverridePowerColor.ToHexString();
+        }
+        else
+        {
+            hexColor = Tile.GetHexColorBasedOnPower(tileObject.Power, tileObject.ObscureRadius > 0);
+        }
+        Power.SetText($"<color=#{hexColor}>{tileObject.Power.ToString()}</color>");
+
         Amount.SetText("x" + amount.ToString());
         Name.SetText(tileObject.UserFacingName);
         Description.SetText(tileObject.UserFacingDescription);
