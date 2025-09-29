@@ -80,8 +80,7 @@ public class Tutorial : MonoBehaviour
         }
         else
         {
-            TutorialManager.Instance.FocusDontForceClick.SetActive(true);
-            TutorialManager.Instance.FocusDontForceClick.transform.localPosition = localPoint;
+            TutorialManager.Instance.FocusDontForceClick.GetComponent<FocusBox>().SetPositionAndShow(localPoint, focus, false);
         }
 
         // Disable the default close tutorial bg buttons.

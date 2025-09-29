@@ -25,8 +25,11 @@ public class FocusBox : MonoBehaviour
         transform.localPosition = localPosition;
 
         Debug.Log("Setting focus with screen width: " + Screen.width + " and pos: " + localPosition);
-        RightArrow.SetActive(useRightArrow);
-        LeftArrow.SetActive(!useRightArrow);
+        if (RightArrow != null && LeftArrow != null)
+        {
+            RightArrow.SetActive(useRightArrow);
+            LeftArrow.SetActive(!useRightArrow);
+        }
 
         myRectTransform.sizeDelta = targetRectTransform.sizeDelta;
         TopBg.sizeDelta = new Vector2(targetRectTransform.sizeDelta.x, 5000);

@@ -437,7 +437,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         Level++;
 
-        WasLastLevelUpInefficient = CurrentHealth >= 0;
+        WasLastLevelUpInefficient = CurrentHealth > 0;
 
         MaxHealth = IsGod
             ? 99999

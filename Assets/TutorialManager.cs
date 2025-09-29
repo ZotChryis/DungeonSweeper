@@ -11,6 +11,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         Welcome,        // Shown when first playing a map
         Dragon,         // Shown after leveling up third time in a run
         VisionOrb,      // Shown after dismissing Welcome
+        EnemyPower,     // Shown after using the Vision Orb. Player is instructed to click tutorial slime.
         NeighborPower,  // Shown after leveling up first time in a run
         XP,             // Shown after getting enough XP to level and 0 health
         Library,        // Shown after leveling up second time in a run
@@ -20,6 +21,8 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         SecondLevel,    // Shown on second level
         SafeToCollect,  // Shown after killing tutorial slime
         WarnLevelUpNonEmpty, // Shown on level up but the player had some remaining health
+        WarnBrickBehavior, // Shown on attacking a brick.
+        WarnGnomeBehavior, // Shown on clicking a gnome.
     }
 
     public GameObject FocusObject;
@@ -54,22 +57,17 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
 
     private void OnPlayerLevelChanged(int newLevel)
     {
-        if(ServiceLocator.Instance.Player.WasLastLevelUpInefficient)
+        if (ServiceLocator.Instance.Player.WasLastLevelUpInefficient && TryShowTutorial(TutorialId.WarnLevelUpNonEmpty))
         {
-            TryShowTutorial(TutorialId.WarnLevelUpNonEmpty);
+            return;
         }
-        switch (newLevel)
+        if (TryShowTutorial(TutorialId.NeighborPower))
         {
-            case 1:
-                TryShowTutorial(TutorialId.NeighborPower);
-                break;
-            case 2:
-                TryShowTutorial(TutorialId.Library, LibraryFocusTarget, true);
-                break;
-                //case 3:
-                //var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon0);
-                //TryShowTutorial(TutorialId.Dragon, (RectTransform)dragon);
-                //break;
+            return;
+        }
+        if (TryShowTutorial(TutorialId.Library, LibraryFocusTarget, true))
+        {
+            return;
         }
     }
 
@@ -85,6 +83,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         )
         {
             var tutorialSlime = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.TutorialSlime);
+            if(tutorialSlime == null)
+            {
+                tutorialSlime = tile.transform;
+            }
             TryShowTutorial(TutorialId.EnemyPower, (RectTransform)tutorialSlime, true);
         }
         if (!tile.TEMP_IsEmpty() &&
@@ -92,6 +94,18 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             tile.State == Tile.TileState.Conquered)
         {
             TryShowTutorial(TutorialId.SafeToCollect, (RectTransform)tile.transform, true);
+        }
+        if(!tile.TEMP_IsEmpty() &&
+            tile.GetHousedObject().TileId == TileSchema.Id.Gnome &&
+            tile.State == Tile.TileState.Conquered)
+        {
+            TryShowTutorial(TutorialId.WarnGnomeBehavior, LibraryFocusTarget);
+        }
+        if (!tile.TEMP_IsEmpty() &&
+            tile.GetHousedObject().TileId == TileSchema.Id.Brick &&
+            tile.State == Tile.TileState.Conquered)
+        {
+            TryShowTutorial(TutorialId.WarnBrickBehavior, LibraryFocusTarget);
         }
     }
 
@@ -173,7 +187,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     /// <returns>true if we should use the tutorial level that has a slime at the starting orb.</returns>
     public bool ShouldUseTutorialLevel()
     {
-        var shouldUseTutorial = !FBPP.GetBool(TutorialId.Welcome.GetTutorialKey(), false);
+        var shouldUseTutorial = !FBPP.GetBool(TutorialId.EnemyPower.GetTutorialKey(), false);
         Debug.Log("Should use tutorial level?: " + shouldUseTutorial);
         return shouldUseTutorial;
     }
