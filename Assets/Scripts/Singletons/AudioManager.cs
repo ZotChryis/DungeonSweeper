@@ -52,7 +52,6 @@ namespace Singletons
                 Debug.LogWarning("Tried to play sfx that didn't exist: " + key);
                 return;
             }
-            Debug.Log("Playing sfx with key: " + key);
             
             // TODO: Make a batch/pool system where we can support multiple effects at once
             var source = FindBestSfxSource();

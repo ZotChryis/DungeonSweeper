@@ -9,6 +9,9 @@ public class LevelManager : MonoBehaviour
     [Tooltip("Levels in order")]
     public SpawnSettings[] Levels;
 
+    [Tooltip("Special version of level 0.")]
+    public SpawnSettings TutorialLevel;
+
     [HideInInspector]
     public int StartingLevel = 0;
     
@@ -53,7 +56,16 @@ public class LevelManager : MonoBehaviour
 
     public void SetToStartingLevel()
     {
-        SetLevel(StartingLevel);
+        Debug.Log("Starting level: " + StartingLevel);
+        if (StartingLevel == 0 && TutorialManager.Instance.ShouldUseTutorialLevel())
+        {
+            CurrentLevel = 0;
+            ServiceLocator.Instance.Grid.SpawnSettings = TutorialLevel;
+        }
+        else
+        {
+            SetLevel(StartingLevel);
+        }
     }
 
     /// <summary>

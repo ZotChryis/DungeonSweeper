@@ -7,10 +7,24 @@ public class ColumnRowSpawnRequirement : SpawnRequirement
     public List<int> validXMargins;
     public List<int> validYMargins;
 
+    /// <summary>
+    /// Potential spaces that should be adjacent.
+    /// </summary>
+    public CompassDirections[] EmptyAdjacentSpaces;
+
     // Column row doesn't support consecutive spawns.
     public override List<(int x, int y)> GetRandomConsecutiveNeighborLocations(RandomBoard board, int inputX, int inputY)
     {
-        return new List<(int x, int y)>(0);
+        CoordinateList.Clear();
+        foreach (var adjacentSpace in EmptyAdjacentSpaces)
+        {
+            (int checkX, int checkY) = adjacentSpace.GetCompassTilePos(inputX, inputY);
+            if (board.PeekUnoccupiedSpace(checkX, checkY))
+            {
+                CoordinateList.Add((checkX, checkY));
+            }
+        }
+        return CoordinateList;
     }
 
     public override (int x, int y) GetRandomCoordinate(RandomBoard board)
