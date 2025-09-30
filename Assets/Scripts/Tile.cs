@@ -501,6 +501,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     /// </summary>
     public void FastRevealWithoutLogic()
     {
+        TileButton.targetGraphic.GetComponent<Image>().sprite = TileButton.spriteState.pressedSprite;
         if (State >= TileState.Revealed)
         {
             return;
@@ -621,6 +622,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         HousedObjectSprite.sprite = HousedObject.GetOverrides(TileState.Conquered).Sprite.Value;
                     }
+                    // highlight yourself.
+                    TileButton.targetGraphic.GetComponent<Image>().sprite = TileButton.spriteState.highlightedSprite;
                     return;
                 }
             }

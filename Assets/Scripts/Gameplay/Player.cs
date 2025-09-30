@@ -16,22 +16,22 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour, IPointerClickHandler
 {
     // TODO: Data-fy this a bit better? ughhh this is what we get for vibe coding lol
-    [SerializeField] 
+    [SerializeField]
     private GameObject DefaultVisionVfx;
-    
+
     [HideInInspector]
     public List<TileSchema.Id> AutoRevealedMonsters = new();
-    
+
     [HideInInspector]
     public List<TileSchema.Tag> AutoRevealedMonstersByTag = new();
 
     [Tooltip("Player ability, bonus spawn count. Key is spawned creation id.")]
     public Dictionary<TileSchema.Id, int> BonusSpawn = new();
-    
+
     public Dictionary<(TileSchema.Id, TileSchema.Id), int> TileSwaps = new();
     public Dictionary<(TileSchema.Tag, TileSchema.Id), int> TileSwapsByTag = new();
 
-    [SerializeField] 
+    [SerializeField]
     private Image PlayerIcon;
 
     [SerializeField]
@@ -39,8 +39,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private GameObject LowHpVfx;
-    
-    [SerializeField] 
+
+    [SerializeField]
     private GameObject LevelUpRoot;
 
     [SerializeField]
@@ -62,22 +62,22 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int BonusMaxHp = 0;
     private int BonusStartXp = 0;
     private int SecondWindRegeneration = 0;
-    
+
     //TODO: Merge these concepts (id and Tag)
     // By id, "global" is an overall id
     public Dictionary<TileSchema.Id, int> ModDamageTaken = new();
     public Dictionary<TileSchema.Id, int> ModXp = new();
-    
+
     public Dictionary<TileSchema.Tag, int> ModDamageTakenByTag = new();
     public Dictionary<TileSchema.Tag, int> ModXpByTag = new();
-    
+
     // TODO: Support DecayingEffects on ALL types. Currently only support ModDamage
     private List<Effect> DecayingEffects = new();
-    
+
     public Class.Id Class = Gameplay.Class.Id.Adventurer;
     public ClassSchema ClassSchema;
     public Inventory Inventory;
-    
+
     private bool IsGod = false;
     private bool HasRegeneratedThisRound = false;
 
@@ -86,11 +86,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int CurrentXP;
 
     public int ModXpCurve = 0;
-    
+
     public Dictionary<TileSchema.Id, int> TileObjectsThatShouldUpgrade = new();
-    
+
     private Dictionary<TileSchema.Id, int> Kills = new Dictionary<TileSchema.Id, int>();
-    
+
     public int ShopXp
     {
         get { return m_shopXp; }
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public bool IsHardcore = true;
     [ReadOnly]
     public bool WasLastLevelUpInefficient = false;
-    
+
     public Action<int> OnLevelChanged;
     public Action<TileSchema> OnConquer;
     public Action<TileSchema> OnHeal;       // does not fire when healed from level ups
@@ -118,22 +118,22 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private int m_shopXp;
     public OnPlayerPropertyChanged OnShopXpChanged;
     public delegate void OnPlayerPropertyChanged();
-    
+
     // TODO: Spawn these in dynamically, im just lazy atm
     private PlayerUIItem[] Hearts;
     private PlayerUIItem[] XPGems;
-    
+
     private List<ItemInstance> ItemsAddedThisDungeon = new();
 
     private void Awake()
     {
         ServiceLocator.Instance.Register(this);
-        
+
         Hearts = HeartContainer.GetComponentsInChildren<PlayerUIItem>();
         XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
-        
+
         Inventory = new Inventory(true);
-        
+
         // TODO: Make this system better
         ModDamageTaken.Add(TileSchema.Id.Global, 0);
         ModXp.Add(TileSchema.Id.Global, 0);
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         ItemsAddedThisDungeon.Add(item);
     }
-    
+
     private void OnGridGenerated()
     {
         // Do the reveal abilities
@@ -170,10 +170,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             ServiceLocator.Instance.Grid.RevealRandomOfTag(monsterTag, DefaultVisionVfx);
         }
-        
+
         // Clear any state for each dungeon run
         Kills.Clear();
-        
+
 
         // TODO: Should decaying effects be cleared here??
     }
@@ -182,7 +182,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         return Kills.GetValueOrDefault(tileId, 0);
     }
-    
+
     public void TEMP_SetClass(Class.Id classId, bool giveItem = true)
     {
         ClassSchema schema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == classId);
@@ -190,7 +190,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
-     
+
         Class = classId;
         ClassSchema = schema;
         PlayerIcon.sprite = schema.Sprite;
@@ -199,10 +199,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             Inventory.AddItem(schema.StartingItem);
         }
-        
+
         ResetPlayer();
     }
-    
+
     public void SetDeathIcon(bool isDead)
     {
         DeathIcon.SetActive(isDead);
@@ -227,7 +227,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             {
                 amount += value;
             }
-            
+
             foreach (var sourceTag in source.Tags)
             {
                 if (ModDamageTakenByTag.TryGetValue(sourceTag, out int tagValue))
@@ -253,10 +253,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             amount = 0;
         }
-        
+
         // Now deal with item bonuses
         amount = GetAdjustedDamage(source, amount);
-        
+
         // Handle shield first
         if (amount >= Shield)
         {
@@ -268,29 +268,36 @@ public class Player : MonoBehaviour, IPointerClickHandler
             Shield -= amount;
             amount = 0;
         }
-        
+
         CurrentHealth = Math.Max(-1, CurrentHealth - amount);
-        
+
         // Special Case: Regeneration power (currently unused)
         if (CurrentHealth < 0 && !HasRegeneratedThisRound && SecondWindRegeneration > 0)
         {
             HasRegeneratedThisRound = true;
             CurrentHealth = SecondWindRegeneration;
         }
-        
+
         TEMP_UpdateVisuals();
-        
+
         // Handle death
         if (CurrentHealth <= -1)
         {
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
             StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
-            ServiceLocator.Instance.AudioManager.PlaySfx("Death");
+            if (amount >= 90 && amount <= 110)
+            {
+                ServiceLocator.Instance.AudioManager.PlaySfx("Explosion");
+            }
+            else
+            {
+                ServiceLocator.Instance.AudioManager.PlaySfx("Death");
+            }
             SetDeathIcon(true);
             return true;
         }
-        
+
         // TODO: Find a better home for this call... should not be occurring in health delta calcs
         if (source != null)
         {
@@ -300,7 +307,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             AdvanceEffects(source, DecayTrigger.Conquer);
             OnConquer?.Invoke(source);
         }
-        
+
         return false;
     }
 
@@ -315,11 +322,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
-        
+
         CurrentHealth = Math.Min(CurrentHealth + amount, MaxHealth);
-        
+
         ServiceLocator.Instance.AudioManager.PlaySfx("Heal");
-        
+
         TEMP_UpdateVisuals();
 
         OnHeal?.Invoke(source);
@@ -333,7 +340,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
-        
+
         CurrentXP += amount;
         TEMP_UpdateVisuals();
 
@@ -341,7 +348,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             ServiceLocator.Instance.AudioManager.PlaySfx("SillyTrumpet");
         }
-        else {
+        else
+        {
             ServiceLocator.Instance.AudioManager.PlaySfx("XP");
         }
 
@@ -362,7 +370,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             {
                 amount += value;
             }
-        
+
             foreach (var sourceTag in source.Tags)
             {
                 if (ModXpByTag.TryGetValue(sourceTag, out int tagValue))
@@ -396,7 +404,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
                 delay += duration;
             }
         }
-        
+
         var currentLevelHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
         var nextLevelHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level + 1);
         bool showHalfHeart = nextLevelHealth > currentLevelHealth;
@@ -404,7 +412,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             Hearts[MaxHealth + Shield].gameObject.SetActive(true);
             Hearts[MaxHealth + Shield].SetHalf(true);
-            
+
             if (animate)
             {
                 Hearts[MaxHealth + Shield].Animate(duration, delay);
@@ -449,9 +457,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (CurrentXP >= xpRequiredToLevel)
         {
             CurrentXP -= xpRequiredToLevel;
-            
+
             LevelUp();
-            
+
             // TODO: refactor LevelUp vs ResetLevel so this can live in LevelUp()
             OnLevelChanged?.Invoke(Level);
         }
@@ -469,9 +477,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
         CurrentHealth = MaxHealth;
 
         TEMP_UpdateVisuals(true);
-        
+
         ServiceLocator.Instance.AudioManager.PlaySfx("LevelUp");
-        
+
         AdvanceEffects(null, DecayTrigger.PlayerLevel);
     }
 
@@ -482,7 +490,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         MaxHealth = IsGod
             ? 99999
             : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
-        
+
         CurrentHealth = MaxHealth;
         TEMP_UpdateVisuals();
     }
@@ -501,10 +509,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
                     break;
             }
         }
-        
+
         DecayingEffects.Clear();
     }
-    
+
     public void RevokeItemsForCurrentDungeon()
     {
         foreach (var itemInstance in ItemsAddedThisDungeon)
@@ -512,11 +520,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
             Inventory.RemoveItem(itemInstance);
         }
         ItemsAddedThisDungeon.Clear();
-        
+
         // Remaining items themselves might want to do something special on retry
         Inventory.RevertForRetry();
     }
-    
+
     public void ResetPlayer()
     {
         SetDeathIcon(false);
@@ -524,49 +532,49 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // Remove any decaying effects that may be lingering
         RevertAllDecayingEffects();
         ItemsAddedThisDungeon.Clear();
-        
+
         Level = 0;
         CurrentXP = 0;
         Shield = 0;
         HasRegeneratedThisRound = false;
         WasLastLevelUpInefficient = false;
-        
+
         MaxHealth = IsGod
             ? 99999
             : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
-        
+
         CurrentHealth = MaxHealth;
-        
+
         // Apply any bonuses from items
         TEMP_UpdateXP(null, BonusStartXp);
-        
+
         TEMP_UpdateVisuals();
-        
+
         // All consumables are re-filled
         Inventory.ReplenishItems();
     }
-    
+
     #region PlayerPowers
     public void AddMonsterToAutoRevealedList(TileSchema.Id monsterId)
     {
         AutoRevealedMonsters.Add(monsterId);
     }
-    
+
     public void RemoveMonsterFromAutoRevealedList(TileSchema.Id monsterId)
     {
         AutoRevealedMonsters.Remove(monsterId);
     }
-    
+
     public void AddMonsterToAutoRevealedByTagList(TileSchema.Tag tag)
     {
         AutoRevealedMonstersByTag.Add(tag);
     }
-    
+
     public void RemoveMonsterToAutoRevealedByTagList(TileSchema.Tag tag)
     {
         AutoRevealedMonstersByTag.Remove(tag);
     }
-    
+
     public void AddSpawnCount(TileSchema.Id id, int amount)
     {
         BonusSpawn.TryGetValue(id, out int bonusSpawn);
@@ -580,19 +588,19 @@ public class Player : MonoBehaviour, IPointerClickHandler
         swapCount += amount;
         TileSwapsByTag[(fromTag, toTile)] = swapCount;
     }
-    
+
     public void AddTileSwapEntry(TileSchema.Id fromTile, TileSchema.Id toTile, int amount)
     {
         TileSwaps.TryGetValue((fromTile, toTile), out int swapCount);
         swapCount += amount;
         TileSwaps[(fromTile, toTile)] = swapCount;
     }
-    
+
     public void AddBonusStartHp(int amount)
     {
         BonusMaxHp += amount;
     }
-    
+
     public void AddBonusStartXp(int amount)
     {
         BonusStartXp += amount;
@@ -608,7 +616,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         Shield += amount;
         TEMP_UpdateVisuals();
     }
-    
+
     public void AddOrIncrementTileLevel(TileSchema.Id ObjectId)
     {
         int level = 0;
@@ -624,11 +632,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
             TileObjectsThatShouldUpgrade[ObjectId] = level - 1;
         }
     }
-    
+
     public void AddModDamageTaken(Effect effect)
     {
         var effectAmount = effect.Amount;
-        
+
         var tileId = effect.Id;
         if (tileId != TileSchema.Id.None && !ModDamageTaken.TryAdd(tileId, effectAmount))
         {
@@ -651,11 +659,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
             DecayingEffects.Add(effect);
         }
     }
-    
+
     public void UndoModDamageTaken(Effect effect)
     {
         var effectAmount = effect.Amount;
-        
+
         var tileId = effect.Id;
         if (tileId != TileSchema.Id.None && ModDamageTaken.ContainsKey(tileId))
         {
@@ -673,11 +681,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
         }
     }
-    
+
     public void AddModXp(Effect effect)
     {
         var effectAmount = effect.Amount;
-        
+
         var tileId = effect.Id;
         if (tileId != TileSchema.Id.None && !ModXp.TryAdd(tileId, effectAmount))
         {
@@ -704,7 +712,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     public void UndoModXp(Effect effect)
     {
         var effectAmount = effect.Amount;
-        
+
         var tileId = effect.Id;
         if (tileId != TileSchema.Id.None && ModXp.ContainsKey(tileId))
         {
@@ -717,7 +725,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             {
                 if (ModXpByTag.ContainsKey(effectTag))
                 {
-                    ModXpByTag[effectTag] = Mathf.Max(0, ModXpByTag[effectTag]  - effectAmount);
+                    ModXpByTag[effectTag] = Mathf.Max(0, ModXpByTag[effectTag] - effectAmount);
                 }
             }
         }
@@ -727,7 +735,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         for (var i = DecayingEffects.Count - 1; i >= 0; i--)
         {
-            var  effect = DecayingEffects[i];
+            var effect = DecayingEffects[i];
 
             if (effect.DecayTrigger != decayTrigger)
             {
@@ -741,7 +749,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
                     continue;
                 }
             }
-            
+
             effect.Decay--;
             DecayingEffects[i] = effect;
 
@@ -755,16 +763,16 @@ public class Player : MonoBehaviour, IPointerClickHandler
                 case EffectType.ModXp:
                     UndoModXp(effect);
                     break;
-                
+
                 case EffectType.ModDamageTaken:
                     UndoModDamageTaken(effect);
                     break;
             }
-            
+
             DecayingEffects.RemoveAt(i);
         }
     }
-    
+
     #endregion
-    
+
 }

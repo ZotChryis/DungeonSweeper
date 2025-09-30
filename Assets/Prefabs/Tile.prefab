@@ -149,7 +149,6 @@ MonoBehaviour:
       Value: {fileID: 307529028250985794}
     - Key: 102
       Value: {fileID: 4732429039018504883}
-  PowerColor: {r: 1, g: 0, b: 0.9549618, a: 1}
   RewardColor: {r: 1, g: 0.9820838, b: 0.023584902, a: 1}
   HousedObject: {fileID: 0}
   AllowDamage: 1
@@ -160,17 +159,6 @@ MonoBehaviour:
   BodyGuardedByTile: {fileID: 0}
   IsBodyGuardByOrGuardingDead: 0
   DirectionToLook: 4
-  neighborColor1: {r: 0.09803922, g: 0.4627451, b: 0.8235294, a: 1}
-  neighborColor2: {r: 0.21960784, g: 0.5568628, b: 0.23529412, a: 1}
-  neighborColor3: {r: 0.827451, g: 0.18431373, b: 0.18431373, a: 1}
-  neighborColor4: {r: 0.48235294, g: 0.12156863, b: 0.63529414, a: 1}
-  neighborColor5: {r: 1, g: 0.4117647, b: 0.7058824, a: 1}
-  neighborColor6: {r: 0.5019608, g: 0.039215688, b: 0.039215688, a: 1}
-  neighborColor7: {r: 0.003921569, g: 0.49803922, b: 0.49411765, a: 1}
-  neighborColor8: {r: 0.3207547, g: 0.22708066, b: 0.18609825, a: 1}
-  neighborColor9: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
-  neighborColor100: {r: 1, g: 1, b: 1, a: 1}
-  neighborColorUnknown: {r: 0.5411765, g: 0, b: 0.76862746, a: 1}
 --- !u!114 &6761163715461405607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +188,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: -347702476747834141, guid: 289d5a9863f81ed4b8bd6467b726db32, type: 3}
     m_PressedSprite: {fileID: 8028125240860510686, guid: d9fa19329e5852b4e859889dfb02ffc1, type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 8028125240860510686, guid: d9fa19329e5852b4e859889dfb02ffc1, type: 3}
