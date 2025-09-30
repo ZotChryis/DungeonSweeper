@@ -36,6 +36,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private GameObject DeathIcon;
+
+    [SerializeField]
+    private GameObject LowHpVfx;
     
     [SerializeField] 
     private GameObject LevelUpRoot;
@@ -130,6 +133,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         ModXp.Add(TileSchema.Id.Global, 0);
 
         IsHardcore = true;
+        LowHpVfx.SetActive(false);
     }
 
     private void Start()
@@ -412,6 +416,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         bool canLevel = CurrentXP >= xpRequiredToLevel;
         LevelUpRoot.SetActive(canLevel);
+        LowHpVfx.SetActive(CurrentHealth == 0);
 
         if (canLevel && CurrentHealth == 0)
         {
