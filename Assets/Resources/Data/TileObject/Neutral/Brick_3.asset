@@ -133,8 +133,8 @@ MonoBehaviour:
           UseOverride: 1
           Value: 0
         Sfx:
-          UseOverride: 0
-          Value: 
+          UseOverride: 1
+          Value: Pick3
         Vfx:
-          UseOverride: 0
-          Value: {fileID: 0}
+          UseOverride: 1
+          Value: {fileID: 2427094801149019240, guid: 56da506c090ddf24e8dd794084c721e4, type: 3}

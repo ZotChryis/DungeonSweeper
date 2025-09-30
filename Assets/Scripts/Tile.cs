@@ -473,6 +473,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 Instantiate(stateOverrides.Vfx.Value, transform);
             }
+            else if (TileState.Conquered == State &&
+                HousedObject &&
+                HousedObject.Tags.Contains(TileSchema.Tag.Enemy) &&
+                ServiceLocator.Instance.Player.ClassSchema.HitEffect != null)
+            {
+                Instantiate(ServiceLocator.Instance.Player.ClassSchema.HitEffect, transform);
+            }
         }
     }
 
@@ -623,15 +630,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (HousedObject && HousedObject.ScreenshakeOnConquer)
             {
                 StartCoroutine(ServiceLocator.Instance.Grid.Shake());
-            }
-
-            // TODO: Find a better spot for this
-            if (HousedObject &&
-                HousedObject.Tags.Contains(TileSchema.Tag.Enemy) &&
-                ServiceLocator.Instance.Player.ClassSchema.HitEffect != null
-            )
-            {
-                Instantiate(ServiceLocator.Instance.Player.ClassSchema.HitEffect, transform);
             }
 
             // You can't play both sfx.

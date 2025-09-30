@@ -91,7 +91,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VFX_WarriorHit
+  m_Name: VFX_WarriorHit4AnimController
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
