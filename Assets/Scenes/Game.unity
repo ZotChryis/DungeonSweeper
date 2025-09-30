@@ -6767,6 +6767,10 @@ MonoBehaviour:
       Value: {fileID: 8300000, guid: fdf69e9e45dccce458d30883888b0fc7, type: 3}
     - Key: Attack
       Value: {fileID: 8300000, guid: 17e2d1cc11d33f441b84f3bd9a3366eb, type: 3}
+    - Key: WarningLowHealth
+      Value: {fileID: 8300000, guid: 8b93300a267e03f46bc72f17c8767c7e, type: 3}
+    - Key: SillyTrumpet
+      Value: {fileID: 8300000, guid: d47d1793d5149fd4a94c3fe09e0b3b91, type: 3}
     - Key: Pick1
       Value: {fileID: 8300000, guid: 0bc5a74555e6ef84fa9e62eb7389a99b, type: 3}
     - Key: Pick2

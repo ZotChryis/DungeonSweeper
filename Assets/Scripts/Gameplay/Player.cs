@@ -49,6 +49,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private Transform XPContainer;
 
+    public int CurrentPlayerHealth
+    {
+        get { return CurrentHealth; }
+    }
+
     private int Level;
     private int CurrentHealth;
     private int MaxHealth;
@@ -331,8 +336,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
         CurrentXP += amount;
         TEMP_UpdateVisuals();
-        
-        ServiceLocator.Instance.AudioManager.PlaySfx("XP");
+
+        if (CanLevelUp())
+        {
+            ServiceLocator.Instance.AudioManager.PlaySfx("SillyTrumpet");
+        }
+        else {
+            ServiceLocator.Instance.AudioManager.PlaySfx("XP");
+        }
+
     }
 
     public int GetModifiedXp(TileSchema source, int amount)
@@ -423,6 +435,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.XP, TutorialManager.Instance.LevelupFocusTarget, true);
         }
+    }
+
+    public bool CanLevelUp()
+    {
+        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
+        return CurrentXP >= xpRequiredToLevel;
     }
 
     public void OnPointerClick(PointerEventData eventData)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Killer_Sheep
   m_EditorClassIdentifier: 
   AchievementId: 87
-  Title: Sheep Killer
+  Title: Sheep Slayer
   Description: Complete any dungeon after defeating 10 Sheep.
   Reward: 
   RewardClass: -1

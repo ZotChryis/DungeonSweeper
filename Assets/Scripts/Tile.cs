@@ -686,7 +686,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
             else if (!HousedObject.GetOverrides(TileState.Conquered).Sfx.UseOverride)
             {
-                ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
+                PlayAttackEnemySfx(player);
             }
         }
 
@@ -706,7 +706,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.AudioManager.PlaySfx(HousedObject.FleeSfx);
                 }
 
-                if(HousedObject.XPReward > 0)
+                if (HousedObject.XPReward > 0)
                 {
                     player.TEMP_UpdateXP(HousedObject, HousedObject.XPReward);
                 }
@@ -941,6 +941,15 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    private void PlayAttackEnemySfx(Player player)
+    {
+        if (player.CurrentPlayerHealth == 0)
+        {
+            ServiceLocator.Instance.AudioManager.PlaySfx("WarningLowHealth");
+        }
+        ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
+    }
+
     public void LookAwayFrom(int xCoordinate, int yCoordinate, bool enrage)
     {
         if (enrage)
@@ -1157,22 +1166,22 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public static string GetHexColorBasedOnPower(int totalPower, bool unknown)
     {
-        if(unknown)
+        if (unknown)
         {
             return neighborColorUnknown.ToHexString();
         }
-        if(totalPower <= 0 || totalPower == 100)
+        if (totalPower <= 0 || totalPower == 100)
         {
             return gray_mine;
         }
-        if(totalPower == 300)
+        if (totalPower == 300)
         {
             return black_300;
         }
         int remainder = totalPower % 100;
-        if(remainder == 0)
+        if (remainder == 0)
         {
-            if(totalPower >= 300)
+            if (totalPower >= 300)
             {
                 return black_300;
             }
