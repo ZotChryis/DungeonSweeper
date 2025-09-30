@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 53
   Title: Novice Matchmaker
-  Description: Complete the first dungeon level without conquering any Lovers.
+  Description: Complete the first dungeon level without defeating any Lovers.
   Reward: Unlocks the Engagement Ring (Shop)
   RewardClass: -1
   RewardItem: 35
@@ -23,3 +23,7 @@ MonoBehaviour:
   Class: -1
   TileData: 1b0000001c000000
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

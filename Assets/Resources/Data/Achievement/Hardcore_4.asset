@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 86
   Title: Hardcore++++
-  Description: Defeat the fifth level of the dungeon without a Retry.
+  Description: Complete the fifth level without a Retry.
   Reward: 
   RewardClass: -1
   RewardItem: 0
@@ -26,3 +26,4 @@ MonoBehaviour:
   ItemAcquiredMinCount: -1
   ItemAcquiredMaxCount: -1
   RequiresHardcore: 1
+  MinimumKillCount: 0

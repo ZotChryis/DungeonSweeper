@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 84
   Title: Hardcore++
-  Description: Defeat the third level of the dungeon without a Retry.
+  Description: Complete the third level without a Retry.
   Reward: Unlocks level 4 select.
   RewardClass: -1
   RewardItem: 0

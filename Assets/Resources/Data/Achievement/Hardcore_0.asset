@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 82
   Title: Hardcore
-  Description: Defeat the first level of the dungeon without a Retry.
+  Description: Complete the first level without a Retry.
   Reward: Unlocks level 2 select.
   RewardClass: -1
   RewardItem: 0

@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 55
   Title: Advanced Matchmaker
-  Description: Complete the third dungeon level without conquering any Lovers.
+  Description: Complete the third dungeon level without defeating any Lovers.
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 1
   Level: 2
   Class: -1
   TileData: 1b0000001c000000
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

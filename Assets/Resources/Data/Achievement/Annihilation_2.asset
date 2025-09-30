@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 43
   Title: Advanced Annihilator
-  Description: Kill the dragon in the third dungeon level with an empty board (excluding
+  Description: Defeat the dragon in the third dungeon level with an empty board (excluding
     Balrog).
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 2
   Level: 2
   Class: -1
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

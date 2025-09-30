@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: Pacifist_Rat_3
   m_EditorClassIdentifier: 
   AchievementId: 40
-  Title: Rat Pacifist
-  Description: Complete the fourth dungeon without killing a single rat.
+  Title: Master Rat Pacifist
+  Description: Complete the fourth dungeon without defeating a single rat.
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 1
   Level: 3
   Class: -1
   TileData: 0f000000
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

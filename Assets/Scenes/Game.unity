@@ -21233,7 +21233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Your goal is to kill the dragon, but it's too powerful...
+  m_text: Your goal is to defeat the dragon, but it's too powerful...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe916b31e99974d4eb1f54cca942493b, type: 2}
   m_sharedMaterial: {fileID: -8364621021338017947, guid: fe916b31e99974d4eb1f54cca942493b, type: 2}
@@ -21260,7 +21260,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24.1
+  m_fontSize: 23.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

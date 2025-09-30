@@ -14,11 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 56
   Title: Master Matchmaker
-  Description: Complete the fourth dungeon level without conquering any Lovers.
+  Description: Complete the fourth dungeon level without defeating any Lovers.
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 1
   Level: 3
   Class: -1
   TileData: 1b0000001c000000
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: Pacifist_Rat_0
   m_EditorClassIdentifier: 
   AchievementId: 37
-  Title: Rat Pacifist
-  Description: Complete the first dungeon without killing a single rat.
+  Title: Novice Rat Pacifist
+  Description: Complete the first dungeon without defeating a single rat.
   Reward: Unlocks the Bard
   RewardClass: 5
+  RewardItem: 0
   Trigger: 1
   Level: 0
   Class: -1
   TileData: 0f000000
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Killer_Werewolf
   m_EditorClassIdentifier: 
   AchievementId: 89
-  Title: Werewolf Killer
-  Description: Complete any dungeon after killing 4 Werewolf (not Humanoid)
+  Title: Werewolf Slayer
+  Description: Complete any dungeon after defeating 4 Werewolf (not Humanoid)
   Reward: 
   RewardClass: -1
   RewardItem: 0

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 85
   Title: Hardcore+++
-  Description: Defeat the fourth level of the dungeon without a Retry.
+  Description: Complete the fourth level without a Retry.
   Reward: Unlocks level 5 select.
   RewardClass: -1
   RewardItem: 0

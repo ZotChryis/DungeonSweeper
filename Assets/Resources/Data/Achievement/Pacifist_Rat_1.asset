@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: Pacifist_Rat_1
   m_EditorClassIdentifier: 
   AchievementId: 38
-  Title: Rat Pacifist
-  Description: Complete the second dungeon without killing a single rat.
+  Title: Intermediate Rat Pacifist
+  Description: Complete the second dungeon without defeating a single rat.
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 1
   Level: 1
   Class: -1
   TileData: 0f000000
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

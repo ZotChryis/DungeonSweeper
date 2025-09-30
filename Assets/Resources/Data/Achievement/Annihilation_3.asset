@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 44
   Title: Master Annihilator
-  Description: Kill the dragon in the fourth dungeon level with an empty board (excluding
-    Balrog).
+  Description: Defeat the dragon in the fourth dungeon level with an empty board
+    (excluding Balrog).
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 2
   Level: 3
   Class: -1
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

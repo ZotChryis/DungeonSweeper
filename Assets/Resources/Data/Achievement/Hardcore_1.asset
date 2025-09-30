@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 83
   Title: Hardcore+
-  Description: Defeat the second level of the dungeon without a Retry.
+  Description: Complete the second level without a Retry.
   Reward: Unlocks level 3 select.
   RewardClass: -1
   RewardItem: 0

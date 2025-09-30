@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Killer_Vampire
   m_EditorClassIdentifier: 
   AchievementId: 88
-  Title: Vampire Killer
-  Description: Complete any dungeon after killing 10 Vampires.
+  Title: Vampire Slayer
+  Description: Complete any dungeon after defeating 10 Vampires.
   Reward: 
   RewardClass: -1
   RewardItem: 0

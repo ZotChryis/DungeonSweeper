@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 77
   Title: Demon Lord
-  Description: Conquer the Balrog.
+  Description: Defeat the Balrog.
   Reward: 
   RewardClass: -1
   RewardItem: 0
@@ -25,3 +25,5 @@ MonoBehaviour:
   ItemData: 
   ItemAcquiredMinCount: -1
   ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
