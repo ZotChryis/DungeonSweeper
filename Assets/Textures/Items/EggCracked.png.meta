@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 4a7a681eceb39bf47a14a12cc43c9bc4
+guid: 6a02526a3b57ee840a8b254d14ff9937
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 2403717547754084330
-    second: warrior_skill2_frame3_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: warrior_skill2_frame3_0
+      name: ScrimshawKit_0
       rect:
         serializedVersion: 2
-        x: 84
-        y: 25
-        width: 24
-        height: 57
+        x: 15
+        y: 65
+        width: 391
+        height: 881
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +164,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ae7514ecf58bb5120800000000000000
-      internalID: 2403717547754084330
+      spriteID: ee7ccddb530c0eb90800000000000000
+      internalID: -7214555265996371986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrimshawKit_1
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 55
+        width: 776
+        height: 950
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffc960b6c50598d10800000000000000
+      internalID: 2128320656772078847
       vertices: []
       indices: 
       edges: []
@@ -187,7 +206,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      warrior_skill2_frame3_0: 2403717547754084330
+      ScrimshawKit_0: -7214555265996371986
+      ScrimshawKit_1: 2128320656772078847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

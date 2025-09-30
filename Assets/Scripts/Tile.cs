@@ -475,10 +475,22 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
             else if (TileState.Conquered == State &&
                 HousedObject &&
-                HousedObject.Tags.Contains(TileSchema.Tag.Enemy) &&
-                ServiceLocator.Instance.Player.ClassSchema.HitEffect != null)
+                HousedObject.Tags.Contains(TileSchema.Tag.Enemy))
             {
-                Instantiate(ServiceLocator.Instance.Player.ClassSchema.HitEffect, transform);
+                int adjustedPower = GetAdjustedPower();
+                if (adjustedPower >= 8 && ServiceLocator.Instance.Player.ClassSchema.BigHitEffect != null)
+                {
+                    Instantiate(ServiceLocator.Instance.Player.ClassSchema.BigHitEffect, transform);
+                }
+                else if (ServiceLocator.Instance.Player.ClassSchema.SmallHitEffect != null)
+                {
+                    GameObject smallVfx = Instantiate(ServiceLocator.Instance.Player.ClassSchema.SmallHitEffect, transform);
+                    if (adjustedPower <= 3)
+                    {
+                        RectTransform smallVfxRect = (RectTransform)smallVfx.transform;
+                        smallVfxRect.sizeDelta = new Vector2(70f, 70f);
+                    }
+                }
             }
         }
     }
@@ -548,7 +560,6 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void HandleStateChanged()
     {
         TryPlaySfx(State);
-        TryPlayVfx(State);
 
         int neighborEnemies = ServiceLocator.Instance.Grid.TEMP_GetUnconqueredNeighborCount(XCoordinate, YCoordinate);
 
@@ -678,6 +689,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 ServiceLocator.Instance.AudioManager.PlaySfx("Attack");
             }
         }
+
+        TryPlayVfx(State);
 
         if (TileState.Collected == State)
         {

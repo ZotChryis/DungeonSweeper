@@ -103,6 +103,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     }
 
     public bool IsHardcore = true;
+    [ReadOnly]
     public bool WasLastLevelUpInefficient = false;
     
     public Action<int> OnLevelChanged;

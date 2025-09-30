@@ -17,4 +17,5 @@ MonoBehaviour:
   Name: Scribe
   Description: Starts with Quill & Ink.
   StartingItem: 50
-  HitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
+  SmallHitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
+  BigHitEffect: {fileID: 2427094801149019240, guid: 7df390ed24f4c144fb3c57aaf624728a, type: 3}
