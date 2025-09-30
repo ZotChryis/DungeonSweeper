@@ -25,19 +25,37 @@ MonoBehaviour:
     Right: {fileID: 0}
     Left: {fileID: 0}
     Missing: {fileID: 0}
+    BodyGuardedByOrGuardingDead: {fileID: 0}
+  OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
   Power: 100
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 3
   ItemsToReplenish: 
   DropReward: {fileID: 0}
-  RevealRandLocationNextToMine: 0
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList: []
+  ItemReward: 0
+  ItemRewardRarities: 
+  TileUpdateReward: []
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets: []
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 0
   CanFlee: 0
+  FleeVfx: {fileID: 0}
+  FleeSfx: 
+  RevealFlee: 0
   CanEnrage: 0
+  BodyguardGrunt: 
+  GuardingGrunt: 
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -48,5 +66,52 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
-    _serializedList: []
+    _serializedList:
+    - Key: 2
+      Value:
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 1
+          Value: Explosion
+        Vfx:
+          UseOverride: 1
+          Value: {fileID: 384287498298157932, guid: b39d0d44f852fc841b8ae3c15926975b, type: 3}
+    - Key: 3
+      Value:
+        AutoContinue:
+          UseOverride: 0
+          Value: 0
+        Sprite:
+          UseOverride: 0
+          Value: {fileID: 0}
+        EnablePower:
+          UseOverride: 0
+          Value: 0
+        EnableSprite:
+          UseOverride: 0
+          Value: 0
+        EnableDeathSprite:
+          UseOverride: 0
+          Value: 0
+        Sfx:
+          UseOverride: 1
+          Value: Explosion
+        Vfx:
+          UseOverride: 1
+          Value: {fileID: 384287498298157932, guid: b39d0d44f852fc841b8ae3c15926975b, type: 3}

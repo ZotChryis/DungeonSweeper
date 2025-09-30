@@ -622,8 +622,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     {
                         HousedObjectSprite.sprite = HousedObject.GetOverrides(TileState.Conquered).Sprite.Value;
                     }
-                    // highlight yourself.
+                    // highlight yourself. highlightedSprite is just storing the default button state.
                     TileButton.targetGraphic.GetComponent<Image>().sprite = TileButton.spriteState.highlightedSprite;
+                    var stateOverrides = HousedObject.GetOverrides(State);
+                    if (stateOverrides.Vfx.UseOverride && stateOverrides.Vfx.Value != null)
+                    {
+                        Instantiate(stateOverrides.Vfx.Value, transform);
+                    }
                     return;
                 }
             }

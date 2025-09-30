@@ -286,14 +286,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
             StartCoroutine(ServiceLocator.Instance.Grid.Shake());
             ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
-            if (amount >= 90 && amount <= 110)
-            {
-                ServiceLocator.Instance.AudioManager.PlaySfx("Explosion");
-            }
-            else
-            {
-                ServiceLocator.Instance.AudioManager.PlaySfx("Death");
-            }
+            ServiceLocator.Instance.AudioManager.PlaySfx("Death");
             SetDeathIcon(true);
             return true;
         }
