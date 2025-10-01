@@ -624,7 +624,6 @@ namespace Gameplay
                 switch (effect.Type)
                 {
                     // These don't persist through player reset, so we're ok
-                    case EffectType.ModDamageTaken:
                     case EffectType.ModXp:
                     case EffectType.Damage:
                     case EffectType.Heal:
@@ -637,7 +636,11 @@ namespace Gameplay
                     case EffectType.InstantConquer:
                     case EffectType.Shield:
                         break;
-                    
+
+                    case EffectType.ModDamageTaken:
+                        player.UndoModDamageTaken(effect);
+                        break;
+
                     case EffectType.BonusHP:
                         player.AddBonusStartHp(-effect.Amount);
                         break;

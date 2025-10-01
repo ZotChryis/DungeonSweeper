@@ -334,10 +334,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
             return;
         }
 
+        bool couldAlreadyLevelUp = CanLevelUp();
         CurrentXP += amount;
         TEMP_UpdateVisuals();
 
-        if (CanLevelUp())
+        if (!couldAlreadyLevelUp && CanLevelUp())
         {
             ServiceLocator.Instance.AudioManager.PlaySfx("SillyTrumpet");
         }

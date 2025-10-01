@@ -877,35 +877,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             // Random reward from Rarity
             if (HousedObject.ItemRewardRarities != null)
             {
-                var matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
-                    HousedObject.ItemRewardRarities.Contains(item.Rarity));
-
-                // Remove any item that is locked
-                var lockedItemIds = ServiceLocator.Instance.AchievementSystem.GetLockedItems();
-                foreach (var lockedItemId in lockedItemIds)
-                {
-                    matchingItems.RemoveAll(schema => schema.ItemId == lockedItemId);
-                }
-
-                // Try to adhere to maximums
-                matchingItems.RemoveAll(schema =>
-                    schema.Max != -1 && ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
-                );
-
-                if (matchingItems.Count > 0)
-                {
-                    var rewardItem = matchingItems.GetRandomItem();
-                    ItemInstance itemInstance = ServiceLocator.Instance.Player.Inventory.AddItem(rewardItem.ItemId);
-                    if (itemInstance != null)
-                    {
-                        ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
-
-                        if (itemInstance.Schema.IsConsumbale)
-                        {
-                            ServiceLocator.Instance.TutorialManager.TryShowInventoryTutorial();
-                        }
-                    }
-                }
+                AddRandomItemToPlayer(HousedObject.ItemRewardRarities);
             }
 
             if (HousedObject.ChildUpdateReward.Amount > 0)
@@ -949,9 +921,42 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    public static void AddRandomItemToPlayer(Rarity[] possibleRarities)
+    {
+        var matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
+            possibleRarities.Contains(item.Rarity));
+
+        // Remove any item that is locked
+        var lockedItemIds = ServiceLocator.Instance.AchievementSystem.GetLockedItems();
+        foreach (var lockedItemId in lockedItemIds)
+        {
+            matchingItems.RemoveAll(schema => schema.ItemId == lockedItemId);
+        }
+
+        // Try to adhere to maximums
+        matchingItems.RemoveAll(schema =>
+            schema.Max != -1 && ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
+        );
+
+        if (matchingItems.Count > 0)
+        {
+            var rewardItem = matchingItems.GetRandomItem();
+            ItemInstance itemInstance = ServiceLocator.Instance.Player.Inventory.AddItem(rewardItem.ItemId);
+            if (itemInstance != null)
+            {
+                ServiceLocator.Instance.Player.TrackItemForDungeon(itemInstance);
+
+                if (itemInstance.Schema.IsConsumbale)
+                {
+                    ServiceLocator.Instance.TutorialManager.TryShowInventoryTutorial();
+                }
+            }
+        }
+    }
+
     private void PlayAttackEnemySfx(Player player)
     {
-        if (player.CurrentPlayerHealth == 0)
+        if (player.CurrentPlayerHealth == 0 && !player.CanLevelUp())
         {
             ServiceLocator.Instance.AudioManager.PlaySfx("WarningLowHealth");
         }

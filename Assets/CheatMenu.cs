@@ -1,3 +1,4 @@
+using Schemas;
 using UnityEngine;
 
 // Need an intermediate because our singleton pattern is no good
@@ -5,14 +6,14 @@ public class CheatMenu : MonoBehaviour
 {
     public void Restart()
     {
-        CheatManager.Instance.Restart();    
+        CheatManager.Instance.Restart();
     }
-    
+
     public void Regenerate()
     {
         CheatManager.Instance.Regenerate();
     }
-    
+
     public void Regenerate(SpawnSettings spawnSettings)
     {
         CheatManager.Instance.Regenerate(spawnSettings);
@@ -45,11 +46,16 @@ public class CheatMenu : MonoBehaviour
 
     public void RollShop()
     {
-        CheatManager.Instance.RollShop();   
+        CheatManager.Instance.RollShop();
     }
 
     public void RollShopAll()
     {
         CheatManager.Instance.RollShopWithAll();
+    }
+
+    public void AddRandomLegendary()
+    {
+        Tile.AddRandomItemToPlayer(new Rarity[] { Rarity.Legendary });
     }
 }
