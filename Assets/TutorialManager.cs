@@ -23,6 +23,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         WarnLevelUpNonEmpty, // Shown on level up but the player had some remaining health
         WarnBrickBehavior, // Shown on attacking a brick.
         WarnGnomeBehavior, // Shown on clicking a gnome.
+        TutorialRightClick, // Shown after killing something
     }
 
     public GameObject FocusObject;
@@ -83,30 +84,43 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         )
         {
             var tutorialSlime = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.TutorialSlime);
-            if(tutorialSlime == null)
+            if (tutorialSlime == null)
             {
                 tutorialSlime = tile.transform;
             }
-            TryShowTutorial(TutorialId.EnemyPower, (RectTransform)tutorialSlime, true);
+            if (TryShowTutorial(TutorialId.EnemyPower, (RectTransform)tutorialSlime, true))
+            {
+                return;
+            }
         }
         if (!tile.TEMP_IsEmpty() &&
             tile.GetHousedObject().TileId == TileSchema.Id.TutorialSlime &&
             tile.State == Tile.TileState.Conquered)
         {
-            TryShowTutorial(TutorialId.SafeToCollect, (RectTransform)tile.transform, true);
+            if (TryShowTutorial(TutorialId.SafeToCollect, (RectTransform)tile.transform, true))
+            {
+                return;
+            }
         }
-        if(!tile.TEMP_IsEmpty() &&
+        if (!tile.TEMP_IsEmpty() &&
             tile.GetHousedObject().TileId == TileSchema.Id.Gnome &&
             tile.State == Tile.TileState.Conquered)
         {
-            TryShowTutorial(TutorialId.WarnGnomeBehavior, LibraryFocusTarget);
+            if (TryShowTutorial(TutorialId.WarnGnomeBehavior, LibraryFocusTarget))
+            {
+                return;
+            }
         }
         if (!tile.TEMP_IsEmpty() &&
             tile.GetHousedObject().TileId == TileSchema.Id.Brick &&
             tile.State == Tile.TileState.Conquered)
         {
-            TryShowTutorial(TutorialId.WarnBrickBehavior, LibraryFocusTarget);
+            if (TryShowTutorial(TutorialId.WarnBrickBehavior, LibraryFocusTarget))
+            {
+                return;
+            }
         }
+        TryShowTutorial(TutorialId.TutorialRightClick);
     }
 
     private void OnGridGenerated()
