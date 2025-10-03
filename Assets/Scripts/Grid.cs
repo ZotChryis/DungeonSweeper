@@ -658,8 +658,9 @@ public class Grid : MonoBehaviour
                 {
                     continue;
                 }
-                
+
                 tile.PlaceTileObj(DiffusedMine);
+                tile.TEMP_SetState(Tile.TileState.Conquered);
             }
         }
         
