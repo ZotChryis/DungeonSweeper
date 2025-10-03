@@ -342,11 +342,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             ServiceLocator.Instance.AudioManager.PlaySfx("SillyTrumpet");
         }
-        else
+        else if (amount > 0)
         {
             ServiceLocator.Instance.AudioManager.PlaySfx("XP");
         }
-
     }
 
     public int GetModifiedXp(TileSchema source, int amount)
