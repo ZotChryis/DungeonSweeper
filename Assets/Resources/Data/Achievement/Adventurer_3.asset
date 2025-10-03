@@ -16,9 +16,14 @@ MonoBehaviour:
   Title: Master Adventurer
   Description: Complete the fourth dungeon level with the Adventurer.
   Reward: 
-  RewardClass: -1
+  RewardClass: 14
+  RewardItem: 0
   Trigger: 0
   Level: 3
   Class: 0
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0

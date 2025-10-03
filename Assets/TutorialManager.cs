@@ -1,6 +1,7 @@
-using System;
 using AYellowpaper.SerializedCollections;
 using Schemas;
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
@@ -70,6 +71,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         {
             return;
         }
+        if (TryShowTutorial(TutorialId.TutorialRightClick))
+        {
+            return;
+        }
     }
 
     private void OnAnyTileStateChanged(Tile tile)
@@ -106,7 +111,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             tile.GetHousedObject().TileId == TileSchema.Id.Gnome &&
             tile.State == Tile.TileState.Conquered)
         {
-            if (TryShowTutorial(TutorialId.WarnGnomeBehavior, LibraryFocusTarget))
+            if (TryShowTutorial(TutorialId.WarnGnomeBehavior, LibraryFocusTarget, false, 0.8f))
             {
                 return;
             }
@@ -115,24 +120,23 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             tile.GetHousedObject().TileId == TileSchema.Id.Brick &&
             tile.State == Tile.TileState.Conquered)
         {
-            if (TryShowTutorial(TutorialId.WarnBrickBehavior, LibraryFocusTarget))
+            if (TryShowTutorial(TutorialId.WarnBrickBehavior, LibraryFocusTarget, false, 0.8f))
             {
                 return;
             }
         }
-        TryShowTutorial(TutorialId.TutorialRightClick);
     }
 
     private void OnGridGenerated()
     {
         CanShowTutorials = true;
         var dragon0 = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon0);
-        TryShowTutorial(TutorialId.Welcome, (RectTransform)dragon0, false, true);
+        TryShowTutorial(TutorialId.Welcome, (RectTransform)dragon0, false, 0f);
 
         if (ServiceLocator.Instance.LevelManager.CurrentLevel == 1)
         {
             var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon1);
-            TryShowTutorial(TutorialId.SecondLevel, (RectTransform)dragon, false, true);
+            TryShowTutorial(TutorialId.SecondLevel, (RectTransform)dragon, false, 0f);
         }
         else if (ServiceLocator.Instance.LevelManager.CurrentLevel == 4)
         {
@@ -163,7 +167,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     /// <param name="forcePlayerToClickFocus">If true, force the player to click the <paramref name="focus"/></param>
     /// <param name="waitOneFrame">Sometimes a transition, animation, or grid generation needs to happen first. Set to true to account for that.</param>
     /// <returns>True if successfully showed a tutorial</returns>
-    public bool TryShowTutorial(TutorialId tutorialId, RectTransform focus = null, bool forcePlayerToClickFocus = false, bool waitOneFrame = false)
+    public bool TryShowTutorial(TutorialId tutorialId, RectTransform focus = null, bool forcePlayerToClickFocus = false, float waitSeconds = -1f)
     {
         if (!CanShowTutorials)
         {
@@ -177,6 +181,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         {
             return false;
         }
+        Debug.Log("Trying to show tutorial: " + tutorialKey);
 
         // No tutorial defined?
         if (!Tutorials.TryGetValue(tutorialId, out Tutorial tutorial))
@@ -185,14 +190,49 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         }
 
         TryHideLastTutorial();
-        tutorial.gameObject.SetActive(true);
         LastTutorial = tutorial;
+
+
+        if (waitSeconds >= 0)
+        {
+            if (waitSeconds == 0f)
+            {
+                StartCoroutine(TryShowTutorialAfterFrame(tutorial, focus, forcePlayerToClickFocus));
+            }
+            else
+            {
+                StartCoroutine(TryShowTutorialAfterSeconds(tutorial, focus, forcePlayerToClickFocus, waitSeconds));
+            }
+        }
+        else
+        {
+             TryShowTutorialAfter(tutorial, focus, forcePlayerToClickFocus);
+        }
+        FBPP.SetBool(tutorial.Id.GetTutorialKey(), true);
+        return true;
+    }
+
+    private void TryShowTutorialAfter(Tutorial tutorial, RectTransform focus = null, bool forcePlayerToClickFocus = false)
+    {
+        tutorial.gameObject.SetActive(true);
         if (focus != null)
         {
-            tutorial.SetFocus(focus, forcePlayerToClickFocus, waitOneFrame);
+            tutorial.SetFocus(focus, forcePlayerToClickFocus);
         }
-        FBPP.SetBool(tutorialKey, true);
-        return true;
+    }
+
+    private IEnumerator TryShowTutorialAfterFrame(Tutorial tutorial, RectTransform focus, bool forcePlayerToClickFocus)
+    {
+        // Some tutorials are triggered after grid generation. Wait 1 frame so things are moved.
+        yield return 0;
+        TryShowTutorialAfter(tutorial, focus, forcePlayerToClickFocus);
+    }
+
+    private IEnumerator TryShowTutorialAfterSeconds(Tutorial tutorial, RectTransform focus, bool forcePlayerToClickFocus, float seconds)
+    {
+        // Some tutorials are triggered after grid generation. Wait 1 frame so things are moved.
+        yield return new WaitForSeconds(seconds);
+        TryShowTutorialAfter(tutorial, focus, forcePlayerToClickFocus);
     }
 
     /// <summary>

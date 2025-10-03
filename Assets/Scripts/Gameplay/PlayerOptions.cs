@@ -10,7 +10,6 @@ namespace Gameplay
     {
         public const string IsSafeMinesOn = "IsSafeMinesOn";
         public const string AllowLeftHoldContextMenu = "AllowLeftHoldContextMenu";
-        public const string CanPickUpItems = "CanPickUpItems";
         public const string AllowCheats = "AllowCheats";
     }
 }

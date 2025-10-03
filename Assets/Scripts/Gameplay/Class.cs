@@ -20,6 +20,7 @@
             Merchant,
             Scribe,
             Dryad,
+            Ascetic,
         }
     }
 }

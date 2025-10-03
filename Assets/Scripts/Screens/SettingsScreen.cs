@@ -16,7 +16,6 @@ namespace Screens
         [SerializeField] private DSButton MainMenu;
         [SerializeField] private Toggle SafeMinesToggle;
         [SerializeField] private Toggle AllowLeftHoldContextMenu;
-        [SerializeField] private Toggle CanPickUpItems;
         [SerializeField] private Toggle AllowCheats;
 
         public Action<string> OnBoolSettingChanged;
@@ -30,7 +29,6 @@ namespace Screens
             SFXVolume.onValueChanged.AddListener(OnSFXVolumeChanged);
             SafeMinesToggle.onValueChanged.AddListener(OnSafeMinesChanged);
             AllowLeftHoldContextMenu.onValueChanged.AddListener(OnAllowLeftHoldContextMenuChanged);
-            CanPickUpItems.onValueChanged.AddListener(OnCanPickUpItemsChanged);
             AllowCheats.onValueChanged.AddListener(OnAllowCheatsChanged);
 
             LoadInitialVolumes();
@@ -64,12 +62,6 @@ namespace Screens
             OnBoolSettingChanged?.Invoke(PlayerOptions.AllowCheats);
         }
 
-        private void OnCanPickUpItemsChanged(bool value)
-        {
-            FBPP.SetBool(PlayerOptions.CanPickUpItems, value);
-            OnBoolSettingChanged?.Invoke(PlayerOptions.CanPickUpItems);
-        }
-
         private void OnMainMenuConfirmed()
         {
             TransitionManager.Instance.DoTransition(TransitionManager.TransitionType.Goop, CheatManager.Instance.Restart);
@@ -91,7 +83,6 @@ namespace Screens
             MusicVolume.value = FBPP.GetFloat("MusicVolume", 1.0f);
             SFXVolume.value = FBPP.GetFloat("SfxVolume", 1.0f);
             SafeMinesToggle.isOn = FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true);
-            CanPickUpItems.isOn = FBPP.GetBool(PlayerOptions.CanPickUpItems, true);
             AllowCheats.isOn = FBPP.GetBool(PlayerOptions.AllowCheats, false);
             AllowLeftHoldContextMenu.isOn = FBPP.GetBool(PlayerOptions.AllowLeftHoldContextMenu, true);
         }

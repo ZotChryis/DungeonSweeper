@@ -111,7 +111,7 @@ namespace Gameplay
         /// </summary>
         public ItemInstance AddItem(ItemSchema.Id itemId, bool forceAllowDuplicates = false)
         {
-            if (!FBPP.GetBool(PlayerOptions.CanPickUpItems, true))
+            if (ServiceLocator.Instance.Player.Class == Class.Id.Ascetic)
             {
                 return null;
             }
@@ -624,7 +624,6 @@ namespace Gameplay
                 switch (effect.Type)
                 {
                     // These don't persist through player reset, so we're ok
-                    case EffectType.ModXp:
                     case EffectType.Damage:
                     case EffectType.Heal:
                     case EffectType.RevealRandomLocation:
@@ -635,6 +634,10 @@ namespace Gameplay
                     case EffectType.MassPolymorph:
                     case EffectType.InstantConquer:
                     case EffectType.Shield:
+                        break;
+
+                    case EffectType.ModXp:
+                        player.UndoModXp(effect);
                         break;
 
                     case EffectType.ModDamageTaken:

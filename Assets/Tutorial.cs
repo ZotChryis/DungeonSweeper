@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] private TutorialManager.TutorialId Id;
+    [SerializeField] public TutorialManager.TutorialId Id;
     [SerializeField] private Button Button;
     [SerializeField] private RectTransform Content;
     private Button buttonInContent;
@@ -35,26 +35,7 @@ public class Tutorial : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private IEnumerator SetFocusAfterFrame(RectTransform focus, bool forcePlayerToClickFocus)
-    {
-        // Some tutorials are triggered after grid generation. Wait 1 frame so things are moved.
-        yield return 0;
-        SetFocusInternal(focus, forcePlayerToClickFocus);
-    }
-
-    public void SetFocus(RectTransform focus, bool forcePlayerToClickFocus, bool waitOneFrame)
-    {
-        if (waitOneFrame)
-        {
-            StartCoroutine(SetFocusAfterFrame(focus, forcePlayerToClickFocus));
-        }
-        else
-        {
-            SetFocusInternal(focus, forcePlayerToClickFocus);
-        }
-    }
-
-    private void SetFocusInternal(RectTransform focus, bool forcePlayerToClickFocus)
+    public void SetFocus(RectTransform focus, bool forcePlayerToClickFocus)
     {
         var canvas = GetComponentInParent<Canvas>();
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(canvas.worldCamera, focus.position);

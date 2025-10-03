@@ -97,9 +97,9 @@ namespace Screens.Shop
             }
 
             // skip this step completely if items are not allowed.
-            if (!FBPP.GetBool(PlayerOptions.CanPickUpItems, true))
+            if (ServiceLocator.Instance.Player.Class == Class.Id.Ascetic)
             {
-                ToastManager.Instance.RequestToast(ItemsDisabledIcon, "Items Disabled!", "Items disabled in settings!");
+                ToastManager.Instance.RequestToast(ItemsDisabledIcon, "Items Disabled!", "Items disabled from Ascetic!");
                 return;
             }
 
