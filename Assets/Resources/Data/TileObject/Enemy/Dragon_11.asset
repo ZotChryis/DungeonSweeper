@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dragon_11
   m_EditorClassIdentifier: 
   UserFacingName: Dragon
-  UserFacingDescription: The menace of this realm. Defeat it to advance.
+  UserFacingDescription: The menace of this realm. Defeat it to beat level 1.
   Tags: 010000000d000000
   TileId: 32
   LibraryOverrideTileId: 0
