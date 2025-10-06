@@ -63,6 +63,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private TMP_Text Annotation;
 
     [SerializedDictionary]
+    [Tooltip("First two that are 100 and 101 are considered mine flags.")]
     public SerializedDictionary<int, GameObject> SpecialAnnotations = new();
 
     [SerializeField]
@@ -213,7 +214,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         foreach (var specialAnnotation in SpecialAnnotations)
         {
-            if (specialAnnotation.Value.activeInHierarchy && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
+            if ((specialAnnotation.Key == 100 || specialAnnotation.Key == 101) &&
+                specialAnnotation.Value.activeInHierarchy && !ServiceLocator.Instance.Grid.MinesDiffused && FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true))
             {
                 // If safety on don't let the player blow themselves up.
                 StartCoroutine(ShakeAnnotation(specialAnnotation.Value));
