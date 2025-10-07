@@ -15,7 +15,9 @@ public class ClassSelectionItem : MonoBehaviour
     [SerializeField] private TMP_Text Name;
     [SerializeField] private TMP_Text Description;
     [SerializeField] private Button Button;
-    
+
+    private readonly int[] StartingLevelStartingXp = new int[] { 0, 10, 25, 45, 55, 55 };
+
     private void Awake()
     {
         ClassSchema Schema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == Class);
@@ -50,6 +52,7 @@ public class ClassSelectionItem : MonoBehaviour
 
     private void SetClassAndStartGame()
     {
+        ServiceLocator.Instance.Player.ShopXp = StartingLevelStartingXp[ServiceLocator.Instance.LevelManager.StartingLevel];
         ServiceLocator.Instance.SaveSystem.Wipe();
         
         ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = true;
