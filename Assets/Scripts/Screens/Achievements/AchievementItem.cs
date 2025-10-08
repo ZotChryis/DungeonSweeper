@@ -12,6 +12,7 @@ namespace Screens.Achievements
         [SerializeField] private TMP_Text Reward;
         [SerializeField] private TMP_Text Date;
         [SerializeField] private GameObject Check;
+        [SerializeField] private Sprite AchievementIcon;
         
         public void SetSchema(AchievementSchema schema)
         {

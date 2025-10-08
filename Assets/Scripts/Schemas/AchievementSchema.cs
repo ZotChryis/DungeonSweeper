@@ -203,5 +203,10 @@ namespace Schemas
         /// KILLER achievements require a minimum kill count. This is that count.
         /// </summary>
         public int MinimumKillCount;
+
+        /// <summary>
+        /// Icon displayed in game and in steam.
+        /// </summary>
+        public Sprite AchievementIcon;
     }
 }
