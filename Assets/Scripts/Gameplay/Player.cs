@@ -5,6 +5,7 @@ using DG.Tweening;
 using Gameplay;
 using Schemas;
 using Sirenix.OdinInspector;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -48,6 +49,11 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private Transform XPContainer;
+
+    [SerializeField]
+    private CanvasGroup OverflowXp;
+
+    private Vector2 OriginalOverflowXpPosition;
 
     public int CurrentPlayerHealth
     {
@@ -140,6 +146,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         IsHardcore = true;
         LowHpVfx.SetActive(false);
+        OriginalOverflowXpPosition = OverflowXp.GetComponent<RectTransform>().anchoredPosition;
     }
 
     private void Start()
@@ -346,6 +353,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             ServiceLocator.Instance.AudioManager.PlaySfx("XP");
         }
+
+        int overflowXp = GetOverflowXp(amount);
+        if (overflowXp > 0)
+        {
+            // play an overflow animation.
+            OverflowXp.GetComponent<RectTransform>().DOAnchorPos(OriginalOverflowXpPosition + Vector2.up * 10, 1f).From(OriginalOverflowXpPosition);
+            OverflowXp.DOFade(0f, 1f).From(1f, true);
+            OverflowXp.GetComponentInChildren<TextMeshProUGUI>().text = "+" + overflowXp.ToString();
+        }
     }
 
     public int GetModifiedXp(TileSchema source, int amount)
@@ -442,6 +458,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
     {
         int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         return CurrentXP >= xpRequiredToLevel;
+    }
+
+    public int GetOverflowXp(int incomingXp)
+    {
+        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
+        return Mathf.Min(CurrentXP - xpRequiredToLevel, incomingXp);
     }
 
     public void OnPointerClick(PointerEventData eventData)

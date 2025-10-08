@@ -5,15 +5,14 @@ using UnityEngine;
 
 public class BuildTargetEnableButton : MonoBehaviour
 {
-    private readonly BuildTarget[] QuitGameBuildTargets = new BuildTarget[] {
-            BuildTarget.StandaloneWindows,
-            BuildTarget.StandaloneWindows64,
-            BuildTarget.StandaloneOSX,
-            BuildTarget.StandaloneLinux64,
+    // Platforms this object will not be enabled.
+    private readonly RuntimePlatform[] QuitGameBuildTargets = new RuntimePlatform[] {
+            RuntimePlatform.Android,
+            RuntimePlatform.WebGLPlayer,
         };
 
     private void Start()
     {
-        gameObject.SetActive(QuitGameBuildTargets.Contains(EditorUserBuildSettings.activeBuildTarget));
+        gameObject.SetActive(!QuitGameBuildTargets.Contains(Application.platform));
     }
 }
