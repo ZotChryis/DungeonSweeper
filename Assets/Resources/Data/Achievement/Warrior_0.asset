@@ -23,3 +23,8 @@ MonoBehaviour:
   Class: 1
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
+  AchievementIcon: {fileID: 21300000, guid: a83327dca6180d24bbc9c65682d81baf, type: 3}

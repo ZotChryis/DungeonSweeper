@@ -17,8 +17,14 @@ MonoBehaviour:
   Description: Complete the third dungeon level with the Miner.
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 0
   Level: 2
   Class: 7
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
+  AchievementIcon: {fileID: 21300000, guid: 5aa307e238dc52b4aac23e7e94a890a0, type: 3}

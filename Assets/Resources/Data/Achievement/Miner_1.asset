@@ -17,8 +17,14 @@ MonoBehaviour:
   Description: Complete the second dungeon level with the Miner.
   Reward: 
   RewardClass: -1
+  RewardItem: 0
   Trigger: 0
   Level: 1
   Class: 7
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
+  AchievementIcon: {fileID: 21300000, guid: 06fabac0721f6104b855368c10c4f0a9, type: 3}

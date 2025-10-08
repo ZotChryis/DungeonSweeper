@@ -25,3 +25,6 @@ MonoBehaviour:
   ItemData: 
   ItemAcquiredMinCount: -1
   ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
+  AchievementIcon: {fileID: 21300000, guid: ffab7a9864c87e6449174fa88ad6a8ed, type: 3}

@@ -17,8 +17,14 @@ MonoBehaviour:
   Description: Complete the first dungeon level with the Fortune Teller.
   Reward: Unlocks the Priest
   RewardClass: 8
+  RewardItem: 0
   Trigger: 0
   Level: 0
   Class: 6
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
+  AchievementIcon: {fileID: 21300000, guid: 7edde27ea7c08654cb3ca4a60cec8d83, type: 3}

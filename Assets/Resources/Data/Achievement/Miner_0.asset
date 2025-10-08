@@ -17,8 +17,14 @@ MonoBehaviour:
   Description: Complete the first dungeon level with the Miner.
   Reward: Unlocks the Fortune Teller
   RewardClass: 6
+  RewardItem: 0
   Trigger: 0
   Level: 0
   Class: 7
   TileData: 
   ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
+  AchievementIcon: {fileID: 21300000, guid: 89d77e438a3b9a34bae1a821fc19892c, type: 3}

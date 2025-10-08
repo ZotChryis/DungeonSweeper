@@ -129,6 +129,27 @@ namespace Schemas
             KillerSheep,
             KillerVampire,
             KillerWerewolf,
+
+            // Ultimate achievements for level 5.
+            Adventurer4,
+            Warrior4,
+            Ranger4,
+            Wizard4,
+            Bard4,
+            FortuneTeller4,
+            Miner4,
+            Ritualist4,
+            Completionist4,
+            PacifistRat4,
+            Annihilation4,
+            Priest4,
+            Apothecary4,
+            PacifistLovers4,
+            Merchant4,
+            Gambler4,
+            ItemAscetic4,
+            Scribe4,
+            Dryad4,
         }
 
         [Serializable]
