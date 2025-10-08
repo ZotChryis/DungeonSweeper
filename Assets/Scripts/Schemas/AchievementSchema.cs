@@ -167,6 +167,7 @@ namespace Schemas
         public string Title;
         public string Description;
         public string Reward;
+        public int SortGroup;
         
         /// <summary>
         /// The class that is unlocked through getting this Achievement.

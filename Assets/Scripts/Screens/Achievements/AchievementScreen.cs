@@ -42,7 +42,7 @@ namespace Screens.Achievements
             var schemas = ServiceLocator.Instance.Schemas.AchievementSchemas;
             schemas.Sort((a1, a2) =>
             {
-                if (a1.Class == a2.Class)
+                if (a1.Class == a2.Class && a1.Class != Class.Id.None)
                 {
                     return a1.AchievementId > a2.AchievementId ? 1 : -1;
                 }
@@ -51,12 +51,23 @@ namespace Screens.Achievements
                 {
                     return -1;
                 }
-                else if (a1.Class == Class.Id.None && a2.Class != Class.Id.None)
+
+                if (a1.Class == Class.Id.None && a2.Class != Class.Id.None)
                 {
                     return 1;
                 }
-                
-                return a1.Class > a2.Class ? 1 : -1;
+
+                if (a1.Class != Class.Id.None && a2.Class != Class.Id.None)
+                {
+                    return a1.Class > a2.Class ? 1 : -1;
+                }
+
+                if(a1.SortGroup == a2.SortGroup)
+                {
+                    return a1.AchievementId > a2.AchievementId ? 1 : -1;
+                }
+
+                return a1.SortGroup.CompareTo(a2.SortGroup);
             });
             Items = new List<AchievementItem>(schemas.Count);
             

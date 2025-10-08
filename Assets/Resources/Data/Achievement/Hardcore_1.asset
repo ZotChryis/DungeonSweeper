@@ -16,6 +16,7 @@ MonoBehaviour:
   Title: Hardcore+
   Description: Complete the second level without a Retry.
   Reward: Unlocks level 3 select.
+  SortGroup: 1
   RewardClass: -1
   RewardItem: 0
   Trigger: 0

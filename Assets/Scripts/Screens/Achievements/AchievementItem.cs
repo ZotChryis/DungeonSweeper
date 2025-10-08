@@ -2,6 +2,7 @@ using Gameplay;
 using Schemas;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Screens.Achievements
 {
@@ -12,13 +13,14 @@ namespace Screens.Achievements
         [SerializeField] private TMP_Text Reward;
         [SerializeField] private TMP_Text Date;
         [SerializeField] private GameObject Check;
-        [SerializeField] private Sprite AchievementIcon;
+        [SerializeField] private Image AchievementIcon;
         
         public void SetSchema(AchievementSchema schema)
         {
             Title.SetText(schema.Title);
             Description.SetText(schema.Description);
             Reward.SetText(schema.Reward);
+            AchievementIcon.sprite = schema.AchievementIcon;
 
             bool achieved = schema.AchievementId.IsAchieved();
             string dateAchieved = FBPP.GetString("Achievement" + schema.AchievementId, "");

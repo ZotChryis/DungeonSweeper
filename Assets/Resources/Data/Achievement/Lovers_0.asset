@@ -16,6 +16,7 @@ MonoBehaviour:
   Title: Novice Matchmaker
   Description: Complete the first dungeon level without defeating any Lovers.
   Reward: Unlocks the Engagement Ring (Shop)
+  SortGroup: 9
   RewardClass: -1
   RewardItem: 35
   Trigger: 1

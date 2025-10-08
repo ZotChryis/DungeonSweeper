@@ -16,6 +16,7 @@ MonoBehaviour:
   Title: Demon Lord
   Description: Defeat the Balrog.
   Reward: 
+  SortGroup: 300
   RewardClass: -1
   RewardItem: 0
   Trigger: 3

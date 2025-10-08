@@ -20,7 +20,7 @@ MonoBehaviour:
   RewardItem: 0
   Trigger: 0
   Level: 2
-  Class: -1
+  Class: 14
   TileData: 
   ItemData: 
   ItemAcquiredMinCount: -1
