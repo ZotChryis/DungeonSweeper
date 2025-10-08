@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 68
   Title: Master Ascetic
-  Description: Complete the fourth dungeon level with 0 items
+  Description: Complete the fourth dungeon level with the Ascetic.
   Reward: 
+  SortGroup: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 0

@@ -51,6 +51,7 @@ public class LevelManager : MonoBehaviour
     public void SetLevel(int level)
     {
         CurrentLevel = level;
+        StartingLevel = level;
         ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
     }
 

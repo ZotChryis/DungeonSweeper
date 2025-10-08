@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 106
   Title: Ascendant Ascetic
-  Description: Complete the fifth dungeon level with 0 items
+  Description: Complete the fifth dungeon level with the Ascetic.
   Reward: 
+  SortGroup: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 0
