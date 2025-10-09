@@ -231,6 +231,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             Player player = ServiceLocator.Instance.Player;
             if (HousedObject.PreventConsumeIfKillingBlow && player.TEMP_PredictDeath(GetAdjustedPower()))
             {
+                ServiceLocator.Instance.AudioManager.PlaySfx("Error");
+                ServiceLocator.Instance.Player.ShakeHearts();
                 return;
             }
         }
@@ -522,7 +524,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (GetHousedObject() == null)
         {
             bool hasMysticalMagnifyingGlass = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.MysticMagnifyingGlass);
-            if (ObscureCounter > 0 && !hasMysticalMagnifyingGlass)
+            if (IsObscured() && !hasMysticalMagnifyingGlass)
             {
                 SetNeighborPower(0, true);
                 NeighborPower.enabled = true;
@@ -1392,5 +1394,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         ObscureCounter--;
         TEMP_UpdateVisuals();
+    }
+
+    public bool IsObscured()
+    {
+        return ObscureCounter > 0;
     }
 }

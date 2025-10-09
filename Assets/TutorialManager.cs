@@ -25,6 +25,8 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         WarnBrickBehavior, // Shown on attacking a brick.
         WarnGnomeBehavior, // Shown on clicking a gnome.
         TutorialRightClick, // Shown after killing something
+        WarnConqueredEnemies, // Shown after killing something
+        WarnObscure, // Shown after revealing a tile that is obscured and you have already leveled up once.
     }
 
     public GameObject FocusObject;
@@ -121,6 +123,26 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             tile.State == Tile.TileState.Conquered)
         {
             if (TryShowTutorial(TutorialId.WarnBrickBehavior, LibraryFocusTarget, false, 0.8f))
+            {
+                return;
+            }
+        }
+        if (!tile.TEMP_IsEmpty() &&
+            tile.GetAdjustedPower() <= 6 &&
+            tile.GetAdjustedPower() >= 1 &&
+            tile.State == Tile.TileState.Conquered)
+        {
+            if (TryShowTutorial(TutorialId.WarnConqueredEnemies, (RectTransform)tile.transform, false, 0.8f))
+            {
+                return;
+            }
+        }
+
+        if (tile.TEMP_IsEmpty() &&
+            tile.IsObscured() &&
+            FBPP.GetBool(TutorialId.NeighborPower.GetTutorialKey()))
+        {
+            if (TryShowTutorial(TutorialId.WarnObscure, LibraryFocusTarget, false, 0.8f))
             {
                 return;
             }

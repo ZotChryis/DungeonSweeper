@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using DG.Tweening;
+﻿using DG.Tweening;
 using Gameplay;
 using Schemas;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -130,6 +131,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private PlayerUIItem[] XPGems;
 
     private List<ItemInstance> ItemsAddedThisDungeon = new();
+    private bool alreadyShaking = false;
 
     private void Awake()
     {
@@ -158,6 +160,35 @@ public class Player : MonoBehaviour, IPointerClickHandler
     private void OnDestroy()
     {
         ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
+    }
+
+    public void ShakeHearts()
+    {
+        if (!alreadyShaking)
+        {
+            alreadyShaking = true;
+            StartCoroutine(ShakeHeartsInternal());
+        }
+    }
+
+    private IEnumerator ShakeHeartsInternal(float duration = 1f, float magnitude = 15)
+    {
+        Vector3 originalPosition = HeartContainer.localPosition;
+        float elapsed = 0.0f;
+
+        while (elapsed < duration)
+        {
+            float percentElapsedInvertSquared = 1f - elapsed / duration;
+            percentElapsedInvertSquared = percentElapsedInvertSquared * percentElapsedInvertSquared;
+            float x = UnityEngine.Random.Range(-1, 1f) * magnitude * percentElapsedInvertSquared + originalPosition.x;
+            float y = UnityEngine.Random.Range(-1, 1f) * magnitude * percentElapsedInvertSquared + originalPosition.y;
+            HeartContainer.localPosition = new Vector3(x, y, originalPosition.z);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        HeartContainer.localPosition = originalPosition;
+        alreadyShaking = false;
     }
 
     // TODO: Fix hack....retry has a lot of holes :(

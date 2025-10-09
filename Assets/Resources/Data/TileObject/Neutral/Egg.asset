@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Egg
   m_EditorClassIdentifier: 
   UserFacingName: Dragon Egg
-  UserFacingDescription: The Dragon's prized posession. Makes for a good omelette!
+  UserFacingDescription: The Dragon's harmless egg. Worth 3 xp.
   Tags: 00000000
   TileId: 2
   LibraryOverrideTileId: 0
