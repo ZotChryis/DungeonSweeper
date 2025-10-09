@@ -25,8 +25,9 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         WarnBrickBehavior, // Shown on attacking a brick.
         WarnGnomeBehavior, // Shown on clicking a gnome.
         TutorialRightClick, // Shown after killing something
-        WarnConqueredEnemies, // Shown after killing something
+        WarnConqueredEnemies, // Shown after killing something. Delayed by 3s and only shown again if tile state still conquered.
         WarnObscure, // Shown after revealing a tile that is obscured and you have already leveled up once.
+        WarnHealWhenNoHealth, // Shown after leveling up four times.
     }
 
     public GameObject FocusObject;
@@ -74,6 +75,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             return;
         }
         if (TryShowTutorial(TutorialId.TutorialRightClick))
+        {
+            return;
+        }
+        if (TryShowTutorial(TutorialId.WarnHealWhenNoHealth))
         {
             return;
         }
@@ -132,7 +137,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             tile.GetAdjustedPower() >= 1 &&
             tile.State == Tile.TileState.Conquered)
         {
-            if (TryShowTutorial(TutorialId.WarnConqueredEnemies, (RectTransform)tile.transform, false, 0.8f))
+            if (TryShowTutorialAfterDelay(TutorialId.WarnConqueredEnemies, tile, (RectTransform)tile.transform, false, 3f))
             {
                 return;
             }
@@ -214,7 +219,6 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         TryHideLastTutorial();
         LastTutorial = tutorial;
 
-
         if (waitSeconds >= 0)
         {
             if (waitSeconds == 0f)
@@ -234,12 +238,57 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         return true;
     }
 
+    /// <summary>
+    /// Copy of TryShowTutorial, but only trigger showing the tutorial after a large delay. And only if the target is still conquered.
+    /// </summary>
+    /// <param name="tutorialId"></param>
+    /// <param name="tile"></param>
+    /// <returns></returns>
+    public bool TryShowTutorialAfterDelay(TutorialId tutorialId, Tile tile, RectTransform focus, bool forcePlayerToClickFocus, float waitSeconds)
+    {
+        if (!CanShowTutorials)
+        {
+            return false;
+        }
+
+        var tutorialKey = tutorialId.GetTutorialKey();
+
+        // Already seen this tutorial?
+        if (FBPP.GetBool(tutorialKey, false))
+        {
+            return false;
+        }
+        Debug.Log("Trying to show tutorial: after delay" + tutorialKey);
+
+        // No tutorial defined?
+        if (!Tutorials.TryGetValue(tutorialId, out Tutorial tutorial))
+        {
+            Debug.LogWarning("No tutorial defined for tutorialId: " + tutorialId);
+            return false;
+        }
+
+        StartCoroutine(WaitThenTryShowTutorial(tutorial, tile, focus, forcePlayerToClickFocus, waitSeconds));
+        return true;
+    }
+
     private void TryShowTutorialAfter(Tutorial tutorial, RectTransform focus = null, bool forcePlayerToClickFocus = false)
     {
         tutorial.gameObject.SetActive(true);
         if (focus != null)
         {
             tutorial.SetFocus(focus, forcePlayerToClickFocus);
+        }
+    }
+
+    private IEnumerator WaitThenTryShowTutorial(Tutorial tutorial, Tile tile, RectTransform focus, bool forcePlayerToClickFocus, float waitSeconds)
+    {
+        yield return new WaitForSeconds(waitSeconds);
+        if (tile.State == Tile.TileState.Conquered && FBPP.GetBool(tutorial.Id.GetTutorialKey(), false))
+        {
+            TryHideLastTutorial();
+            LastTutorial = tutorial;
+            TryShowTutorialAfter(tutorial, focus, forcePlayerToClickFocus);
+            FBPP.SetBool(tutorial.Id.GetTutorialKey(), true);
         }
     }
 

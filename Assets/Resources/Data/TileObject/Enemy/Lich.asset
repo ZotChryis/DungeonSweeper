@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Lich
   m_EditorClassIdentifier: 
   UserFacingName: Lich
-  UserFacingDescription: An undead servant of the Dragon, responsible for making
-    the mines.
+  UserFacingDescription: An undead servant of the Dragon, responsible for the mines.
   Tags: 010000000300000006000000
   TileId: 30
   LibraryOverrideTileId: 0
@@ -27,6 +26,7 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
+  OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
   Power: 10
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -54,7 +54,8 @@ MonoBehaviour:
   FleeSfx: 
   RevealFlee: 0
   CanEnrage: 0
-  CanBodyGuardSwap: 0
+  BodyguardGrunt: 
+  GuardingGrunt: 
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -65,7 +66,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
-  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

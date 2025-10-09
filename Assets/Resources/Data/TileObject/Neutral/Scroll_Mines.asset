@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Scroll_Mines
   m_EditorClassIdentifier: 
   UserFacingName: Diffuse Scroll
-  UserFacingDescription: Used to diffuse all mines on the map.
+  UserFacingDescription: Use to diffuse all mines on the map.
   Tags: 000000000c000000
   TileId: 13
   LibraryOverrideTileId: 0
@@ -26,12 +26,17 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
+  OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
   Power: 0
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 0
   ItemsToReplenish: 
   DropReward: {fileID: 0}
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList: []
   ItemReward: 0
   ItemRewardRarities: 
   TileUpdateReward: []
@@ -49,7 +54,8 @@ MonoBehaviour:
   FleeSfx: 
   RevealFlee: 0
   CanEnrage: 0
-  CanBodyGuardSwap: 0
+  BodyguardGrunt: 
+  GuardingGrunt: 
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards:

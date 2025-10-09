@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ouroboros
   m_EditorClassIdentifier: 
   UserFacingName: Ouroboros
-  UserFacingDescription: A creature of infinite chaos. Hides the power of nearby
-    tiles.
+  UserFacingDescription: A creature of infinite chaos. Hides the power of tiles in
+    a large radius.
   Tags: 010000000400000006000000
   TileId: 49
   LibraryOverrideTileId: 0
@@ -27,23 +27,36 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
+  OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
   Power: 14
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 14
   ItemsToReplenish: 
   DropReward: {fileID: 0}
+  NumNeighborDropReward:
+    _serializedList: []
+  NumNeighborItemReward:
+    _serializedList: []
   ItemReward: 0
   ItemRewardRarities: 
-  RevealRandLocationNextToMine: 0
+  TileUpdateReward: []
+  ChildUpdateReward:
+    From: 0
+    To: 0
+    Amount: 0
   RevealOffsets: []
+  RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets: []
   ObscureRadius: 2
   CanFlee: 0
+  FleeVfx: {fileID: 0}
+  FleeSfx: 
   RevealFlee: 0
   CanEnrage: 0
-  CanBodyGuardSwap: 0
+  BodyguardGrunt: 
+  GuardingGrunt: 
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -54,5 +67,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
+  RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

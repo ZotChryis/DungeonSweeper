@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rat
   m_EditorClassIdentifier: 
   UserFacingName: Rat
-  UserFacingDescription: A simple rat with no sense of self. It follows a command.
+  UserFacingDescription: A simple rat with no sense of self. Attracted to music.
   Tags: 010000000200000005000000
   TileId: 15
   LibraryOverrideTileId: 0
@@ -26,6 +26,7 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: -3268197922570579268, guid: 946e49db2b7a7bf42adc0e483ddf71c1, type: 3}
     BodyGuardedByOrGuardingDead: {fileID: 0}
+  OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
   Power: 1
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
@@ -53,7 +54,8 @@ MonoBehaviour:
   FleeSfx: 
   RevealFlee: 0
   CanEnrage: 0
-  CanBodyGuardSwap: 0
+  BodyguardGrunt: 
+  GuardingGrunt: 
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -64,7 +66,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
-  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 0}
   Data:
     _serializedList: []

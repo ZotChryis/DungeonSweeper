@@ -389,8 +389,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
         if (overflowXp > 0)
         {
             // play an overflow animation.
-            OverflowXp.GetComponent<RectTransform>().DOAnchorPos(OriginalOverflowXpPosition + Vector2.up * 10, 1f).From(OriginalOverflowXpPosition);
-            OverflowXp.DOFade(0f, 1f).From(1f, true);
+            OverflowXp.GetComponent<RectTransform>().DOAnchorPos(OriginalOverflowXpPosition + Vector2.up * 10, 2f).From(OriginalOverflowXpPosition);
+            OverflowXp.DOFade(0f, 2f).From(1f, true);
             OverflowXp.GetComponentInChildren<TextMeshProUGUI>().text = "+" + overflowXp.ToString();
         }
     }
