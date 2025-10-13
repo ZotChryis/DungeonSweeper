@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
   m_Name: Gambler_2
   m_EditorClassIdentifier: 
-  AchievementId: 23
+  AchievementId: 63
   Title: Advanced Gambler
   Description: Complete the third dungeon level with the Gambler.
   Reward: 
+  SortGroup: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 0

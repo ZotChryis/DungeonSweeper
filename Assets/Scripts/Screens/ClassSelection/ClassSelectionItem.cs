@@ -14,6 +14,7 @@ public class ClassSelectionItem : MonoBehaviour
     [SerializeField] private Image LockedIcon;
     [SerializeField] private TMP_Text Name;
     [SerializeField] private TMP_Text Description;
+    [SerializeField] private TMP_Text UnlockText;
     [SerializeField] private Button Button;
 
     private readonly int[] StartingLevelStartingXp = new int[] { 0, 10, 25, 45, 55, 55 };
@@ -29,6 +30,7 @@ public class ClassSelectionItem : MonoBehaviour
         Icon.sprite = Schema.Sprite;
         Name.SetText(Schema.Name);
         Description.SetText(Schema.Description);
+        UnlockText.SetText(Schema.UnlockText);
 
         Button.onClick.AddListener(OnButtonClicked);
     }
@@ -42,6 +44,7 @@ public class ClassSelectionItem : MonoBehaviour
     {
         Button.interactable = !locked;
         LockedIcon.GameObject().SetActive(locked);
+        UnlockText.gameObject.SetActive(locked);
     }
 
     private void OnButtonClicked()

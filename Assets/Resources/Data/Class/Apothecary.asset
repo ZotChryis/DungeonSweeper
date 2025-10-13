@@ -16,6 +16,7 @@ MonoBehaviour:
   Sprite: {fileID: -2822969319259148933, guid: 3436e10cc9d729c4bad73c69f46a59f6, type: 3}
   Name: Apothecary
   Description: Starts with the Alembic.
+  UnlockText: Complete Novice Priest achievement.
   StartingItem: 7
   SmallHitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
   BigHitEffect: {fileID: 2427094801149019240, guid: 7df390ed24f4c144fb3c57aaf624728a, type: 3}

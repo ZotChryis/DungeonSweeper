@@ -16,6 +16,7 @@ MonoBehaviour:
   Sprite: {fileID: -5081659279774951377, guid: e54a1c564ece59244b3a029d323b0137, type: 3}
   Name: Ranger
   Description: Starts with the Bow.
+  UnlockText: Complete Novice Adventurer achievement.
   StartingItem: 2
   SmallHitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
   BigHitEffect: {fileID: 2427094801149019240, guid: 7df390ed24f4c144fb3c57aaf624728a, type: 3}

@@ -27,7 +27,7 @@ MonoBehaviour:
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
   OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
-  Power: 14
+  Power: 15
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 15

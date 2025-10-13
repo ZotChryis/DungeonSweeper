@@ -10,6 +10,7 @@ namespace Schemas
         public Sprite Sprite;
         public string Name;
         public string Description;
+        public string UnlockText;
         public ItemSchema.Id StartingItem;
         public GameObject SmallHitEffect;
         public GameObject BigHitEffect;
