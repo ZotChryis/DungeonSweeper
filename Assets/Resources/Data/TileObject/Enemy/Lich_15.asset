@@ -15,9 +15,9 @@ MonoBehaviour:
   UserFacingName: Lich
   UserFacingDescription: An undead servant of the Dragon, responsible for the mines.
   Tags: 010000000300000006000000
-  TileId: 81
+  TileId: 80
   LibraryOverrideTileId: 0
-  Sprite: {fileID: -2858330702786226967, guid: 5815ab2fcc572684aa5cece91ef51573, type: 3}
+  Sprite: {fileID: 21300000, guid: 998d68e111c32414b8e9a41ce41fc469, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
     Above: {fileID: 0}
@@ -27,7 +27,7 @@ MonoBehaviour:
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
   OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
-  Power: 15
+  Power: 14
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
   XPReward: 15

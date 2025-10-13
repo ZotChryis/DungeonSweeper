@@ -13570,7 +13570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c8e6f826012f8e43bdf834b6a5fa73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Id: 4
+  Id: 18
   Button: {fileID: 1701568826}
   Content: {fileID: 147331640}
 --- !u!1 &792265164
@@ -51616,10 +51616,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3747253890298885096, guid: 5593832c7700a04468d9ac286726a29d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 3748770189745791439, guid: 5593832c7700a04468d9ac286726a29d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -52639,10 +52635,6 @@ PrefabInstance:
     - target: {fileID: 6193765890412545512, guid: 5593832c7700a04468d9ac286726a29d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6197542731452784794, guid: 5593832c7700a04468d9ac286726a29d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6218716466141042858, guid: 5593832c7700a04468d9ac286726a29d, type: 3}
       propertyPath: m_SizeDelta.y
