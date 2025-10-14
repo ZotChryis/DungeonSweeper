@@ -24,7 +24,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         WarnLevelUpNonEmpty, // Shown on level up but the player had some remaining health
         WarnBrickBehavior, // Shown on attacking a brick.
         WarnGnomeBehavior, // Shown on clicking a gnome.
-        TutorialRightClick, // Shown after killing something
+        TutorialRightClick, // Shown after leveling up third time
         WarnConqueredEnemies, // Shown after killing something. Delayed by 3s and only shown again if tile state still conquered.
         WarnObscure, // Shown after revealing a tile that is obscured and you have already leveled up once.
         WarnHealWhenNoHealth, // Shown after leveling up four times.
