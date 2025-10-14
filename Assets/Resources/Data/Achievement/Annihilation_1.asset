@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 42
   Title: Intermediate Annihilator
-  Description: Defeat the dragon in the second dungeon level with an empty board.
+  Description: Complete the second dungeon level with an empty board.
   Reward: Unlocks Rain of Fire (Shop)
+  SortGroup: 0
   RewardClass: -1
   RewardItem: 55
   Trigger: 2

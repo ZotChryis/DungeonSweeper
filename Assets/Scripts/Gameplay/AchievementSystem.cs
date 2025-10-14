@@ -4,6 +4,11 @@ using System.Linq;
 using Schemas;
 using Sirenix.Utilities;
 
+
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
 namespace Gameplay
 {
     public class AchievementSystem
@@ -185,6 +190,10 @@ namespace Gameplay
             
             OnAchievementCompleted?.Invoke(schema);
             ServiceLocator.Instance.AudioManager.PlaySfx("Achievement");
+
+#if !DISABLESTEAMWORKS
+            ServiceLocator.Instance.SteamStatsAndAchievements.UnlockAchievement(schema.AchievementId);
+#endif
         }
     }
 }

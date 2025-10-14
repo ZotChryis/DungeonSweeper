@@ -53,6 +53,9 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     [HideInInspector]
     public SaveSystem SaveSystem;
 
+    [HideInInspector]
+    public SteamStatsAndAchievements SteamStatsAndAchievements;
+
     protected override void Awake()
     {
         base.Awake();
@@ -86,6 +89,11 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
                 SaveFilePath = path,
             });
         }
+    }
+
+    public void Register(SteamStatsAndAchievements steamStatsAndAchievements)
+    {
+        SteamStatsAndAchievements = steamStatsAndAchievements;
     }
     
     public void Register(Grid grid)
