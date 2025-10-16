@@ -1,10 +1,13 @@
-﻿using UnityEngine;
-using Steamworks;
+﻿#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
+using UnityEngine;
 using Schemas;
 using System.Linq;
 
-#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
-#define DISABLESTEAMWORKS
+#if !DISABLESTEAMWORKS
+using Steamworks;
 #endif
 
 // This is a port of StatsAndAchievements.cpp from SpaceWar, the official Steamworks Example.
