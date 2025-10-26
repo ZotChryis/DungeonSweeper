@@ -215,6 +215,7 @@ public class SteamStatsAndAchievements : MonoBehaviour
         if (achievement != null)
         {
             UnlockAchievement(achievement);
+            SteamUserStats.StoreStats();
         }
         else
         {
