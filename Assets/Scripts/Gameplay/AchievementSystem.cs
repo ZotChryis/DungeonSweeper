@@ -2,13 +2,15 @@
 #define DISABLESTEAMWORKS
 #endif
 
+#if !DISABLESTEAMWORKS
+using Steamworks;
+#endif
+
 using Schemas;
 using Sirenix.Utilities;
-using Steamworks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 
 namespace Gameplay
 {
