@@ -1,7 +1,12 @@
+using Schemas;
+using Steamworks;
 using System.Collections.Generic;
 using System.IO;
-using Schemas;
 using UnityEngine;
+
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
 
 namespace Gameplay
 {
@@ -21,17 +26,32 @@ namespace Gameplay
         private const string c_saveFilePath = "DungeonSweeperRunSave.txt";
 
         private string _saveFilePath;
-    
-        public SaveSystem()
+
+        public static string GetSaveFilePath()
         {
             string path = Application.persistentDataPath;
+
 #if PLATFORM_WEBGL
             path = "idbfs/DungeonSweeper";
+#endif
+
+#if !DISABLESTEAMWORKS
+            string steamPath = SteamUser.GetSteamID().ToString(); // {64BitSteamID}
+            path += "/" + steamPath;
+#endif
+
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
             }
-#endif
+
+            return path;
+        }
+    
+        public SaveSystem()
+        {
+            string path = GetSaveFilePath();
+            Debug.Log("Saving player save/load to : " + path + " filename: player_data.json");
             _saveFilePath = Path.Combine(path, "player_data.json");
         }
 

@@ -70,16 +70,10 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
 
             AchievementSystem = new AchievementSystem();
             SaveSystem = new SaveSystem();
-            
-            string path = Application.persistentDataPath;
-            #if PLATFORM_WEBGL
-            path = "idbfs/DungeonSweeper";
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
-            #endif
-            
+
+            string path = SaveSystem.GetSaveFilePath();
+            Debug.Log("Saving to path : " + path + " filename: DungeonSweeperSaveData.txt");
+
             FBPP.Start(new FBPPConfig()
             {
                 SaveFileName = "DungeonSweeperSaveData.txt",
