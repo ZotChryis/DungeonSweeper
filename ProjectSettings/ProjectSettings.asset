@@ -70,7 +70,6 @@ PlayerSettings:
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 1
   androidUseSwappy: 0
-  androidDisplayOptions: 1
   androidBlitType: 0
   androidResizeableActivity: 0
   androidDefaultWindowWidth: 1920
@@ -269,8 +268,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 2
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: F:/GameDev/smoketreestudioskey.keystore
-  AndroidKeyaliasName: denniskey
+  AndroidKeystoreName: D:/google_play_keystore.keystore
+  AndroidKeyaliasName: dungeonsweeper
   AndroidEnableArmv9SecurityFeatures: 0
   AndroidEnableArm64MTE: 0
   AndroidBuildApkPerCpuArchitecture: 1
@@ -305,48 +304,6 @@ PlayerSettings:
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
-    - m_Textures:
-      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
-      - {fileID: 2800000, guid: 4373a04e72142b4419733aba95ccfe09, type: 3}
-      m_Width: 432
-      m_Height: 432
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
-      - {fileID: 2800000, guid: 95fc3cbbff398724b92afdaa585b278f, type: 3}
-      m_Width: 324
-      m_Height: 324
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
-      - {fileID: 2800000, guid: 993598bc5dc6e8542802c20895b118dc, type: 3}
-      m_Width: 216
-      m_Height: 216
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
-      - {fileID: 2800000, guid: ada5e91b53a335147a307d3e85063ffa, type: 3}
-      m_Width: 162
-      m_Height: 162
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
-      - {fileID: 2800000, guid: 511a247436f36b74aac2541cceff8dce, type: 3}
-      m_Width: 108
-      m_Height: 108
-      m_Kind: 2
-      m_SubKind: 
-    - m_Textures:
-      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
-      - {fileID: 2800000, guid: 511a247436f36b74aac2541cceff8dce, type: 3}
-      m_Width: 81
-      m_Height: 81
-      m_Kind: 2
-      m_SubKind: 
     - m_Textures:
       - {fileID: 2800000, guid: a63d28941f5e8b4418a737b5891d4ebe, type: 3}
       m_Width: 192
@@ -418,6 +375,48 @@ PlayerSettings:
       m_Width: 36
       m_Height: 36
       m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
+      - {fileID: 2800000, guid: 4373a04e72142b4419733aba95ccfe09, type: 3}
+      m_Width: 432
+      m_Height: 432
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
+      - {fileID: 2800000, guid: 95fc3cbbff398724b92afdaa585b278f, type: 3}
+      m_Width: 324
+      m_Height: 324
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
+      - {fileID: 2800000, guid: 993598bc5dc6e8542802c20895b118dc, type: 3}
+      m_Width: 216
+      m_Height: 216
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
+      - {fileID: 2800000, guid: ada5e91b53a335147a307d3e85063ffa, type: 3}
+      m_Width: 162
+      m_Height: 162
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
+      - {fileID: 2800000, guid: 511a247436f36b74aac2541cceff8dce, type: 3}
+      m_Width: 108
+      m_Height: 108
+      m_Kind: 2
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 2800000, guid: 0796f9a4d0d46b947b66ca7a0baf13aa, type: 3}
+      - {fileID: 2800000, guid: 511a247436f36b74aac2541cceff8dce, type: 3}
+      m_Width: 81
+      m_Height: 81
+      m_Kind: 2
       m_SubKind: 
   - m_BuildTarget: iPhone
     m_Icons:
@@ -954,4 +953,3 @@ PlayerSettings:
   androidVulkanDenyFilterList: []
   androidVulkanAllowFilterList: []
   androidVulkanDeviceFilterListAsset: {fileID: 0}
-  d3d12DeviceFilterListAsset: {fileID: 0}
