@@ -138,6 +138,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public void DeleteSaveFile()
     {
         FBPP.DeleteAll();
+        SaveSystem.Wipe();
         CheatManager.Instance.Restart();
     }
 

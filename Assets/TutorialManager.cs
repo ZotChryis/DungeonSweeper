@@ -96,13 +96,12 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         )
         {
             var tutorialSlime = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.TutorialSlime);
-            if (tutorialSlime == null)
+            if (tutorialSlime != null)
             {
-                tutorialSlime = tile.transform;
-            }
-            if (TryShowTutorial(TutorialId.EnemyPower, (RectTransform)tutorialSlime, true))
-            {
-                return;
+                if (TryShowTutorial(TutorialId.EnemyPower, (RectTransform)tutorialSlime, true))
+                {
+                    return;
+                }
             }
         }
         if (!tile.TEMP_IsEmpty() &&
