@@ -4524,6 +4524,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224784609}
   - component: {fileID: 224784610}
+  - component: {fileID: 224784611}
   m_Layer: 0
   m_Name: AllowCheats
   m_TagString: Untagged
@@ -4612,6 +4613,18 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 1
+--- !u!114 &224784611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224784608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de3df515c7be7174da9e993facab0b37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ActivateOnStandaloneOnly
 --- !u!1 &224807143
 GameObject:
   m_ObjectHideFlags: 0
@@ -7727,7 +7740,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Full Screen
+  m_text: Fullscreen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: fe916b31e99974d4eb1f54cca942493b, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 6c9b2250e4ba3bc4db8d4ed5974bff3f, type: 2}
