@@ -642,7 +642,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
         
         // Get all enemies that are conquerable with our max health
         // No possible bounty to show, just show nothing
-        var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects();
+        var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects(new Tile.TileState[] { 
+            Tile.TileState.Hidden, 
+            Tile.TileState.Revealed, 
+            Tile.TileState.RevealThroughCombat 
+        });
+        
         tileObjects.RemoveAll(item => item.Power > MaxHealth || !item.Tags.Contains(TileSchema.Tag.Enemy));
         if (tileObjects.Count == 0)
         {

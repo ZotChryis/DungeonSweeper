@@ -816,7 +816,7 @@ public class Grid : MonoBehaviour
         return (-1, -1);
     }
 
-    public List<TileSchema> GetAllTileObjects()
+    public List<TileSchema> GetAllTileObjects(Tile.TileState[] allowedStates = null)
     {
         List<TileSchema> tileObjects = new List<TileSchema>();
         if (Tiles == null || Tiles.Length == 0)
@@ -830,6 +830,10 @@ public class Grid : MonoBehaviour
             {
                 if (!Tiles[x, y].TEMP_IsEmpty())
                 {
+                    if (allowedStates != null && !allowedStates.Contains(Tiles[x, y].State))
+                    {
+                        continue;
+                    }
                     tileObjects.Add(Tiles[x, y].GetHousedObject());
                 }
             }
