@@ -45,6 +45,29 @@ namespace Schemas
             }
             return max;
         }
+
+        /// <summary>
+        /// Should be a copy of InventoryItem.cs Rarity Colors.
+        /// </summary>
+        /// <param name="rarity"></param>
+        /// <returns></returns>
+        public static Color GetRarityColor(this Rarity rarity)
+        {
+            switch(rarity)
+            {
+                case Rarity.Legendary:
+                    return new Color(1f, 0.71f, 0.125f, 1f);
+                case Rarity.Uncommon:
+                    return new Color(0.471f, 0.992f, 0.439f, 1f);
+                case Rarity.Rare:
+                    return new Color(0.141f, 0.576f, 0.851f, 1f);
+                case Rarity.Epic:
+                    return new Color(0.576f, 0.184f, 0.792f, 1f);
+                case Rarity.Common:
+                default:
+                    return Color.white;
+            }
+        }
     }
 
     [Serializable]
