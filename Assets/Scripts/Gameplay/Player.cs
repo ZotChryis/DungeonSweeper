@@ -640,8 +640,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
             return;
         }
         
+        // Get all enemies that are conquerable with our max health
         // No possible bounty to show, just show nothing
         var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects();
+        tileObjects.RemoveAll(item => item.Power > MaxHealth || !item.Tags.Contains(TileSchema.Tag.Enemy));
         if (tileObjects.Count == 0)
         {
             BountyBoardTarget.gameObject.SetActive(false);
@@ -652,18 +654,17 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // If it's the only option, then we can still use it
         if (CurrentBounty != null)
         {
-            var newTtileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects();
-            newTtileObjects.RemoveAll(t => t.TileId == CurrentBounty.TileId);
+            List<TileSchema> newTileObjects = new List<TileSchema>();
+            newTileObjects.AddRange(tileObjects);
+            newTileObjects.RemoveAll(t => t.TileId == CurrentBounty.TileId);
             
             // When we don't have any here, we know we only have the current bounty to provide. That's ok as a fallback
-            if (newTtileObjects.Count > 0)
+            if (newTileObjects.Count > 0)
             {
-                tileObjects = newTtileObjects;
+                tileObjects = newTileObjects;
             }
         }
         
-        // Pick a random enemy that is actually killable with current HP (not counting shields)
-        tileObjects.RemoveAll(item => item.Power > MaxHealth || !item.Tags.Contains(TileSchema.Tag.Enemy));
         CurrentBounty = tileObjects.GetRandomItem();
         BountyBoardTarget.gameObject.SetActive(true);
         BountyBoardTarget.sprite = CurrentBounty.Sprite;
