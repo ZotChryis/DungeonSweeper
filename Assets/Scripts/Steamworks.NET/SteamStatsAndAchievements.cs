@@ -134,6 +134,18 @@ public class SteamStatsAndAchievements : MonoBehaviour
         //new Achievement_t(AchievementSchema.Id.KillerSheep.ToString(), "Sheep Slayer", "Complete any dungeon after defeating 10 Sheep."),
         //new Achievement_t(AchievementSchema.Id.KillerVampire.ToString(), "Vampire Slayer", "Complete any dungeon after defeating 10 Vampires."),
         //new Achievement_t(AchievementSchema.Id.KillerWerewolf.ToString(), "Werewolf Slayer", "Complete any dungeon after defeating 4 Werewolf (not Humanoid)"),
+
+        new Achievement_t(AchievementSchema.Id.Assassin0.ToString(), "Novice Assassin", "Complete the first dungeon level with the Assassin."),
+        new Achievement_t(AchievementSchema.Id.Assassin1.ToString(), "Intermediate Assassin", "Complete the second dungeon level with the Assassin."),
+        new Achievement_t(AchievementSchema.Id.Assassin2.ToString(), "Advanced Assassin", "Complete the third dungeon level with the Assassin."),
+        new Achievement_t(AchievementSchema.Id.Assassin3.ToString(), "Master Assassin", "Complete the fourth dungeon level with the Assassin."),
+        new Achievement_t(AchievementSchema.Id.Assassin4.ToString(), "Ascendant Assassin", "Complete the fifth dungeon level with the Assassin."),
+
+        new Achievement_t(AchievementSchema.Id.BountyHunter0.ToString(), "Novice Bounty Hunter", "Complete the first dungeon level with the Bounty Hunter."),
+        new Achievement_t(AchievementSchema.Id.BountyHunter1.ToString(), "Intermediate Bounty Hunter", "Complete the second dungeon level with the Bounty Hunter."),
+        new Achievement_t(AchievementSchema.Id.BountyHunter2.ToString(), "Advanced Bounty Hunter", "Complete the third dungeon level with the Bounty Hunter."),
+        new Achievement_t(AchievementSchema.Id.BountyHunter3.ToString(), "Master Bounty Hunter", "Complete the fourth dungeon level with the Bounty Hunter."),
+        new Achievement_t(AchievementSchema.Id.BountyHunter4.ToString(), "Ascendant Bounty Hunter", "Complete the fifth dungeon level with the Bounty Hunter."),
     };
 
     // Our GameID
