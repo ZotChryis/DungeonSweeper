@@ -72,6 +72,7 @@ namespace Schemas
         InstantConquer, // Conquers a random when triggered
         SwapTiles,
         Shield,     // Adds to shield amount. Temporary health that is reset between dungeons and is not recoverable
+        ChangeBounty,
     }
 
     [Serializable]

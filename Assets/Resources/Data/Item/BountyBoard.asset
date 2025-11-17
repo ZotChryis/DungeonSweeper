@@ -15,15 +15,27 @@ MonoBehaviour:
   ItemId: 88
   Name: Bounty Board
   Description: Killing the Bounty grants x2 XP. Killing any other target grants -1
-    XP.
+    XP. Use to change the bounty.
   Sprite: {fileID: 21300000, guid: 78a6993f43e7e1644a097a4cb538909c, type: 3}
   Max: 1
-  IsConsumbale: 0
-  InitialCharges: 0
+  IsConsumbale: 1
+  InitialCharges: 3
   ShopInventory: 1
   Rarity: 3
   Price: 8
   UseSfx: 
   CanStack: 0
   Effects:
-    _serializedList: []
+    _serializedList:
+    - Key: 4
+      Value:
+      - Type: 22
+        Amount: 0
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

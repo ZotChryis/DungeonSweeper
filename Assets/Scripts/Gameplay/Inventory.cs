@@ -644,6 +644,10 @@ namespace Gameplay
                         ServiceLocator.Instance.Player.AddShield(effect.Amount);
                         break;
                     
+                    case EffectType.ChangeBounty:
+                        ServiceLocator.Instance.Player.ChangeBountyTarget();
+                        break;
+                    
                 }
             }
         }
@@ -672,6 +676,7 @@ namespace Gameplay
                     case EffectType.MassPolymorph:
                     case EffectType.InstantConquer:
                     case EffectType.Shield:
+                    case EffectType.ChangeBounty:
                         break;
 
                     case EffectType.ModXp:

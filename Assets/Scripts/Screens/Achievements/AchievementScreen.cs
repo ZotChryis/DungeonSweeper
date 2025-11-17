@@ -40,6 +40,12 @@ namespace Screens.Achievements
             }
             
             var schemas = ServiceLocator.Instance.Schemas.AchievementSchemas;
+            
+            if (!SteamManager.Initialized && !Application.isEditor)
+            {
+                schemas.RemoveAll(a => a.SteamExclusive);
+            }
+            
             schemas.Sort((a1, a2) =>
             {
                 if (a1.Class == a2.Class && a1.Class != Class.Id.None)

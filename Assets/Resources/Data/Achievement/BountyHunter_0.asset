@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
+  m_Name: BountyHunter_0
+  m_EditorClassIdentifier: 
+  AchievementId: 119
+  Title: Novice Bounty Hunter
+  Description: Complete the first dungeon level with the Bounty Hunter.
+  Reward: 
+  SortGroup: 0
+  SteamExclusive: 1
+  RewardClass: -1
+  RewardItem: 0
+  Trigger: 0
+  Level: 0
+  Class: 17
+  TileData: 
+  ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
+  AchievementIcon: {fileID: 21300000, guid: c7dae0a13584021428b79c0b8801089d, type: 3}

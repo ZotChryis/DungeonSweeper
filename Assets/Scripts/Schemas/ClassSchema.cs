@@ -14,5 +14,8 @@ namespace Schemas
         public ItemSchema.Id StartingItem;
         public GameObject SmallHitEffect;
         public GameObject BigHitEffect;
+
+        // Some classes will be steam exclusive (for now?)
+        public bool SteamExclusive;
     }
 }

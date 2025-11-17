@@ -11,6 +11,7 @@ using Sirenix.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace Gameplay
 {
@@ -28,10 +29,15 @@ namespace Gameplay
             classes.Add(Class.Id.Adventurer);
             classes.Add(Class.Id.Aristocrat);
             
-            // TEMP: Needs to be added to some achievement
-            classes.Add(Class.Id.Assassin);
-            classes.Add(Class.Id.BountyHunter);
-            
+            // Some classes are Steam Exclusive (or using Editor)
+            if (SteamManager.Initialized || Application.isEditor)
+            {
+                var steamClasses = ServiceLocator.Instance.Schemas.ClassSchemas.FindAll(c => c.SteamExclusive);
+                foreach (var steamClass in steamClasses)
+                {
+                    classes.Add(steamClass.Id);
+                }
+            }
             var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
                 .FindAll(a => a.RewardClass != Class.Id.None);
 
@@ -76,6 +82,11 @@ namespace Gameplay
                 {
                     return schema.AchievementId.IsAchieved();
                 });
+
+            if (!SteamManager.Initialized && !Application.isEditor)
+            {
+                achievements.RemoveAll(a => a.SteamExclusive);
+            }
             
             return achievements.Count;
         }

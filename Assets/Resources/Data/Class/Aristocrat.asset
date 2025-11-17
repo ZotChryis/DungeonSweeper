@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Aristocrat
   m_EditorClassIdentifier: 
   Id: 15
-  Sprite: {fileID: 21300000, guid: 010429653f0ab7441a3ed879b4d62a61, type: 3}
+  Sprite: {fileID: 21300000, guid: eee7814de2b12364581fd11bf9061cf7, type: 3}
   Name: Aristocrat
   Description: Starts with the Silver Spoon.
-  UnlockText: ??????????
+  UnlockText: N/A
   StartingItem: 86
   SmallHitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
   BigHitEffect: {fileID: 2427094801149019240, guid: 7df390ed24f4c144fb3c57aaf624728a, type: 3}
