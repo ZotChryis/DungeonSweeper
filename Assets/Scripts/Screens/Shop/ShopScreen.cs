@@ -17,10 +17,12 @@ namespace Screens.Shop
         [SerializeField] private Button Continue;
         [SerializeField] private Sprite ItemsDisabledIcon;
 
+        private int onShowMoney;
+
         protected override void Awake()
         {
             base.Awake();
-            
+
             Continue.onClick.AddListener(OnContinueClicked);
             Reroll.onClick.AddListener(OnRerollClicked);
 
@@ -30,7 +32,7 @@ namespace Screens.Shop
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            
+
             ServiceLocator.Instance.Player.OnShopXpChanged -= OnShopXpChanged;
         }
 
@@ -41,6 +43,7 @@ namespace Screens.Shop
             RefreshRerollText();
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, true);
             ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Shop);
+            onShowMoney = ServiceLocator.Instance.Player.ShopXp;
         }
 
         private void OnShopXpChanged()
@@ -50,12 +53,30 @@ namespace Screens.Shop
 
         private void OnContinueClicked()
         {
+            if (onShowMoney <= ServiceLocator.Instance.Player.ShopXp)
+            {
+                ServiceLocator.Instance.OverlayScreenManager.RequestConfirmationScreen(() =>
+                {
+                    ContinueFromShopToNextLevel();
+                },
+                    "Are you sure?",
+                    "Are you sure you want to continue without buying anything?"
+                );
+            }
+            else
+            {
+                ContinueFromShopToNextLevel();
+            }
+        }
+
+        private void ContinueFromShopToNextLevel()
+        {
             // TODO: This logic needs to go somewhere else...
             // Reset the player, close the shop and update the level
             ServiceLocator.Instance.Player.ResetPlayer();
             ServiceLocator.Instance.LevelManager.NextLevel();
             ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
-            
+
             ServiceLocator.Instance.SaveSystem.SaveGame();
         }
 
@@ -78,7 +99,7 @@ namespace Screens.Shop
             bool hasRerollCard = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.RerollCreditCard);
             Reroll.GetComponentInChildren<TMP_Text>().SetText(hasRerollCard ? "$1" : "$2");
         }
-        
+
         protected override void SetupInventory()
         {
             Inventory = new Gameplay.Inventory(false);
@@ -121,7 +142,7 @@ namespace Screens.Shop
 
             allItems.Shuffle();
             allItems.Sort((i1, i2) => i1.Rarity.CompareTo(i2.Rarity));
-            
+
             var player = ServiceLocator.Instance.Player;
 
             // Check for price

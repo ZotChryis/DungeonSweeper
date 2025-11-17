@@ -28,6 +28,7 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         WarnConqueredEnemies, // Shown after killing something. Delayed by 3s and only shown again if tile state still conquered.
         WarnObscure, // Shown after revealing a tile that is obscured and you have already leveled up once.
         WarnHealWhenNoHealth, // Shown after leveling up four times.
+        WarnHealWhenNoHealthAgain, // Shown after leveling up with some health remaining again
     }
 
     public GameObject FocusObject;
@@ -63,6 +64,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     private void OnPlayerLevelChanged(int newLevel)
     {
         if (ServiceLocator.Instance.Player.WasLastLevelUpInefficient && TryShowTutorial(TutorialId.WarnLevelUpNonEmpty))
+        {
+            return;
+        }
+        if (ServiceLocator.Instance.Player.WasLastLevelUpInefficient && TryShowTutorial(TutorialId.WarnHealWhenNoHealthAgain))
         {
             return;
         }
@@ -103,6 +108,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
                     return;
                 }
             }
+            else
+            {
+                TryHideLastTutorial();
+            }
         }
         if (!tile.TEMP_IsEmpty() &&
             tile.GetHousedObject().TileId == TileSchema.Id.TutorialSlime &&
@@ -111,6 +120,10 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             if (TryShowTutorial(TutorialId.SafeToCollect, (RectTransform)tile.transform, true))
             {
                 return;
+            }
+            else
+            {
+                TryHideLastTutorial();
             }
         }
         if (!tile.TEMP_IsEmpty() &&
@@ -151,15 +164,25 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
                 return;
             }
         }
+
+        if (!tile.TEMP_IsEmpty() &&
+            tile.GetHousedObject().TileId == TileSchema.Id.TutorialSlime &&
+            tile.State == Tile.TileState.Collected)
+        {
+            TryHideLastTutorial();
+            return;
+        }
     }
 
     private void OnGridGenerated()
     {
         CanShowTutorials = true;
         var dragon0 = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon0);
-        TryShowTutorial(TutorialId.Welcome, (RectTransform)dragon0, false, 0f);
-
-        if (ServiceLocator.Instance.LevelManager.CurrentLevel == 1)
+        if (TryShowTutorial(TutorialId.Welcome, (RectTransform)dragon0, false, 0f))
+        {
+            // Do nothing. We have shown a tutorial.
+        }
+        else if (ServiceLocator.Instance.LevelManager.CurrentLevel == 1)
         {
             var dragon = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.Dragon1);
             TryShowTutorial(TutorialId.SecondLevel, (RectTransform)dragon, false, 0f);

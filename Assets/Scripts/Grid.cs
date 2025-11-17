@@ -43,14 +43,10 @@ public class Grid : MonoBehaviour
     public Action OnGridRequestedVisualUpdate;
     public Action OnGridGenerated;
     public bool MinesDiffused = false;
-    
-    private Vector3 LastMousePosition;
-    private RectTransform Rect;
-    
+
     private void Awake()
     {
         ServiceLocator.Instance.Register(this);
-        Rect = GetComponent<RectTransform>();
     }
     
     private void ResetGrid()
@@ -649,6 +645,11 @@ public class Grid : MonoBehaviour
     /// </summary>
     public void TEMP_DiffuseMines()
     {
+        StartCoroutine(DiffuseMinesOverTime());
+    }
+
+    private IEnumerator DiffuseMinesOverTime()
+    {
         for (int y = 0; y < SpawnSettings.Height; y++)
         {
             for (int x = 0; x < SpawnSettings.Width; x++)
@@ -660,10 +661,12 @@ public class Grid : MonoBehaviour
                 }
 
                 tile.PlaceTileObj(DiffusedMine);
+                // explosion VFX and SFX is handled by setting the DiffusedMine state to conquered
                 tile.TEMP_SetState(Tile.TileState.Conquered);
+                yield return new WaitForSeconds(0.2f);
             }
         }
-        
+
         MinesDiffused = true;
     }
 

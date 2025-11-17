@@ -139,6 +139,7 @@ namespace Schemas
             Lich5,
             Chest_Generic, // Unified library description for all chests.
             TutorialSlime, // Slime you defeat during the tutorial.
+            GoldBug,
         }
 
         // !!WARNING!! DO NOT REORDER
