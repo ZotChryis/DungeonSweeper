@@ -15,54 +15,56 @@ public class SteamStatsAndAchievements : MonoBehaviour
 {
 #if !DISABLESTEAMWORKS
 
+    // Add an entry for each steam achievement.
+    // Steam limits us to max 100 achievements. Commented out achivement rows are deleted to make room.
     private Achievement_t[] m_Achievements = new Achievement_t[] {
         new Achievement_t(AchievementSchema.Id.Adventurer0.ToString(), "Novice Adventurer", "Complete the first dungeon level with the Adventurer."),
         new Achievement_t(AchievementSchema.Id.Adventurer1.ToString(), "Intermediate Adventurer", "Complete the second dungeon level with the Adventurer."),
         new Achievement_t(AchievementSchema.Id.Adventurer2.ToString(), "Advanced Adventurer", "Complete the third dungeon level with the Adventurer."),
         new Achievement_t(AchievementSchema.Id.Adventurer3.ToString(), "Master Adventurer", "Complete the fourth dungeon level with the Adventurer."),
-        new Achievement_t(AchievementSchema.Id.Adventurer4.ToString(), "Ascendant Adventurer", "Complete the fifth dungeon level with the Adventurer."),
+        //new Achievement_t(AchievementSchema.Id.Adventurer4.ToString(), "Ascendant Adventurer", "Complete the fifth dungeon level with the Adventurer."),
 
         new Achievement_t(AchievementSchema.Id.Warrior0.ToString(), "Novice Warrior", "Complete the first dungeon level with the Warrior."),
         new Achievement_t(AchievementSchema.Id.Warrior1.ToString(), "Intermediate Warrior", "Complete the second dungeon level with the Warrior."),
         new Achievement_t(AchievementSchema.Id.Warrior2.ToString(), "Advanced Warrior", "Complete the third dungeon level with the Warrior."),
         new Achievement_t(AchievementSchema.Id.Warrior3.ToString(), "Master Warrior", "Complete the fourth dungeon level with the Warrior."),
-        new Achievement_t(AchievementSchema.Id.Warrior4.ToString(), "Ascendant Warrior", "Complete the fifth dungeon level with the Warrior."),
+        //new Achievement_t(AchievementSchema.Id.Warrior4.ToString(), "Ascendant Warrior", "Complete the fifth dungeon level with the Warrior."),
 
         new Achievement_t(AchievementSchema.Id.Ranger0.ToString(), "Novice Ranger", "Complete the first dungeon level with the Ranger."),
         new Achievement_t(AchievementSchema.Id.Ranger1.ToString(), "Intermediate Ranger", "Complete the second dungeon level with the Ranger."),
         new Achievement_t(AchievementSchema.Id.Ranger2.ToString(), "Advanced Ranger", "Complete the third dungeon level with the Ranger."),
         new Achievement_t(AchievementSchema.Id.Ranger3.ToString(), "Master Ranger", "Complete the fourth dungeon level with the Ranger."),
-        new Achievement_t(AchievementSchema.Id.Ranger4.ToString(), "Ascendant Ranger", "Complete the fifth dungeon level with the Ranger."),
+        //new Achievement_t(AchievementSchema.Id.Ranger4.ToString(), "Ascendant Ranger", "Complete the fifth dungeon level with the Ranger."),
 
         new Achievement_t(AchievementSchema.Id.Wizard0.ToString(), "Novice Wizard", "Complete the first dungeon level with the Wizard."),
         new Achievement_t(AchievementSchema.Id.Wizard1.ToString(), "Intermediate Wizard", "Complete the second dungeon level with the Wizard."),
         new Achievement_t(AchievementSchema.Id.Wizard2.ToString(), "Advanced Wizard", "Complete the third dungeon level with the Wizard."),
         new Achievement_t(AchievementSchema.Id.Wizard3.ToString(), "Master Wizard", "Complete the fourth dungeon level with the Wizard."),
-        new Achievement_t(AchievementSchema.Id.Wizard4.ToString(), "Ascendant Wizard", "Complete the fifth dungeon level with the Wizard."),
+        //new Achievement_t(AchievementSchema.Id.Wizard4.ToString(), "Ascendant Wizard", "Complete the fifth dungeon level with the Wizard."),
 
         new Achievement_t(AchievementSchema.Id.Bard0.ToString(), "Novice Bard", "Complete the first dungeon level with the Bard."),
         new Achievement_t(AchievementSchema.Id.Bard1.ToString(), "Intermediate Bard", "Complete the second dungeon level with the Bard."),
         new Achievement_t(AchievementSchema.Id.Bard2.ToString(), "Advanced Bard", "Complete the third dungeon level with the Bard."),
         new Achievement_t(AchievementSchema.Id.Bard3.ToString(), "Master Bard", "Complete the fourth dungeon level with the Bard."),
-        new Achievement_t(AchievementSchema.Id.Bard4.ToString(), "Ascendant Bard", "Complete the fifth dungeon level with the Bard."),
+        //new Achievement_t(AchievementSchema.Id.Bard4.ToString(), "Ascendant Bard", "Complete the fifth dungeon level with the Bard."),
 
         new Achievement_t(AchievementSchema.Id.FortuneTeller0.ToString(), "Novice Fortune Teller", "Complete the first dungeon level with the Fortune Teller."),
         new Achievement_t(AchievementSchema.Id.FortuneTeller1.ToString(), "Intermediate Fortune Teller", "Complete the second dungeon level with the Fortune Teller."),
         new Achievement_t(AchievementSchema.Id.FortuneTeller2.ToString(), "Advanced Fortune Teller", "Complete the third dungeon level with the Fortune Teller."),
         new Achievement_t(AchievementSchema.Id.FortuneTeller3.ToString(), "Master Fortune Teller", "Complete the fourth dungeon level with the Fortune Teller."),
-        new Achievement_t(AchievementSchema.Id.FortuneTeller4.ToString(), "Ascendant Fortune Teller", "Complete the fifth dungeon level with the Fortune Teller."),
+        //new Achievement_t(AchievementSchema.Id.FortuneTeller4.ToString(), "Ascendant Fortune Teller", "Complete the fifth dungeon level with the Fortune Teller."),
 
         new Achievement_t(AchievementSchema.Id.Miner0.ToString(), "Novice Miner", "Complete the first dungeon level with the Miner."),
         new Achievement_t(AchievementSchema.Id.Miner1.ToString(), "Intermediate Miner", "Complete the second dungeon level with the Miner."),
         new Achievement_t(AchievementSchema.Id.Miner2.ToString(), "Advanced Miner", "Complete the third dungeon level with the Miner."),
         new Achievement_t(AchievementSchema.Id.Miner3.ToString(), "Master Miner", "Complete the fourth dungeon level with the Miner."),
-        new Achievement_t(AchievementSchema.Id.Miner4.ToString(), "Ascendant Miner", "Complete the fifth dungeon level with the Miner."),
+        //new Achievement_t(AchievementSchema.Id.Miner4.ToString(), "Ascendant Miner", "Complete the fifth dungeon level with the Miner."),
 
         new Achievement_t(AchievementSchema.Id.Ritualist0.ToString(), "Novice Ritualist", "Complete the first dungeon level with the Ritualist."),
         new Achievement_t(AchievementSchema.Id.Ritualist1.ToString(), "Intermediate Ritualist", "Complete the second dungeon level with the Ritualist."),
         new Achievement_t(AchievementSchema.Id.Ritualist2.ToString(), "Advanced Ritualist", "Complete the third dungeon level with the Ritualist."),
         new Achievement_t(AchievementSchema.Id.Ritualist3.ToString(), "Master Ritualist", "Complete the fourth dungeon level with the Ritualist."),
-        new Achievement_t(AchievementSchema.Id.Ritualist4.ToString(), "Ascendant Ritualist", "Complete the fifth dungeon level with the Ritualist."),
+        //new Achievement_t(AchievementSchema.Id.Ritualist4.ToString(), "Ascendant Ritualist", "Complete the fifth dungeon level with the Ritualist."),
 
         new Achievement_t(AchievementSchema.Id.PacifistRat0.ToString(), "Novice Rat Pacifist", "Complete the first dungeon without defeating a single rat."),
         new Achievement_t(AchievementSchema.Id.PacifistRat1.ToString(), "Intermediate Rat Pacifist", "Complete the second dungeon without defeating a single rat."),
@@ -80,13 +82,13 @@ public class SteamStatsAndAchievements : MonoBehaviour
         new Achievement_t(AchievementSchema.Id.Priest1.ToString(), "Intermediate Priest", "Complete the second dungeon level with the Priest."),
         new Achievement_t(AchievementSchema.Id.Priest2.ToString(), "Advanced Priest", "Complete the third dungeon level with the Priest."),
         new Achievement_t(AchievementSchema.Id.Priest3.ToString(), "Master Priest", "Complete the fourth dungeon level with the Priest."),
-        new Achievement_t(AchievementSchema.Id.Priest4.ToString(), "Ascendant Priest", "Complete the fifth dungeon level with the Priest."),
+        //new Achievement_t(AchievementSchema.Id.Priest4.ToString(), "Ascendant Priest", "Complete the fifth dungeon level with the Priest."),
 
         new Achievement_t(AchievementSchema.Id.Apothecary0.ToString(), "Novice Apothecary", "Complete the first dungeon level with the Apothecary."),
         new Achievement_t(AchievementSchema.Id.Apothecary1.ToString(), "Intermediate Apothecary", "Complete the second dungeon level with the Apothecary."),
         new Achievement_t(AchievementSchema.Id.Apothecary2.ToString(), "Advanced Apothecary", "Complete the third dungeon level with the Apothecary."),
         new Achievement_t(AchievementSchema.Id.Apothecary3.ToString(), "Master Apothecary", "Complete the fourth dungeon level with the Apothecary."),
-        new Achievement_t(AchievementSchema.Id.Apothecary4.ToString(), "Ascendant Apothecary", "Complete the fifth dungeon level with the Apothecary."),
+        //new Achievement_t(AchievementSchema.Id.Apothecary4.ToString(), "Ascendant Apothecary", "Complete the fifth dungeon level with the Apothecary."),
 
         new Achievement_t(AchievementSchema.Id.PacifistLovers0.ToString(), "Novice Matchmaker", "Complete the first dungeon level without defeating any Lovers."),
         new Achievement_t(AchievementSchema.Id.PacifistLovers1.ToString(), "Intermediate Matchmaker", "Complete the second dungeon level without defeating any Lovers."),
@@ -98,13 +100,13 @@ public class SteamStatsAndAchievements : MonoBehaviour
         new Achievement_t(AchievementSchema.Id.Merchant1.ToString(), "Intermediate Merchant", "Complete the second dungeon level with the Merchant."),
         new Achievement_t(AchievementSchema.Id.Merchant2.ToString(), "Advanced Merchant", "Complete the third dungeon level with the Merchant."),
         new Achievement_t(AchievementSchema.Id.Merchant3.ToString(), "Master Merchant", "Complete the fourth dungeon level with the Merchant."),
-        new Achievement_t(AchievementSchema.Id.Merchant4.ToString(), "Ascendant Merchant", "Complete the fifth dungeon level with the Merchant."),
+        //new Achievement_t(AchievementSchema.Id.Merchant4.ToString(), "Ascendant Merchant", "Complete the fifth dungeon level with the Merchant."),
 
         new Achievement_t(AchievementSchema.Id.Gambler0.ToString(), "Novice Gambler", "Complete the first dungeon level with the Gambler."),
         new Achievement_t(AchievementSchema.Id.Gambler1.ToString(), "Intermediate Gambler", "Complete the second dungeon level with the Gambler."),
         new Achievement_t(AchievementSchema.Id.Gambler2.ToString(), "Advanced Gambler", "Complete the third dungeon level with the Gambler."),
         new Achievement_t(AchievementSchema.Id.Gambler3.ToString(), "Master Gambler", "Complete the fourth dungeon level with the Gambler."),
-        new Achievement_t(AchievementSchema.Id.Gambler4.ToString(), "Ascendant Gambler", "Complete the fifth dungeon level with the Gambler."),
+        //new Achievement_t(AchievementSchema.Id.Gambler4.ToString(), "Ascendant Gambler", "Complete the fifth dungeon level with the Gambler."),
 
         new Achievement_t(AchievementSchema.Id.ItemAscetic0.ToString(), "Novice Ascetic", "Complete the third dungeon level with the Ascetic."),
         new Achievement_t(AchievementSchema.Id.ItemAscetic1.ToString(), "Intermediate Ascetic", "Complete the second dungeon level with the Ascetic."),
@@ -116,13 +118,13 @@ public class SteamStatsAndAchievements : MonoBehaviour
         new Achievement_t(AchievementSchema.Id.Scribe1.ToString(), "Intermediate Scribe", "Complete the second dungeon level with the Scribe."),
         new Achievement_t(AchievementSchema.Id.Scribe2.ToString(), "Advanced Scribe", "Complete the third dungeon level with the Scribe."),
         new Achievement_t(AchievementSchema.Id.Scribe3.ToString(), "Master Scribe", "Complete the fourth dungeon level with the Scribe."),
-        new Achievement_t(AchievementSchema.Id.Scribe4.ToString(), "Ascendant Scribe", "Complete the fifth dungeon level with the Scribe."),
+        //new Achievement_t(AchievementSchema.Id.Scribe4.ToString(), "Ascendant Scribe", "Complete the fifth dungeon level with the Scribe."),
 
         new Achievement_t(AchievementSchema.Id.Dryad0.ToString(), "Novice Dryad", "Complete the first dungeon level with the Dryad."),
         new Achievement_t(AchievementSchema.Id.Dryad1.ToString(), "Intermediate Dryad", "Complete the second dungeon level with the Dryad."),
         new Achievement_t(AchievementSchema.Id.Dryad2.ToString(), "Advanced Dryad", "Complete the third dungeon level with the Dryad."),
         new Achievement_t(AchievementSchema.Id.Dryad3.ToString(), "Master Dryad", "Complete the fourth dungeon level with the Dryad."),
-        new Achievement_t(AchievementSchema.Id.Dryad4.ToString(), "Ascendant Dryad", "Complete the fifth dungeon level with the Dryad."),
+        //new Achievement_t(AchievementSchema.Id.Dryad4.ToString(), "Ascendant Dryad", "Complete the fifth dungeon level with the Dryad."),
 
         new Achievement_t(AchievementSchema.Id.Hardcore0.ToString(), "Hardcore", "Complete the first level without a Retry."),
         new Achievement_t(AchievementSchema.Id.Hardcore1.ToString(), "Hardcore+", "Complete the second level without a Retry."),
