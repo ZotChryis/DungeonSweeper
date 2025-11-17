@@ -942,6 +942,12 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             schema.Max != -1 && ServiceLocator.Instance.Player.Inventory.GetItemCount(schema.ItemId) >= schema.Max
         );
 
+        // If we are in the tutorial level, remove all non-consumables
+        if (ServiceLocator.Instance.LevelManager.IsTutorialLevel)
+        {
+            matchingItems.RemoveAll(schema => !schema.IsConsumbale);
+        }
+
         if (matchingItems.Count > 0)
         {
             var rewardItem = matchingItems.GetRandomItem();

@@ -14,6 +14,8 @@ public class LevelManager : MonoBehaviour
 
     [HideInInspector]
     public int StartingLevel = 0;
+
+    public bool IsTutorialLevel = false;
     
     /// <summary>
     /// Levels are 0, 1, 2, 3, and 4.
@@ -62,10 +64,12 @@ public class LevelManager : MonoBehaviour
         {
             CurrentLevel = 0;
             ServiceLocator.Instance.Grid.SpawnSettings = TutorialLevel;
+            IsTutorialLevel = true;
         }
         else
         {
             SetLevel(StartingLevel);
+            IsTutorialLevel = false;
         }
     }
 
