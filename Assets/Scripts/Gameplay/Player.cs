@@ -647,6 +647,20 @@ public class Player : MonoBehaviour, IPointerClickHandler
             BountyBoardTarget.gameObject.SetActive(false);
             return;
         }
+
+        // If we already have a bounty, try to get a NEW one
+        // If it's the only option, then we can still use it
+        if (CurrentBounty != null)
+        {
+            var newTtileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects();
+            newTtileObjects.RemoveAll(t => t.TileId == CurrentBounty.TileId);
+            
+            // When we don't have any here, we know we only have the current bounty to provide. That's ok as a fallback
+            if (newTtileObjects.Count > 0)
+            {
+                tileObjects = newTtileObjects;
+            }
+        }
         
         // Pick a random enemy that is actually killable with current HP (not counting shields)
         tileObjects.RemoveAll(item => item.Power > MaxHealth || !item.Tags.Contains(TileSchema.Tag.Enemy));
