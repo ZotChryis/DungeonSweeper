@@ -87,6 +87,15 @@ namespace Gameplay
         }
 
         /// <summary>
+        /// Returns the amount of items in the inventory.
+        /// </summary>
+        /// <returns></returns>
+        public int GetItemCount()
+        {
+            return Items.Count;
+        }
+
+        /// <summary>
         /// Returns the amount of copies of the item given.
         /// </summary>
         public int GetItemCount(ItemSchema.Id itemId)
