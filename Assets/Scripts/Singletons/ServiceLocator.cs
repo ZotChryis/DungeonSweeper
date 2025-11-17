@@ -56,7 +56,10 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     [HideInInspector]
     public SteamStatsAndAchievements SteamStatsAndAchievements;
 
-    public bool IsSteamVersion = false;
+    /// <summary>
+    /// Better to use SteamWorks.IsInitialized, but this returns true if you are compatible with Steam like UNITY_STANDALONE
+    /// </summary>
+    public bool IsSteamCompatibleVersion = false;
     /// <summary>
     /// Determines if this application is iOS (iPhone).
     /// </summary>

@@ -11,8 +11,6 @@ namespace Screens.Shop
     // TODO: REFACTOR ShopDetails vs InventoryDetails.... damn it
     public class ShopDetails : InventoryDetails
     {
-        [SerializeField] private TMP_Text ItemRarity;
-
         protected override void HandleButtonClicked()
         {
             var player = ServiceLocator.Instance.Player;
@@ -56,12 +54,6 @@ namespace Screens.Shop
             Button.interactable = ServiceLocator.Instance.Player.ShopXp >= GetPrice();
 
             buttonText.color = itemInstance.IsOnSale ? Color.green : Color.white;
-
-            if (ItemRarity)
-            {
-                ItemRarity.color = itemInstance.Schema.Rarity.GetRarityColor();
-                ItemRarity.text = itemInstance.Schema.Rarity.ToString();
-            }
         }
     }
 }

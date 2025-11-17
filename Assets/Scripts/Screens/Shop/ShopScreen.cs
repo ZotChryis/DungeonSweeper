@@ -97,7 +97,7 @@ namespace Screens.Shop
         public void RefreshRerollText()
         {
             bool hasRerollCard = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.RerollCreditCard);
-            Reroll.GetComponentInChildren<TMP_Text>().SetText(hasRerollCard ? "$1" : "$2");
+            Reroll.GetComponentInChildren<TMP_Text>().SetText(hasRerollCard ? "$1 Reroll" : "$2 Reroll");
         }
 
         protected override void SetupInventory()
