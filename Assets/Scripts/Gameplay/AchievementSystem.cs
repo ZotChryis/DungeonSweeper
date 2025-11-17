@@ -30,9 +30,9 @@ namespace Gameplay
             classes.Add(Class.Id.Aristocrat);
             
             // Some classes are Steam Exclusive (or using Editor)
-            if (SteamManager.Initialized || Application.isEditor)
+            if (ServiceLocator.Instance.IsPaidVersion() || Application.isEditor)
             {
-                var steamClasses = ServiceLocator.Instance.Schemas.ClassSchemas.FindAll(c => c.SteamExclusive);
+                var steamClasses = ServiceLocator.Instance.Schemas.ClassSchemas.FindAll(c => c.PaidExclusive);
                 foreach (var steamClass in steamClasses)
                 {
                     classes.Add(steamClass.Id);
@@ -85,7 +85,7 @@ namespace Gameplay
 
             if (!SteamManager.Initialized && !Application.isEditor)
             {
-                achievements.RemoveAll(a => a.SteamExclusive);
+                achievements.RemoveAll(a => a.PaidExclusive);
             }
             
             return achievements.Count;

@@ -189,9 +189,9 @@ namespace Schemas
         public int SortGroup;
         
         /// <summary>
-        /// Since some classes are steam exclusive, some achievements must also be.
+        /// Since some classes are paid exclusive, some achievements must also be.
         /// </summary>
-        public bool SteamExclusive;
+        [FormerlySerializedAs("SteamExclusive")] public bool PaidExclusive;
         
         /// <summary>
         /// The class that is unlocked through getting this Achievement.

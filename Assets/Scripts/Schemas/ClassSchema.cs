@@ -1,5 +1,6 @@
 ﻿using Gameplay;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Schemas
 {
@@ -15,7 +16,7 @@ namespace Schemas
         public GameObject SmallHitEffect;
         public GameObject BigHitEffect;
 
-        // Some classes will be steam exclusive (for now?)
-        public bool SteamExclusive;
+        // Some classes will be paid exclusive (for now?)
+        [FormerlySerializedAs("SteamExclusive")] public bool PaidExclusive;
     }
 }
