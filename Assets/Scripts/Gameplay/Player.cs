@@ -153,6 +153,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         XPGems = XPContainer.GetComponentsInChildren<PlayerUIItem>();
 
         Inventory = new Inventory(true);
+        Inventory.OnItemAdded += OnItemAdded;
 
         // TODO: Make this system better
         ModDamageTaken.Add(TileSchema.Id.Global, 0);
@@ -171,9 +172,22 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     private void OnDestroy()
     {
+        if (Inventory != null)
+        {
+            Inventory.OnItemAdded -= OnItemAdded;
+        }
+        
         ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
     }
 
+    private void OnItemAdded(ItemInstance item)
+    {
+        if (item.Schema.ItemId == ItemSchema.Id.BountyBoard)
+        {
+            ChangeBountyTarget();
+        }
+    }
+    
     public void ShakeHearts()
     {
         if (!alreadyShaking)
