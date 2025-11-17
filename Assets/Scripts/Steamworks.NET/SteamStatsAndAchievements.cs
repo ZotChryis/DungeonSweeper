@@ -68,7 +68,7 @@ public class SteamStatsAndAchievements : MonoBehaviour
         new Achievement_t(AchievementSchema.Id.PacifistRat1.ToString(), "Intermediate Rat Pacifist", "Complete the second dungeon without defeating a single rat."),
         new Achievement_t(AchievementSchema.Id.PacifistRat2.ToString(), "Advanced Rat Pacifist", "Complete the third dungeon without defeating a single rat."),
         new Achievement_t(AchievementSchema.Id.PacifistRat3.ToString(), "Master Rat Pacifist", "Complete the fourth dungeon without defeating a single rat."),
-        new Achievement_t(AchievementSchema.Id.PacifistRat4.ToString(), "Ascendant Rat Pacifist", "Complete the fifth dungeon without defeating a single rat."),
+        //new Achievement_t(AchievementSchema.Id.PacifistRat4.ToString(), "Ascendant Rat Pacifist", "Complete the fifth dungeon without defeating a single rat."),
 
         new Achievement_t(AchievementSchema.Id.Annihilation0.ToString(), "Novice Annihilation", "Complete the first dungeon level with an empty board."),
         new Achievement_t(AchievementSchema.Id.Annihilation1.ToString(), "Intermediate Annihilation", "Complete the second dungeon level with an empty board."),
@@ -92,7 +92,7 @@ public class SteamStatsAndAchievements : MonoBehaviour
         new Achievement_t(AchievementSchema.Id.PacifistLovers1.ToString(), "Intermediate Matchmaker", "Complete the second dungeon level without defeating any Lovers."),
         new Achievement_t(AchievementSchema.Id.PacifistLovers2.ToString(), "Advanced Matchmaker", "Complete the third dungeon level without defeating any Lovers."),
         new Achievement_t(AchievementSchema.Id.PacifistLovers3.ToString(), "Master Matchmaker", "Complete the fourth dungeon level without defeating any Lovers."),
-        new Achievement_t(AchievementSchema.Id.PacifistLovers4.ToString(), "Ascendant Matchmaker", "Complete the fifth dungeon level without defeating any Lovers."),
+        //new Achievement_t(AchievementSchema.Id.PacifistLovers4.ToString(), "Ascendant Matchmaker", "Complete the fifth dungeon level without defeating any Lovers."),
 
         new Achievement_t(AchievementSchema.Id.Merchant0.ToString(), "Novice Merchant", "Complete the first dungeon level with the Merchant."),
         new Achievement_t(AchievementSchema.Id.Merchant1.ToString(), "Intermediate Merchant", "Complete the second dungeon level with the Merchant."),
@@ -131,9 +131,9 @@ public class SteamStatsAndAchievements : MonoBehaviour
         new Achievement_t(AchievementSchema.Id.Hardcore4.ToString(), "Hardcore++++", "Complete the fifth level without a Retry."),
 
         new Achievement_t(AchievementSchema.Id.DemonLord.ToString(), "DemonLord", "Defeat the Balrog."),
-        new Achievement_t(AchievementSchema.Id.KillerSheep.ToString(), "Sheep Slayer", "Complete any dungeon after defeating 10 Sheep."),
-        new Achievement_t(AchievementSchema.Id.KillerVampire.ToString(), "Vampire Slayer", "Complete any dungeon after defeating 10 Vampires."),
-        new Achievement_t(AchievementSchema.Id.KillerWerewolf.ToString(), "Werewolf Slayer", "Complete any dungeon after defeating 4 Werewolf (not Humanoid)"),
+        //new Achievement_t(AchievementSchema.Id.KillerSheep.ToString(), "Sheep Slayer", "Complete any dungeon after defeating 10 Sheep."),
+        //new Achievement_t(AchievementSchema.Id.KillerVampire.ToString(), "Vampire Slayer", "Complete any dungeon after defeating 10 Vampires."),
+        //new Achievement_t(AchievementSchema.Id.KillerWerewolf.ToString(), "Werewolf Slayer", "Complete any dungeon after defeating 4 Werewolf (not Humanoid)"),
     };
 
     // Our GameID
