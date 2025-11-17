@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 86
   Name: Silver Spoon
   Description: Everything is easier, but the satisfaction of winning may not be fulfilled.
-  Sprite: {fileID: 4646649027328027380, guid: 40b5ef490899d93449ac43047c777b2d, type: 3}
+  Sprite: {fileID: 21300000, guid: 010429653f0ab7441a3ed879b4d62a61, type: 3}
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
