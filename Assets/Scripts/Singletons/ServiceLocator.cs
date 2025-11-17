@@ -56,6 +56,24 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     [HideInInspector]
     public SteamStatsAndAchievements SteamStatsAndAchievements;
 
+    public bool IsSteamVersion = false;
+    /// <summary>
+    /// Determines if this application is iOS (iPhone).
+    /// </summary>
+    public bool IsIOS = false;
+    /// <summary>
+    /// Determines if this application is android.
+    /// </summary>
+    public bool IsAndroid = false;
+    /// <summary>
+    /// Determines if this application is webGL (browser game)
+    /// </summary>
+    public bool IsWebGL = false;
+    /// <summary>
+    /// Determines if this application is linux.
+    /// </summary>
+    public bool IsLinux = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -83,6 +101,22 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
                 SaveFilePath = path,
             });
         }
+
+#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+        IsSteamVersion = true;
+#endif
+#if UNITY_IOS
+        IsIOS = true;
+#endif
+#if UNITY_ANDROID
+        IsAndroid = true;
+#endif
+#if UNITY_WEBGL
+        IsWebGL = true;
+#endif
+#if UNITY_STANDALONE_LINUX
+        IsLinux = true;
+#endif
     }
 
     public void Register(SteamStatsAndAchievements steamStatsAndAchievements)

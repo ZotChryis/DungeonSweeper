@@ -39,8 +39,16 @@ namespace Gameplay
 #endif
 
 #if !DISABLESTEAMWORKS
-            string steamPath = SteamUser.GetSteamID().ToString(); // {64BitSteamID}
-            path += "/" + steamPath;
+            string steamPath;
+            try
+            {
+                steamPath = SteamUser.GetSteamID().ToString(); // {64BitSteamID}
+                path += "/" + steamPath;
+            }
+            catch
+            {
+                // Do nothing. Error usually caused by windows standalone not run from steam.
+            }
 #endif
 
             if (!Directory.Exists(path))
