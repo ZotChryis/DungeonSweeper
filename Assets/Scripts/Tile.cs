@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Android.Gradle.Manifest;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -38,6 +39,16 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         Collected,
         // No monster/item at this tile
         Empty
+    }
+
+    public enum BountyState
+    {
+        // No bounty action issued
+        None,
+        // The bounty was unsuccessful on this tile, will reduce XP
+        Incorrect,
+        // The bounty was successful on this tile, will grant bonus XP
+        Correct,
     }
 
     [SerializeField]
@@ -73,6 +84,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private TileSchema HousedObject;
 
     public TileState State { get; private set; } = TileState.Hidden;
+    public BountyState StateBounty { get; private set; } = BountyState.None;
 
     public static string[] Colors => colors;
 
@@ -105,7 +117,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool IsEnraged = false;
     private bool ShouldStandUp = false;
     private bool IsAlreadyShakingAnnotation = false;
-
+    
     private Coroutine MobileContextMenuHandle;
 
     // Power color. Based on 
@@ -154,7 +166,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public static Color neighborColorUnknown = new Color(138, 0, 196);
     public const string black_300 = "161616";
     public const string gray_mine = "808080";
-
+    
     private void Start()
     {
         // TODO: this probably needs a better home
@@ -637,6 +649,26 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
             }
 
+            // Special case for bounty board...
+            // If there is an active bounty, and our housed objet is an enemy...
+            bool hasBountyBoard = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.BountyBoard);
+            if (hasBountyBoard && ServiceLocator.Instance.Player.CurrentBounty != null && HousedObject.Tags.Contains(TileSchema.Tag.Enemy))
+            {
+                // Mark the tile with the bounty status
+                bool validBountyKill = HousedObject.TileId == ServiceLocator.Instance.Player.CurrentBounty.TileId;
+                StateBounty = validBountyKill ? BountyState.Correct : BountyState.Incorrect;
+                
+                // If the current kill is the bounty, generate a new one
+                if (validBountyKill)
+                {
+                    ServiceLocator.Instance.Player.ChangeBountyTarget();
+                }
+                
+                // Note: Man this code is really getting bad... I need to call this one more time in this particular case
+                // because this will change the XP amount. 
+                TEMP_UpdateVisuals();
+            }
+            
             if (HousedObject.TileId == TileSchema.Id.Balrog)
             {
                 ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.DemonLord);
@@ -718,9 +750,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.AudioManager.PlaySfx(HousedObject.FleeSfx);
                 }
 
-                if (HousedObject.XPReward > 0)
+                int xpReward = GetAdjustedXp();
+                if (xpReward > 0)
                 {
-                    player.TEMP_UpdateXP(HousedObject, HousedObject.XPReward);
+                    player.TEMP_UpdateXP(HousedObject, xpReward);
                 }
 
                 bool newLocation =
@@ -800,7 +833,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             }
 
-            player.TEMP_UpdateXP(HousedObject, HousedObject.XPReward);
+            player.TEMP_UpdateXP(HousedObject, GetAdjustedXp());
+            
+            // Once you're collected, you have no bounty state -- in case something moves here 
+            StateBounty = BountyState.None;
+            
             ServiceLocator.Instance.Player.ShopXp += HousedObject.ShopXp;
 
             if (HousedObject.WinReward)
@@ -925,6 +962,27 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
+    // This is Tile-based adjustments, not Schema based.
+    // Basically, something that happens to THIS tile.
+    // Right now, we only have bounty XP adjustments, but that may change.
+    public int GetAdjustedXp()
+    {
+        if (!HousedObject)
+        {
+            return 0;
+        }
+        
+        switch (StateBounty)
+        {
+            case BountyState.Incorrect:
+                return HousedObject.XPReward - 1;
+            case BountyState.Correct:
+                return HousedObject.XPReward * 2;
+            default:
+                return HousedObject.XPReward;
+        }
+    }
+    
     public static void AddRandomItemToPlayer(Rarity[] possibleRarities)
     {
         var matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
@@ -1274,7 +1332,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             else
             {
                 color = RewardColor.ToHexString();
-                text = $"<color=#{color}>{ServiceLocator.Instance.Player.GetModifiedXp(HousedObject, HousedObject.XPReward).ToString()}</color>";
+                text = $"<color=#{color}>{ServiceLocator.Instance.Player.GetModifiedXp(HousedObject, GetAdjustedXp()).ToString()}</color>";
             }
         }
         else

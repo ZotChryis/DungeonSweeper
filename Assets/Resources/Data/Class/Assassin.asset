@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c34c485cc304af0b78acb9137209bc3, type: 3}
+  m_Name: Assassin
+  m_EditorClassIdentifier: 
+  Id: 16
+  Sprite: {fileID: 21300000, guid: 112bcc79a62595949bffb097b2d6c602, type: 3}
+  Name: Assassin
+  Description: Starts with the License to Kill.
+  UnlockText: ??????????
+  StartingItem: 87
+  SmallHitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
+  BigHitEffect: {fileID: 2427094801149019240, guid: 7df390ed24f4c144fb3c57aaf624728a, type: 3}

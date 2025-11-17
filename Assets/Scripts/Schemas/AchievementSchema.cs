@@ -150,6 +150,25 @@ namespace Schemas
             ItemAscetic4,
             Scribe4,
             Dryad4,
+            
+            
+            Aristocrat0,
+            Aristocrat1,
+            Aristocrat2,
+            Aristocrat3,
+            Aristocrat4,
+            
+            Assassin0,
+            Assassin1,
+            Assassin2,
+            Assassin3,
+            Assassin4,
+            
+            BountyHunter0,
+            BountyHunter1,
+            BountyHunter2,
+            BountyHunter3,
+            BountyHunter4,
         }
 
         [Serializable]

@@ -21,6 +21,11 @@
             Scribe,
             Dryad,
             Ascetic,
+            
+            // Post initial steam build classes
+            Aristocrat,
+            Assassin,
+            BountyHunter,
         }
     }
 }

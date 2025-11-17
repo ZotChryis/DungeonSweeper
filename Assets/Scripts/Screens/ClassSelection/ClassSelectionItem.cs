@@ -62,6 +62,7 @@ public class ClassSelectionItem : MonoBehaviour
         ServiceLocator.Instance.Player.TEMP_SetClass(Class);
         ServiceLocator.Instance.LevelManager.SetToStartingLevel();
         ServiceLocator.Instance.Grid.GenerateGrid();
+        ServiceLocator.Instance.Player.ChangeBountyTarget();
         
         // When a class is selected, we will close the class selection screen AND the main menu screen
         // TODO: Do proper scene mangagement

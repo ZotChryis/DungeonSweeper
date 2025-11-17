@@ -54,6 +54,13 @@ namespace Gameplay
                 }
                 
                 itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Conquer);
+
+                // When conquering something and you're at 0 HP, that's considered a "perfect conquer"
+                // Note that you get BOTH Conquer and PerfectConquer triggers when this occurs
+                if (ServiceLocator.Instance.Player.CurrentPlayerHealth == 0)
+                {
+                    itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.PerfectConquer);
+                }
             }
         }
 
@@ -279,7 +286,8 @@ namespace Gameplay
                 if (itemInstance.Schema.ItemId == ItemSchema.Id.Pickaxe || 
                     itemInstance.Schema.ItemId == ItemSchema.Id.BusinessCard || 
                     itemInstance.Schema.ItemId == ItemSchema.Id.Dice || 
-                    itemInstance.Schema.ItemId == ItemSchema.Id.BloodDonorCard
+                    itemInstance.Schema.ItemId == ItemSchema.Id.BloodDonorCard ||
+                    itemInstance.Schema.ItemId == ItemSchema.Id.LicenseToKill
                 ) {
                     itemInstance.RemoveGrantedItems();
                 }
@@ -373,28 +381,49 @@ namespace Gameplay
         // TODO: this conflates the Effect Data with the Trigger Conditions -- we need to separate them out
         public bool IsValidConquer(TileSchema tileSchema)
         {
-            // Just in case
-            if (!Schema.Effects.TryGetValue(EffectTrigger.Conquer, out Effect[] effects))
+            Schema.Effects.TryGetValue(EffectTrigger.Conquer, out Effect[] conquerEffects);
+            if (conquerEffects != null)
             {
-                return false;
-            }
-
-            foreach (var effect in effects)
-            {
-                if (effect.Id != TileSchema.Id.None && effect.Id == tileSchema.TileId)
+                foreach (var effect in conquerEffects)
                 {
-                    return true;
-                }
+                    if (effect.Id != TileSchema.Id.None && effect.Id == tileSchema.TileId)
+                    {
+                        return true;
+                    }
 
-                // TODO: This can be replaced with Enemy tag now
-                if (effect.Id == TileSchema.Id.Global)
-                {
-                    return true;
-                }
+                    // TODO: This can be replaced with Enemy tag now
+                    if (effect.Id == TileSchema.Id.Global)
+                    {
+                        return true;
+                    }
                 
-                if (tileSchema.Tags.Intersect(effect.Tags).ToList().Count > 0)
+                    if (tileSchema.Tags.Intersect(effect.Tags).ToList().Count > 0)
+                    {
+                        return true;
+                    }
+                }
+            }
+            
+            Schema.Effects.TryGetValue(EffectTrigger.PerfectConquer, out Effect[] perfectConquerEffects);
+            if (perfectConquerEffects != null)
+            {
+                foreach (var effect in perfectConquerEffects)
                 {
-                    return true;
+                    if (effect.Id != TileSchema.Id.None && effect.Id == tileSchema.TileId)
+                    {
+                        return true;
+                    }
+
+                    // TODO: This can be replaced with Enemy tag now
+                    if (effect.Id == TileSchema.Id.Global)
+                    {
+                        return true;
+                    }
+                
+                    if (tileSchema.Tags.Intersect(effect.Tags).ToList().Count > 0)
+                    {
+                        return true;
+                    }
                 }
             }
 

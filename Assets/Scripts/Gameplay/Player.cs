@@ -35,6 +35,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private Image PlayerIcon;
+    
+    [SerializeField]
+    private Image BountyBoard;
+    
+    [SerializeField]
+    private Image BountyBoardTarget;
 
     [SerializeField]
     private GameObject DeathIcon;
@@ -112,6 +118,12 @@ public class Player : MonoBehaviour, IPointerClickHandler
                 }
             }
         }
+    }
+
+    public TileSchema CurrentBounty
+    {
+        get;
+        private set;
     }
 
     public bool IsHardcore = true;
@@ -598,9 +610,37 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         // All consumables are re-filled
         Inventory.ReplenishItems();
+        
+        ChangeBountyTarget();
     }
-
+    
     #region PlayerPowers
+
+    public void ChangeBountyTarget()
+    {
+        // Only bounty hunters need to ever do this ...
+        bool hasBountyBoard = Inventory.HasItem(ItemSchema.Id.BountyBoard);
+        BountyBoard.gameObject.SetActive(hasBountyBoard);
+        if (!hasBountyBoard)
+        {
+            return;
+        }
+        
+        // No possible bounty to show, just show nothing
+        var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects();
+        if (tileObjects.Count == 0)
+        {
+            BountyBoardTarget.gameObject.SetActive(false);
+            return;
+        }
+        
+        // Pick a random enemy that is actually killable with current HP (not counting shields)
+        tileObjects.RemoveAll(item => item.Power > MaxHealth || !item.Tags.Contains(TileSchema.Tag.Enemy));
+        CurrentBounty = tileObjects.GetRandomItem();
+        BountyBoardTarget.gameObject.SetActive(true);
+        BountyBoardTarget.sprite = CurrentBounty.Sprite;
+    }
+    
     public void AddMonsterToAutoRevealedList(TileSchema.Id monsterId)
     {
         AutoRevealedMonsters.Add(monsterId);

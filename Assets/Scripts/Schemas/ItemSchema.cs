@@ -79,10 +79,11 @@ namespace Schemas
     {
         Purchase,       // When the item is purchased
         PlayerLevel,    // When the player levels up mid-dungeon round
-        DungeonLevel,   // When the dungeon levels up (Victory screen). !!!! ONLY GRANT ITEMS WITH THIS !!!!!!!!
+        DungeonLevel,   // When the dungeon levels up (Victory screen). !!!! IMPORTANT: ONLY GRANT ITEMS WITH THIS !!!!!!!!
         Conquer,        // When anything is conquered 
         Used,           // Consumables only: When the Use button is clicked in inventory
         Heal,           // When the player heals mid-dungeon 
+        PerfectConquer, // When the player conquers something that leaves them at 0 HP.
     }
 
     [Serializable]
@@ -282,6 +283,10 @@ namespace Schemas
             LunarRing,
             
             TarotCard,
+            
+            SilverSpoon,
+            LicenseToKill,
+            BountyBoard,
         }
         
         public ItemSchema.Id ItemId;

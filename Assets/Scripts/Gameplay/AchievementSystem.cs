@@ -24,8 +24,13 @@ namespace Gameplay
         {
             HashSet<Class.Id> classes = new HashSet<Class.Id>();
             
-            // Adventurer is unlocked by default
+            // Adventurer & Aristocrat is unlocked by default
             classes.Add(Class.Id.Adventurer);
+            classes.Add(Class.Id.Aristocrat);
+            
+            // TEMP: Needs to be added to some achievement
+            classes.Add(Class.Id.Assassin);
+            classes.Add(Class.Id.BountyHunter);
             
             var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
                 .FindAll(a => a.RewardClass != Class.Id.None);

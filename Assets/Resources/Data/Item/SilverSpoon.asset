@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
+  m_Name: SilverSpoon
+  m_EditorClassIdentifier: 
+  ItemId: 86
+  Name: Silver Spoon
+  Description: Everything is easier, but the satisfaction of winning may not be fulfilled.
+  Sprite: {fileID: 4646649027328027380, guid: 40b5ef490899d93449ac43047c777b2d, type: 3}
+  Max: 1
+  IsConsumbale: 0
+  InitialCharges: 0
+  ShopInventory: 0
+  Rarity: 3
+  Price: 1000
+  UseSfx: 
+  CanStack: 0
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 5
+        Amount: 1
+        GrantItemForceAllowDuplicates: 0
+        Id: 2
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+      - Type: 5
+        Amount: 2
+        GrantItemForceAllowDuplicates: 0
+        Id: 3
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+      - Type: 0
+        Amount: 1
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+      - Type: 16
+        Amount: -1
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 

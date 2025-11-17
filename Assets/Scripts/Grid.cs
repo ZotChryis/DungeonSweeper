@@ -816,7 +816,12 @@ public class Grid : MonoBehaviour
     public List<TileSchema> GetAllTileObjects()
     {
         List<TileSchema> tileObjects = new List<TileSchema>();
-        for (int y = 0; y < SpawnSettings.Height; y++)
+        if (Tiles == null || Tiles.Length == 0)
+        {
+            return tileObjects;
+        }
+        
+       for (int y = 0; y < SpawnSettings.Height; y++)
         {
             for (int x = 0; x < SpawnSettings.Width; x++)
             {
