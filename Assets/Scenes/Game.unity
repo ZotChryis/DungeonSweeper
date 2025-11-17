@@ -7949,6 +7949,8 @@ MonoBehaviour:
     _serializedList:
     - Key: EarthSpell
       Value: {fileID: 8300000, guid: 8842540ffda463e4aa56f921c4c03a5a, type: 3}
+    - Key: openhihat
+      Value: {fileID: 8300000, guid: 8e79accc42aa49c49a74b3c2f6890e15, type: 3}
     - Key: Explosion
       Value: {fileID: 8300000, guid: 253a9bd642ba88f44a1756dfa3fead76, type: 3}
     - Key: Holy
@@ -46719,6 +46721,7 @@ MonoBehaviour:
   TilePrefab: {fileID: 9173516933707575160, guid: 035daecf16caa2041a6fe21860f18101, type: 3}
   Layout: {fileID: 3119696394219752255}
   MinesDiffused: 0
+  MineDiffusedVfx: {fileID: 384287498298157932, guid: b39d0d44f852fc841b8ae3c15926975b, type: 3}
 --- !u!222 &5421030459479084217
 CanvasRenderer:
   m_ObjectHideFlags: 0

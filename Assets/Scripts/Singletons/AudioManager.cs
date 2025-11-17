@@ -47,6 +47,11 @@ namespace Singletons
                 return;
             }
 
+            if (key.Equals("silence", System.StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
             if (!SfxClips.TryGetValue(key, out AudioClip clip))
             {
                 Debug.LogWarning("Tried to play sfx that didn't exist: " + key);
