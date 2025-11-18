@@ -2,6 +2,7 @@
 using GameAnalyticsSDK;
 using Gameplay;
 using Schemas;
+using Singletons;
 using Sirenix.OdinInspector;
 using System;
 using System.Collections;
@@ -36,10 +37,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
     [SerializeField]
     private Image PlayerIcon;
-    
+
     [SerializeField]
     private Image BountyBoard;
-    
+
     [SerializeField]
     private Image BountyBoardTarget;
 
@@ -181,7 +182,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             Inventory.OnItemAdded -= OnItemAdded;
         }
-        
+
         ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
     }
 
@@ -192,7 +193,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
             ChangeBountyTarget();
         }
     }
-    
+
     public void ShakeHearts()
     {
         if (!alreadyShaking)
@@ -548,6 +549,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
             // TODO: refactor LevelUp vs ResetLevel so this can live in LevelUp()
             OnLevelChanged?.Invoke(Level);
         }
+        else
+        {
+            AudioManager.Instance.PlaySfx("Error");
+        }
     }
 
     public void LevelUp()
@@ -637,10 +642,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         // All consumables are re-filled
         Inventory.ReplenishItems();
-        
+
         ChangeBountyTarget();
     }
-    
+
     #region PlayerPowers
 
     public void ChangeBountyTarget()
@@ -652,15 +657,15 @@ public class Player : MonoBehaviour, IPointerClickHandler
         {
             return;
         }
-        
+
         // Get all enemies that are conquerable with our max health
         // No possible bounty to show, just show nothing
-        var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects(new Tile.TileState[] { 
-            Tile.TileState.Hidden, 
-            Tile.TileState.Revealed, 
-            Tile.TileState.RevealThroughCombat 
+        var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects(new Tile.TileState[] {
+            Tile.TileState.Hidden,
+            Tile.TileState.Revealed,
+            Tile.TileState.RevealThroughCombat
         });
-        
+
         tileObjects.RemoveAll(item => item.Power > MaxHealth || !item.Tags.Contains(TileSchema.Tag.Enemy));
         if (tileObjects.Count == 0)
         {
@@ -675,19 +680,19 @@ public class Player : MonoBehaviour, IPointerClickHandler
             List<TileSchema> newTileObjects = new List<TileSchema>();
             newTileObjects.AddRange(tileObjects);
             newTileObjects.RemoveAll(t => t.TileId == CurrentBounty.TileId);
-            
+
             // When we don't have any here, we know we only have the current bounty to provide. That's ok as a fallback
             if (newTileObjects.Count > 0)
             {
                 tileObjects = newTileObjects;
             }
         }
-        
+
         CurrentBounty = tileObjects.GetRandomItem();
         BountyBoardTarget.gameObject.SetActive(true);
         BountyBoardTarget.sprite = CurrentBounty.Sprite;
     }
-    
+
     public void AddMonsterToAutoRevealedList(TileSchema.Id monsterId)
     {
         AutoRevealedMonsters.Add(monsterId);
