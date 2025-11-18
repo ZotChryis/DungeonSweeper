@@ -8109,6 +8109,8 @@ MonoBehaviour:
       Value: {fileID: 8300000, guid: 70fc207c5be14f04f872cb9ddc4a8fe2, type: 3}
     - Key: Mine
       Value: {fileID: 8300000, guid: aab05bef075b5084e9b0c084951c8ea1, type: 3}
+    - Key: twinkle
+      Value: {fileID: 8300000, guid: ea048725bf2b28443bc28e6d7208697e, type: 3}
     - Key: ClickNeutral
       Value: {fileID: 8300000, guid: 289ef5f2ed6ed7645b2e082feb6fbd99, type: 3}
     - Key: Purchase
