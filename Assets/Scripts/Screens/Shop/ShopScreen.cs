@@ -53,7 +53,7 @@ namespace Screens.Shop
 
         private void OnContinueClicked()
         {
-            if (onShowMoney <= ServiceLocator.Instance.Player.ShopXp)
+            if (onShowMoney <= ServiceLocator.Instance.Player.ShopXp && ServiceLocator.Instance.Player.Class != Class.Id.Ascetic)
             {
                 ServiceLocator.Instance.OverlayScreenManager.RequestConfirmationScreen(() =>
                 {
