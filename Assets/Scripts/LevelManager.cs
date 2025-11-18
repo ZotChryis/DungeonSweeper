@@ -33,6 +33,21 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public string CurrentLevelName
+    {
+        get
+        {
+            if (IsTutorialLevel)
+            {
+                return "TutorialLevel0";
+            }
+            else
+            {
+                return "Level" + CurrentLevel.ToString();
+            }
+        }
+    }
+
     public Action<int> OnLevelChanged;
 
     [ReadOnly]

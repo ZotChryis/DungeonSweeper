@@ -535,6 +535,8 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             return;
         }
 
+        UpdateObjectSelfVisuals();
+
         Power.enabled = true;
         Annotation.enabled = false;
 
@@ -542,8 +544,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             keyValuePair.Value.SetActive(false);
         }
-
-        UpdateObjectSelfVisuals();
+        // small Hack. If you are the mimic we want to show the conquered state without setting everything as conquered.
+        if (HousedObject && HousedObject.TileId == TileSchema.Id.Mimic && HousedObject.Data.TryGetValue(TileState.Conquered, out TileSchema.TileStateData conqueredData) && conqueredData.Sprite.UseOverride)
+        {
+            HousedObjectSprite.sprite = conqueredData.Sprite.Value;
+        }
 
         if (GetHousedObject() == null)
         {
@@ -649,6 +654,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     if (HousedObject.TileId == TileSchema.Id.Mimic)
                     {
                         HousedObjectSprite.sprite = HousedObject.GetOverrides(TileState.Conquered).Sprite.Value;
+                        Power.enabled = true;
                     }
                     // highlight yourself. highlightedSprite is just storing the default button state.
                     TileButton.targetGraphic.GetComponent<Image>().sprite = TileButton.spriteState.highlightedSprite;

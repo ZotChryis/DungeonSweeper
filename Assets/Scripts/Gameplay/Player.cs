@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using GameAnalyticsSDK;
 using Gameplay;
 using Schemas;
 using Sirenix.OdinInspector;
@@ -67,6 +68,10 @@ public class Player : MonoBehaviour, IPointerClickHandler
         get { return CurrentHealth; }
     }
 
+    public int CurrentPlayerLevel
+    {
+        get { return Level; }
+    }
     private int Level;
     private int CurrentHealth;
     private int MaxHealth;
@@ -347,11 +352,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // Handle death
         if (CurrentHealth <= -1)
         {
-            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
-            StartCoroutine(ServiceLocator.Instance.Grid.Shake());
-            ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
-            ServiceLocator.Instance.AudioManager.PlaySfx("Death");
-            SetDeathIcon(true);
+            HandlePlayerDeath();
             return true;
         }
 
@@ -366,6 +367,18 @@ public class Player : MonoBehaviour, IPointerClickHandler
         }
 
         return false;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.GameOver);
+        StartCoroutine(ServiceLocator.Instance.Grid.Shake());
+        ServiceLocator.Instance.Grid.TEMP_RevealAllTiles();
+        ServiceLocator.Instance.AudioManager.PlaySfx("Death");
+        SetDeathIcon(true);
+
+        // Send game analytics that the player has died. progression01=LevelName. progression02=Class.ToString. Score=PlayerLevel.
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, ServiceLocator.Instance.LevelManager.CurrentLevelName, Class.ToString(), Level);
     }
 
     /// <summary>

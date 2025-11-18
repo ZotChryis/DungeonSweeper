@@ -1,8 +1,9 @@
+using GameAnalyticsSDK;
+using Schemas;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Schemas;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -102,7 +103,10 @@ public class Grid : MonoBehaviour
         }
 
         PlaceSpawns();
-        
+
+        // Send game analytics that the player has started a new level. progression01=LevelName. progression02=Class.ToString. Score=PlayerLevel.
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, ServiceLocator.Instance.LevelManager.CurrentLevelName, ServiceLocator.Instance.Player.Class.ToString());
+
         OnGridGenerated?.Invoke();
     }
 

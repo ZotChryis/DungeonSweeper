@@ -1,4 +1,6 @@
-﻿using Schemas;
+﻿using GameAnalyticsSDK;
+using Gameplay;
+using Schemas;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,6 +47,9 @@ namespace Screens.Victory
             ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Pacifist);
             ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Killer);
             ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.FullBoardClear);
+
+            // Send game analytics that the player has won. progression01=LevelName. progression02=Class.ToString. Score=PlayerLevel.
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, ServiceLocator.Instance.LevelManager.CurrentLevelName, ServiceLocator.Instance.Player.Class.ToString(), ServiceLocator.Instance.Player.CurrentPlayerLevel);
         }
     }
 }
