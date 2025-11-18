@@ -116,6 +116,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private bool IsEnraged = false;
     private bool ShouldStandUp = false;
     private bool IsAlreadyShakingAnnotation = false;
+
+    public Sprite[] RandomTileSprite;
+    public Sprite[] RandomTileHighlightedSprite;
     
     private Coroutine MobileContextMenuHandle;
 
@@ -178,6 +181,16 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         TileButton.onClick.AddListener(OnTileClicked);
         ResetLook();
+
+        // Set the tile to be a random sprite from RandomTileSprite and RandomTileHighlightedSprite
+        int randomIndex = UnityEngine.Random.Range(0, RandomTileSprite.Length);
+        SpriteState randomSpriteState = new SpriteState();
+        randomSpriteState.highlightedSprite = RandomTileHighlightedSprite[randomIndex];
+        randomSpriteState.pressedSprite = TileButton.spriteState.pressedSprite;
+        randomSpriteState.selectedSprite = TileButton.spriteState.selectedSprite;
+        randomSpriteState.disabledSprite = TileButton.spriteState.disabledSprite;
+        TileButton.spriteState = randomSpriteState;
+        TileButton.targetGraphic.GetComponent<Image>().sprite = RandomTileSprite[randomIndex];
 
         TEMP_UpdateVisuals();
     }

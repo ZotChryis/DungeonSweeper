@@ -162,6 +162,24 @@ MonoBehaviour:
   BodyGuardedByTile: {fileID: 0}
   IsBodyGuardByOrGuardingDead: 0
   DirectionToLook: 4
+  RandomTileSprite:
+  - {fileID: 2436689576485346197, guid: a8c430e5f35f9e44cbfe3153ca62c5c6, type: 3}
+  - {fileID: -8363144008919072003, guid: 81ffb72ad6884f24dac1ce721316f451, type: 3}
+  - {fileID: 6165875374574306269, guid: ea10a5bdbbe7cdb4cb0adea5054bbe46, type: 3}
+  - {fileID: 5325935112898577828, guid: 2223b4f6cf6d78d469357584944f485c, type: 3}
+  - {fileID: -7174583451156371245, guid: 011828cfb213bef4680555d367b7e63c, type: 3}
+  - {fileID: -7174583451156371245, guid: 011828cfb213bef4680555d367b7e63c, type: 3}
+  - {fileID: -7174583451156371245, guid: 011828cfb213bef4680555d367b7e63c, type: 3}
+  - {fileID: -7174583451156371245, guid: 011828cfb213bef4680555d367b7e63c, type: 3}
+  RandomTileHighlightedSprite:
+  - {fileID: 21300000, guid: 17aa6956961515148b322ebfbcfc6ba3, type: 3}
+  - {fileID: 21300000, guid: f0da8332c84aa2b498e3c69e04aa5eca, type: 3}
+  - {fileID: 21300000, guid: 15fe931d48d514541899b31935a0d303, type: 3}
+  - {fileID: 21300000, guid: 7d51a9a86046a254eb4921c7fe0a3c1e, type: 3}
+  - {fileID: 21300000, guid: 41d20385788052c48a3e387fd1456777, type: 3}
+  - {fileID: 21300000, guid: 41d20385788052c48a3e387fd1456777, type: 3}
+  - {fileID: 21300000, guid: 41d20385788052c48a3e387fd1456777, type: 3}
+  - {fileID: 21300000, guid: 41d20385788052c48a3e387fd1456777, type: 3}
 --- !u!114 &6761163715461405607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +211,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 2a4ad7c9f337c5041b08b545ca01cf69, type: 3}
     m_PressedSprite: {fileID: 8028125240860510686, guid: d9fa19329e5852b4e859889dfb02ffc1, type: 3}
-    m_SelectedSprite: {fileID: -347702476747834141, guid: 289d5a9863f81ed4b8bd6467b726db32, type: 3}
+    m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 8028125240860510686, guid: d9fa19329e5852b4e859889dfb02ffc1, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
