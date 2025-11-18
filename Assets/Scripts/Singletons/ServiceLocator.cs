@@ -122,6 +122,16 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
 #endif
     }
 
+    /// <summary>
+    /// We assume that if you're playing on Steam or Android, it's a paid application.
+    /// For Android, we should probably verify you downloaded it from Google Play Store....
+    /// </summary>
+    /// <returns></returns>
+    public bool IsPaidVersion()
+    {
+        return SteamManager.Initialized || IsAndroid;
+    }
+    
     public void Register(SteamStatsAndAchievements steamStatsAndAchievements)
     {
         SteamStatsAndAchievements = steamStatsAndAchievements;
