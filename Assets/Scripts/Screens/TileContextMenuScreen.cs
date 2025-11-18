@@ -1,3 +1,4 @@
+using Singletons;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -81,6 +82,18 @@ namespace Screens
             ActiveTile = tile;
             Content.position = ((RectTransform)(tile.transform)).position;
             ClampToWindow();
+        }
+
+        protected override void OnShow()
+        {
+            base.OnShow();
+            AudioManager.Instance.PlaySfx("ClickNeutral");
+        }
+
+        protected override void OnHide()
+        {
+            base.OnHide();
+            AudioManager.Instance.PlaySfx("ClickNeutral");
         }
         
         // Clamp panel to area of parent
