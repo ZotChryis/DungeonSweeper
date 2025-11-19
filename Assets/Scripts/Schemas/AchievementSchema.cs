@@ -180,6 +180,7 @@ namespace Schemas
             ShopReroll,
             DemonKnightSlayer,
             PotionUser,
+            FireLordSlayer,
         }
 
         [Serializable]

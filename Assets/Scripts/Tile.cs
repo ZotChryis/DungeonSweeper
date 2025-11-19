@@ -221,6 +221,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 case TileSchema.Id.DemonKnight:
                     ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.DemonKnightSlayer);
                     break;
+                case TileSchema.Id.Firelord:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.FireLordSlayer);
+                    break;
                 default:
                     break;
             }

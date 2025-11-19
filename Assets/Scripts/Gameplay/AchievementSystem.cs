@@ -18,13 +18,13 @@ namespace Gameplay
     public class AchievementSystem
     {
         public bool AllowAchievementsToBeCompleted = true;
-        
+
         public Action<AchievementSchema> OnAchievementCompleted;
 
         public List<Class.Id> GetUnlockedClasses()
         {
             HashSet<Class.Id> classes = new HashSet<Class.Id>();
-            
+
             // Adventurer is unlocked by default
             classes.Add(Class.Id.Adventurer);
 
@@ -38,7 +38,7 @@ namespace Gameplay
                 {
                     continue;
                 }
-                
+
                 classes.Add(schema.RewardClass);
             }
 
@@ -48,11 +48,11 @@ namespace Gameplay
         public List<ItemSchema.Id> GetLockedItems()
         {
             List<ItemSchema.Id> items = new List<ItemSchema.Id>();
-            
+
             // Find all the achievements with an item reward
             var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
                 .FindAll(a => a.RewardItem != ItemSchema.Id.None);
-            
+
             // The item is locked if the achievement is not complete
             foreach (var achievementSchema in achievements)
             {
@@ -77,7 +77,7 @@ namespace Gameplay
             {
                 achievements.RemoveAll(a => a.PaidExclusive);
             }
-            
+
             return achievements.Count;
         }
 
@@ -91,11 +91,11 @@ namespace Gameplay
                 Complete(achievement);
             }
         }
-        
+
         public void CheckAchievements(AchievementSchema.TriggerType trigger)
         {
             bool allowAchievement = AllowAchievementsToBeCompleted;
-            
+
 #if UNITY_EDITOR
             // Shitty hack to allow achievement testing with cheats
             allowAchievement = true;
@@ -104,7 +104,7 @@ namespace Gameplay
             {
                 return;
             }
-            
+
             var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
                 .FindAll(a => a.Trigger == trigger);
 
@@ -113,7 +113,7 @@ namespace Gameplay
             // TODO FIX HACK: We also can't kill Balrog so we must remove it from this so that annihilator works
             var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects()
                 .FindAll(t => t.TileId != TileSchema.Id.Crown && t.TileId != TileSchema.Id.Balrog);
-            
+
             foreach (var schema in achievements)
             {
                 if (schema.Level != -1 && schema.Level != ServiceLocator.Instance.LevelManager.CurrentLevel)
@@ -125,7 +125,7 @@ namespace Gameplay
                 {
                     continue;
                 }
-                
+
                 int kills = 0;
                 switch (trigger)
                 {
@@ -147,7 +147,7 @@ namespace Gameplay
 
                         Complete(schema);
                         break;
-                    
+
                     case AchievementSchema.TriggerType.Pacifist:
                         kills = 0;
                         foreach (var id in schema.TileData)
@@ -159,10 +159,10 @@ namespace Gameplay
                         {
                             continue;
                         }
-                        
+
                         Complete(schema);
                         break;
-                    
+
                     case AchievementSchema.TriggerType.Killer:
                         kills = 0;
                         foreach (var id in schema.TileData)
@@ -174,19 +174,19 @@ namespace Gameplay
                         {
                             continue;
                         }
-                        
+
                         Complete(schema);
                         break;
-                    
+
                     case AchievementSchema.TriggerType.FullBoardClear:
                         if (tileObjects.Count > 0)
                         {
                             continue;
                         }
-                        
+
                         Complete(schema);
                         break;
-                    
+
                     // This is bespoke sent by Tile.cs when the tileId == Balrog
                     case AchievementSchema.TriggerType.DemonLord:
                         Complete(schema);
@@ -210,10 +210,10 @@ namespace Gameplay
             }
 
             string key = "Achievement" + schema.AchievementId;
-            
+
             FBPP.SetBool(key, true);
             FBPP.SetString(key, DateTime.Today.ToString("d"));
-            
+
             OnAchievementCompleted?.Invoke(schema);
             ServiceLocator.Instance.AudioManager.PlaySfx("Achievement");
 
