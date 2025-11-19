@@ -92,6 +92,8 @@ namespace Screens.Shop
             ServiceLocator.Instance.Player.ShopXp -= hasRerollCard ? 1 : 2;
 
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, false);
+
+            ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.ShopReroll);
         }
 
         public void RefreshRerollText()

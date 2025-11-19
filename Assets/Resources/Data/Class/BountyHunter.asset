@@ -16,9 +16,9 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: b3b1a5aaacf5b9a4dabb91bbdd6b4ced, type: 3}
   Name: Bounty Hunter
   Description: Starts with the Bounty Board.
-  UnlockText: A Steam exclusive class - purchase the game on Steam or Google Play
-    Store.
+  UnlockText: Complete Gold Bug Slayer achievement. Paid exclusive class - purchase
+    the game on Steam or Google Play Store.
   StartingItem: 88
   SmallHitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
   BigHitEffect: {fileID: 2427094801149019240, guid: 7df390ed24f4c144fb3c57aaf624728a, type: 3}
-  SteamExclusive: 1
+  PaidExclusive: 1

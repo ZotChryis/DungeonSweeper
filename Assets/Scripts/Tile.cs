@@ -210,7 +210,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.HealScrollUser);
                     break;
                 case TileSchema.Id.GoldBug:
-                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.CrystalBallUser);
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.GoldBugSlayer);
                     break;
                 case TileSchema.Id.Minotaur:
                     ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.MinotaurSlayer);

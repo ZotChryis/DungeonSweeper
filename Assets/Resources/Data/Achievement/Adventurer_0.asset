@@ -15,7 +15,9 @@ MonoBehaviour:
   AchievementId: 1
   Title: Novice Adventurer
   Description: Complete the first dungeon level with the Adventurer.
-  Reward: Unlocks the Ranger
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
   RewardClass: 2
   RewardItem: 0
   Trigger: 0

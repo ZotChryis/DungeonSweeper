@@ -16,7 +16,8 @@ MonoBehaviour:
   Sprite: {fileID: -3456532010920386237, guid: 2aa702e4319876d4b82812f2c69822f7, type: 3}
   Name: Merchant
   Description: Starts with the Business Card.
-  UnlockText: Complete Novice Apothecary achievement.
+  UnlockText: Complete Picky Shopper achievement.
   StartingItem: 45
   SmallHitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
   BigHitEffect: {fileID: 2427094801149019240, guid: 7df390ed24f4c144fb3c57aaf624728a, type: 3}
+  PaidExclusive: 0

@@ -25,19 +25,9 @@ namespace Gameplay
         {
             HashSet<Class.Id> classes = new HashSet<Class.Id>();
             
-            // Adventurer & Aristocrat is unlocked by default
+            // Adventurer is unlocked by default
             classes.Add(Class.Id.Adventurer);
-            classes.Add(Class.Id.Aristocrat);
-            
-            // Some classes are Steam Exclusive (or using Editor)
-            if (ServiceLocator.Instance.IsPaidVersion())
-            {
-                var steamClasses = ServiceLocator.Instance.Schemas.ClassSchemas.FindAll(c => c.PaidExclusive);
-                foreach (var steamClass in steamClasses)
-                {
-                    classes.Add(steamClass.Id);
-                }
-            }
+
             var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
                 .FindAll(a => a.RewardClass != Class.Id.None);
 

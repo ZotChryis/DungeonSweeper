@@ -221,7 +221,12 @@ namespace Gameplay
             itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
             itemInstance.RemoveCharge(1);
             OnItemChargeChanged?.Invoke(itemInstance);
-            
+
+            if (itemInstance.Schema.ItemId.ToString().StartsWith("Potion", StringComparison.OrdinalIgnoreCase))
+            {
+                ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.PotionUser);
+            }
+
             // Play used sfx if available
             if (!string.IsNullOrEmpty(itemInstance.Schema.UseSfx))
             {

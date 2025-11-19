@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
-  m_Name: CrystalBallUser
+  m_Name: Killer_DemonKnight
   m_EditorClassIdentifier: 
-  AchievementId: 125
-  Title: Visionary
-  Description: Use a vision scroll.
-  Reward: Unlocks Fortune Teller.
+  AchievementId: 132
+  Title: Demon Slayer
+  Description: Defeat a Demon Knight.
+  Reward: Unlocks Priest.
   SortGroup: -1
   PaidExclusive: 0
-  RewardClass: 6
+  RewardClass: 8
   RewardItem: 0
   Trigger: 5
   Level: 0

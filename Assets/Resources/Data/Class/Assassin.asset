@@ -16,9 +16,9 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: 112bcc79a62595949bffb097b2d6c602, type: 3}
   Name: Assassin
   Description: Starts with the License to Kill.
-  UnlockText: A Steam exclusive class - purchase the game on Steam or Google Play
-    Store.
+  UnlockText: Complete Minotaur Slayer achievement. Paid exclusive class - purchase
+    the game on Steam or Google Play Store.
   StartingItem: 87
   SmallHitEffect: {fileID: 2427094801149019240, guid: 579e8a41630982e4ba33f26a901688c5, type: 3}
   BigHitEffect: {fileID: 2427094801149019240, guid: 7df390ed24f4c144fb3c57aaf624728a, type: 3}
-  SteamExclusive: 1
+  PaidExclusive: 1

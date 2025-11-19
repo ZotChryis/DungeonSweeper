@@ -38,6 +38,12 @@ namespace Screens.Shop
 
             // And you can't press the buy button until another selection is made
             Button.interactable = false;
+
+            // Chance to unlock gambler. 10%
+            if (UnityEngine.Random.Range(0, 10) == 0)
+            {
+                ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.LuckyShopper);
+            }
         }
 
         private int GetPrice()
