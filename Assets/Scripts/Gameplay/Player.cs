@@ -380,6 +380,8 @@ public class Player : MonoBehaviour, IPointerClickHandler
 
         // Send game analytics that the player has died. progression01=LevelName. progression02=Class.ToString. Score=PlayerLevel.
         GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, ServiceLocator.Instance.LevelManager.CurrentLevelName, Class.ToString(), Level);
+
+        ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.DieAnyPercent);
     }
 
     /// <summary>

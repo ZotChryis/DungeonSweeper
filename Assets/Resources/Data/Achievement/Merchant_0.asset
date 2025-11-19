@@ -15,8 +15,10 @@ MonoBehaviour:
   AchievementId: 57
   Title: Novice Merchant
   Description: Complete the first dungeon level with the Merchant.
-  Reward: Unlocks the Gambler
-  RewardClass: 10
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 0
   Trigger: 0
   Level: 0

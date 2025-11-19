@@ -15,8 +15,10 @@ MonoBehaviour:
   AchievementId: 49
   Title: Novice Apothecary
   Description: Complete the first dungeon level with the Apothecary.
-  Reward: Unlocks the Merchant
-  RewardClass: 11
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 0
   Trigger: 0
   Level: 0

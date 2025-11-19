@@ -129,7 +129,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     /// <returns></returns>
     public bool IsPaidVersion()
     {
-        return SteamManager.Initialized || IsAndroid;
+        return SteamManager.Initialized || IsAndroid || Application.isEditor;
     }
     
     public void Register(SteamStatsAndAchievements steamStatsAndAchievements)

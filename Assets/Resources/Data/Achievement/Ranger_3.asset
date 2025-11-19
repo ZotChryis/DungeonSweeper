@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Master Ranger
   Description: Complete the fourth dungeon level with the Ranger.
   Reward: 
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 14
   RewardItem: 0
   Trigger: 0
   Level: 3

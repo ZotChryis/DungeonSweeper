@@ -17,8 +17,8 @@ MonoBehaviour:
   Description: Complete the first dungeon level with the Bounty Hunter.
   Reward: 
   SortGroup: 0
-  SteamExclusive: 1
-  RewardClass: -1
+  PaidExclusive: 1
+  RewardClass: 2
   RewardItem: 0
   Trigger: 0
   Level: 0

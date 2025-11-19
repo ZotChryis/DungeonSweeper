@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Intermediate Wizard
   Description: Complete the second dungeon level with the Wizard.
   Reward: Unlocks the Spellbook (Shop)
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 1
   RewardItem: 53
   Trigger: 0
   Level: 1

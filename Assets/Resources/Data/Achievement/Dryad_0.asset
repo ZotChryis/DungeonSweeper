@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Novice Dryad
   Description: Complete the first dungeon level with the Dryad.
   Reward: Unlocks the Spiritual Tattoos (Shop)
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 63
   Trigger: 0
   Level: 0

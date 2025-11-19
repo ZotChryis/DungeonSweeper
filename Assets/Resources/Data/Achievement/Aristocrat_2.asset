@@ -17,7 +17,8 @@ MonoBehaviour:
   Description: Complete the third dungeon level with the Aristocrat.
   Reward: 
   SortGroup: 0
-  RewardClass: -1
+  PaidExclusive: 0
+  RewardClass: 3
   RewardItem: 0
   Trigger: 0
   Level: 2

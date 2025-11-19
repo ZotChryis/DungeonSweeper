@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Intermediate Priest
   Description: Complete the second dungeon level with the Priest.
   Reward: 'Unlocks Spell: Holy Shield (Shop)'
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 1
   RewardItem: 82
   Trigger: 0
   Level: 1

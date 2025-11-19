@@ -15,8 +15,10 @@ MonoBehaviour:
   AchievementId: 61
   Title: Novice Gambler
   Description: Complete the first dungeon level with the Gambler.
-  Reward: Unlocks the Scribe
-  RewardClass: 12
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 0
   Trigger: 0
   Level: 0

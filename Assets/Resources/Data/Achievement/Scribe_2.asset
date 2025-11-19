@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Advanced Scribe
   Description: Complete the third dungeon level with the Scribe.
   Reward: Unlocks Tome of Knowledge (Shop)
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 3
   RewardItem: 83
   Trigger: 0
   Level: 2

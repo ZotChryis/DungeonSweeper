@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Intermediate Ritualist
   Description: Complete the second dungeon level with the Ritualist.
   Reward: Unlocks the Wardstones (Shop)
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 1
   RewardItem: 64
   Trigger: 0
   Level: 1

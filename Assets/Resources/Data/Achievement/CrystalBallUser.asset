@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
-  m_Name: Aristocrat_0
+  m_Name: CrystalBallUser
   m_EditorClassIdentifier: 
-  AchievementId: 109
-  Title: Novice Aristocrat
-  Description: Complete the first dungeon level with the Aristocrat.
-  Reward: 
-  SortGroup: 0
+  AchievementId: 125
+  Title: Visionary
+  Description: Use a vision scroll.
+  Reward: Unlocks Seer.
+  SortGroup: 1
   PaidExclusive: 0
-  RewardClass: 2
+  RewardClass: -1
   RewardItem: 0
-  Trigger: 0
+  Trigger: 5
   Level: 0
-  Class: 15
+  Class: -1
   TileData: 
   ItemData: 
   ItemAcquiredMinCount: -1
   ItemAcquiredMaxCount: -1
   RequiresHardcore: 0
   MinimumKillCount: 0
-  AchievementIcon: {fileID: 21300000, guid: 8e11694ad370f4d409a1d3eeedbba74f, type: 3}
+  AchievementIcon: {fileID: 21300000, guid: 20f0ff6a12fd72b4cacf294276706cdd, type: 3}

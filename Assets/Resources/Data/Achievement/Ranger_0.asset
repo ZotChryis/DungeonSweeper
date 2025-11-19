@@ -15,8 +15,10 @@ MonoBehaviour:
   AchievementId: 9
   Title: Novice Ranger
   Description: Complete the first dungeon level with the Ranger.
-  Reward: Unlocks the Warrior
-  RewardClass: 1
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 0
   Trigger: 0
   Level: 0

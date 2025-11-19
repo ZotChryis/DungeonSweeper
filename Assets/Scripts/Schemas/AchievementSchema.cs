@@ -169,6 +169,17 @@ namespace Schemas
             BountyHunter2,
             BountyHunter3,
             BountyHunter4,
+
+            DieAnyPercent,
+            CrystalBallUser,
+            HealScrollUser,
+            MinotaurSlayer,
+            GoldBugSlayer,
+            BrickSlayer,
+            LuckyShopper,
+            ShopReroll,
+            DemonKnightSlayer,
+            PotionUser,
         }
 
         [Serializable]
@@ -179,6 +190,7 @@ namespace Schemas
             FullBoardClear,
             DemonLord,
             Killer,
+            None,
         }
         
         public Id AchievementId;

@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Novice Bard
   Description: Complete the first dungeon level with the Bard.
   Reward: Unlocks the Communications Degree (Shop)
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 37
   Trigger: 0
   Level: 0

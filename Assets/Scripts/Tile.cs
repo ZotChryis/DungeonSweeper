@@ -198,6 +198,33 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private void OnPlayerConquered(TileSchema obj)
     {
         TEMP_UpdateVisuals();
+
+        if (obj)
+        {
+            switch(obj.TileId)
+            {
+                case TileSchema.Id.ScrollVision:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.CrystalBallUser);
+                    break;
+                case TileSchema.Id.ScrollHeal:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.HealScrollUser);
+                    break;
+                case TileSchema.Id.GoldBug:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.CrystalBallUser);
+                    break;
+                case TileSchema.Id.Minotaur:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.MinotaurSlayer);
+                    break;
+                case TileSchema.Id.BrickFinal:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.BrickSlayer);
+                    break;
+                case TileSchema.Id.DemonKnight:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.DemonKnightSlayer);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     private void OnDestroy()

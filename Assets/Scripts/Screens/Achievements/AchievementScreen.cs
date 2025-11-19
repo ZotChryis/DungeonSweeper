@@ -41,7 +41,7 @@ namespace Screens.Achievements
             
             var schemas = ServiceLocator.Instance.Schemas.AchievementSchemas;
             
-            if (!ServiceLocator.Instance.IsPaidVersion() && !Application.isEditor)
+            if (!ServiceLocator.Instance.IsPaidVersion())
             {
                 schemas.RemoveAll(a => a.PaidExclusive);
             }

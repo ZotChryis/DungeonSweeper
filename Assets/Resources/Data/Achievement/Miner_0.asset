@@ -15,8 +15,10 @@ MonoBehaviour:
   AchievementId: 25
   Title: Novice Miner
   Description: Complete the first dungeon level with the Miner.
-  Reward: Unlocks the Fortune Teller
-  RewardClass: 6
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 0
   Trigger: 0
   Level: 0

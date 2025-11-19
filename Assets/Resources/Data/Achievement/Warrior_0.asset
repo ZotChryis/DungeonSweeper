@@ -15,8 +15,10 @@ MonoBehaviour:
   AchievementId: 5
   Title: Novice Warrior
   Description: Complete the first dungeon level with the Warrior.
-  Reward: Unlocks the Wizard
-  RewardClass: 3
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 0
   Trigger: 0
   Level: 0

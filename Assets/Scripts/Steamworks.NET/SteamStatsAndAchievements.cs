@@ -8,6 +8,7 @@ using System.Linq;
 
 #if !DISABLESTEAMWORKS
 using Steamworks;
+using System.Collections.Generic;
 #endif
 
 // This is a port of StatsAndAchievements.cpp from SpaceWar, the official Steamworks Example.
@@ -17,6 +18,119 @@ public class SteamStatsAndAchievements : MonoBehaviour
 
     // Add an entry for each steam achievement.
     // Steam limits us to max 100 achievements. Commented out achivement rows are deleted to make room.
+    private HashSet<AchievementSchema.Id> m_validSteamAchievements = new HashSet<AchievementSchema.Id> {
+        AchievementSchema.Id.Adventurer0,
+        AchievementSchema.Id.Adventurer1,
+        AchievementSchema.Id.Adventurer2,
+        AchievementSchema.Id.Adventurer3,
+
+        AchievementSchema.Id.Warrior0,
+        AchievementSchema.Id.Warrior1,
+        AchievementSchema.Id.Warrior2,
+        AchievementSchema.Id.Warrior3,
+
+        AchievementSchema.Id.Ranger0,
+        AchievementSchema.Id.Ranger1,
+        AchievementSchema.Id.Ranger2,
+        AchievementSchema.Id.Ranger3,
+
+        AchievementSchema.Id.Wizard0,
+        AchievementSchema.Id.Wizard1,
+        AchievementSchema.Id.Wizard2,
+        AchievementSchema.Id.Wizard3,
+
+        AchievementSchema.Id.Bard0,
+        AchievementSchema.Id.Bard1,
+        AchievementSchema.Id.Bard2,
+        AchievementSchema.Id.Bard3,
+
+        AchievementSchema.Id.FortuneTeller0,
+        AchievementSchema.Id.FortuneTeller1,
+        AchievementSchema.Id.FortuneTeller2,
+        AchievementSchema.Id.FortuneTeller3,
+
+        AchievementSchema.Id.Miner0,
+        AchievementSchema.Id.Miner1,
+        AchievementSchema.Id.Miner2,
+        AchievementSchema.Id.Miner3,
+
+        AchievementSchema.Id.Ritualist0,
+        AchievementSchema.Id.Ritualist1,
+        AchievementSchema.Id.Ritualist2,
+        AchievementSchema.Id.Ritualist3,
+
+        AchievementSchema.Id.PacifistRat0,
+        AchievementSchema.Id.PacifistRat1,
+        AchievementSchema.Id.PacifistRat2,
+        AchievementSchema.Id.PacifistRat3,
+
+        AchievementSchema.Id.Annihilation0,
+        AchievementSchema.Id.Annihilation1,
+        AchievementSchema.Id.Annihilation2,
+        AchievementSchema.Id.Annihilation3,
+        AchievementSchema.Id.Annihilation4,
+
+        AchievementSchema.Id.Priest0,
+        AchievementSchema.Id.Priest1,
+        AchievementSchema.Id.Priest2,
+        AchievementSchema.Id.Priest3,
+
+        AchievementSchema.Id.Apothecary0,
+        AchievementSchema.Id.Apothecary1,
+        AchievementSchema.Id.Apothecary2,
+        AchievementSchema.Id.Apothecary3,
+
+        AchievementSchema.Id.PacifistLovers0,
+        AchievementSchema.Id.PacifistLovers1,
+        AchievementSchema.Id.PacifistLovers2,
+        AchievementSchema.Id.PacifistLovers3,
+
+        AchievementSchema.Id.Merchant0,
+        AchievementSchema.Id.Merchant1,
+        AchievementSchema.Id.Merchant2,
+        AchievementSchema.Id.Merchant3,
+
+        AchievementSchema.Id.Gambler0,
+        AchievementSchema.Id.Gambler1,
+        AchievementSchema.Id.Gambler2,
+        AchievementSchema.Id.Gambler3,
+
+        AchievementSchema.Id.ItemAscetic0,
+        AchievementSchema.Id.ItemAscetic1,
+        AchievementSchema.Id.ItemAscetic2,
+        AchievementSchema.Id.ItemAscetic3,
+        AchievementSchema.Id.ItemAscetic4,
+
+        AchievementSchema.Id.Scribe0,
+        AchievementSchema.Id.Scribe1,
+        AchievementSchema.Id.Scribe2,
+        AchievementSchema.Id.Scribe3,
+
+        AchievementSchema.Id.Dryad0,
+        AchievementSchema.Id.Dryad1,
+        AchievementSchema.Id.Dryad2,
+        AchievementSchema.Id.Dryad3,
+
+        AchievementSchema.Id.Hardcore0,
+        AchievementSchema.Id.Hardcore1,
+        AchievementSchema.Id.Hardcore2,
+        AchievementSchema.Id.Hardcore3,
+        AchievementSchema.Id.Hardcore4,
+
+        AchievementSchema.Id.DemonLord,
+
+        AchievementSchema.Id.Assassin0,
+        AchievementSchema.Id.Assassin1,
+        AchievementSchema.Id.Assassin2,
+        AchievementSchema.Id.Assassin3,
+        AchievementSchema.Id.Assassin4,
+
+        AchievementSchema.Id.BountyHunter0,
+        AchievementSchema.Id.BountyHunter1,
+        AchievementSchema.Id.BountyHunter2,
+        AchievementSchema.Id.BountyHunter3,
+        AchievementSchema.Id.BountyHunter4,
+    };
     private Achievement_t[] m_Achievements = new Achievement_t[] {
         new Achievement_t(AchievementSchema.Id.Adventurer0.ToString(), "Novice Adventurer", "Complete the first dungeon level with the Adventurer."),
         new Achievement_t(AchievementSchema.Id.Adventurer1.ToString(), "Intermediate Adventurer", "Complete the second dungeon level with the Adventurer."),
@@ -225,15 +339,19 @@ public class SteamStatsAndAchievements : MonoBehaviour
     public void UnlockAchievement(AchievementSchema.Id achievementID)
     {
         string achievementIdString = achievementID.ToString();
-        Achievement_t achievement = m_Achievements.First(x => x.m_eAchievementID.Equals(achievementIdString, System.StringComparison.Ordinal));
-        if (achievement != null)
+        bool steamAchivementVersionExists = m_validSteamAchievements.Contains(achievementID);
+        if (steamAchivementVersionExists)
         {
-            UnlockAchievement(achievement);
-            SteamUserStats.StoreStats();
-        }
-        else
-        {
-            Debug.LogWarning("Failed to find achievement with id: " + achievementID);
+            Achievement_t achievement = m_Achievements.First(x => x.m_eAchievementID.Equals(achievementIdString, System.StringComparison.Ordinal));
+            if (achievement != null)
+            {
+                UnlockAchievement(achievement);
+                SteamUserStats.StoreStats();
+            }
+            else
+            {
+                Debug.LogWarning("Failed to find steam achievement with id: " + achievementID);
+            }
         }
     }
 

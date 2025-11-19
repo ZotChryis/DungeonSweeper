@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Intermediate Bard
   Description: Complete the second dungeon level with the Bard.
   Reward: 
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 1
   RewardItem: 0
   Trigger: 0
   Level: 1

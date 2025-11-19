@@ -15,8 +15,9 @@ MonoBehaviour:
   AchievementId: 4
   Title: Master Adventurer
   Description: Complete the fourth dungeon level with the Adventurer.
-  Reward: Unlocks the Ascetic
+  Reward: 
   SortGroup: 0
+  PaidExclusive: 0
   RewardClass: 14
   RewardItem: 0
   Trigger: 0

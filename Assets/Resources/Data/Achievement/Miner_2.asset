@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Advanced Miner
   Description: Complete the third dungeon level with the Miner.
   Reward: 
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 3
   RewardItem: 0
   Trigger: 0
   Level: 2

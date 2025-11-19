@@ -15,8 +15,10 @@ MonoBehaviour:
   AchievementId: 21
   Title: Novice Fortune Teller
   Description: Complete the first dungeon level with the Fortune Teller.
-  Reward: Unlocks the Priest
-  RewardClass: 8
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 2
   RewardItem: 0
   Trigger: 0
   Level: 0

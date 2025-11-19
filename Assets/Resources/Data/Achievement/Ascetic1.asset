@@ -17,7 +17,8 @@ MonoBehaviour:
   Description: Complete the fourth dungeon level with the Ascetic.
   Reward: 
   SortGroup: 0
-  RewardClass: -1
+  PaidExclusive: 0
+  RewardClass: 1
   RewardItem: 0
   Trigger: 0
   Level: 3

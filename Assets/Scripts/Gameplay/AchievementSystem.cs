@@ -30,7 +30,7 @@ namespace Gameplay
             classes.Add(Class.Id.Aristocrat);
             
             // Some classes are Steam Exclusive (or using Editor)
-            if (ServiceLocator.Instance.IsPaidVersion() || Application.isEditor)
+            if (ServiceLocator.Instance.IsPaidVersion())
             {
                 var steamClasses = ServiceLocator.Instance.Schemas.ClassSchemas.FindAll(c => c.PaidExclusive);
                 foreach (var steamClass in steamClasses)
@@ -83,12 +83,23 @@ namespace Gameplay
                     return schema.AchievementId.IsAchieved();
                 });
 
-            if (!SteamManager.Initialized && !Application.isEditor)
+            if (!ServiceLocator.Instance.IsPaidVersion())
             {
                 achievements.RemoveAll(a => a.PaidExclusive);
             }
             
             return achievements.Count;
+        }
+
+        public void CompleteAchievementById(AchievementSchema.Id AchivementId)
+        {
+            var achievement = ServiceLocator.Instance.Schemas.AchievementSchemas
+                .Find(a => a.AchievementId == AchivementId);
+
+            if (achievement)
+            {
+                Complete(achievement);
+            }
         }
         
         public void CheckAchievements(AchievementSchema.TriggerType trigger)
@@ -198,6 +209,12 @@ namespace Gameplay
         {
             // Already completed
             if (schema.AchievementId.IsAchieved())
+            {
+                return;
+            }
+
+            // Some achievements are paid exclusive achievements. You can't complete them unless you pay.
+            if (schema.PaidExclusive && !ServiceLocator.Instance.IsPaidVersion())
             {
                 return;
             }

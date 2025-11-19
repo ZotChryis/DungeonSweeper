@@ -16,7 +16,9 @@ MonoBehaviour:
   Title: Intermediate Adventurer
   Description: Complete the second dungeon level with the Adventurer.
   Reward: Unlocks the Lantern (Shop)
-  RewardClass: -1
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: 1
   RewardItem: 28
   Trigger: 0
   Level: 1
