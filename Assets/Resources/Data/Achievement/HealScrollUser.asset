@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Medical Papers
   Description: Use a Healing scroll.
   Reward: Unlocks Scribe.
-  SortGroup: -2
+  SortGroup: -11
   PaidExclusive: 0
   RewardClass: 12
   RewardItem: 0

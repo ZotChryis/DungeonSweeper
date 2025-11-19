@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Gold Bug Slayer
   Description: Defeat a Gold Bug.
   Reward: Unlocks Bounty Hunter.
-  SortGroup: -1
+  SortGroup: -11
   PaidExclusive: 1
   RewardClass: 17
   RewardItem: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Master the Elements
   Description: Defeat the Firelord.
   Reward: Unlocks Dryad.
-  SortGroup: -1
+  SortGroup: 0
   PaidExclusive: 0
   RewardClass: 13
   RewardItem: 0

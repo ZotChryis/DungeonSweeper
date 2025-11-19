@@ -15,8 +15,10 @@ MonoBehaviour:
   AchievementId: 29
   Title: Novice Ritualist
   Description: Complete the first dungeon level with the Ritualist.
-  Reward: Unlocks the Dryad
-  RewardClass: 13
+  Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
+  RewardClass: -1
   RewardItem: 0
   Trigger: 0
   Level: 0

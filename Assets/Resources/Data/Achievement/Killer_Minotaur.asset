@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AchievementId: 127
   Title: Minotaur Slayer
-  Description: Defeat a Minotaur
+  Description: Defeat a Minotaur.
   Reward: Unlocks Assassin.
-  SortGroup: -1
+  SortGroup: -11
   PaidExclusive: 1
   RewardClass: 16
   RewardItem: 0

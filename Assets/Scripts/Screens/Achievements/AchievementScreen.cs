@@ -28,6 +28,19 @@ namespace Screens.Achievements
             ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted -= OnAchievementCompleted;
         }
 
+        /// <summary>
+        /// Returns true if the class Id should be treated like you do not reward a class.
+        /// For sorting purposes. We want to show achievements that reward classes at the top.
+        /// Ranger, Warrior, Wizard, and Ascetic are rewarded from multiple achievements so
+        /// they're treated like the RewardClass None.
+        /// </summary>
+        /// <returns></returns>
+        private bool IsLikeNoneRewardClass(Class.Id id)
+        {
+            return id == Class.Id.None || id == Class.Id.Ranger || id == Class.Id.Warrior || id == Class.Id.Wizard
+                || id == Class.Id.Ascetic || id == Class.Id.Ritualist || id == Class.Id.Bard;
+        }
+
         private void RefreshItems()
         {
             if (Items != null)
@@ -45,9 +58,29 @@ namespace Screens.Achievements
             {
                 schemas.RemoveAll(a => a.PaidExclusive);
             }
-            
+
             schemas.Sort((a1, a2) =>
             {
+                if (!IsLikeNoneRewardClass(a1.RewardClass) && IsLikeNoneRewardClass(a2.RewardClass))
+                {
+                    return -1;
+                }
+
+                if (IsLikeNoneRewardClass(a1.RewardClass) && !IsLikeNoneRewardClass(a2.RewardClass))
+                {
+                    return 1;
+                }
+
+                if (!IsLikeNoneRewardClass(a1.RewardClass) && !IsLikeNoneRewardClass(a2.RewardClass))
+                {
+                    var sortGroup = a1.SortGroup.CompareTo(a2.SortGroup);
+                    if (sortGroup != 0)
+                    {
+                        return sortGroup;
+                    }
+                    return a1.RewardClass.CompareTo(a2.RewardClass);
+                }
+
                 if (a1.Class == a2.Class && a1.Class != Class.Id.None)
                 {
                     return a1.AchievementId > a2.AchievementId ? 1 : -1;
