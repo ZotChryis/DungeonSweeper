@@ -1,4 +1,4 @@
-
+﻿
 using Steamworks;
 using UnityEngine;
 
@@ -18,6 +18,10 @@ public class OpenSteam : MonoBehaviour
             {
                 Application.OpenURL("steam://store/4109840");
             }
+        }
+        else
+        {
+            Application.OpenURL("steam://store/4109840");
         }
     }
 }
