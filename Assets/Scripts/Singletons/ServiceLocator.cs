@@ -57,6 +57,17 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public SteamStatsAndAchievements SteamStatsAndAchievements;
 
     /// <summary>
+    /// Set to true if this is steam demo.
+    /// </summary>
+    public static bool IsSteamDemo
+    {
+        get
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
     /// Better to use SteamWorks.IsInitialized, but this returns true if you are compatible with Steam like UNITY_STANDALONE
     /// </summary>
     public bool IsSteamCompatibleVersion = false;
@@ -122,6 +133,14 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
 #endif
     }
 
+    private void Start()
+    {
+        if (!IsSteamDemo && IsPaidVersion())
+        {
+            AchievementSystem.AwardSteamDemoAchievements();
+        }
+    }
+
     /// <summary>
     /// We assume that if you're playing on Steam or Android, it's a paid application.
     /// For Android, we should probably verify you downloaded it from Google Play Store....
@@ -129,7 +148,14 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     /// <returns></returns>
     public bool IsPaidVersion()
     {
-        return SteamManager.Initialized || IsAndroid || Application.isEditor;
+        if (IsSteamDemo)
+        {
+            return false;
+        }
+        else
+        {
+            return SteamManager.Initialized || IsAndroid || Application.isEditor;
+        }
     }
     
     public void Register(SteamStatsAndAchievements steamStatsAndAchievements)
