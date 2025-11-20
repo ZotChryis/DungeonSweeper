@@ -22,6 +22,8 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         Settings,
         MainMenu,
         Confirmation,
+
+        SteamDemoUpsell=67,
     }
 
     [SerializedDictionary("Screen Type", "Screen")]

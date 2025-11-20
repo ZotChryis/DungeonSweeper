@@ -30,7 +30,7 @@ public class ClassSelectionItem : MonoBehaviour
         Icon.sprite = Schema.Sprite;
         Name.SetText(Schema.Name);
         Description.SetText(Schema.Description);
-        UnlockText.SetText(Schema.UnlockText);
+        UnlockText.SetText(Schema.GetUnlockText());
 
         Button.onClick.AddListener(OnButtonClicked);
     }

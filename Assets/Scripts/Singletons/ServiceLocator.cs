@@ -57,6 +57,11 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public SteamStatsAndAchievements SteamStatsAndAchievements;
 
     /// <summary>
+    /// Set to true if this is steam demo.
+    /// </summary>
+    public const bool IsSteamDemo = true;
+
+    /// <summary>
     /// Better to use SteamWorks.IsInitialized, but this returns true if you are compatible with Steam like UNITY_STANDALONE
     /// </summary>
     public bool IsSteamCompatibleVersion = false;
@@ -129,7 +134,11 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     /// <returns></returns>
     public bool IsPaidVersion()
     {
-        return SteamManager.Initialized || IsAndroid || Application.isEditor;
+        if (IsSteamDemo)
+        {
+            return false;
+        }
+        //return SteamManager.Initialized || IsAndroid || Application.isEditor;
     }
     
     public void Register(SteamStatsAndAchievements steamStatsAndAchievements)

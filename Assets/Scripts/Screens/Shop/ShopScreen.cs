@@ -71,13 +71,22 @@ namespace Screens.Shop
 
         private void ContinueFromShopToNextLevel()
         {
-            // TODO: This logic needs to go somewhere else...
-            // Reset the player, close the shop and update the level
-            ServiceLocator.Instance.Player.ResetPlayer();
-            ServiceLocator.Instance.LevelManager.NextLevel();
-            ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
+            // IN THE DEMO YOU CAN ONLY CONTINUE FROM LEVEL 0.
+            // Play through level 1. Then the game stops.
+            if (ServiceLocator.Instance.LevelManager.CurrentLevel == 0)
+            {
+                // TODO: This logic needs to go somewhere else...
+                // Reset the player, close the shop and update the level
+                ServiceLocator.Instance.Player.ResetPlayer();
+                ServiceLocator.Instance.LevelManager.NextLevel();
+                ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
 
-            ServiceLocator.Instance.SaveSystem.SaveGame();
+                ServiceLocator.Instance.SaveSystem.SaveGame();
+            }
+            else
+            {
+                ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.SteamDemoUpsell);
+            }
         }
 
         private void OnRerollClicked()
