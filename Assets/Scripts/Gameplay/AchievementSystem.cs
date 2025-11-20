@@ -218,7 +218,58 @@ namespace Gameplay
             ServiceLocator.Instance.AudioManager.PlaySfx("Achievement");
 
 #if !DISABLESTEAMWORKS
-            ServiceLocator.Instance.SteamStatsAndAchievements.UnlockAchievement(schema.AchievementId);
+            if (ServiceLocator.IsSteamDemo)
+            {
+                SaveSteamAchievementForLater(schema);
+            }
+            else
+            {
+                ServiceLocator.Instance.SteamStatsAndAchievements.UnlockAchievement(schema.AchievementId);
+            }
+#endif
+        }
+
+        private const string steamDemoString = "SteamDemoAchievements";
+        /// <summary>
+        /// get already existing saved achievementIds as a string and possibly append ","
+        /// add new param schema id.
+        /// Save.
+        /// </summary>
+        /// <param name="schema"></param>
+        private void SaveSteamAchievementForLater(AchievementSchema schema)
+        {
+            string alreadySavedSteamAchievements = FBPP.GetString(steamDemoString, "");
+            string newSteamAchievements;
+            if (!string.IsNullOrEmpty(alreadySavedSteamAchievements))
+            {
+                newSteamAchievements = alreadySavedSteamAchievements + "," + schema.AchievementId.ToString();
+            }
+            else
+            {
+                newSteamAchievements = schema.AchievementId.ToString();
+            }
+            FBPP.SetString(steamDemoString, newSteamAchievements);
+        }
+
+        /// <summary>
+        /// Award saved steam demo achievements.
+        /// </summary>
+        public void AwardSteamDemoAchievements()
+        {
+#if !DISABLESTEAMWORKS
+            string alreadySavedSteamAchievements = FBPP.GetString(steamDemoString, "");
+            if (!string.IsNullOrEmpty(alreadySavedSteamAchievements))
+            {
+                string[] achievements = alreadySavedSteamAchievements.Split(',');
+                foreach (string achievement in achievements)
+                {
+                    if (Enum.TryParse<AchievementSchema.Id>(achievement, out AchievementSchema.Id result))
+                    {
+                        ServiceLocator.Instance.SteamStatsAndAchievements.UnlockAchievement(result);
+                    }
+                }
+                FBPP.DeleteString(steamDemoString);
+            }
 #endif
         }
     }

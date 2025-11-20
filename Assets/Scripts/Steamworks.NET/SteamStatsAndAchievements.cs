@@ -339,6 +339,7 @@ public class SteamStatsAndAchievements : MonoBehaviour
     public void UnlockAchievement(AchievementSchema.Id achievementID)
     {
         string achievementIdString = achievementID.ToString();
+
         bool steamAchivementVersionExists = m_validSteamAchievements.Contains(achievementID);
         if (steamAchivementVersionExists)
         {
