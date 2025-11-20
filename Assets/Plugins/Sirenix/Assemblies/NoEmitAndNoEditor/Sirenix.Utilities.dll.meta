@@ -70,7 +70,7 @@ PluginImporter:
       settings:
         CPU: 
     WindowsStoreApps:
-      enabled: 0
+      enabled: 1
       settings:
         CPU: AnyCPU
   userData: 

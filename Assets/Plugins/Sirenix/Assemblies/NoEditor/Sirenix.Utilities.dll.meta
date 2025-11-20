@@ -54,7 +54,7 @@ PluginImporter:
       enabled: 0
       settings: {}
     WindowsStoreApps:
-      enabled: 1
+      enabled: 0
       settings:
         CPU: AnyCPU
     XboxOne:

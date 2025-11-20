@@ -106,7 +106,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
         }
 
 #if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
-        IsSteamVersion = true;
+        IsSteamCompatibleVersion = true;
 #endif
 #if UNITY_IOS
         IsIOS = true;

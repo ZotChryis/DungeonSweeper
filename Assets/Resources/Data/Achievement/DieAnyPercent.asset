@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Die
   Reward: Unlocks Aristocrat.
   SortGroup: -99
-  PaidExclusive: 1
+  PaidExclusive: 0
   RewardClass: 15
   RewardItem: 0
   Trigger: 5
