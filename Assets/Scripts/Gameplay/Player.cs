@@ -17,7 +17,7 @@ using UnityEngine.UI;
 // TODO: Separate the UI from the business logic. One should be in UI space, and one should be in Gameplay space
 // We should have Player, and PlayerView/PlayerUI
 // This is currently both
-public class Player : MonoBehaviour, IPointerClickHandler
+public class Player : MonoBehaviour
 {
     // TODO: Data-fy this a bit better? ughhh this is what we get for vibe coding lol
     [SerializeField]
@@ -539,7 +539,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         return Mathf.Min(CurrentXP - xpRequiredToLevel, incomingXp);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void TryLevelUpPlayer()
     {
         int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         if (CurrentXP >= xpRequiredToLevel)
