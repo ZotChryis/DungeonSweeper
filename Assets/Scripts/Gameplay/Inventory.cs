@@ -53,13 +53,13 @@ namespace Gameplay
                     continue;
                 }
                 
-                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Conquer);
+                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Conquer, tileObject);
 
                 // When conquering something and you're at 0 HP, that's considered a "perfect conquer"
                 // Note that you get BOTH Conquer and PerfectConquer triggers when this occurs
                 if (ServiceLocator.Instance.Player.CurrentPlayerHealth == 0)
                 {
-                    itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.PerfectConquer);
+                    itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.PerfectConquer, tileObject);
                 }
             }
         }
@@ -444,7 +444,7 @@ namespace Gameplay
             return false;
         }
         
-        public void ApplyEffects(Player player, EffectTrigger trigger)
+        public void ApplyEffects(Player player, EffectTrigger trigger, TileSchema target = null)
         {
             // Just in case
             if (!Schema.Effects.TryGetValue(trigger, out Effect[] effects))
@@ -554,6 +554,17 @@ namespace Gameplay
                         for (int i = 0; i < effect.Amount; i++)
                         {
                             var item = effect.Items.GetRandomItem();
+                            
+                            // Special case : Do not actually use random, instead use the conquer power bands to determine which item
+                            if (effect.UsePowerBands && target != null)
+                            {
+                                int itemIndex = effect.GetConquerPowerRangeIndex(target.Power);
+                                if (itemIndex != -1)
+                                {
+                                    item = effect.Items[itemIndex];
+                                }
+                            }
+                            
                             var granted = ServiceLocator.Instance.Player.Inventory.AddItem(item, effect.GrantItemForceAllowDuplicates);
                             if (granted != null)
                             {

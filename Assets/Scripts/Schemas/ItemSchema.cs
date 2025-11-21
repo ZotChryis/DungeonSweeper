@@ -114,7 +114,7 @@ namespace Schemas
     public enum DecayTrigger
     {
         PlayerLevel = 0,        // 
-        //DungeonLevel,       // DO NOT USE
+        //DungeonLevel,       // DO NOT USE - cannot be supported for Retry 
         Conquer = 2,
     }
     
@@ -169,7 +169,14 @@ namespace Schemas
         /// Some decay triggers need tile tags to filter. Use these
         /// </summary>
         public List<TileSchema.Tag> DecayTags;
-        
+
+        /// <summary>
+        /// Whether or not to use the ConquerPowerRangeBands to determine an index to be used contextually by effects.
+        ///     - GrantRandomItem will use the determined index (bound to array length) 
+        /// </summary>
+        public bool UsePowerBands;
+        public int[] PowerRangeBands;
+
         // TODO:
         /*
         /// <summary>
@@ -183,6 +190,26 @@ namespace Schemas
         /// </summary>
         public List<TileSchema.Tag> ConquerRequirementTags;
         */
+
+        public int GetConquerPowerRangeIndex(int power)
+        {
+            if (!UsePowerBands || PowerRangeBands == null || PowerRangeBands.Length == 0)
+            {
+                return -1;
+            }
+
+            for (var i = 0; i < PowerRangeBands.Length; i++)
+            {
+                if (power > PowerRangeBands[i])
+                {
+                    continue;
+                }
+
+                return i;
+            }
+
+            return PowerRangeBands.Length - 1;
+        }
     }
     
     [CreateAssetMenu(menuName = "Data/Item")]
