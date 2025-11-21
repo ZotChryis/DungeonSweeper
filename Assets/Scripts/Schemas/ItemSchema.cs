@@ -177,6 +177,11 @@ namespace Schemas
         public bool UsePowerBands;
         public int[] PowerRangeBands;
 
+        /// <summary>
+        /// Contextual VFX for this effect.
+        /// </summary>
+        public GameObject Vfx;
+        
         // TODO:
         /*
         /// <summary>
@@ -379,6 +384,12 @@ namespace Schemas
         /// If true, will be stacked in inventory. Mostly for Coins.
         /// </summary>
         public bool CanStack;
+
+        /// <summary>
+        /// Determines if we close the inventory when this is used. Mostly this is used for items that do something
+        /// to the board so you can see what's going on.
+        /// </summary>
+        public bool CloseInventoryOnUse;
         
         [SerializedDictionary("EffectTrigger", "Effects")]
         public SerializedDictionary<EffectTrigger, Effect[]> Effects =  new SerializedDictionary<EffectTrigger, Effect[]>();
