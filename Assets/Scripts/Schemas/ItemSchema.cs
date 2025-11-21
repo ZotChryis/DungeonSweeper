@@ -114,7 +114,7 @@ namespace Schemas
     public enum DecayTrigger
     {
         PlayerLevel = 0,        // 
-        //DungeonLevel,       // DO NOT USE
+        //DungeonLevel,       // DO NOT USE - cannot be supported for Retry 
         Conquer = 2,
     }
     
@@ -169,6 +169,18 @@ namespace Schemas
         /// Some decay triggers need tile tags to filter. Use these
         /// </summary>
         public List<TileSchema.Tag> DecayTags;
+
+        /// <summary>
+        /// Whether or not to use the ConquerPowerRangeBands to determine an index to be used contextually by effects.
+        ///     - GrantRandomItem will use the determined index (bound to array length) 
+        /// </summary>
+        public bool UsePowerBands;
+        public int[] PowerRangeBands;
+
+        /// <summary>
+        /// Contextual VFX for this effect.
+        /// </summary>
+        public GameObject Vfx;
         
         // TODO:
         /*
@@ -183,6 +195,26 @@ namespace Schemas
         /// </summary>
         public List<TileSchema.Tag> ConquerRequirementTags;
         */
+
+        public int GetConquerPowerRangeIndex(int power)
+        {
+            if (!UsePowerBands || PowerRangeBands == null || PowerRangeBands.Length == 0)
+            {
+                return -1;
+            }
+
+            for (var i = 0; i < PowerRangeBands.Length; i++)
+            {
+                if (power > PowerRangeBands[i])
+                {
+                    continue;
+                }
+
+                return i;
+            }
+
+            return PowerRangeBands.Length - 1;
+        }
     }
     
     [CreateAssetMenu(menuName = "Data/Item")]
@@ -352,6 +384,12 @@ namespace Schemas
         /// If true, will be stacked in inventory. Mostly for Coins.
         /// </summary>
         public bool CanStack;
+
+        /// <summary>
+        /// Determines if we close the inventory when this is used. Mostly this is used for items that do something
+        /// to the board so you can see what's going on.
+        /// </summary>
+        public bool CloseInventoryOnUse;
         
         [SerializedDictionary("EffectTrigger", "Effects")]
         public SerializedDictionary<EffectTrigger, Effect[]> Effects =  new SerializedDictionary<EffectTrigger, Effect[]>();

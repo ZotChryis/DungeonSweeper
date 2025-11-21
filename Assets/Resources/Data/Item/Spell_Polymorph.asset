@@ -23,6 +23,8 @@ MonoBehaviour:
   Rarity: 3
   Price: 8
   UseSfx: Sheep
+  CanStack: 0
+  CloseInventoryOnUse: 1
   Effects:
     _serializedList:
     - Key: 4
@@ -31,8 +33,12 @@ MonoBehaviour:
         Amount: 0
         GrantItemForceAllowDuplicates: 0
         Id: 62
+        OtherId: 0
         Tags: 01000000
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 2427094801149019240, guid: 78a438cc63a91ac4289e11bc10d8be82, type: 3}

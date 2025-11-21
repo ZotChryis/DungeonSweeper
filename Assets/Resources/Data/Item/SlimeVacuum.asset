@@ -16,22 +16,29 @@ MonoBehaviour:
   Name: Slime Vacuum
   Description: When a Slime is conquered, reveal another random Slime.
   Sprite: {fileID: 8183745556315404246, guid: bf7828e9a44d25c4aae24f3d606831cb, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 2
   Price: 8
+  UseSfx: 
+  CanStack: 0
+  CloseInventoryOnUse: 0
   Effects:
     _serializedList:
     - Key: 3
       Value:
       - Type: 12
         Amount: 1
+        GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 07000000
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}

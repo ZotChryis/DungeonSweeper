@@ -54314,6 +54314,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 214464433413648189, guid: 5593832c7700a04468d9ac286726a29d, type: 3}
+      propertyPath: ConfirmationTitle
+      value: Reroll Bounty
+      objectReference: {fileID: 0}
     - target: {fileID: 259592304189628662, guid: 5593832c7700a04468d9ac286726a29d, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0

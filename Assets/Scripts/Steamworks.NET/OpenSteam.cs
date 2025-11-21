@@ -1,5 +1,11 @@
-﻿
+﻿#if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
+#define DISABLESTEAMWORKS
+#endif
+
+#if !DISABLESTEAMWORKS
 using Steamworks;
+#endif
+
 using UnityEngine;
 
 public class OpenSteam : MonoBehaviour
@@ -8,6 +14,7 @@ public class OpenSteam : MonoBehaviour
 
     public void OpenSteamPage()
     {
+#if !DISABLESTEAMWORKS
         if (SteamManager.Initialized)
         {
             try
@@ -23,5 +30,10 @@ public class OpenSteam : MonoBehaviour
         {
             Application.OpenURL("steam://store/4109840");
         }
+
+        return;
+#endif
+        
+        Application.OpenURL("steam://store/4109840");
     }
 }
