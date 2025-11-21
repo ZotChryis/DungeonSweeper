@@ -12,11 +12,22 @@ namespace Schemas
         public string Name;
         public string Description;
         public string UnlockText;
+        [Tooltip("For non paid versions (WebGL) display this text instead.")]
+        public string FreeVersionUnlockText;
         public ItemSchema.Id StartingItem;
         public GameObject SmallHitEffect;
         public GameObject BigHitEffect;
 
         // Some classes will be paid exclusive (for now?)
         [FormerlySerializedAs("SteamExclusive")] public bool PaidExclusive;
+
+        public string GetUnlockText()
+        {
+            if (!ServiceLocator.Instance.IsPaidVersion() && !string.IsNullOrEmpty(FreeVersionUnlockText))
+            {
+                return FreeVersionUnlockText;
+            }
+            return UnlockText;
+        }
     }
 }
