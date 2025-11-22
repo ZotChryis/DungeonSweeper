@@ -14,9 +14,13 @@ public class OpenSteam : MonoBehaviour
 
     public void OpenSteamPage()
     {
+        bool shouldUseSteam = false;
 #if !DISABLESTEAMWORKS
-        if (SteamManager.Initialized)
+        shouldUseSteam = SteamManager.Initialized;
+#endif
+        if (shouldUseSteam)
         {
+#if !DISABLESTEAMWORKS
             try
             {
                 SteamFriends.ActivateGameOverlayToStore(new AppId_t(DungeonSweeperAppId), EOverlayToStoreFlag.k_EOverlayToStoreFlag_None);
@@ -25,15 +29,11 @@ public class OpenSteam : MonoBehaviour
             {
                 Application.OpenURL("steam://store/4109840");
             }
+#endif
         }
         else
         {
             Application.OpenURL("steam://store/4109840");
         }
-
-        return;
-#endif
-        
-        Application.OpenURL("steam://store/4109840");
     }
 }
