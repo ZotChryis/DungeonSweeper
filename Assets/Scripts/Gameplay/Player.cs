@@ -245,6 +245,8 @@ public class Player : MonoBehaviour
         Kills.Clear();
 
         // TODO: Should decaying effects be cleared here??
+
+        ChangeBountyTarget();
     }
 
     public int GetKillCount(TileSchema.Id tileId)
@@ -689,7 +691,9 @@ public class Player : MonoBehaviour
             }
         }
 
+        var oldBounty = CurrentBounty;
         CurrentBounty = tileObjects.GetRandomItem();
+        Debug.Log("Changing bounty board target. OldTarget: " + oldBounty?.TileId.ToString() + ", new target: " + CurrentBounty.TileId.ToString());
         BountyBoardTarget.gameObject.SetActive(true);
         BountyBoardTarget.sprite = CurrentBounty.Sprite;
     }
