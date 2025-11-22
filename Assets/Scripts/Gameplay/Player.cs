@@ -234,16 +234,15 @@ public class Player : MonoBehaviour
         // Do the reveal abilities
         foreach (var monsterId in AutoRevealedMonsters)
         {
-            ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId, DefaultVisionVfx);
+            ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId, DefaultVisionVfx, new List<Tile.TileState>() { Tile.TileState.Hidden });
         }
         foreach (var monsterTag in AutoRevealedMonstersByTag)
         {
-            ServiceLocator.Instance.Grid.RevealRandomOfTag(monsterTag, DefaultVisionVfx);
+            ServiceLocator.Instance.Grid.RevealRandomOfTag(monsterTag, DefaultVisionVfx, new List<Tile.TileState>() { Tile.TileState.Hidden });
         }
 
         // Clear any state for each dungeon run
         Kills.Clear();
-
 
         // TODO: Should decaying effects be cleared here??
     }
