@@ -17,6 +17,8 @@ MonoBehaviour:
   Name: Assassin
   Description: Starts with the License to Kill.
   UnlockText: Complete Minotaur Slayer achievement.
+  SteamDemoUnlockText: Paid exclusive class - purchase the game on Steam or Google
+    Play Store.
   FreeVersionUnlockText: Paid exclusive class - purchase the game on Steam or Google
     Play Store.
   StartingItem: 87
