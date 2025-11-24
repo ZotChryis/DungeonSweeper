@@ -14,6 +14,8 @@ namespace Schemas
         public string UnlockText;
         [Tooltip("For the steam demo, some classes are impossible to unlock. Display this text instead.")]
         public string SteamDemoUnlockText;
+        [Tooltip("For non paid versions (WebGL) display this text instead.")]
+        public string FreeVersionUnlockText;
         public ItemSchema.Id StartingItem;
         public GameObject SmallHitEffect;
         public GameObject BigHitEffect;
@@ -26,6 +28,10 @@ namespace Schemas
             if (ServiceLocator.IsSteamDemo && !string.IsNullOrEmpty(SteamDemoUnlockText))
             {
                 return SteamDemoUnlockText;
+            }
+            if (!ServiceLocator.Instance.IsPaidVersion() && !string.IsNullOrEmpty(FreeVersionUnlockText))
+            {
+                return FreeVersionUnlockText;
             }
             return UnlockText;
         }

@@ -14,7 +14,8 @@ namespace Screens.Achievements
         [SerializeField] private TMP_Text Date;
         [SerializeField] private GameObject Check;
         [SerializeField] private Image AchievementIcon;
-        
+        [SerializeField] private Material GrayscaleMaterial;
+
         public void SetSchema(AchievementSchema schema)
         {
             Title.SetText(schema.Title);
@@ -23,6 +24,14 @@ namespace Screens.Achievements
             AchievementIcon.sprite = schema.AchievementIcon;
 
             bool achieved = schema.AchievementId.IsAchieved();
+            if (achieved)
+            {
+                AchievementIcon.material = null;
+            }
+            else
+            {
+                AchievementIcon.material = GrayscaleMaterial;
+            }
             string dateAchieved = FBPP.GetString("Achievement" + schema.AchievementId, "");
 
             Check.SetActive(achieved);

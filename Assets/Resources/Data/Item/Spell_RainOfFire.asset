@@ -24,6 +24,7 @@ MonoBehaviour:
   Price: 10
   UseSfx: Explosion
   CanStack: 0
+  CloseInventoryOnUse: 1
   Effects:
     _serializedList:
     - Key: 4
@@ -38,3 +39,5 @@ MonoBehaviour:
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 

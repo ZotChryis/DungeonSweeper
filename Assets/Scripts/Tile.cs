@@ -155,16 +155,16 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private const string carmineRed = "ff0038";
     private const string khaki = "f0e68c";
     private const string hotpink = "ff69b4";
-    private const string slimePurple = "AB5FBE";
+    private const string slimePurple = "A662B3";
     private const string minesweeperRed = "F90101";
-    private const string sienna = "a0522d";
+    private const string minotaurHorn = "BE9D6E";
     private const string lime = "00ff00";
     private const string greenyellow = "adff2f";
     private const string laserlemon = "ffff54";
     private const string limegreen = "32cd32";
     private const string green = "008000";
 
-    public static string[] colors = new string[] { green, limegreen, laserlemon, greenyellow, lime, sienna, minesweeperRed, slimePurple, hotpink, khaki, carmineRed, tan, darkseagreen, lightsteelblue, aquamarine, pink, plum, lightcoral, coral, goldenrod, darkorange, orangered, olive, darkolivegreen, cornflower, mediumspringgreen, teal, darkturquoise, deepskyblue, slateblue, mediumblue, midnightblue, darkblue, purple3, violet, fuchsia, darkmagenta, maroon3, crimson, darkred };
+    public static string[] colors = new string[] { green, limegreen, laserlemon, greenyellow, lime, minotaurHorn, minesweeperRed, slimePurple, hotpink, khaki, carmineRed, tan, darkseagreen, lightsteelblue, aquamarine, pink, plum, lightcoral, coral, goldenrod, darkorange, orangered, olive, darkolivegreen, cornflower, mediumspringgreen, teal, darkturquoise, deepskyblue, slateblue, mediumblue, midnightblue, darkblue, purple3, violet, fuchsia, darkmagenta, maroon3, crimson, darkred };
     public static Color neighborColorUnknown = new Color(138, 0, 196);
     public const string black_300 = "161616";
     public const string gray_mine = "808080";
@@ -1295,17 +1295,22 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public static string GetHexColorBasedOnPower(int totalPower, bool unknown)
     {
+
         if (unknown)
         {
             return neighborColorUnknown.ToHexString();
+        }
+        if (totalPower == 300)
+        {
+            return black_300;
         }
         if (totalPower <= 0 || totalPower == 100)
         {
             return gray_mine;
         }
-        if (totalPower == 300)
+        if (FBPP.GetBool(PlayerOptions.MonochromePowerEnabled, false))
         {
-            return black_300;
+            return Color.white.ToHexString();
         }
         int remainder = totalPower % 100;
         if (remainder == 0)

@@ -203,6 +203,7 @@ MonoBehaviour:
   Date: {fileID: 5641692870064867185}
   Check: {fileID: 3562337598668823860}
   AchievementIcon: {fileID: 7829180799528255284}
+  GrayscaleMaterial: {fileID: -876546973899608171, guid: 071644a32c22565489bd552a2d342ee7, type: 3}
 --- !u!1 &3562337598668823860
 GameObject:
   m_ObjectHideFlags: 0

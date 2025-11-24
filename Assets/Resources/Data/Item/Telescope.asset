@@ -16,22 +16,29 @@ MonoBehaviour:
   Name: Telescope
   Description: Auto-reveal 4 Ranged enemies at the start of the dungeon.
   Sprite: {fileID: 21300000, guid: 6bd2ea97a6fbe704bb557170438ed88b, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 2
   Price: 8
+  UseSfx: 
+  CanStack: 0
+  CloseInventoryOnUse: 0
   Effects:
     _serializedList:
     - Key: 0
       Value:
       - Type: 2
         Amount: 4
+        GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 03000000
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}

@@ -17,6 +17,8 @@ namespace Screens
         [SerializeField] private Toggle SafeMinesToggle;
         [SerializeField] private Toggle AllowLeftHoldContextMenu;
         [SerializeField] private Toggle AllowCheats;
+        [SerializeField] private Toggle DisableTutorials;
+        [SerializeField] private Toggle MonochromePower;
 
         public Action<string> OnBoolSettingChanged;
         
@@ -30,6 +32,8 @@ namespace Screens
             SafeMinesToggle.onValueChanged.AddListener(OnSafeMinesChanged);
             AllowLeftHoldContextMenu.onValueChanged.AddListener(OnAllowLeftHoldContextMenuChanged);
             AllowCheats.onValueChanged.AddListener(OnAllowCheatsChanged);
+            DisableTutorials.onValueChanged.AddListener(OnDisableTutorialsChanged);
+            MonochromePower.onValueChanged.AddListener(OnMonochromePowerChanged);
 
             LoadInitialVolumes();
 
@@ -62,6 +66,18 @@ namespace Screens
             OnBoolSettingChanged?.Invoke(PlayerOptions.AllowCheats);
         }
 
+        private void OnDisableTutorialsChanged(bool value)
+        {
+            FBPP.SetBool(PlayerOptions.DisableTutorials, value);
+            OnBoolSettingChanged?.Invoke(PlayerOptions.DisableTutorials);
+        }
+
+        private void OnMonochromePowerChanged(bool value)
+        {
+            FBPP.SetBool(PlayerOptions.MonochromePowerEnabled, value);
+            OnBoolSettingChanged?.Invoke(PlayerOptions.MonochromePowerEnabled);
+        }
+
         private void OnMainMenuConfirmed()
         {
             TransitionManager.Instance.DoTransition(TransitionManager.TransitionType.Goop, CheatManager.Instance.Restart);
@@ -85,6 +101,8 @@ namespace Screens
             SafeMinesToggle.isOn = FBPP.GetBool(PlayerOptions.IsSafeMinesOn, true);
             AllowCheats.isOn = FBPP.GetBool(PlayerOptions.AllowCheats, false);
             AllowLeftHoldContextMenu.isOn = FBPP.GetBool(PlayerOptions.AllowLeftHoldContextMenu, true);
+            DisableTutorials.isOn = FBPP.GetBool(PlayerOptions.DisableTutorials, false);
+            MonochromePower.isOn = FBPP.GetBool(PlayerOptions.MonochromePowerEnabled, false);
         }
 
         private void OnSafeMinesChanged(bool value)

@@ -17,7 +17,7 @@ using UnityEngine.UI;
 // TODO: Separate the UI from the business logic. One should be in UI space, and one should be in Gameplay space
 // We should have Player, and PlayerView/PlayerUI
 // This is currently both
-public class Player : MonoBehaviour, IPointerClickHandler
+public class Player : MonoBehaviour
 {
     // TODO: Data-fy this a bit better? ughhh this is what we get for vibe coding lol
     [SerializeField]
@@ -234,18 +234,19 @@ public class Player : MonoBehaviour, IPointerClickHandler
         // Do the reveal abilities
         foreach (var monsterId in AutoRevealedMonsters)
         {
-            ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId, DefaultVisionVfx);
+            ServiceLocator.Instance.Grid.RevealRandomOfType(monsterId, DefaultVisionVfx, new List<Tile.TileState>() { Tile.TileState.Hidden });
         }
         foreach (var monsterTag in AutoRevealedMonstersByTag)
         {
-            ServiceLocator.Instance.Grid.RevealRandomOfTag(monsterTag, DefaultVisionVfx);
+            ServiceLocator.Instance.Grid.RevealRandomOfTag(monsterTag, DefaultVisionVfx, new List<Tile.TileState>() { Tile.TileState.Hidden });
         }
 
         // Clear any state for each dungeon run
         Kills.Clear();
 
-
         // TODO: Should decaying effects be cleared here??
+
+        ChangeBountyTarget();
     }
 
     public int GetKillCount(TileSchema.Id tileId)
@@ -539,7 +540,7 @@ public class Player : MonoBehaviour, IPointerClickHandler
         return Mathf.Min(CurrentXP - xpRequiredToLevel, incomingXp);
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void TryLevelUpPlayer()
     {
         int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         if (CurrentXP >= xpRequiredToLevel)
@@ -690,7 +691,9 @@ public class Player : MonoBehaviour, IPointerClickHandler
             }
         }
 
+        var oldBounty = CurrentBounty;
         CurrentBounty = tileObjects.GetRandomItem();
+        Debug.Log("Changing bounty board target. OldTarget: " + oldBounty?.TileId.ToString() + ", new target: " + CurrentBounty.TileId.ToString());
         BountyBoardTarget.gameObject.SetActive(true);
         BountyBoardTarget.sprite = CurrentBounty.Sprite;
     }

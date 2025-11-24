@@ -11,5 +11,7 @@ namespace Gameplay
         public const string IsSafeMinesOn = "IsSafeMinesOn";
         public const string AllowLeftHoldContextMenu = "AllowLeftHoldContextMenu";
         public const string AllowCheats = "AllowCheats";
+        public const string DisableTutorials = "DisableTutorials";
+        public const string MonochromePowerEnabled = "MonochromePowerEnabled";
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 87
   Name: License to Kill
-  Description: Defeat an enemy with 0 life remaining grants you +1 Shield and a Copper
-    Coin.
+  Description: Defeat an enemy with 0 life remaining grants you +1 Shield. Potentially
+    gain Coins dependent on the strength of the enemy.
   Sprite: {fileID: 21300000, guid: 9d214011858a7dc4e9977979847042aa, type: 3}
   Max: 1
   IsConsumbale: 0
@@ -39,13 +39,17 @@ MonoBehaviour:
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
       - Type: 11
         Amount: 1
         GrantItemForceAllowDuplicates: 0
         Id: 0
         OtherId: 0
         Tags: 01000000
-        Items: 20000000
+        Items: 00000000200000002100000022000000
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 1
+        PowerRangeBands: 02000000050000000b000000e7030000

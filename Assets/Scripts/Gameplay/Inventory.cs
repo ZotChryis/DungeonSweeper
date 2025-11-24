@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Schemas;
+using UnityEngine;
 
 namespace Gameplay
 {
@@ -53,13 +55,13 @@ namespace Gameplay
                     continue;
                 }
                 
-                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Conquer);
+                itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Conquer, tileObject);
 
                 // When conquering something and you're at 0 HP, that's considered a "perfect conquer"
                 // Note that you get BOTH Conquer and PerfectConquer triggers when this occurs
                 if (ServiceLocator.Instance.Player.CurrentPlayerHealth == 0)
                 {
-                    itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.PerfectConquer);
+                    itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.PerfectConquer, tileObject);
                 }
             }
         }
@@ -211,13 +213,25 @@ namespace Gameplay
             OnItemRemoved?.Invoke(item);
         }
 
-        public bool UseItem(ItemInstance itemInstance)
+        public void UseItem(ItemInstance itemInstance)
         {
             if (!itemInstance.CanBeUsed())
             {
-                return false;
+                return;
             }
-            
+
+            ServiceLocator.Instance.StartCoroutine(UseItemInternal(itemInstance));
+        }
+
+        private IEnumerator UseItemInternal(ItemInstance itemInstance)
+        {
+            // Give the inventory time to close and then issue the effect
+            if (itemInstance.Schema.CloseInventoryOnUse)
+            {
+                ServiceLocator.Instance.OverlayScreenManager.HideActiveScreen();
+                yield return new WaitForSeconds(0.2f);
+            }
+                
             itemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.Used);
             itemInstance.RemoveCharge(1);
             OnItemChargeChanged?.Invoke(itemInstance);
@@ -232,8 +246,6 @@ namespace Gameplay
             {
                 ServiceLocator.Instance.AudioManager.PlaySfx(itemInstance.Schema.UseSfx);
             }
-            
-            return true;
         }
 
         public void ReplenishItems()
@@ -444,7 +456,7 @@ namespace Gameplay
             return false;
         }
         
-        public void ApplyEffects(Player player, EffectTrigger trigger)
+        public void ApplyEffects(Player player, EffectTrigger trigger, TileSchema target = null)
         {
             // Just in case
             if (!Schema.Effects.TryGetValue(trigger, out Effect[] effects))
@@ -547,13 +559,24 @@ namespace Gameplay
                     case EffectType.RevealRandomLocation:
                         for (int i = 0; i < effect.Amount; i++)
                         {
-                            ServiceLocator.Instance.Grid.RevealRandomUnoccupiedTile();
+                            ServiceLocator.Instance.Grid.RevealRandomUnoccupiedTile(effect.Vfx);
                         }
                         break;
                     case EffectType.AddRandomItem:
                         for (int i = 0; i < effect.Amount; i++)
                         {
                             var item = effect.Items.GetRandomItem();
+                            
+                            // Special case : Do not actually use random, instead use the conquer power bands to determine which item
+                            if (effect.UsePowerBands && target != null)
+                            {
+                                int itemIndex = effect.GetConquerPowerRangeIndex(target.Power);
+                                if (itemIndex != -1)
+                                {
+                                    item = effect.Items[itemIndex];
+                                }
+                            }
+                            
                             var granted = ServiceLocator.Instance.Player.Inventory.AddItem(item, effect.GrantItemForceAllowDuplicates);
                             if (granted != null)
                             {
@@ -568,7 +591,7 @@ namespace Gameplay
                             {
                                 // TODO: Provide VFX
                                 ServiceLocator.Instance.Grid.RevealRandomOfType(effect.Id, 
-                                    null, 
+                                    effect.Vfx, 
                                     new List<Tile.TileState>() { Tile.TileState.Hidden }
                                 );
                             }
@@ -577,14 +600,14 @@ namespace Gameplay
                                 // TODO: Provide VFX
                                 ServiceLocator.Instance.Grid.RevealRandomOfTag(
                                     effect.Tags.GetRandomItem(), 
-                                    null, 
+                                    effect.Vfx, 
                                     new List<Tile.TileState>() { Tile.TileState.Hidden }
                                 );
                             }
                         }
                         break;
                     case EffectType.MassTeleport:
-                        ServiceLocator.Instance.Grid.MassTeleport(effect.Tags);
+                        ServiceLocator.Instance.Grid.MassTeleport(effect.Tags, effect.Vfx);
                         break;
                     
                     case EffectType.InstantXP:
@@ -592,7 +615,7 @@ namespace Gameplay
                         break;
                     
                     case EffectType.InstantRevealRandomCol:
-                        ServiceLocator.Instance.Grid.RevealRandomRow();
+                        ServiceLocator.Instance.Grid.RevealRandomCol(effect.Vfx);
                         break;
                     
                     case EffectType.ModXpCurve:
@@ -628,7 +651,7 @@ namespace Gameplay
                         break;
                         
                     case EffectType.MassPolymorph:
-                        ServiceLocator.Instance.Grid.MassPolymorph(effect.Id);
+                        ServiceLocator.Instance.Grid.MassPolymorph(effect.Id, effect.Vfx);
                         break;
                     
                     case EffectType.InstantConquer:

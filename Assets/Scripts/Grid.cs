@@ -400,7 +400,7 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public void RevealRandomUnoccupiedTile()
+    public void RevealRandomUnoccupiedTile(GameObject vfx = null)
     {
         if (!UnoccupiedSpaces.HasEmptySpace())
         {
@@ -408,7 +408,7 @@ public class Grid : MonoBehaviour
         }
 
         var space = UnoccupiedSpaces.PeekUnoccupiedRandomSpace();
-        Tiles[space.Item1, space.Item2].TEMP_RevealWithoutLogic();
+        Tiles[space.Item1, space.Item2].TEMP_RevealWithoutLogic(vfx);
         UnoccupiedSpaces.RemoveUnoccupiedSpace(space.Item1, space.Item2);
     }
 
@@ -846,7 +846,7 @@ public class Grid : MonoBehaviour
         return tileObjects;
     }
 
-    public void MassTeleport(List<TileSchema.Tag> tags)
+    public void MassTeleport(List<TileSchema.Tag> tags, GameObject vfx = null)
     {
         List<(int, int)> spots = new();
         List<TileSchema> tileObjects = new List<TileSchema>();
@@ -860,6 +860,13 @@ public class Grid : MonoBehaviour
                 }
 
                 var housedObject = Tiles[x, y].GetHousedObject();
+
+                // Do not mass Teleport the dragon
+                if (housedObject.Tags.Contains(TileSchema.Tag.Dragon))
+                {
+                    continue;
+                }
+                
                 if (!housedObject.Tags.Intersect(tags).Any())
                 {
                     continue;
@@ -877,6 +884,11 @@ public class Grid : MonoBehaviour
         {
             Tiles[spots[i].Item1, spots[i].Item2].UndoPlacedTileObj();
             Tiles[spots[i].Item1, spots[i].Item2].PlaceTileObj(tileObjects[i]);
+
+            if (vfx)
+            {
+                Instantiate(vfx, Tiles[spots[i].Item1, spots[i].Item2].transform);
+            }
         }
 
         OnGridRequestedVisualUpdate?.Invoke();
@@ -902,12 +914,21 @@ public class Grid : MonoBehaviour
         }
     }
 
-    public void RevealRandomRow()
+    public void RevealRandomCol(GameObject vfx = null)
     {
-        int row = Random.Range(0, SpawnSettings.Width);
+        int col = Random.Range(0, SpawnSettings.Width);
         for (int i = 0; i < SpawnSettings.Height; i++)
         {
-            Tiles[row, i].TEMP_RevealWithoutLogic();
+            Tiles[col, i].TEMP_RevealWithoutLogic(vfx);
+        }
+    }
+    
+    public void RevealRandomRow(GameObject vfx = null)
+    {
+        int row = Random.Range(0, SpawnSettings.Height);
+        for (int i = 0; i < SpawnSettings.Width; i++)
+        {
+            Tiles[i, row].TEMP_RevealWithoutLogic(vfx);
         }
     }
 
@@ -921,7 +942,7 @@ public class Grid : MonoBehaviour
         return Tiles[SpawnSettings.Width - 1, SpawnSettings.Height - 1].transform as RectTransform;
     }
     
-    public void MassPolymorph(TileSchema.Id transformTo)
+    public void MassPolymorph(TileSchema.Id transformTo, GameObject vfx = null)
     {
         var transformSchema = ServiceLocator.Instance.Schemas.TileObjectSchemas.Find(i => i.TileId == transformTo);
         if (transformSchema == null)
@@ -958,6 +979,11 @@ public class Grid : MonoBehaviour
 
                 Tiles[x, y].UndoPlacedTileObj();
                 Tiles[x, y].PlaceTileObj(transformSchema);
+                
+                if (vfx != null)
+                {
+                    Instantiate(vfx, Tiles[x, y].transform);
+                }
             }
         }
     }

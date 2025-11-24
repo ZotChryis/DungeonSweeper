@@ -17,40 +17,57 @@ MonoBehaviour:
   Description: Auto-reveal all the rats in the dungeon, but they give -1 XP. Gain
     +10 XP for killing a Pied Piper.
   Sprite: {fileID: -6878207050336261975, guid: af5513609ddd6a8429fc9c8bd7c5e04e, type: 3}
-  IsUniqueEquipped: 1
   Max: 1
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
   Rarity: 3
   Price: 15
+  UseSfx: 
+  CanStack: 0
+  CloseInventoryOnUse: 0
   Effects:
     _serializedList:
     - Key: 0
       Value:
       - Type: 2
-        Amount: 25
+        Amount: 29
+        GrantItemForceAllowDuplicates: 0
         Id: 15
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
       - Type: 4
         Amount: -1
+        GrantItemForceAllowDuplicates: 0
         Id: 15
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
     - Key: 3
       Value:
       - Type: 14
         Amount: 10
+        GrantItemForceAllowDuplicates: 0
         Id: 20
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
