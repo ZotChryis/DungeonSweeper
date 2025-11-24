@@ -8,7 +8,7 @@ public class ActivateOnStandaloneOnly : MonoBehaviour
         // Only show this gameobject for standalone platform (Mac, Windows or Linux) or Android or IOS.
         gameObject.SetActive(true);
 #else
-        gameObject.SetActive(false);
+        gameObject.SetActive(Application.isEditor);
 #endif
     }
 }
