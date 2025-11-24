@@ -1,4 +1,5 @@
 using AYellowpaper.SerializedCollections;
+using Gameplay;
 using Schemas;
 using System;
 using System.Collections;
@@ -223,6 +224,11 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
             return false;
         }
 
+        if(FBPP.GetBool(PlayerOptions.DisableTutorials, false))
+        {
+            return false;
+        }
+
         var tutorialKey = tutorialId.GetTutorialKey();
 
         // Already seen this tutorial?
@@ -269,6 +275,11 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
     public bool TryShowTutorialAfterDelay(TutorialId tutorialId, Tile tile, RectTransform focus, bool forcePlayerToClickFocus, float waitSeconds)
     {
         if (!CanShowTutorials)
+        {
+            return false;
+        }
+
+        if (FBPP.GetBool(PlayerOptions.DisableTutorials, false))
         {
             return false;
         }

@@ -1295,17 +1295,22 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public static string GetHexColorBasedOnPower(int totalPower, bool unknown)
     {
+
         if (unknown)
         {
             return neighborColorUnknown.ToHexString();
+        }
+        if (totalPower == 300)
+        {
+            return black_300;
         }
         if (totalPower <= 0 || totalPower == 100)
         {
             return gray_mine;
         }
-        if (totalPower == 300)
+        if (FBPP.GetBool(PlayerOptions.MonochromePowerEnabled, false))
         {
-            return black_300;
+            return Color.white.ToHexString();
         }
         int remainder = totalPower % 100;
         if (remainder == 0)

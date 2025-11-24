@@ -25,8 +25,6 @@ namespace GameAnalyticsSDK.Setup
             ProvideCustomUserID
         }
 
-        ;
-
         public enum MessageTypes
         {
             None,
@@ -34,8 +32,6 @@ namespace GameAnalyticsSDK.Setup
             Info,
             Warning
         }
-
-        ;
 
         /// <summary>
         /// A message and message type for the help box displayed on the GUI inspector
@@ -288,48 +284,48 @@ namespace GameAnalyticsSDK.Setup
         {
             List<string> result = new List<string>();
 
-            for(int i = 0; i < AvailablePlatforms.Length; ++i)
+            for (int i = 0; i < AvailablePlatforms.Length; ++i)
             {
                 RuntimePlatform value = AvailablePlatforms[i];
 
-                if(value == RuntimePlatform.IPhonePlayer)
+                if (value == RuntimePlatform.IPhonePlayer)
                 {
-                    if(!this.Platforms.Contains(RuntimePlatform.tvOS) && !this.Platforms.Contains(value))
+                    if (!this.Platforms.Contains(RuntimePlatform.tvOS) && !this.Platforms.Contains(value))
                     {
                         result.Add(value.ToString());
                     }
                     else
                     {
-                        if(!this.Platforms.Contains(value))
+                        if (!this.Platforms.Contains(value))
                         {
                             result.Add(value.ToString());
                         }
                     }
                 }
-                else if(value == RuntimePlatform.tvOS)
+                else if (value == RuntimePlatform.tvOS)
                 {
-                    if(!this.Platforms.Contains(RuntimePlatform.IPhonePlayer) && !this.Platforms.Contains(value))
+                    if (!this.Platforms.Contains(RuntimePlatform.IPhonePlayer) && !this.Platforms.Contains(value))
                     {
                         result.Add(value.ToString());
                     }
                     else
                     {
-                        if(!this.Platforms.Contains(value))
+                        if (!this.Platforms.Contains(value))
                         {
                             result.Add(value.ToString());
                         }
                     }
                 }
-                else if(value == RuntimePlatform.WSAPlayerARM)
+                else if (value == RuntimePlatform.WSAPlayerARM)
                 {
-                    if(!this.Platforms.Contains(value))
+                    if (!this.Platforms.Contains(value))
                     {
                         result.Add("WSA");
                     }
                 }
                 else
                 {
-                    if(!this.Platforms.Contains(value))
+                    if (!this.Platforms.Contains(value))
                     {
                         result.Add(value.ToString());
                     }
@@ -343,11 +339,11 @@ namespace GameAnalyticsSDK.Setup
         {
             bool valid = true;
 
-            for(int i = 0; i < this.Platforms.Count; ++i)
+            for (int i = 0; i < this.Platforms.Count; ++i)
             {
-                if(index != i)
+                if (index != i)
                 {
-                    if(value.Equals(this.gameKey[i]))
+                    if (value.Equals(this.gameKey[i]))
                     {
                         valid = false;
                         break;
@@ -362,11 +358,11 @@ namespace GameAnalyticsSDK.Setup
         {
             bool valid = true;
 
-            for(int i = 0; i < this.Platforms.Count; ++i)
+            for (int i = 0; i < this.Platforms.Count; ++i)
             {
-                if(index != i)
+                if (index != i)
                 {
-                    if(value.Equals(this.secretKey[i]))
+                    if (value.Equals(this.secretKey[i]))
                     {
                         valid = false;
                         break;
@@ -385,15 +381,15 @@ namespace GameAnalyticsSDK.Setup
 
         public void UpdateGameKey(int index, string value)
         {
-            if(!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(value))
             {
                 bool valid = this.IsGameKeyValid(index, value);
 
-                if(valid)
+                if (valid)
                 {
                     this.gameKey[index] = value;
                 }
-                else if(this.gameKey[index].Equals(value))
+                else if (this.gameKey[index].Equals(value))
                 {
                     this.gameKey[index] = "";
                 }
@@ -406,15 +402,15 @@ namespace GameAnalyticsSDK.Setup
 
         public void UpdateSecretKey(int index, string value)
         {
-            if(!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(value))
             {
                 bool valid = this.IsSecretKeyValid(index, value);
 
-                if(valid)
+                if (valid)
                 {
                     this.secretKey[index] = value;
                 }
-                else if(this.secretKey[index].Equals(value))
+                else if (this.secretKey[index].Equals(value))
                 {
                     this.secretKey[index] = "";
                 }
@@ -452,7 +448,7 @@ namespace GameAnalyticsSDK.Setup
             // set keys native
         }
 
-#endregion
+        #endregion
     }
 
     public class Organization
@@ -527,17 +523,17 @@ namespace GameAnalyticsSDK.Setup
 
         public static string[] GetStudioNames(List<GameAnalyticsSDK.Setup.Studio> studios, bool addFirstEmpty = true)
         {
-            if(studios == null)
+            if (studios == null)
             {
                 return new string[] { "-" };
             }
 
-            if(addFirstEmpty)
+            if (addFirstEmpty)
             {
                 string[] names = new string[studios.Count + 1];
                 names[0] = "-";
 
-                for(int i = 0; i < studios.Count; i++)
+                for (int i = 0; i < studios.Count; i++)
                 {
                     int j = i + 1;
                     names[j] = j + ". " + studios[i].Name;
@@ -549,7 +545,7 @@ namespace GameAnalyticsSDK.Setup
             {
                 string[] names = new string[studios.Count];
 
-                for(int i = 0; i < studios.Count; i++)
+                for (int i = 0; i < studios.Count; i++)
                 {
                     int j = i + 1;
                     names[i] = j + ". " + studios[i].Name;
@@ -561,7 +557,7 @@ namespace GameAnalyticsSDK.Setup
 
         public static string[] GetGameNames(int index, List<GameAnalyticsSDK.Setup.Studio> studios)
         {
-            if(studios == null || studios[index].Games == null)
+            if (studios == null || studios[index].Games == null)
             {
                 return new string[] { "-" };
             }
@@ -569,7 +565,7 @@ namespace GameAnalyticsSDK.Setup
             string[] names = new string[studios[index].Games.Count + 1];
             names[0] = "-";
 
-            for(int i = 0; i < studios[index].Games.Count; i++)
+            for (int i = 0; i < studios[index].Games.Count; i++)
             {
                 int j = i + 1;
                 names[j] = j + ". " + studios[index].Games[i].Name;

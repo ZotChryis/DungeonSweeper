@@ -56,8 +56,30 @@ namespace UI
 
             if (newAchievement.RewardClass != Class.Id.None)
             {
-                var classSchema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == newAchievement.RewardClass);
-                RequestToast(classSchema.Sprite, "Class Unlocked!", classSchema.Name);
+                bool skipRewardClass = false;
+                if (newAchievement.RewardClass == Class.Id.Ranger ||
+                    newAchievement.RewardClass == Class.Id.Warrior ||
+                    newAchievement.RewardClass == Class.Id.Wizard ||
+                    newAchievement.RewardClass == Class.Id.Ascetic)
+                {
+                    var achievements = ServiceLocator.Instance.Schemas.AchievementSchemas
+                        .FindAll(a => a.RewardClass != Class.Id.None);
+                    foreach (var schema in achievements)
+                    {
+                        // Not completed
+                        if (schema.AchievementId.IsAchieved() && schema.AchievementId != newAchievement.AchievementId)
+                        {
+                            skipRewardClass = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!skipRewardClass)
+                {
+                    var classSchema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == newAchievement.RewardClass);
+                    RequestToast(classSchema.Sprite, "Class Unlocked!", classSchema.Name);
+                }
             }
             
             if (newAchievement.RewardItem != ItemSchema.Id.None)
