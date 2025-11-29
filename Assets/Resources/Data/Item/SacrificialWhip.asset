@@ -23,43 +23,88 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 3
   Price: 8
+  UseSfx: 
+  CanStack: 0
+  CloseInventoryOnUse: 0
   Effects:
     _serializedList:
     - Key: 0
       Value:
-      - Type: 3
-        Amount: 1
-        GrantItemForceAllowDuplicates: 0
-        Id: 1
-        Tags: 
-        Items: 
-        Decay: 0
-        DecayTrigger: 0
-        DecayTags: 
       - Type: 4
         Amount: 1
         GrantItemForceAllowDuplicates: 0
         Id: 1
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
       - Type: 11
         Amount: 1
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 
         Items: 17000000
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
       - Type: 0
         Amount: 1
         GrantItemForceAllowDuplicates: 0
         Id: 0
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
+      - Type: 3
+        Amount: 1
+        GrantItemForceAllowDuplicates: 0
+        Id: 1
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
+      - Type: 3
+        Amount: -1
+        GrantItemForceAllowDuplicates: 0
+        Id: 33
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
+      - Type: 3
+        Amount: -1
+        GrantItemForceAllowDuplicates: 0
+        Id: 36
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
