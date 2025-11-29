@@ -63,7 +63,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     {
         get
         {
-            return true;
+            return false;
         }
     }
 
