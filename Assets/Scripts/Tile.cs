@@ -10,6 +10,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
@@ -119,7 +120,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public Sprite[] RandomTileSprite;
     public Sprite[] RandomTileHighlightedSprite;
-    
+
     private Coroutine MobileContextMenuHandle;
 
     // Power color. Based on 
@@ -168,7 +169,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public static Color neighborColorUnknown = new Color(138, 0, 196);
     public const string black_300 = "161616";
     public const string gray_mine = "808080";
-    
+
+    // Secret hotkey buttons the player can use to change the behavior of the left clicking a tile.
+    private InputAction flagOnlyMode;
+    private InputAction rightClickMode;
+
     private void Start()
     {
         // TODO: this probably needs a better home
@@ -193,6 +198,9 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         TileButton.targetGraphic.GetComponent<Image>().sprite = RandomTileSprite[randomIndex];
 
         TEMP_UpdateVisuals();
+
+        flagOnlyMode = InputSystem.actions.FindAction("FlagOnlyMode");
+        rightClickMode = InputSystem.actions.FindAction("RightClickMode");
     }
 
     private void OnPlayerConquered(TileSchema obj)
@@ -201,7 +209,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (obj)
         {
-            switch(obj.TileId)
+            switch (obj.TileId)
             {
                 case TileSchema.Id.ScrollVision:
                     ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.CrystalBallUser);
@@ -263,6 +271,21 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (State == TileState.Empty)
         {
+            return;
+        }
+
+        if ((State == TileState.RevealThroughCombat || State == TileState.Revealed) &&
+            (flagOnlyMode.IsPressed() || rightClickMode.IsPressed()))
+        {
+            // Player intended to open context menu or quick flag.
+            ServiceLocator.Instance.AudioManager.PlaySfx("Error");
+            StartCoroutine(ShakeAnnotation(HousedObjectSprite.gameObject));
+            return;
+        }
+
+        if (State == TileState.Hidden && (flagOnlyMode.IsPressed() || rightClickMode.IsPressed()))
+        {
+            // Let OnPointerDown place the flag.
             return;
         }
 
@@ -705,18 +728,18 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 // Mark the tile with the bounty status
                 bool validBountyKill = HousedObject.TileId == ServiceLocator.Instance.Player.CurrentBounty.TileId;
                 StateBounty = validBountyKill ? BountyState.Correct : BountyState.Incorrect;
-                
+
                 // If the current kill is the bounty, generate a new one
                 if (validBountyKill)
                 {
                     ServiceLocator.Instance.Player.ChangeBountyTarget();
                 }
-                
+
                 // Note: Man this code is really getting bad... I need to call this one more time in this particular case
                 // because this will change the XP amount. 
                 TEMP_UpdateVisuals();
             }
-            
+
             if (HousedObject.TileId == TileSchema.Id.Balrog)
             {
                 ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.DemonLord);
@@ -882,10 +905,10 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             }
 
             player.TEMP_UpdateXP(HousedObject, GetAdjustedXp());
-            
+
             // Once you're collected, you have no bounty state -- in case something moves here 
             StateBounty = BountyState.None;
-            
+
             ServiceLocator.Instance.Player.ShopXp += HousedObject.ShopXp;
 
             if (HousedObject.WinReward)
@@ -1019,7 +1042,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             return 0;
         }
-        
+
         switch (StateBounty)
         {
             case BountyState.Incorrect:
@@ -1030,7 +1053,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 return HousedObject.XPReward;
         }
     }
-    
+
     public static void AddRandomItemToPlayer(Rarity[] possibleRarities)
     {
         var matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
@@ -1414,19 +1437,28 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             return;
         }
 
+        // Right/Middle click should open the menu to set player tag
+        // Or player left clicks + shift
+        if (eventData.button == PointerEventData.InputButton.Right || eventData.button == PointerEventData.InputButton.Middle ||
+            (eventData.button == PointerEventData.InputButton.Left && rightClickMode.IsPressed()))
+        {
+            //ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
+            ServiceLocator.Instance.OverlayScreenManager.RequestToggleScreen(OverlayScreenManager.ScreenType.TileContextMenu);
+            ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
+            return;
+        }
+
+        if (eventData.button == PointerEventData.InputButton.Left && flagOnlyMode.IsPressed())
+        {
+            SetAnnotation(100);
+            return;
+        }
+
         // Setting allows left-hold to open context menu
         if (eventData.button == PointerEventData.InputButton.Left && FBPP.GetBool(PlayerOptions.AllowLeftHoldContextMenu, true))
         {
             MobileContextMenuHandle = StartCoroutine(nameof(HandleMobileContextMenu));
             return;
-        }
-
-        // Right click should open the menu to set player tag
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            //ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.TileContextMenu);
-            ServiceLocator.Instance.OverlayScreenManager.RequestToggleScreen(OverlayScreenManager.ScreenType.TileContextMenu);
-            ServiceLocator.Instance.TileContextMenu.SetActiveTile(this);
         }
     }
 
