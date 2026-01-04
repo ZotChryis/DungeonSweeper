@@ -1,23 +1,12 @@
 fileFormatVersion: 2
 guid: a4865f1ab4504ed8a368670db22f409c
-AssetOrigin:
-  serializedVersion: 1
-  productId: 89041
-  packageName: Odin Inspector and Serializer
-  packageVersion: 3.3.1.11
-  assetPath: Assets/Plugins/Sirenix/Assemblies/Sirenix.OdinInspector.Editor.dll
-  uploadId: 712389
+timeCreated: 1488828285
 PluginImporter:
-  externalObjects: {}
-  serializedVersion: 3
+  serializedVersion: 1
   iconMap: {}
-  executionOrder:
-    Sirenix.Config.TypeRegistryUserConfig: 100
-  defineConstraints: []
+  executionOrder: {}
   isPreloaded: 0
   isOverridable: 0
-  isExplicitlyReferenced: 0
-  validateReferences: 1
   platformData:
     Any:
       enabled: 0
@@ -55,3 +44,10 @@ PluginImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 89041
+  packageName: Odin Inspector and Serializer
+  packageVersion: 4.0.1.2
+  assetPath: Assets/Plugins/Sirenix/Assemblies/Sirenix.OdinInspector.Editor.dll
+  uploadId: 835510
