@@ -5,7 +5,7 @@ Because Unity uses Unix LF line endings for serializing prefabs and meta assets 
 [core]
 	autocrlf = false
 
-Using Unity 6000.2.6f2 Personal. https://unity3d.com/get-unity/download
+Using Unity 6000.3.1f1 Personal. https://unity3d.com/get-unity/download
 
 Set your File->Build Profiles to Web.
 
