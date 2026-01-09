@@ -10,15 +10,20 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 // TODO: Separate the UI from the business logic. One should be in UI space, and one should be in Gameplay space
 // We should have Player, and PlayerView/PlayerUI
 // This is currently both
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject CoinVfx;
+
+    [SerializeField] 
+    private Transform CoinVfxRoot;
+    
     // TODO: Data-fy this a bit better? ughhh this is what we get for vibe coding lol
     [SerializeField]
     private GameObject DefaultVisionVfx;
@@ -160,6 +165,7 @@ public class Player : MonoBehaviour
 
         Inventory = new Inventory(true);
         Inventory.OnItemAdded += OnItemAdded;
+        Inventory.OnItemStackChanged += OnItemStackChanged;
 
         // TODO: Make this system better
         ModDamageTaken.Add(TileSchema.Id.Global, 0);
@@ -192,6 +198,47 @@ public class Player : MonoBehaviour
         {
             ChangeBountyTarget();
         }
+        
+        // Special case: coins are shown in-schene now instead of a Toast
+        if (item.Schema.ItemId == ItemSchema.Id.CoinCopper ||
+            item.Schema.ItemId == ItemSchema.Id.CoinSilver ||
+            item.Schema.ItemId == ItemSchema.Id.CoinGold
+        )
+        {
+            SpawnCoinVFX(item.Schema.Sprite);
+        }
+    }
+    
+    private void OnItemStackChanged((ItemInstance, int) pair)
+    {
+        if (pair.Item2 <= 0)
+        {
+            return;
+        }
+        
+        // Special case: coins are shown in-schene now instead of a Toast
+        ItemInstance item = pair.Item1;
+        if (item.Schema.ItemId == ItemSchema.Id.CoinCopper ||
+            item.Schema.ItemId == ItemSchema.Id.CoinSilver ||
+            item.Schema.ItemId == ItemSchema.Id.CoinGold
+        ) {
+            SpawnCoinVFX(item.Schema.Sprite);
+        }
+    }
+
+    private void SpawnCoinVFX(Sprite coinSprite)
+    {
+        // We spawn it at a random offset because there can be multiple
+        Vector2 offset = new Vector3(Random.Range(0, 50), Random.Range(-25, 25));
+        GameObject coinVfx = Instantiate(CoinVfx, CoinVfxRoot);
+        RectTransform rectTransform = coinVfx.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition += offset;
+        
+        // Set the sprite since its a singular vfx for all coins
+        coinVfx.GetComponentInChildren<Image>().sprite = coinSprite;
+        
+        // Play the sound too
+        AudioManager.Instance.PlaySfx("Coin");
     }
 
     public void ShakeHearts()

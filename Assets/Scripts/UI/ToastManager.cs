@@ -39,16 +39,41 @@ namespace UI
 
         private void OnItemAdded(ItemInstance newItem)
         {
+            if (IsItemBannedFromToasts(newItem))
+            {
+                return;
+            }
+            
             RequestToast(newItem.Schema.Sprite, "Item Granted!", newItem.Schema.Name);
         }
-
+        
         private void OnItemChargeChanged((ItemInstance, int) data)
         {
+            if (IsItemBannedFromToasts(data.Item1))
+            {
+                return;
+            }
+            
             if (data.Item2 > 0)
             {
                 RequestToast(data.Item1.Schema.Sprite, "Item Granted!", data.Item1.Schema.Name);
             }
         }
+        
+        private bool IsItemBannedFromToasts(ItemInstance newItem)
+        {
+            // Coins do not get a toast, they now appear in-scene next to the player
+            if (newItem.Schema.ItemId == ItemSchema.Id.CoinCopper ||
+                newItem.Schema.ItemId == ItemSchema.Id.CoinSilver ||
+                newItem.Schema.ItemId == ItemSchema.Id.CoinGold
+               )
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         
         private void OnAchievementCompleted(AchievementSchema newAchievement)
         {
