@@ -141,6 +141,7 @@ public class Player : MonoBehaviour
     [ReadOnly]
     public bool WasLastLevelUpInefficient = false;
 
+    public bool SuppressAllCoins = false;
     public Action<int> OnLevelChanged;
     public Action<TileSchema> OnConquer;
     public Action<TileSchema> OnHeal;       // does not fire when healed from level ups
@@ -228,6 +229,11 @@ public class Player : MonoBehaviour
 
     private void SpawnCoinVFX(Sprite coinSprite)
     {
+        if (SuppressAllCoins)
+        {
+            return;
+        }
+        
         // We spawn it at a random offset because there can be multiple
         Vector2 offset = new Vector3(Random.Range(0, 50), Random.Range(-25, 25));
         GameObject coinVfx = Instantiate(CoinVfx, CoinVfxRoot);
