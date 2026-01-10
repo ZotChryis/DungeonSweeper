@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemId: 91
   Name: Tinkerer's Toolbox
-  Description: Collect Scrap from Bricks, Chests, and Mines. After 20 Scrap is collected,
+  Description: Collect Scrap from Bricks, Chests, and Mines. After 20 Scrap are collected,
     get a random item.
   Sprite: {fileID: 21300000, guid: 436b9a62dc205274daff3847b224ee0f, type: 3}
   Max: 1

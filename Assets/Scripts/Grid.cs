@@ -364,10 +364,12 @@ public class Grid : MonoBehaviour
     public void TEMP_RevealAllTiles()
     {
         // perf reasons....dont do it on mobile :\
+        /*
         if (Application.isMobilePlatform)
         {
             return;
         }
+        */
         
         for (int y = 0; y < SpawnSettings.Height; y++)
         {
