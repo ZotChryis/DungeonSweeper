@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Lucky Shopper
   Description: Chance to unlock when you purchase an item.
   Reward: Unlocks Gambler.
-  SortGroup: -1
+  SortGroup: -10
   PaidExclusive: 0
   RewardClass: 10
   RewardItem: 0

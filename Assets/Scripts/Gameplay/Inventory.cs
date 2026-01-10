@@ -313,7 +313,8 @@ namespace Gameplay
                     itemInstance.Schema.ItemId == ItemSchema.Id.BusinessCard || 
                     itemInstance.Schema.ItemId == ItemSchema.Id.Dice || 
                     itemInstance.Schema.ItemId == ItemSchema.Id.BloodDonorCard ||
-                    itemInstance.Schema.ItemId == ItemSchema.Id.LicenseToKill
+                    itemInstance.Schema.ItemId == ItemSchema.Id.LicenseToKill ||
+                    itemInstance.Schema.ItemId == ItemSchema.Id.Menu
                 ) {
                     itemInstance.RemoveGrantedItems();
                 }
@@ -675,7 +676,9 @@ namespace Gameplay
                     case EffectType.ChangeBounty:
                         ServiceLocator.Instance.Player.ChangeBountyTarget();
                         break;
-                    
+                    case EffectType.ChangeMenuTarget:
+                        ServiceLocator.Instance.Player.ChangeMenuTarget();
+                        break;
                 }
             }
         }

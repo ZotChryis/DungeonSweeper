@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Visionary
   Description: Use a vision scroll.
   Reward: Unlocks Fortune Teller.
-  SortGroup: -1
+  SortGroup: -10
   PaidExclusive: 0
   RewardClass: 6
   RewardItem: 0

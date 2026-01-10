@@ -16,7 +16,8 @@ MonoBehaviour:
   Title: Werewolf Slayer
   Description: Complete any dungeon after defeating 4 Werewolf (not Humanoid)
   Reward: 
-  SortGroup: 92
+  SortGroup: 0
+  PaidExclusive: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 4

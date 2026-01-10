@@ -16,7 +16,8 @@ MonoBehaviour:
   Title: Sheep Slayer
   Description: Complete any dungeon after defeating 10 Sheep.
   Reward: 
-  SortGroup: 90
+  SortGroup: 0
+  PaidExclusive: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 4

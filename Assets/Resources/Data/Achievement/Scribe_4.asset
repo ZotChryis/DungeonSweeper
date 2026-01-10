@@ -16,6 +16,8 @@ MonoBehaviour:
   Title: Ascendant Scribe
   Description: Complete the fifth dungeon level with the Scribe.
   Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 0

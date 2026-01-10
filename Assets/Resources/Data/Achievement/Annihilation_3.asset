@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Complete the fourth dungeon level with an empty board.
   Reward: 
   SortGroup: 0
+  PaidExclusive: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 2

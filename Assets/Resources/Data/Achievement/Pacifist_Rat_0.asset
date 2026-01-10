@@ -16,7 +16,8 @@ MonoBehaviour:
   Title: Novice Rat Pacifist
   Description: Complete the first dungeon without defeating a single rat.
   Reward: Unlocks the Bard
-  SortGroup: 2
+  SortGroup: -5
+  PaidExclusive: 0
   RewardClass: 5
   RewardItem: 0
   Trigger: 1

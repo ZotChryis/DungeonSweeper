@@ -130,7 +130,8 @@ namespace Schemas
             KillerVampire,
             KillerWerewolf,
 
-            // Ultimate achievements for level 5.
+            // Ultimate achievements for level 5. Made after level 5 was made so they are out of order of their
+            // 0-3 counterparts
             Adventurer4,
             Warrior4,
             Ranger4,
@@ -181,6 +182,22 @@ namespace Schemas
             DemonKnightSlayer,
             PotionUser,
             FireLordSlayer,
+            
+            Chef0,
+            Chef1,
+            Chef2,
+            Chef3,
+            Chef4,
+            
+            Beekeeper0,
+            Beekeeper1,
+            Beekeeper2,
+            Beekeeper3,
+            Beekeeper4,
+            
+            PizzaUser,      // Eat a pizza slice (unlocks Chef)
+            BeholderSlayer,   // Kill a Beholder (unlocks Beekeeper)
+            
         }
 
         [Serializable]

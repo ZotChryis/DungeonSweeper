@@ -16,7 +16,8 @@ MonoBehaviour:
   Title: Hardcore++
   Description: Complete the third level without a Retry.
   Reward: Unlocks level 4 select.
-  SortGroup: 1
+  SortGroup: 0
+  PaidExclusive: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 0

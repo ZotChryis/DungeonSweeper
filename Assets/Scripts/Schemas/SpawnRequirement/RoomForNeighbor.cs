@@ -13,21 +13,50 @@ public class RoomForNeighbor : SpawnRequirement
     public int numberOfValidAdjacentSpaces;
 
     /// <summary>
-    /// Potential spaces that should be adjacent.
+    /// Potential adjacent spaces that should be empty.
     /// </summary>
     public CompassDirections[] EmptyAdjacentSpaces;
+
+    /// <summary>
+    /// Potential spaces to check for as well. DO NOT use the same values the CompassDirections.
+    /// This is in case you wanted to do even more beyond that (or simply define ONLY in this)
+    /// This was added after the fact, that's why there's this double-up logic.
+    /// </summary>
+    public Vector2Int[] SpecificOffsetsFromCenter;
 
     public override List<(int x, int y)> GetRandomConsecutiveNeighborLocations(RandomBoard board, int inputX, int inputY)
     {
         CoordinateList.Clear();
-        foreach (var adjacentSpace in EmptyAdjacentSpaces)
+
+        if (EmptyAdjacentSpaces != null)
         {
-            (int checkX, int checkY) = adjacentSpace.GetCompassTilePos(inputX, inputY);
-            if (board.PeekUnoccupiedSpace(checkX, checkY))
+            foreach (var adjacentSpace in EmptyAdjacentSpaces)
             {
-                CoordinateList.Add((checkX, checkY));
+                (int checkX, int checkY) = adjacentSpace.GetCompassTilePos(inputX, inputY);
+                if (board.PeekUnoccupiedSpace(checkX, checkY))
+                {
+                    CoordinateList.Add((checkX, checkY));
+                }
             }
         }
+
+        if (SpecificOffsetsFromCenter != null)
+        {
+            foreach (var offset in SpecificOffsetsFromCenter)
+            {
+                (int checkX, int checkY) = (inputX + offset.x, inputY + offset.y);
+                if (CoordinateList.Contains((checkX, checkY)))
+                {
+                    continue;
+                }
+                
+                if (board.PeekUnoccupiedSpace(checkX, checkY))
+                {
+                    CoordinateList.Add((checkX, checkY));
+                }
+            }
+        }
+        
         return CoordinateList;
     }
 

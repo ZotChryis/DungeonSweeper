@@ -623,6 +623,46 @@ public class Grid : MonoBehaviour
 
         return amount;
     }
+
+    public List<TileSchema> GetUnconqueredNeighborSchemas(int x, int y, int radius = 1, bool onlyEnemies = false)
+    {
+        List<TileSchema> neighbors = new List<TileSchema>();
+        for (int i = -radius; i <= radius; i++)
+        {
+            for (int j = -radius; j <= radius; j++)
+            {
+                if (i == 0 && j == 0)
+                {
+                    continue;
+                }
+
+                if (!InGridBounds(x + i, y + j))
+                {
+                    continue;
+                }
+
+                Tile tile = Tiles[x + i, y + j];
+                if (tile.TEMP_IsEmpty())
+                {
+                    continue;
+                }
+
+                if (onlyEnemies && !tile.GetHousedObject().Tags.Contains(TileSchema.Tag.Enemy))
+                {
+                    continue;
+                }
+                
+                if (tile.State >= Tile.TileState.Conquered)
+                {
+                    continue;
+                }
+                
+                neighbors.Add(tile.GetHousedObject());
+            }
+        }
+
+        return neighbors;
+    }
     
     /// <summary>
     /// Returns the object in the given coordinates. Can be null.

@@ -26,6 +26,11 @@
             Aristocrat,
             Assassin,
             BountyHunter,
+            
+            // Second post steam build classes
+            Chef,
+            Beekeeper,
+            Junker,
         }
     }
 }

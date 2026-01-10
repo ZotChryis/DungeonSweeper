@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59be5e5e88d945fcad5dbd595b15aff5, type: 3}
+  m_Name: HoneyPot
+  m_EditorClassIdentifier: 
+  ItemId: 92
+  Name: Honey Pot
+  Description: 'Remove all Rats and Bats from the Dungeon. Gain 2 Bait: Beehive.
+    After each Dungeon, gain another Bait: Beehive.'
+  Sprite: {fileID: 21300000, guid: 3e3e2f865bbeb2341a113eed791cce76, type: 3}
+  Max: 1
+  IsConsumbale: 0
+  InitialCharges: 0
+  ShopInventory: 1
+  Rarity: 3
+  Price: 8
+  UseSfx: 
+  CanStack: 0
+  CloseInventoryOnUse: 0
+  Effects:
+    _serializedList:
+    - Key: 0
+      Value:
+      - Type: 5
+        Amount: -99
+        GrantItemForceAllowDuplicates: 0
+        Id: 15
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
+      - Type: 5
+        Amount: -99
+        GrantItemForceAllowDuplicates: 0
+        Id: 16
+        OtherId: 0
+        Tags: 
+        Items: 
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
+      - Type: 11
+        Amount: 1
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        OtherId: 0
+        Tags: 
+        Items: 5d000000
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}
+    - Key: 2
+      Value:
+      - Type: 11
+        Amount: 1
+        GrantItemForceAllowDuplicates: 0
+        Id: 0
+        OtherId: 0
+        Tags: 
+        Items: 5d000000
+        Decay: 0
+        DecayTrigger: 0
+        DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}

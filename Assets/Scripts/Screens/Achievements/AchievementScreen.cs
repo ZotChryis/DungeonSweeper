@@ -27,20 +27,7 @@ namespace Screens.Achievements
         {
             ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted -= OnAchievementCompleted;
         }
-
-        /// <summary>
-        /// Returns true if the class Id should be treated like you do not reward a class.
-        /// For sorting purposes. We want to show achievements that reward classes at the top.
-        /// Ranger, Warrior, Wizard, and Ascetic are rewarded from multiple achievements so
-        /// they're treated like the RewardClass None.
-        /// </summary>
-        /// <returns></returns>
-        private bool IsLikeNoneRewardClass(Class.Id id)
-        {
-            return id == Class.Id.None || id == Class.Id.Ranger || id == Class.Id.Warrior || id == Class.Id.Wizard
-                || id == Class.Id.Ascetic || id == Class.Id.Ritualist || id == Class.Id.Bard;
-        }
-
+        
         private void RefreshItems()
         {
             if (Items != null)
@@ -61,52 +48,44 @@ namespace Screens.Achievements
 
             schemas.Sort((a1, a2) =>
             {
-                if (!IsLikeNoneRewardClass(a1.RewardClass) && IsLikeNoneRewardClass(a2.RewardClass))
+                // First and foremost, use the sort group logic. Allow us to inform sort groups by the data.
+                var sortGroupResult = a1.SortGroup.CompareTo(a2.SortGroup);
+                if (sortGroupResult != 0)
                 {
-                    return -1;
+                    return sortGroupResult;
                 }
 
-                if (IsLikeNoneRewardClass(a1.RewardClass) && !IsLikeNoneRewardClass(a2.RewardClass))
+                // If there was a tie, then...
+                // If both give a reward class, prefer the one where the class comes first
+                if (a1.RewardClass != Class.Id.None && a2.RewardClass != Class.Id.None)
                 {
-                    return 1;
+                    return a1.RewardClass > a2.RewardClass ? 1 : -1;
                 }
-
-                if (!IsLikeNoneRewardClass(a1.RewardClass) && !IsLikeNoneRewardClass(a2.RewardClass))
-                {
-                    var sortGroup = a1.SortGroup.CompareTo(a2.SortGroup);
-                    if (sortGroup != 0)
-                    {
-                        return sortGroup;
-                    }
-                    return a1.RewardClass.CompareTo(a2.RewardClass);
-                }
-
+                
+                // If the two achievements share the same class, go by ID
                 if (a1.Class == a2.Class && a1.Class != Class.Id.None)
                 {
                     return a1.AchievementId > a2.AchievementId ? 1 : -1;
                 }
 
+                // Otherwise, prefer one if it is using a class vs the other doesn't have a class
                 if (a1.Class != Class.Id.None && a2.Class == Class.Id.None)
                 {
                     return -1;
                 }
-
                 if (a1.Class == Class.Id.None && a2.Class != Class.Id.None)
                 {
                     return 1;
                 }
 
+                // If both have a class, prefer the one that appears first by classID
                 if (a1.Class != Class.Id.None && a2.Class != Class.Id.None)
                 {
                     return a1.Class > a2.Class ? 1 : -1;
                 }
 
-                if(a1.SortGroup == a2.SortGroup)
-                {
-                    return a1.AchievementId > a2.AchievementId ? 1 : -1;
-                }
-
-                return a1.SortGroup.CompareTo(a2.SortGroup);
+                // Last resort is sort by the order the achievement was made
+                return a1.AchievementId > a2.AchievementId ? 1 : -1;
             });
             Items = new List<AchievementItem>(schemas.Count);
             

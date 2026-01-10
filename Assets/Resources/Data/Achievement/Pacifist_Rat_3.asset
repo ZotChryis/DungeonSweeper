@@ -16,7 +16,8 @@ MonoBehaviour:
   Title: Master Rat Pacifist
   Description: Complete the fourth dungeon without defeating a single rat.
   Reward: 
-  SortGroup: 2
+  SortGroup: -5
+  PaidExclusive: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 1

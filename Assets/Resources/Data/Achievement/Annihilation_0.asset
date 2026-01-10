@@ -17,6 +17,7 @@ MonoBehaviour:
   Description: Complete the first dungeon level with an empty board.
   Reward: Unlocks the Ritualist
   SortGroup: 0
+  PaidExclusive: 0
   RewardClass: 4
   RewardItem: 0
   Trigger: 2

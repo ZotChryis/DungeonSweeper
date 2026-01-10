@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Drinking Enthusiast
   Description: Use a potion.
   Reward: Unlocks Apothecary.
-  SortGroup: -1
+  SortGroup: -10
   PaidExclusive: 0
   RewardClass: 9
   RewardItem: 0

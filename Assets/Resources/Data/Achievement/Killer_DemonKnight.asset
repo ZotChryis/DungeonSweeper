@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Demon Slayer
   Description: Defeat a Demon Knight.
   Reward: Unlocks Priest.
-  SortGroup: -1
+  SortGroup: -10
   PaidExclusive: 0
   RewardClass: 8
   RewardItem: 0

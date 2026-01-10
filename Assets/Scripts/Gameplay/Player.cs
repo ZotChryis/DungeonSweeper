@@ -18,6 +18,8 @@ using Random = UnityEngine.Random;
 // This is currently both
 public class Player : MonoBehaviour
 {
+    public static readonly int MenuTargetGoal = 15;
+    
     [SerializeField]
     private GameObject CoinVfx;
 
@@ -48,6 +50,15 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Image BountyBoardTarget;
+    
+    [SerializeField]
+    private Image Menu;
+
+    [SerializeField]
+    private Image MenuTarget;
+    
+    [SerializeField]
+    private TMP_Text MenuGoalLabel;
 
     [SerializeField]
     private GameObject DeathIcon;
@@ -136,6 +147,14 @@ public class Player : MonoBehaviour
         get;
         private set;
     }
+    
+    public TileSchema CurrentMenuTarget
+    {
+        get;
+        private set;
+    }
+
+    public int CurrentMenuProgress { get; set; }
 
     public bool IsHardcore = true;
     [ReadOnly]
@@ -198,6 +217,11 @@ public class Player : MonoBehaviour
         if (item.Schema.ItemId == ItemSchema.Id.BountyBoard)
         {
             ChangeBountyTarget();
+        }
+
+        if (item.Schema.ItemId == ItemSchema.Id.Menu)
+        {
+            ChangeMenuTarget();
         }
         
         // Special case: coins are shown in-schene now instead of a Toast
@@ -300,6 +324,7 @@ public class Player : MonoBehaviour
         // TODO: Should decaying effects be cleared here??
 
         ChangeBountyTarget();
+        ChangeMenuTarget();
     }
 
     public int GetKillCount(TileSchema.Id tileId)
@@ -679,6 +704,7 @@ public class Player : MonoBehaviour
         RevertAllDecayingEffects();
         ItemsAddedThisDungeon.Clear();
 
+        CurrentMenuProgress = 0;
         Level = 0;
         CurrentXP = 0;
         Shield = 0;
@@ -700,42 +726,82 @@ public class Player : MonoBehaviour
         Inventory.ReplenishItems();
 
         ChangeBountyTarget();
+        ChangeMenuTarget();
     }
 
     #region PlayerPowers
-
+    
     public void ChangeBountyTarget()
     {
-        // Only bounty hunters need to ever do this ...
         bool hasBountyBoard = Inventory.HasItem(ItemSchema.Id.BountyBoard);
         BountyBoard.gameObject.SetActive(hasBountyBoard);
+        
         if (!hasBountyBoard)
         {
             return;
         }
+        
+        var oldBounty = CurrentBounty;
+        CurrentBounty = DetermineNewTarget(oldBounty);
+        if (CurrentBounty == null)
+        {
+            BountyBoardTarget.gameObject.SetActive(false);
+            return;
+        }
+        
+        Debug.Log("Changing bounty board target. OldTarget: " + oldBounty?.TileId.ToString() + ", new target: " + CurrentBounty.TileId.ToString());
+        BountyBoardTarget.gameObject.SetActive(true);
+        BountyBoardTarget.sprite = CurrentBounty.Sprite;
+    }
+    
+    public void ChangeMenuTarget()
+    {
+        bool hasMenu = Inventory.HasItem(ItemSchema.Id.Menu);
+        Menu.gameObject.SetActive(hasMenu);
+        
+        if (!hasMenu)
+        {
+            return;
+        }
+        
+        MenuGoalLabel.SetText($"{CurrentMenuProgress}/{MenuTargetGoal}");
 
+        var oldMenuTarget = CurrentMenuTarget;
+        CurrentMenuTarget = DetermineNewTarget(oldMenuTarget);
+        if (CurrentMenuTarget == null)
+        {
+            MenuTarget.gameObject.SetActive(false);
+            return;
+        }
+        
+        Debug.Log("Changing menu target. OldTarget: " + oldMenuTarget?.TileId.ToString() + ", new target: " + CurrentMenuTarget.TileId.ToString());
+        MenuTarget.gameObject.SetActive(true);
+        MenuTarget.sprite = CurrentMenuTarget.Sprite;
+    }
+
+    private TileSchema DetermineNewTarget(TileSchema oldTarget)
+    {
         // Get all enemies that are conquerable with our max health
-        // No possible bounty to show, just show nothing
+        // No possible menu item to show, just show nothing
         var tileObjects = ServiceLocator.Instance.Grid.GetAllTileObjects(new Tile.TileState[] {
             Tile.TileState.Hidden,
             Tile.TileState.Revealed,
             Tile.TileState.RevealThroughCombat
         });
 
-        tileObjects.RemoveAll(item => item.Power > MaxHealth || !item.Tags.Contains(TileSchema.Tag.Enemy));
+        tileObjects.RemoveAll(item => item.Tags.Contains(TileSchema.Tag.Dragon) || item.Power > MaxHealth || !item.Tags.Contains(TileSchema.Tag.Enemy));
         if (tileObjects.Count == 0)
         {
-            BountyBoardTarget.gameObject.SetActive(false);
-            return;
+            return null;
         }
 
-        // If we already have a bounty, try to get a NEW one
+        // If we already have a one, try to get a NEW one
         // If it's the only option, then we can still use it
-        if (CurrentBounty != null)
+        if (oldTarget != null)
         {
             List<TileSchema> newTileObjects = new List<TileSchema>();
             newTileObjects.AddRange(tileObjects);
-            newTileObjects.RemoveAll(t => t.TileId == CurrentBounty.TileId);
+            newTileObjects.RemoveAll(t => t.TileId == oldTarget.TileId);
 
             // When we don't have any here, we know we only have the current bounty to provide. That's ok as a fallback
             if (newTileObjects.Count > 0)
@@ -743,12 +809,8 @@ public class Player : MonoBehaviour
                 tileObjects = newTileObjects;
             }
         }
-
-        var oldBounty = CurrentBounty;
-        CurrentBounty = tileObjects.GetRandomItem();
-        Debug.Log("Changing bounty board target. OldTarget: " + oldBounty?.TileId.ToString() + ", new target: " + CurrentBounty.TileId.ToString());
-        BountyBoardTarget.gameObject.SetActive(true);
-        BountyBoardTarget.sprite = CurrentBounty.Sprite;
+        
+        return tileObjects.GetRandomItem();
     }
 
     public void AddMonsterToAutoRevealedList(TileSchema.Id monsterId)

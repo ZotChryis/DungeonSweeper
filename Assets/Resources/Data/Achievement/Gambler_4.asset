@@ -16,6 +16,8 @@ MonoBehaviour:
   Title: Ascendant Gambler
   Description: Complete the fifth dungeon level with the Gambler.
   Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 0

@@ -140,6 +140,13 @@ namespace Schemas
             Chest_Generic, // Unified library description for all chests.
             TutorialSlime, // Slime you defeat during the tutorial.
             GoldBug,
+            
+            DemonKnightBrotherBlue,
+            DemonKnightBrotherRed,
+            
+            MetalBlock,
+            Bee,
+            Beehive,
         }
 
         // !!WARNING!! DO NOT REORDER

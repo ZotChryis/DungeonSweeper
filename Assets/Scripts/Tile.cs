@@ -207,6 +207,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         TEMP_UpdateVisuals();
 
+        // TODO: Gross -- we should have made this in data ...
         if (obj)
         {
             switch (obj.TileId)
@@ -231,6 +232,13 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     break;
                 case TileSchema.Id.Firelord:
                     ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.FireLordSlayer);
+                    break;
+                case TileSchema.Id.Beholder:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.BeholderSlayer);
+                    break;
+                case TileSchema.Id.PizzaSlice:
+                case TileSchema.Id.Pizza:
+                    ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.PizzaUser);
                     break;
                 default:
                     break;
@@ -409,8 +417,18 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         // blocks, which means they have been cleared)
         if (HousedObject.TileId == TileSchema.Id.Gorgon)
         {
-            int neighborPower = ServiceLocator.Instance.Grid.TEMP_GetUnconqueredNeighborCount(XCoordinate, YCoordinate);
-            if (neighborPower == 0)
+            int neighborCount = ServiceLocator.Instance.Grid.TEMP_GetUnconqueredNeighborCount(XCoordinate, YCoordinate);
+            if (neighborCount == 0)
+            {
+                return 0;
+            }
+        }
+        
+        // Special case: Beehive is 0 when there are no more Unconquered Bees around it (within 2 radius)
+        if (HousedObject.TileId == TileSchema.Id.Beehive)
+        {
+            List<TileSchema> neighborTiles = ServiceLocator.Instance.Grid.GetUnconqueredNeighborSchemas(XCoordinate, YCoordinate, 2, true);
+            if (!neighborTiles.Find(schema => schema.TileId == TileSchema.Id.Bee))
             {
                 return 0;
             }
@@ -738,6 +756,28 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 // Note: Man this code is really getting bad... I need to call this one more time in this particular case
                 // because this will change the XP amount. 
                 TEMP_UpdateVisuals();
+            }
+            
+            // Special case for Menu
+            bool hasMenu = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.Menu);
+            var currentMenuTarget = ServiceLocator.Instance.Player.CurrentMenuTarget;
+            if (hasMenu && currentMenuTarget != null && HousedObject.Tags.Contains(TileSchema.Tag.Enemy))
+            {
+                bool validMenuKill = HousedObject.TileId == currentMenuTarget.TileId;
+                if (validMenuKill)
+                {
+                    ServiceLocator.Instance.Player.CurrentMenuProgress++;
+                    
+                    // TODO: Move this to data somewhere? Bleh idc anymore this code is nasty anyway...
+                    if (ServiceLocator.Instance.Player.CurrentMenuProgress == Player.MenuTargetGoal)
+                    {
+                        ServiceLocator.Instance.Player.CurrentMenuProgress = 0;
+                        var menuItemInstance = ServiceLocator.Instance.Player.Inventory.GetFirstItem(ItemSchema.Id.Menu);
+                        menuItemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.MenuCountReached);
+                    }
+                    
+                    ServiceLocator.Instance.Player.ChangeMenuTarget();
+                }
             }
 
             if (HousedObject.TileId == TileSchema.Id.Balrog)

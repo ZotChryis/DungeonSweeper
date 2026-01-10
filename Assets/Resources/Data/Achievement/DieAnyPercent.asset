@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Momento Mori
   Description: Die
   Reward: Unlocks Aristocrat.
-  SortGroup: -99
+  SortGroup: -20
   PaidExclusive: 0
   RewardClass: 15
   RewardItem: 0

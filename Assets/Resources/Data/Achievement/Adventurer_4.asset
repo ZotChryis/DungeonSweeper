@@ -16,6 +16,8 @@ MonoBehaviour:
   Title: Ascendant Adventurer
   Description: Complete the fifth dungeon level with the Adventurer.
   Reward: 
+  SortGroup: 0
+  PaidExclusive: 0
   RewardClass: 14
   RewardItem: 0
   Trigger: 0

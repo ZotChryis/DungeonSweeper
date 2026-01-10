@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Picky Shopper
   Description: Reroll the shop.
   Reward: Unlocks Merchant.
-  SortGroup: -1
+  SortGroup: -10
   PaidExclusive: 0
   RewardClass: 11
   RewardItem: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Minotaur Slayer
   Description: Defeat a Minotaur.
   Reward: Unlocks Assassin.
-  SortGroup: -11
+  SortGroup: -10
   PaidExclusive: 1
   RewardClass: 16
   RewardItem: 0

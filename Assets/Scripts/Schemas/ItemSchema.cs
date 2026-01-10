@@ -96,6 +96,7 @@ namespace Schemas
         SwapTiles,
         Shield,     // Adds to shield amount. Temporary health that is reset between dungeons and is not recoverable
         ChangeBounty,
+        ChangeMenuTarget,   // Currently unused, but made just in case we need it to balance Menu item
     }
 
     [Serializable]
@@ -108,6 +109,7 @@ namespace Schemas
         Used,           // Consumables only: When the Use button is clicked in inventory
         Heal,           // When the player heals mid-dungeon 
         PerfectConquer, // When the player conquers something that leaves them at 0 HP.
+        MenuCountReached, // When enough menu kills occur to trigger the menu item
     }
 
     [Serializable]
@@ -343,6 +345,12 @@ namespace Schemas
             SilverSpoon,
             LicenseToKill,
             BountyBoard,
+            
+            Menu,
+            GourmetMeal,
+            Compactor,
+            HoneyPot,
+            Bait_Beehive,
         }
         
         public ItemSchema.Id ItemId;

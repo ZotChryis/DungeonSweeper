@@ -16,7 +16,8 @@ MonoBehaviour:
   Title: Advanced Matchmaker
   Description: Complete the third dungeon level without defeating any Lovers.
   Reward: 
-  SortGroup: 9
+  SortGroup: 0
+  PaidExclusive: 0
   RewardClass: -1
   RewardItem: 0
   Trigger: 1

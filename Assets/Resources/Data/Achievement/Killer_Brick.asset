@@ -16,7 +16,7 @@ MonoBehaviour:
   Title: Bricked Up
   Description: Fully break a Brick wall.
   Reward: Unlocks Miner.
-  SortGroup: -1
+  SortGroup: -10
   PaidExclusive: 0
   RewardClass: 7
   RewardItem: 0

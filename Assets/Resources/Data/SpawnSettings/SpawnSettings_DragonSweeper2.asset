@@ -48,6 +48,14 @@ MonoBehaviour:
     GuardRelationship: 0
     LookTowardsEachOther: 0
     Requirement: {fileID: 11400000, guid: ec58a1a3e7aeeec4390ad9484e5de10c, type: 2}
+  - Amount: 0
+    Object: {fileID: 11400000, guid: df82a5f26b64f3e4ba4ece5bc82bb01c, type: 2}
+    ConsecutiveSpawn: {fileID: 11400000, guid: c65654b04e1af5e4fb3b23f4688d12d9, type: 2}
+    ConsecutiveCopies: 7
+    ConsecutiveStackedInLibrary: 0
+    GuardRelationship: 0
+    LookTowardsEachOther: 0
+    Requirement: {fileID: 11400000, guid: ca8fd5716713f404ca617d528a5d4686, type: 2}
   - Amount: 1
     Object: {fileID: 11400000, guid: c92812f0a2cddd343b4dd9dc9db0151b, type: 2}
     ConsecutiveSpawn: {fileID: 0}
