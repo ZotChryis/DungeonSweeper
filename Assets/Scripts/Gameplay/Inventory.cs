@@ -314,7 +314,8 @@ namespace Gameplay
                     itemInstance.Schema.ItemId == ItemSchema.Id.Dice || 
                     itemInstance.Schema.ItemId == ItemSchema.Id.BloodDonorCard ||
                     itemInstance.Schema.ItemId == ItemSchema.Id.LicenseToKill ||
-                    itemInstance.Schema.ItemId == ItemSchema.Id.Menu
+                    itemInstance.Schema.ItemId == ItemSchema.Id.Menu ||
+                    itemInstance.Schema.ItemId == ItemSchema.Id.TinkererToolbox
                 ) {
                     itemInstance.RemoveGrantedItems();
                 }

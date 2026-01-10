@@ -110,6 +110,7 @@ namespace Schemas
         Heal,           // When the player heals mid-dungeon 
         PerfectConquer, // When the player conquers something that leaves them at 0 HP.
         MenuCountReached, // When enough menu kills occur to trigger the menu item
+        ToolboxCountReached, // When enough scrap kills occur to trigger the toolbox item
     }
 
     [Serializable]
@@ -348,7 +349,7 @@ namespace Schemas
             
             Menu,
             GourmetMeal,
-            Compactor,
+            TinkererToolbox,
             HoneyPot,
             Bait_Beehive,
         }

@@ -19,6 +19,7 @@ using Random = UnityEngine.Random;
 public class Player : MonoBehaviour
 {
     public static readonly int MenuTargetGoal = 15;
+    public static readonly int ToolboxScrapGoal = 20;
     
     [SerializeField]
     private GameObject CoinVfx;
@@ -59,6 +60,12 @@ public class Player : MonoBehaviour
     
     [SerializeField]
     private TMP_Text MenuGoalLabel;
+    
+    [SerializeField]
+    private Image ToolboxImage;
+    
+    [SerializeField]
+    private TMP_Text ToolboxGoalLabel;
 
     [SerializeField]
     private GameObject DeathIcon;
@@ -156,6 +163,17 @@ public class Player : MonoBehaviour
 
     public int CurrentMenuProgress { get; set; }
 
+    private int _currentToolboxProgress = 0;
+    public int CurrentToolboxProgress
+    {
+        get => _currentToolboxProgress;
+        set
+        {
+            _currentToolboxProgress = value;
+            ToolboxGoalLabel.SetText($"{_currentToolboxProgress} / {ToolboxScrapGoal}");
+        }
+    }
+
     public bool IsHardcore = true;
     [ReadOnly]
     public bool WasLastLevelUpInefficient = false;
@@ -185,6 +203,7 @@ public class Player : MonoBehaviour
 
         Inventory = new Inventory(true);
         Inventory.OnItemAdded += OnItemAdded;
+        Inventory.OnItemRemoved += OnItemRemoved;
         Inventory.OnItemStackChanged += OnItemStackChanged;
 
         // TODO: Make this system better
@@ -207,6 +226,8 @@ public class Player : MonoBehaviour
         if (Inventory != null)
         {
             Inventory.OnItemAdded -= OnItemAdded;
+            Inventory.OnItemRemoved -= OnItemRemoved;
+            Inventory.OnItemStackChanged -= OnItemStackChanged;
         }
 
         ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
@@ -223,6 +244,11 @@ public class Player : MonoBehaviour
         {
             ChangeMenuTarget();
         }
+
+        if (item.Schema.ItemId == ItemSchema.Id.TinkererToolbox)
+        {
+            SetToolboxEnabled(true);
+        }
         
         // Special case: coins are shown in-schene now instead of a Toast
         if (item.Schema.ItemId == ItemSchema.Id.CoinCopper ||
@@ -231,6 +257,14 @@ public class Player : MonoBehaviour
         )
         {
             SpawnCoinVFX(item.Schema.Sprite);
+        }
+    }
+
+    private void OnItemRemoved(ItemInstance item)
+    {
+        if (item.Schema.ItemId == ItemSchema.Id.TinkererToolbox)
+        {
+            SetToolboxEnabled(false);
         }
     }
     
@@ -705,6 +739,7 @@ public class Player : MonoBehaviour
         ItemsAddedThisDungeon.Clear();
 
         CurrentMenuProgress = 0;
+        CurrentToolboxProgress = 0;
         Level = 0;
         CurrentXP = 0;
         Shield = 0;
@@ -777,6 +812,11 @@ public class Player : MonoBehaviour
         Debug.Log("Changing menu target. OldTarget: " + oldMenuTarget?.TileId.ToString() + ", new target: " + CurrentMenuTarget.TileId.ToString());
         MenuTarget.gameObject.SetActive(true);
         MenuTarget.sprite = CurrentMenuTarget.Sprite;
+    }
+
+    private void SetToolboxEnabled(bool value)
+    {
+        ToolboxImage.gameObject.SetActive(value);
     }
 
     private TileSchema DetermineNewTarget(TileSchema oldTarget)

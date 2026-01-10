@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
+  m_Name: MineCollector
+  m_EditorClassIdentifier: 
+  AchievementId: 147
+  Title: Mine Collector
+  Description: Collect a Diffused Mine
+  Reward: Unlocks Junker.
+  SortGroup: -10
+  PaidExclusive: 0
+  RewardClass: 20
+  RewardItem: 0
+  Trigger: 5
+  Level: 0
+  Class: -1
+  TileData: 
+  ItemData: 
+  ItemAcquiredMinCount: -1
+  ItemAcquiredMaxCount: -1
+  RequiresHardcore: 0
+  MinimumKillCount: 0
+  AchievementIcon: {fileID: 21300000, guid: e37cf97028579b6418c98db5a9fbefb9, type: 3}

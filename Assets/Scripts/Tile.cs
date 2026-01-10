@@ -779,6 +779,47 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     ServiceLocator.Instance.Player.ChangeMenuTarget();
                 }
             }
+            
+            // Special case for Tinkerer's Toolbox
+            bool hasToolbox = ServiceLocator.Instance.Player.Inventory.HasItem(ItemSchema.Id.TinkererToolbox);
+            if (hasToolbox)
+            {
+                // Chests give +3 scraps
+                if (HousedObject.Tags.Contains(TileSchema.Tag.Chest))
+                {
+                    ServiceLocator.Instance.Player.CurrentToolboxProgress += 3;
+                }
+                
+                // Each brick gives +1 scrap per hit
+                if (HousedObject.TileId == TileSchema.Id.Brick || HousedObject.TileId == TileSchema.Id.BrickFinal)
+                {
+                    ServiceLocator.Instance.Player.CurrentToolboxProgress += 1;
+                }
+                
+                // Diffused mines give +3 scraps each
+                if (HousedObject.TileId == TileSchema.Id.MineDiffused)
+                {
+                    ServiceLocator.Instance.Player.CurrentToolboxProgress += 3;
+                }
+                
+                // Lesser golems give 3 (they replace Bricks), greater golems give 5
+                if (HousedObject.TileId == TileSchema.Id.LesserGolem)
+                {
+                    ServiceLocator.Instance.Player.CurrentToolboxProgress += 3;
+                }
+                if (HousedObject.TileId == TileSchema.Id.GreaterGolem)
+                {
+                    ServiceLocator.Instance.Player.CurrentToolboxProgress += 5;
+                }
+                
+                // See if we went over the goal
+                if (ServiceLocator.Instance.Player.CurrentToolboxProgress >= Player.ToolboxScrapGoal)
+                {
+                    ServiceLocator.Instance.Player.CurrentToolboxProgress -= Player.ToolboxScrapGoal;
+                    var toolboxItemInstance = ServiceLocator.Instance.Player.Inventory.GetFirstItem(ItemSchema.Id.TinkererToolbox);
+                    toolboxItemInstance.ApplyEffects(ServiceLocator.Instance.Player, EffectTrigger.ToolboxCountReached);
+                }
+            }
 
             if (HousedObject.TileId == TileSchema.Id.Balrog)
             {
@@ -1049,6 +1090,11 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 }
             }
 
+            // Special case for MineCollector achievement
+            if (HousedObject.TileId == TileSchema.Id.MineDiffused)
+            {
+                ServiceLocator.Instance.AchievementSystem.CompleteAchievementById(AchievementSchema.Id.MineCollector);
+            }
         }
 
         var objectOverrides = HousedObject ? HousedObject.GetOverrides(State) : default;

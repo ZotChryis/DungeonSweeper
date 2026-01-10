@@ -197,6 +197,13 @@ namespace Schemas
             
             PizzaUser,      // Eat a pizza slice (unlocks Chef)
             BeholderSlayer,   // Kill a Beholder (unlocks Beekeeper)
+            MineCollector,  // Collect a diffused mine (unlocks Junker)
+            
+            Junker0,
+            Junker1,
+            Junker2,
+            Junker3,
+            Junker4,
             
         }
 
