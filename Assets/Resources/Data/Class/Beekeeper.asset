@@ -16,7 +16,7 @@ MonoBehaviour:
   Sprite: {fileID: 21300000, guid: 09b8ad38e718df14bbc40910af5dee14, type: 3}
   Name: Beekeeper
   Description: Starts with the Honey Pot.
-  UnlockText: Complete the Gorgon Slayer achievement.
+  UnlockText: Complete the Beholder Slayer achievement.
   FreeVersionUnlockText: Paid exclusive class - purchase the game on Steam or Google
     Play Store.
   StartingItem: 92

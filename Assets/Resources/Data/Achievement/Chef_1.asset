@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Complete the second dungeon level with the Chef.
   Reward: 
   SortGroup: 0
-  PaidExclusive: 0
+  PaidExclusive: 1
   RewardClass: 1
   RewardItem: 0
   Trigger: 0

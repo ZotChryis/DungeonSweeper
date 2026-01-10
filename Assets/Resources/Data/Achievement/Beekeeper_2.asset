@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Complete the third dungeon level with the Beekeeper.
   Reward: 
   SortGroup: 0
-  PaidExclusive: 0
+  PaidExclusive: 1
   RewardClass: 19
   RewardItem: 0
   Trigger: 0
