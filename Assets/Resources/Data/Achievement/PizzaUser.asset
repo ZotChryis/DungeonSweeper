@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Eat a Pizza Slice.
   Reward: Unlocks Chef.
   SortGroup: -10
-  PaidExclusive: 1
+  PaidExclusive: 0
   RewardClass: 18
   RewardItem: 0
   Trigger: 5

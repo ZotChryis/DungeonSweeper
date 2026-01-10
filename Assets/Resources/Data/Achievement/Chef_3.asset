@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Complete the fourth dungeon level with the Chef.
   Reward: 
   SortGroup: 0
-  PaidExclusive: 1
+  PaidExclusive: 0
   RewardClass: 14
   RewardItem: 0
   Trigger: 0

@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Defeat a Beholder.
   Reward: Unlocks Beekeeper.
   SortGroup: -10
-  PaidExclusive: 1
+  PaidExclusive: 0
   RewardClass: 19
   RewardItem: 0
   Trigger: 5
