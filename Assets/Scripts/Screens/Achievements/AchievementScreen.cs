@@ -11,13 +11,31 @@ namespace Screens.Achievements
     public class AchievementScreen : BaseScreen
     {
         [SerializeField] private AchievementItem AchievementPrefab;
+        [SerializeField] private AchievementItem ChainedAchievementPrefab;
         [SerializeField] private TMP_Text Title;
         [SerializeField] private Transform ContentRoot;
 
         private List<AchievementItem> Items;
         
+        // The key is the ID of the first schema in the chain, the value is the entire chain (including the first)
+        private readonly Dictionary<AchievementSchema.Id, List<AchievementSchema>> _chainedAchievements = new Dictionary<AchievementSchema.Id, List<AchievementSchema>>();
+        
         private void Start()
         {
+            // Build a cache of the chains for future use
+            List<List<AchievementSchema.Id>> chainedAchievements = AchievementSchema.ChainedAchievements;
+            foreach (var chainedAchievement in chainedAchievements)
+            {
+                List<AchievementSchema> achievements = new List<AchievementSchema>();
+                foreach (var item in chainedAchievement)
+                {
+                    var achievement = ServiceLocator.Instance.Schemas.AchievementSchemas.Find(a => a.AchievementId == item);
+                    achievements.Add(achievement);
+                }
+                
+                _chainedAchievements.Add(chainedAchievement[0], achievements);
+            }
+            
             RefreshItems();
 
             ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted += OnAchievementCompleted;
@@ -30,6 +48,8 @@ namespace Screens.Achievements
         
         private void RefreshItems()
         {
+            HashSet<AchievementSchema.Id> servicedIds = new HashSet<AchievementSchema.Id>();
+            
             if (Items != null)
             {
                 foreach (var achievementItem in Items)
@@ -56,18 +76,12 @@ namespace Screens.Achievements
                 }
 
                 // If there was a tie, then...
-                // If both give a reward class, prefer the one where the class comes first
-                if (a1.RewardClass != Class.Id.None && a2.RewardClass != Class.Id.None)
-                {
-                    return a1.RewardClass > a2.RewardClass ? 1 : -1;
-                }
-                
-                // If the two achievements share the same class, go by ID
+                // If the two achievements share the same class completion requirement, go by ID
                 if (a1.Class == a2.Class && a1.Class != Class.Id.None)
                 {
                     return a1.AchievementId > a2.AchievementId ? 1 : -1;
                 }
-
+                
                 // Otherwise, prefer one if it is using a class vs the other doesn't have a class
                 if (a1.Class != Class.Id.None && a2.Class == Class.Id.None)
                 {
@@ -91,13 +105,33 @@ namespace Screens.Achievements
             
             foreach (var schema in schemas)
             {
-                AchievementItem item = Instantiate<AchievementItem>(AchievementPrefab, ContentRoot);
-                item.SetSchema(schema);
-                Items.Add(item);
+                // We already did this one (prob a chained achievement)
+                if (servicedIds.Contains(schema.AchievementId))
+                {
+                    continue;
+                }
+                
+                // Check for any chain starting with this achievement. If not, just add it and move on.
+                if (!_chainedAchievements.ContainsKey(schema.AchievementId))
+                {
+                    AchievementItem item = Instantiate<AchievementItem>(AchievementPrefab, ContentRoot);
+                    item.SetSchema(schema);
+                    Items.Add(item);
+                    servicedIds.Add(schema.AchievementId);
+                    continue;
+                }
+                
+                // Otherwise, we add a special version of the achievement and control it there
+                AchievementItem chainedItem = Instantiate<AchievementItem>(ChainedAchievementPrefab, ContentRoot);
+                chainedItem.SetSchemas(_chainedAchievements[schema.AchievementId]);
+                foreach (var achievementSchema in _chainedAchievements[schema.AchievementId])
+                {
+                    servicedIds.Add(achievementSchema.AchievementId);
+                }
             }
             
             int completed = ServiceLocator.Instance.AchievementSystem.GetFinishedAchievementCount();
-            string text = $"ACHIEVEMENTS ({completed}/{Items.Count})";
+            string text = $"ACHIEVEMENTS ({completed}/{servicedIds.Count})";
             Title.SetText(text);
         }
 

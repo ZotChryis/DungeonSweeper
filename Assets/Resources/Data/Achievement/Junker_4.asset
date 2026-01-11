@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
   m_Name: Junker_4
   m_EditorClassIdentifier: 
-  AchievementId: 148
+  AchievementId: 152
   Title: Ascendant Junker
   Description: Complete the fifth dungeon level with the Junker.
   Reward: 

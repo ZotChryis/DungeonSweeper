@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gameplay;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -291,5 +292,236 @@ namespace Schemas
         /// Icon displayed in game and in steam.
         /// </summary>
         public Sprite AchievementIcon;
+        
+        // A programmatic way (since I was too lazy to do in data itself) to define achievement chains
+        // The achievement screen will go through this first, THEN iterate over the rest of the schemas
+        // to create the list. We use the sort order of the topmost of the chain when sorting them
+        public static List<List<AchievementSchema.Id>> ChainedAchievements = new List<List<AchievementSchema.Id>>()
+        {
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Adventurer0,
+                Id.Adventurer1,
+                Id.Adventurer2,
+                Id.Adventurer3,
+                Id.Adventurer4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Warrior0,
+                Id.Warrior1,
+                Id.Warrior2,
+                Id.Warrior3,
+                Id.Warrior4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Ranger0,
+                Id.Ranger1,
+                Id.Ranger2,
+                Id.Ranger3,
+                Id.Ranger4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Wizard0,
+                Id.Wizard1,
+                Id.Wizard2,
+                Id.Wizard3,
+                Id.Wizard4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Ritualist0,
+                Id.Ritualist1,
+                Id.Ritualist2,
+                Id.Ritualist3,
+                Id.Ritualist4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Bard0,
+                Id.Bard1,
+                Id.Bard2,
+                Id.Bard3,
+                Id.Bard4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.FortuneTeller0,
+                Id.FortuneTeller1,
+                Id.FortuneTeller2,
+                Id.FortuneTeller3,
+                Id.FortuneTeller4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Miner0,
+                Id.Miner1,
+                Id.Miner2,
+                Id.Miner3,
+                Id.Miner4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Priest0,
+                Id.Priest1,
+                Id.Priest2,
+                Id.Priest3,
+                Id.Priest4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Apothecary0,
+                Id.Apothecary1,
+                Id.Apothecary2,
+                Id.Apothecary3,
+                Id.Apothecary4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Gambler0,
+                Id.Gambler1,
+                Id.Gambler2,
+                Id.Gambler3,
+                Id.Gambler4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Merchant0,
+                Id.Merchant1,
+                Id.Merchant2,
+                Id.Merchant3,
+                Id.Merchant4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Scribe0,
+                Id.Scribe1,
+                Id.Scribe2,
+                Id.Scribe3,
+                Id.Scribe4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Dryad0,
+                Id.Dryad1,
+                Id.Dryad2,
+                Id.Dryad3,
+                Id.Dryad4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.ItemAscetic0,
+                Id.ItemAscetic1,
+                Id.ItemAscetic2,
+                Id.ItemAscetic3,
+                Id.ItemAscetic4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Aristocrat0,
+                Id.Aristocrat1,
+                Id.Aristocrat2,
+                Id.Aristocrat3,
+                Id.Aristocrat4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Assassin0,
+                Id.Assassin1,
+                Id.Assassin2,
+                Id.Assassin3,
+                Id.Assassin4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.BountyHunter0,
+                Id.BountyHunter1,
+                Id.BountyHunter2,
+                Id.BountyHunter3,
+                Id.BountyHunter4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Chef0,
+                Id.Chef1,
+                Id.Chef2,
+                Id.Chef3,
+                Id.Chef4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Beekeeper0,
+                Id.Beekeeper1,
+                Id.Beekeeper2,
+                Id.Beekeeper3,
+                Id.Beekeeper4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Junker0,
+                Id.Junker1,
+                Id.Junker2,
+                Id.Junker3,
+                Id.Junker4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.PacifistLovers0,
+                Id.PacifistLovers1,
+                Id.PacifistLovers2,
+                Id.PacifistLovers3,
+                Id.PacifistLovers4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Hardcore0,
+                Id.Hardcore1,
+                Id.Hardcore2,
+                Id.Hardcore3,
+                Id.Hardcore4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.PacifistRat0,
+                Id.PacifistRat1,
+                Id.PacifistRat2,
+                Id.PacifistRat3,
+                Id.PacifistRat4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Annihilation0,
+                Id.Annihilation1,
+                Id.Annihilation2,
+                Id.Annihilation3,
+                Id.Annihilation4
+            },
+        };
     }
 }

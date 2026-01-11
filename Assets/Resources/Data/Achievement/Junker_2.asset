@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e15af52e6e14727a6b6e104d924febc, type: 3}
   m_Name: Junker_2
   m_EditorClassIdentifier: 
-  AchievementId: 148
+  AchievementId: 150
   Title: Advanced Junker
   Description: Complete the third dungeon level with the Junker.
   Reward: 

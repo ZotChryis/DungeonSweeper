@@ -23,10 +23,19 @@ namespace Schemas
 
         public string GetUnlockText()
         {
-            if (!ServiceLocator.Instance.IsPaidVersion() && !string.IsNullOrEmpty(FreeVersionUnlockText))
+            // Paid version always returns the normal unlock text
+            if (ServiceLocator.Instance.IsPaidVersion())
             {
-                return FreeVersionUnlockText;
+                return UnlockText;
             }
+
+            // Free versions return the free version text if it exists, otherwise the standard one when this class is paid exclusive
+            if (PaidExclusive)
+            {
+                return !string.IsNullOrEmpty(FreeVersionUnlockText) ? FreeVersionUnlockText : UnlockText;
+            }
+            
+            // Default to the standard text
             return UnlockText;
         }
     }
