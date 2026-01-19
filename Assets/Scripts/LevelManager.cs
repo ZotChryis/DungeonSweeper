@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
     public int StartingLevel = 0;
 
     public bool IsTutorialLevel = false;
+
+    private SpawnSettings[] _levels;
     
     /// <summary>
     /// Levels are 0, 1, 2, 3, and 4.
@@ -57,6 +59,20 @@ public class LevelManager : MonoBehaviour
     private void Awake()
     {
         ServiceLocator.Instance.Register(this);
+        UseDefaultLevels();
+    }
+
+    // TODO: Update for XP Curve too
+    /// <summary>
+    /// Challenges can change the level structure 
+    /// </summary>
+    public void OverrideLevels(SpawnSettings[] levels)
+    {
+        _levels = levels;
+    }
+    public void UseDefaultLevels()
+    {
+        _levels = Levels;
     }
     
     public void NextLevel()
@@ -69,7 +85,7 @@ public class LevelManager : MonoBehaviour
     {
         CurrentLevel = level;
         StartingLevel = level;
-        ServiceLocator.Instance.Grid.SpawnSettings = Levels[level];
+        ServiceLocator.Instance.Grid.SpawnSettings = _levels[level];
     }
 
     public void SetToStartingLevel()

@@ -18,6 +18,12 @@ namespace Screens.ClassSelection
             RefreshItems(null);
         }
 
+        protected override void OnHide()
+        {
+            base.OnHide();
+            ServiceLocator.Instance.ChallengeSystem.CurrentChallenge = null;
+        }
+
         protected override void OnShow()
         {
             base.OnShow();

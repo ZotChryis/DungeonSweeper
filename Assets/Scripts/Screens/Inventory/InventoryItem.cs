@@ -28,13 +28,16 @@ namespace Screens.Inventory
 
         private void SetStackCount(int _)
         {
-            StackCount.SetText(ItemInstance.StackCount.ToString());
+            StackCount.SetText(ItemInstance != null ? ItemInstance.StackCount.ToString() : "1");
         }
 
         private void OnButtonClicked()
         {
-            Screen.FocusItem(ItemInstance);
-            ServiceLocator.Instance.AudioManager.PlaySfx("ClickGood");
+            if (Screen)
+            {
+                Screen.FocusItem(ItemInstance);
+                ServiceLocator.Instance.AudioManager.PlaySfx("ClickGood");
+            }
         }
 
         public void Initialize(InventoryScreen screen, ItemInstance itemInstance)
@@ -49,9 +52,20 @@ namespace Screens.Inventory
             itemInstance.StackCountChanged += SetStackCount;
             itemInstance.CurrentChargesChanged += CurrentChangesChanged;
 
-            RarityFrame.color = GetColorFromRarity();
+            RarityFrame.color = GetColorFromRarity(ItemInstance.Schema.Rarity);
             
             StackCount.transform.parent.gameObject.SetActive(itemInstance.Schema.CanStack);
+            CanvasGroup.alpha = 1.0f;
+        }
+
+        // Use this version for 'static' UIs. Things that dont need to track an actual instance, but rather just
+        // display the item 
+        public void Initialize(ItemSchema schema)
+        {
+            Icon.sprite = schema.Sprite;
+            SetSaleStatus(false);
+            RarityFrame.color = GetColorFromRarity(schema.Rarity);
+            StackCount.transform.parent.gameObject.SetActive(false);
             CanvasGroup.alpha = 1.0f;
         }
 
@@ -60,9 +74,9 @@ namespace Screens.Inventory
             CanvasGroup.alpha = ItemInstance.CanBeUsed() ? 1.0f : 0.5f;
         }
 
-        private Color GetColorFromRarity()
+        private Color GetColorFromRarity(Rarity rarity)
         {
-            if (RarityColors.TryGetValue(ItemInstance.Schema.Rarity, out Color color))
+            if (RarityColors.TryGetValue(rarity, out Color color))
             {
                 return color;
             }
@@ -77,8 +91,11 @@ namespace Screens.Inventory
         
         private void OnDestroy()
         {
-            ItemInstance.IsOnSaleChanged -= SetSaleStatus;
-            ItemInstance.StackCountChanged -= SetStackCount;
+            if (ItemInstance != null)
+            {
+                ItemInstance.IsOnSaleChanged -= SetSaleStatus;
+                ItemInstance.StackCountChanged -= SetStackCount;
+            }
         }
 
         public void SetSaleStatus(bool isOnSale)

@@ -2,6 +2,7 @@ using System.IO;
 using Gameplay;
 using Schemas;
 using Screens;
+using Screens.Challenges;
 using Singletons;
 using UI;
 using UnityEngine;
@@ -49,6 +50,9 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     
     [HideInInspector]
     public AchievementSystem AchievementSystem;
+    
+    [HideInInspector]
+    public ChallengeSystem ChallengeSystem;
     
     [HideInInspector]
     public SaveSystem SaveSystem;
@@ -101,6 +105,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
             Schemas.Initialize();
 
             AchievementSystem = new AchievementSystem();
+            ChallengeSystem = new ChallengeSystem();
             SaveSystem = new SaveSystem();
 
             string path = SaveSystem.GetSaveFilePath();

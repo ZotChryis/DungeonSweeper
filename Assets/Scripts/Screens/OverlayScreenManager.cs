@@ -22,6 +22,7 @@ public class OverlayScreenManager : SingletonMonoBehaviour<OverlayScreenManager>
         Settings,
         MainMenu,
         Confirmation,
+        Challenges,
     }
 
     [SerializedDictionary("Screen Type", "Screen")]

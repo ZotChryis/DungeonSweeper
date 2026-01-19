@@ -14,6 +14,7 @@ namespace Screens
     {
         [SerializeField] private Button NewGameButton;
         [SerializeField] private Button LoadGameButton;
+        [SerializeField] private Button ChallengeButton;
         [SerializeField] private Button AchievementButton;
         [SerializeField] private Button SettingsButton;
         [SerializeField] private Button DiscordButton;
@@ -23,7 +24,7 @@ namespace Screens
         private void Start()
         {
             NewGameButton.onClick.AddListener(OnNewGamePressed);
-
+            ChallengeButton.onClick.AddListener(OnChallengesPressed);
             QuitGameButton.onClick.AddListener(OnQuitGamePressed);
 
             NewGameButton.gameObject.SetActive(true);
@@ -36,6 +37,9 @@ namespace Screens
             // The game is authored to start with this overlay active
             // TODO: We should probably make a proper screen management cycle 
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.MainMenu);
+            
+            // TODO: Better way to unlock challenges?
+            //ChallengeButton.gameObject.SetActive(ServiceLocator.Instance.AchievementSystem.GetFinishedAchievementCount() >= 1);
         }
 
         private void OnEnable()
@@ -55,6 +59,11 @@ namespace Screens
             ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.ClassSelection);
         }
 
+        private void OnChallengesPressed()
+        {
+            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.Challenges);
+        }
+        
         private void OnQuitGamePressed()
         {
             Application.Quit();

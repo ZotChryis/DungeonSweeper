@@ -30,6 +30,7 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
     /// </summary>
     public void GodMode()
     {
+        ServiceLocator.Instance.ChallengeSystem.CurrentChallenge = null;
         ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = false;
         ServiceLocator.Instance.Player.ToggleGodMode();
     }
@@ -49,6 +50,7 @@ public class CheatManager : SingletonMonoBehaviour<CheatManager>
     
     public void Restart()
     {
+        ServiceLocator.Instance.ChallengeSystem.CurrentChallenge = null;
         SceneManager.LoadScene("Game");
     }
 

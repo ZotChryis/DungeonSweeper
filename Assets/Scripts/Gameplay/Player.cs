@@ -381,6 +381,16 @@ public class Player : MonoBehaviour
         if (giveItem)
         {
             Inventory.AddItem(schema.StartingItem);
+            
+            // If there is a challenge, there can be more starting items
+            var challenge = ServiceLocator.Instance.ChallengeSystem.CurrentChallenge;
+            if (challenge != null && challenge.StartingItems != null)
+            {
+                foreach (var challengeStartingItem in challenge.StartingItems)
+                {
+                    Inventory.AddItem(challengeStartingItem.ItemId, true);
+                }
+            }
         }
 
         ResetPlayer();

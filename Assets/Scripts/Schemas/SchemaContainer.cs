@@ -13,6 +13,7 @@ namespace Schemas
     public class SchemaContainer
     {
         public static string c_achievement = "Data/Achievement";
+        public static string c_challenges = "Data/Challenges";
         public static string c_tileObject = "Data/TileObject";
         public static string c_item = "Data/Item";
         public static string c_class = "Data/Class";
@@ -22,6 +23,7 @@ namespace Schemas
         public List<ItemSchema> ItemSchemas;
         public List<ClassSchema> ClassSchemas;
         public List<AchievementSchema> AchievementSchemas;
+        public List<ChallengeSchema> ChallengeSchemas;
     
         public LevelProgressionSchema LevelProgression;
 
@@ -32,6 +34,7 @@ namespace Schemas
             ClassSchemas = UnityEngine.Resources.LoadAll<ClassSchema>(c_class).ToList();
             LevelProgression = UnityEngine.Resources.LoadAll<LevelProgressionSchema>(c_levelProgressionDirectory)[0];
             AchievementSchemas = UnityEngine.Resources.LoadAll<AchievementSchema>(c_achievement).ToList();
+            ChallengeSchemas = UnityEngine.Resources.LoadAll<ChallengeSchema>(c_challenges).ToList();
         }
     }
 }
