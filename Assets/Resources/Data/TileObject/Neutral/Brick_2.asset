@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Brick_2
   m_EditorClassIdentifier: 
   UserFacingName: Brick
-  UserFacingDescription: Hit it a 3 times to make it shatter. Cannot kill you.
+  UserFacingDescription: Hit it 3 times to make it shatter. Cannot kill you.
   Tags: 00000000
   TileId: 6
   LibraryOverrideTileId: 6
