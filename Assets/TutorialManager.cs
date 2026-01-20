@@ -102,7 +102,12 @@ public class TutorialManager : SingletonMonoBehaviour<TutorialManager>
         )
         {
             var tutorialSlime = ServiceLocator.Instance.Grid.GetTileTransform(TileSchema.Id.TutorialSlime);
+            int tutorialSlimePower = 5;
             if (tutorialSlime != null)
+            {
+                tutorialSlimePower = ServiceLocator.Instance.Grid.GetTile(TileSchema.Id.TutorialSlime).GetAdjustedPower();
+            }
+            if (tutorialSlime != null && ServiceLocator.Instance.Player.CurrentPlayerHealth >= tutorialSlimePower)
             {
                 if (TryShowTutorial(TutorialId.EnemyPower, (RectTransform)tutorialSlime, true))
                 {

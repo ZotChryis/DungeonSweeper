@@ -311,6 +311,21 @@ public class Grid : MonoBehaviour
 
         return null;
     }
+    public Tile GetTile(TileSchema.Id tileId)
+    {
+        for (int y = 0; y < SpawnSettings.Height; y++)
+        {
+            for (int x = 0; x < SpawnSettings.Width; x++)
+            {
+                if (!Tiles[x, y].TEMP_IsEmpty() && Tiles[x, y].GetHousedObject().TileId == tileId)
+                {
+                    return Tiles[x,  y];
+                }
+            }
+        }
+
+        return null;
+    }
 
     public bool IsTileRevealed(int x, int y)
     {
