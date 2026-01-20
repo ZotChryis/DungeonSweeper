@@ -1070,7 +1070,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             // Random reward from Rarity
             if (HousedObject.ItemRewardRarities != null)
             {
-                AddRandomItemToPlayer(HousedObject.ItemRewardRarities);
+                AddRandomItemToPlayer(HousedObject.ItemRewardRarities, false);
             }
 
             if (HousedObject.ChildUpdateReward.Amount > 0)
@@ -1140,10 +1140,19 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    public static void AddRandomItemToPlayer(Rarity[] possibleRarities)
+    public static void AddRandomItemToPlayer(Rarity[] possibleRarities, bool includeDropDisabled)
     {
-        var matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
-            possibleRarities.Contains(item.Rarity));
+        List<ItemSchema> matchingItems;
+        if (includeDropDisabled)
+        {
+            matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
+                possibleRarities.Contains(item.Rarity));
+        }
+        else
+        {
+            matchingItems = ServiceLocator.Instance.Schemas.ItemSchemas.FindAll(item =>
+                !item.DropDisabled && possibleRarities.Contains(item.Rarity));
+        }
 
         // Remove any item that is locked
         var lockedItemIds = ServiceLocator.Instance.AchievementSystem.GetLockedItems();

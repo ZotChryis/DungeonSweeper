@@ -56,6 +56,6 @@ public class CheatMenu : MonoBehaviour
 
     public void AddRandomLegendary()
     {
-        Tile.AddRandomItemToPlayer(new Rarity[] { Rarity.Legendary });
+        Tile.AddRandomItemToPlayer(new Rarity[] { Rarity.Legendary }, true);
     }
 }

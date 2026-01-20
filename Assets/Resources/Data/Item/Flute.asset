@@ -26,6 +26,7 @@ MonoBehaviour:
   UseSfx: 
   CanStack: 0
   CloseInventoryOnUse: 0
+  DropDisabled: 1
   Effects:
     _serializedList:
     - Key: 0

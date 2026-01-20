@@ -399,6 +399,11 @@ namespace Schemas
         /// to the board so you can see what's going on.
         /// </summary>
         public bool CloseInventoryOnUse;
+
+        /// <summary>
+        /// If true, this item cannot be found randomly while playing the game.
+        /// </summary>
+        public bool DropDisabled = false;
         
         [SerializedDictionary("EffectTrigger", "Effects")]
         public SerializedDictionary<EffectTrigger, Effect[]> Effects =  new SerializedDictionary<EffectTrigger, Effect[]>();
