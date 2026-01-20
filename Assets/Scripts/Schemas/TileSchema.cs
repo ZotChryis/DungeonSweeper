@@ -147,6 +147,7 @@ namespace Schemas
             MetalBlock,
             Bee,
             Beehive,
+            MimicBrickWall,
         }
 
         // !!WARNING!! DO NOT REORDER
@@ -373,6 +374,15 @@ namespace Schemas
                 default:
                     return Sprite;
             }
+        }
+
+        /// <summary>
+        /// Should this tile receive special treatment because it's a mimic?
+        /// </summary>
+        /// <returns></returns>
+        public bool IsMimic()
+        {
+            return TileId == TileSchema.Id.Mimic || TileId == TileSchema.Id.MimicBrickWall;
         }
     }
 }

@@ -21,8 +21,8 @@ MonoBehaviour:
   IsConsumbale: 0
   InitialCharges: 0
   ShopInventory: 1
-  Rarity: 3
-  Price: 8
+  Rarity: 2
+  Price: 6
   UseSfx: 
   CanStack: 0
   CloseInventoryOnUse: 0

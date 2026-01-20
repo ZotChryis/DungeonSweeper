@@ -616,7 +616,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             keyValuePair.Value.SetActive(false);
         }
         // small Hack. If you are the mimic we want to show the conquered state without setting everything as conquered.
-        if (HousedObject && HousedObject.TileId == TileSchema.Id.Mimic && HousedObject.Data.TryGetValue(TileState.Conquered, out TileSchema.TileStateData conqueredData) && conqueredData.Sprite.UseOverride)
+        if (HousedObject && HousedObject.IsMimic() && HousedObject.Data.TryGetValue(TileState.Conquered, out TileSchema.TileStateData conqueredData) && conqueredData.Sprite.UseOverride)
         {
             HousedObjectSprite.sprite = conqueredData.Sprite.Value;
         }
@@ -722,7 +722,7 @@ public class Tile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                     State = TileState.RevealThroughCombat;
                     TileButton.targetGraphic.color = Color.white;
                     // HACK: We dont currently support this weird edge case, so do it here
-                    if (HousedObject.TileId == TileSchema.Id.Mimic)
+                    if (HousedObject.IsMimic())
                     {
                         HousedObjectSprite.sprite = HousedObject.GetOverrides(TileState.Conquered).Sprite.Value;
                         Power.enabled = true;

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee810eb76d22b034f90fcfa5fe89f1ca, type: 3}
-  m_Name: Brick_3
+  m_Name: Mimic_BrickWall
   m_EditorClassIdentifier: 
-  UserFacingName: Brick
-  UserFacingDescription: Hit it 3 times to make it shatter. Cannot kill you.
-  Tags: 00000000
-  TileId: 6
-  LibraryOverrideTileId: 6
+  UserFacingName: Mimic Wall
+  UserFacingDescription: A harmless wall? Don't be fooled...
+  Tags: 010000000200000006000000
+  TileId: 90
+  LibraryOverrideTileId: 0
   Sprite: {fileID: 8647577461360685516, guid: f293913caf6db924eaf33243951743e4, type: 3}
   SpriteFacingData:
     ObjectToLookAtOverride: {fileID: 0}
@@ -27,12 +27,12 @@ MonoBehaviour:
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
   OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
-  Power: 1
-  HidePowerToNeighbors: 1
-  PreventConsumeIfKillingBlow: 1
-  XPReward: 0
+  Power: 11
+  HidePowerToNeighbors: 0
+  PreventConsumeIfKillingBlow: 0
+  XPReward: 11
   ItemsToReplenish: 
-  DropReward: {fileID: 11400000, guid: 03b1b4c52206b40458a78b128e19d479, type: 2}
+  DropReward: {fileID: 0}
   NumNeighborDropReward:
     _serializedList: []
   NumNeighborItemReward:
@@ -118,23 +118,23 @@ MonoBehaviour:
     - Key: 3
       Value:
         AutoContinue:
-          UseOverride: 1
-          Value: 1
-        Sprite:
           UseOverride: 0
-          Value: {fileID: 0}
-        EnablePower:
+          Value: 0
+        Sprite:
           UseOverride: 1
+          Value: {fileID: 21300000, guid: 431732c59f8ad91468bed38fdf6e66b7, type: 3}
+        EnablePower:
+          UseOverride: 0
           Value: 0
         EnableSprite:
           UseOverride: 0
           Value: 0
         EnableDeathSprite:
-          UseOverride: 1
+          UseOverride: 0
           Value: 0
         Sfx:
-          UseOverride: 1
-          Value: Pick3
+          UseOverride: 0
+          Value: 
         Vfx:
-          UseOverride: 1
-          Value: {fileID: 2427094801149019240, guid: 56da506c090ddf24e8dd794084c721e4, type: 3}
+          UseOverride: 0
+          Value: {fileID: 0}
