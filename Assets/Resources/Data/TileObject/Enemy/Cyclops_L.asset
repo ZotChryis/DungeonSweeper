@@ -27,10 +27,11 @@ MonoBehaviour:
     Left: {fileID: 0}
     Missing: {fileID: 0}
     BodyGuardedByOrGuardingDead: {fileID: 0}
-  Power: 12
+  OverridePowerColor: {r: 1, g: 1, b: 1, a: 1}
+  Power: 8
   HidePowerToNeighbors: 0
   PreventConsumeIfKillingBlow: 0
-  XPReward: 12
+  XPReward: 8
   ItemsToReplenish: 
   DropReward: {fileID: 0}
   NumNeighborDropReward:
@@ -53,18 +54,6 @@ MonoBehaviour:
   - {x: -6, y: 0}
   - {x: -7, y: 0}
   - {x: -8, y: 0}
-  - {x: -9, y: 0}
-  - {x: -10, y: 0}
-  - {x: -11, y: 0}
-  - {x: -12, y: 0}
-  - {x: -13, y: 0}
-  - {x: -14, y: 0}
-  - {x: -15, y: 0}
-  - {x: -16, y: 0}
-  - {x: -17, y: 0}
-  - {x: -18, y: 0}
-  - {x: -19, y: 0}
-  - {x: -20, y: 0}
   RevealOffsetCount: -1
   RevealRadius: 0
   ObscureOffsets:
@@ -76,25 +65,14 @@ MonoBehaviour:
   - {x: -6, y: 0}
   - {x: -7, y: 0}
   - {x: -8, y: 0}
-  - {x: -9, y: 0}
-  - {x: -10, y: 0}
-  - {x: -11, y: 0}
-  - {x: -12, y: 0}
-  - {x: -13, y: 0}
-  - {x: -14, y: 0}
-  - {x: -15, y: 0}
-  - {x: -16, y: 0}
-  - {x: -17, y: 0}
-  - {x: -18, y: 0}
-  - {x: -19, y: 0}
-  - {x: -20, y: 0}
   ObscureRadius: 0
   CanFlee: 0
   FleeVfx: {fileID: 0}
   FleeSfx: 
   RevealFlee: 0
   CanEnrage: 0
-  CanBodyGuardSwap: 0
+  BodyguardGrunt: 
+  GuardingGrunt: 
   SpawnsFleeingChild: 0
   FleeingChild: {fileID: 0}
   RevealAllRewards: []
@@ -105,7 +83,6 @@ MonoBehaviour:
   ShopXp: 0
   ScreenshakeOnConquer: 0
   UpgradedVersion: {fileID: 0}
-  ObscureColor: {r: 1, g: 1, b: 1, a: 1}
   RevealVfx: {fileID: 2427094801149019240, guid: 190f1906037b94d4183f077802552d37, type: 3}
   Data:
     _serializedList: []
