@@ -123,6 +123,7 @@ namespace Screens.Challenges
             {
                 // At this point we commit to the challenge
                 ServiceLocator.Instance.ChallengeSystem.Commit();
+                ServiceLocator.Instance.LevelManager.StartingLevel = 0;
                 
                 ServiceLocator.Instance.SaveSystem.WipeRun();
                 ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = true;

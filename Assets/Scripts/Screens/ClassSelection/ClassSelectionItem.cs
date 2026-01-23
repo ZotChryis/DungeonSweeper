@@ -77,6 +77,10 @@ public class ClassSelectionItem : MonoBehaviour
         // TODO: Cleanup this flow, but it works for now :shrug:
         // Commit to the selected challenge if needed
         ServiceLocator.Instance.ChallengeSystem.Commit();
+        if (ServiceLocator.Instance.ChallengeSystem.CurrentChallenge != null)
+        {
+            ServiceLocator.Instance.LevelManager.StartingLevel = 0;
+        }
         
         ServiceLocator.Instance.Player.ShopXp = StartingLevelStartingXp[ServiceLocator.Instance.LevelManager.StartingLevel];
         ServiceLocator.Instance.SaveSystem.WipeRun();
