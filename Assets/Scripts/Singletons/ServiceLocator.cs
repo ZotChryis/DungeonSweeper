@@ -100,13 +100,6 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
             DontDestroyOnLoad(gameObject);
 
             Application.targetFrameRate = 60;
-            
-            Schemas = new SchemaContainer();
-            Schemas.Initialize();
-
-            AchievementSystem = new AchievementSystem();
-            ChallengeSystem = new ChallengeSystem();
-            SaveSystem = new SaveSystem();
 
             string path = SaveSystem.GetSaveFilePath();
             Debug.Log("Saving to path : " + path + " filename: DungeonSweeperSaveData.txt");
@@ -119,6 +112,13 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
                 EncryptionSecret = "DungeonSweeperSecret",
                 SaveFilePath = path,
             });
+            
+            Schemas = new SchemaContainer();
+            Schemas.Initialize();
+            
+            AchievementSystem = new AchievementSystem();
+            ChallengeSystem = new ChallengeSystem();
+            SaveSystem = new SaveSystem();
         }
 
 #if !(UNITY_STANDALONE_WIN || UNITY_STANDALONE_LINUX || UNITY_STANDALONE_OSX || STEAMWORKS_WIN || STEAMWORKS_LIN_OSX)
@@ -216,7 +216,7 @@ public class ServiceLocator : SingletonMonoBehaviour<ServiceLocator>
     public void DeleteSaveFile()
     {
         FBPP.DeleteAll();
-        SaveSystem.Wipe();
+        SaveSystem.WipeRun();
         CheatManager.Instance.Restart();
     }
 

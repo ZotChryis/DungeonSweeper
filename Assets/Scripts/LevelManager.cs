@@ -6,8 +6,9 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [Tooltip("Levels in order")]
-    public SpawnSettings[] Levels;
+    [Tooltip("Base levels in order")] 
+    [SerializeField]
+    private SpawnSettings[] Levels;
 
     [Tooltip("Special version of level 0.")]
     public SpawnSettings TutorialLevel;
@@ -73,6 +74,11 @@ public class LevelManager : MonoBehaviour
     public void UseDefaultLevels()
     {
         _levels = Levels;
+    }
+
+    public bool IsCurrentLevelFinalLevel()
+    {
+        return CurrentLevel == _levels.Length - 1;
     }
     
     public void NextLevel()

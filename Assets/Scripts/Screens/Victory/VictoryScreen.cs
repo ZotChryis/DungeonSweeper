@@ -32,9 +32,20 @@ namespace Screens.Victory
 
         protected override void OnShow()
         {
-            bool isFinalLevel = ServiceLocator.Instance.LevelManager.CurrentLevel == ServiceLocator.Instance.LevelManager.Levels.Length - 1;
+            bool isFinalLevel = ServiceLocator.Instance.LevelManager.IsCurrentLevelFinalLevel();
             MainMenu.gameObject.SetActive(isFinalLevel);
             Shop.gameObject.SetActive(!isFinalLevel);
+            
+            // Check for challenge completion
+            if (isFinalLevel && ServiceLocator.Instance.ChallengeSystem.CurrentChallenge != null)
+            {
+                ServiceLocator.Instance.ChallengeSystem.Complete(ServiceLocator.Instance.ChallengeSystem.CurrentChallenge);
+            }
+
+            if (isFinalLevel)
+            {
+                ServiceLocator.Instance.SaveSystem.WipeRun();
+            }
             
             ServiceLocator.Instance.AudioManager.PlaySfx("Victory");
             

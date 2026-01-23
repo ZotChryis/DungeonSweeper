@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add70ac6092b48aeb806f69b9f9f3fa4, type: 3}
+  m_Name: Challenge_HighLowHigh
+  m_EditorClassIdentifier: Assembly-CSharp::Schemas.ChallengeSchema
+  ChallengeId: 1
+  Title: High, Low, High
+  Context: Something has gone wrong with the XP curve. Enjoy being tough at the start,
+    but plan accordingly because you lose health instead when leveling up until you
+    can bounce back! Defeat the first dungeon level with this XP curve.
+  StartingClass: -1
+  BlockedClasses: 0f000000
+  StartingItems: []
+  OverrideLevels: 1
+  Levels:
+  - {fileID: 11400000, guid: 36cc4d93796005f4db39eabf1aef183f, type: 2}
+  OverrideLevelProgression: 1
+  LevelProgression: {fileID: 11400000, guid: 568c56f41a3020e42a0ab62d94c2a398, type: 2}

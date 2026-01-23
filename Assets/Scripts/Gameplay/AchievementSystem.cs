@@ -194,6 +194,11 @@ namespace Gameplay
                 }
             }
         }
+        
+        private bool IsClassLevel0Achievement(AchievementSchema achievement)
+        {
+            return achievement.Class != Class.Id.None && achievement.Level == 0;
+        }
 
         private void Complete(AchievementSchema schema)
         {
@@ -201,6 +206,20 @@ namespace Gameplay
             if (schema.AchievementId.IsAchieved())
             {
                 return;
+            }
+            
+            // Check the flag for achievements during challenges
+            if (ServiceLocator.Instance.ChallengeSystem.CurrentChallenge != null && !schema.CanBeCompletedDuringChallenges)
+            {
+                return;
+            }
+            
+            // Any of the "level 0" achievements should unlock challenges
+            var challengeSystem = ServiceLocator.Instance.ChallengeSystem;
+            if (!challengeSystem.AreChallengesUnlocked() && IsClassLevel0Achievement(schema))
+            {
+                challengeSystem.UnlockChallenges();
+                ServiceLocator.Instance.ToastManager.RequestToast(null, "Challenges Unlocked!", "Access special challenge runs from the main menu!", 3.0f);
             }
 
             // Some achievements are paid exclusive achievements. You can't complete them unless you pay.
@@ -228,7 +247,7 @@ namespace Gameplay
             }
 #endif
         }
-
+        
         private const string steamDemoString = "SteamDemoAchievements";
         /// <summary>
         /// get already existing saved achievementIds as a string and possibly append ","
@@ -271,6 +290,19 @@ namespace Gameplay
                 FBPP.DeleteString(steamDemoString);
             }
 #endif
+        }
+
+        public bool IsAnyClassLevel0AchievementCompleted()
+        {
+            foreach (var s in ServiceLocator.Instance.Schemas.AchievementSchemas)
+            {
+                if (IsClassLevel0Achievement(s) && s.AchievementId.IsAchieved())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

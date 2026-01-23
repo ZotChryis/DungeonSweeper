@@ -24,9 +24,8 @@ namespace Schemas
         public List<ClassSchema> ClassSchemas;
         public List<AchievementSchema> AchievementSchemas;
         public List<ChallengeSchema> ChallengeSchemas;
-    
         public LevelProgressionSchema LevelProgression;
-
+        
         public void Initialize()
         {
             TileObjectSchemas = UnityEngine.Resources.LoadAll<TileSchema>(c_tileObject).ToList();

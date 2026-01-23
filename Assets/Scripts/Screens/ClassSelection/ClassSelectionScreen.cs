@@ -1,7 +1,6 @@
 ﻿using Schemas;
-using System;
 using System.Collections.Generic;
-using TMPro;
+using Screens.Challenges;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,18 +11,14 @@ namespace Screens.ClassSelection
         public GameObject LevelSelectGroup;
         public Button[] LevelSelectButtons;
 
+        public ChallengeSchema SelectedChallenge;
+        
         protected void Start()
         {
             ServiceLocator.Instance.AchievementSystem.OnAchievementCompleted += RefreshItems;
             RefreshItems(null);
         }
-
-        protected override void OnHide()
-        {
-            base.OnHide();
-            ServiceLocator.Instance.ChallengeSystem.CurrentChallenge = null;
-        }
-
+        
         protected override void OnShow()
         {
             base.OnShow();
@@ -39,12 +34,23 @@ namespace Screens.ClassSelection
                 LevelSelectButtons[levelsUnlocked[i]].interactable = true;
             }
 
-            int lastStartingLevel = FBPP.GetInt("StartingLevel", 0);
-            ServiceLocator.Instance.LevelManager.StartingLevel = lastStartingLevel;
-            Debug.Log("Last starting level: " + lastStartingLevel + ", length: " + LevelSelectButtons.Length);
-            ColorUtility.TryParseHtmlString("#00FF5D", out Color greenFromHex);
-            LevelSelectButtons[lastStartingLevel].image.color = greenFromHex;
-            LevelSelectButtons[lastStartingLevel].Select();
+            bool hasCurrentChallenge = ServiceLocator.Instance.ChallengeSystem.SelectedChallenge != null;
+            if (!hasCurrentChallenge)
+            {
+                int lastStartingLevel = FBPP.GetInt("StartingLevel", 0);
+                ServiceLocator.Instance.LevelManager.StartingLevel = lastStartingLevel;
+                Debug.Log("Last starting level: " + lastStartingLevel + ", length: " + LevelSelectButtons.Length);
+                ColorUtility.TryParseHtmlString("#00FF5D", out Color greenFromHex);
+                LevelSelectButtons[lastStartingLevel].image.color = greenFromHex;
+                LevelSelectButtons[lastStartingLevel].Select();
+            }
+            else
+            {
+                ServiceLocator.Instance.LevelManager.StartingLevel = 0;
+            }
+            
+            LevelSelectGroup.SetActive(!hasCurrentChallenge);
+            RefreshItemsForChallenge(ServiceLocator.Instance.ChallengeSystem.SelectedChallenge);
         }
 
         private void OnDestroy()
@@ -59,6 +65,16 @@ namespace Screens.ClassSelection
             foreach (var classSelectionItem in items)
             {
                 classSelectionItem.SetLocked(!unlockedClasses.Contains(classSelectionItem.GetClassId()));
+            }
+        }
+
+        private void RefreshItemsForChallenge(ChallengeSchema schema)
+        {
+            bool challengeHasBlockedClasses = schema != null && schema.BlockedClasses.Count > 0;
+            var items = GetComponentsInChildren<ClassSelectionItem>(includeInactive: true);
+            foreach (var classSelectionItem in items)
+            {
+                classSelectionItem.SetBlocked(challengeHasBlockedClasses && schema.BlockedClasses.Contains(classSelectionItem.GetClassId()));
             }
         }
 

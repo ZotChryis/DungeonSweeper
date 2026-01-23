@@ -1,6 +1,7 @@
 ﻿using System;
 using Gameplay;
 using Schemas;
+using Screens.ClassSelection;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,8 +16,10 @@ public class ClassSelectionItem : MonoBehaviour
     [SerializeField] private TMP_Text Name;
     [SerializeField] private TMP_Text Description;
     [SerializeField] private TMP_Text UnlockText;
+    [SerializeField] private TMP_Text BlockedText;
     [SerializeField] private Button Button;
 
+    private bool _locked = false;
     private readonly int[] StartingLevelStartingXp = new int[] { 0, 10, 25, 45, 55, 55 };
 
     private void Awake()
@@ -43,8 +46,24 @@ public class ClassSelectionItem : MonoBehaviour
     public void SetLocked(bool locked)
     {
         Button.interactable = !locked;
-        LockedIcon.GameObject().SetActive(locked);
+        LockedIcon.gameObject.SetActive(locked);
         UnlockText.gameObject.SetActive(locked);
+
+        _locked = locked;
+    }
+
+    public void SetBlocked(bool blocked)
+    {
+        // Locked supercedes blocked
+        if (_locked)
+        {
+            BlockedText.gameObject.SetActive(false);
+            return;
+        }
+        
+        Button.interactable = !blocked;
+        LockedIcon.gameObject.SetActive(blocked);
+        BlockedText.gameObject.SetActive(blocked);
     }
 
     private void OnButtonClicked()
@@ -55,9 +74,12 @@ public class ClassSelectionItem : MonoBehaviour
 
     private void SetClassAndStartGame()
     {
-        ServiceLocator.Instance.Player.ShopXp = StartingLevelStartingXp[ServiceLocator.Instance.LevelManager.StartingLevel];
-        ServiceLocator.Instance.SaveSystem.Wipe();
+        // TODO: Cleanup this flow, but it works for now :shrug:
+        // Commit to the selected challenge if needed
+        ServiceLocator.Instance.ChallengeSystem.Commit();
         
+        ServiceLocator.Instance.Player.ShopXp = StartingLevelStartingXp[ServiceLocator.Instance.LevelManager.StartingLevel];
+        ServiceLocator.Instance.SaveSystem.WipeRun();
         ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = true;
         ServiceLocator.Instance.Player.TEMP_SetClass(Class);
         ServiceLocator.Instance.LevelManager.SetToStartingLevel();

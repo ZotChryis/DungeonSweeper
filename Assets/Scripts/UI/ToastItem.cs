@@ -31,7 +31,7 @@ namespace UI
             OnAnimationEnded?.Invoke();
         }
 
-        public void SetData(Sprite sprite, string title, string message, Action onAnimationEnded)
+        public void SetData(Sprite sprite, string title, string message, float stickTime, Action onAnimationEnded)
         {
             Icon.sprite = sprite;
             Title.text = title;
@@ -42,7 +42,7 @@ namespace UI
             RectTransform rectTransform = (RectTransform)transform;
             moveAnim = rectTransform.DOLocalMove(new Vector3(0, -300, 0), 1f).From(Vector3.zero, true);
             fadeInAnim = CanvasGroup.DOFade(1f, 0.5f).From(0f, true);
-            fadeOutAnim = CanvasGroup.DOFade(0f, 0.25f).From(1f, true).SetDelay(1.75f).OnComplete(OnAnimationEnd);
+            fadeOutAnim = CanvasGroup.DOFade(0f, 0.25f).From(1f, true).SetDelay(stickTime).OnComplete(OnAnimationEnd);
         }
 
         public void OnPointerDown(PointerEventData eventData)

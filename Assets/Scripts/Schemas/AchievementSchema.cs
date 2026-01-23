@@ -225,6 +225,11 @@ namespace Schemas
         public string Description;
         public string Reward;
         public int SortGroup;
+
+        /// <summary>
+        /// Most (if not all) achievements are disabled in challenges. This lets us bypass that.
+        /// </summary>
+        public bool CanBeCompletedDuringChallenges = false;
         
         /// <summary>
         /// Since some classes are paid exclusive, some achievements must also be.

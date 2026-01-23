@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Gameplay;
 using UnityEngine;
 
@@ -7,21 +8,39 @@ namespace Schemas
     [CreateAssetMenu(menuName = "Data/Challenge")]
     public class ChallengeSchema : Schema
     {
+        // !!!! DO NOT RE-ORDER !!!!!
+        // It's okay to have some as unused if needed
         [Serializable]
         public enum Id
         {
-            Test1,
-            Test2,
-            Test3
+            UltimateWizard,       // Defeat the last 2 levels as Wizard with ALL spells + Spellbook
+            HighLowHigh,          // XP curve goes 10->4->11
         }
 
         public Id ChallengeId;
+        
+        // Shown in the challenge screen and in toasts
         public string Title;
-        public Class.Id StartingClass = Class.Id.None;
-        public ItemSchema[] StartingItems;
+        
+        // Shown in the challenge screen
         public string Context;
+        
+        // If not NONE, then the challenge HAS to be done with that class
+        public Class.Id StartingClass = Class.Id.None;
 
+        // These classes are BLOCKED from being used during this challenge.
+        // By default, we disable Aristocrat because its a "newbie friendly" class
+        public List<Class.Id> BlockedClasses = new() { Class.Id.Aristocrat };
+        
+        // Any extra items to be added to the player for this challenge
+        public ItemSchema[] StartingItems;
+        
+        // Instruct the challenge to override the levels in LevelManager during this challenge
         public bool OverrideLevels;
         public SpawnSettings[] Levels;
+        
+        // Instruct the challenge to override the player level progression during this challenge
+        public bool OverrideLevelProgression;
+        public LevelProgressionSchema LevelProgression;
     }
 }

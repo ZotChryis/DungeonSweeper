@@ -22,6 +22,7 @@ namespace Gameplay
         public int shopXp;
         public bool canGetAchievements;
         public bool isHardcore;
+        public ChallengeSchema.Id currentChallenge;
     }
 
     public class SaveSystem
@@ -78,6 +79,7 @@ namespace Gameplay
             data.shopXp = ServiceLocator.Instance.Player.ShopXp;
             data.canGetAchievements = ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted;
             data.isHardcore = ServiceLocator.Instance.Player.IsHardcore;
+            data.currentChallenge = ServiceLocator.Instance.ChallengeSystem.CurrentChallenge.ChallengeId;
             
             foreach (ItemInstance itemInstance in ServiceLocator.Instance.Player.Inventory.GetAllItems())
             {
@@ -104,6 +106,10 @@ namespace Gameplay
                 string json = File.ReadAllText(_saveFilePath);
                 RunData data = JsonUtility.FromJson<RunData>(json);
 
+                // Set the challenge if it was there
+                ServiceLocator.Instance.ChallengeSystem.SelectedChallenge = ServiceLocator.Instance.Schemas.ChallengeSchemas.Find(c => c.ChallengeId == data.currentChallenge);
+                ServiceLocator.Instance.ChallengeSystem.Commit();
+                
                 // First set the level -- this is important to do first so that we set spawn settings
                 ServiceLocator.Instance.LevelManager.SetLevel(data.dungeonLevel);
                 
@@ -141,7 +147,7 @@ namespace Gameplay
             }
         }
 
-        public void Wipe()
+        public void WipeRun()
         {
             File.Delete(_saveFilePath);
         }

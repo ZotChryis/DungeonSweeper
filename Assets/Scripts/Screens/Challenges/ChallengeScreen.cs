@@ -5,6 +5,7 @@ using Screens.ClassSelection;
 using Screens.Inventory;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Screens.Challenges
@@ -24,7 +25,6 @@ namespace Screens.Challenges
 
         private List<ChallengeItem> _challenges = new();
         private List<InventoryItem> _items = new();
-        private ChallengeSchema _currentChallenge;
         
         private void Start()
         {
@@ -32,10 +32,20 @@ namespace Screens.Challenges
             playButton.onClick.AddListener(OnPlayButtonClicked);
 
             RefreshChallenges();
-            
-            // Choose the first one
+        }
+
+        protected override void OnShow()
+        {
+            // Choose the first challenge when showing the screen
             ChallengeSchema first = ServiceLocator.Instance.Schemas.ChallengeSchemas[0];
             SelectChallenge(first);
+        }
+
+        protected override void OnHide()
+        {
+            base.OnHide();
+            
+            ServiceLocator.Instance.ChallengeSystem.SelectedChallenge = null;
         }
 
         private void RefreshChallenges()
@@ -66,10 +76,10 @@ namespace Screens.Challenges
 
         private void SelectChallenge(ChallengeSchema schema)
         {
-            _currentChallenge = schema;
+            ServiceLocator.Instance.ChallengeSystem.SelectedChallenge = schema;
             
             playButton.interactable = true;
-            startingClassLabel.SetText(schema.StartingClass == Class.Id.None ? "Any" : schema.StartingClass.ToString());
+            startingClassLabel.SetText(schema.StartingClass == Class.Id.None ? "You Choose" : schema.StartingClass.ToString());
             moreContextLabel.SetText(schema.Context);
 
             foreach (var item in _items)
@@ -78,6 +88,17 @@ namespace Screens.Challenges
             }
             _items.Clear();
             
+            // If there is a starting class, add that item to the list of items for clarity
+            if (schema.StartingClass != Class.Id.None)
+            {
+                ClassSchema classSchema = ServiceLocator.Instance.Schemas.ClassSchemas.Find(c => c.Id == schema.StartingClass);
+                ItemSchema classItem = ServiceLocator.Instance.Schemas.ItemSchemas.Find(i => i.ItemId == classSchema.StartingItem);
+                InventoryItem item = Instantiate(itemPrefab, itemContent);
+                item.Initialize(classItem);
+                _items.Add(item);
+            }
+            
+            // Add the extra items
             if (schema.StartingItems != null && schema.StartingItems.Length > 0)
             {
                 foreach (var itemSchema in schema.StartingItems)
@@ -92,29 +113,20 @@ namespace Screens.Challenges
         private void OnPlayButtonClicked()
         {
             // just in case
-            if (_currentChallenge == null)
+            if (ServiceLocator.Instance.ChallengeSystem.SelectedChallenge == null)
             {
                 return;
             }
-
-            ServiceLocator.Instance.ChallengeSystem.CurrentChallenge = _currentChallenge;
-            
-            // Override the levels if we need to
-            if (_currentChallenge.OverrideLevels)
-            {
-                ServiceLocator.Instance.LevelManager.OverrideLevels(_currentChallenge.Levels);
-            }
-            else
-            {
-                ServiceLocator.Instance.LevelManager.UseDefaultLevels();
-            }
             
             // If a specific class is used, then do that and start the game
-            if (_currentChallenge.StartingClass != Class.Id.None)
+            if (ServiceLocator.Instance.ChallengeSystem.SelectedChallenge.StartingClass != Class.Id.None)
             {
-                ServiceLocator.Instance.SaveSystem.Wipe();
+                // At this point we commit to the challenge
+                ServiceLocator.Instance.ChallengeSystem.Commit();
+                
+                ServiceLocator.Instance.SaveSystem.WipeRun();
                 ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted = true;
-                ServiceLocator.Instance.Player.TEMP_SetClass(_currentChallenge.StartingClass);
+                ServiceLocator.Instance.Player.TEMP_SetClass(ServiceLocator.Instance.ChallengeSystem.CurrentChallenge.StartingClass);
                 ServiceLocator.Instance.LevelManager.SetToStartingLevel();
                 ServiceLocator.Instance.Grid.GenerateGrid();
                 ServiceLocator.Instance.Player.ChangeBountyTarget();
@@ -125,9 +137,6 @@ namespace Screens.Challenges
             {
                 // Otherwise, we just open the class select with the challenge option
                 ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.ClassSelection);
-                ClassSelectionScreen classSelectionScreen =
-                    ServiceLocator.Instance.OverlayScreenManager.Screens[
-                        OverlayScreenManager.ScreenType.ClassSelection].GetComponent<ClassSelectionScreen>();
             }
         }
     }
@@ -135,8 +144,32 @@ namespace Screens.Challenges
     public class ChallengeSystem
     {
         private static string saveKeyPrefix = "Challenge_";
+        private static string featureSaveKey = "ChallengesUnlocked";
         
+        public ChallengeSchema SelectedChallenge { get; set; }
         public ChallengeSchema CurrentChallenge { get; set; }
+        
+        public void TryUnlockChallengesForLegacyPlayers()
+        {
+            // On creation, check to see if we need to auto-unlock challenges for legacy players
+            // (they will unlock based off achievements)
+            if (!AreChallengesUnlocked() && ServiceLocator.Instance.AchievementSystem.IsAnyClassLevel0AchievementCompleted())
+            {
+                UnlockChallenges();
+                ServiceLocator.Instance.ToastManager.RequestToast(null, "Challenges Unlocked!", "Access special challenge runs from the main menu!", 3.0f);
+            }
+        }
+        
+        public bool AreChallengesUnlocked()
+        {
+            return FBPP.GetBool(featureSaveKey, false);
+        }
+
+        public void UnlockChallenges()
+        {
+            FBPP.SetBool(featureSaveKey, true);
+            FBPP.Save();
+        }
         
         public bool IsCompleted(ChallengeSchema schema)
         {
@@ -145,8 +178,46 @@ namespace Screens.Challenges
         
         public void Complete(ChallengeSchema schema)
         {
+            // Don't recomplete challenges
+            if (IsCompleted(schema))
+            {
+                return;
+            }
+            
+            ServiceLocator.Instance.ToastManager.RequestToast(null, "Challenge Completed!", schema.Title, 3.0f);
             FBPP.SetBool(saveKeyPrefix + schema.ChallengeId, true);
             FBPP.Save();
+        }
+
+        public void Commit()
+        {
+            CurrentChallenge = SelectedChallenge;
+            if (CurrentChallenge == null)
+            {
+                ServiceLocator.Instance.LevelManager.UseDefaultLevels();
+                ServiceLocator.Instance.Player.UseDefaultLevelProgression();
+                return;
+            }
+            
+            // Override the levels if we need to
+            if (CurrentChallenge.OverrideLevels)
+            {
+                ServiceLocator.Instance.LevelManager.OverrideLevels(ServiceLocator.Instance.ChallengeSystem.SelectedChallenge.Levels);
+            }
+            else
+            {
+                ServiceLocator.Instance.LevelManager.UseDefaultLevels();
+            }
+            
+            // Override level progression schema if we need to
+            if (CurrentChallenge.OverrideLevelProgression && CurrentChallenge.LevelProgression != null) 
+            {
+                ServiceLocator.Instance.Player.OverrideLevelProgression(ServiceLocator.Instance.ChallengeSystem.SelectedChallenge.LevelProgression);
+            }
+            else
+            {
+                ServiceLocator.Instance.Player.UseDefaultLevelProgression();
+            }
         }
     }
 }

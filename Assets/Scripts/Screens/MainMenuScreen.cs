@@ -23,6 +23,9 @@ namespace Screens
 
         private void Start()
         {
+            // TODO: find a better place for this?
+            ServiceLocator.Instance.ChallengeSystem.TryUnlockChallengesForLegacyPlayers();
+            
             NewGameButton.onClick.AddListener(OnNewGamePressed);
             ChallengeButton.onClick.AddListener(OnChallengesPressed);
             QuitGameButton.onClick.AddListener(OnQuitGamePressed);
@@ -34,12 +37,13 @@ namespace Screens
             SettingsButton.onClick.AddListener(OnSettingsPressed);
             DiscordButton.onClick.AddListener(OnDiscordPressed);
 
-            // The game is authored to start with this overlay active
-            // TODO: We should probably make a proper screen management cycle 
-            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.MainMenu);
+            // Only show the challenges button if the feature is unlocked
+            bool challengesUnlocked = ServiceLocator.Instance.ChallengeSystem.AreChallengesUnlocked();
+            ChallengeButton.gameObject.SetActive(challengesUnlocked);
             
-            // TODO: Better way to unlock challenges?
-            //ChallengeButton.gameObject.SetActive(ServiceLocator.Instance.AchievementSystem.GetFinishedAchievementCount() >= 1);
+            // Start the game with the main menu screen as the only active screen
+            ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
+            ServiceLocator.Instance.OverlayScreenManager.RequestShowScreen(OverlayScreenManager.ScreenType.MainMenu);
         }
 
         private void OnEnable()

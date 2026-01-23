@@ -105,6 +105,8 @@ public class Player : MonoBehaviour
     private int BonusStartXp = 0;
     private int SecondWindRegeneration = 0;
 
+    private LevelProgressionSchema _currentLevelProgression;
+
     //TODO: Merge these concepts (id and Tag)
     // By id, "global" is an overall id
     public Dictionary<TileSchema.Id, int> ModDamageTaken = new();
@@ -213,6 +215,8 @@ public class Player : MonoBehaviour
         IsHardcore = true;
         LowHpVfx.SetActive(false);
         OriginalOverflowXpPosition = OverflowXp.GetComponent<RectTransform>().anchoredPosition;
+
+        UseDefaultLevelProgression();
     }
 
     private void Start()
@@ -232,7 +236,7 @@ public class Player : MonoBehaviour
 
         ServiceLocator.Instance.Grid.OnGridGenerated -= OnGridGenerated;
     }
-
+    
     private void OnItemAdded(ItemInstance item)
     {
         if (item.Schema.ItemId == ItemSchema.Id.BountyBoard)
@@ -610,8 +614,8 @@ public class Player : MonoBehaviour
             }
         }
 
-        var currentLevelHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level);
-        var nextLevelHealth = ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level + 1);
+        var currentLevelHealth = _currentLevelProgression.GetMaxHealthForLevel(Level);
+        var nextLevelHealth = _currentLevelProgression.GetMaxHealthForLevel(Level + 1);
         bool showHalfHeart = nextLevelHealth > currentLevelHealth;
         if (!IsGod && showHalfHeart)
         {
@@ -625,7 +629,7 @@ public class Player : MonoBehaviour
         }
 
         delay = 0f;
-        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
+        int xpRequiredToLevel = _currentLevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         for (int i = 0; i < XPGems.Length; i++)
         {
             bool active = i < xpRequiredToLevel;
@@ -652,19 +656,19 @@ public class Player : MonoBehaviour
 
     public bool CanLevelUp()
     {
-        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
+        int xpRequiredToLevel = _currentLevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         return CurrentXP >= xpRequiredToLevel;
     }
 
     public int GetOverflowXp(int incomingXp)
     {
-        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
+        int xpRequiredToLevel = _currentLevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         return Mathf.Min(CurrentXP - xpRequiredToLevel, incomingXp);
     }
 
     public void TryLevelUpPlayer()
     {
-        int xpRequiredToLevel = ServiceLocator.Instance.Schemas.LevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
+        int xpRequiredToLevel = _currentLevelProgression.GetXPRequiredForLevel(Level) + ModXpCurve;
         if (CurrentXP >= xpRequiredToLevel)
         {
             CurrentXP -= xpRequiredToLevel;
@@ -688,7 +692,7 @@ public class Player : MonoBehaviour
 
         MaxHealth = IsGod
             ? 99999
-            : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
+            : _currentLevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
         CurrentHealth = MaxHealth;
 
         TEMP_UpdateVisuals(true);
@@ -704,7 +708,7 @@ public class Player : MonoBehaviour
 
         MaxHealth = IsGod
             ? 99999
-            : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
+            : _currentLevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
 
         CurrentHealth = MaxHealth;
         TEMP_UpdateVisuals();
@@ -758,7 +762,7 @@ public class Player : MonoBehaviour
 
         MaxHealth = IsGod
             ? 99999
-            : ServiceLocator.Instance.Schemas.LevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
+            : _currentLevelProgression.GetMaxHealthForLevel(Level) + BonusMaxHp;
 
         CurrentHealth = MaxHealth;
 
@@ -774,6 +778,16 @@ public class Player : MonoBehaviour
         ChangeMenuTarget();
     }
 
+    public void OverrideLevelProgression(LevelProgressionSchema schema)
+    {
+        _currentLevelProgression = schema;
+    }
+    
+    public void UseDefaultLevelProgression()
+    {
+        _currentLevelProgression = ServiceLocator.Instance.Schemas.LevelProgression;
+    }
+    
     #region PlayerPowers
     
     public void ChangeBountyTarget()

@@ -13,6 +13,7 @@ namespace UI
             public string Title;
             public string Description;
             public Sprite Icon;
+            public float StickTime;
         }
         
         [SerializeField] private ToastItem ToastPrefab;
@@ -114,7 +115,7 @@ namespace UI
             }
         }
 
-        public void RequestToast(Sprite sprite, string title, string message)
+        public void RequestToast(Sprite sprite, string title, string message, float stickTime = 1.75f)
         {
             if (SuppressAllToasts)
             {
@@ -126,7 +127,8 @@ namespace UI
             {
                 Title = title,
                 Description = message,
-                Icon = sprite
+                Icon = sprite,
+                StickTime = stickTime
             };
             
             Requests.Enqueue(td);
@@ -143,7 +145,7 @@ namespace UI
             CurrentToast = Instantiate(ToastPrefab, ToastRoot);
             
             var dt = Requests.Dequeue();
-            CurrentToast.SetData(dt.Icon, dt.Title, dt.Description, OnToastCompleted);
+            CurrentToast.SetData(dt.Icon, dt.Title, dt.Description, dt.StickTime, OnToastCompleted);
         }
 
         private void OnToastCompleted()
