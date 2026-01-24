@@ -15,7 +15,7 @@ MonoBehaviour:
   ChallengeId: 0
   Title: Ultimate Wizard
   Context: You are the kingdom's ultimate Wizard called upon to defeat the last two
-    dungeon levels without using the shop. Use all the spells to save the kingdom!
+    dungeon levels WITHOUT using the shop. Use all your spells to save the kingdom!
   StartingClass: 3
   BlockedClasses: 0f0000000e000000
   StartingItems:
