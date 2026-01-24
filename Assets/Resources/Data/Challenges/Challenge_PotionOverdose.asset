@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add70ac6092b48aeb806f69b9f9f3fa4, type: 3}
+  m_Name: Challenge_PotionOverdose
+  m_EditorClassIdentifier: Assembly-CSharp::Schemas.ChallengeSchema
+  ChallengeId: 2
+  Title: Potion Overdose
+  Context: You awaken in the final dungeon with every potion. Can you make it out
+    alive?
+  StartingClass: 9
+  BlockedClasses: 
+  StartingItems:
+  - {fileID: 11400000, guid: 1d3b46b91a4186c45b3ff90bb3c1e9ef, type: 2}
+  - {fileID: 11400000, guid: 0d1ad7097879080428a6d97d68d391e8, type: 2}
+  - {fileID: 11400000, guid: f6977f3498a758148bbc8b592edbf627, type: 2}
+  - {fileID: 11400000, guid: 6e21d4caf76ed7d4998629a2ff6b2234, type: 2}
+  - {fileID: 11400000, guid: 6b428ce6fe3210940a54cbbb9e391144, type: 2}
+  - {fileID: 11400000, guid: 7aeed96f555bcac43826d01ce8e2dab6, type: 2}
+  - {fileID: 11400000, guid: d3be28c031863fc47a94b3bc239f7c66, type: 2}
+  OverrideLevels: 1
+  Levels:
+  - {fileID: 11400000, guid: 17f48431d25471a40a36e1f2ad5956ac, type: 2}
+  OverrideLevelProgression: 0
+  LevelProgression: {fileID: 0}
+  BlockShopping: 1

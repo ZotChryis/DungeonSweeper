@@ -1,5 +1,4 @@
 ﻿using GameAnalyticsSDK;
-using Gameplay;
 using Schemas;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,11 +8,13 @@ namespace Screens.Victory
     public class VictoryScreen : BaseScreen
     {
         [SerializeField] Button MainMenu;
+        [SerializeField] Button NextLevel;
         [SerializeField] Button Shop;
 
         private void Start()
         {
             MainMenu.onClick.AddListener(OnMainMenuClicked);
+            NextLevel.onClick.AddListener(OnNextLevelClicked);
             Shop.onClick.AddListener(OnShopClicked);
         }
 
@@ -30,14 +31,28 @@ namespace Screens.Victory
             CheatManager.Instance.Restart();
         }
 
+        private void OnNextLevelClicked()
+        {
+            ServiceLocator.Instance.Player.ResetPlayer();
+            ServiceLocator.Instance.LevelManager.NextLevel();
+            ServiceLocator.Instance.OverlayScreenManager.HideAllScreens();
+            ServiceLocator.Instance.SaveSystem.SaveGame();
+        }
+
         protected override void OnShow()
         {
             bool isFinalLevel = ServiceLocator.Instance.LevelManager.IsCurrentLevelFinalLevel();
             MainMenu.gameObject.SetActive(isFinalLevel);
-            Shop.gameObject.SetActive(!isFinalLevel);
+            
+            bool hasChallenge = ServiceLocator.Instance.ChallengeSystem.CurrentChallenge != null;
+            
+            // Check if the challenge blocks the shop. If so, disable the shop button and enable the next level button
+            bool shopBlockedByChallenge = hasChallenge && ServiceLocator.Instance.ChallengeSystem.CurrentChallenge.BlockShopping;
+            Shop.gameObject.SetActive(!isFinalLevel && !shopBlockedByChallenge);
+            NextLevel.gameObject.SetActive(!isFinalLevel && shopBlockedByChallenge);
             
             // Check for challenge completion
-            if (isFinalLevel && ServiceLocator.Instance.ChallengeSystem.CurrentChallenge != null)
+            if (isFinalLevel && hasChallenge)
             {
                 ServiceLocator.Instance.ChallengeSystem.Complete(ServiceLocator.Instance.ChallengeSystem.CurrentChallenge);
             }

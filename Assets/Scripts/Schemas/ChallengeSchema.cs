@@ -15,6 +15,7 @@ namespace Schemas
         {
             UltimateWizard,       // Defeat the last 2 levels as Wizard with ALL spells + Spellbook
             HighLowHigh,          // XP curve goes 10->4->11
+            PotionOverdose,       // Apothecary + all potions, NO SHOP
         }
 
         public Id ChallengeId;
@@ -30,7 +31,8 @@ namespace Schemas
 
         // These classes are BLOCKED from being used during this challenge.
         // By default, we disable Aristocrat because its a "newbie friendly" class
-        public List<Class.Id> BlockedClasses = new() { Class.Id.Aristocrat };
+        // Also remove Ascetic because items
+        public List<Class.Id> BlockedClasses = new() { Class.Id.Aristocrat, Class.Id.Ascetic };
         
         // Any extra items to be added to the player for this challenge
         public ItemSchema[] StartingItems;
@@ -42,5 +44,8 @@ namespace Schemas
         // Instruct the challenge to override the player level progression during this challenge
         public bool OverrideLevelProgression;
         public LevelProgressionSchema LevelProgression;
+
+        // If true, will skip the shop when in victory screen
+        public bool BlockShopping = false;
     }
 }

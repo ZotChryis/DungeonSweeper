@@ -1,6 +1,5 @@
 ﻿using Schemas;
 using System.Collections.Generic;
-using Screens.Challenges;
 using UnityEngine;
 using UnityEngine.UI;
 
