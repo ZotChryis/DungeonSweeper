@@ -17,7 +17,7 @@ MonoBehaviour:
   Context: You are the kingdom's ultimate Wizard called upon to defeat the last two
     dungeon levels WITHOUT using the shop. Use all your spells to save the kingdom!
   StartingClass: 3
-  BlockedClasses: 0f0000000e000000
+  BlockedClasses: 
   StartingItems:
   - {fileID: 11400000, guid: 2408faf2ef29f1f4790c945d53a8651a, type: 2}
   - {fileID: 11400000, guid: d294fd2301400f34aaaefa00277f915c, type: 2}

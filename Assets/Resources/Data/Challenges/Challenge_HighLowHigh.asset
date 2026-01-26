@@ -25,3 +25,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 36cc4d93796005f4db39eabf1aef183f, type: 2}
   OverrideLevelProgression: 1
   LevelProgression: {fileID: 11400000, guid: 568c56f41a3020e42a0ab62d94c2a398, type: 2}
+  BlockShopping: 0

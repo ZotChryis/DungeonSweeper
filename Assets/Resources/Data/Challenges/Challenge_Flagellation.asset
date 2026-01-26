@@ -17,7 +17,7 @@ MonoBehaviour:
   Context: "Salvation through suffering\u2014prove your devotion to the kingdom.
     Defeat all dungeons with this immense pain. "
   StartingClass: -1
-  BlockedClasses: 
+  BlockedClasses: 0f000000
   StartingItems:
   - {fileID: 11400000, guid: 097d3ab440c2e6543ad3c80e7fc8b32c, type: 2}
   - {fileID: 11400000, guid: 097d3ab440c2e6543ad3c80e7fc8b32c, type: 2}
