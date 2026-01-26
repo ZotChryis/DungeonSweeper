@@ -16,6 +16,7 @@ namespace Schemas
             UltimateWizard,       // Defeat the last 2 levels as Wizard with ALL spells + Spellbook
             HighLowHigh,          // XP curve goes 10->4->11
             PotionOverdose,       // Apothecary + all potions, NO SHOP
+            Flagellation,         // Start the game with x3 Sacraficial Whips and some Holy Spells
         }
 
         public Id ChallengeId;
