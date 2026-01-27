@@ -17,7 +17,7 @@ namespace Screens.Shop
         [SerializeField] private Button Continue;
         [SerializeField] private Sprite ItemsDisabledIcon;
 
-        private int onShowMoney;
+        private int _cashOnShopOpened;
 
         protected override void Awake()
         {
@@ -43,7 +43,7 @@ namespace Screens.Shop
             RefreshRerollText();
             Roll(ServiceLocator.Instance.LevelManager.CurrentLevel, true);
             ServiceLocator.Instance.TutorialManager.TryShowTutorial(TutorialManager.TutorialId.Shop);
-            onShowMoney = ServiceLocator.Instance.Player.ShopXp;
+            _cashOnShopOpened = ServiceLocator.Instance.Player.ShopXp;
         }
 
         private void OnShopXpChanged()
@@ -53,12 +53,10 @@ namespace Screens.Shop
 
         private void OnContinueClicked()
         {
-            if (onShowMoney <= ServiceLocator.Instance.Player.ShopXp && ServiceLocator.Instance.Player.Class != Class.Id.Ascetic)
+            if (_cashOnShopOpened <= ServiceLocator.Instance.Player.ShopXp && ServiceLocator.Instance.Player.Class != Class.Id.Ascetic)
             {
-                ServiceLocator.Instance.OverlayScreenManager.RequestConfirmationScreen(() =>
-                {
-                    ContinueFromShopToNextLevel();
-                },
+                ServiceLocator.Instance.OverlayScreenManager.RequestConfirmationScreen(
+                    ContinueFromShopToNextLevel,
                     "Are you sure?",
                     "Are you sure you want to continue without buying anything?"
                 );

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add70ac6092b48aeb806f69b9f9f3fa4, type: 3}
   m_Name: Challenge_HighLowHigh
   m_EditorClassIdentifier: Assembly-CSharp::Schemas.ChallengeSchema
-  ChallengeId: 1
+  ChallengeId: 2
   Title: High, Low, High
   Context: Something has gone wrong with the XP curve. Enjoy being tough at the start,
     but plan accordingly because you lose health instead when leveling up until you

@@ -23,11 +23,13 @@ namespace Screens.Inventory
         private void Start()
         {
             Button.onClick.AddListener(OnButtonClicked);
-            SetStackCount(1);
+            OnStackCountChanged(1);
         }
 
-        private void SetStackCount(int _)
+        private void OnStackCountChanged(int _)
         {
+            bool showStackCount = ItemInstance.StackCount > 1;
+            StackCount.transform.parent.gameObject.SetActive(showStackCount);
             StackCount.SetText(ItemInstance != null ? ItemInstance.StackCount.ToString() : "1");
         }
 
@@ -49,17 +51,19 @@ namespace Screens.Inventory
             SetSaleStatus(itemInstance.IsOnSale);
 
             itemInstance.IsOnSaleChanged += SetSaleStatus;
-            itemInstance.StackCountChanged += SetStackCount;
-            itemInstance.CurrentChargesChanged += CurrentChangesChanged;
+            itemInstance.StackCountChanged += OnStackCountChanged;
+            itemInstance.CurrentChargesChanged += OnChargesChanged;
 
             RarityFrame.color = GetColorFromRarity(ItemInstance.Schema.Rarity);
-            
-            StackCount.transform.parent.gameObject.SetActive(itemInstance.Schema.CanStack);
+
+            bool showStackCount = itemInstance.StackCount > 1;
+            StackCount.transform.parent.gameObject.SetActive(showStackCount);
             CanvasGroup.alpha = 1.0f;
         }
 
+        // !!!HACK!!!
         // Use this version for 'static' UIs. Things that dont need to track an actual instance, but rather just
-        // display the item 
+        // display the item. Basically only used for the Challenges screen
         public void Initialize(ItemSchema schema)
         {
             Icon.sprite = schema.Sprite;
@@ -69,7 +73,7 @@ namespace Screens.Inventory
             CanvasGroup.alpha = 1.0f;
         }
 
-        private void CurrentChangesChanged(int remainingCharges)
+        private void OnChargesChanged(int remainingCharges)
         {
             CanvasGroup.alpha = ItemInstance.CanBeUsed() ? 1.0f : 0.5f;
         }
@@ -94,7 +98,7 @@ namespace Screens.Inventory
             if (ItemInstance != null)
             {
                 ItemInstance.IsOnSaleChanged -= SetSaleStatus;
-                ItemInstance.StackCountChanged -= SetStackCount;
+                ItemInstance.StackCountChanged -= OnStackCountChanged;
             }
         }
 

@@ -22,6 +22,10 @@ MonoBehaviour:
   ShopInventory: 1
   Rarity: 1
   Price: 8
+  UseSfx: 
+  CanStack: 1
+  CloseInventoryOnUse: 0
+  DropDisabled: 0
   Effects:
     _serializedList:
     - Key: 0
@@ -30,8 +34,12 @@ MonoBehaviour:
         Amount: 1
         GrantItemForceAllowDuplicates: 0
         Id: 5
+        OtherId: 0
         Tags: 
         Items: 
         Decay: 0
         DecayTrigger: 0
         DecayTags: 
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}

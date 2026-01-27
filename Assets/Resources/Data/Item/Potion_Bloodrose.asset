@@ -23,8 +23,9 @@ MonoBehaviour:
   Rarity: 0
   Price: 3
   UseSfx: Vision
-  CanStack: 0
+  CanStack: 1
   CloseInventoryOnUse: 1
+  DropDisabled: 0
   Effects:
     _serializedList:
     - Key: 4

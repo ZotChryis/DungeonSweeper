@@ -13,6 +13,7 @@ namespace Schemas
         [Serializable]
         public enum Id
         {
+            None,                   // Used for "empty" state
             UltimateWizard,         // Defeat the last 2 levels as Wizard with ALL spells + Spellbook
             HighLowHigh,            // XP curve goes 10->4->11
             PotionOverdose,         // Apothecary + all potions, NO SHOP

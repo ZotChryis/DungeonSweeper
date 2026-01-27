@@ -23,7 +23,9 @@ MonoBehaviour:
   Rarity: 2
   Price: 5
   UseSfx: EarthSpell
-  CanStack: 0
+  CanStack: 1
+  CloseInventoryOnUse: 0
+  DropDisabled: 0
   Effects:
     _serializedList:
     - Key: 4
@@ -38,3 +40,6 @@ MonoBehaviour:
         Decay: 1
         DecayTrigger: 2
         DecayTags: 02000000
+        UsePowerBands: 0
+        PowerRangeBands: 
+        Vfx: {fileID: 0}

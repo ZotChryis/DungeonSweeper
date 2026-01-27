@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add70ac6092b48aeb806f69b9f9f3fa4, type: 3}
   m_Name: Challenge_GaiasRevenge
   m_EditorClassIdentifier: Assembly-CSharp::Schemas.ChallengeSchema
-  ChallengeId: 4
+  ChallengeId: 5
   Title: Gaia's Revenge
   Context: The Earth-mother revolts because of your ill-gotten gains. Defeat the
     last two dungeons with only your jewelry, but beware of the Earth-mother's wrath!

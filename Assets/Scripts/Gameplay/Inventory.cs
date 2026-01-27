@@ -21,7 +21,7 @@ namespace Gameplay
         
         public IReadOnlyList<ItemInstance> GetAllItems() => Items.ToList();
 
-        private bool IsPlayerInventoy = false;
+        public bool IsPlayerInventoy { get; private set; } = false;
         
         public Inventory(bool isPlayerInventoy)
         {
@@ -145,10 +145,15 @@ namespace Gameplay
                 return null;
             }
 
-            if (item.CanStack && HasItem(itemId))
+            if (HasItem(itemId))
             {
-                var itemInstance = GetFirstItem(itemId);
+                ItemInstance itemInstance = GetFirstItem(itemId);
                 itemInstance.StackCount += 1;
+
+                if (item.IsConsumbale)
+                {
+                    itemInstance.AddCharge(item.InitialCharges);
+                }
                 
                 // TODO: REFACTOR candidate
                 if (IsPlayerInventoy)
@@ -185,21 +190,18 @@ namespace Gameplay
         
         public void RemoveItem(ItemInstance item)
         {
-            if (item.Schema.CanStack)
+            if (item.StackCount > 1)
             {
-                if (item.StackCount > 1)
+                item.StackCount--;
+                    
+                // TODO: REFACTOR candidate
+                if (IsPlayerInventoy)
                 {
-                    item.StackCount--;
-                    
-                    // TODO: REFACTOR candidate
-                    if (IsPlayerInventoy)
-                    {
-                        item.UndoEffect(ServiceLocator.Instance.Player, EffectTrigger.Purchase);
-                    }
-                    
-                    OnItemStackChanged?.Invoke((item, -1));
-                    return;
+                    item.UndoEffect(ServiceLocator.Instance.Player, EffectTrigger.Purchase);
                 }
+                    
+                OnItemStackChanged?.Invoke((item, -1));
+                return;
             }
             
             Items.Remove(item);

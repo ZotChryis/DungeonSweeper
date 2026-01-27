@@ -79,7 +79,9 @@ namespace Gameplay
             data.shopXp = ServiceLocator.Instance.Player.ShopXp;
             data.canGetAchievements = ServiceLocator.Instance.AchievementSystem.AllowAchievementsToBeCompleted;
             data.isHardcore = ServiceLocator.Instance.Player.IsHardcore;
-            data.currentChallenge = ServiceLocator.Instance.ChallengeSystem.CurrentChallenge.ChallengeId;
+            data.currentChallenge = ServiceLocator.Instance.ChallengeSystem.CurrentChallenge 
+                ? ServiceLocator.Instance.ChallengeSystem.CurrentChallenge.ChallengeId 
+                : ChallengeSchema.Id.None;
             
             foreach (ItemInstance itemInstance in ServiceLocator.Instance.Player.Inventory.GetAllItems())
             {
@@ -107,8 +109,11 @@ namespace Gameplay
                 RunData data = JsonUtility.FromJson<RunData>(json);
 
                 // Set the challenge if it was there
-                ServiceLocator.Instance.ChallengeSystem.SelectedChallenge = ServiceLocator.Instance.Schemas.ChallengeSchemas.Find(c => c.ChallengeId == data.currentChallenge);
-                ServiceLocator.Instance.ChallengeSystem.Commit();
+                if (data.currentChallenge != ChallengeSchema.Id.None)
+                {
+                    ServiceLocator.Instance.ChallengeSystem.SelectedChallenge = ServiceLocator.Instance.Schemas.ChallengeSchemas.Find(c => c.ChallengeId == data.currentChallenge);
+                    ServiceLocator.Instance.ChallengeSystem.Commit();
+                }
                 
                 // First set the level -- this is important to do first so that we set spawn settings
                 ServiceLocator.Instance.LevelManager.SetLevel(data.dungeonLevel);

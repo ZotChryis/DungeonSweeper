@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: add70ac6092b48aeb806f69b9f9f3fa4, type: 3}
   m_Name: Challenge_Flagellation
   m_EditorClassIdentifier: Assembly-CSharp::Schemas.ChallengeSchema
-  ChallengeId: 3
+  ChallengeId: 4
   Title: Flagellation
   Context: "Salvation through suffering\u2014prove your devotion to the kingdom.
     Defeat all dungeons with this immense pain. "
