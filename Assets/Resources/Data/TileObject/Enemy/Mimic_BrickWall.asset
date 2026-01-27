@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserFacingName: Mimic Wall
   UserFacingDescription: A harmless wall? Don't be fooled...
-  Tags: 010000000200000006000000
+  Tags: 0100000002000000060000000e000000
   TileId: 90
   LibraryOverrideTileId: 0
   Sprite: {fileID: 8647577461360685516, guid: f293913caf6db924eaf33243951743e4, type: 3}

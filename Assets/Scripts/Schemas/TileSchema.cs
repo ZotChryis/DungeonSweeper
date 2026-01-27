@@ -175,6 +175,7 @@ namespace Schemas
             Chest,
             Scroll,
             Dragon,
+            Brick,
         }
 
         [Serializable]
