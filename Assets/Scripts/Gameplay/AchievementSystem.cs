@@ -7,11 +7,9 @@ using Steamworks;
 #endif
 
 using Schemas;
-using Sirenix.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace Gameplay
 {
@@ -190,6 +188,14 @@ namespace Gameplay
                     // This is bespoke sent by Tile.cs when the tileId == Balrog
                     case AchievementSchema.TriggerType.DemonLord:
                         Complete(schema);
+                        break;
+                    
+                    case AchievementSchema.TriggerType.Challenges:
+                        int completedChallenges = ServiceLocator.Instance.ChallengeSystem.GetCompletedChallengeCount();
+                        if (completedChallenges >= schema.ChallengeCount)
+                        {
+                            Complete(schema);
+                        }
                         break;
                 }
             }

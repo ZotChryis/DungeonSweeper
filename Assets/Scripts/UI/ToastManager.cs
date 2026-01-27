@@ -115,7 +115,7 @@ namespace UI
             }
         }
 
-        public void RequestToast(Sprite sprite, string title, string message, float stickTime = 1.75f)
+        public void RequestToast(Sprite sprite, string title, string message, float stickTime = 2.25f)
         {
             if (SuppressAllToasts)
             {

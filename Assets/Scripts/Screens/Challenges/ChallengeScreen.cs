@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using Gameplay;
 using Schemas;
 using Screens.ClassSelection;
 using Screens.Inventory;
+using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -56,6 +58,9 @@ namespace Screens.Challenges
             }
             _challenges.Clear();
 
+            var challenges = ServiceLocator.Instance.Schemas.ChallengeSchemas;
+            challenges.Sort(((s1, s2) => String.Compare(s1.Title, s2.Title, StringComparison.Ordinal)));
+            
             int completedAmount = 0;
             foreach (var schema in ServiceLocator.Instance.Schemas.ChallengeSchemas)
             {
@@ -159,8 +164,10 @@ namespace Screens.Challenges
                 UnlockChallenges();
                 ServiceLocator.Instance.ToastManager.RequestToast(null, "Challenges Unlocked!", "Access special challenge runs from the main menu!", 3.0f);
             }
+
+            CheckChallengeAchievements();
         }
-        
+
         public bool AreChallengesUnlocked()
         {
             return FBPP.GetBool(featureSaveKey, false);
@@ -188,8 +195,15 @@ namespace Screens.Challenges
             ServiceLocator.Instance.ToastManager.RequestToast(null, "Challenge Completed!", schema.Title, 3.0f);
             FBPP.SetBool(saveKeyPrefix + schema.ChallengeId, true);
             FBPP.Save();
+            
+            CheckChallengeAchievements();
         }
 
+        private void CheckChallengeAchievements()
+        {
+            ServiceLocator.Instance.AchievementSystem.CheckAchievements(AchievementSchema.TriggerType.Challenges);
+        }
+        
         public void Commit()
         {
             CurrentChallenge = SelectedChallenge;
@@ -219,6 +233,16 @@ namespace Screens.Challenges
             {
                 ServiceLocator.Instance.Player.UseDefaultLevelProgression();
             }
+        }
+
+        public int GetCompletedChallengeCount()
+        {
+            int completed = 0;
+            foreach (var schema in ServiceLocator.Instance.Schemas.ChallengeSchemas)
+            {
+                completed += IsCompleted(schema) ? 1 : 0;
+            }
+            return completed;
         }
     }
 }

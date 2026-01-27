@@ -206,6 +206,11 @@ namespace Schemas
             Junker3,
             Junker4,
             
+            Challenges0,    // Complete 1 Challenge
+            Challenges1,    // Complete 5 Challenges
+            Challenges2,    // Complete X Challenges
+            Challenges3,    // Complete X Challenges
+            Challenges4,    // Complete X Challenges
         }
 
         [Serializable]
@@ -217,6 +222,7 @@ namespace Schemas
             DemonLord,
             Killer,
             None,
+            Challenges,
         }
         
         public Id AchievementId;
@@ -282,6 +288,11 @@ namespace Schemas
         /// Some achievements require you to not get items. -1 means any number of items.
         /// </summary>
         public int ItemAcquiredMaxCount = -1;
+
+        /// <summary>
+        /// Some achievements require you to have a certain amount of challenges completed. This is that count.
+        /// </summary>
+        public int ChallengeCount = 0;
 
         /// <summary>
         /// Some achievements require NO RETRY.
@@ -526,6 +537,12 @@ namespace Schemas
                 Id.Annihilation2,
                 Id.Annihilation3,
                 Id.Annihilation4
+            },
+            
+            new  List<AchievementSchema.Id>()
+            {
+                Id.Challenges0,
+                Id.Challenges1,
             },
         };
     }
