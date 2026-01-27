@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: add70ac6092b48aeb806f69b9f9f3fa4, type: 3}
+  m_Name: Challenge_GaiasRevenge
+  m_EditorClassIdentifier: Assembly-CSharp::Schemas.ChallengeSchema
+  ChallengeId: 4
+  Title: Gaia's Revenge
+  Context: The Earth-mother revolts because of your ill-gotten gains. Defeat all
+    dungeons with only your gems, but beware of the consequences!
+  StartingClass: -1
+  BlockedClasses: 0f0000000d000000
+  StartingItems:
+  - {fileID: 11400000, guid: 505632513cb4c724a8e74dc6979031d5, type: 2}
+  - {fileID: 11400000, guid: 39f0f072e3fa3ec43b8f9cee6cc5401a, type: 2}
+  - {fileID: 11400000, guid: 44acff53ae1910f4f884335c51ccc169, type: 2}
+  - {fileID: 11400000, guid: 86bb6cb1f1c3f56409306a2c4cc4accb, type: 2}
+  - {fileID: 11400000, guid: f39796bba1eda0749bc96bc1958e51a6, type: 2}
+  - {fileID: 11400000, guid: db5761f1806c329469beefd9bfdbe325, type: 2}
+  - {fileID: 11400000, guid: 443af2a9737724c458f306e5e610c499, type: 2}
+  - {fileID: 11400000, guid: b6c235d827b4c0e42b7c4825a58d53c7, type: 2}
+  - {fileID: 11400000, guid: e603639698aa25343b88d97430efcd8c, type: 2}
+  - {fileID: 11400000, guid: e603639698aa25343b88d97430efcd8c, type: 2}
+  - {fileID: 11400000, guid: e603639698aa25343b88d97430efcd8c, type: 2}
+  OverrideLevels: 0
+  Levels: []
+  OverrideLevelProgression: 0
+  LevelProgression: {fileID: 0}
+  BlockShopping: 1
